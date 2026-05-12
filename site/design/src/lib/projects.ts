@@ -49,7 +49,7 @@ const PROJECTS_DATA: Project[] = [
     publisher: '盛趣游戏',
     description:
       '玩家在游戏里将扮演一个初入江湖、向往正义与自由的热血少侠，参与主角范闲一生所经历的，有关爱恨情仇的庙堂纷争与江湖往事。',
-    tags: ['双武器切换', 'NPC互动', '多重结局', '探索解密', '古今碰撞'],
+    tags: ['多重结局', '探索解密', '古今碰撞'],
     image: 'pencil/qingyu-nian/Background.png',
     imageObjectPosition: 'center center',
     challenge:

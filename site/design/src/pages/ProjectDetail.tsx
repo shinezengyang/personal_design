@@ -438,86 +438,49 @@ function QingyuLayerHierarchyDiagram() {
   ] as const;
 
   const rowTones = [
-    { line: '#00f5ff', node: '#70efff', text: '#eafcff' },
-    { line: '#4fe7ff', node: '#98f1ff', text: '#f4fbff' },
-    { line: '#a855f7', node: '#f58cff', text: '#ffe8ff' },
-    { line: '#00e1ff', node: '#78f8ff', text: '#f0fcff' },
-    { line: '#ff59f8', node: '#ff9bf6', text: '#fff0ff' },
-    { line: '#b56cff', node: '#ffadff', text: '#fff1ff' },
-    { line: '#16f2ff', node: '#7ef8ff', text: '#ecffff' },
-    { line: '#00d0ff', node: '#72ecff', text: '#ecfaff' },
-    { line: '#ff6cff', node: '#ffa6ff', text: '#fff1ff' },
-    { line: '#23f0ff', node: '#8cf9ff', text: '#eeffff' },
-    { line: '#6be5ff', node: '#b0f7ff', text: '#f6fcff' },
+    { line: '#5ea3c7', node: '#c8e7f4', text: '#eef5fb' },
+    { line: '#5ea3c7', node: '#c8e7f4', text: '#eef5fb' },
+    { line: '#7e8fb0', node: '#d8def0', text: '#f2f5fb' },
+    { line: '#5ea3c7', node: '#c8e7f4', text: '#eef5fb' },
+    { line: '#7e8fb0', node: '#d8def0', text: '#f2f5fb' },
+    { line: '#7e8fb0', node: '#d8def0', text: '#f2f5fb' },
+    { line: '#5ea3c7', node: '#c8e7f4', text: '#eef5fb' },
+    { line: '#5ea3c7', node: '#c8e7f4', text: '#eef5fb' },
+    { line: '#7e8fb0', node: '#d8def0', text: '#f2f5fb' },
+    { line: '#5ea3c7', node: '#c8e7f4', text: '#eef5fb' },
+    { line: '#5ea3c7', node: '#c8e7f4', text: '#eef5fb' },
   ] as const;
 
   return (
-    <div className="project-detail-inner-card rounded-2xl border border-fuchsia-500/25 bg-[linear-gradient(180deg,rgba(5,10,22,0.98),rgba(7,17,29,0.92))] p-4 shadow-[0_0_36px_rgba(0,245,255,0.08),0_0_42px_rgba(214,35,255,0.08)]">
+    <div className="project-detail-inner-card rounded-2xl border border-[#284257] bg-[#0d1420] p-4">
       <ResponsiveScaleFrame minDesignWidth={1120} maxScale={1.02}>
         <svg viewBox="0 0 1120 650" className="w-[1120px]" role="img" aria-label="庆余年界面层级命名与承载图">
           <defs>
-            <linearGradient id="qingyu-hierarchy-panel" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stopColor="#0b1323" />
-              <stop offset="0.52" stopColor="#15182d" />
-              <stop offset="1" stopColor="#220f34" />
-            </linearGradient>
-            <pattern id="qingyu-hierarchy-noise" width="6" height="6" patternUnits="userSpaceOnUse">
-              <circle cx="1" cy="1" r="0.5" fill="rgba(255,255,255,0.06)" />
-              <circle cx="4" cy="3" r="0.5" fill="rgba(0,0,0,0.08)" />
-            </pattern>
-            <pattern id="qingyu-hierarchy-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0,245,255,0.12)" strokeWidth="1" />
-            </pattern>
-            <pattern id="qingyu-hierarchy-scan" width="8" height="8" patternUnits="userSpaceOnUse">
-              <rect width="8" height="4" fill="rgba(255,255,255,0.02)" />
-            </pattern>
             <linearGradient id="qingyu-hierarchy-right" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stopColor="#d8e7f2" />
-              <stop offset="0.58" stopColor="#edf6ff" />
-              <stop offset="1" stopColor="#d8e0ed" />
+              <stop offset="0" stopColor="#dfe8f1" />
+              <stop offset="1" stopColor="#edf2f7" />
             </linearGradient>
-            <linearGradient id="qingyu-hierarchy-header" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stopColor="#dcfbff" />
-              <stop offset="0.42" stopColor="#f6e8ff" />
-              <stop offset="1" stopColor="#c8f5ff" />
-            </linearGradient>
-            <linearGradient id="qingyu-hierarchy-divider" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#ff45f6" />
-              <stop offset="1" stopColor="#00f5ff" />
-            </linearGradient>
-            <filter id="qingyu-hierarchy-glow" x="-30%" y="-30%" width="160%" height="160%">
-              <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor="#00f5ff" floodOpacity="0.24" />
-              <feDropShadow dx="0" dy="0" stdDeviation="14" floodColor="#ff45f6" floodOpacity="0.12" />
-            </filter>
-            <filter id="qingyu-hierarchy-strong-glow" x="-40%" y="-40%" width="180%" height="180%">
-              <feDropShadow dx="0" dy="0" stdDeviation="10" floodColor="#00f5ff" floodOpacity="0.3" />
-              <feDropShadow dx="0" dy="0" stdDeviation="20" floodColor="#ff4df8" floodOpacity="0.18" />
-            </filter>
           </defs>
-          <rect width="1120" height="650" rx="18" fill="#040915" />
-          <rect x="0" y="0" width="332" height="650" fill="url(#qingyu-hierarchy-panel)" />
-          <rect x="0" y="0" width="332" height="650" fill="url(#qingyu-hierarchy-noise)" opacity="0.35" />
-          <rect x="332" y="0" width="788" height="650" fill="url(#qingyu-hierarchy-right)" />
-          <rect x="332" y="0" width="788" height="650" fill="url(#qingyu-hierarchy-grid)" opacity="0.65" />
-          <rect x="332" y="0" width="788" height="650" fill="url(#qingyu-hierarchy-scan)" opacity="0.45" />
-          <rect x="8" y="8" width="1104" height="634" rx="14" fill="none" stroke="#00f5ff" strokeOpacity="0.3" />
-          <rect x="16" y="16" width="1088" height="618" rx="12" fill="none" stroke="#ff45f6" strokeOpacity="0.16" />
-          <path d="M346 18 H1054 L1106 42 L1054 66 H346 Z" fill="rgba(8,28,46,0.08)" stroke="rgba(0,217,255,0.35)" />
-          <line x1="332" y1="0" x2="332" y2="650" stroke="url(#qingyu-hierarchy-divider)" strokeOpacity="0.9" strokeWidth="3" />
-          <line x1="332" y1="64" x2="1120" y2="64" stroke="#00f5ff" strokeOpacity="0.18" strokeWidth="2" />
+          <rect width="1120" height="650" rx="18" fill="#0f1722" />
+          <rect x="0" y="0" width="368" height="650" fill="#182233" />
+          <rect x="368" y="0" width="752" height="650" fill="url(#qingyu-hierarchy-right)" />
+          <line x1="368" y1="0" x2="368" y2="650" stroke="#c6d3de" strokeWidth="2" />
+          <line x1="368" y1="64" x2="1120" y2="64" stroke="#d4dde6" strokeWidth="1" />
 
-          <path d="M18 40 l12 8 -12 8 z" fill="#7ef8ff" filter="url(#qingyu-hierarchy-glow)" />
-          <rect x="42" y="34" width="18" height="18" rx="3" fill="#141c30" stroke="#ff4ff8" strokeWidth="1.5" />
-          <rect x="45.5" y="37.5" width="11" height="11" rx="2" fill="#defaff" />
-          <text x="76" y="52" fill="url(#qingyu-hierarchy-header)" fontSize="27" fontWeight="700" filter="url(#qingyu-hierarchy-strong-glow)">UIRoot</text>
-          <text x="374" y="49" fill="#091828" fontSize="19" fontWeight="900" letterSpacing="1">界面层级命名与承载说明</text>
+          <path d="M18 40 l12 8 -12 8 z" fill="#c8e7f4" />
+          <rect x="42" y="34" width="18" height="18" rx="3" fill="#223147" stroke="#8ea1b9" strokeWidth="1.2" />
+          <rect x="45.5" y="37.5" width="11" height="11" rx="2" fill="#eef5fb" />
+          <text x="76" y="52" fill="#eef5fb" fontSize="27" fontWeight="700">UIRoot</text>
+          <text x="414" y="49" fill="#091828" fontSize="19" fontWeight="900" letterSpacing="1">界面层级命名与承载说明</text>
 
           {rows.map((row, idx) => {
             const y = 94 + idx * 49;
             const arrowX = 42;
             const cubeX = 70;
             const textX = 104;
-            const lineStartX = 210;
+            const lineStartX = 256;
+            const lineEndX = 392;
+            const descX = 430;
             const tone = rowTones[idx];
             return (
               <g key={row.layer}>
@@ -528,9 +491,9 @@ function QingyuLayerHierarchyDiagram() {
                 <rect x={cubeX + 3.5} y={y - 12.5} width="8" height="8" rx="1.4" fill={tone.node} />
                 <text x={textX} y={y - 3} fill={tone.text} fontSize="16" fontWeight="600">{row.layer}</text>
 
-                <line x1={lineStartX} y1={y - 9} x2="346" y2={y - 9} stroke={tone.line} strokeWidth="2.6" strokeOpacity="0.95" />
-                <circle cx="346" cy={y - 9} r="3.2" fill={tone.line} />
-                <text x="370" y={y - 5} fill="#16283b" fontSize="16" fontWeight="800">{row.desc}</text>
+                <line x1={lineStartX} y1={y - 9} x2={lineEndX} y2={y - 9} stroke={tone.line} strokeWidth="2.6" strokeOpacity="0.95" />
+                <circle cx={lineEndX} cy={y - 9} r="3.2" fill={tone.line} />
+                <text x={descX} y={y - 5} fill="#16283b" fontSize="16" fontWeight="800">{row.desc}</text>
               </g>
             );
           })}
@@ -610,13 +573,13 @@ function QingyuRuleFlowDiagram() {
     </g>
   );
 
-  const stageClass = 'rounded-2xl border border-neon-cyan/20 bg-[linear-gradient(180deg,rgba(16,29,45,0.98),rgba(11,22,35,0.96))] p-4 shadow-[inset_0_1px_0_rgba(0,245,255,0.06)]';
+  const stageClass = 'rounded-2xl border border-[#284257] bg-[#101b2a] p-4';
 
   const renderPanelFrame = (width: number, height: number, title: string) => (
     <g>
-      <rect x="0" y="0" width={width} height={height} fill="#7f7f7f" />
-      <rect x="0" y="0" width={width} height="95" fill="#585858" />
-      <text x={width / 2} y="46" textAnchor="middle" dominantBaseline="central" fill="#eeeeee" fontSize="24" fontWeight="700">
+      <rect x="14" y="14" width={width - 28} height={height - 28} rx="22" fill="none" stroke="#2e475e" strokeWidth="2" />
+      <path d={`M42 48 H${width - 42}`} stroke="#36546d" strokeWidth="1.5" />
+      <text x={width / 2} y="84" textAnchor="middle" dominantBaseline="central" fill="#edf5fb" fontSize="24" fontWeight="700">
         {title}
       </text>
     </g>
@@ -812,17 +775,11 @@ function QingyuRuleFlowDiagram() {
   };
 
   return (
-    <div className="project-detail-inner-card rounded-2xl border border-fuchsia-500/22 bg-[linear-gradient(180deg,rgba(4,10,22,0.98),rgba(7,17,29,0.92))] p-4 shadow-[0_0_30px_rgba(0,245,255,0.08),0_0_42px_rgba(214,35,255,0.08)]">
-      <div className="mb-5 overflow-hidden rounded-xl border border-neon-cyan/24 bg-[radial-gradient(circle_at_top_left,rgba(255,0,200,0.14),transparent_30%),linear-gradient(180deg,rgba(8,20,36,0.98),rgba(11,24,41,0.94))] px-5 py-5 shadow-[inset_0_1px_0_rgba(0,245,255,0.12)]">
-        <div className="mb-4 flex flex-wrap items-center gap-3">
-          <div className="inline-flex items-center gap-2 rounded-full border border-fuchsia-400/35 bg-[#0a1322]/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-fuchsia-200 shadow-[0_0_18px_rgba(255,76,237,0.16)]">
-            <span className="h-2 w-2 rounded-full bg-[#ff4ced] shadow-[0_0_12px_rgba(255,76,237,0.9)]" />
-            UI Protocol
-          </div>
-          <div className="h-px min-w-[88px] flex-1 bg-[linear-gradient(90deg,rgba(255,76,237,0.7),rgba(0,245,255,0.18),transparent)]" />
-        </div>
-        <div className="mb-3 text-[28px] font-bold text-[#88f7ff] drop-shadow-[0_0_18px_rgba(0,245,255,0.24)]">各类情况下的界面开启关闭规则</div>
-        <div className="space-y-3 text-[15px] leading-relaxed text-[#d2d7e8]">
+    <div className="project-detail-inner-card rounded-2xl border border-[#284257] bg-[#0d1420] p-4">
+      <div className="mb-5 px-5 py-4">
+        <div className="mb-2 text-[14px] font-semibold uppercase tracking-[0.18em] text-[#9db3c5]">界面规则</div>
+        <div className="mb-3 text-[28px] font-bold text-[#e7f0f6]">各类情况下的界面开启关闭规则</div>
+        <div className="space-y-3 text-[15px] leading-relaxed text-[#d2dbe4]">
           <p>1. 当系统界面已打开时，如果触发 NPC 对话或剧情动画，当前系统界面自动关闭，结束后回到主界面流程。</p>
           <p>2. 当系统界面已打开时，如果进入玩法过场或副本，系统界面自动关闭；玩法结束后优先回到入口或结算界面，没有入口则回到主界面。</p>
         </div>
@@ -840,14 +797,14 @@ function QingyuRuleFlowDiagram() {
         </div>
         <div className={`lg:col-span-2 ${stageClass}`}>
           <div className="space-y-4">
-            <div className="rounded-lg border border-neon-cyan/18 bg-[linear-gradient(180deg,rgba(22,37,58,0.98),rgba(17,27,42,0.92))] px-4 py-3 text-center text-[18px] font-bold text-[#7ef6ff] shadow-[inset_0_1px_0_rgba(0,245,255,0.08)]">
+            <div className="rounded-lg border border-[#35536b] bg-[#152334] px-4 py-3 text-center text-[18px] font-bold text-[#e7f0f6]">
               玩法入口与副本切换
             </div>
             <div className="grid gap-4">
-              <div className="rounded-xl border border-neon-cyan/12 bg-[linear-gradient(180deg,rgba(24,35,50,0.98),rgba(19,29,42,0.96))] p-3">
+              <div className="rounded-xl border border-[#2d465d] bg-[#132031] p-3">
                 <EntrySwitchSvg />
               </div>
-              <div className="rounded-xl border border-neon-cyan/12 bg-[linear-gradient(180deg,rgba(24,35,50,0.98),rgba(19,29,42,0.96))] p-3">
+              <div className="rounded-xl border border-[#2d465d] bg-[#132031] p-3">
                 <EntrySwitchSvg withDungeon />
               </div>
             </div>
@@ -859,10 +816,44 @@ function QingyuRuleFlowDiagram() {
 }
 
 function QingyuMainScreenDiagram() {
-  const panels = [
-    { title: '剧情任务', side: 'left', blocks: ['任务目标', '对话选择', '剧情回看'] },
-    { title: '角色成长', side: 'middle', blocks: ['武学状态', '装备预览', '伙伴协同'] },
-    { title: '江湖探索', side: 'right', blocks: ['地图线索', '机关解谜', 'NPC关系'] },
+  const callouts = [
+    { n: '1', label: '玩家信息区', side: 'left', y: 164, x: 96, lineStart: 236, lineEnd: 562 },
+    { n: '2', label: '境界、变强区', side: 'left', y: 212, x: 96, lineStart: 262, lineEnd: 562, elbowX: 720, elbowY: 212, anchorY: 172 },
+    { n: '6', label: '任务追踪、队友信息区', side: 'left', y: 356, x: 44, lineStart: 280, lineEnd: 562 },
+    { n: '12', label: '虚拟摇杆区', side: 'left', y: 706, x: 96, lineStart: 210, lineEnd: 468 },
+    { n: '14', label: '动作/自动战斗/拍照按钮区', side: 'left', y: 842, x: 22, lineStart: 312, lineEnd: 468 },
+    { n: '15', label: '社交区域', side: 'left', y: 886, x: 122, lineStart: 230, lineEnd: 640 },
+    { n: '16', label: '网络、电量等信息区', side: 'left', y: 930, x: 38, lineStart: 268, lineEnd: 514 },
+    { n: '3', label: '跑马灯', side: 'right', y: 132, x: 1500, lineStart: 1242, lineEnd: 1440 },
+    { n: '4', label: '地图信息区', side: 'right', y: 204, x: 1528, lineStart: 1306, lineEnd: 1488 },
+    { n: '5', label: '商业公告区', side: 'right', y: 262, x: 1528, lineStart: 1128, lineEnd: 1488 },
+    { n: '7', label: '功能菜单栏区域', side: 'right', y: 356, x: 1588, lineStart: 1260, lineEnd: 1548 },
+    { n: '8', label: '背包区域', side: 'right', y: 392, x: 1528, lineStart: 1306, lineEnd: 1488 },
+    { n: '9', label: '副本匹配信息栏区域', side: 'right', y: 428, x: 1596, lineStart: 1306, lineEnd: 1556 },
+    { n: '10', label: '交互读条区', side: 'right', y: 536, x: 1504, lineStart: 1072, lineEnd: 1464 },
+    { n: '11', label: '战斗技能栏区域', side: 'right', y: 646, x: 1540, lineStart: 1244, lineEnd: 1500 },
+    { n: '13', label: '聊天栏区域', side: 'right', y: 818, x: 1500, lineStart: 808, lineEnd: 1460 },
+    { n: '17', label: '经验条区域', side: 'right', y: 930, x: 1536, lineStart: 1008, lineEnd: 1496 },
+  ] as const;
+
+  const notes = [
+    ['1', '玩家信息区', '显示主角当前常规状态信息、主角战斗 buff 等核心信息。'],
+    ['2', '境界、变强区', '可进入主角能力提升界面，用于成长养成与数值强化。'],
+    ['3', '跑马灯', '用于滚动展示系统公告、活动信息等需要持续曝光的内容。'],
+    ['4', '地图信息区', '默认显示小地图、地点名称、天气、时间等环境信息。'],
+    ['5', '商业公告区', '用于展示商业化相关活动、礼包或付费引导等公告内容。'],
+    ['6', '任务追踪、队友信息区', '显示任务追踪、队友简要信息，可收起并切换任务与队伍页签。'],
+    ['7', '功能菜单栏区域', '集合角色养成相关快捷按钮，承载养成玩法的高频操作入口。'],
+    ['8', '背包区域', '用于呼出背包界面，管理道具、材料与装备资源。'],
+    ['9', '副本匹配信息栏区域', '展示副本匹配、组队状态或副本流程相关提示信息。'],
+    ['10', '交互读条区', '与场景物件交互时显示读条反馈，用于提示操作进度。'],
+    ['11', '战斗技能栏区域', '承载主要战斗技能按钮与战斗核心操作入口。'],
+    ['12', '虚拟摇杆区', '操控角色移动，可在左下角放置不与行走冲突的功能按键。'],
+    ['13', '聊天栏区域', '显示聊天频道内容，支持常驻浏览与快捷输入沟通。'],
+    ['14', '动作/自动战斗/拍照按钮区', '放置动作、自动战斗、拍照等常用快捷操作按钮。'],
+    ['15', '社交区域', '承载社交入口与相关互动功能，便于快速进入社交系统。'],
+    ['16', '网络、电量等信息区', '用于显示网络状态、电池电量等系统级状态信息。'],
+    ['17', '经验条区域', '用于反馈角色经验成长进度与升级节奏。'],
   ] as const;
 
   return (
@@ -875,57 +866,81 @@ function QingyuMainScreenDiagram() {
           <div className="text-[32px] font-bold leading-none text-[#8FD3C7]">主要游戏画面</div>
         </div>
 
-        <ResponsiveScaleFrame minDesignWidth={1120} maxScale={1.12}>
-          <div className="grid w-[1120px] grid-cols-3 gap-5">
-            {panels.map((panel) => (
-              <div key={panel.title} className="project-detail-inner-card">
-                <div className="relative rounded-md border border-[#87C8BC]/40 bg-[#07111f] p-4">
-                  <div className="mb-3 rounded border border-[#87C8BC]/60 bg-[#122338] px-3 py-2 text-center text-[16px] font-bold text-[#A3D9C1]">
-                    {panel.title}
+        <ResponsiveScaleFrame minDesignWidth={1600} maxScale={1.02}>
+          <div className="w-[1600px] space-y-8">
+            <div className="relative h-[980px] overflow-hidden rounded-[20px] border border-[#87C8BC]/28 bg-[#09121d]">
+              <img
+                src={publicUrl('figma/qingyu-nian/qingyu-main-ui-screen.png')}
+                alt="庆余年主要游戏画面"
+                className="absolute left-[280px] top-[88px] h-auto w-[960px] rounded-[8px] opacity-95"
+                loading="lazy"
+                decoding="async"
+              />
+
+              {callouts.map((item) => (
+                <div key={item.n}>
+                  <div
+                    className={`absolute inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-[14px] font-bold leading-none text-[#0b1320] ${
+                      item.side === 'left' ? 'text-left' : 'text-right'
+                    }`}
+                    style={{
+                      left: item.side === 'left' ? item.x : item.x,
+                      top: item.y - 14,
+                      transform: item.side === 'right' ? 'translateX(0)' : undefined,
+                    }}
+                  >
+                    {item.n}
                   </div>
-                  <div className="relative h-[390px] rounded border border-[#3E7E90] bg-[#0b1320] p-4">
-                    <div className="absolute inset-x-4 top-4 h-[48px] rounded border-2 border-[#87C8BC]" />
-                    <div className="absolute inset-x-4 top-[76px] bottom-[78px] rounded border-2 border-[#87C8BC]" />
-                    <div className="absolute inset-x-4 bottom-4 h-[46px] rounded border-2 border-[#87C8BC]" />
-                    <span className="absolute left-1/2 top-[28px] inline-flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full bg-[#87C8BC] text-[13px] font-bold leading-none text-[#0b1320]">3</span>
-                    <span className="absolute left-1/2 top-[190px] inline-flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full bg-[#87C8BC] text-[13px] font-bold leading-none text-[#0b1320]">2</span>
-                    <span className="absolute left-1/2 bottom-[26px] inline-flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full bg-[#87C8BC] text-[13px] font-bold leading-none text-[#0b1320]">1</span>
-                    <div className="absolute inset-x-9 top-[112px] grid gap-4">
-                      {panel.blocks.map((block) => (
-                        <div key={block} className="rounded border border-[#3E7E90] bg-[#122338]/80 px-3 py-3 text-center text-[15px] font-semibold text-[#C1D4CE]">
-                          {block}
-                        </div>
-                      ))}
+                  <div
+                    className={`absolute text-[22px] font-semibold leading-none text-[#d6f0e8] ${
+                      item.side === 'left' ? 'text-left' : 'text-right'
+                    }`}
+                    style={{
+                      left: item.side === 'left' ? item.x + 44 : undefined,
+                      right: item.side === 'right' ? 1600 - item.x + 44 : undefined,
+                      top: item.y - 13,
+                    }}
+                  >
+                    {item.label}
+                  </div>
+                  <div
+                    className="absolute h-[2px] bg-[#87C8BC]"
+                    style={{ left: item.lineStart, top: item.y, width: item.lineEnd - item.lineStart }}
+                  />
+                  <div className="absolute h-2 w-2 rounded-full bg-[#87C8BC]" style={{ left: item.lineEnd - 4, top: item.y - 3 }} />
+                  {'elbowX' in item && item.elbowX ? (
+                    <>
+                      <div className="absolute h-[2px] bg-[#87C8BC]" style={{ left: item.lineEnd, top: item.y, width: item.elbowX - item.lineEnd }} />
+                      <div
+                        className="absolute w-[2px] bg-[#87C8BC]"
+                        style={{ left: item.elbowX, top: item.anchorY, height: item.y - item.anchorY + 2 }}
+                      />
+                    </>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+
+            <div className="project-detail-inner-card rounded-xl border border-[#87C8BC]/25 bg-[#122338]/55 px-6 py-6">
+              <p className="text-center text-[20px] font-semibold leading-relaxed text-[#ddefe8]">
+                战斗中需要玩家反复注意的元素放在同一区域，具有整体性，可以使玩家的注意力集中
+              </p>
+              <div className="mt-6 space-y-4">
+                {notes.map(([n, title, desc]) => (
+                  <div key={n} className="flex items-start gap-4">
+                    <span className="mt-1 inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-[14px] font-bold leading-none text-[#0b1320]">
+                      {n}
+                    </span>
+                    <div className="flex-1">
+                      <div className="text-[20px] font-semibold leading-none text-[#d6f0e8]">{title}：</div>
+                      <div className="mt-2 text-[18px] leading-[1.65] text-[#a8c0ba]">{desc}</div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </ResponsiveScaleFrame>
-
-        <div className="project-detail-inner-card rounded-xl border border-[#87C8BC]/25 bg-[#122338]/55 px-5 py-4 sm:px-6 sm:py-5">
-          <p className="text-center text-[16px] font-semibold leading-relaxed text-[#C1D4CE]">
-            同类系统采用一致的界面分区：顶部承载资源与状态，中部聚焦当前玩法内容，底部保留返回、确认和继续任务等高频操作。
-          </p>
-          <div className="mt-4 space-y-3 text-[16px] font-[600] leading-relaxed text-[#C1D4CE]">
-            {[
-              ['导航区：', '系统级操作放在底部，降低单手操作成本并强化返回路径。'],
-              ['内容区：', '剧情、成长、探索的核心内容集中在画面中部，保证玩家视觉焦点稳定。'],
-              ['资源区：', '角色状态、任务追踪和关键资源放在顶部，便于快速确认当前条件。'],
-            ].map(([title, desc], idx) => (
-              <p key={title} className="flex items-start gap-3 leading-relaxed">
-                <span className="mt-[5px] inline-flex h-4 min-w-4 shrink-0 items-center justify-center rounded-full bg-[#87C8BC] text-[12px] font-bold leading-none text-[#0b1320]">
-                  {idx + 1}
-                </span>
-                <span>
-                  <span className="font-semibold text-[#8FD3C7]">{title}</span>
-                  {desc}
-                </span>
-              </p>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -1471,136 +1486,7 @@ export default function ProjectDetail({
                         {pencilNode === 'HcCn5' || pencilNode === '8qvkJ' ? 'Framework Layer' : 'Structure Layer'}
                       </div>
                     </div>
-                    {pencilNode === '8qvkJ' ? (
-                      <div className="mt-10 pb-8">
-                        <div
-                          className="w-full min-h-[200px] rounded-2xl border border-neon-cyan/25 bg-[#0b1320]/55 p-4 overflow-visible space-y-5"
-                          style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}
-                        >
-                          <div className="py-2 text-center">
-                            <div className="text-[32px] font-bold leading-none text-[#8FD3C7]">
-                              主要游戏画面
-                            </div>
-                          </div>
-
-                          <div className="pt-2 pb-7">
-                            <ResponsiveScaleFrame minDesignWidth={1120} maxScale={1.12}>
-                              <div className="grid w-[1120px] grid-cols-3 gap-5">
-                                {[
-                                  {
-                                    src: 'panel-1.png',
-                                    alt: '主要游戏画面左侧',
-                                    groupId: 'group-left',
-                                    wrapperGroupId: 'group-left-wrapper',
-                                    badgeTopPct: { n3: 5.76, n2: 85.2, n1: 98.16 },
-                                    nodeIds: ['00zAT', '62lsj', 'HJrnk', 'gZ3DT', 'IgLPU', 'JNiff', 'pvVAE'],
-                                  },
-                                  {
-                                    src: 'panel.png',
-                                    alt: '主要游戏画面中间',
-                                    groupId: 'group-middle',
-                                    wrapperGroupId: 'group-middle-wrapper',
-                                    badgeTopPct: { n3: 5.77, n2: 85.4, n1: 98.38 },
-                                    nodeIds: ['kW60Q', '4TGFO', '2iPaO', 'COAWy', '6wcZt', 'dC1B2', 'KWmBp'],
-                                  },
-                                  {
-                                    src: 'panel-2.png',
-                                    alt: '主要游戏画面右侧',
-                                    groupId: 'group-right',
-                                    wrapperGroupId: 'group-right-wrapper',
-                                    badgeTopPct: { n3: 5.31, n2: 84.95, n1: 97.92 },
-                                    nodeIds: ['y6QMs', 'k4WaU', 'zrAVF', 'Vza14', 'a4nR5', 'YBHFa', 'AmmUv'],
-                                  },
-                                ].map((group) => (
-                                  <div
-                                    key={group.wrapperGroupId}
-                                    className="project-detail-inner-card"
-                                    data-pencil-wrapper-group={group.wrapperGroupId}
-                                  >
-                                    <div
-                                      className="relative overflow-visible rounded-md border border-[#87C8BC]/40"
-                                      data-pencil-group={group.groupId}
-                                      data-pencil-node-ids={group.nodeIds.join(',')}
-                                    >
-                                      <img
-                                        src={publicUrl(group.src)}
-                                        alt={group.alt}
-                                        className="block h-auto w-full rounded-md"
-                                        loading="lazy"
-                                        decoding="async"
-                                      />
-
-                                      <div className="pointer-events-none absolute inset-0">
-                                        <div className="absolute inset-x-0 top-0 h-[7.1%] border-2 border-[#87C8BC]" />
-                                        <div className="absolute inset-x-0 top-[8.1%] h-[77.7%] border-2 border-[#87C8BC]" />
-                                        <div className="absolute inset-x-0 top-[92%] h-[7.5%] border-2 border-[#87C8BC]" />
-
-                                        <span
-                                          className="absolute left-1/2 inline-flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#87C8BC] text-[13px] font-bold leading-none text-[#0b1320]"
-                                          style={{ top: `${group.badgeTopPct.n3}%` }}
-                                        >
-                                          3
-                                        </span>
-                                        <span
-                                          className="absolute left-1/2 inline-flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#87C8BC] text-[13px] font-bold leading-none text-[#0b1320]"
-                                          style={{ top: `${group.badgeTopPct.n2}%` }}
-                                        >
-                                          2
-                                        </span>
-                                        <span
-                                          className="absolute left-1/2 inline-flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#87C8BC] text-[13px] font-bold leading-none text-[#0b1320]"
-                                          style={{ top: `${group.badgeTopPct.n1}%` }}
-                                        >
-                                          1
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            </ResponsiveScaleFrame>
-                          </div>
-
-                          <div className="pt-2">
-                            <div className="project-detail-inner-card rounded-xl border border-[#87C8BC]/25 bg-[#122338]/55 px-5 py-4 sm:px-6 sm:py-5">
-                              <p className="text-center text-[16px] font-semibold leading-relaxed text-[#C1D4CE]">
-                              在菜单系统中采用了模块化设计，同级系统中采取了相似的布局系统，保证玩家体验的一致性
-                              </p>
-                              <div className="mt-4 space-y-3 text-[16px] font-[600] leading-relaxed text-[#C1D4CE]">
-                                <p className="flex items-start gap-3 leading-relaxed">
-                                  <span className="mt-[5px] inline-flex h-4 min-w-4 shrink-0 items-center justify-center rounded-full bg-[#87C8BC] text-[12px] font-bold leading-none text-[#0b1320]">
-                                    1
-                                  </span>
-                                  <span>
-                                    <span className="font-semibold text-[#8FD3C7]">导航区：</span>
-                                    系统级导航按钮放底部，方便玩家切换各个系统
-                                  </span>
-                                </p>
-                                <p className="flex items-start gap-3 leading-relaxed">
-                                  <span className="mt-[5px] inline-flex h-4 min-w-4 shrink-0 items-center justify-center rounded-full bg-[#87C8BC] text-[12px] font-bold leading-none text-[#0b1320]">
-                                    2
-                                  </span>
-                                  <span>
-                                    <span className="font-semibold text-[#8FD3C7]">内容区：</span>
-                                    最核心的玩法内容放在中间，清晰明确，玩家大部分时间视觉聚焦在此处
-                                  </span>
-                                </p>
-                                <p className="flex items-start gap-3 leading-relaxed">
-                                  <span className="mt-[5px] inline-flex h-4 min-w-4 shrink-0 items-center justify-center rounded-full bg-[#87C8BC] text-[12px] font-bold leading-none text-[#0b1320]">
-                                    3
-                                  </span>
-                                  <span>
-                                    <span className="font-semibold text-[#8FD3C7]">资源区：</span>
-                                    资源数量、头像信息、增益等次要的信息放顶部
-                                  </span>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
-                    ) : null}
+                    {pencilNode === '8qvkJ' ? <QingyuMainScreenDiagram /> : null}
                     <StructureLayerDiagram pencilNode={pencilNode} />
                     {pencilNode === '8qvkJ' ? (
                       <div className="mt-10 pb-8">
