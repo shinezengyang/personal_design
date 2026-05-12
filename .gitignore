@@ -1,0 +1,9 @@
+site/design/node_modules/
+site/design/dist/
+site/design/.vite/
+site/design/.vite-temp/
+site/design/*.log
+site/design/.vite-dev.*.log
+site/design/*.tsbuildinfo
+site/design/vite.config.js
+site/design/vite.config.d.ts
