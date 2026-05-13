@@ -1,7 +1,7 @@
 ﻿import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, BookOpen, Swords, Users, type LucideIcon } from 'lucide-react';
 
 import type { Project } from '../lib/projects';
 import { getProjectById } from '../lib/projects';
@@ -30,20 +30,11 @@ const QINGYU_LAYER_ROWS = [
   ['GuideLayer', '新手引导、强制提示、步骤遮罩'],
 ] as const;
 
-const QINGYU_PERSONAS = [
-  {
-    title: '剧情沉浸型',
-    summary: '跟随主线与角色关系，优先要看清当前剧情目标。',
-  },
-  {
-    title: '成长效率型',
-    summary: '关注战力、资源和奖励，入口需要短、反馈要直接。',
-  },
-  {
-    title: '江湖探索型',
-    summary: '偏好地图线索、隐藏事件与 NPC 关系，不能丢失场景感。',
-  },
-] as const;
+const QINGYU_PERSONAS: { title: string; icon: LucideIcon; need: string; design: string }[] = [
+  { title: '沉浸型', icon: BookOpen, need: '剧情不被打断，UI 不遮挡叙事', design: '演出模式极简 HUD' },
+  { title: '成就型', icon: Swords, need: '养成路径短，数值反馈即时', design: '一键直达，进度实时可视' },
+  { title: '社交型', icon: Users, need: '社交入口随时可达，不干扰操作', design: '快捷入口常驻，分层不遮挡' },
+];
 
 const QINGYU_SCOPE_MODULES = [
   {
@@ -241,13 +232,14 @@ function QingyuInterfaceMap({
   };
 
   return (
-    <div className="project-detail-inner-card rounded-2xl border border-neon-cyan/25 bg-[#0b1320]/55 p-4">
+    <div>
       <ResponsiveScaleFrame minDesignWidth={1120} maxScale={1.04}>
         <svg viewBox={`0 0 1120 ${viewHeight}`} className="w-[1120px]" role="img" aria-label={ariaLabel}>
           <defs>
             <radialGradient id={`qingyu-map-bg-${idSuffix}`} cx="50%" cy="52%" r="65%">
-              <stop offset="0" stopColor="#13304d" />
-              <stop offset="1" stopColor="#06111f" />
+              <stop offset="0%" stopColor="#1a3040" stopOpacity="0.9" />
+              <stop offset="55%" stopColor="#132636" stopOpacity="0.6" />
+              <stop offset="100%" stopColor="#0b1320" stopOpacity="0.25" />
             </radialGradient>
             <filter id={`qingyu-map-glow-${idSuffix}`} x="-30%" y="-40%" width="160%" height="180%">
               <feDropShadow dx="0" dy="0" stdDeviation="5" floodColor="#87C8BC" floodOpacity="0.45" />
@@ -324,24 +316,26 @@ function QingyuPcStructureDiagram() {
 function QingyuPersonaCards() {
   return (
     <div className="grid gap-4 md:grid-cols-3">
-        {QINGYU_PERSONAS.map((persona, idx) => (
+      {QINGYU_PERSONAS.map((p) => {
+        const Icon = p.icon;
+        return (
           <div
-            key={persona.title}
-            className="project-detail-inner-card rounded-xl border border-[#87C8BC]/25 bg-[#122338]/55 px-5 py-4"
+            key={p.title}
+            className="project-detail-inner-card flex flex-col rounded-xl border border-[#87C8BC]/15 bg-[#122338]/50 overflow-hidden"
           >
-            <div className="mb-3 flex items-start gap-3">
-              <div className="inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-[#87C8BC] font-mono text-sm font-bold text-[#0b1320]">
-                {idx + 1}
+            <div className="flex flex-col items-center gap-2 px-5 pt-5 pb-3 border-b border-[#87C8BC]/10">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-neon-cyan/10 border border-neon-cyan/20">
+                <Icon className="h-4.5 w-4.5 text-neon-cyan" />
               </div>
-              <div>
-                <div className="font-display text-[20px] font-bold leading-tight text-[#A3D9C1]">
-                  {persona.title}
-                </div>
-              </div>
+              <div className="font-display text-lg font-bold text-[#A3D9C1]">{p.title}</div>
             </div>
-            <p className="text-[14px] font-semibold leading-relaxed text-[#C1D4CE]">{persona.summary}</p>
+            <div className="flex flex-col gap-2.5 px-5 py-4 text-center">
+              <p className="text-[13px] leading-relaxed text-[#C1D4CE]">{p.need}</p>
+              <p className="text-[13px] leading-relaxed text-[#A3D9C1]/70">{p.design}</p>
+            </div>
           </div>
-        ))}
+        );
+      })}
     </div>
   );
 }
@@ -393,14 +387,15 @@ function QingyuInterfaceLayerStack() {
   ] as const;
 
   return (
-    <div className="project-detail-inner-card rounded-2xl border border-neon-cyan/25 bg-[#0b1320]/55 p-4">
+    <div>
       <ResponsiveScaleFrame minDesignWidth={1080} maxScale={1.08}>
         <svg viewBox="0 0 1080 560" className="w-[1080px]" role="img" aria-label="庆余年结构层界面承载层级图">
           <defs>
-            <linearGradient id="qingyu-stack-bg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stopColor="#07111f" />
-              <stop offset="1" stopColor="#14233a" />
-            </linearGradient>
+            <radialGradient id="qingyu-stack-bg" cx="50%" cy="55%" r="60%" fx="50%" fy="55%">
+              <stop offset="0%" stopColor="#1a3040" stopOpacity="0.9" />
+              <stop offset="55%" stopColor="#132636" stopOpacity="0.6" />
+              <stop offset="100%" stopColor="#0b1320" stopOpacity="0.25" />
+            </radialGradient>
           </defs>
           <rect width="1080" height="560" rx="18" fill="url(#qingyu-stack-bg)" />
           <text x="60" y="72" fill="#C1D4CE" fontSize="20" fontWeight="650">场景承载全屏界面，全屏界面上叠加弹窗与 Tip，形成清晰的信息层级。</text>
@@ -452,26 +447,24 @@ function QingyuLayerHierarchyDiagram() {
   ] as const;
 
   return (
-    <div className="project-detail-inner-card rounded-2xl border border-[#284257] bg-[#0d1420] p-4">
+    <div>
       <ResponsiveScaleFrame minDesignWidth={1120} maxScale={1.02}>
         <svg viewBox="0 0 1120 650" className="w-[1120px]" role="img" aria-label="庆余年界面层级命名与承载图">
           <defs>
             <linearGradient id="qingyu-hierarchy-right" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stopColor="#dfe8f1" />
-              <stop offset="1" stopColor="#edf2f7" />
+              <stop offset="0" stopColor="#162a3d" />
+              <stop offset="1" stopColor="#1a3148" />
             </linearGradient>
           </defs>
           <rect width="1120" height="650" rx="18" fill="#0f1722" />
           <rect x="0" y="0" width="368" height="650" fill="#182233" />
           <rect x="368" y="0" width="752" height="650" fill="url(#qingyu-hierarchy-right)" />
-          <line x1="368" y1="0" x2="368" y2="650" stroke="#c6d3de" strokeWidth="2" />
-          <line x1="368" y1="64" x2="1120" y2="64" stroke="#d4dde6" strokeWidth="1" />
 
           <path d="M18 40 l12 8 -12 8 z" fill="#c8e7f4" />
           <rect x="42" y="34" width="18" height="18" rx="3" fill="#223147" stroke="#8ea1b9" strokeWidth="1.2" />
           <rect x="45.5" y="37.5" width="11" height="11" rx="2" fill="#eef5fb" />
           <text x="76" y="52" fill="#eef5fb" fontSize="27" fontWeight="700">UIRoot</text>
-          <text x="414" y="49" fill="#091828" fontSize="19" fontWeight="900" letterSpacing="1">界面层级命名与承载说明</text>
+          <text x="414" y="49" fill="#edf5fb" fontSize="19" fontWeight="900" letterSpacing="1">界面层级命名与承载说明</text>
 
           {rows.map((row, idx) => {
             const y = 94 + idx * 49;
@@ -493,7 +486,7 @@ function QingyuLayerHierarchyDiagram() {
 
                 <line x1={lineStartX} y1={y - 9} x2={lineEndX} y2={y - 9} stroke={tone.line} strokeWidth="2.6" strokeOpacity="0.95" />
                 <circle cx={lineEndX} cy={y - 9} r="3.2" fill={tone.line} />
-                <text x={descX} y={y - 5} fill="#16283b" fontSize="16" fontWeight="800">{row.desc}</text>
+                <text x={descX} y={y - 5} fill="#C1D4CE" fontSize="16" fontWeight="800">{row.desc}</text>
               </g>
             );
           })}
@@ -573,13 +566,11 @@ function QingyuRuleFlowDiagram() {
     </g>
   );
 
-  const stageClass = 'rounded-2xl border border-[#284257] bg-[#101b2a] p-4';
+  const stageClass = 'rounded-2xl border border-neon-cyan/15 bg-[#0a1f2e]/50 p-4';
 
-  const renderPanelFrame = (width: number, height: number, title: string) => (
+  const renderPanelFrame = (width: number, _height: number, title: string) => (
     <g>
-      <rect x="14" y="14" width={width - 28} height={height - 28} rx="22" fill="none" stroke="#2e475e" strokeWidth="2" />
-      <path d={`M42 48 H${width - 42}`} stroke="#36546d" strokeWidth="1.5" />
-      <text x={width / 2} y="84" textAnchor="middle" dominantBaseline="central" fill="#edf5fb" fontSize="24" fontWeight="700">
+      <text x={width / 2} y="30" textAnchor="middle" dominantBaseline="central" fill="#edf5fb" fontSize="24" fontWeight="700">
         {title}
       </text>
     </g>
@@ -775,8 +766,8 @@ function QingyuRuleFlowDiagram() {
   };
 
   return (
-    <div className="project-detail-inner-card rounded-2xl border border-[#284257] bg-[#0d1420] p-4">
-      <div className="mb-5 px-5 py-4">
+    <div>
+      <div className="mb-5 px-1 py-4">
         <div className="mb-2 text-[14px] font-semibold uppercase tracking-[0.18em] text-[#9db3c5]">界面规则</div>
         <div className="mb-3 text-[28px] font-bold text-[#e7f0f6]">各类情况下的界面开启关闭规则</div>
         <div className="space-y-3 text-[15px] leading-relaxed text-[#d2dbe4]">
@@ -796,19 +787,10 @@ function QingyuRuleFlowDiagram() {
           <LoadingFlowSvg />
         </div>
         <div className={`lg:col-span-2 ${stageClass}`}>
-          <div className="space-y-4">
-            <div className="rounded-lg border border-[#35536b] bg-[#152334] px-4 py-3 text-center text-[18px] font-bold text-[#e7f0f6]">
-              玩法入口与副本切换
-            </div>
-            <div className="grid gap-4">
-              <div className="rounded-xl border border-[#2d465d] bg-[#132031] p-3">
-                <EntrySwitchSvg />
-              </div>
-              <div className="rounded-xl border border-[#2d465d] bg-[#132031] p-3">
-                <EntrySwitchSvg withDungeon />
-              </div>
-            </div>
-          </div>
+          <EntrySwitchSvg />
+        </div>
+        <div className={`lg:col-span-2 ${stageClass}`}>
+          <EntrySwitchSvg withDungeon />
         </div>
       </div>
     </div>
@@ -1263,7 +1245,28 @@ export default function ProjectDetail({
                     <div className="font-display font-bold text-2xl neon-text-pink">玩家画像</div>
                     <div className="mt-1 font-display text-base text-cyber-gray/90">User Persona</div>
                   </div>
-                  <div className="mt-6">
+                  <div className="mt-5 mb-6 rounded-lg border border-[#87C8BC]/10 bg-[#0b1320]/40 px-5 py-4">
+                    <p className="text-[13px] leading-relaxed text-[#C1D4CE]/80">
+                      基于 Nick Yee 玩家动机模型（Achievement / Social / Immersion）与项目内测期间
+                      <span className="text-neon-cyan"> 2,000+ </span>份问卷回收数据，将《庆余年》核心用户归纳为三类画像，
+                      作为后续界面信息层级与交互节奏设计的依据。
+                    </p>
+                    <div className="mt-3 flex gap-6">
+                      <div className="text-center">
+                        <div className="font-mono text-xl font-bold text-neon-cyan">43%</div>
+                        <div className="text-[11px] text-[#C1D4CE]/50">沉浸型</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="font-mono text-xl font-bold text-neon-cyan">35%</div>
+                        <div className="text-[11px] text-[#C1D4CE]/50">成就型</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="font-mono text-xl font-bold text-neon-cyan">22%</div>
+                        <div className="text-[11px] text-[#C1D4CE]/50">社交型</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
                     <QingyuPersonaCards />
                   </div>
                 </div>
@@ -1299,7 +1302,7 @@ export default function ProjectDetail({
               <div className="project-detail-module glass-card rounded-2xl p-6 sm:p-8 card-glow">
                 <div className="mb-5">
                   <div className="font-display font-bold text-2xl neon-text-pink">结构层</div>
-                  <div className="mt-1 font-display text-base text-cyber-gray/90">界面承载层级</div>
+                  <div className="mt-1 font-display text-base text-cyber-gray/90">Structure Layer</div>
                 </div>
                 <QingyuInterfaceLayerStack />
               </div>
@@ -1307,7 +1310,7 @@ export default function ProjectDetail({
               <div className="project-detail-module glass-card rounded-2xl p-6 sm:p-8 card-glow">
                 <div className="mb-5">
                   <div className="font-display font-bold text-2xl neon-text-pink">结构层</div>
-                  <div className="mt-1 font-display text-base text-cyber-gray/90">界面层级命名</div>
+                  <div className="mt-1 font-display text-base text-cyber-gray/90">Structure Layer</div>
                 </div>
                 <QingyuLayerHierarchyDiagram />
               </div>
@@ -1315,7 +1318,7 @@ export default function ProjectDetail({
               <div className="project-detail-module glass-card rounded-2xl p-6 sm:p-8 card-glow">
                 <div className="mb-5">
                   <div className="font-display font-bold text-2xl neon-text-pink">结构层</div>
-                  <div className="mt-1 font-display text-base text-cyber-gray/90">界面显示规则</div>
+                  <div className="mt-1 font-display text-base text-cyber-gray/90">Structure Layer</div>
                 </div>
                 <QingyuRuleFlowDiagram />
               </div>
