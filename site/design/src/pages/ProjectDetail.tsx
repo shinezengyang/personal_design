@@ -1032,17 +1032,17 @@ function QingyuUICard({ title, img, callouts: calloutData, summary, notes }: {
           </div>
         </ResponsiveScaleFrame>
 
-        <div className="rounded-xl border border-[#87C8BC]/25 bg-[#122338]/55 px-4 py-4 space-y-4 sm:px-6 sm:py-5 md:px-8 md:py-6 md:space-y-5">
-          <p className="text-center text-base font-medium leading-relaxed text-[#ddefe8] sm:text-lg md:text-[24px]">
+        <div className="rounded-xl border border-[#87C8BC]/25 bg-[#122338]/55 px-4 py-3 space-y-3 sm:px-6 sm:py-4 sm:space-y-4 lg:px-8 lg:py-6 lg:space-y-5">
+          <p className="text-center text-sm font-medium leading-relaxed text-[#ddefe8] sm:text-base lg:text-[24px]">
             {summary}
           </p>
-          <div className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-3 md:gap-x-8">
+          <div className="grid grid-cols-1 gap-y-1.5 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2 lg:gap-x-8 lg:gap-y-3">
             {notes.map(([n, t, desc]) => (
               <div key={n} className="flex items-baseline gap-2 sm:gap-3">
-                <span className="inline-flex h-6 min-w-6 shrink-0 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-xs font-bold leading-none text-[#1a2e2b] sm:h-[28px] sm:min-w-[28px] sm:text-[13px] md:h-[30px] md:min-w-[30px] md:text-[14px]">
+                <span className="inline-flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-[10px] font-bold leading-none text-[#1a2e2b] sm:h-6 sm:min-w-6 sm:text-xs lg:h-[30px] lg:min-w-[30px] lg:text-[14px]">
                   {n}
                 </span>
-                <p className="text-sm leading-[1.6] sm:text-base md:text-[21px]">
+                <p className="text-xs leading-[1.5] sm:text-sm lg:text-[21px] lg:leading-[1.6]">
                   <span className="font-semibold text-[#d6f0e8]">{t}：</span>
                   <span className="text-[#a8c0ba]">{desc}</span>
                 </p>
