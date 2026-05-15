@@ -798,44 +798,64 @@ function QingyuRuleFlowDiagram() {
 }
 
 function QingyuMainScreenDiagram() {
-  const callouts = [
-    { n: '1', label: '玩家信息区', side: 'left', y: 164, x: 96, lineStart: 236, lineEnd: 562 },
-    { n: '2', label: '境界、变强区', side: 'left', y: 212, x: 96, lineStart: 262, lineEnd: 562, elbowX: 720, elbowY: 212, anchorY: 172 },
-    { n: '6', label: '任务追踪、队友信息区', side: 'left', y: 356, x: 44, lineStart: 280, lineEnd: 562 },
-    { n: '12', label: '虚拟摇杆区', side: 'left', y: 706, x: 96, lineStart: 210, lineEnd: 468 },
-    { n: '14', label: '动作/自动战斗/拍照按钮区', side: 'left', y: 842, x: 22, lineStart: 312, lineEnd: 468 },
-    { n: '15', label: '社交区域', side: 'left', y: 886, x: 122, lineStart: 230, lineEnd: 640 },
-    { n: '16', label: '网络、电量等信息区', side: 'left', y: 930, x: 38, lineStart: 268, lineEnd: 514 },
-    { n: '3', label: '跑马灯', side: 'right', y: 132, x: 1500, lineStart: 1242, lineEnd: 1440 },
-    { n: '4', label: '地图信息区', side: 'right', y: 204, x: 1528, lineStart: 1306, lineEnd: 1488 },
-    { n: '5', label: '商业公告区', side: 'right', y: 262, x: 1528, lineStart: 1128, lineEnd: 1488 },
-    { n: '7', label: '功能菜单栏区域', side: 'right', y: 356, x: 1588, lineStart: 1260, lineEnd: 1548 },
-    { n: '8', label: '背包区域', side: 'right', y: 392, x: 1528, lineStart: 1306, lineEnd: 1488 },
-    { n: '9', label: '副本匹配信息栏区域', side: 'right', y: 428, x: 1596, lineStart: 1306, lineEnd: 1556 },
-    { n: '10', label: '交互读条区', side: 'right', y: 536, x: 1504, lineStart: 1072, lineEnd: 1464 },
-    { n: '11', label: '战斗技能栏区域', side: 'right', y: 646, x: 1540, lineStart: 1244, lineEnd: 1500 },
-    { n: '13', label: '聊天栏区域', side: 'right', y: 818, x: 1500, lineStart: 808, lineEnd: 1460 },
-    { n: '17', label: '经验条区域', side: 'right', y: 930, x: 1536, lineStart: 1008, lineEnd: 1496 },
-  ] as const;
+  const IMG_LEFT = 272;
+  const IMG_RIGHT = 1328;
+  const TEXT_MARGIN = 35;
+
+  const calloutData = [
+    { n: '1', label: '玩家信息区', side: 'left' as const, y: 56, targetX: 293 },
+    { n: '2', label: '任务追踪、队友信息区', side: 'left' as const, y: 188, targetX: 276 },
+    { n: '3', label: '虚拟摇杆区', side: 'left' as const, y: 474, targetX: 381 },
+    { n: '4', label: '动作/自动战斗/拍照按钮区', side: 'left' as const, y: 546, targetX: 275 },
+    { n: '5', label: '社交区域', side: 'left' as const, y: 574, targetX: 492 },
+    { n: '6', label: '网络、电量等信息区', side: 'left' as const, y: 598, targetX: 319 },
+    { n: '7', label: '跑马灯', side: 'right' as const, y: 22, targetX: 1196 },
+    { n: '8', label: '地图信息区', side: 'right' as const, y: 93, targetX: 1262 },
+    { n: '9', label: '商业公告区', side: 'right' as const, y: 132, targetX: 1081 },
+    { n: '10', label: '功能菜单栏区域', side: 'right' as const, y: 190, targetX: 1277 },
+    { n: '11', label: '交互读条区', side: 'right' as const, y: 339, targetX: 1032 },
+    { n: '12', label: '战斗技能栏区域', side: 'right' as const, y: 429, targetX: 1199 },
+    { n: '13', label: '聊天栏区域', side: 'right' as const, y: 536, targetX: 832 },
+    { n: '14', label: '经验条区域', side: 'right' as const, y: 603, targetX: 967 },
+  ];
+
+  const measureText = (text: string) => {
+    let w = 0;
+    for (const ch of text) w += ch.charCodeAt(0) > 127 ? 15 : 8;
+    return w;
+  };
+
+  const callouts = calloutData.map((item) => {
+    const labelW = measureText(item.label);
+    const badgeW = item.n.length > 1 ? 32 : 28;
+    const gap = 6;
+    if (item.side === 'left') {
+      const textEnd = IMG_LEFT - TEXT_MARGIN;
+      const labelStart = textEnd - labelW;
+      const badgeX = labelStart - gap - badgeW;
+      return { ...item, badgeX, labelStart, labelW, badgeW };
+    } else {
+      const textStart = IMG_RIGHT + TEXT_MARGIN;
+      const badgeX = textStart + labelW + gap;
+      return { ...item, badgeX, labelStart: textStart, labelW, badgeW };
+    }
+  });
 
   const notes = [
     ['1', '玩家信息区', '显示主角当前常规状态信息、主角战斗 buff 等核心信息。'],
-    ['2', '境界、变强区', '可进入主角能力提升界面，用于成长养成与数值强化。'],
-    ['3', '跑马灯', '用于滚动展示系统公告、活动信息等需要持续曝光的内容。'],
-    ['4', '地图信息区', '默认显示小地图、地点名称、天气、时间等环境信息。'],
-    ['5', '商业公告区', '用于展示商业化相关活动、礼包或付费引导等公告内容。'],
-    ['6', '任务追踪、队友信息区', '显示任务追踪、队友简要信息，可收起并切换任务与队伍页签。'],
-    ['7', '功能菜单栏区域', '集合角色养成相关快捷按钮，承载养成玩法的高频操作入口。'],
-    ['8', '背包区域', '用于呼出背包界面，管理道具、材料与装备资源。'],
-    ['9', '副本匹配信息栏区域', '展示副本匹配、组队状态或副本流程相关提示信息。'],
-    ['10', '交互读条区', '与场景物件交互时显示读条反馈，用于提示操作进度。'],
-    ['11', '战斗技能栏区域', '承载主要战斗技能按钮与战斗核心操作入口。'],
-    ['12', '虚拟摇杆区', '操控角色移动，可在左下角放置不与行走冲突的功能按键。'],
+    ['2', '任务追踪、队友信息区', '显示任务追踪、队友简要信息，可收起并切换任务与队伍页签。'],
+    ['3', '虚拟摇杆区', '操控角色移动，可在左下角放置不与行走冲突的功能按键。'],
+    ['4', '动作/自动战斗/拍照按钮区', '放置动作、自动战斗、拍照等常用快捷操作按钮。'],
+    ['5', '社交区域', '承载社交入口与相关互动功能，便于快速进入社交系统。'],
+    ['6', '网络、电量等信息区', '用于显示网络状态、电池电量等系统级状态信息。'],
+    ['7', '跑马灯', '用于滚动展示系统公告、活动信息等需要持续曝光的内容。'],
+    ['8', '地图信息区', '默认显示小地图、地点名称、天气、时间等环境信息。'],
+    ['9', '商业公告区', '用于展示商业化相关活动、礼包或付费引导等公告内容。'],
+    ['10', '功能菜单栏区域', '集合角色养成相关快捷按钮，承载养成玩法的高频操作入口。'],
+    ['11', '交互读条区', '与场景物件交互时显示读条反馈，用于提示操作进度。'],
+    ['12', '战斗技能栏区域', '承载主要战斗技能按钮与战斗核心操作入口。'],
     ['13', '聊天栏区域', '显示聊天频道内容，支持常驻浏览与快捷输入沟通。'],
-    ['14', '动作/自动战斗/拍照按钮区', '放置动作、自动战斗、拍照等常用快捷操作按钮。'],
-    ['15', '社交区域', '承载社交入口与相关互动功能，便于快速进入社交系统。'],
-    ['16', '网络、电量等信息区', '用于显示网络状态、电池电量等系统级状态信息。'],
-    ['17', '经验条区域', '用于反馈角色经验成长进度与升级节奏。'],
+    ['14', '经验条区域', '用于反馈角色经验成长进度与升级节奏。'],
   ] as const;
 
   return (
@@ -845,84 +865,191 @@ function QingyuMainScreenDiagram() {
         style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}
       >
         <div className="py-2 text-center">
-          <div className="text-[32px] font-bold leading-none text-[#8FD3C7]">主要游戏画面</div>
+          <div className="text-[32px] font-bold leading-none text-[#8FD3C7]">游戏主要界面</div>
         </div>
 
         <ResponsiveScaleFrame minDesignWidth={1600} maxScale={1.02}>
           <div className="w-[1600px] space-y-8">
-            <div className="relative h-[980px] overflow-hidden rounded-[20px] border border-[#87C8BC]/28 bg-[#09121d]">
+            <div className="relative h-[620px] overflow-hidden">
               <img
                 src={publicUrl('figma/qingyu-nian/qingyu-main-ui-screen.png')}
                 alt="庆余年主要游戏画面"
-                className="absolute left-[280px] top-[88px] h-auto w-[960px] rounded-[8px] opacity-95"
+                className="absolute left-[272px] top-[10px] h-auto w-[1056px] rounded-[8px] opacity-95"
                 loading="lazy"
                 decoding="async"
               />
 
-              {callouts.map((item) => (
-                <div key={item.n}>
-                  <div
-                    className={`absolute inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-[14px] font-bold leading-none text-[#0b1320] ${
-                      item.side === 'left' ? 'text-left' : 'text-right'
-                    }`}
-                    style={{
-                      left: item.side === 'left' ? item.x : item.x,
-                      top: item.y - 14,
-                      transform: item.side === 'right' ? 'translateX(0)' : undefined,
-                    }}
-                  >
-                    {item.n}
+              {callouts.map((item) => {
+                const lineGap = 10;
+                const lineFrom = item.side === 'left'
+                  ? item.labelStart + item.labelW + lineGap
+                  : item.labelStart - lineGap;
+                const lineLeft = Math.min(lineFrom, item.targetX);
+                const lineWidth = Math.abs(item.targetX - lineFrom);
+
+                return (
+                  <div key={item.n}>
+                    <div
+                      className="absolute inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-[12px] font-bold leading-none text-[#0b1320]"
+                      style={{ left: item.badgeX, top: item.y - 14 }}
+                    >
+                      {item.n}
+                    </div>
+                    <div
+                      className="absolute text-[15px] font-semibold leading-none text-[#d6f0e8] whitespace-nowrap"
+                      style={{ left: item.labelStart, top: item.y - 9 }}
+                    >
+                      {item.label}
+                    </div>
+                    <div
+                      className="absolute h-[1.5px] bg-[#87C8BC]/70"
+                      style={{ left: lineLeft, top: item.y, width: lineWidth }}
+                    />
+                    <div
+                      className="absolute h-[6px] w-[6px] rounded-full bg-[#87C8BC]"
+                      style={{ left: item.targetX - 3, top: item.y - 3 }}
+                    />
                   </div>
-                  <div
-                    className={`absolute text-[22px] font-semibold leading-none text-[#d6f0e8] ${
-                      item.side === 'left' ? 'text-left' : 'text-right'
-                    }`}
-                    style={{
-                      left: item.side === 'left' ? item.x + 44 : undefined,
-                      right: item.side === 'right' ? 1600 - item.x + 44 : undefined,
-                      top: item.y - 13,
-                    }}
-                  >
-                    {item.label}
-                  </div>
-                  <div
-                    className="absolute h-[2px] bg-[#87C8BC]"
-                    style={{ left: item.lineStart, top: item.y, width: item.lineEnd - item.lineStart }}
-                  />
-                  <div className="absolute h-2 w-2 rounded-full bg-[#87C8BC]" style={{ left: item.lineEnd - 4, top: item.y - 3 }} />
-                  {'elbowX' in item && item.elbowX ? (
-                    <>
-                      <div className="absolute h-[2px] bg-[#87C8BC]" style={{ left: item.lineEnd, top: item.y, width: item.elbowX - item.lineEnd }} />
-                      <div
-                        className="absolute w-[2px] bg-[#87C8BC]"
-                        style={{ left: item.elbowX, top: item.anchorY, height: item.y - item.anchorY + 2 }}
-                      />
-                    </>
-                  ) : null}
-                </div>
-              ))}
+                );
+              })}
             </div>
 
-            <div className="project-detail-inner-card rounded-xl border border-[#87C8BC]/25 bg-[#122338]/55 px-6 py-6">
-              <p className="text-center text-[20px] font-semibold leading-relaxed text-[#ddefe8]">
-                战斗中需要玩家反复注意的元素放在同一区域，具有整体性，可以使玩家的注意力集中
-              </p>
-              <div className="mt-6 space-y-4">
-                {notes.map(([n, title, desc]) => (
-                  <div key={n} className="flex items-start gap-4">
-                    <span className="mt-1 inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-[14px] font-bold leading-none text-[#0b1320]">
-                      {n}
-                    </span>
-                    <div className="flex-1">
-                      <div className="text-[20px] font-semibold leading-none text-[#d6f0e8]">{title}：</div>
-                      <div className="mt-2 text-[18px] leading-[1.65] text-[#a8c0ba]">{desc}</div>
-                    </div>
-                  </div>
-                ))}
+          </div>
+        </ResponsiveScaleFrame>
+
+        <div className="rounded-xl border border-[#87C8BC]/25 bg-[#122338]/55 px-4 py-4 space-y-4 sm:px-6 sm:py-5 md:px-8 md:py-6 md:space-y-5">
+          <p className="text-center text-base font-medium leading-relaxed text-[#ddefe8] sm:text-lg md:text-[24px]">
+            战斗中需要玩家反复注意的元素放在同一区域，具有整体性，可以使玩家的注意力集中
+          </p>
+          <div className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-3 md:gap-x-8">
+            {notes.map(([n, title, desc]) => (
+              <div key={n} className="flex items-baseline gap-2 sm:gap-3">
+                <span className="inline-flex h-6 min-w-6 shrink-0 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-xs font-bold leading-none text-[#1a2e2b] sm:h-[28px] sm:min-w-[28px] sm:text-[13px] md:h-[30px] md:min-w-[30px] md:text-[14px]">
+                  {n}
+                </span>
+                <p className="text-sm leading-[1.6] sm:text-base md:text-[21px]">
+                  <span className="font-semibold text-[#d6f0e8]">{title}：</span>
+                  <span className="text-[#a8c0ba]">{desc}</span>
+                </p>
               </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function QingyuUICard({ title, img, callouts: calloutData, summary, notes }: {
+  title: string;
+  img: string;
+  callouts: { n: string; label: string; side: 'left' | 'right'; y: number; targetX: number }[];
+  summary: string;
+  notes: readonly (readonly [string, string, string])[];
+}) {
+  const IMG_LEFT = 272;
+  const IMG_RIGHT = 1328;
+  const TEXT_MARGIN = 35;
+
+  const measureText = (text: string) => {
+    let w = 0;
+    for (const ch of text) w += ch.charCodeAt(0) > 127 ? 20 : 11;
+    return w;
+  };
+
+  const callouts = calloutData.map((item) => {
+    const labelW = measureText(item.label);
+    if (item.side === 'left') {
+      const textEnd = IMG_LEFT - TEXT_MARGIN;
+      const textStart = textEnd - labelW;
+      const badgeW = item.n.length > 1 ? 32 : 28;
+      const badgeX = textStart - badgeW - 10;
+      return { ...item, badgeX, labelStart: textStart, labelW, badgeW };
+    } else {
+      const textStart = IMG_RIGHT + TEXT_MARGIN;
+      const badgeW = item.n.length > 1 ? 32 : 28;
+      const badgeX = textStart + labelW + 10;
+      return { ...item, badgeX, labelStart: textStart, labelW, badgeW };
+    }
+  });
+
+  return (
+    <div className="mt-10 pb-8">
+      <div
+        className="w-full min-h-[200px] rounded-2xl border border-neon-cyan/25 bg-[#0b1320]/55 p-4 overflow-visible space-y-5"
+        style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}
+      >
+        <div className="py-2 text-center">
+          <div className="text-[32px] font-bold leading-none text-[#8FD3C7]">{title}</div>
+        </div>
+
+        <ResponsiveScaleFrame minDesignWidth={1600} maxScale={1.02}>
+          <div className="w-[1600px] space-y-8">
+            <div className="relative h-[620px] overflow-hidden">
+              <img
+                src={publicUrl(`figma/qingyu-nian/${img}`)}
+                alt={`庆余年${title}`}
+                className="absolute h-auto w-[1056px] rounded-[8px] opacity-95"
+                style={{ left: IMG_LEFT, top: 10 }}
+                loading="lazy"
+                decoding="async"
+              />
+
+              {callouts.map((item) => {
+                const lineGap = 10;
+                const lineFrom = item.side === 'left'
+                  ? item.labelStart + item.labelW + lineGap
+                  : item.labelStart - lineGap;
+                const lineLeft = Math.min(lineFrom, item.targetX);
+                const lineWidth = Math.abs(item.targetX - lineFrom);
+
+                return (
+                  <div key={item.n}>
+                    <div
+                      className="absolute inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-[14px] font-bold leading-none text-[#0b1320]"
+                      style={{ left: item.badgeX, top: item.y - 16 }}
+                    >
+                      {item.n}
+                    </div>
+                    <div
+                      className="absolute text-[20px] font-semibold leading-none text-[#d6f0e8] whitespace-nowrap"
+                      style={{ left: item.labelStart, top: item.y - 11 }}
+                    >
+                      {item.label}
+                    </div>
+                    <div
+                      className="absolute h-[1.5px] bg-[#87C8BC]/70"
+                      style={{ left: lineLeft, top: item.y, width: lineWidth }}
+                    />
+                    <div
+                      className="absolute h-[6px] w-[6px] rounded-full bg-[#87C8BC]"
+                      style={{ left: item.targetX - 3, top: item.y - 3 }}
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </ResponsiveScaleFrame>
+
+        <div className="rounded-xl border border-[#87C8BC]/25 bg-[#122338]/55 px-4 py-4 space-y-4 sm:px-6 sm:py-5 md:px-8 md:py-6 md:space-y-5">
+          <p className="text-center text-base font-medium leading-relaxed text-[#ddefe8] sm:text-lg md:text-[24px]">
+            {summary}
+          </p>
+          <div className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-3 md:gap-x-8">
+            {notes.map(([n, t, desc]) => (
+              <div key={n} className="flex items-baseline gap-2 sm:gap-3">
+                <span className="inline-flex h-6 min-w-6 shrink-0 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-xs font-bold leading-none text-[#1a2e2b] sm:h-[28px] sm:min-w-[28px] sm:text-[13px] md:h-[30px] md:min-w-[30px] md:text-[14px]">
+                  {n}
+                </span>
+                <p className="text-sm leading-[1.6] sm:text-base md:text-[21px]">
+                  <span className="font-semibold text-[#d6f0e8]">{t}：</span>
+                  <span className="text-[#a8c0ba]">{desc}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -1330,15 +1457,117 @@ export default function ProjectDetail({
                 </div>
                 <div className="space-y-6">
                   <QingyuMainScreenDiagram />
-                  <QingyuWireframeCard
-                    title="主界面框架"
-                    mode="main"
-                    summary="主界面优先保证资源、任务追踪与核心玩法内容的阅读顺序，让玩家在剧情推进和系统成长之间保持明确方向。"
+                  <QingyuUICard
+                    title="一级界面"
+                    img="qingyu-level1-ui.png"
+                    callouts={[
+                      { n: '1', label: '标题栏', side: 'left', y: 40, targetX: 310 },
+                      { n: '2', label: '装备列表区', side: 'left', y: 200, targetX: 350 },
+                      { n: '3', label: '装备预览区', side: 'left', y: 340, targetX: 540 },
+                      { n: '8', label: '货币显示区', side: 'right', y: 40, targetX: 1100 },
+                      { n: '4', label: '属性面板区', side: 'right', y: 130, targetX: 870 },
+                      { n: '7', label: '功能Tab栏', side: 'right', y: 230, targetX: 1270 },
+                      { n: '5', label: '消耗材料区', side: 'right', y: 380, targetX: 950 },
+                      { n: '6', label: '操作按钮区', side: 'right', y: 540, targetX: 1000 },
+                    ]}
+                    summary="一级界面为全屏面板，承载养成、装备等深度功能操作，通常从主界面菜单入口进入。"
+                    notes={[
+                      ['1', '标题栏', '显示当前功能名称与帮助入口，明确界面所属模块。'],
+                      ['2', '装备列表区', '展示当前角色所有装备，支持选择与切换。'],
+                      ['3', '装备预览区', '展示选中装备的 3D 模型或图标大图，提供直观视觉反馈。'],
+                      ['4', '属性面板区', '显示强化效果预览与数值变化，辅助决策。'],
+                      ['5', '消耗材料区', '展示当前操作所需消耗的材料与数量。'],
+                      ['6', '操作按钮区', '提供核心操作入口，如强化 1 次 / 强化 5 次等。'],
+                      ['7', '功能 Tab 栏', '切换同模块下不同子功能（强化、镶嵌、精炼等）。'],
+                      ['8', '货币显示区', '展示玩家当前货币余额与充值入口。'],
+                    ]}
                   />
-                  <QingyuWireframeCard
-                    title="弹窗界面"
-                    mode="modal"
-                    summary="弹窗承载确认、奖励、解锁和剧情选择等中断式操作，标题、内容与底部操作区保持统一结构。"
+                  <QingyuUICard
+                    title="二级界面"
+                    img="qingyu-level2-ui.png"
+                    callouts={[
+                      { n: '1', label: '标题栏', side: 'left', y: 80, targetX: 500 },
+                      { n: '2', label: '数据列表区', side: 'left', y: 280, targetX: 550 },
+                      { n: '3', label: 'Tab页签区', side: 'right', y: 150, targetX: 1100 },
+                      { n: '4', label: '奖励预览区', side: 'right', y: 310, targetX: 1150 },
+                      { n: '5', label: '操作按钮区', side: 'right', y: 530, targetX: 900 },
+                    ]}
+                    summary="二级界面为弹窗面板，在主界面之上展示排行榜、奖励预览等辅助信息，不离开当前场景。"
+                    notes={[
+                      ['1', '标题栏', '显示弹窗功能标题与关闭按钮。'],
+                      ['2', '数据列表区', '展示排行信息，包含排名、数值、奖励等多列数据。'],
+                      ['3', 'Tab 页签区', '切换不同排行维度或奖励类型。'],
+                      ['4', '奖励预览区', '展示对应排名的奖励内容图标。'],
+                      ['5', '操作按钮区', '提供领取、确认等交互入口。'],
+                    ]}
+                  />
+                  <QingyuUICard
+                    title="三级界面（横版）"
+                    img="qingyu-level3-horizontal-ui.png"
+                    callouts={[
+                      { n: '1', label: '标题栏', side: 'left', y: 120, targetX: 630 },
+                      { n: '2', label: '内容区', side: 'left', y: 300, targetX: 570 },
+                      { n: '3', label: '操作按钮区', side: 'left', y: 520, targetX: 700 },
+                      { n: '4', label: '关闭按钮', side: 'right', y: 120, targetX: 1100 },
+                    ]}
+                    summary="三级界面为轻量弹窗，横版用于承载文本阅读、剧情梗概等信息展示场景。"
+                    notes={[
+                      ['1', '标题栏', '标识弹窗主题，如剧情梗概。'],
+                      ['2', '内容区', '展示文本、图文等详情内容，支持滚动浏览。'],
+                      ['3', '操作按钮区', '提供取消与确定双按钮，支持用户决策。'],
+                      ['4', '关闭按钮', '右上角快捷关闭入口。'],
+                    ]}
+                  />
+                  <QingyuUICard
+                    title="三级界面（竖版）"
+                    img="qingyu-level3-vertical-ui.png"
+                    callouts={[
+                      { n: '1', label: '标题栏', side: 'left', y: 76, targetX: 660 },
+                      { n: '2', label: 'Tab页签区', side: 'left', y: 170, targetX: 680 },
+                      { n: '3', label: '网格内容区', side: 'left', y: 340, targetX: 660 },
+                      { n: '4', label: '操作按钮区', side: 'left', y: 540, targetX: 800 },
+                      { n: '5', label: '关闭按钮', side: 'right', y: 76, targetX: 1050 },
+                    ]}
+                    summary="三级界面竖版用于承载网格选择、奖励领取等操作密集型场景。"
+                    notes={[
+                      ['1', '标题栏', '标识弹窗主题，如钻石大奖选择。'],
+                      ['2', 'Tab 页签区', '切换不同奖励类型或分类。'],
+                      ['3', '网格内容区', '以网格布局展示可选道具或奖励。'],
+                      ['4', '操作按钮区', '底部确认按钮，完成选择操作。'],
+                      ['5', '关闭按钮', '右上角快捷关闭入口。'],
+                    ]}
+                  />
+                  <QingyuUICard
+                    title="提示界面（A 类）"
+                    img="qingyu-prompt-a-ui.png"
+                    callouts={[
+                      { n: '1', label: '标题栏', side: 'left', y: 220, targetX: 580 },
+                      { n: '2', label: '提示内容区', side: 'left', y: 320, targetX: 570 },
+                      { n: '3', label: '复选框区', side: 'left', y: 410, targetX: 610 },
+                      { n: '4', label: '操作按钮区', side: 'right', y: 490, targetX: 920 },
+                    ]}
+                    summary="A 类提示界面为标准确认弹窗，包含提示文本、可选复选框与双按钮操作。"
+                    notes={[
+                      ['1', '标题栏', '显示"提示"等通用标题。'],
+                      ['2', '提示内容区', '展示提示文案，告知用户操作后果或确认信息。'],
+                      ['3', '复选框区', '可选"今日不再弹出此提示框"等勾选项。'],
+                      ['4', '操作按钮区', '取消与确认双按钮，支持用户决策。'],
+                    ]}
+                  />
+                  <QingyuUICard
+                    title="提示界面（B 类）"
+                    img="qingyu-prompt-b-ui.png"
+                    callouts={[
+                      { n: '1', label: '标题栏', side: 'left', y: 250, targetX: 590 },
+                      { n: '2', label: '提示内容区', side: 'left', y: 360, targetX: 570 },
+                      { n: '3', label: '复选框区', side: 'right', y: 450, targetX: 920 },
+                    ]}
+                    summary="B 类提示界面为信息展示弹窗，包含提示文本与关闭按钮，无需用户做二选一决策。"
+                    notes={[
+                      ['1', '标题栏', '显示提示标题与关闭按钮。'],
+                      ['2', '提示内容区', '展示提示文案或说明信息。'],
+                      ['3', '复选框区', '可选"今日不再弹出此提示框"等勾选项。'],
+                    ]}
                   />
                   <div className="project-detail-inner-card mx-auto w-full max-w-[1180px] rounded-2xl border border-neon-cyan/25 bg-[#0b1320]/55 p-5">
                     <div className="mb-4 font-display text-lg font-semibold text-[#d9fbff]">界面层级规范</div>
