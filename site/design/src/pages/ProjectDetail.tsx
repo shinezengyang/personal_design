@@ -1461,14 +1461,14 @@ export default function ProjectDetail({
                     title="一级界面"
                     img="qingyu-level1-ui.png"
                     callouts={[
-                      { n: '1', label: '标题栏', side: 'left', y: 40, targetX: 310 },
-                      { n: '2', label: '装备列表区', side: 'left', y: 200, targetX: 350 },
-                      { n: '3', label: '装备预览区', side: 'left', y: 340, targetX: 540 },
-                      { n: '8', label: '货币显示区', side: 'right', y: 40, targetX: 1100 },
-                      { n: '4', label: '属性面板区', side: 'right', y: 130, targetX: 870 },
-                      { n: '7', label: '功能Tab栏', side: 'right', y: 230, targetX: 1270 },
-                      { n: '5', label: '消耗材料区', side: 'right', y: 380, targetX: 950 },
-                      { n: '6', label: '操作按钮区', side: 'right', y: 540, targetX: 1000 },
+                      { n: '1', label: '标题栏', side: 'left', y: 28, targetX: 293 },
+                      { n: '2', label: '装备列表区', side: 'left', y: 141, targetX: 335 },
+                      { n: '3', label: '装备预览区', side: 'left', y: 337, targetX: 536 },
+                      { n: '8', label: '货币显示区', side: 'right', y: 28, targetX: 853 },
+                      { n: '4', label: '属性面板区', side: 'right', y: 164, targetX: 863 },
+                      { n: '7', label: '功能Tab栏', side: 'right', y: 260, targetX: 1244 },
+                      { n: '5', label: '消耗材料区', side: 'right', y: 378, targetX: 863 },
+                      { n: '6', label: '操作按钮区', side: 'right', y: 497, targetX: 747 },
                     ]}
                     summary="一级界面为全屏面板，承载养成、装备等深度功能操作，通常从主界面菜单入口进入。"
                     notes={[
@@ -1486,11 +1486,11 @@ export default function ProjectDetail({
                     title="二级界面"
                     img="qingyu-level2-ui.png"
                     callouts={[
-                      { n: '1', label: '标题栏', side: 'left', y: 80, targetX: 500 },
-                      { n: '2', label: '数据列表区', side: 'left', y: 280, targetX: 550 },
-                      { n: '3', label: 'Tab页签区', side: 'right', y: 150, targetX: 1100 },
-                      { n: '4', label: '奖励预览区', side: 'right', y: 310, targetX: 1150 },
-                      { n: '5', label: '操作按钮区', side: 'right', y: 530, targetX: 900 },
+                      { n: '1', label: '标题栏', side: 'left', y: 35, targetX: 547 },
+                      { n: '2', label: '数据列表区', side: 'left', y: 266, targetX: 500 },
+                      { n: '3', label: 'Tab页签区', side: 'right', y: 148, targetX: 1207 },
+                      { n: '4', label: '奖励预览区', side: 'right', y: 330, targetX: 1150 },
+                      { n: '5', label: '操作按钮区', side: 'right', y: 521, targetX: 800 },
                     ]}
                     summary="二级界面为弹窗面板，在主界面之上展示排行榜、奖励预览等辅助信息，不离开当前场景。"
                     notes={[
@@ -1505,10 +1505,10 @@ export default function ProjectDetail({
                     title="三级界面（横版）"
                     img="qingyu-level3-horizontal-ui.png"
                     callouts={[
-                      { n: '1', label: '标题栏', side: 'left', y: 120, targetX: 630 },
-                      { n: '2', label: '内容区', side: 'left', y: 300, targetX: 570 },
-                      { n: '3', label: '操作按钮区', side: 'left', y: 520, targetX: 700 },
-                      { n: '4', label: '关闭按钮', side: 'right', y: 120, targetX: 1100 },
+                      { n: '1', label: '标题栏', side: 'left', y: 98, targetX: 660 },
+                      { n: '2', label: '内容区', side: 'left', y: 238, targetX: 580 },
+                      { n: '3', label: '操作按钮区', side: 'left', y: 449, targetX: 680 },
+                      { n: '4', label: '关闭按钮', side: 'right', y: 98, targetX: 1080 },
                     ]}
                     summary="三级界面为轻量弹窗，横版用于承载文本阅读、剧情梗概等信息展示场景。"
                     notes={[
@@ -1522,11 +1522,11 @@ export default function ProjectDetail({
                     title="三级界面（竖版）"
                     img="qingyu-level3-vertical-ui.png"
                     callouts={[
-                      { n: '1', label: '标题栏', side: 'left', y: 76, targetX: 660 },
-                      { n: '2', label: 'Tab页签区', side: 'left', y: 170, targetX: 680 },
-                      { n: '3', label: '网格内容区', side: 'left', y: 340, targetX: 660 },
-                      { n: '4', label: '操作按钮区', side: 'left', y: 540, targetX: 800 },
-                      { n: '5', label: '关闭按钮', side: 'right', y: 76, targetX: 1050 },
+                      { n: '1', label: '标题栏', side: 'left', y: 46, targetX: 685 },
+                      { n: '2', label: 'Tab页签区', side: 'left', y: 120, targetX: 660 },
+                      { n: '3', label: '网格内容区', side: 'left', y: 313, targetX: 650 },
+                      { n: '4', label: '操作按钮区', side: 'left', y: 527, targetX: 740 },
+                      { n: '5', label: '关闭按钮', side: 'right', y: 46, targetX: 1005 },
                     ]}
                     summary="三级界面竖版用于承载网格选择、奖励领取等操作密集型场景。"
                     notes={[
@@ -1541,10 +1541,10 @@ export default function ProjectDetail({
                     title="提示界面（A 类）"
                     img="qingyu-prompt-a-ui.png"
                     callouts={[
-                      { n: '1', label: '标题栏', side: 'left', y: 220, targetX: 580 },
-                      { n: '2', label: '提示内容区', side: 'left', y: 320, targetX: 570 },
-                      { n: '3', label: '复选框区', side: 'left', y: 410, targetX: 610 },
-                      { n: '4', label: '操作按钮区', side: 'right', y: 490, targetX: 920 },
+                      { n: '1', label: '标题栏', side: 'left', y: 203, targetX: 712 },
+                      { n: '2', label: '提示内容区', side: 'left', y: 280, targetX: 657 },
+                      { n: '3', label: '复选框区', side: 'left', y: 357, targetX: 712 },
+                      { n: '4', label: '操作按钮区', side: 'right', y: 389, targetX: 753 },
                     ]}
                     summary="A 类提示界面为标准确认弹窗，包含提示文本、可选复选框与双按钮操作。"
                     notes={[
@@ -1558,9 +1558,9 @@ export default function ProjectDetail({
                     title="提示界面（B 类）"
                     img="qingyu-prompt-b-ui.png"
                     callouts={[
-                      { n: '1', label: '标题栏', side: 'left', y: 250, targetX: 590 },
-                      { n: '2', label: '提示内容区', side: 'left', y: 360, targetX: 570 },
-                      { n: '3', label: '复选框区', side: 'right', y: 450, targetX: 920 },
+                      { n: '1', label: '标题栏', side: 'left', y: 203, targetX: 712 },
+                      { n: '2', label: '提示内容区', side: 'left', y: 285, targetX: 657 },
+                      { n: '3', label: '复选框区', side: 'right', y: 373, targetX: 712 },
                     ]}
                     summary="B 类提示界面为信息展示弹窗，包含提示文本与关闭按钮，无需用户做二选一决策。"
                     notes={[
