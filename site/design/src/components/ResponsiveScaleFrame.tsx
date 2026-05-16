@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, type ReactNode } from 'react';
+import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 
 export function ResponsiveScaleFrame({
   children,
@@ -13,6 +13,9 @@ export function ResponsiveScaleFrame({
 }) {
   const hostRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+  const [offsetX, setOffsetX] = useState(0);
+  const [height, setHeight] = useState<number | null>(null);
 
   useLayoutEffect(() => {
     const host = hostRef.current;
@@ -22,21 +25,22 @@ export function ResponsiveScaleFrame({
     const measure = () => {
       const nextScale = Math.min(maxScale, host.clientWidth / minDesignWidth);
       const contentHeight = content.scrollHeight;
-      const offsetX = Math.max(0, (host.clientWidth - minDesignWidth * nextScale) / 2);
-      content.style.transform = `translateX(${offsetX}px) scale(${nextScale})`;
-      content.style.transformOrigin = 'top left';
-      host.style.height = `${contentHeight * nextScale}px`;
+      setScale(nextScale);
+      setOffsetX(Math.max(0, (host.clientWidth - minDesignWidth * nextScale) / 2));
+      setHeight(contentHeight * nextScale);
     };
 
     measure();
 
-    const ro = new ResizeObserver(measure);
-    ro.observe(host);
-    ro.observe(content);
+    const hostObserver = new ResizeObserver(measure);
+    const contentObserver = new ResizeObserver(measure);
+    hostObserver.observe(host);
+    contentObserver.observe(content);
 
     window.addEventListener('resize', measure);
     return () => {
-      ro.disconnect();
+      hostObserver.disconnect();
+      contentObserver.disconnect();
       window.removeEventListener('resize', measure);
     };
   }, [maxScale, minDesignWidth]);
@@ -45,11 +49,16 @@ export function ResponsiveScaleFrame({
     <div
       ref={hostRef}
       className={`relative w-full overflow-hidden ${className}`}
+      style={height ? { height } : undefined}
     >
       <div
         ref={contentRef}
         className="absolute left-0 top-0"
-        style={{ width: minDesignWidth }}
+        style={{
+          width: minDesignWidth,
+          transform: `translateX(${offsetX}px) scale(${scale})`,
+          transformOrigin: 'top left',
+        }}
       >
         {children}
       </div>
