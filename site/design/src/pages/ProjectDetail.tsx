@@ -1444,14 +1444,6 @@ export default function ProjectDetail({
 
               <div className="project-detail-module glass-card rounded-2xl p-6 sm:p-8 card-glow">
                 <div className="mb-5">
-                  <div className="font-display font-bold text-2xl neon-text-pink">结构层</div>
-                  <div className="mt-1 font-display text-base text-cyber-gray/90">Structure Layer</div>
-                </div>
-                <QingyuRuleFlowDiagram />
-              </div>
-
-              <div className="project-detail-module glass-card rounded-2xl p-6 sm:p-8 card-glow">
-                <div className="mb-5">
                   <div className="font-display font-bold text-2xl neon-text-pink">框架层</div>
                   <div className="mt-1 font-display text-base text-cyber-gray/90">Framework Layer</div>
                 </div>
@@ -1583,6 +1575,14 @@ export default function ProjectDetail({
                     </div>
                   </div>
                 </div>
+              </div>
+
+              <div className="project-detail-module glass-card rounded-2xl p-6 sm:p-8 card-glow">
+                <div className="mb-5">
+                  <div className="font-display font-bold text-2xl neon-text-pink">结构层</div>
+                  <div className="mt-1 font-display text-base text-cyber-gray/90">Structure Layer</div>
+                </div>
+                <QingyuRuleFlowDiagram />
               </div>
 
               <div className="project-detail-module glass-card rounded-2xl p-6 sm:p-8 card-glow">
