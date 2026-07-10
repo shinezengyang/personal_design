@@ -1,0 +1,525 @@
+/* ===== RecallExactCase — rc- prefix ===== */
+
+/* ---------- Canvas ---------- */
+.rc-canvas {
+  position: relative;
+  width: 1280px;
+  overflow: hidden;
+  background: #121217;
+  color: #f5f7fa;
+  font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
+}
+.rc-canvas * { box-sizing: border-box; }
+.rc-canvas img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- Section shell ---------- */
+.rc-section { position: relative; width: 1280px; overflow: hidden; }
+
+/* ---------- Section heights ---------- */
+.rc-hero    { height: 900px; }
+.rc-bg      { height: 860px; }
+.rc-overview{ height: 800px; }
+.rc-flow    { height: 1200px; }
+.rc-ia      { height: 860px; }
+.rc-s5      { height: 1080px; }
+.rc-s6      { height: 1600px; }
+.rc-s7      { height: 1080px; }
+.rc-divider { height: 280px; }
+.rc-s9      { height: 1080px; }
+.rc-s10     { height: 1080px; }
+.rc-s11     { height: 1080px; }
+.rc-s12     { height: 1080px; }
+.rc-journey { height: 1100px; }
+.rc-ref     { height: 1130px; }
+.rc-finale  { height: 1940px; }
+
+/* ---------- Colors ---------- */
+.rc-ember  { color: #eb8c4d; }
+.rc-teal   { color: #4ddbc7; }
+.rc-red    { color: #ff6b5c; }
+.rc-gold   { color: #edbd5c; }
+.rc-muted  { color: #9ea6b2; }
+
+/* ---------- Hero ---------- */
+.rc-hero-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+.rc-hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: #121217;
+}
+.rc-hero-dot {
+  position: absolute; left: 84px; top: 256px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #eb8c4d; box-shadow: 0 0 12px rgba(235,140,77,.5);
+}
+.rc-hero-overline {
+  position: absolute; left: 104px; top: 250px;
+  font-size: 16px; font-weight: 600; color: #eb8c4d;
+  letter-spacing: 4px; margin: 0;
+}
+.rc-hero h1 {
+  position: absolute; left: 76px; top: 296px;
+  margin: 0; font-size: 124px; font-weight: 900; color: #f5f7fa;
+  line-height: 1;
+}
+.rc-hero-rule {
+  position: absolute; left: 84px; top: 492px;
+  width: 64px; height: 5px; border-radius: 3px; background: #eb8c4d;
+}
+.rc-hero-sub {
+  position: absolute; left: 164px; top: 480px;
+  margin: 0; font-size: 28px; font-weight: 500; color: #f5f7fa;
+}
+.rc-hero-desc {
+  position: absolute; left: 84px; top: 546px; width: 680px;
+  margin: 0; font-size: 18px; color: #9ea6b2; line-height: 168%;
+}
+.rc-hero-tags {
+  position: absolute; left: 84px; top: 636px;
+  display: flex; gap: 12px;
+}
+.rc-hero-tags span {
+  padding: 6px 18px; border-radius: 20px;
+  background: rgba(235,140,77,.12); color: #eb8c4d;
+  font-size: 14px; font-weight: 500; white-space: nowrap;
+}
+
+/* ---------- Section header (reusable) ---------- */
+.rc-sec-hdr { position: absolute; }
+.rc-sec-hdr .rc-num {
+  position: absolute; left: -22px; top: -30px;
+  font-size: 140px; font-weight: 800; line-height: 1;
+  pointer-events: none; user-select: none;
+}
+.rc-sec-hdr .rc-num.sm { font-size: 120px; }
+.rc-sec-hdr .rc-eng {
+  display: block; font-size: 16px; font-weight: 600;
+  letter-spacing: 1.5px; margin-bottom: 6px;
+}
+.rc-sec-hdr h2 {
+  margin: 0; font-size: 56px; font-weight: 900; color: #f5f7fa;
+  line-height: 1.2;
+}
+.rc-sec-hdr .rc-desc {
+  margin: 28px 0 0; font-size: 18px; color: #9ea6b2;
+  line-height: 168%; max-width: 960px;
+}
+
+/* ---------- Hairline ---------- */
+.rc-hairline {
+  position: absolute; left: 80px; height: 1px;
+  width: 1120px; background: rgba(255,255,255,.08);
+}
+
+/* ---------- Background cards (Section 1) ---------- */
+.rc-bg-cards {
+  position: absolute; left: 80px; top: 360px;
+  display: flex; gap: 24px;
+}
+.rc-bg-card {
+  position: relative; width: 357px; height: 232px;
+  border: 1px solid rgba(237,189,92,.12); border-radius: 12px;
+  background: #1a1a22; padding: 24px 28px; overflow: hidden;
+}
+.rc-bg-card .rc-card-no {
+  position: absolute; right: 20px; top: 16px;
+  font-size: 48px; font-weight: 800; line-height: 1;
+  border-radius: 8px; padding: 4px 12px;
+}
+.rc-bg-card .rc-card-no.gold   { background: rgba(237,189,92,.15); color: rgba(237,189,92,.5); }
+.rc-bg-card .rc-card-no.teal   { background: rgba(77,219,199,.15); color: rgba(77,219,199,.5); }
+.rc-bg-card .rc-card-no.red    { background: rgba(255,107,92,.15); color: rgba(255,107,92,.5); }
+.rc-bg-card h3 {
+  margin: 60px 0 0; font-size: 24px; font-weight: 800; color: #f5f7fa;
+}
+.rc-bg-card p {
+  margin: 12px 0 0; font-size: 15px; color: #9ea6b2; line-height: 160%;
+  max-width: 280px;
+}
+
+/* ---------- Goal box ---------- */
+.rc-goal {
+  position: absolute; left: 80px; top: 648px;
+  width: 1120px; height: 128px;
+  border: 1px solid rgba(237,189,92,.15); border-radius: 12px;
+  background: rgba(237,189,92,.04); overflow: hidden;
+  display: flex; align-items: center; padding: 0 40px 0 45px;
+}
+.rc-goal::before {
+  content: ''; position: absolute; left: 0; top: 0;
+  width: 5px; height: 100%; background: #edbd5c; border-radius: 3px 0 0 3px;
+}
+.rc-goal-inner { display: flex; flex-direction: column; gap: 8px; }
+.rc-goal-inner em {
+  font-size: 16px; font-weight: 700; color: #edbd5c; font-style: normal;
+}
+.rc-goal-inner b {
+  font-size: 24px; font-weight: 700; color: #f5f7fa; line-height: 140%;
+}
+
+/* ---------- Overview feature rings (Section 2) ---------- */
+.rc-feat-row {
+  position: absolute; left: 80px; top: 400px;
+  display: flex; gap: 24px;
+}
+.rc-feat-card {
+  width: 272px; height: 320px;
+  border: 1px solid rgba(235,140,77,.12); border-radius: 12px;
+  background: #1a1a22; padding: 28px 24px; text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+.rc-feat-card.teal { border-color: rgba(77,219,199,.12); }
+.rc-feat-ring {
+  width: 72px; height: 72px; border-radius: 50%;
+  border: 2px solid rgba(235,140,77,.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; font-weight: 900; color: #eb8c4d;
+  margin-bottom: 16px;
+}
+.rc-feat-card.teal .rc-feat-ring {
+  border-color: rgba(77,219,199,.4); color: #4ddbc7;
+}
+.rc-feat-card h3 { margin: 0; font-size: 20px; font-weight: 800; color: #f5f7fa; }
+.rc-feat-card .rc-eng-sm {
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  color: rgba(235,140,77,.6); margin: 4px 0 12px;
+}
+.rc-feat-card.teal .rc-eng-sm { color: rgba(77,219,199,.6); }
+.rc-feat-card p {
+  margin: 0; font-size: 14px; color: #9ea6b2; line-height: 160%;
+}
+
+/* ---------- Flow lanes (Section 3) ---------- */
+.rc-lane {
+  position: absolute; left: 84px; width: 1112px; height: 260px;
+  border: 1px solid rgba(235,140,77,.12); border-radius: 16px;
+  background: #1a1a22; padding: 24px 32px; overflow: hidden;
+}
+.rc-lane.ember { top: 330px; border-color: rgba(235,140,77,.15); }
+.rc-lane.teal  { top: 700px;  border-color: rgba(77,219,199,.15); }
+.rc-lane-label {
+  display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px;
+}
+.rc-lane-label h3 { margin: 0; font-size: 20px; font-weight: 800; color: #f5f7fa; }
+.rc-lane-label span { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; }
+.rc-lane.ember .rc-lane-label span { color: rgba(235,140,77,.6); }
+.rc-lane.teal .rc-lane-label span  { color: rgba(77,219,199,.6); }
+.rc-lane-steps {
+  display: flex; gap: 20px;
+}
+.rc-lane-step {
+  flex: 1; height: 160px;
+  border: 1px solid rgba(255,255,255,.06); border-radius: 10px;
+  background: rgba(255,255,255,.03); padding: 16px 20px;
+  position: relative;
+}
+.rc-lane-step .rc-step-no {
+  font-size: 36px; font-weight: 800; line-height: 1;
+  margin-bottom: 12px; display: block;
+}
+.rc-lane.ember .rc-step-no { color: rgba(235,140,77,.25); }
+.rc-lane.teal .rc-step-no  { color: rgba(77,219,199,.25); }
+.rc-lane-step h4 { margin: 0 0 6px; font-size: 16px; font-weight: 700; color: #f5f7fa; }
+.rc-lane-step p  { margin: 0; font-size: 13px; color: #9ea6b2; line-height: 150%; }
+
+/* Code box between lanes */
+.rc-code-box {
+  position: absolute; left: 50%; top: 604px; transform: translateX(-50%);
+  padding: 10px 28px; border-radius: 8px;
+  background: rgba(235,140,77,.12); border: 1px solid rgba(235,140,77,.3);
+  font-size: 16px; font-weight: 700; color: #eb8c4d;
+  z-index: 2;
+}
+.rc-code-lines {
+  position: absolute; left: 50%; width: 2px; background: rgba(235,140,77,.2);
+}
+.rc-code-lines.up   { top: 590px; height: 14px; }
+.rc-code-lines.down { top: 644px; height: 56px; }
+
+/* Merge box */
+.rc-merge {
+  position: absolute; left: 84px; top: 1026px;
+  width: 1112px; height: 120px;
+  border: 1px solid rgba(255,255,255,.08); border-radius: 12px;
+  background: #1a1a22; padding: 20px 32px;
+  display: flex; align-items: center; gap: 24px;
+}
+.rc-merge-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(235,140,77,.12); border: 1px solid rgba(235,140,77,.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; color: #eb8c4d; flex-shrink: 0;
+}
+.rc-merge h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; color: #f5f7fa; }
+.rc-merge p  { margin: 0; font-size: 14px; color: #9ea6b2; line-height: 160%; max-width: 900px; }
+
+/* ---------- IA section (Section 4) ---------- */
+.rc-ia-left {
+  position: absolute; left: 80px; top: 372px;
+  width: 280px; height: 420px;
+  border: 1px solid rgba(235,140,77,.12); border-radius: 12px;
+  background: #1a1a22; padding: 28px 24px;
+}
+.rc-ia-left h3 { margin: 0 0 4px; font-size: 18px; font-weight: 800; color: #f5f7fa; }
+.rc-ia-left .rc-eng-sm {
+  font-size: 11px; font-weight: 600; letter-spacing: 1px;
+  color: rgba(235,140,77,.6); margin-bottom: 16px; display: block;
+}
+.rc-ia-left p { margin: 0; font-size: 14px; color: #9ea6b2; line-height: 160%; }
+
+.rc-ia-arrow {
+  position: absolute; left: 385px; top: 452px;
+  font-size: 13px; color: #9ea6b2;
+}
+.rc-ia-arrow::before {
+  content: '→'; margin-right: 6px; color: rgba(235,140,77,.5);
+}
+
+.rc-ia-right {
+  position: absolute; left: 470px; top: 348px;
+  width: 730px; height: 290px;
+  border: 1px solid rgba(255,255,255,.06); border-radius: 12px;
+  background: #1a1a22; overflow: hidden;
+}
+.rc-ia-tabs {
+  display: flex; height: 44px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.rc-ia-tabs span {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 600; color: #9ea6b2;
+  border-bottom: 2px solid transparent;
+  cursor: default;
+}
+.rc-ia-tabs span.active {
+  color: #eb8c4d; border-bottom-color: #eb8c4d;
+}
+.rc-ia-content {
+  padding: 20px 28px;
+}
+.rc-ia-content .rc-ia-label {
+  font-size: 14px; font-weight: 600; color: rgba(235,140,77,.7);
+  margin: 0 0 16px;
+}
+.rc-ia-reward-row {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 12px;
+}
+.rc-ia-reward-box {
+  width: 48px; height: 48px; border-radius: 8px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08);
+}
+.rc-ia-reward-row span { flex: 1; font-size: 13px; color: #9ea6b2; }
+.rc-ia-reward-row button {
+  padding: 6px 20px; border-radius: 6px;
+  background: rgba(235,140,77,.15); border: 1px solid rgba(235,140,77,.3);
+  color: #eb8c4d; font-size: 13px; font-weight: 600; cursor: default;
+}
+
+/* IA comparison rows */
+.rc-ia-compare {
+  position: absolute; left: 80px; width: 1120px;
+  height: 44px; border-radius: 8px;
+  background: #1a1a22; padding: 0 28px;
+  display: flex; align-items: center; gap: 16px;
+  font-size: 14px;
+}
+.rc-ia-compare.row1 { top: 690px; }
+.rc-ia-compare.row2 { top: 748px; }
+.rc-ia-compare .rc-ia-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.rc-ia-compare.row1 .rc-ia-dot { background: #9ea6b2; }
+.rc-ia-compare.row2 .rc-ia-dot { background: #eb8c4d; }
+.rc-ia-compare .rc-ia-c-label {
+  font-weight: 600; color: #f5f7fa; width: 90px; flex-shrink: 0;
+}
+.rc-ia-compare .rc-ia-c-desc { color: #9ea6b2; flex: 1; }
+.rc-ia-compare .rc-ia-c-result { font-weight: 700; color: #eb8c4d; white-space: nowrap; }
+.rc-ia-compare.row1 .rc-ia-c-result { color: #9ea6b2; }
+
+/* ---------- Screenshot section (reusable) ---------- */
+.rc-shot {
+  position: absolute; border-radius: 10px; overflow: hidden;
+  background: #0d0d12; border: 1px solid rgba(255,255,255,.06);
+}
+.rc-caption {
+  position: absolute; margin: 0;
+  font-size: 14px; color: #6b6b78; text-align: center;
+}
+
+/* ---------- Annotation callouts ---------- */
+.rc-anno {
+  position: absolute; max-width: 200px;
+}
+.rc-anno h4 {
+  margin: 0 0 4px; font-size: 14px; font-weight: 700; color: #f5f7fa;
+}
+.rc-anno::before {
+  content: ''; display: block;
+  width: 6px; height: 6px; border-radius: 50%;
+  margin-bottom: 8px;
+}
+.rc-anno.ember::before { background: #eb8c4d; box-shadow: 0 0 8px rgba(235,140,77,.4); }
+.rc-anno.teal::before  { background: #4ddbc7; box-shadow: 0 0 8px rgba(77,219,199,.4); }
+.rc-anno.red::before   { background: #ff6b5c; box-shadow: 0 0 8px rgba(255,107,92,.4); }
+.rc-anno p {
+  margin: 0; font-size: 13px; color: #9ea6b2; line-height: 155%;
+}
+.rc-anno.right { text-align: right; }
+.rc-anno.right::before { margin-left: auto; }
+
+/* ---------- Principle cards ---------- */
+.rc-principles {
+  position: absolute; left: 80px; display: flex; gap: 24px;
+}
+.rc-principle {
+  flex: 1; min-height: 160px;
+  border: 1px solid rgba(235,140,77,.12); border-radius: 12px;
+  background: #1a1a22; padding: 24px 28px; overflow: hidden;
+  position: relative;
+}
+.rc-principle::before {
+  content: ''; position: absolute; left: -1px; top: -1px;
+  width: calc(100% + 2px); height: 3px;
+  background: linear-gradient(90deg, rgba(235,140,77,.6), rgba(235,140,77,.05));
+}
+.rc-principle.teal { border-color: rgba(77,219,199,.12); }
+.rc-principle.teal::before { background: linear-gradient(90deg, rgba(77,219,199,.6), rgba(77,219,199,.05)); }
+.rc-principle.red  { border-color: rgba(255,107,92,.12); }
+.rc-principle.red::before  { background: linear-gradient(90deg, rgba(255,107,92,.6), rgba(255,107,92,.05)); }
+.rc-principle h4 { margin: 0 0 2px; font-size: 16px; font-weight: 800; color: #f5f7fa; }
+.rc-principle .rc-p-eng {
+  font-size: 11px; font-weight: 600; letter-spacing: 1px;
+  margin-bottom: 12px; display: block;
+}
+.rc-principle.ember .rc-p-eng { color: rgba(235,140,77,.6); }
+.rc-principle.teal .rc-p-eng  { color: rgba(77,219,199,.6); }
+.rc-principle.red .rc-p-eng   { color: rgba(255,107,92,.6); }
+.rc-principle p { margin: 0; font-size: 13px; color: #9ea6b2; line-height: 160%; }
+
+/* ---------- Divider (Section 8) ---------- */
+.rc-divider {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.rc-divider-box {
+  padding: 24px 56px; border-radius: 12px;
+  border: 1px solid rgba(77,219,199,.2);
+  background: rgba(77,219,199,.04); text-align: center;
+}
+.rc-divider-box h3 {
+  margin: 0 0 6px; font-size: 28px; font-weight: 800; color: #4ddbc7;
+}
+.rc-divider-box span {
+  font-size: 12px; font-weight: 600; letter-spacing: 2px; color: rgba(77,219,199,.5);
+}
+
+/* ---------- Journey chart (Section 13) ---------- */
+.rc-journey-chart {
+  position: absolute; left: 0; top: 297px;
+  width: 1280px; height: 546px;
+}
+.rc-journey-chart img { width: 100%; height: 100%; object-fit: contain; }
+
+.rc-journey-cards {
+  position: absolute; left: 80px; top: 906px;
+  display: flex; gap: 24px;
+}
+.rc-journey-card {
+  flex: 1; padding: 24px 28px;
+  border: 1px solid rgba(255,255,255,.06); border-radius: 12px;
+  background: #1a1a22; position: relative; overflow: hidden;
+}
+.rc-journey-card .rc-jc-no {
+  font-size: 40px; font-weight: 800; line-height: 1;
+  position: absolute; right: 20px; top: 16px;
+}
+.rc-journey-card.gold .rc-jc-no { color: rgba(237,189,92,.3); }
+.rc-journey-card.teal .rc-jc-no { color: rgba(77,219,199,.3); }
+.rc-journey-card.red  .rc-jc-no { color: rgba(255,107,92,.3); }
+.rc-journey-card h4 { margin: 0 0 8px; font-size: 18px; font-weight: 800; color: #f5f7fa; }
+.rc-journey-card p   { margin: 0; font-size: 14px; color: #9ea6b2; line-height: 160%; }
+
+/* ---------- Reference section (Section 14) ---------- */
+.rc-ref-cards {
+  position: absolute; left: 80px; top: 330px;
+  display: flex; gap: 22px;
+}
+.rc-ref-card {
+  width: 368px; border-radius: 12px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.06); background: #1a1a22;
+}
+.rc-ref-card-img {
+  width: 100%; height: 220px; overflow: hidden;
+}
+.rc-ref-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.rc-ref-card-body { padding: 20px 24px; }
+.rc-ref-card-body h4 { margin: 0 0 8px; font-size: 16px; font-weight: 700; color: #f5f7fa; }
+.rc-ref-card-body p  { margin: 0 0 14px; font-size: 13px; color: #9ea6b2; line-height: 155%; }
+.rc-ref-tag {
+  display: inline-block; padding: 4px 12px; border-radius: 4px;
+  font-size: 12px; font-weight: 600;
+}
+.rc-ref-tag.teal { background: rgba(77,219,199,.12); color: #4ddbc7; }
+.rc-ref-tag.ember { background: rgba(235,140,77,.12); color: #eb8c4d; }
+
+.rc-ref-summary {
+  position: absolute; left: 80px; top: 940px;
+  width: 1120px; padding: 20px 32px;
+  border: 1px solid rgba(255,255,255,.06); border-radius: 12px;
+  background: #1a1a22;
+}
+.rc-ref-summary p { margin: 0; font-size: 16px; color: #f5f7fa; line-height: 160%; font-weight: 500; }
+.rc-ref-summary .rc-ref-note {
+  margin-top: 12px; font-size: 12px; color: #6b6b78; font-weight: 400;
+}
+
+/* ---------- Finale composite (Section 15) ---------- */
+.rc-finale-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: top center;
+}
+.rc-finale-content {
+  position: relative; z-index: 1;
+}
+.rc-finale .rc-hairline { top: 60px; }
+.rc-finale-overline {
+  position: absolute; left: 0; top: 100px; width: 100%;
+  text-align: center; font-size: 16px; font-weight: 600;
+  color: #eb8c4d; letter-spacing: 3px;
+}
+.rc-finale-statement {
+  position: absolute; left: 0; top: 150px; width: 100%;
+  text-align: center; font-size: 44px; font-weight: 900;
+  color: #f5f7fa; line-height: 150%; white-space: pre-line;
+  margin: 0;
+}
+.rc-finale-sub {
+  position: absolute; left: 50%; top: 310px; transform: translateX(-50%);
+  width: 700px; text-align: center;
+  font-size: 17px; color: #9ea6b2; line-height: 160%; margin: 0;
+}
+.rc-finale-metrics {
+  position: absolute; left: 50%; top: 400px; transform: translateX(-50%);
+  display: flex; gap: 64px; text-align: center;
+}
+.rc-finale-metric b {
+  display: block; font-size: 56px; font-weight: 900; color: #eb8c4d;
+  line-height: 1;
+}
+.rc-finale-metric span {
+  display: block; margin-top: 8px; font-size: 14px; color: #9ea6b2;
+}
+.rc-finale-gallery-label {
+  position: absolute; left: 50%; top: 520px; transform: translateX(-50%);
+  font-size: 14px; font-weight: 600; color: rgba(235,140,77,.5);
+  letter-spacing: 2px;
+}
+.rc-finale-gallery {
+  position: absolute; left: 0; top: 580px;
+  width: 1280px; height: 1360px; overflow: hidden;
+}
+.rc-finale-gallery img { width: 100%; height: 100%; object-fit: cover; }

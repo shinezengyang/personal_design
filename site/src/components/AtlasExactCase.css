@@ -1,0 +1,341 @@
+/* ===================================================================
+   AtlasExactCase — 1:1 Figma rebuild (absolute positioning)
+   Canvas 1280 x 14540. All coords match Figma metadata exactly.
+   Theme: 《庆余年》图鉴手册 — dark study + golden codex, color-as-value
+   =================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+.atlas-canvas {
+  position: relative;
+  width: 1280px;
+  height: 14540px;
+  margin: 0 auto;
+  background: #0d1411;
+  color: #f4efe3;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.atlas-canvas * { box-sizing: border-box; }
+.atlas-canvas p { margin: 0; }
+
+.atlas-sec {
+  position: relative;
+  width: 1280px;
+  overflow: hidden;
+}
+
+/* staged entrance motion */
+.atlas-motion-ready .atlas-sec {
+  opacity: 0;
+  translate: 0 34px;
+  scale: 0.992;
+  transition:
+    opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
+    translate 860ms cubic-bezier(0.22, 1, 0.36, 1),
+    scale 860ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, translate, scale;
+}
+
+.atlas-motion-ready .atlas-sec.atlas-reveal-in {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+}
+
+.atlas-motion-ready .atlas-sec .atlas-reveal-item {
+  opacity: 0;
+  translate: 0 24px;
+  scale: 0.985;
+  transition:
+    opacity 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    translate 720ms cubic-bezier(0.22, 1, 0.36, 1),
+    scale 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(80ms + min(var(--atlas-reveal-order, 0), 28) * 42ms);
+  will-change: opacity, translate, scale;
+}
+
+.atlas-motion-ready .atlas-sec.atlas-reveal-in .atlas-reveal-item {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+}
+
+.atlas-motion-ready .atlas-sec .al-shot.atlas-reveal-item,
+.atlas-motion-ready .atlas-sec .al-card-dark.atlas-reveal-item,
+.atlas-motion-ready .atlas-sec .al-card-light.atlas-reveal-item,
+.atlas-motion-ready .atlas-sec .al-deliv.atlas-reveal-item {
+  translate: 0 34px;
+  scale: 0.975;
+  transition-duration: 680ms, 860ms, 860ms;
+}
+
+.atlas-motion-ready .atlas-sec .al-badge.atlas-reveal-item,
+.atlas-motion-ready .atlas-sec .al-dot.atlas-reveal-item,
+.atlas-motion-ready .atlas-sec .al-diamond.atlas-reveal-item {
+  translate: 0 10px;
+  scale: 0.72;
+  transition-duration: 420ms, 520ms, 520ms;
+}
+
+.atlas-motion-ready .atlas-sec .al-line.atlas-reveal-item,
+.atlas-motion-ready .atlas-sec .al-vline.atlas-reveal-item {
+  translate: 0 0;
+  scale: 0.86 1;
+  transform-origin: left center;
+  transition-duration: 460ms, 620ms, 620ms;
+}
+
+.atlas-motion-ready .atlas-sec.atlas-reveal-in .al-line.atlas-reveal-item,
+.atlas-motion-ready .atlas-sec.atlas-reveal-in .al-vline.atlas-reveal-item {
+  scale: 1 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-motion-ready .atlas-sec,
+  .atlas-motion-ready .atlas-sec .atlas-reveal-item {
+    opacity: 1 !important;
+    translate: 0 0 !important;
+    scale: 1 !important;
+    transition: none !important;
+  }
+}
+
+.al-bg-dark  { background: #0d1411; }
+.al-bg-cream { background: #f4efe3; }
+
+/* font families */
+.al-serif { font-family: 'Noto Serif SC', 'Songti SC', serif; }
+.al-bebas { font-family: 'Bebas Neue', 'Oswald', 'Inter', sans-serif; }
+
+/* diamond marker (rotated square) */
+.al-diamond {
+  position: absolute;
+  background: #e2b54b;
+  transform: rotate(45deg);
+}
+
+/* big translucent index number */
+.al-bignum {
+  position: absolute;
+  font-size: 200px;
+  line-height: 1;
+  font-style: normal;
+}
+
+/* section header */
+.al-h-title {
+  position: absolute;
+  font-weight: 900;
+  font-size: 46px;
+  margin: 0;
+  white-space: nowrap;
+}
+.al-h-sub {
+  position: absolute;
+  left: 130px;
+  top: 140px;
+  font-size: 21px;
+  letter-spacing: 6px;
+  margin: 0;
+  white-space: nowrap;
+}
+.al-h-rule {
+  position: absolute;
+  left: 96px;
+  top: 186px;
+  width: 1088px;
+  height: 1px;
+}
+.al-rule-dark  { background: rgba(13,20,17,0.15); }
+.al-rule-light { background: rgba(244,239,227,0.12); }
+
+/* tag pill / screen tag */
+.al-tag {
+  position: absolute;
+  display: inline-flex;
+  align-items: flex-start;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.al-screentag {
+  position: absolute;
+  display: inline-flex;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+/* screenshot frame */
+.al-shot {
+  position: absolute;
+  overflow: hidden;
+  background: #0a0d0b;
+}
+.al-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* annotation dot + leader line */
+.al-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e2b54b;
+}
+.al-dot-teal { background: #4fa08b; }
+.al-line {
+  position: absolute;
+  height: 1px;
+  background: rgba(226,181,75,0.55);
+}
+.al-line-teal { background: rgba(79,160,139,0.7); }
+.al-vline {
+  position: absolute;
+  width: 1px;
+  background: rgba(226,181,75,0.55);
+}
+
+/* numbered step badge */
+.al-badge {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', 'Oswald', 'Inter', sans-serif;
+  font-size: 16px;
+  color: #fff;
+}
+.al-badge-gold { background: #c89b3a; }
+.al-badge-green { background: #5fa052; }
+.al-badge-teal { background: #4fa08b; }
+
+/* cards */
+.al-card-dark {
+  position: absolute;
+  background: #14201b;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.al-card-light {
+  position: absolute;
+  background: #fcfaf4;
+  border: 1px solid #e2d9c2;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.al-card-top {
+  position: absolute;
+  left: 0; top: 0;
+  height: 3px;
+  width: 100%;
+  background: #e2b54b;
+}
+.al-card-left {
+  position: absolute;
+  left: 0; top: 0;
+  width: 3px;
+  height: 100%;
+  background: #e2b54b;
+}
+.al-card-title {
+  position: absolute;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+}
+.al-card-en {
+  position: absolute;
+  font-size: 16px;
+  letter-spacing: 3px;
+  margin: 0;
+  white-space: nowrap;
+}
+.al-card-body {
+  position: absolute;
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* deliverable card */
+.al-deliv {
+  position: absolute;
+  width: 352px;
+  height: 145px;
+  background: #fcfaf4;
+  border: 1px solid #e2d9c2;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* node box (info architecture) */
+.al-node {
+  position: absolute;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.atlas-loop-arrows {
+  position: absolute;
+  left: 96px;
+  top: 285px;
+  width: 630px;
+  height: 630px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.atlas-loop-arrow {
+  fill: none;
+  stroke: #e2b54b;
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  marker-end: url("#atlas-loop-arrow-head");
+  opacity: 0.92;
+  filter: drop-shadow(0 0 8px rgba(226, 181, 75, 0.35));
+}
+
+.atlas-loop-arrow-head {
+  fill: #e2b54b;
+}
+
+.atlas-map-links path {
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.atlas-map-links .atlas-map-link-teal {
+  stroke: rgba(79, 160, 139, 0.76);
+}
+
+.atlas-state-trans-label {
+  position: absolute;
+  margin: 0;
+  color: #c5d0c6;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 1.5px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: nowrap;
+  text-shadow: 0 0 6px rgba(8, 21, 15, 0.95);
+  z-index: 5;
+}

@@ -1,0 +1,195 @@
+/* ===================================================================
+   GloryExactCase — 1:1 Figma rebuild (absolute positioning)
+   Canvas 1280 x 15560. All coords match Figma metadata exactly.
+   Theme: 《庆余年》荣耀赛季 — dark stage + golden honor
+   =================================================================== */
+
+.glory-canvas {
+  position: relative;
+  width: 1280px;
+  height: 15560px;
+  margin: 0 auto;
+  background: #12151b;
+  color: #f4efe3;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.glory-canvas * { box-sizing: border-box; }
+
+.glory-sec {
+  position: relative;
+  width: 1280px;
+  overflow: hidden;
+}
+
+.gl-bg-dark  { background: #12151b; }
+.gl-bg-cream { background: #f4efe3; }
+
+/* generic absolute helpers */
+.gl-abs { position: absolute; }
+.gl-nowrap { white-space: nowrap; }
+
+/* font families */
+.gl-serif { font-family: 'Noto Serif SC', 'Songti SC', serif; }
+.gl-bebas { font-family: 'Bebas Neue', 'Oswald', 'Inter', sans-serif; }
+
+/* diamond marker (rotated square) */
+.gl-diamond {
+  position: absolute;
+  background: #e2b54b;
+  transform: rotate(45deg);
+}
+
+/* big translucent index number */
+.gl-bignum {
+  position: absolute;
+  font-size: 200px;
+  line-height: 1;
+  font-style: normal;
+}
+
+/* section header */
+.gl-h-title {
+  position: absolute;
+  left: 128px;
+  font-weight: 900;
+  font-size: 46px;
+  margin: 0;
+  white-space: nowrap;
+}
+.gl-h-sub {
+  position: absolute;
+  left: 130px;
+  top: 140px;
+  font-size: 21px;
+  letter-spacing: 6px;
+  margin: 0;
+  white-space: nowrap;
+}
+.gl-h-rule {
+  position: absolute;
+  left: 96px;
+  top: 186px;
+  width: 1088px;
+  height: 1px;
+}
+.gl-rule-dark  { background: rgba(18,21,27,0.15); }
+.gl-rule-light { background: rgba(244,239,227,0.12); }
+
+/* tag pill */
+.gl-tag {
+  position: absolute;
+  display: inline-flex;
+  align-items: flex-start;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.gl-screentag {
+  position: absolute;
+  display: inline-flex;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+/* screenshot frame */
+.gl-shot {
+  position: absolute;
+  overflow: hidden;
+  background: #0c0e12;
+}
+.gl-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* annotation dot + leader line + text */
+.gl-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e2b54b;
+}
+.gl-dot-red { background: #e0492f; }
+.gl-line {
+  position: absolute;
+  height: 1px;
+  background: rgba(226,181,75,0.55);
+}
+.gl-line-red { background: rgba(224,73,47,0.7); }
+.gl-vline {
+  position: absolute;
+  width: 1px;
+  background: rgba(226,181,75,0.55);
+}
+
+/* card (driver / rationale) */
+.gl-card-dark {
+  position: absolute;
+  background: #181d25;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.gl-card-light {
+  position: absolute;
+  background: #fcfaf4;
+  border: 1px solid #e2d9c2;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.gl-card-top {
+  position: absolute;
+  left: 0; top: 0;
+  height: 3px;
+  width: 100%;
+  background: #e2b54b;
+}
+.gl-card-left {
+  position: absolute;
+  left: 0; top: 0;
+  width: 3px;
+  height: 100%;
+  background: #e2b54b;
+}
+
+.gl-card-title {
+  position: absolute;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+}
+.gl-card-en {
+  position: absolute;
+  font-size: 16px;
+  letter-spacing: 3px;
+  margin: 0;
+  white-space: nowrap;
+}
+.gl-card-body {
+  position: absolute;
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* deliverable card */
+.gl-deliv {
+  position: absolute;
+  width: 352px;
+  height: 145px;
+  background: #fcfaf4;
+  border: 1px solid #e2d9c2;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* generic text reset */
+.glory-canvas p { margin: 0; }

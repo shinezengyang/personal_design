@@ -1,0 +1,75 @@
+/* ===================================================================
+   PunishExactCase — 1:1 Figma rebuild (absolute positioning)
+   Figma frame 8721:7612 — 玩法-惩凶除恶·玩法优化 作品集
+   13-slide deck, each 1280×900, stacked vertically → 1280 × 11700.
+   STAGE coord = slide.y + child.y. All coords match Figma metadata.
+   Palette: ink #15121b · gold #c99b45 · vermilion #c8322b
+   =================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Inter:wght@600;900&display=swap');
+
+.punish-canvas {
+  position: relative;
+  width: 1280px;
+  height: 11700px;
+  margin: 0 auto;
+  background: #15121b;
+  color: #1b1822;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.punish-canvas * { box-sizing: border-box; }
+.punish-canvas p { margin: 0; }
+
+/* each slide */
+.punish-slide {
+  position: relative;
+  width: 1280px;
+  height: 900px;
+  overflow: hidden;
+}
+.pe-bg-ink   { background: #15121b; }
+.pe-bg-cream { background: #f6f1e8; }
+
+/* font families */
+.pe-ma    { font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', cursive; }
+.pe-serif { font-family: 'Noto Serif SC', 'Songti SC', serif; }
+.pe-inter { font-family: 'Inter', 'Oswald', sans-serif; }
+
+/* absolutely-positioned element base */
+.pe-abs { position: absolute; }
+
+/* image fill (game screenshot) */
+.pe-shot {
+  position: absolute;
+  overflow: hidden;
+  background: #0e0c12;
+}
+.pe-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* numbered annotation badge (gold disc, white digit) */
+.pe-badge {
+  position: absolute;
+  border-radius: 50%;
+  background: #c8322b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+
+/* small dot */
+.pe-dot { position: absolute; border-radius: 50%; }
+
+/* rotated-square diamond marker */
+.pe-diamond { position: absolute; transform: rotate(45deg); }
+
+/* thin rule / bar */
+.pe-bar { position: absolute; }

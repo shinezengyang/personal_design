@@ -1,0 +1,11 @@
+site/node_modules/
+site/dist/
+site/output/
+site/.vite/
+site/.vite-temp/
+site/*.log
+site/*.tsbuildinfo
+site/vite.config.js
+site/vite.config.d.ts
+.claude/
+.codex/

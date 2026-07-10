@@ -1,0 +1,824 @@
+/* ===================================================================
+   GemSocketExactCase — 1:1 Figma rebuild (absolute positioning)
+   Canvas 1280 x 11160. All coords match Figma metadata exactly.
+   =================================================================== */
+
+.gs-canvas {
+  position: relative;
+  width: 1280px;
+  height: 11160px;
+  margin: 0 auto;
+  background: #f2f4fa;
+  color: #121726;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.gs-canvas * {
+  box-sizing: border-box;
+}
+
+.gs-sec {
+  position: relative;
+  width: 1280px;
+  overflow: hidden;
+}
+
+.gs-en {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+}
+
+/* ---- Section backgrounds ---- */
+.gs-bg-white { background: #ffffff; }
+.gs-bg-gray  { background: #f2f4fa; }
+
+/* ---- Header pattern ---- */
+.gs-accent {
+  position: absolute;
+  height: 4px;
+  width: 42px;
+  background: #f56b2e;
+  left: 80px;
+}
+.gs-title {
+  position: absolute;
+  left: 80px;
+  font-weight: 700;
+  font-size: 35px;
+  color: #121726;
+  margin: 0;
+  white-space: nowrap;
+}
+.gs-sub {
+  position: absolute;
+  left: 80px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #4f80f5;
+  letter-spacing: 1.28px;
+  margin: 0;
+}
+.gs-rightsub {
+  position: absolute;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #616b80;
+  text-align: right;
+  white-space: nowrap;
+  margin: 0;
+  transform: translateX(-100%);
+}
+
+/* generic helpers */
+.gs-card {
+  position: absolute;
+  background: #ffffff;
+  border: 1px solid #e4e8f1;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(26, 38, 77, 0.08);
+  overflow: hidden;
+}
+.gs-img-frame {
+  position: absolute;
+  border: 1px solid #e4e8f1;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.gs-img-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gs-img-frame.gs-shadow-md { box-shadow: 0 10px 28px rgba(26, 38, 77, 0.14); }
+.gs-img-frame.gs-shadow-lg { box-shadow: 0 12px 30px rgba(26, 38, 77, 0.16); }
+
+/* =================== S01 Cover =================== */
+.gs-cover {
+  background: linear-gradient(to right, #5888f6, #496fe8);
+  color: #ffffff;
+}
+.gs-cover-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.gs-cover-soliddot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+}
+.gs-cover-bar {
+  position: absolute;
+  left: 80px;
+  top: 110px;
+  width: 40px;
+  height: 3px;
+  background: #ffffff;
+}
+.gs-cover-overline {
+  position: absolute;
+  left: 132px;
+  top: 100px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.9);
+}
+.gs-cover-uxring {
+  position: absolute;
+  left: 60px;
+  top: 300px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+.gs-cover-ux {
+  position: absolute;
+  left: 72px;
+  top: 250px;
+  width: 297px;
+  height: 220px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 150px;
+  line-height: 220px;
+  color: rgba(255, 255, 255, 0.16);
+}
+.gs-cover-t1, .gs-cover-t2 {
+  position: absolute;
+  left: 381px;
+  width: 540px;
+  height: 92px;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 92px;
+  color: #ffffff;
+  margin: 0;
+}
+.gs-cover-t1 { top: 300px; }
+.gs-cover-t2 { top: 402px; }
+.gs-cover-pill {
+  position: absolute;
+  top: 522px;
+  width: 100px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #ffffff;
+}
+.gs-cover-divider {
+  position: absolute;
+  left: 80px;
+  top: 700px;
+  width: 1120px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.gs-cover-foot {
+  position: absolute;
+  top: 720px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* =================== S02 =================== */
+.gs-text {
+  position: absolute;
+  margin: 0;
+}
+.gs-info-label {
+  position: absolute;
+  font-weight: 700;
+  font-size: 16px;
+  color: #1f263d;
+}
+.gs-info-sep {
+  position: absolute;
+  width: 1px;
+  height: 16px;
+  background: #c0c5d1;
+}
+.gs-info-val {
+  position: absolute;
+  font-weight: 400;
+  font-size: 16px;
+  color: #616b80;
+  white-space: nowrap;
+}
+.gs-cap {
+  position: absolute;
+  font-weight: 500;
+  font-size: 16px;
+  color: #616b80;
+  white-space: nowrap;
+}
+.gs-cap-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4f80f5;
+}
+
+/* =================== S03 problem cards =================== */
+.gs-pcard-num {
+  position: absolute;
+  left: 249px;
+  top: 23px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  color: #eaf0fe;
+}
+.gs-pc-icon {
+  position: absolute;
+  left: 36px;
+  top: 40px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #eaf0fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: #4f80f5;
+}
+.gs-pc-icon.orange { background: #feede8; color: #f56b2e; }
+.gs-pc-quote {
+  position: absolute;
+  left: 36px;
+  top: 127px;
+  width: 288px;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 30px;
+  color: #121726;
+}
+.gs-pc-tag {
+  position: absolute;
+  left: 36px;
+  top: 175px;
+  width: 288px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.gs-pc-tag.blue { color: #4f80f5; }
+.gs-pc-tag.orange { color: #f56b2e; }
+.gs-pc-div {
+  position: absolute;
+  left: 36px;
+  top: 213px;
+  width: 288px;
+  height: 1px;
+  background: #e4e8f1;
+}
+.gs-pc-desc {
+  position: absolute;
+  left: 36px;
+  top: 233px;
+  width: 288px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #616b80;
+}
+.gs-pc-pill {
+  position: absolute;
+  left: 36px;
+  bottom: 31px;
+  width: 140px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.gs-pc-pill.blue { background: #eaf0fe; color: #4f80f5; }
+.gs-pc-pill.orange { background: #feede8; color: #f56b2e; }
+.gs-pc-pill .pd {
+  position: absolute;
+  left: 14px;
+  top: 13px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.gs-pc-pill.blue .pd { background: #4f80f5; }
+.gs-pc-pill.orange .pd { background: #f56b2e; }
+
+/* =================== S04 goal cards =================== */
+.gs-goal-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 360px;
+  height: 5px;
+}
+.gs-goal-num {
+  position: absolute;
+  left: 36px;
+  top: 44px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: #ffffff;
+}
+.gs-goal-eng {
+  position: absolute;
+  left: 39px;
+  top: 123px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+.gs-goal-title {
+  position: absolute;
+  left: 35px;
+  top: 150px;
+  width: 288px;
+  font-weight: 700;
+  font-size: 30px;
+  color: #121726;
+}
+.gs-goal-body {
+  position: absolute;
+  left: 35px;
+  top: 204px;
+  width: 288px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #616b80;
+}
+.gs-goal-track {
+  position: absolute;
+  left: 35px;
+  top: 316px;
+  width: 288px;
+  height: 8px;
+  border-radius: 4px;
+  background: #eaf0fe;
+}
+.gs-goal-fill {
+  position: absolute;
+  left: 35px;
+  top: 316px;
+  width: 288px;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(to right, #4f80f5, #f56b2e);
+}
+.gs-goal-arrow {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #e4e8f1;
+  box-shadow: 0 4px 12px rgba(26, 38, 77, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 1;
+}
+
+/* =================== S05 flow =================== */
+.gs-flow-line {
+  position: absolute;
+  height: 2px;
+  background: #e4e8f1;
+}
+.gs-flow-circle {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #4f80f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  color: #4f80f5;
+}
+.gs-flow-circle.orange { border-color: #f56b2e; color: #f56b2e; }
+.gs-flow-t {
+  position: absolute;
+  width: 150px;
+  text-align: center;
+  transform: translateX(-50%);
+  font-weight: 700;
+  font-size: 20px;
+  color: #121726;
+}
+.gs-flow-s {
+  position: absolute;
+  width: 150px;
+  text-align: center;
+  transform: translateX(-50%);
+  font-weight: 400;
+  font-size: 16px;
+  color: #616b80;
+}
+.gs-flow-chev {
+  position: absolute;
+  width: 16px;
+  text-align: center;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: #e4e8f1;
+}
+.gs-stat-card {
+  position: absolute;
+  left: 680px;
+  top: 400px;
+  width: 520px;
+  height: 204px;
+  border-radius: 16px;
+  background: linear-gradient(to right, #4f80f5, #496fe8);
+  box-shadow: 0 12px 30px rgba(79, 128, 245, 0.3);
+  color: #ffffff;
+  overflow: hidden;
+}
+.gs-stat-card .lbl {
+  position: absolute; left: 32px; top: 30px; font-weight: 500; font-size: 16px;
+}
+.gs-stat-card .big {
+  position: absolute; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 83px; line-height: 1; top: 64px;
+}
+.gs-stat-card .n7 { left: 32px; opacity: 0.55; }
+.gs-stat-card .n4 { left: 403px; }
+.gs-stat-card .bu {
+  position: absolute; font-weight: 400; font-size: 23px;
+}
+.gs-stat-card .arrow {
+  position: absolute; left: 50%; transform: translateX(-50%); top: 86px;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: 51px;
+}
+.gs-stat-card .note {
+  position: absolute; left: 32px; top: 172px; font-weight: 400; font-size: 16px;
+}
+
+/* =================== S06 numbered annotations =================== */
+.gs-anno-num {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #4f80f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #ffffff;
+}
+.gs-anno-num.orange { background: #f56b2e; }
+.gs-anno-t {
+  position: absolute;
+  left: 928px;
+  width: 270px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #121726;
+}
+.gs-anno-s {
+  position: absolute;
+  left: 928px;
+  width: 272px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #616b80;
+}
+
+/* light-blue theory panel */
+.gs-theory-blue {
+  position: absolute;
+  background: #eaf0fe;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.gs-theory-blue .bar {
+  position: absolute; left: 0; top: 0; width: 6px; height: 100%; background: #4f80f5;
+}
+.gs-theory-blue .eyebrow {
+  position: absolute; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; color: #4f80f5;
+}
+.gs-theory-blue .title {
+  position: absolute; font-weight: 700; color: #121726;
+}
+.gs-theory-blue .desc {
+  position: absolute; font-weight: 400; font-size: 16px; color: #616b80;
+}
+.gs-mini-card {
+  position: absolute;
+  background: #ffffff;
+  border: 1px solid #e4e8f1;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.gs-mini-icon {
+  position: absolute; left: 23px; top: 23px; width: 36px; height: 36px;
+  border-radius: 50%; background: #eaf0fe; display: flex; align-items: center; justify-content: center;
+}
+.gs-mini-icon .d { width: 14px; height: 14px; border-radius: 50%; background: #4f80f5; }
+.gs-mini-t { position: absolute; left: 71px; top: 29px; width: 180px; font-weight: 700; font-size: 18px; color: #121726; }
+.gs-mini-d { position: absolute; left: 23px; top: 79px; width: 222px; font-weight: 400; font-size: 16px; line-height: 21px; color: #616b80; }
+
+/* dark theory bar (#121726) */
+.gs-theory-dark {
+  position: absolute;
+  background: #121726;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.gs-theory-dark .bar {
+  position: absolute; left: 0; top: 0; width: 6px; height: 100%;
+}
+.gs-theory-dark .eyebrow {
+  position: absolute; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px;
+}
+.gs-theory-dark .title {
+  position: absolute; font-weight: 700; color: #ffffff;
+}
+.gs-theory-dark .vsep {
+  position: absolute; width: 1px; background: #4d5773;
+}
+.gs-theory-dark .desc {
+  position: absolute; font-weight: 400; font-size: 16px; line-height: 26px; color: #c7d1e5;
+}
+
+/* =================== S07 simplify =================== */
+.gs-simp-h { position: absolute; font-weight: 700; font-size: 20px; color: #121726; }
+.gs-simp-sub { position: absolute; font-weight: 400; font-size: 16px; color: #616b80; }
+.gs-simp-row {
+  position: absolute; left: 27px; width: 434px; height: 44px; border-radius: 10px;
+  background: #f3f5f8; display: flex; align-items: center;
+}
+.gs-simp-row .label { position: absolute; left: 18px; font-weight: 500; font-size: 18px; color: #121726; }
+.gs-simp-row.remove { background: #fdeae9; border: 1px dashed #e84d4a; }
+.gs-simp-row.remove .label { color: #e84d4a; text-decoration: line-through; left: 17px; }
+.gs-simp-remove-badge {
+  position: absolute; left: 359px; top: 9px; width: 58px; height: 24px; border-radius: 6px;
+  background: #e84d4a; color: #fff; font-weight: 700; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.gs-simp-after-core {
+  position: absolute; left: 26.5px; top: 100.5px; width: 434px; height: 80px; border-radius: 12px;
+  background: #4f80f5; overflow: hidden;
+}
+.gs-simp-after-core .t { position: absolute; left: 24px; top: 18px; font-weight: 700; font-size: 28px; color: #fff; }
+.gs-simp-after-core .s { position: absolute; left: 24px; top: 52px; font-weight: 400; font-size: 16px; color: #fff; }
+.gs-simp-after-core .dot { position: absolute; left: 370px; top: 20px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.25); }
+.gs-simp-after-sub {
+  position: absolute; left: 26.5px; top: 194.5px; width: 434px; height: 72px; border-radius: 12px;
+  background: #eaf0fe; overflow: hidden;
+}
+.gs-simp-after-sub .t { position: absolute; left: 24px; top: 10px; font-weight: 700; font-size: 21px; color: #121726; }
+.gs-simp-after-sub .s { position: absolute; left: 24px; top: 43px; font-weight: 400; font-size: 16px; color: #616b80; }
+
+/* =================== S08 =================== */
+.gs-op-badge {
+  position: absolute; width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #fff;
+}
+.gs-op-desc {
+  position: absolute; font-weight: 500; font-size: 16px; line-height: 1.4; color: #121726;
+}
+.gs-op-dot { position: absolute; width: 8px; height: 8px; border-radius: 50%; }
+
+/* operation loop card */
+.gs-loop {
+  position: absolute; left: 80px; top: 276px; width: 540px; height: 257px;
+  background: #eaf0fe; border-radius: 16px; overflow: hidden;
+}
+.gs-loop .h { position: absolute; left: 16px; top: 28px; font-weight: 700; font-size: 21px; color: #121726; }
+.gs-loop .chip {
+  position: absolute; top: 70px; height: 42px; border-radius: 21px;
+  background: #fff; border: 1px solid #e4e8f1;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 16px; color: #121726;
+}
+.gs-loop .chip.orange { background: #f56b2e; color: #fff; border: none; }
+.gs-loop .chev {
+  position: absolute; top: 78px; width: 22px; text-align: center; transform: translateX(-50%);
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: 21px; color: #4f80f5;
+}
+.gs-loop .toastlbl { position: absolute; left: 16px; top: 140px; font-weight: 500; font-size: 16px; color: #616b80; }
+.gs-loop .toast {
+  position: absolute; height: 40px; border-radius: 20px; background: #121726; overflow: hidden;
+  display: flex; align-items: center; padding-left: 46px; color: #fff; font-weight: 500; font-size: 16px;
+}
+.gs-loop .toast .ck {
+  position: absolute; left: 14px; top: 10px; width: 20px; height: 20px; border-radius: 50%;
+  background: #3eb479; display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; color: #fff;
+}
+.gs-loop .vsep { position: absolute; left: 560px; top: 40px; width: 1px; height: 176px; background: #e4e8f1; }
+
+/* =================== S09 backpack =================== */
+.gs-bp {
+  position: absolute; left: 80px; top: 200px; width: 1120px; height: 210px;
+  background: #1f263d; border-radius: 16px; overflow: hidden;
+}
+.gs-bp .h { position: absolute; left: 32px; top: 26px; font-weight: 700; font-size: 20px; color: #fff; }
+.gs-bp .hi { position: absolute; left: 32px; top: 54px; font-weight: 500; font-size: 16px; color: #fac74d; }
+.gs-bp .line { position: absolute; left: 86px; top: 62px; width: 180px; height: 2px; background: #73809e; }
+.gs-bp .lo { position: absolute; left: 272px; top: 52px; font-weight: 500; font-size: 16px; color: #9ea8bd; }
+.gs-gem {
+  position: absolute; top: 92px; width: 126px; height: 96px;
+  background: #2e364d; border: 1px solid #47526b; border-radius: 12px; overflow: hidden;
+}
+.gs-gem.empty { background: #2e364d; border: none; opacity: 0.5; width: 60px; }
+.gs-gem .hex {
+  position: absolute; left: 39px; top: 1px; width: 46px; height: 46px;
+}
+.gs-gem .hex svg { display: block; }
+.gs-gem .center-dot {
+  position: absolute; left: 52px; top: 33px; width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+}
+.gs-gem .lv {
+  position: absolute; left: 81px; top: 7px; width: 36px; height: 20px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px; color: #141724;
+}
+.gs-gem .qty {
+  position: absolute; left: 7px; top: 73px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; color: #c7d1e5;
+}
+.gs-rule-card {
+  position: absolute; left: 80px; top: 442px; width: 540px; height: 200px;
+  background: #fff; border: 1px solid #e4e8f1; border-radius: 16px; overflow: hidden;
+}
+.gs-rule-card .h { position: absolute; left: 27px; top: 25px; font-weight: 700; font-size: 20px; color: #121726; }
+.gs-rule-card .ri { position: absolute; left: 29px; width: 8px; height: 8px; border-radius: 50%; background: #4f80f5; }
+.gs-rule-card .rt { position: absolute; left: 49px; width: 470px; font-weight: 400; font-size: 16px; color: #616b80; }
+
+/* =================== S10 synth =================== */
+.gs-syn-h { position: absolute; left: 680px; top: 206px; width: 420px; font-weight: 700; font-size: 23px; color: #121726; }
+.gs-syn-box {
+  position: absolute; width: 230px; height: 76px; border-radius: 12px; overflow: hidden;
+}
+.gs-syn-box.white { background: #fff; border: 1px solid #e4e8f1; }
+.gs-syn-box.blue { background: #4f80f5; }
+.gs-syn-box .t { position: absolute; font-weight: 700; font-size: 18px; }
+.gs-syn-box .s { position: absolute; font-weight: 400; font-size: 16px; }
+.gs-syn-box.white .t { color: #121726; left: 19px; top: 15px; }
+.gs-syn-box.white .s { color: #616b80; left: 19px; top: 45px; }
+.gs-syn-box.blue .t { color: #fff; left: 20px; top: 16px; }
+.gs-syn-box.blue .s { color: #fff; left: 20px; top: 46px; }
+.gs-syn-box .reddot { position: absolute; left: 199px; top: 13px; width: 12px; height: 12px; border-radius: 50%; background: #eb4646; }
+.gs-syn-chev {
+  position: absolute; left: 938px; top: 268px; transform: translateX(-50%);
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: 30px; color: #4f80f5;
+}
+.gs-syn-tag {
+  position: absolute; top: 350px; width: 182px; height: 46px; border-radius: 10px;
+  background: #eaf0fe; display: flex; align-items: center; padding-left: 32px;
+  font-weight: 500; font-size: 16px; color: #121726;
+}
+.gs-syn-tag .d { position: absolute; left: 16px; top: 19px; width: 8px; height: 8px; border-radius: 50%; background: #4f80f5; }
+.gs-syn-note { position: absolute; left: 680px; top: 424px; width: 520px; font-weight: 400; font-size: 16px; line-height: 24px; color: #616b80; }
+
+/* =================== S11 red-dot =================== */
+.gs-rd-card {
+  position: absolute; left: 80px; top: 200px; width: 520px; height: 400px;
+  background: #fff; border: 1px solid #e4e8f1; border-radius: 16px; overflow: hidden;
+}
+.gs-rd-card .h { position: absolute; left: 27px; top: 25px; font-weight: 700; font-size: 20px; color: #121726; }
+.gs-rd-card .s { position: absolute; left: 27px; top: 57px; width: 440px; font-weight: 400; font-size: 16px; color: #616b80; }
+.gs-rd-node {
+  position: absolute; border-radius: 12px; overflow: hidden;
+}
+.gs-rd-node.gray { background: #f6f8fb; }
+.gs-rd-node.alert { background: #fdeae9; border: 1.5px solid #eb4646; }
+.gs-rd-node .t { position: absolute; left: 20px; top: 15px; font-weight: 700; font-size: 18px; color: #121726; }
+.gs-rd-node .d { position: absolute; left: 20px; font-weight: 400; font-size: 16px; color: #616b80; }
+.gs-rd-node .reddot { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: #eb4646; }
+.gs-rd-node .can { position: absolute; font-weight: 700; font-size: 16px; color: #eb4646; }
+.gs-rd-conn { position: absolute; width: 2px; background: #e4e8f1; }
+.gs-rd-rule {
+  position: absolute; left: 640px; width: 560px; height: 112px;
+  background: #fff; border: 1px solid #e4e8f1; border-radius: 14px; overflow: hidden;
+}
+.gs-rd-rule .accent { position: absolute; left: 0; top: 0; width: 5px; height: 100%; }
+.gs-rd-rule .chip {
+  position: absolute; left: 27px; top: 23px; width: 116px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;
+}
+.gs-rd-rule .chip.blue { background: #eaf0fe; color: #4f80f5; }
+.gs-rd-rule .chip.orange { background: #feede8; color: #f56b2e; }
+.gs-rd-rule .reddot { position: absolute; left: 149px; top: 29px; width: 16px; height: 16px; border-radius: 50%; background: #eb4646; }
+.gs-rd-rule .t { position: absolute; left: 27px; font-weight: 700; font-size: 21px; color: #121726; }
+.gs-rd-rule .meta { position: absolute; top: 29px; font-weight: 400; font-size: 16px; line-height: 20px; color: #616b80; }
+
+/* =================== S12 config =================== */
+.gs-cfg-card {
+  position: absolute; left: 80px; top: 210px; width: 420px; height: 364px;
+  background: #1f263d; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 10px 28px rgba(26, 31, 64, 0.2);
+}
+.gs-cfg-card .hex { position: absolute; left: 32px; top: 30px; width: 56px; height: 56px; }
+.gs-cfg-card .name { position: absolute; left: 104px; top: 34px; font-weight: 700; font-size: 23px; color: #fff; }
+.gs-cfg-card .lvl { position: absolute; left: 104px; top: 64px; font-weight: 500; font-size: 16px; color: #fac74d; }
+.gs-cfg-card .grouplbl { position: absolute; left: 32px; font-weight: 500; font-size: 16px; color: #9ea8bd; }
+.gs-cfg-card .val { position: absolute; left: 32px; font-weight: 400; font-size: 16px; color: #fff; white-space: pre; }
+.gs-cfg-card .divline { position: absolute; left: 32px; width: 356px; height: 1px; background: #47526b; }
+.gs-cfg-badge {
+  position: absolute; left: 326px; width: 86px; height: 24px; border-radius: 12px;
+  background: #e6f6ef; display: flex; align-items: center; padding-left: 26px;
+  font-weight: 700; font-size: 16px; color: #3eb479;
+}
+.gs-cfg-badge .d { position: absolute; left: 12px; top: 9px; width: 7px; height: 7px; border-radius: 50%; background: #3eb479; }
+.gs-cfg-rh { position: absolute; left: 560px; top: 212px; width: 500px; font-weight: 700; font-size: 23px; color: #121726; }
+.gs-cfg-item {
+  position: absolute; left: 560px; width: 640px; height: 64px; border-radius: 12px;
+  background: #fff; border: 1px solid #e4e8f1; overflow: hidden;
+}
+.gs-cfg-item .ck {
+  position: absolute; left: 17px; top: 15px; width: 32px; height: 32px; border-radius: 8px;
+  background: #e6f6ef; display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #3eb479;
+}
+.gs-cfg-item .t { position: absolute; left: 63px; top: 11px; font-weight: 700; font-size: 18px; color: #121726; }
+.gs-cfg-item .s { position: absolute; left: 63px; top: 35px; font-weight: 400; font-size: 16px; color: #616b80; }
+
+/* =================== S13 journey =================== */
+.gs-jr {
+  position: absolute; left: 80px; top: 196px; width: 1120px; height: 400px;
+  background: #fff; border: 1px solid #e4e8f1; border-radius: 16px; overflow: hidden;
+}
+.gs-jr .yaxis {
+  position: absolute; left: 43px; top: 89px; width: 120px;
+  transform: rotate(-90deg); transform-origin: left center;
+  font-weight: 500; font-size: 16px; color: #616b80; white-space: nowrap;
+}
+.gs-jr .baseline { position: absolute; left: 89px; top: 329px; width: 1000px; height: 2px; background: #e4e8f1; }
+.gs-jr svg.curve { position: absolute; left: 89px; top: 99px; width: 900px; height: 230px; overflow: visible; }
+.gs-jr .vline { position: absolute; width: 1px; background: #e4e8f1; opacity: 0.7; }
+.gs-jr .node { position: absolute; width: 18px; height: 18px; border-radius: 50%; background: #4f80f5; border: 3px solid #fff; box-shadow: 0 0 0 1px #4f80f5; }
+.gs-jr .node.peak { background: #f56b2e; box-shadow: 0 0 0 1px #f56b2e; }
+.gs-jr .quote { position: absolute; width: 140px; text-align: center; transform: translateX(-50%); font-weight: 700; font-size: 16px; color: #4f80f5; }
+.gs-jr .quote.peak { color: #f56b2e; }
+.gs-jr .step { position: absolute; width: 120px; text-align: center; transform: translateX(-50%); font-weight: 500; font-size: 16px; color: #121726; }
+.gs-jr .channel { position: absolute; left: 1089px; top: 299px; width: 280px; text-align: right; transform: translateX(-100%); font-weight: 400; font-size: 16px; color: #616b80; }
+
+/* =================== S15 ending =================== */
+.gs-ending {
+  background: linear-gradient(to right, #1f263d, #121726);
+  color: #ffffff;
+}
+.gs-end-bar { position: absolute; left: 80px; top: 88px; width: 40px; height: 3px; background: rgba(255,255,255,0.9); }
+.gs-end-eyebrow {
+  position: absolute; left: 132px; top: 78px;
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 3px; color: rgba(255,255,255,0.85);
+}
+.gs-end-title {
+  position: absolute; left: 80px; top: 140px; width: 600px;
+  font-weight: 800; font-size: 74px; line-height: 89px; color: #ffffff;
+}
+.gs-end-img {
+  position: absolute; top: 290px; width: 498px; height: 280px; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+}
+.gs-end-img img { width: 100%; height: 100%; object-fit: cover; }
