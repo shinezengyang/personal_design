@@ -171,7 +171,6 @@ const crossServerAssets = {
 } as const;
 
 const caseEightAssets = {
-  heroPhone: publicUrl('images/xingji/wish-tree/main-panel.webp'),
   fieldEntry: publicUrl('images/xingji/wish-tree/field-entry.webp'),
   mainPanel: publicUrl('images/xingji/wish-tree/main-panel.webp'),
   countOne: publicUrl('images/xingji/wish-tree/main-panel.webp'),
@@ -3913,37 +3912,19 @@ function EmbermineGallery() {
 function WishTreeCover() {
   return (
     <LongPageSection height={760} bg="#fbfaf4">
-      <div className="absolute left-[88px] top-[30px] h-[2px] w-[1104px] bg-[#18171b]" />
-      <p className="absolute left-[88px] top-[52px] font-['Inter',sans-serif] text-[15px] font-bold tracking-[0.02em] text-[#d65f2a]">
+      <p className="absolute left-[88px] top-[287px] whitespace-nowrap font-['Inter',sans-serif] text-[15px] font-bold leading-[19px] text-[#d65f2a]">
         CASE STUDY
       </p>
-      <h2 className="absolute left-[88px] top-[84px] w-[860px] text-[38px] font-bold leading-[41px] text-[#151515]">
-        元旦许愿树
-      </h2>
-      <p className="absolute left-[88px] top-[142px] whitespace-nowrap text-[17px] leading-[26px] text-[#66625a]">
+      <div className="absolute left-[88px] top-[318px] flex h-[72px] w-[360px] flex-col justify-center font-['Inter',sans-serif] text-[72px] font-bold leading-none text-[#151515]">
+        <p className="leading-[41px]">元旦许愿树</p>
+      </div>
+      <p className="absolute left-[88px] top-[404px] whitespace-nowrap font-['Inter',sans-serif] text-[17px] leading-[26px] text-[#66625a]">
         基于节日特性，设计相关活动，展示活动入口、许愿树状态、奖励预览与结算反馈的设计思路。
       </p>
-      <div className="absolute left-[88px] top-[210px] h-[34px] w-[260px] rounded-[17px] bg-[#151515]" />
-      <p className="absolute left-[104px] top-[219px] w-[230px] text-[14px] font-bold leading-[18px] text-white">限时活动</p>
-      <div className="absolute left-[364px] top-[210px] h-[34px] w-[260px] rounded-[17px] bg-[#1f5b50]" />
-      <p className="absolute left-[380px] top-[219px] w-[230px] text-[14px] font-bold leading-[18px] text-white">三段奖励</p>
-      <div className="absolute left-[88px] top-[284px] w-[500px] text-[28px] font-bold leading-[36px] text-[#151515]">
-        <p>精髓不是“做一个节日页”，</p>
-        <p>而是用一个强中心物件承载活动规则：</p>
-        <p>玩家看到树，立即知道还有时间、还有次数、还有奖励。</p>
-      </div>
-      <div className="absolute left-[90px] top-[633px] w-[520px] text-[21px] font-bold leading-[28px] text-[#868686]">
-        <p>活动主界面以许愿树为唯一视觉焦点；时间、奖励预览、次数和行动按钮围绕它形成闭环。</p>
-      </div>
-      <PhoneFrame
-        left={861}
-        top={125}
-        width={280}
-        height={606}
-        src={caseEightAssets.heroPhone}
-        rounded="rounded-[8px]"
-        imageClassName="inset-0 h-full w-full object-contain"
-      />
+      <div className="absolute left-[88px] top-[438px] h-[34px] w-[140px] rounded-[17px] bg-[#151515]" />
+      <p className="absolute left-[98px] top-[447px] w-[120px] text-center font-['Inter',sans-serif] text-[14px] font-bold leading-[18px] text-white">限时活动</p>
+      <div className="absolute left-[244px] top-[438px] h-[34px] w-[140px] rounded-[17px] bg-[#1f5b50]" />
+      <p className="absolute left-[254px] top-[447px] w-[120px] text-center font-['Inter',sans-serif] text-[14px] font-bold leading-[18px] text-white">三段奖励</p>
     </LongPageSection>
   );
 }

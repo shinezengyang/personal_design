@@ -27,6 +27,7 @@ const HIGH_SEAS_CASES: HighSeasCaseCard[] = [
     title: '系统-HUD',
     desc: '重新整理主界面信息密度、常驻入口和战斗反馈，让 HUD 更清晰、轻量。',
     meta: '系统设计',
+    image: 'highseas-hud-card.webp',
   },
   {
     key: '2',
@@ -75,12 +76,14 @@ const HIGH_SEAS_CASES: HighSeasCaseCard[] = [
     title: '活动-许愿树',
     desc: '用低门槛抽奖、奖励预览和结果反馈，完成轻量运营活动包装。',
     meta: '活动设计',
+    image: 'highseas-wishing-tree-card.webp',
   },
   {
     key: '10',
     title: '活动-清理帮派',
     desc: '清理帮派主题活动，从入口、任务推进到奖励领取的专题化展示。',
     meta: '活动设计',
+    image: 'highseas-clear-gang-card.webp',
   },
 ];
 

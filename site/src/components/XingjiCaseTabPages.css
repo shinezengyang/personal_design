@@ -28,7 +28,7 @@
 }
 
 .wish-tree-dark section > .absolute[class*="left-[88px]"][class*="top-[30px]"][class*="h-[2px]"] {
-  background: linear-gradient(90deg, rgba(240, 122, 72, 0.85), rgba(231, 213, 176, 0.16)) !important;
+  display: none;
 }
 
 .wish-tree-dark [class*="text-[#151515]"] {
