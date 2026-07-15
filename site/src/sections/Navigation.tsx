@@ -8,7 +8,7 @@ import { getProjectDetailTabs, type ProjectDetailTabKey } from '../components/Pr
 const HOME_NAV_ITEMS = [
   { id: 'projects', label: '作品' },
   { id: 'process', label: '流程' },
-  { id: 'contact', label: '联系' },
+  { id: 'contact', label: '反馈' },
 ] as const;
 
 type NavigationProps = {

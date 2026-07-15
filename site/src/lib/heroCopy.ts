@@ -12,7 +12,7 @@ export type HeroCopy = {
 export const DEFAULT_HERO_COPY: HeroCopy = {
   terminalLine: "SYSTEM.IDENTIFY: DESIGNER",
   name: "曾加熺",
-  titleLine1: "游戏交互",
+  titleLine1: "游戏交互设计",
   titleLine2: "作品集",
   description: "专注于为游戏创造更好的游戏交互体验",
   cta: "查看我的作品",

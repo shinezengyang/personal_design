@@ -193,7 +193,7 @@ function LongPageSection({
   bg: string;
 }) {
   return (
-    <div className="overflow-hidden rounded-2xl bg-transparent">
+    <div className="xingji-motion-section overflow-hidden rounded-2xl bg-transparent">
       <ResponsiveScaleFrame minDesignWidth={1280} maxScale={1}>
         <section className="relative w-[1280px] overflow-hidden" style={{ height, background: bg }}>
           {children}
@@ -3918,13 +3918,13 @@ function WishTreeCover() {
       <div className="absolute left-[88px] top-[318px] flex h-[72px] w-[360px] flex-col justify-center font-['Inter',sans-serif] text-[72px] font-bold leading-none text-[#151515]">
         <p className="leading-[41px]">元旦许愿树</p>
       </div>
-      <p className="absolute left-[88px] top-[404px] whitespace-nowrap font-['Inter',sans-serif] text-[17px] leading-[26px] text-[#66625a]">
+      <p className="absolute left-[88px] top-[404px] whitespace-nowrap font-['Inter',sans-serif] text-[20px] leading-[26px] text-[#66625a]">
         基于节日特性，设计相关活动，展示活动入口、许愿树状态、奖励预览与结算反馈的设计思路。
       </p>
-      <div className="absolute left-[88px] top-[438px] h-[34px] w-[140px] rounded-[17px] bg-[#151515]" />
-      <p className="absolute left-[98px] top-[447px] w-[120px] text-center font-['Inter',sans-serif] text-[14px] font-bold leading-[18px] text-white">限时活动</p>
-      <div className="absolute left-[244px] top-[438px] h-[34px] w-[140px] rounded-[17px] bg-[#1f5b50]" />
-      <p className="absolute left-[254px] top-[447px] w-[120px] text-center font-['Inter',sans-serif] text-[14px] font-bold leading-[18px] text-white">三段奖励</p>
+      <div className="absolute left-[88px] top-[453px] h-[34px] w-[140px] rounded-[17px] bg-[#151515]" />
+      <p className="absolute left-[98px] top-[462px] w-[120px] text-center font-['Inter',sans-serif] text-[14px] font-bold leading-[18px] text-white">限时活动</p>
+      <div className="absolute left-[244px] top-[453px] h-[34px] w-[140px] rounded-[17px] bg-[#1f5b50]" />
+      <p className="absolute left-[254px] top-[462px] w-[120px] text-center font-['Inter',sans-serif] text-[14px] font-bold leading-[18px] text-white">三段奖励</p>
     </LongPageSection>
   );
 }
@@ -3960,7 +3960,7 @@ function WishTreeFactLock() {
       <h2 className="absolute left-[88px] top-[84px] w-[860px] text-[38px] font-bold leading-[41px] text-[#151515]">
         先锁定事实，再做表达
       </h2>
-      <p className="absolute left-[88px] top-[142px] w-[760px] text-[17px] leading-[26px] text-[#66625a]">
+      <p className="absolute left-[88px] top-[142px] whitespace-nowrap text-[20px] leading-[26px] text-[#66625a]">
         只把源稿中能确认的界面、文案、状态和注释放进案例；没有在稿里出现的规则，不扩写成设定。
       </p>
       {cards.map((card) => (
@@ -3970,16 +3970,16 @@ function WishTreeFactLock() {
           style={{ left: card.left }}
         >
           <div className="absolute left-0 top-0 h-[170px] w-[4px] rounded-[2px]" style={{ background: card.accent }} />
-          <p className="absolute left-[18px] top-[18px] w-[294px] text-[19px] font-bold leading-[24px] text-[#151515]">
+          <p className="absolute left-[18px] top-[18px] w-[294px] text-[20px] font-bold leading-[24px] text-[#151515]">
             {card.title}
           </p>
-          <p className="absolute left-[18px] top-[52px] w-[294px] text-[14px] leading-[21px] text-[#66625a]">
+          <p className="absolute left-[18px] top-[52px] w-[294px] text-[16px] leading-[21px] text-[#66625a]">
             {card.copy}
           </p>
         </div>
       ))}
-      <div className="absolute left-[88px] top-[500px] h-[120px] w-[1104px] rounded-[6px] bg-[#151817]" />
-      <p className="absolute left-[124px] top-[544px] whitespace-nowrap text-[24px] font-bold leading-[32px] text-[#fff4d7]">
+      <div className="absolute left-[88px] top-[565px] h-[120px] w-[1104px] rounded-[6px] bg-[#151817]" />
+      <p className="absolute left-[210px] top-[609px] whitespace-nowrap text-[20px] font-bold leading-[32px] text-[#fff4d7]">
         不补设定原则：许愿次数来源、完整奖励权重、活动任务链、付费入口等，源稿未确认就不推演。
       </p>
     </LongPageSection>
@@ -3988,16 +3988,15 @@ function WishTreeFactLock() {
 
 function WishTreeEntryReveal() {
   return (
-    <LongPageSection height={860} bg="#fbfaf4">
+    <LongPageSection height={900} bg="#fbfaf4">
       <div className="absolute left-[88px] top-[30px] h-[2px] w-[1104px] rounded-[1px] bg-[#151515]" />
-      <p className="absolute left-[88px] top-[56px] text-[78px] font-black leading-none text-[#ece2cf]">01</p>
-      <p className="absolute left-[88px] top-[130px] w-[220px] font-['Inter',sans-serif] text-[15px] font-bold tracking-[0.18em] leading-[19px] text-[#8d8578]">
-        ENTRY REVEAL
+      <p className="absolute left-[88px] top-[52px] w-[170px] font-['Inter',sans-serif] text-[15px] font-bold leading-[19px] text-[#d65f2a]">
+        01 / ENTRY
       </p>
       <h2 className="absolute left-[88px] top-[84px] w-[860px] text-[38px] font-bold leading-[41px] text-[#151515]">
         入口：在野外主界面里露出活动
       </h2>
-      <p className="absolute left-[88px] top-[142px] whitespace-nowrap text-[17px] leading-[26px] text-[#66625a]">
+      <p className="absolute left-[88px] top-[142px] whitespace-nowrap text-[20px] leading-[26px] text-[#66625a]">
         活动入口嵌在玩家日常停留的野外 HUD 中，右侧活动矩阵给“元旦许愿”一个可见但不打断探索的入口。
       </p>
       <PhoneFrame
@@ -4009,23 +4008,24 @@ function WishTreeEntryReveal() {
         rounded="rounded-[8px]"
         imageClassName="left-[-0.09%] top-[-4.7%] h-[104.7%] w-[100.19%]"
       />
-      <div className="absolute left-[540px] top-[243px] h-[112px] w-[310px] rounded-[5px] border border-[#d65f2a] bg-[#fffaf0]" />
-      <p className="absolute left-[556px] top-[257px] w-[278px] text-[17px] font-bold leading-[21px] text-[#151515]">入口位置</p>
-      <p className="absolute left-[556px] top-[287px] w-[278px] text-[13px] leading-[19px] text-[#66625a]">
+      <div className="absolute left-[540px] top-[378px] h-[112px] w-[310px] rounded-[5px] border border-[#d65f2a] bg-[#fffaf0]" />
+      <p className="absolute left-[556px] top-[392px] w-[278px] text-[18px] font-bold leading-[21px] text-[#151515]">入口位置</p>
+      <p className="absolute left-[556px] top-[422px] w-[278px] text-[16px] leading-[19px] text-[#66625a]">
         右侧活动矩阵中出现“元旦许愿”，承接日常 HUD 的扫描路径。
       </p>
-      <div className="absolute left-[384px] top-[299px] h-[2px] w-[156px] rounded-[1px] bg-[#d65f2a]" />
-      <div className="absolute left-[378px] top-[296px] h-[8px] w-[8px] rounded-full bg-[#d65f2a]" />
+      <div className="absolute left-[367px] top-[434px] h-[2px] w-[173px] rounded-[1px] bg-[#d65f2a]" />
+      <div className="absolute left-[367px] top-[319px] h-[117px] w-[2px] rounded-[1px] bg-[#d65f2a]" />
+      <div className="absolute left-[364px] top-[315px] h-[8px] w-[8px] rounded-full bg-[#d65f2a]" />
       <div className="absolute left-[540px] top-[520px] h-[112px] w-[310px] rounded-[5px] border border-[#d65f2a] bg-[#fffaf0]" />
-      <p className="absolute left-[556px] top-[534px] w-[278px] text-[17px] font-bold leading-[21px] text-[#151515]">场景不剥离</p>
-      <p className="absolute left-[556px] top-[564px] w-[278px] text-[13px] leading-[19px] text-[#66625a]">
+      <p className="absolute left-[556px] top-[534px] w-[278px] text-[18px] font-bold leading-[21px] text-[#151515]">场景不剥离</p>
+      <p className="absolute left-[556px] top-[564px] w-[278px] text-[16px] leading-[19px] text-[#66625a]">
         底部聊天、导航、坐标仍保留，说明入口发生在玩家常驻主界面。
       </p>
       <div className="absolute left-[300px] top-[576px] h-[2px] w-[240px] rounded-[1px] bg-[#d65f2a]" />
       <div className="absolute left-[300px] top-[576px] h-[203px] w-[2px] rounded-[1px] bg-[#d65f2a]" />
       <div className="absolute left-[297px] top-[775px] h-[8px] w-[8px] rounded-full bg-[#d65f2a]" />
-      <div className="absolute left-[540px] top-[690px] w-[560px] text-[26px] font-bold leading-[35px] text-[#151515]">
-        设计判断：入口层保持克制，真正的节日氛围留给活动页展开；这样既不破坏主界面的效率，也能让点击后的转场更有奖励感。
+      <div className="absolute left-[540px] top-[200px] w-[576px] text-[16px] font-bold leading-[32px] text-[#151515]">
+        <p>设计判断：</p><p>入口层保持克制，真正的节日氛围留给活动页展开；这样既不破坏主界面的效率，也能让点击后的转场更有奖励感。</p>
       </div>
     </LongPageSection>
   );
@@ -4033,38 +4033,37 @@ function WishTreeEntryReveal() {
 
 function WishTreeMainPanel() {
   const callouts = [
-    { left: 95, top: 256, width: 300, title: '活动时间', desc: '动态回答“何时结束”，建立限时活动的紧迫感。', lineLeft: 395, lineTop: 312, lineWidth: 115, dotLeft: 504, dotTop: 309 },
-    { left: 875, top: 266, width: 300, title: '奖励预览', desc: '让玩家先看到收益，降低“要不要预览”的判断成本。', lineLeft: 790, lineTop: 322, lineWidth: 85, dotLeft: 788, dotTop: 319 },
-    { left: 875, top: 556, width: 300, title: '许愿树页签', desc: '所有活动信息都向树收束，避免视线被不同模块来回拉。', lineLeft: 774, lineTop: 612, lineWidth: 101, dotLeft: 770, dotTop: 609 },
-    { left: 95, top: 635, width: 300, title: '次数条', desc: '次数是主界面的节奏引擎，按奖励预览与结果反馈倒序变化。', lineLeft: 395, lineTop: 691, lineWidth: 195, dotLeft: 587, dotTop: 688 },
-    { left: 875, top: 690, width: 300, title: '主按钮', desc: 'CTA 与次数绑定，决定是继续许愿还是提示次数耗尽。', lineLeft: 709, lineTop: 746, lineWidth: 166, dotLeft: 703, dotTop: 743 },
+    { left: 95, top: 286, width: 300, title: '活动时间', desc: '顶部直接显示倒计时 23:59:59，给活动页建立紧迫感。', lineLeft: 395, lineTop: 342, lineWidth: 115, dotLeft: 504, dotTop: 339 },
+    { left: 875, top: 296, width: 300, title: '奖励预览', desc: '入口在标题区域右侧，先看奖励再决定是否消耗次数。', lineLeft: 790, lineTop: 352, lineWidth: 85, dotLeft: 788, dotTop: 349 },
+    { left: 875, top: 586, width: 300, title: '许愿树页签', desc: '位于许愿树模型下方，表示许愿树的等级，到达指定时间会自行解锁，奖励也会不同', lineLeft: 774, lineTop: 642, lineWidth: 101, dotLeft: 770, dotTop: 639 },
+    { left: 95, top: 665, width: 300, title: '次数条', desc: '当前许愿树次数是行动判断的核心条件，位于按钮正上方。', lineLeft: 395, lineTop: 721, lineWidth: 195, dotLeft: 587, dotTop: 718 },
+    { left: 875, top: 720, width: 300, title: '主按钮', desc: '有次数时显示“元旦许愿”，视觉权重高于底部标签。', lineLeft: 709, lineTop: 776, lineWidth: 166, dotLeft: 703, dotTop: 773 },
   ] as const;
 
   return (
-    <LongPageSection height={920} bg="#fbfaf4">
+    <LongPageSection height={930} bg="#fbfaf4">
       <div className="absolute left-[88px] top-[30px] h-[2px] w-[1104px] rounded-[1px] bg-[#151515]" />
-      <p className="absolute left-[88px] top-[56px] text-[78px] font-black leading-none text-[#ece2cf]">02</p>
-      <p className="absolute left-[88px] top-[130px] font-['Inter',sans-serif] text-[15px] font-bold tracking-[0.18em] leading-[19px] text-[#8d8578]">
-        MAIN PANEL
+      <p className="absolute left-[88px] top-[52px] w-[170px] font-['Inter',sans-serif] text-[15px] font-bold leading-[19px] text-[#d65f2a]">
+        02 / HOME ANATOMY
       </p>
       <h2 className="absolute left-[88px] top-[84px] w-[860px] text-[38px] font-bold leading-[41px] text-[#151515]">
         主界面：所有信息向许愿树收束
       </h2>
-      <p className="absolute left-[88px] top-[142px] w-[760px] whitespace-nowrap text-[17px] leading-[26px] text-[#66625a]">
-        视觉层级向主树收束。标题、奖励、次数与按钮按“先看理由，再做行为”的顺序排列，玩家无需浏览长说明也能判断现在能做什么。
+      <p className="absolute left-[88px] top-[142px] whitespace-nowrap text-[20px] leading-[26px] text-[#66625a]">
+        时间、奖励、等级树、次数、按钮形成自上而下的决策路径，玩家无需阅读长说明即可判断“现在能不能许愿”。
       </p>
 
-      <div className="absolute left-[500px] top-[190px] h-[650px] w-[300px] overflow-hidden rounded-[8px]">
+      <div className="absolute left-[500px] top-[220px] h-[650px] w-[300px] overflow-hidden rounded-[8px]">
         <img src={caseEightAssets.mainPanel} alt="许愿树主界面" className="absolute inset-0 h-full w-full object-contain" />
       </div>
 
       {callouts.map((item) => (
         <div key={`${item.title}-${item.top}`}>
           <div className="absolute rounded-[5px] border border-[#d65f2a] bg-[#fffaf0]" style={{ left: item.left, top: item.top, width: item.width, height: 112 }} />
-          <p className="absolute text-[17px] font-bold leading-[21px] text-[#151515]" style={{ left: item.left + 16, top: item.top + 14, width: item.width - 32 }}>
+          <p className="absolute text-[18px] font-bold leading-[21px] text-[#151515]" style={{ left: item.left + 16, top: item.top + 14, width: item.width - 32 }}>
             {item.title}
           </p>
-          <p className="absolute text-[13px] leading-[19px] text-[#66625a]" style={{ left: item.left + 16, top: item.top + 44, width: item.width - 32 }}>
+          <p className="absolute text-[16px] leading-[19px] text-[#66625a]" style={{ left: item.left + 16, top: item.top + 44, width: item.width - 32 }}>
             {item.desc}
           </p>
           <div className="absolute h-[2px] rounded-[1px] bg-[#d65f2a]" style={{ left: item.lineLeft, top: item.lineTop, width: item.lineWidth }} />
@@ -4077,47 +4076,46 @@ function WishTreeMainPanel() {
 
 function WishTreeCountState() {
   return (
-    <LongPageSection height={920} bg="#fbfaf4">
+    <LongPageSection height={900} bg="#fbfaf4">
       <div className="absolute left-[88px] top-[30px] h-[2px] w-[1104px] rounded-[1px] bg-[#151515]" />
-      <p className="absolute left-[88px] top-[56px] text-[78px] font-black leading-none text-[#ece2cf]">03</p>
-      <p className="absolute left-[88px] top-[130px] font-['Inter',sans-serif] text-[15px] font-bold tracking-[0.18em] leading-[19px] text-[#8d8578]">
-        BUTTON SEMANTICS
+      <p className="absolute left-[88px] top-[52px] w-[170px] font-['Inter',sans-serif] text-[15px] font-bold leading-[19px] text-[#d65f2a]">
+        03 / COUNT STATE
       </p>
       <h2 className="absolute left-[88px] top-[84px] w-[860px] text-[38px] font-bold leading-[41px] text-[#151515]">
         次数驱动按钮语义
       </h2>
-      <p className="absolute left-[88px] top-[142px] w-[760px] text-[17px] leading-[26px] text-[#66625a]">
-        主按钮不应该永远只写“前往”或“许愿”。在节日活动里，按钮文案的任务是把当前还能做什么、为什么不能做，直接翻译成可执行语义。
+      <p className="absolute left-[88px] top-[142px] whitespace-nowrap text-[20px] leading-[26px] text-[#66625a]">
+        同一主界面通过次数变化改变 CTA：有次数时鼓励立即许愿，次数为 0 时转向查看结果。
       </p>
 
       <div className="absolute left-[190px] top-[210px] h-[563px] w-[260px] overflow-hidden rounded-[8px]">
         <img src={caseEightAssets.countOne} alt="次数为1状态" className="absolute inset-0 h-full w-full object-contain" />
       </div>
-      <div className="absolute left-[720px] top-[210px] h-[563px] w-[260px] overflow-hidden rounded-[8px]">
+      <div className="absolute left-[795px] top-[210px] h-[563px] w-[260px] overflow-hidden rounded-[8px]">
         <img src={caseEightAssets.countZero} alt="次数为0状态" className="absolute inset-0 h-full w-full object-contain" />
       </div>
 
-      <p className="absolute left-[540px] top-[450px] whitespace-nowrap text-[18px] font-bold leading-[23px] text-[#d65f2a]">
+      <p className="absolute left-[577px] top-[450px] whitespace-nowrap text-[18px] font-bold leading-[23px] text-[#d65f2a]">
         次数归零后
       </p>
-      <div className="absolute left-[475px] top-[488px] h-[3px] w-[220px] rounded-[1.5px] bg-[#d65f2a]" />
+      <div className="absolute left-[512px] top-[488px] h-[3px] w-[220px] rounded-[1.5px] bg-[#d65f2a]" />
       <div
-        className="absolute left-[676px] top-[479px] h-0 w-0 border-y-[10px] border-l-[14px] border-y-transparent border-l-[#d65f2a]"
+        className="absolute left-[713px] top-[479px] h-0 w-0 border-y-[10px] border-l-[14px] border-y-transparent border-l-[#d65f2a]"
         style={{ transform: 'rotate(0deg)' }}
       />
 
-      <div className="absolute left-[150px] top-[790px] h-[90px] w-[350px] rounded-[5px] border border-[#e7e0d1] bg-[#fffdfa]" />
-      <div className="absolute left-[150px] top-[790px] h-[90px] w-[4px] rounded-[2px] bg-[#d65f2a]" />
-      <p className="absolute left-[168px] top-[808px] w-[314px] text-[19px] font-bold leading-[24px] text-[#151515]">次数 = 1</p>
-      <p className="absolute left-[168px] top-[842px] w-[314px] text-[14px] leading-[21px] text-[#66625a]">
-        允许继续触发许愿，按钮应明确告诉玩家“现在还能做”，而不是模糊停在通用动作词。
+      <div className="absolute left-[125px] top-[790px] h-[90px] w-[390px] rounded-[5px] border border-[#e7e0d1] bg-[#fffdfa]" />
+      <div className="absolute left-[125px] top-[790px] h-[90px] w-[4px] rounded-[2px] bg-[#d65f2a]" />
+      <p className="absolute left-[143px] top-[808px] w-[314px] text-[19px] font-bold leading-[24px] text-[#151515]">次数 = 1</p>
+      <p className="absolute left-[143px] top-[842px] whitespace-nowrap text-[16px] leading-[21px] text-[#66625a]">
+        按钮文案为“元旦许愿”，行动明确、结果未发生。
       </p>
 
-      <div className="absolute left-[680px] top-[790px] h-[90px] w-[390px] rounded-[5px] border border-[#e7e0d1] bg-[#fffdfa]" />
-      <div className="absolute left-[680px] top-[790px] h-[90px] w-[4px] rounded-[2px] bg-[#1f5b50]" />
-      <p className="absolute left-[698px] top-[808px] w-[354px] text-[19px] font-bold leading-[24px] text-[#151515]">次数 = 0</p>
-      <p className="absolute left-[698px] top-[842px] w-[354px] text-[14px] leading-[21px] text-[#66625a]">
-        次数耗尽时，按钮语义从“执行”切到“告知限制”，避免玩家点下去之后才意识到不能继续。
+      <div className="absolute left-[730px] top-[790px] h-[90px] w-[390px] rounded-[5px] border border-[#e7e0d1] bg-[#fffdfa]" />
+      <div className="absolute left-[730px] top-[790px] h-[90px] w-[4px] rounded-[2px] bg-[#1f5b50]" />
+      <p className="absolute left-[748px] top-[808px] w-[354px] text-[19px] font-bold leading-[24px] text-[#151515]">次数 = 0</p>
+      <p className="absolute left-[748px] top-[842px] whitespace-nowrap text-[16px] leading-[21px] text-[#66625a]">
+        按钮文案为“许愿结果”，从发起动作转入查看反馈。
       </p>
     </LongPageSection>
   );
@@ -4131,17 +4129,16 @@ function WishTreeRewardPreview() {
   ] as const;
 
   return (
-    <LongPageSection height={920} bg="#fbfaf4">
+    <LongPageSection height={880} bg="#fbfaf4">
       <div className="absolute left-[88px] top-[30px] h-[2px] w-[1104px] rounded-[1px] bg-[#151515]" />
-      <p className="absolute left-[88px] top-[56px] text-[78px] font-black leading-none text-[#ece2cf]">04</p>
-      <p className="absolute left-[88px] top-[130px] whitespace-nowrap font-['Inter',sans-serif] text-[15px] font-bold tracking-[0.18em] leading-[19px] text-[#8d8578]">
-        REWARD PREVIEW
+      <p className="absolute left-[88px] top-[52px] whitespace-nowrap font-['Inter',sans-serif] text-[15px] font-bold leading-[19px] text-[#d65f2a]">
+        04 / REWARD PREVIEW
       </p>
       <h2 className="absolute left-[88px] top-[84px] w-[860px] text-[38px] font-bold leading-[41px] text-[#151515]">
         奖励预览：让概率与稀有说明先被看见
       </h2>
-      <p className="absolute left-[88px] top-[142px] w-[760px] text-[17px] leading-[26px] text-[#66625a]">
-        奖励弹窗先把稀有规则说清楚，再把概率与奖励网格摆出来。玩家在弹窗内直接看懂“这次可能得到什么”。
+      <p className="absolute left-[88px] top-[142px] whitespace-nowrap text-[20px] leading-[26px] text-[#66625a]">
+        预览弹窗用标签页区分低级、中级、高级奖励，并单独强调稀有奖励规则。
       </p>
 
       <div className="absolute left-[170px] top-[200px] h-[649px] w-[300px] overflow-hidden rounded-[8px]">
@@ -4151,10 +4148,10 @@ function WishTreeRewardPreview() {
       {notes.map((note) => (
         <div key={`${note.title}-${note.top}`}>
           <div className="absolute left-[560px] h-[112px] w-[330px] rounded-[5px] border border-[#d65f2a] bg-[#fffaf0]" style={{ top: note.top }} />
-          <p className="absolute left-[576px] text-[17px] font-bold leading-[21px] text-[#151515]" style={{ top: note.top + 14, width: 298 }}>
+          <p className="absolute left-[576px] text-[18px] font-bold leading-[21px] text-[#151515]" style={{ top: note.top + 14, width: 298 }}>
             {note.title}
           </p>
-          <p className="absolute left-[576px] text-[13px] leading-[19px] text-[#66625a]" style={{ top: note.top + 44, width: 298 }}>
+          <p className="absolute left-[576px] text-[16px] leading-[19px] text-[#66625a]" style={{ top: note.top + 44, width: 298 }}>
             {note.body}
           </p>
           <div className="absolute h-[2px] rounded-[1px] bg-[#d65f2a]" style={{ left: note.lineLeft, top: note.lineTop, width: note.lineWidth }} />
@@ -4165,45 +4162,42 @@ function WishTreeRewardPreview() {
         </div>
       ))}
 
-      <p className="absolute left-[560px] top-[769px] w-[560px] text-[25px] font-bold leading-[34px] text-[#151515]">
-        弹窗的价值在于预期管理：玩家不是被动抽奖，而是在行动前知道奖励层级、稀有提示与概率线索。
-      </p>
+      <div className="absolute left-[560px] top-[200px] w-[560px] text-[16px] font-bold leading-[32px] text-[#151515]"><p>弹窗的价值在于预期管理：</p><p>玩家不是被动抽奖，而是在行动前知道奖励层级、稀有提示与概率线索。</p></div>
     </LongPageSection>
   );
 }
 
 function WishTreeResultFeedback() {
   const notes = [
-    { top: 276, title: '结果标题', body: '“恭喜获得”作为单一情绪反馈，强化抽奖完成感。', lineLeft: 316, lineTop: 332, lineWidth: 244, lineVLeft: 316, lineVTop: 332, lineVHeight: 74, dotLeft: 313, dotTop: 398 },
-    { top: 457, title: '奖励网格', body: '奖励以格子呈现，包含 Lv.99 等可见物品等级信息。', lineLeft: 436, lineTop: 513, lineWidth: 124, dotLeft: 430, dotTop: 510 },
-    { top: 611, title: '关闭方式', body: '源稿文案为“点击空白区域关闭”，说明关闭动作依赖遮罩区域而非额外按钮。', lineLeft: 372, lineTop: 667, lineWidth: 188, dotLeft: 368, dotTop: 664 },
+    { top: 305, title: '结果标题', body: '“恭喜获得”作为单一情绪反馈，强化抽奖完成感。', lineLeft: 316, lineTop: 361, lineWidth: 244, lineVLeft: 316, lineVTop: 361, lineVHeight: 74, dotLeft: 313, dotTop: 427 },
+    { top: 486, title: '奖励网格', body: '奖励以格子呈现，包含 Lv.99 等可见物品等级信息。', lineLeft: 436, lineTop: 542, lineWidth: 124, dotLeft: 430, dotTop: 539 },
+    { top: 640, title: '关闭方式', body: '源稿文案为“点击空白区域关闭”，说明关闭动作依赖遮罩区域而非额外按钮。', lineLeft: 372, lineTop: 696, lineWidth: 188, dotLeft: 368, dotTop: 693 },
   ] as const;
 
   return (
-    <LongPageSection height={900} bg="#fbfaf4">
+    <LongPageSection height={880} bg="#fbfaf4">
       <div className="absolute left-[88px] top-[30px] h-[2px] w-[1104px] rounded-[1px] bg-[#151515]" />
-      <p className="absolute left-[88px] top-[56px] text-[78px] font-black leading-none text-[#ece2cf]">05</p>
-      <p className="absolute left-[88px] top-[130px] whitespace-nowrap font-['Inter',sans-serif] text-[15px] font-bold tracking-[0.18em] leading-[19px] text-[#8d8578]">
-        RESULT FEEDBACK
+      <p className="absolute left-[88px] top-[52px] whitespace-nowrap font-['Inter',sans-serif] text-[15px] font-bold leading-[19px] text-[#d65f2a]">
+        05 / RESULT FEEDBACK
       </p>
       <h2 className="absolute left-[88px] top-[84px] w-[860px] text-[38px] font-bold leading-[41px] text-[#151515]">
         结算弹窗：把许愿动作压缩成一次明确反馈
       </h2>
-      <p className="absolute left-[88px] top-[142px] w-[760px] text-[17px] leading-[26px] text-[#66625a]">
-        奖励不是点完就结束。结算弹窗负责把这次动作闭环，让玩家知道自己获得了什么、什么时候可以离开、为什么现在只需要关闭。
+      <p className="absolute left-[88px] top-[142px] whitespace-nowrap text-[20px] leading-[26px] text-[#66625a]">
+        许愿后的结果面板只保留“获得了什么”和“如何关闭”，避免在奖励瞬间塞入新任务。
       </p>
 
-      <div className="absolute left-[168px] top-[175px] h-[650px] w-[300px] overflow-hidden">
-        <img src={caseEightAssets.resultFeedback} alt="许愿结果反馈" className="absolute inset-0 h-full w-full object-cover" />
+      <div className="absolute left-[168px] top-[204px] h-[650px] w-[300px] overflow-hidden rounded-[8px]">
+        <img src={caseEightAssets.resultFeedback} alt="许愿结果反馈" className="absolute inset-0 h-full w-full rounded-[8px] object-cover" />
       </div>
 
       {notes.map((note) => (
         <div key={`${note.title}-${note.top}`}>
           <div className="absolute left-[560px] h-[112px] w-[310px] rounded-[5px] border border-[#d65f2a] bg-[#fffaf0]" style={{ top: note.top }} />
-          <p className="absolute left-[576px] text-[17px] font-bold leading-[21px] text-[#151515]" style={{ top: note.top + 14, width: 278 }}>
+          <p className="absolute left-[576px] text-[18px] font-bold leading-[21px] text-[#151515]" style={{ top: note.top + 14, width: 278 }}>
             {note.title}
           </p>
-          <p className="absolute left-[576px] text-[13px] leading-[19px] text-[#66625a]" style={{ top: note.top + 44, width: 278 }}>
+          <p className="absolute left-[576px] text-[16px] leading-[19px] text-[#66625a]" style={{ top: note.top + 44, width: 278 }}>
             {note.body}
           </p>
           <div className="absolute h-[2px] rounded-[1px] bg-[#d65f2a]" style={{ left: note.lineLeft, top: note.lineTop, width: note.lineWidth }} />
@@ -4219,24 +4213,23 @@ function WishTreeResultFeedback() {
 
 function WishTreeClosedLoop() {
   const steps = [
-    { left: 88, title: '入口露出', desc: '玩家在野外主界面看到节日活动' },
-    { left: 308, title: '进入主界面', desc: '快速看懂奖励、次数与按钮语义' },
-    { left: 528, title: '执行许愿', desc: '按钮根据次数状态触发对应动作' },
-    { left: 748, title: '弹窗反馈', desc: '奖励与结果面板说明本次收获' },
-    { left: 968, title: '再次回流', desc: '等待解锁或继续下一次许愿' },
+    { left: 88, title: '野外入口', desc: '右侧活动入口' },
+    { left: 308, title: '活动首页', desc: '树与次数判断' },
+    { left: 528, title: '奖励预览', desc: '标签页与概率' },
+    { left: 748, title: '元旦许愿', desc: '消耗可用次数' },
+    { left: 968, title: '结果反馈', desc: '恭喜获得弹窗' },
   ] as const;
 
   return (
-    <LongPageSection height={900} bg="#fbfaf4">
+    <LongPageSection height={840} bg="#fbfaf4">
       <div className="absolute left-[88px] top-[30px] h-[2px] w-[1104px] rounded-[1px] bg-[#151515]" />
-      <p className="absolute left-[88px] top-[56px] text-[78px] font-black leading-none text-[#ece2cf]">06</p>
-      <p className="absolute left-[88px] top-[130px] whitespace-nowrap font-['Inter',sans-serif] text-[15px] font-bold tracking-[0.18em] leading-[19px] text-[#8d8578]">
-        CORE LOOP
+      <p className="absolute left-[88px] top-[52px] whitespace-nowrap font-['Inter',sans-serif] text-[15px] font-bold leading-[19px] text-[#d65f2a]">
+        06 / CORE LOOP
       </p>
       <h2 className="absolute left-[88px] top-[84px] w-[860px] text-[38px] font-bold leading-[41px] text-[#151515]">
         从入口到反馈的闭环
       </h2>
-      <p className="absolute left-[88px] top-[142px] w-[782px] text-[17px] leading-[26px] text-[#66625a]">
+      <p className="absolute left-[88px] top-[142px] whitespace-nowrap text-[20px] leading-[26px] text-[#66625a]">
         把零散画板重新组织成一个可复述的玩家路径：发现活动、进入活动、预览奖励、执行许愿、查看结果、等待下一次。
       </p>
 
@@ -4244,10 +4237,10 @@ function WishTreeClosedLoop() {
         <div key={step.title}>
           <div className="absolute top-[235px] h-[116px] w-[180px] rounded-[4px] border border-[#e7e0d1] bg-[#fffdfa]" style={{ left: step.left }} />
           <div className="absolute top-[257px] h-[8px] w-[8px] rounded-full bg-[#1f5b50]" style={{ left: step.left + 20 }} />
-          <p className="absolute top-[253px] text-[18px] font-bold leading-[23px] text-[#151515]" style={{ left: step.left + 44, width: 120 }}>
+          <p className="absolute top-[249px] text-[18px] font-bold leading-[23px] text-[#151515]" style={{ left: step.left + 44, width: 120 }}>
             {step.title}
           </p>
-          <p className="absolute top-[287px] text-[13px] leading-[19px] text-[#66625a]" style={{ left: step.left + 44, width: 120 }}>
+          <p className="absolute top-[287px] text-[16px] leading-[19px] text-[#66625a]" style={{ left: step.left + 44, width: 120 }}>
             {step.desc}
           </p>
           {index < steps.length - 1 ? (
@@ -4266,9 +4259,8 @@ function WishTreeClosedLoop() {
         <img src={caseEightAssets.coreLoopResult} alt="结果反馈流程图" className="absolute left-0 top-[-4.77%] h-[104.71%] w-full max-w-none" />
       </div>
 
-      <div className="absolute left-[751px] top-[715px] w-[478px] text-[25px] font-bold leading-[34px] text-[#151515]">
-        <p>每一步都回答玩家一个问题：</p>
-        <p>在哪进入？能不能许愿？奖励是什么？许愿后得到什么？下一次什么时候可许愿？</p>
+      <div className="absolute left-[792px] top-[385px] w-[280px] text-[16px] font-bold leading-[32px] text-[#151515]">
+        <p>每一步都回答玩家一个问题：</p><p>在哪进入？</p><p>能不能许愿？</p><p>奖励是什么？</p><p>许愿后得到什么？</p><p>下一次什么时候可许愿？</p>
       </div>
     </LongPageSection>
   );
@@ -4291,16 +4283,15 @@ function WishTreeSpecToDev() {
   ] as const;
 
   return (
-    <LongPageSection height={920} bg="#fbfaf4">
+    <LongPageSection height={880} bg="#fbfaf4">
       <div className="absolute left-[88px] top-[30px] h-[2px] w-[1104px] rounded-[1px] bg-[#151515]" />
-      <p className="absolute left-[88px] top-[56px] text-[78px] font-black leading-none text-[#ece2cf]">07</p>
-      <p className="absolute left-[88px] top-[130px] whitespace-nowrap font-['Inter',sans-serif] text-[15px] font-bold tracking-[0.18em] leading-[19px] text-[#8d8578]">
-        SPEC TO IMPLEMENTATION
+      <p className="absolute left-[88px] top-[52px] whitespace-nowrap font-['Inter',sans-serif] text-[15px] font-bold leading-[19px] text-[#d65f2a]">
+        07 / INTERACTION SPEC
       </p>
       <h2 className="absolute left-[88px] top-[84px] w-[860px] text-[38px] font-bold leading-[41px] text-[#151515]">
         交互说明要能落回开发与特效
       </h2>
-      <p className="absolute left-[88px] top-[142px] w-[760px] text-[17px] leading-[26px] text-[#66625a]">
+      <p className="absolute left-[88px] top-[142px] whitespace-nowrap text-[20px] leading-[26px] text-[#66625a]">
         把源稿里的程序、UI、特效关注点转译成可执行说明：触发、界面响应、反馈、未知项。
       </p>
 
@@ -4316,16 +4307,16 @@ function WishTreeSpecToDev() {
         return (
           <div key={row[0]}>
             <div className="absolute left-[98px] h-[56px] w-[1084px] rounded-[3px] border border-[#e7e0d1]" style={{ top, background: bg }} />
-            <p className="absolute left-[118px] text-[15px] font-bold leading-[18px] text-[#151515]" style={{ top: top + 19, width: 235 }}>{row[0]}</p>
-            <p className="absolute left-[388px] text-[15px] leading-[18px] text-[#66625a]" style={{ top: top + 19, width: 235 }}>{row[1]}</p>
-            <p className="absolute left-[658px] text-[15px] leading-[18px] text-[#66625a]" style={{ top: top + 19, width: 235 }}>{row[2]}</p>
-            <p className="absolute left-[928px] text-[15px] leading-[18px] text-[#66625a]" style={{ top: top + 12, width: 235 }}>{row[3]}</p>
+            <p className="absolute left-[118px] text-[18px] font-bold leading-[18px] text-[#151515]" style={{ top: top + 19, width: 235 }}>{row[0]}</p>
+            <p className="absolute left-[388px] text-[16px] leading-[18px] text-[#66625a]" style={{ top: top + 19, width: 235 }}>{row[1]}</p>
+            <p className="absolute left-[658px] text-[16px] leading-[18px] text-[#66625a]" style={{ top: top + 19, width: 235 }}>{row[2]}</p>
+            <p className="absolute left-[928px] text-[16px] leading-[18px] text-[#66625a]" style={{ top: top + 12, width: 235 }}>{row[3]}</p>
           </div>
         );
       })}
 
       <div className="absolute left-[88px] top-[770px] h-[90px] w-[1104px] rounded-[6px] bg-[#151817]" />
-      <p className="absolute left-[124px] top-[795px] whitespace-nowrap text-[24px] font-bold leading-[32px] text-[#fff4d7]">
+      <p className="absolute left-[304px] top-[799px] whitespace-nowrap text-[16px] font-bold leading-[32px] text-[#fff4d7]">
         核心精髓：用树承载节日、等级、时间和奖励，把复杂活动压缩成玩家一眼能理解的状态判断。
       </p>
     </LongPageSection>
@@ -4341,11 +4332,10 @@ function WishTreeGallery() {
   ] as const;
 
   return (
-    <LongPageSection height={800} bg="#fbfaf4">
+    <LongPageSection height={840} bg="#fbfaf4">
       <div className="absolute left-[88px] top-[30px] h-[2px] w-[1104px] rounded-[1px] bg-[#151515]" />
-      <p className="absolute left-[88px] top-[56px] text-[78px] font-black leading-none text-[#ece2cf]">08</p>
-      <p className="absolute left-[88px] top-[130px] whitespace-nowrap font-['Inter',sans-serif] text-[15px] font-bold leading-[19px] tracking-[0.18em] text-[#8d8578]">
-        FINAL GALLERY
+      <p className="absolute left-[88px] top-[52px] whitespace-pre font-['Inter',sans-serif] text-[15px] font-bold leading-[19px] text-[#d65f2a]">
+        {'07 / F I N A L   D E S I G N'}
       </p>
       <h2 className="absolute left-[88px] top-[84px] w-[860px] text-[38px] font-bold leading-[41px] text-[#151515]">效果图欣赏</h2>
       {frames.map((frame, index) => (
@@ -4364,7 +4354,7 @@ function WishTreeGallery() {
 
 function WishTreeCase() {
   return (
-    <div className="wish-tree-dark space-y-10">
+    <div className="wish-tree-dark space-y-8">
       <WishTreeCover />
       <WishTreeFactLock />
       <WishTreeEntryReveal />
@@ -6291,6 +6281,6 @@ export function XingjiTabPage({ activeTab }: { activeTab: '2' | '3' | '4' | '5' 
   if (activeTab === '7') return <HudRedesignCase />;
   if (activeTab === '8') return <WishTreeCase />;
   if (activeTab === '9') return <EmbermineCase />;
-  if (activeTab === '10') return renderStarFigmaCase('清理帮派') ?? <IPCollaborationCase />;
+  if (activeTab === '10') return renderStarFigmaCase('清理海盗') ?? <IPCollaborationCase />;
   return <CrossServerCase />;
 }

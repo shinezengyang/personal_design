@@ -150,7 +150,7 @@ const Process = () => {
         {/* Timeline */}
         <div className="relative">
           {/* Center Line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2 hidden lg:block">
+          <div className="absolute left-1/2 top-0 bottom-28 w-px bg-white/10 -translate-x-1/2 hidden lg:block">
             <div
               ref={lineRef}
               className="absolute top-0 left-0 w-full bg-gradient-to-b from-neon-cyan via-neon-purple to-neon-pink origin-top"
@@ -234,7 +234,7 @@ const Process = () => {
             })}
           </div>
 
-          <div className="mt-16 flex justify-center">
+          <div className="relative z-20 mt-16 flex justify-center">
             <Link
               to="/workflow"
               className="group relative inline-flex items-center gap-3 overflow-hidden rounded-none border border-neon-cyan/70 bg-[#06111d]/78 px-8 py-4 font-display text-[16px] font-bold tracking-[0.18em] text-neon-cyan transition-all duration-300 hover:border-neon-cyan hover:bg-neon-cyan/10 hover:text-white hover:shadow-[0_0_28px_rgba(0,245,255,0.22)]"
@@ -251,4 +251,3 @@ const Process = () => {
 };
 
 export default Process;
-

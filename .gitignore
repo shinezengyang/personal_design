@@ -9,3 +9,5 @@ site/vite.config.js
 site/vite.config.d.ts
 .claude/
 .codex/
+.playwright-cli/
+site/.playwright-cli/

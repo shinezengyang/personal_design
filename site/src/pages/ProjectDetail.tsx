@@ -1172,6 +1172,17 @@ export default function ProjectDetail({
       ? Array.from(heroCard.querySelectorAll<HTMLElement>('.flex.flex-wrap > span'))
       : [];
     const modules = Array.from(root.querySelectorAll<HTMLElement>('.project-detail-module'));
+    const specialSections = Array.from(
+      root.querySelectorAll<HTMLElement>('.xingji-motion-section, .hs-motion-section'),
+    );
+    const specialChildren = new Map<HTMLElement, HTMLElement[]>();
+    specialSections.forEach((section) => {
+      const canvas = section.classList.contains('xingji-motion-section')
+        ? section.querySelector<HTMLElement>('section')
+        : section;
+      specialChildren.set(section, canvas ? Array.from(canvas.children).filter((child): child is HTMLElement => child instanceof HTMLElement) : []);
+    });
+    const firstSpecialSection = specialSections[0] ?? null;
 
     const everything: HTMLElement[] = [
       ...(backBtn ? [backBtn] : []),
@@ -1184,6 +1195,8 @@ export default function ProjectDetail({
       ...(heroDesc ? [heroDesc] : []),
       ...heroTags,
       ...modules,
+      ...specialSections,
+      ...Array.from(specialChildren.values()).flat(),
     ];
     modules.forEach((m) => {
       everything.push(...Array.from(m.querySelectorAll<HTMLElement>('.project-detail-inner-card')));
@@ -1213,6 +1226,10 @@ export default function ProjectDetail({
     if (heroTags.length) gsap.set(heroTags, { opacity: 0, y: 12, scale: 0.85 });
     // Modules hidden for scroll-reveal
     gsap.set(modules, { opacity: 0, y: 30 });
+    gsap.set(specialSections, { opacity: 0, y: 42 });
+    specialChildren.forEach((children) => {
+      if (children.length) gsap.set(children, { opacity: 0, filter: 'blur(6px)' });
+    });
 
     const leadIn = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
@@ -1239,6 +1256,18 @@ export default function ProjectDetail({
     // t=0.85: tags pop in one by one
     if (heroTags.length)
       leadIn.to(heroTags, { opacity: 1, y: 0, scale: 1, duration: 0.35, stagger: 0.06, ease: 'back.out(2)', clearProps: 'transform' }, 0.85);
+
+    if (firstSpecialSection) {
+      const children = specialChildren.get(firstSpecialSection) ?? [];
+      leadIn.to(firstSpecialSection, { opacity: 1, y: 0, duration: 0.72, ease: 'power3.out', clearProps: 'transform' }, 0.16);
+      if (children.length) {
+        leadIn.to(
+          children,
+          { opacity: 1, filter: 'blur(0px)', duration: 0.48, stagger: 0.028, ease: 'power2.out', clearProps: 'opacity,filter' },
+          0.34,
+        );
+      }
+    }
 
     // ── Below-the-fold: scroll-triggered module reveals ──
     const observer = new IntersectionObserver(
@@ -1293,8 +1322,43 @@ export default function ProjectDetail({
     );
 
     modules.forEach((el) => observer.observe(el));
+    const specialObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const section = entry.target as HTMLElement;
+          const children = specialChildren.get(section) ?? [];
+          const sectionTimeline = gsap.timeline();
+          sectionTimeline.to(section, {
+            opacity: 1,
+            y: 0,
+            duration: 0.68,
+            ease: 'power3.out',
+            clearProps: 'transform',
+          });
+          if (children.length) {
+            sectionTimeline.to(
+              children,
+              {
+                opacity: 1,
+                filter: 'blur(0px)',
+                duration: 0.46,
+                stagger: 0.026,
+                ease: 'power2.out',
+                clearProps: 'opacity,filter',
+              },
+              0.14,
+            );
+          }
+          obs.unobserve(section);
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -8% 0px' },
+    );
+    specialSections.slice(1).forEach((section) => specialObserver.observe(section));
     return () => {
       observer.disconnect();
+      specialObserver.disconnect();
       leadIn.kill();
       gsap.killTweensOf(everything);
     };

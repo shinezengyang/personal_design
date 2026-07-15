@@ -166,7 +166,7 @@ const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-screen flex items-center justify-center overflow-visible"
+      className="relative z-20 w-full h-screen flex items-center justify-center overflow-visible"
     >
       {/* Cyberpunk Canvas Background */}
       <canvas

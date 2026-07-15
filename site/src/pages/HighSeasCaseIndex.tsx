@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useLayoutEffect, useMemo, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Compass, Layers, Sparkles } from 'lucide-react';
 import { gsap } from 'gsap';
@@ -80,8 +80,8 @@ const HIGH_SEAS_CASES: HighSeasCaseCard[] = [
   },
   {
     key: '10',
-    title: '活动-清理帮派',
-    desc: '清理帮派主题活动，从入口、任务推进到奖励领取的专题化展示。',
+    title: '活动-清理海盗',
+    desc: '清理海盗主题活动，从入口、任务推进到奖励领取的专题化展示。',
     meta: '活动设计',
     image: 'highseas-clear-gang-card.webp',
   },
@@ -97,14 +97,65 @@ export default function HighSeasCaseIndex() {
   const frameworkCase = cases.find((item) => item.key === 'framework');
   const caseGrid = cases.filter((item) => item.key !== 'framework');
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!rootRef.current) return;
+
+    const root = rootRef.current;
+    const back = root.querySelector<HTMLElement>('[data-case-back]');
+    const featured = root.querySelector<HTMLElement>('[data-case-featured]');
+    const featuredImage = featured?.querySelector<HTMLElement>('.high-seas-framework-featured-card__image') ?? null;
+    const featuredCopy = featured ? Array.from(featured.querySelectorAll<HTMLElement>('.high-seas-framework-featured-card__body > *')) : [];
+    const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-case-card]'));
+    const allAnimated = [
+      ...(back ? [back] : []),
+      ...(featured ? [featured] : []),
+      ...(featuredImage ? [featuredImage] : []),
+      ...featuredCopy,
+      ...cards,
+    ];
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(allAnimated, { clearProps: 'all' });
+      return;
+    }
+
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '[data-case-reveal]',
-        { y: 32, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.72, stagger: 0.055, ease: 'expo.out' }
+      if (back) gsap.set(back, { x: -28, opacity: 0 });
+      if (featured) gsap.set(featured, { y: 46, scale: 0.975, opacity: 0 });
+      if (featuredImage) gsap.set(featuredImage, { scale: 1.085, filter: 'blur(8px) saturate(0.8)' });
+      if (featuredCopy.length) gsap.set(featuredCopy, { y: 24, opacity: 0 });
+      gsap.set(cards, { y: 46, rotateX: 5, opacity: 0, transformPerspective: 900 });
+
+      const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      if (back) intro.to(back, { x: 0, opacity: 1, duration: 0.48, clearProps: 'transform' }, 0);
+      if (featured) intro.to(featured, { y: 0, scale: 1, opacity: 1, duration: 0.78, clearProps: 'transform' }, 0.12);
+      if (featuredImage) intro.to(featuredImage, { scale: 1, filter: 'blur(0px) saturate(1)', duration: 1, clearProps: 'transform,filter' }, 0.24);
+      if (featuredCopy.length) intro.to(featuredCopy, { y: 0, opacity: 1, duration: 0.52, stagger: 0.1, clearProps: 'transform' }, 0.48);
+
+      const observer = new IntersectionObserver(
+        (entries, instance) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const card = entry.target as HTMLElement;
+            const index = cards.indexOf(card);
+            const media = card.querySelector<HTMLElement>('.high-seas-case-card__media');
+            const copy = Array.from(card.querySelectorAll<HTMLElement>('.high-seas-case-card__body > *'));
+            if (media) gsap.set(media, { clipPath: 'inset(0 0 100% 0)' });
+            if (copy.length) gsap.set(copy, { y: 16, opacity: 0 });
+
+            const delay = (index % 3) * 0.085;
+            const cardTimeline = gsap.timeline({ delay });
+            cardTimeline.to(card, { y: 0, rotateX: 0, opacity: 1, duration: 0.66, ease: 'power3.out', clearProps: 'transform' });
+            if (media) cardTimeline.to(media, { clipPath: 'inset(0 0 0% 0)', duration: 0.62, ease: 'power2.inOut', clearProps: 'clipPath' }, 0.08);
+            if (copy.length) cardTimeline.to(copy, { y: 0, opacity: 1, duration: 0.46, stagger: 0.07, ease: 'power2.out', clearProps: 'transform' }, 0.26);
+            instance.unobserve(card);
+          });
+        },
+        { threshold: 0.16, rootMargin: '0px 0px -4% 0px' },
       );
+
+      cards.forEach((card) => observer.observe(card));
+      return () => observer.disconnect();
     }, rootRef);
     return () => ctx.revert();
   }, []);
@@ -113,10 +164,17 @@ export default function HighSeasCaseIndex() {
     navigate('/projects/xingji-aodaisai', { state: { detailTab: key } });
   };
 
+  const splitDisplayTitle = (title: string) => {
+    const separator = title.indexOf('-');
+    return separator >= 0
+      ? { prefix: title.slice(0, separator), title: title.slice(separator + 1) }
+      : { prefix: '', title };
+  };
+
   return (
     <section ref={rootRef} className="high-seas-index min-h-screen px-6 pb-24 pt-10 sm:px-12 lg:px-20 2xl:px-24">
       <div className="mx-auto max-w-[1440px] 2xl:max-w-[1560px]">
-        <div className="mb-8 flex items-center justify-between gap-4" data-case-reveal>
+        <div className="mb-8 flex items-center justify-between gap-4" data-case-back>
           <Link to="/" className="cyber-btn inline-flex items-center">
             <ArrowLeft className="mr-2 h-4 w-4" />
             返回
@@ -128,23 +186,14 @@ export default function HighSeasCaseIndex() {
             type="button"
             className="high-seas-framework-featured-card group text-left"
             onClick={() => openCase(frameworkCase.key)}
-            data-case-reveal
+            data-case-featured
           >
             <div className="high-seas-framework-featured-card__media">
-              <div className="case-flat-visual high-seas-framework-visual">
-                <div className="case-flat-visual__grid" />
-                <div className="case-flat-visual__orb case-flat-visual__orb--one" />
-                <div className="case-flat-visual__orb case-flat-visual__orb--two" />
-                <div className="case-flat-visual__path" />
-                <div className="case-flat-visual__nodes">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <div className="case-flat-visual__icon">
-                  <Layers />
-                </div>
-              </div>
+              <img
+                className="high-seas-framework-featured-card__image"
+                src={publicUrl('highseas-framework-card.webp')}
+                alt="High Seas Hero 项目框架案例封面"
+              />
               <div className="high-seas-framework-featured-card__body">
                 <h2>{frameworkCase.title}</h2>
                 <p>{frameworkCase.desc}</p>
@@ -155,14 +204,16 @@ export default function HighSeasCaseIndex() {
           </button>
         ) : null}
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3" data-case-reveal>
-          {caseGrid.map((item, index) => (
-            <button
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          {caseGrid.map((item, index) => {
+            const displayTitle = splitDisplayTitle(item.title);
+            return (
+              <button
               key={item.key}
               type="button"
               className="high-seas-case-card group text-left"
               onClick={() => openCase(item.key)}
-              data-case-reveal
+              data-case-card
             >
               <div className={`high-seas-case-card__media ${item.image ? 'high-seas-case-card__media--image' : 'high-seas-case-card__media--flat'}`}>
                 {item.image ? (
@@ -187,11 +238,15 @@ export default function HighSeasCaseIndex() {
                 <div className="high-seas-case-card__corner high-seas-case-card__corner--br" />
               </div>
               <div className="high-seas-case-card__body">
-                <h2>{item.title}</h2>
+                <div className="high-seas-case-card__heading">
+                  <h2>{displayTitle.title}</h2>
+                  {displayTitle.prefix ? <span className="high-seas-case-card__category">{displayTitle.prefix}</span> : null}
+                </div>
                 <p>{item.desc}</p>
               </div>
-            </button>
-          ))}
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>

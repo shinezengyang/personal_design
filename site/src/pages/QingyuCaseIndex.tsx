@@ -143,6 +143,13 @@ export default function QingyuCaseIndex() {
     return <Icon />;
   };
 
+  const splitDisplayTitle = (title: string) => {
+    const separator = title.indexOf('-');
+    return separator >= 0
+      ? { prefix: title.slice(0, separator), title: title.slice(separator + 1) }
+      : { prefix: '', title };
+  };
+
   return (
     <section ref={rootRef} className="high-seas-index qingyu-case-index min-h-screen px-6 pb-24 pt-10 sm:px-12 lg:px-20 2xl:px-24">
       <div className="mx-auto max-w-[1440px] 2xl:max-w-[1560px]">
@@ -175,8 +182,10 @@ export default function QingyuCaseIndex() {
         </button>
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3" data-case-reveal>
-          {caseGrid.map((item, index) => (
-            <button
+          {caseGrid.map((item, index) => {
+            const displayTitle = splitDisplayTitle(item.title);
+            return (
+              <button
               key={item.key}
               type="button"
               className="high-seas-case-card qingyu-case-card group text-left"
@@ -240,11 +249,15 @@ export default function QingyuCaseIndex() {
                 <div className="high-seas-case-card__corner high-seas-case-card__corner--br" />
               </div>
               <div className="high-seas-case-card__body">
-                <h2>{item.title}</h2>
+                <div className="high-seas-case-card__heading">
+                  <h2>{displayTitle.title}</h2>
+                  {displayTitle.prefix ? <span className="high-seas-case-card__category">{displayTitle.prefix}</span> : null}
+                </div>
                 <p>{item.desc}</p>
               </div>
-            </button>
-          ))}
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -88,7 +88,7 @@ const ProjectCard = ({
   return (
     <div
       ref={cardRef}
-      className="relative py-16 lg:py-24"
+      className={`relative pb-16 lg:pb-24 ${index === 0 ? 'pt-8 lg:pt-12' : 'pt-16 lg:pt-24'}`}
     >
       {/* Ambient glow behind card */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -254,7 +254,7 @@ const Projects = () => {
       {/* Section header */}
       <div
         ref={headerRef}
-        className="relative z-10 mx-auto mb-16 flex w-full max-w-[1300px] flex-col items-center justify-center px-6 text-center lg:mb-24 lg:px-12"
+        className="relative z-10 mx-auto mb-8 flex w-full max-w-[1300px] flex-col items-center justify-center px-6 text-center lg:mb-12 lg:px-12"
       >
         <h2 data-header-reveal className="text-4xl sm:text-5xl lg:text-6xl font-['Orbitron',sans-serif] font-black neon-text-pink">
           精选作品

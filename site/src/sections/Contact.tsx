@@ -1,10 +1,15 @@
 import type { FormEvent } from 'react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Send } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 type SubmitState = 'idle' | 'sending' | 'success' | 'error';
 
 const Contact = () => {
+  const contentRef = useRef<HTMLDivElement>(null);
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [message, setMessage] = useState('');
@@ -16,6 +21,44 @@ const Contact = () => {
   }, []);
 
   const canSubmit = message.trim().length >= 4 && submitState !== 'sending';
+
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    const ctx = gsap.context(() => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: contentRef.current,
+          start: 'top 82%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+
+      timeline
+        .fromTo(
+          '[data-contact-title]',
+          { y: 44, scale: 0.96, opacity: 0, filter: 'blur(14px)' },
+          { y: 0, scale: 1, opacity: 1, filter: 'blur(0px)', duration: 0.85, ease: 'expo.out' }
+        )
+        .fromTo(
+          '[data-contact-form]',
+          { y: 70, scale: 0.965, opacity: 0, filter: 'blur(8px)' },
+          { y: 0, scale: 1, opacity: 1, filter: 'blur(0px)', duration: 0.95, ease: 'power3.out' },
+          '-=0.5'
+        )
+        .fromTo(
+          '[data-contact-field]',
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.55, stagger: 0.07, ease: 'power2.out' },
+          '-=0.48'
+        );
+    }, contentRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -66,32 +109,29 @@ const Contact = () => {
       id="contact"
       className="relative w-full min-h-[760px] overflow-hidden px-6 pb-24 pt-28 sm:px-12 lg:px-24 cyber-grid"
     >
-      <div className="pointer-events-none absolute left-1/2 top-16 h-px w-[72vw] -translate-x-1/2 bg-gradient-to-r from-transparent via-neon-cyan/55 to-transparent" />
       <div className="pointer-events-none absolute left-[18%] top-[24%] h-72 w-72 rounded-full bg-neon-purple/10 blur-[120px]" />
       <div className="pointer-events-none absolute right-[18%] bottom-[12%] h-80 w-80 rounded-full bg-neon-cyan/10 blur-[130px]" />
 
-      <div className="relative z-10 mx-auto w-full max-w-5xl px-0 sm:px-4 lg:px-8">
+      <div ref={contentRef} className="relative z-10 mx-auto w-full max-w-5xl px-0 sm:px-4 lg:px-8">
+        <div className="mb-12 text-center sm:mb-16">
+          <h2 data-contact-title className="text-4xl font-display font-bold neon-text-cyan sm:text-5xl lg:text-6xl">
+            意见反馈
+          </h2>
+        </div>
+
         <form
+          data-contact-form
           onSubmit={handleSubmit}
-          className="relative w-full overflow-hidden rounded-[28px] border border-neon-cyan/28 bg-[#070b13]/86 p-6 shadow-[0_0_90px_rgba(0,245,255,0.08)] backdrop-blur-xl sm:p-8 lg:p-10"
+          className="relative w-full overflow-hidden rounded-[28px] border border-neon-cyan/35 bg-[linear-gradient(135deg,rgba(9,39,61,0.82),rgba(15,17,38,0.78))] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.42),0_0_70px_rgba(0,245,255,0.1)] backdrop-blur-2xl backdrop-saturate-150 sm:p-8 lg:p-10"
         >
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(0,245,255,0.1),transparent_34%,rgba(255,0,255,0.08))]" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(0,245,255,0.14),transparent_38%,rgba(255,0,255,0.1))]" />
+          <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" />
           <div className="pointer-events-none absolute left-5 top-5 h-8 w-8 border-l-2 border-t-2 border-neon-cyan/85" />
           <div className="pointer-events-none absolute bottom-5 right-5 h-8 w-8 border-b-2 border-r-2 border-neon-purple/85" />
 
           <div className="relative z-10">
-            <div className="mb-7 flex items-end justify-between gap-4 border-b border-neon-cyan/12 pb-5">
-              <div>
-                <p className="font-mono text-xs font-bold tracking-[0.28em] text-neon-pink">CONTACT</p>
-                <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl">意见反馈</h3>
-              </div>
-              <div className="rounded-full border border-neon-cyan/25 px-3 py-1 font-mono text-xs text-neon-cyan/80">
-                POST
-              </div>
-            </div>
-
             <div className="grid gap-5 sm:grid-cols-2">
-              <label className="block">
+              <label data-contact-field className="block">
                 <span className="mb-2 block text-sm font-bold tracking-[0.12em] text-white/70">称呼</span>
                 <input
                   value={name}
@@ -101,7 +141,7 @@ const Contact = () => {
                 />
               </label>
 
-              <label className="block">
+              <label data-contact-field className="block">
                 <span className="mb-2 block text-sm font-bold tracking-[0.12em] text-white/70">联系方式</span>
                 <input
                   value={contact}
@@ -112,7 +152,7 @@ const Contact = () => {
               </label>
             </div>
 
-            <label className="mt-5 block">
+            <label data-contact-field className="mt-5 block">
               <span className="mb-2 block text-sm font-bold tracking-[0.12em] text-white/70">意见内容</span>
               <textarea
                 value={message}
@@ -123,7 +163,7 @@ const Contact = () => {
               />
             </label>
 
-            <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div data-contact-field className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm leading-6 text-white/42">
                 接口：<span className="font-mono text-neon-cyan/70">{endpoint}</span>
               </p>

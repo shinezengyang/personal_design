@@ -190,11 +190,6 @@ function NavyTrialCase() {
 
 /* ─── CDST assets (refreshed from Figma 9434:2079) ─── */
 const cdst = {
-  /* hero */
-  heroBg: 'https://www.figma.com/api/mcp/asset/24ad3bc8-5c2c-4895-8eac-cbc7b8ee777b',
-  heroOverlay: 'https://www.figma.com/api/mcp/asset/cf6434ce-2409-47fd-b0da-3e92fc45193b',
-  heroDark: 'https://www.figma.com/api/mcp/asset/8245e199-1d4a-48e9-8fbe-6faf392d9a60',
-  qr: 'https://www.figma.com/api/mcp/asset/6224d776-26fe-47c7-9a61-b8ea8ed288e0',
   /* market */
   market: 'https://www.figma.com/api/mcp/asset/7a01ba77-6077-417b-8307-415c818d18dc',
   /* 痛点 graduation-cap icons */
@@ -252,6 +247,56 @@ const cdst = {
 };
 
 function CdstCase() {
+  const pageRef = useRef<HTMLDivElement | null>(null);
+  const exactFigmaPage = {
+    src: publicUrl('/images/xingji/cdst/figma-9817-19122-full.png'),
+    width: 2448,
+    height: 32768,
+  };
+
+  useEffect(() => {
+    const root = pageRef.current;
+    if (!root) return;
+
+    const items = Array.from(root.querySelectorAll<HTMLElement>('.cdst-stage > *'));
+    items.forEach((item, index) => {
+      item.classList.add('cdst-reveal-item');
+      item.style.setProperty('--cdst-reveal-delay', `${(index % 6) * 55}ms`);
+    });
+
+    if (!('IntersectionObserver' in window)) {
+      items.forEach((item) => item.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -8% 0px' },
+    );
+
+    items.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={pageRef} className="star-case-page cdst-page">
+      <FigmaScaleStage width={exactFigmaPage.width} height={exactFigmaPage.height} className="cdst-stage cdst-exact-stage">
+        <img
+          src={exactFigmaPage.src}
+          alt="职力测评 Figma 作品集完整页面"
+          className="abs cdst-exact-page-image"
+          style={{ left: 0, top: 0, width: exactFigmaPage.width, height: exactFigmaPage.height }}
+        />
+      </FigmaScaleStage>
+    </div>
+  );
+
   /* stage Y bases per Figma section (frame 9434:2079) */
   const SEC = {
     project: 1495.5,
@@ -279,17 +324,24 @@ function CdstCase() {
   };
 
   return (
-    <div className="star-case-page cdst-page">
+    <div ref={pageRef} className="star-case-page cdst-page">
       <FigmaScaleStage width={2480} height={33204} className="cdst-stage">
         {/* ── 头图 hero (y0 h1471) ── */}
-        <img src={cdst.heroBg} className="abs img-cover" style={{ left: 0, top: 0, width: 2480, height: 1471 }} />
-        <img src={cdst.heroOverlay} className="abs img-cover" style={{ left: 1, top: 1, width: 2480, height: 1470 }} />
-        <img src={cdst.heroDark} className="abs blend-darken img-cover" style={{ left: 0, top: 0, width: 2481, height: 1470 }} />
+        <div className="abs cdst-hero-art" style={{ left: 0, top: 0, width: 2480, height: 1471 }} aria-hidden="true">
+          <span className="cdst-hero-grid" />
+          <span className="cdst-hero-orbit cdst-hero-orbit-a" />
+          <span className="cdst-hero-orbit cdst-hero-orbit-b" />
+          <span className="cdst-hero-city" />
+        </div>
         <div className="cdst-logo">My Production<br />我的作品</div>
         <div className="cdst-project">大学生职前教育平台</div>
         <div className="cdst-big">CDST</div>
         <div className="cdst-title">Career Develop<br />Status Tendency<br /><span>属于你一个人的职场导师</span></div>
-        <img src={cdst.qr} className="abs" style={{ left: 601.5, top: 942.5, width: 248, height: 249 }} />
+        <div className="abs cdst-qr-code" style={{ left: 601.5, top: 942.5, width: 248, height: 249 }} aria-hidden="true">
+          <span className="cdst-qr-finder cdst-qr-finder-a" />
+          <span className="cdst-qr-finder cdst-qr-finder-b" />
+          <span className="cdst-qr-finder cdst-qr-finder-c" />
+        </div>
 
         {/* ── 项目概括 + 市场分析 (base 1495.5, h1887) ── */}
         <CdstTitle y={SEC.project} title="项目概括" en="Project Overview" w={337} />
@@ -442,9 +494,11 @@ function CdstCase() {
           ['5cafb531-e97b-4836-a0e6-7a950915acf1', 865, 603, 77, 77],
           ['73ba1c0b-a4dc-427a-b828-1e8071c35f3c', 43, 589, 77, 79],
           ['dc29857d-f17e-4b4c-bce4-e2a96f6871bc', 1310, 602, 89, 78],
-        ] as [string, number, number, number, number][]).map(([id, ix, iy, iw, ih]) => (
-          <img key={id} src={`https://www.figma.com/api/mcp/asset/${id}`} className="abs img-cover"
-            style={{ left: 530.5 + ix, top: V.icon + 771 + iy, width: iw, height: ih }} />
+        ] as [string, number, number, number, number][]).map(([id, ix, iy, iw, ih], iconIndex) => (
+          <span key={id} className="abs cdst-symbol-icon"
+            style={{ left: 530.5 + ix, top: V.icon + 771 + iy, width: iw, height: ih }}>
+            {['◇', '○', '△', '＋'][iconIndex % 4]}
+          </span>
         ))}
         <div className="color-grid" style={{ left: 197.5, top: V.icon + 190 }}>
           {[
@@ -751,38 +805,41 @@ function MadCase() {
 
 /* ─── High Seas Hero exact detail cases from Figma 9817:4765 / 9817:6955 ─── */
 const hsTrial = {
-  phoneDifficultyPre: 'https://www.figma.com/api/mcp/asset/e235ff3a-0847-4887-bda2-1fc21085cde1',
-  panel2341: 'https://www.figma.com/api/mcp/asset/07f42936-91d9-43cb-b0b5-993368c92f1f',
-  frame236042: 'https://www.figma.com/api/mcp/asset/d71a49bd-259d-4726-ae52-2a13a37bac44',
-  flowPhoneConfirm: 'https://www.figma.com/api/mcp/asset/1b8a6d57-bb1b-4d9c-a662-6b3c07f127af',
-  popupFieldInfoPanel1: 'https://www.figma.com/api/mcp/asset/a30de5e1-b378-4814-8b43-b4565e37a520',
-  flowPhoneReward: 'https://www.figma.com/api/mcp/asset/c7255843-5c7b-47ab-b393-831fafbe65f8',
-  panel4561: 'https://www.figma.com/api/mcp/asset/e50407fa-3d47-45ec-8315-d3e1393a4c41',
-  popupFieldInfoPanel31: 'https://www.figma.com/api/mcp/asset/16ed15c9-5a8a-450a-b001-e51b869f6044',
-  phoneAllianceNo: 'https://www.figma.com/api/mcp/asset/5a4d11d1-ff2b-454a-a859-9f159458f5f1',
-  panel671: 'https://www.figma.com/api/mcp/asset/494f12eb-a3f9-4e56-b973-83915f2f5f77',
-  panel3212: 'https://www.figma.com/api/mcp/asset/2f455dda-02f8-4d27-bfea-348193e74415',
-  panel4331: 'https://www.figma.com/api/mcp/asset/011e21b8-1ff4-4e34-a987-aef9a983f103',
-  phoneRewardClaimed: 'https://www.figma.com/api/mcp/asset/1d4b355e-bab2-4940-9705-e68fd91dfdf3',
-  phoneRecord: 'https://www.figma.com/api/mcp/asset/5a94ee65-f7c3-4a1b-a720-0bfeff139dfc',
-  panel3451: 'https://www.figma.com/api/mcp/asset/a9e52ee4-15a3-4dc5-94e7-3d7a3d690411',
-  outcome1: 'https://www.figma.com/api/mcp/asset/fd7bd1fe-c0e0-4f63-9648-4d606996c7bf',
-  outcome2: 'https://www.figma.com/api/mcp/asset/02d572ca-87d6-430f-8793-8333fc79816e',
-  outcome3: 'https://www.figma.com/api/mcp/asset/ac577947-3165-46c5-b645-2fd402765c4e',
+  phoneDifficultyPre: publicUrl('/images/xingji/naval-trial/difficulty-pre.webp'),
+  panel2341: publicUrl('/images/xingji/naval-trial/difficulty-selected.webp'),
+  flowPhoneConfirm: publicUrl('/images/xingji/naval-trial/confirm-big.webp'),
+  popupFieldInfoPanel1: publicUrl('/images/xingji/naval-trial/map-panel.webp'),
+  flowPhoneReward: publicUrl('/images/xingji/naval-trial/reward-flow.webp'),
+  panel4561: publicUrl('/images/xingji/naval-trial/personal-select.webp'),
+  personalConfirm: publicUrl('/images/xingji/naval-trial/personal-confirm.webp'),
+  quickAccess: publicUrl('/images/xingji/naval-trial/quick-access.webp'),
+  rewardPreview: publicUrl('/images/xingji/naval-trial/reward-preview.webp'),
+  popupFieldInfoPanel31: publicUrl('/images/xingji/naval-trial/instructor-panel.webp'),
+  phoneAllianceNo: publicUrl('/images/xingji/naval-trial/alliance-no.webp'),
+  panel671: publicUrl('/images/xingji/naval-trial/alliance-yes.webp'),
+  panel3212: publicUrl('/images/xingji/naval-trial/monster-info.webp'),
+  panel4331: publicUrl('/images/xingji/naval-trial/monster-place.webp'),
+  phoneRewardClaimed: publicUrl('/images/xingji/naval-trial/reward-claimed.webp'),
+  phoneRecord: publicUrl('/images/xingji/naval-trial/record-empty.webp'),
+  panel3451: publicUrl('/images/xingji/naval-trial/record-list.webp'),
+  outcome1: publicUrl('/images/xingji/naval-trial/outcome-personal.webp'),
+  outcome2: publicUrl('/images/xingji/naval-trial/outcome-detail.webp'),
+  outcome3: publicUrl('/images/xingji/naval-trial/outcome-alliance.webp'),
+  difficultyCard: publicUrl('/images/xingji/naval-trial/difficulty-card-image.webp'),
 };
 
 const hsGang = {
   eventIpSceneBg01: publicUrl('/images/xingji/ip-collab/scene-bg.webp'),
   eventIpCrewDetailShow02: publicUrl('/images/xingji/ip-collab/hero-character.webp'),
-  panel23441: 'https://www.figma.com/api/mcp/asset/ca6475ac-20f9-47e3-9254-b225c2a32d90',
-  stateImg0: 'https://www.figma.com/api/mcp/asset/d3dd8a5d-e42e-4911-bdec-da89d0b8fa05',
-  stateImg1: 'https://www.figma.com/api/mcp/asset/14ea38e2-85f4-468f-89d2-b707fbd87255',
-  stateImg2: 'https://www.figma.com/api/mcp/asset/2c8b7dbe-7c34-4478-977e-af3cafb34385',
-  stateImg3: 'https://www.figma.com/api/mcp/asset/217296cd-9a2c-418b-bec7-0ddc8b1f493a',
-  panel34651: 'https://www.figma.com/api/mcp/asset/3e0d1648-7773-4a91-8d40-c2306cc45f67',
-  sec7HeroDetailImg: 'https://www.figma.com/api/mcp/asset/b6bd79a2-c332-4e7e-80fa-5b4aebc61679',
-  sec7HeroPortraitImg: 'https://www.figma.com/api/mcp/asset/b791a615-07f5-4a59-b538-de7a1b0be74f',
-  collage: 'https://www.figma.com/api/mcp/asset/dc01887c-5d8e-4259-a6f8-ac295029d41a',
+  panel23441: 'https://www.figma.com/api/mcp/asset/5e378436-52a2-49de-93d6-3e62e897995d',
+  stateImg0: 'https://www.figma.com/api/mcp/asset/67791c81-33f5-4ef1-b4f6-34a925f997d4',
+  stateImg1: 'https://www.figma.com/api/mcp/asset/1dc068d5-b05e-42fd-8725-c752ca964daa',
+  stateImg2: 'https://www.figma.com/api/mcp/asset/3b75a069-2b59-44e7-ba58-68549717414e',
+  stateImg3: 'https://www.figma.com/api/mcp/asset/f563eecf-f14d-481c-b79d-c3db2177b98e',
+  panel34651: 'https://www.figma.com/api/mcp/asset/aa5572f5-cece-4931-908c-2263c05d9068',
+  sec7HeroDetailImg: 'https://www.figma.com/api/mcp/asset/486fc820-78da-44f4-8d20-2dc402e0bfb9',
+  sec7HeroPortraitImg: 'https://www.figma.com/api/mcp/asset/e754f909-832c-4880-8331-709ffbc6907e',
+  collage: 'https://www.figma.com/api/mcp/asset/19783108-7c06-4013-905a-adc2c9ffa7ba',
 };
 
 type HSAbsProps = {
@@ -802,10 +859,10 @@ function withHSOffset(style: React.CSSProperties | undefined, offset: number): R
   return next;
 }
 
-function HSSection({ className, top, children }: { className: string; top: number; children: React.ReactNode }) {
+function HSSection({ className, top, height, children }: { className: string; top: number; height?: number; children: React.ReactNode }) {
   return (
     <HSSectionOffsetContext.Provider value={top}>
-      <div className={className} style={{ top }}>
+      <div className={`${className} hs-motion-section`} style={{ top, height }}>
         {children}
       </div>
     </HSSectionOffsetContext.Provider>
@@ -826,6 +883,21 @@ function HSImg({ src, className = '', style }: { src: string; className?: string
   return <img alt="" src={src} className={`abs ${className}`} style={withHSOffset(style, offset)} />;
 }
 
+type HSRecordIconKind = 'history' | 'achievement' | 'progress' | 'battle';
+
+function HSRecordIcon({ kind }: { kind: HSRecordIconKind }) {
+  if (kind === 'history') {
+    return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h16M8 16v-4m4 4V8m4 8v-6m-8-1 4-3 4 2 3-3" /></svg>;
+  }
+  if (kind === 'achievement') {
+    return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0V4Zm0 2H5v2a4 4 0 0 0 4 4m7-6h3v2a4 4 0 0 1-4 4m-3 1v4m-4 3h8m-6-3h4" /></svg>;
+  }
+  if (kind === 'progress') {
+    return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM7 16l3-4 3 2 4-6m-3 0h3v3" /></svg>;
+  }
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 4 12 12m0-12L6 16m-2 4 4-4m12 4-4-4M5 3l4 1-4 4V3Zm14 0-4 1 4 4V3Z" /></svg>;
+}
+
 function HSHeader({ n, title, en, top, light = false, accent = 'blue' }: { n: string; title: string; en: string; top: number; light?: boolean; accent?: 'blue' | 'orange' }) {
   return (
     <>
@@ -833,6 +905,17 @@ function HSHeader({ n, title, en, top, light = false, accent = 'blue' }: { n: st
       <HSAbs className="hs-exact-bgnum" style={{ left: 80, top: top + 16 }}>{n}</HSAbs>
       <HSAbs className={`hs-exact-title ${light ? 'light' : ''}`} style={{ left: 120, top: top + 76 }}>{title}</HSAbs>
       <HSAbs className={`hs-exact-en ${light ? 'light' : ''}`} style={{ left: 120, top: top + 120 }}>{en}</HSAbs>
+    </>
+  );
+}
+
+function HSGangHeader({ n, title, en, top, outcome = false }: { n: string; title: string; en: string; top: number; outcome?: boolean }) {
+  const numberTop = top + (outcome ? 40 : 0);
+  return (
+    <>
+      <HSAbs className="gang-section-number" style={{ left:80, top:numberTop }}>{n}</HSAbs>
+      <HSAbs className="gang-section-title" style={{ left:80, top:numberTop + 40 }}>{title}</HSAbs>
+      <HSAbs className="gang-section-en" style={{ left:80, top:numberTop + 82 }}>{en}</HSAbs>
     </>
   );
 }
@@ -867,7 +950,7 @@ function HSArrow({ x, y }: { x: number; y: number }) {
 
 function HSMetric({ x, value, label, desc, orange = false }: { x: number; value: string; label: string; desc: string; orange?: boolean }) {
   return (
-    <HSAbs className="hs-metric" style={{ left: x, top: 2360 }}>
+    <HSAbs className="hs-metric" style={{ left: x, top: 2475 }}>
       <div className={`hs-metric-value ${orange ? 'orange' : 'blue'}`}>{value}</div>
       <div className="hs-metric-label">{label}</div>
       <div className="hs-metric-desc">{desc}</div>
@@ -884,17 +967,17 @@ export function HighSeasNavyTrialExactCase() {
     ['未解锁', '灰色置灰', 'gray'],
   ] as const;
   const personalFlow = [
-    ['01', '选择难度', '自动定位\n最新解锁', hsTrial.panel4561],
-    ['02', '确认出战', '二次确认\n不可更改', hsTrial.flowPhoneConfirm],
-    ['03', '进入地图', '镜头跳转\n定位教官', hsTrial.popupFieldInfoPanel1],
-    ['04', '战斗领奖', '击败教官\n领取奖励', hsTrial.flowPhoneReward],
+    ['01', '选择难度', '自动定位\n最新解锁', hsTrial.panel4561, false],
+    ['02', '确认出战', '二次确认\n不可更改', hsTrial.personalConfirm, true],
+    ['03', '进入地图', '镜头跳转\n定位教官', hsTrial.quickAccess, false],
+    ['04', '战斗领奖', '击败教官\n领取奖励', hsTrial.rewardPreview, true],
   ] as const;
   const configItems = [
-    ['🖼️', '教官立绘', '后台配置不同难度对应的教官形象'],
-    ['⚔️', '教官等级', '战力数值随难度递增，明确挑战门槛'],
-    ['💪', '战力展示', '直观显示教官实力，辅助玩家判断'],
-    ['📍', '地图坐标', '教官在世界地图的固定刷新位置'],
-    ['🎁', '掉落预览', '击败后可获得的奖励物品列表'],
+    ['portrait', '教官立绘', '后台配置不同难度对应的教官形象'],
+    ['rank', '教官等级', '战力数值随难度递增，明确挑战门槛'],
+    ['power', '战力展示', '直观显示教官实力，辅助玩家判断'],
+    ['pin', '地图坐标', '教官在世界地图的固定刷新位置'],
+    ['gift', '掉落预览', '击败后可获得的奖励物品列表'],
   ];
   return (
     <div className="star-case-page hs-exact-page">
@@ -906,41 +989,45 @@ export function HighSeasNavyTrialExactCase() {
           <HSAbs className="hs-cover-en" style={{ left: 120, top: 360 }}>GENERAL'S TRIAL</HSAbs>
           <HSAbs className="hs-cover-title" style={{ left: 120, top: 390 }}>海军试炼</HSAbs>
           <HSAbs className="hs-cover-sub" style={{ left: 120, top: 484 }}>九重难度递进 × 个人联盟双轨 × 世界地图实战</HSAbs>
+          <HSAbs className="hs-cover-endline" style={{ left: 120, top: 534 }} />
           <div className="hs-cover-diag" />
         </HSSection>
 
         <HSSection className="hs-sec hs-light" top={900}>
           <HSHeader n="01" title="设计概述" en="DESIGN OVERVIEW" top={900} light />
-          <HSInfoCard x={120} y={1145} icon="⚡" title="设计挑战" body="海军试炼作为 SLG 核心活动，涵盖九重难度、个人与联盟双轨、世界地图实战等多维系统。如何在保持策略深度的同时，降低理解门槛，让玩家快速进入心流状态？" />
-          <HSInfoCard x={485} y={1145} icon="🎯" title="设计目标" body="建立清晰的难度递进认知，构建个人 / 联盟双模式的无缝切换体验，打通选难度 → 进地图 → 战斗 → 领奖的完整行为链路。" orange />
-          <HSInfoCard x={850} y={1145} icon="👤" title="目标用户" body="25–40 岁中重度 SLG 玩家，追求挑战成就感与社交协作体验。期望高效率流程入口与清晰状态反馈。" />
-          {['九重难度', '双轨模式', '世界地图实战', '高配置化', '渐进挑战'].map((tag, i) => <HSTag key={tag} x={120 + i * 214} y={1631}>{tag}</HSTag>)}
-          <div className="hs-dot-matrix light" style={{ left: 1040, top: 1680 }} />
+          <HSInfoCard x={120} y={1110} icon="01" title="设计挑战" body="将军的试炼作为 SLG 核心活动，涵盖九重难度、个人与联盟双轨、世界地图实战等多维系统。如何在保持策略深度的同时，降低理解门槛，让玩家快速进入心流状态？" />
+          <HSInfoCard x={230} y={1292} icon="02" title="设计目标" body={'建立清晰的难度递进认知，构建个人 / 联盟双模式的无缝切换体验，打通“选难度 → 进地图 → 战斗 → 领奖”的完整行为链路。'} orange />
+          <HSInfoCard x={340} y={1474} icon="03" title="目标用户" body="25–40 岁中重度 SLG 玩家，具备基础策略认知，追求挑战成就感与社交协作体验，并期待高效率入口与清晰状态反馈。" />
+          {['九重难度', '双轨模式', '世界地图实战', '高配置化', '渐进挑战'].map((tag, i) => <HSTag key={tag} x={[120,334,547,761,975][i]} y={1672}>{tag}</HSTag>)}
         </HSSection>
 
         <HSSection className="hs-sec hs-dark" top={1800}>
           <HSHeader n="02" title="系统架构" en="SYSTEM ARCHITECTURE" top={1800} />
           {[
             ['活动入口', 'Entry'], ['难度选择', 'Difficulty'], ['模式分流', 'Mode Split'], ['世界地图', 'World Map'], ['战斗交互', 'Combat'], ['奖励循环', 'Reward'],
-          ].map(([zh, en], i) => <React.Fragment key={zh}><HSFlowNode x={120 + i * 182} y={2071} zh={zh} en={en} orange={i % 2 === 1} />{i < 5 ? <HSArrow x={260 + i * 182} y={2104} /> : null}</React.Fragment>)}
-          <HSAbs className="hs-branch-line" style={{ left: 438, top: 2179, width: 222 }} />
-          <HSAbs className="hs-branch-card blue" style={{ left: 359, top: 2206 }}>个人挑战</HSAbs>
-          <HSAbs className="hs-branch-card orange" style={{ left: 579, top: 2206 }}>联盟挑战</HSAbs>
-          <HSMetric x={217} value="9" label="难度等级" desc="渐进式挑战递进" />
-          <HSMetric x={477} value="2" label="挑战模式" desc="个人 + 联盟双轨" orange />
-          <HSMetric x={737} value="∞" label="配置自由度" desc="全参数后台可配" />
-          <HSMetric x={997} value="3" label="核心闭环" desc="选择→战斗→奖励" orange />
+          ].map(([zh, en], i) => <React.Fragment key={zh}><HSFlowNode x={120 + i * 182} y={2022} zh={zh} en={en} orange={i % 2 === 1} />{i < 5 ? <HSArrow x={260 + i * 182} y={2071} /> : null}</React.Fragment>)}
+          <HSAbs className="hs-branch-tree" style={{ left: 438, top: 2121 }} />
+          <HSAbs className="hs-branch-card blue" style={{ left: 359, top: 2283 }}>个人挑战</HSAbs>
+          <HSAbs className="hs-branch-card orange" style={{ left: 579, top: 2283 }}>联盟挑战</HSAbs>
+          <HSMetric x={187} value="9" label="难度等级" desc="渐进式挑战递进" />
+          <HSAbs className="hs-metric-divider" style={{ left: 417, top: 2485 }} />
+          <HSMetric x={447} value="2" label="挑战模式" desc="个人 + 联盟双轨" orange />
+          <HSAbs className="hs-metric-divider" style={{ left: 677, top: 2485 }} />
+          <HSMetric x={707} value="∞" label="配置自由度" desc="全参数后台可配" />
+          <HSAbs className="hs-metric-divider" style={{ left: 937, top: 2485 }} />
+          <HSMetric x={967} value="3" label="核心闭环" desc="选择→战斗→奖励" orange />
         </HSSection>
 
         <HSSection className="hs-sec hs-light" top={2700}>
           <HSHeader n="03" title="难度选择系统" en="DIFFICULTY SELECTION" top={2700} light accent="orange" />
-          <HSImg src={hsTrial.phoneDifficultyPre} className="hs-phone" style={{ left: 120, top: 2906, width: 240, height: 519 }} />
-          <HSImg src={hsTrial.panel2341} className="hs-phone" style={{ left: 441, top: 2905, width: 240, height: 520 }} />
+          <HSImg src={hsTrial.phoneDifficultyPre} className="hs-phone hs-navy-crop" style={{ left: 120, top: 2906, width: 240, height: 519 }} />
+          <HSImg src={hsTrial.panel2341} className="hs-phone hs-navy-crop" style={{ left: 441, top: 2905, width: 240, height: 520 }} />
           <HSAbs className="hs-under-label" style={{ left: 183, top: 3440 }}>初始状态 · 自动定位</HSAbs>
           <HSAbs className="hs-under-label" style={{ left: 504, top: 3440 }}>选中状态 · 挑战详情</HSAbs>
-          <HSAbs className="hs-click-arrow" style={{ left: 374, top: 3291 }}>点击选择</HSAbs>
+          <HSAbs className="hs-click-arrow" style={{ left: 374, top: 3179 }}>点击选择</HSAbs>
           <HSAbs className="hs-panel-title light" style={{ left: 783, top: 2943 }}>难度卡片状态机</HSAbs>
-          {diffCards.map(([title, desc, type], i) => <HSAbs key={title} className={`hs-diff-state ${type}`} style={{ left: 783 + i * 114, top: 3063 }}><b>{title}</b><span>{desc}</span></HSAbs>)}
+          <HSAbs className="hs-diff-track" style={{ left: 783, top: 2983 }}>{diffCards.map(([title],i)=><i key={title} className={`s${i}`} />)}</HSAbs>
+          {diffCards.map(([title, desc, type], i) => <HSAbs key={title} className={`hs-diff-state ${type}`} style={{ left: 783 + i * 114, top: 3051 }}><img src={hsTrial.difficultyCard} alt="" /><b>{title}</b><span>{desc}</span></HSAbs>)}
           <HSAbs className="hs-panel-title light" style={{ left: 783, top: 3291 }}>设计要点</HSAbs>
           <HSAbs className="hs-bullets light" style={{ left: 783, top: 3321 }}>
             <p>• 进入页面自动定位最新解锁难度，减少选择成本</p><p>• 九个等级渐进排列，已通关项展示完成标记</p><p>• 未解锁难度卡片灰度处理，附提示文案引导</p><p>• 图标、难度名称、奖励预览均支持后台配置</p>
@@ -950,13 +1037,13 @@ export function HighSeasNavyTrialExactCase() {
         <HSSection className="hs-sec hs-dark" top={3600}>
           <HSHeader n="04" title="个人挑战流程" en="PERSONAL CHALLENGE FLOW" top={3600} />
           <HSAbs className="hs-desc" style={{ left: 120, top: 3750 }}>从选择难度到领取奖励，四步完成完整挑战闭环</HSAbs>
-          {personalFlow.map(([num, title, desc, img], i) => <HSAbs key={num} style={{ left: 130 + i * 270, top: 3800 }}><div className="hs-step-num">{num}</div><div className="hs-step-title">{title}</div><div className="hs-step-desc">{desc.split('\n').map((t) => <p key={t}>{t}</p>)}</div><HSImg src={img} className="hs-phone" style={{ left: 0, top: 90, width: 210, height: 455 }} />{i < 3 ? <HSArrow x={220} y={20} /> : null}</HSAbs>)}
+          {personalFlow.map(([num, title, desc, img], i) => <HSAbs key={num} className="hs-personal-step" style={{ left: 130 + i * 270, top: 3800 }}><div className="hs-step-num">{num}</div><div className="hs-step-title">{title}</div><div className="hs-step-desc">{desc.split('\n').map((t) => <p key={t}>{t}</p>)}</div><HSImg src={img} className="hs-phone hs-navy-crop" style={{ left: 0, top: 90, width: 210, height: 455 }} />{i < 3 ? <HSArrow x={220} y={30} /> : null}</HSAbs>)}
           <HSAbs className="hs-insight" style={{ left: 130, top: 4430 }}>整个流程强调 <b>不可逆选择设计</b> —— 确认出战后难度锁定，引导玩家认真思考策略，提升决策的仪式感与紧张感。</HSAbs>
         </HSSection>
 
         <HSSection className="hs-sec hs-light" top={4500}>
           <HSHeader n="05" title="确认机制与安全设计" en="CONFIRMATION & SAFETY" top={4500} light accent="orange" />
-          <HSImg src={hsTrial.flowPhoneConfirm} className="hs-phone" style={{ left: 120, top: 4652, width: 280, height: 605 }} />
+          <HSImg src={hsTrial.flowPhoneConfirm} className="hs-phone hs-navy-crop" style={{ left: 120, top: 4652, width: 280, height: 605 }} />
           {[['不可逆提示','明确告知选择后不可更改，强化决策仪式感','⚠'],['双按钮对比','取消按钮弱化处理，确认按钮高亮引导，降低误操作率','◧'],['信息前置','弹窗内展示已选难度与预期挑战内容，帮助玩家做最终确认','i']].map((it, i) => <HSAbs key={it[0]} className="hs-safety-card" style={{ left: 490, top: 4740 + i * 130 }}><i>{it[2]}</i><b>{it[0]}</b><span>{it[1]}</span></HSAbs>)}
           <HSAbs className="hs-panel-title light" style={{ left: 120, top: 5276 }}>为什么需要二次确认？</HSAbs>
           <HSAbs className="hs-paragraph light" style={{ left: 120, top: 5302, width: 760 }}>海军试炼采用“选定即锁定”机制，每个难度仅一次挑战机会。通过二次确认弹窗，引导玩家在出战前认真评估自身实力与难度匹配度，减少因误触导致的负面体验，同时增强“决策的重量感”。</HSAbs>
@@ -964,7 +1051,8 @@ export function HighSeasNavyTrialExactCase() {
 
         <HSSection className="hs-sec hs-dark" top={5400}>
           <HSHeader n="06" title="野外快捷入口" en="QUICK ACCESS" top={5400} />
-          <HSImg src={hsTrial.popupFieldInfoPanel1} className="hs-phone" style={{ left: 120, top: 5600, width: 300, height: 650 }} />
+          <HSImg src={hsTrial.popupFieldInfoPanel1} className="hs-phone hs-navy-crop" style={{ left: 120, top: 5600, width: 300, height: 650 }} />
+          <HSAbs className="hs-quick-callout" style={{ left: 420, top: 5750 }} />
           <HSAbs className="hs-paragraph" style={{ left: 512, top: 5600, width: 620 }}>野外地图作为战斗载体，加入“快捷入口”，可实现“镜头跳转 + 快捷定位 + 浮层引导”三重设计，确保玩家从选择难度到找到目标教官的路径最短化。</HSAbs>
           {['快捷按钮组|一键跳转教官位置，减少地图寻找成本','镜头自动跳转|确认出战后镜头自动移至先锋教官所在区域','任务进度浮层|右侧常驻显示当前挑战任务完成进度'].map((text, i) => { const [t,b]=text.split('|'); return <HSAbs key={t} className="hs-dark-list-card" style={{ left: 512, top: 5767 + i * 131 }}><b>{t}</b><span>{b}</span></HSAbs> })}
         </HSSection>
@@ -972,53 +1060,170 @@ export function HighSeasNavyTrialExactCase() {
         <HSSection className="hs-sec hs-light" top={6300}>
           <HSHeader n="07" title="先锋教官系统" en="PIONEER INSTRUCTOR" top={6300} light accent="orange" />
           <HSAbs className="hs-panel-title light" style={{ left: 120, top: 6494 }}>可配置元素</HSAbs>
-          {configItems.map(([ico, t, b], i) => <HSAbs key={t} className="hs-config-row" style={{ left: 120, top: 6544 + i * 70 }}><i>{ico}</i><b>{t}</b><span>{b}</span></HSAbs>)}
-          <HSImg src={hsTrial.popupFieldInfoPanel31} className="hs-phone" style={{ left: 500, top: 6493, width: 280, height: 607 }} />
+          {configItems.map(([ico, t, b], i) => <HSAbs key={t} className="hs-config-row" style={{ left: 120, top: 6544 + i * 70 }}><i className={`hs-vector-icon ${ico}`} /><b>{t}</b><span>{b}</span></HSAbs>)}
+          <HSImg src={hsTrial.popupFieldInfoPanel31} className="hs-phone hs-navy-crop" style={{ left: 500, top: 6493, width: 280, height: 607 }} />
           <HSAbs className="hs-panel-title light" style={{ left: 840, top: 6494 }}>交互流程</HSAbs>
-          {['点击教官 → 弹出信息面板','查看教官战力与掉落预览','选择“攻击”或“集结”','进入战斗 / 等待队友响应'].map((txt, i) => <HSAbs key={txt} className="hs-mini-timeline" style={{ left: 840, top: 6544 + i * 50 }}><em>{i+1}</em><span>{txt}</span></HSAbs>)}
+          <HSAbs className="hs-timeline-spine" style={{ left: 851, top: 6556 }} />
+          {['点击教官 → 弹出信息面板','查看教官战力与掉落预览','选择“攻击”或“集结”','进入战斗 / 等待队友响应'].map((txt, i) => <HSAbs key={txt} className="hs-mini-timeline" style={{ left: 840, top: 6544 + i * 70 }}><em>{i+1}</em><span>{txt}</span></HSAbs>)}
         </HSSection>
 
         <HSSection className="hs-sec hs-light" top={8100}>
           <HSHeader n="08" title="联盟挑战模式" en="ALLIANCE CHALLENGE" top={8100} light accent="orange" />
-          <HSImg src={hsTrial.phoneAllianceNo} className="hs-phone" style={{ left: 120, top: 8293, width: 240, height: 519 }} />
-          <HSImg src={hsTrial.panel671} className="hs-phone" style={{ left: 440, top: 8292, width: 240, height: 520 }} />
+          <HSImg src={hsTrial.phoneAllianceNo} className="hs-phone hs-source-caption-crop" style={{ left: 120, top: 8293, width: 240, height: 519 }} />
+          <HSImg src={hsTrial.panel671} className="hs-phone" style={{ left: 440, top: 8293, width: 240, height: 519 }} />
+          <HSAbs className="hs-alliance-transition" style={{ left: 366, top: 8528 }}>
+            <span>点击选择</span><i />
+          </HSAbs>
+          <HSAbs className="hs-alliance-caption" style={{ left: 120, top: 8829, width: 240 }}>同盟挑战（未加入公会）</HSAbs>
+          <HSAbs className="hs-alliance-caption" style={{ left: 440, top: 8829, width: 240 }}>同盟挑战（已加入公会）</HSAbs>
           <HSAbs className="hs-panel-title light" style={{ left: 760, top: 8325 }}>联盟模式特性</HSAbs>
-          {['联盟准入|未加入联盟时，联盟挑战 Tab 灰色不可选，引导加入','公会怪物|盟主/官员在地图放置怪物，成员协力击败','协同战斗|支持集结攻击，多人同时对同一目标发起进攻','联盟排名|联盟维度统计挑战成绩，激发组织荣誉感'].map((text, i) => { const [t,b]=text.split('|'); return <HSAbs key={t} className="hs-light-list-card" style={{ left: 760, top: 8375 + i * 105 }}><b>{t}</b><span>{b}</span></HSAbs> })}
+          {[
+            ['entry', '联盟准入', '未加入联盟时，联盟挑战', 'Tab 灰色不可选，引导加入'],
+            ['monster', '公会怪物', '盟主/官员在地图放置怪物，', '成员协力击败'],
+            ['battle', '协同战斗', '支持集结攻击，多人同时', '对同一目标发起进攻'],
+            ['ranking', '联盟排名', '联盟维度统计挑战成绩，', '激发组织荣誉感'],
+          ].map(([icon, title, line1, line2], i) => (
+            <HSAbs key={title} className={`hs-light-list-card hs-alliance-feature ${i % 2 ? 'orange' : 'blue'}`} style={{ left: 760, top: 8375 + i * 105 }}>
+              <i className={`hs-alliance-icon ${icon}`} aria-hidden="true" />
+              <b>{title}</b><span>{line1}<br />{line2}</span>
+            </HSAbs>
+          ))}
           <HSAbs className="hs-light-strip" style={{ left: 72, top: 8889 }}>个人与联盟双轨并行设计，非联盟玩家不受影响，联盟玩家获得额外社交玩法，两种模式共享同一套难度体系与奖励逻辑，降低理解成本。</HSAbs>
         </HSSection>
 
         <HSSection className="hs-sec hs-dark" top={9000}>
           <HSHeader n="09" title="联盟怪物" en="ALLIANCE MONSTER" top={9000} />
-          {['选择挑战等级|在同盟挑战页面里选择当前可挑战的等级','野外布置怪物|选中未完成的挑战任务，跳转至野外布置怪物模型','公会集结怪物|召集公会成员前往怪物坐标位置','完成联盟挑战|击败怪物后模型消失'].map((text, i) => { const [t,b]=text.split('|'); return <HSAbs key={t} className="hs-mini-timeline dark" style={{ left: 123, top: 9233 + i * 110 }}><em>{i+1}</em><b>{t}</b><span>{b}</span></HSAbs> })}
+          <HSAbs className="hs-monster-flow-title" style={{ left: 123, top: 9193 }}>流程逻辑</HSAbs>
+          {[
+            ['选择挑战等级', <>在同盟挑战的页面里选择<br />当前可挑战的等级</>],
+            ['野外布置怪物', <>选中未完成的挑战任务，<br />跳转至野外布置怪物模型</>],
+            ['公会集结怪物', <>召集公会成员前往怪物<br />坐标位置</>],
+            ['完成联盟挑战', <>击败怪物后模型消失</>],
+          ].map(([title, body], i) => (
+            <HSAbs key={String(title)} className="hs-monster-flow-step" style={{ left: 123, top: 9233 + i * 110 }}>
+              <em>{i + 1}</em>
+              <b>{title}</b>
+              <span>{body}</span>
+              {i < 3 && <i aria-hidden="true" />}
+            </HSAbs>
+          ))}
           <HSImg src={hsTrial.panel4331} className="hs-phone" style={{ left: 500, top: 9166, width: 280, height: 607 }} />
           <HSImg src={hsTrial.panel3212} className="hs-phone" style={{ left: 882, top: 9166, width: 280, height: 607 }} />
-          <HSAbs className="hs-under-label dark" style={{ left: 604, top: 9802 }}>怪物布置操作</HSAbs><HSAbs className="hs-under-label dark" style={{ left: 986, top: 9802 }}>怪物信息面板</HSAbs>
+          <HSAbs className="hs-monster-transition" style={{ left: 797, top: 9460 }}>
+            <span>确认布置</span>
+            <i aria-hidden="true" />
+          </HSAbs>
+          <HSAbs className="hs-monster-caption" style={{ left: 500, top: 9794, width: 280 }}>怪物布置操作</HSAbs>
+          <HSAbs className="hs-monster-caption" style={{ left: 882, top: 9794, width: 280 }}>怪物信息面板</HSAbs>
         </HSSection>
 
         <HSSection className="hs-sec hs-dark" top={7200}>
           <HSHeader n="10" title="奖励系统" en="REWARD SYSTEM" top={7200} />
-          <HSImg src={hsTrial.flowPhoneReward} className="hs-phone" style={{ left: 120, top: 7394, width: 260, height: 562 }} />
-          <HSImg src={hsTrial.phoneRewardClaimed} className="hs-phone" style={{ left: 440, top: 7393, width: 260, height: 563 }} />
-          <HSAbs className="hs-panel-title" style={{ left: 878, top: 7436 }}>奖励设计逻辑</HSAbs>
-          {['难度分 Tab|每个难度对应独立奖励页签，清晰展示各级别回报差异','预览驱动挑战|先展示奖励再挑战，用预期回报激发挑战动机','领取状态区分|已领/未领/不可领三态视觉分明，减少认知负担','通关奖励|全难度通关额外奖励，为高水平玩家提供终极目标'].map((text, i) => { const [t,b]=text.split('|'); return <HSAbs key={t} className="hs-dark-point" style={{ left: 878, top: 7491 + i * 100 }}><b>{t}</b><span>{b}</span></HSAbs> })}
+          <HSAbs className="hs-reward-shot hs-reward-shot--preview" style={{ left: 120, top: 7394, width: 260, height: 562 }}>
+            <img src={hsTrial.flowPhoneReward} alt="奖励预览" />
+          </HSAbs>
+          <HSAbs className="hs-reward-shot hs-reward-shot--claimed" style={{ left: 440, top: 7393, width: 260, height: 563 }}>
+            <img src={hsTrial.phoneRewardClaimed} alt="已领取状态" />
+          </HSAbs>
+          <HSAbs className="hs-reward-caption" style={{ left: 120, top: 7972, width: 260 }}>奖励预览</HSAbs>
+          <HSAbs className="hs-reward-caption" style={{ left: 440, top: 7972, width: 260 }}>已领取状态</HSAbs>
+          <HSAbs className="hs-reward-arrow-label" style={{ left: 388, top: 7586, width: 48 }}>领取</HSAbs>
+          <HSAbs className="hs-reward-arrow" style={{ left: 390, top: 7611, width: 40 }} />
+          <HSAbs className="hs-reward-logic-title" style={{ left: 878, top: 7436 }}>奖励设计逻辑</HSAbs>
+          {[
+            { title: '难度分 Tab', lines: ['每个难度对应独立奖励页签，', '清晰展示各级别回报差异'] },
+            { title: '预览驱动挑战', lines: ['先展示奖励再挑战，', '用预期回报激发挑战动机'] },
+            { title: '领取状态区分', lines: ['已领/未领/不可领三态视觉分明，', '减少认知负担'] },
+            { title: '通关奖励', lines: ['全难度通关额外奖励，', '为高水平玩家提供终极目标'] },
+          ].map((item, i) => (
+            <HSAbs key={item.title} className={`hs-reward-point${i === 3 ? ' is-last' : ''}`} style={{ left: 878, top: 7485 + i * 100 }}>
+              <b>{item.title}</b>
+              <span>{item.lines[0]}<br />{item.lines[1]}</span>
+            </HSAbs>
+          ))}
+          <HSAbs className="hs-reward-orbit" style={{ left: 1080, top: 7900 }} />
         </HSSection>
 
         <HSSection className="hs-sec hs-light" top={9900}>
           <HSHeader n="11" title="战绩记录" en="CHALLENGE RECORD" top={9900} light accent="orange" />
-          <HSImg src={hsTrial.phoneRecord} className="hs-phone" style={{ left: 120, top: 10095, width: 260, height: 561 }} />
-          <HSImg src={hsTrial.panel3451} className="hs-phone" style={{ left: 437, top: 10095, width: 260, height: 563 }} />
-          <HSAbs className="hs-panel-title light" style={{ left: 813, top: 10138 }}>数据呈现设计</HSAbs>
-          {['挑战历史|记录每次挑战的难度、结果、用时，帮助玩家复盘策略','成就展示|累计通关次数、最高难度等数据，激发挑战成就感','进度总览|各难度通关状态一目了然，明确下一步挑战方向','战场回顾|公会战场数据记录，展示联盟协作战果'].map((text, i) => { const [t,b]=text.split('|'); return <HSAbs key={t} className="hs-light-list-card compact" style={{ left: 813, top: 10188 + i * 105 }}><b>{t}</b><span>{b}</span></HSAbs> })}
+          <HSAbs className="hs-record-shot hs-record-shot-empty" style={{ left: 120, top: 10095 }}>
+            <img src={hsTrial.phoneRecord} alt="挑战详情记录空状态" />
+          </HSAbs>
+          <HSAbs className="hs-record-shot hs-record-shot-list" style={{ left: 437, top: 10095 }}>
+            <img src={hsTrial.panel3451} alt="挑战详情记录" />
+          </HSAbs>
+          <HSAbs className="hs-record-caption" style={{ left: 120, top: 10678 }}>挑战详情记录（空状态）</HSAbs>
+          <HSAbs className="hs-record-caption" style={{ left: 437, top: 10678 }}>挑战详情记录</HSAbs>
+          <HSAbs className="hs-record-panel-title" style={{ left: 813, top: 10138 }}>数据呈现设计</HSAbs>
+          {([
+            ['history', '挑战历史', '记录每次挑战的难度、结果、用时，帮助玩家复盘策略'],
+            ['achievement', '成就展示', '累计通关次数、最高难度等数据，激发挑战成就感'],
+            ['progress', '进度总览', '各难度通关状态一目了然，明确下一步挑战方向'],
+            ['battle', '战场回顾', '公会战场数据记录，展示联盟协作战果'],
+          ] as [HSRecordIconKind, string, string][]).map(([icon, title, body], i) => (
+            <HSAbs key={title} className={`hs-record-card ${i % 2 ? 'orange' : 'blue'}`} style={{ left: 813, top: 10188 + i * 105 }}>
+              <div className="hs-record-card-icon"><HSRecordIcon kind={icon} /></div>
+              <div className="hs-record-card-copy"><b>{title}</b><span>{body}</span></div>
+            </HSAbs>
+          ))}
+          <HSAbs className="hs-record-dot-matrix" style={{ left: 1132, top: 10722 }} />
         </HSSection>
 
         <HSSection className="hs-sec hs-dark" top={10800}>
           <HSHeader n="12" title="设计原则" en="DESIGN PRINCIPLES" top={10800} />
-          {['高配置化架构|Highly Configurable|难度数量、教官形象、任务内容、奖励配置均支持后台热更新，策划团队无需客户端发版即可灵活调整活动参数。','双轨并行体验|Dual-Track Design|个人挑战与联盟挑战共享底层系统但独立运作，非联盟玩家不受限制，联盟玩家获得社交增值。','渐进式挑战设计|Progressive Challenge|九重难度形成清晰成长阶梯，选定即锁定机制赋予每次挑战策略权重。'].map((text, i) => { const [t,en,b]=text.split('|'); return <HSAbs key={t} className={`hs-principle-card ${i===1?'orange':''}`} style={{ left: 120+i*360, top: 10996 }}><small>0{i+1}</small><b>{t}</b><em>{en}</em><span>{b}</span></HSAbs> })}
+          {[
+            {
+              number: '01',
+              keyword: '架构',
+              title: '高配置化架构',
+              en: 'Highly Configurable',
+              tone: 'blue',
+              body: '难度数量、教官形象、任务内容、奖励配置均支持后台热更新。',
+              emphasis: '策划团队无需客户端发版即可灵活调整活动参数，大幅提升运营效率。',
+            },
+            {
+              number: '02',
+              keyword: '体验',
+              title: '双轨并行体验',
+              en: 'Dual-Track Design',
+              tone: 'orange',
+              body: '个人挑战与联盟挑战共享底层系统但独立运作，非联盟玩家不受限制，联盟玩家获得社交增值。',
+              emphasis: '两种模式的复用减少了学习成本，同时满足不同社交偏好的用户需求。',
+            },
+            {
+              number: '03',
+              keyword: '设计',
+              title: '渐进式挑战设计',
+              en: 'Progressive Challenge',
+              tone: 'green',
+              body: '九重难度形成清晰的成长阶梯，“选定即锁定”机制赋予每次挑战策略权重。',
+              emphasis: '从难度选择到战斗领奖的完整闭环设计，让玩家在每一轮循环中感受到成长与成就。',
+            },
+          ].map((item, i) => (
+            <HSAbs key={item.title} className={`hs-principle-card hs-principle-card--${item.tone}`} style={{ left: 120 + i * 360, top: 10996 }}>
+              <span className="hs-principle-card__keyword">{item.keyword}</span>
+              <small>{item.number}</small>
+              <i className="hs-principle-card__rule" />
+              <b>{item.title}</b>
+              <em>{item.en}</em>
+              <p>{item.body}</p>
+              <p className="hs-principle-card__emphasis">{item.emphasis}</p>
+              <i className="hs-principle-card__orb" />
+            </HSAbs>
+          ))}
         </HSSection>
 
         <HSSection className="hs-sec hs-outcome" top={11700}>
           <HSHeader n="13" title="设计成果" en="DESIGN OUTCOME" top={11700} />
-          <HSAbs className="hs-paragraph" style={{ left: 136, top: 11876, width: 960 }}>完成难度选择、个人挑战、联盟挑战、先锋教官、奖励预览、战绩记录等核心系统的交互设计。全链路闭环体验：选择难度 → 确认出战 → 地图定位 → 战斗交互 → 领取奖励。</HSAbs>
+          <HSAbs className="hs-outcome-points" style={{ left: 120, top: 11868, width: 1020 }}>
+            <p>完成难度选择、个人挑战、联盟挑战、先锋教官、奖励预览、战绩记录等核心系统的交互设计</p>
+            <p>全链路闭环体验：选择难度 → 确认出战 → 地图定位 → 战斗交互 → 领取奖励</p>
+          </HSAbs>
+          <HSAbs className="hs-outcome-metric" style={{ left: 120, top: 11952 }}>
+            <strong>3+</strong>
+            <b>核心界面</b>
+            <span>完成交付</span>
+          </HSAbs>
           {[hsTrial.outcome1, hsTrial.outcome2, hsTrial.outcome3].map((src, i) => <HSImg key={src} src={src} className="hs-phone" style={{ left: 300 + i*312, top: 11952, width: 280, height: 607 }} />)}
         </HSSection>
       </FigmaScaleStage>
@@ -1027,7 +1232,7 @@ export function HighSeasNavyTrialExactCase() {
 }
 
 export function HighSeasCleanupGangExactCase() {
-  const H = 8675;
+  const H = 8435;
   const flow = ['活动主界面|入口聚合', '功能入口|宝箱/英雄/排名', '条件判断|解锁条件校验', '状态分发|弹窗内容适配', '操作反馈|Toast/状态更新'];
   const heroTags = [
     { label: 'IP联动', left: 84 },
@@ -1055,7 +1260,7 @@ export function HighSeasCleanupGangExactCase() {
       <FigmaScaleStage width={1280} height={H} className="hs-exact-stage hs-gang-stage" maxScale={1}>
         <div className="hs-gang-bg" />
         <div className="hs-gang-topbar" />
-        <HSSection className="hs-sec hs-gang-cover" top={0}>
+        <HSSection className="hs-sec hs-gang-cover" top={0} height={880}>
           <HSAbs className="gang-kicker" style={{ left: 80, top: 205 }}>INTERACTION DESIGN</HSAbs>
           <HSAbs className="gang-title" style={{ left: 80, top: 219 }}>清理海盗</HSAbs>
           <HSAbs className="gang-subtitle" style={{ left: 80, top: 312 }}>IP联动活动</HSAbs>
@@ -1066,7 +1271,7 @@ export function HighSeasCleanupGangExactCase() {
               {tag.label}
             </HSAbs>
           ))}
-          <HSAbs className="gang-dot-matrix" style={{ left: 94, top: 480 }}>
+          <HSAbs className="gang-dot-matrix" style={{ left: 94, top: 87 }}>
             {Array.from({ length: 32 }, (_, idx) => <span key={idx} />)}
           </HSAbs>
           {heroScatterDots.map((dot, index) => (
@@ -1083,12 +1288,16 @@ export function HighSeasCleanupGangExactCase() {
               <img src={hsGang.eventIpCrewDetailShow02} className="gang-hero-person" alt="IP联动角色立绘" />
             </div>
           </HSAbs>
-          <HSAbs className="gang-cover-divider" style={{ left: 80, top: 880 }} />
+          <HSAbs className="gang-cover-divider" style={{ left: 80, top: 879 }} />
         </HSSection>
 
-        <HSSection className="hs-gang-section" top={928}>
-          <HSHeader n="01" title="项目概述" en="PROJECT OVERVIEW" top={928} />
-          <HSAbs className="gang-desc" style={{ left: 80, top: 1048, width: 542 }}>韩国漫画《入学佣兵》IP联动活动「清理黑帮」是一个以多阶段进度推进为核心的限时活动玩法。玩家通过参与战区清理任务获得奖励，同时解锁联动英雄的专属馈赠系统。整个活动围绕「玩法参与→进度推进→奖励领取→英雄养成」的核心循环展开。</HSAbs>
+        <HSSection className="hs-gang-section" top={880} height={540}>
+          <HSGangHeader n="01" title="项目概述" en="PROJECT OVERVIEW" top={880} />
+          <HSAbs className="gang-desc gang-overview-desc" style={{ left: 80, top: 1000, width: 1120 }}>
+            <p>韩国漫画《入学佣兵》IP联动活动「清理黑帮」是一个以多阶段进度推进为核心的限时活动玩法。</p>
+            <p>玩家通过参与战区清理任务获得奖励，同时解锁联动英雄的专属馈赠系统。</p>
+            <p>整个活动围绕「玩法参与→进度推进→奖励领取→英雄养成」的核心循环展开。</p>
+          </HSAbs>
           {[
             '阶段式推进|1~3阶段渐进解锁\n逐步释放玩法内容\n保持长线新鲜感',
             '奖励驱动循环|清理黑帮获取奖励\n英雄馈赠系统激励\n目标任务引导方向',
@@ -1096,7 +1305,7 @@ export function HighSeasCleanupGangExactCase() {
           ].map((text, i) => {
             const [t, b] = text.split('|');
             return (
-              <HSAbs key={t} className="gang-overview-card" style={{ left: 80 + i * 390, top: 1183 }}>
+              <HSAbs key={t} className="gang-overview-card" style={{ left: 80 + i * 390, top: 1122 }}>
                 <small>{`0${i + 1}`}</small>
                 <b>{t}</b>
                 <i />
@@ -1104,66 +1313,116 @@ export function HighSeasCleanupGangExactCase() {
               </HSAbs>
             );
           })}
+          <HSAbs className="gang-section-divider" style={{ left:80, top:1420 }} />
         </HSSection>
 
-        <HSSection className="hs-gang-section" top={1517}>
-          <HSHeader n="02" title="活动主界面设计" en="MAIN ACTIVITY INTERFACE" top={1517} />
-          <HSAbs className="gang-principle" style={{ left:80, top:1684 }}><em>DESIGN PRINCIPLE</em><b>视觉层级 & 信息架构</b><span>标题区(高权重) → 玩法视窗(中权重) → 功能入口(低权重)<br/>通过视觉权重的三级分层引导视线自然流动，降低认知负担</span></HSAbs>
-          <HSImg src={hsGang.panel23441} className="gang-phone" style={{ left: 552, top: 1683, width: 360, height: 780 }} />
+        <HSSection className="hs-gang-section" top={1420} height={1025}>
+          <HSGangHeader n="02" title="活动主界面设计" en="MAIN ACTIVITY INTERFACE" top={1420} />
+          <HSAbs className="gang-principle gang-main-principle" style={{ left:80, top:1587 }}>
+            <em>DESIGN PRINCIPLE</em>
+            <b>视觉层级 &amp; 信息架构</b>
+            <i className="gang-principle-rule" />
+            <span>标题区(高权重) → 玩法视窗(中权重) → 功能入口(低权重)<br/>通过视觉权重的三级分层引导视线自然流动，降低认知负担</span>
+            <div className="gang-weight-bars" aria-label="视觉权重：高、中、低">
+              <div><i /><small>高</small></div>
+              <div><i /><small>中</small></div>
+              <div><i /><small>低</small></div>
+            </div>
+          </HSAbs>
+          <HSImg src={hsGang.panel23441} className="gang-phone" style={{ left: 552, top: 1586, width: 360, height: 780 }} />
           {[
-            [932,1707,'活动标题区','展示活动名称、简介与倒计时，建立活动紧迫感与期待感'],
-            [932,1905,'核心玩法视窗','岛屿地图沉浸式视觉呈现，将「清理黑帮」玩法具象化表达'],
-            [932,2078,'英雄馈赠入口','Q版角色立绘吸引注意力，红点+数字提示可领取奖励'],
-            [452,2206,'进度宝箱','全战区清理进度可视化，宝箱3种状态引导操作反馈'],
-            [932,2353,'前往按钮','核心CTA行动召唤按钮，引导玩家进入战斗玩法'],
+            [932,1610,'活动标题区','展示活动名称、简介与倒计时，建立活动紧迫感与期待感'],
+            [932,1808,'核心玩法视窗','岛屿地图沉浸式视觉呈现，将「清理黑帮」玩法具象化表达'],
+            [932,1981,'英雄馈赠入口','Q版角色立绘吸引注意力，红点+数字提示可领取奖励'],
+            [452,2109,'进度宝箱','全战区清理进度可视化，宝箱3种状态引导操作反馈'],
+            [932,2256,'前往按钮','核心CTA行动召唤按钮，引导玩家进入战斗玩法'],
           ].map(([x,y,t,b])=><HSAbs key={String(t)} className={`gang-annotation ${Number(x)<600?'left':''}`} style={{ left:Number(x), top:Number(y) }}><i/><b>{t}</b><span>{b}</span></HSAbs>)}
+          <HSAbs className="gang-section-divider" style={{ left:80, top:2445 }} />
         </HSSection>
 
-        <HSSection className="hs-gang-section" top={2592}>
-          <HSHeader n="03" title="核心交互流程" en="CORE INTERACTION FLOW" top={2592} />
-          <HSAbs className="gang-desc" style={{ left:80, top:2712, width:600 }}>活动的交互流程围绕「主界面→子系统弹窗→条件判断→结果反馈」的路径展开。通过菱形决策节点实现分支逻辑，确保不同状态的玩家都能获得清晰的操作引导与即时反馈。</HSAbs>
-          {flow.map((text,i)=>{const [t,b]=text.split('|'); return <React.Fragment key={t}><HSAbs className="gang-flow-card" style={{ left:80+i*235, top:2878 }}><small>{i+1}</small><b>{t}</b><span>{b}</span></HSAbs>{i<4?<HSArrow x={270+i*235} y={2941}/>:null}</React.Fragment>})}
-          <HSAbs className="gang-theory-strip" style={{ left:80, top:3107 }}><em>INTERACTION THEORY</em><b>渐进式披露</b><small>Progressive Disclosure</small><span>活动分1~3阶段逐步解锁玩法内容，避免信息过载。每个阶段仅展示当前可操作的功能与入口。</span><div className="gang-stage-dots"><i/>阶段1<i/>阶段2<i/>阶段3</div></HSAbs>
+        <HSSection className="hs-gang-section" top={2445} height={725}>
+          <HSGangHeader n="03" title="核心交互流程" en="CORE INTERACTION FLOW" top={2445} />
+          <HSAbs className="gang-desc gang-flow-desc" style={{ left:80, top:2565, width:1120 }}>
+            <p>活动的交互流程围绕「主界面→子系统弹窗→条件判断→结果反馈」的路径展开。</p>
+            <p>通过菱形决策节点（如「解锁条件是否满足？」）实现分支逻辑，</p>
+            <p>确保不同状态的玩家都能获得清晰的操作引导与即时反馈。</p>
+          </HSAbs>
+          {flow.map((text,i)=>{const [t,b]=text.split('|'); return <React.Fragment key={t}><HSAbs className="gang-flow-card" style={{ left:80+i*235, top:2731 }}><small>{i+1}</small><b>{t}</b><span>{b}</span></HSAbs>{i<4?<HSAbs className="gang-flow-arrow" style={{ left:270+i*235, top:2796 }}><i /></HSAbs>:null}</React.Fragment>})}
+          <HSAbs className="gang-theory-strip" style={{ left:80, top:2931 }}>
+            <em>INTERACTION THEORY</em>
+            <b>渐进式披露</b>
+            <small>Progressive Disclosure</small>
+            <span>活动分1~3阶段逐步解锁玩法内容，避免信息过载。每个阶段仅展示当前可操作的功能与入口，降低玩家的认知成本，提升探索动力与留存率。</span>
+            <div className="gang-stage-dots">
+              {['阶段1','阶段2','阶段3'].map((label, index) => <div key={label} style={{ left:index * 80 }}><i />{index < 2 && <u />}<small>{label}</small></div>)}
+            </div>
+          </HSAbs>
+          <HSAbs className="gang-section-divider" style={{ left:80, top:3170 }} />
         </HSSection>
 
-        <HSSection className="hs-gang-section" top={3361}>
-          <HSHeader n="04" title="英雄馈赠奖励状态机" en="HERO GIFT REWARD STATE MACHINE" top={3361} />
-          <HSAbs className="gang-desc" style={{ left:80, top:3481, width:800 }}>英雄馈赠系统通过4种状态的精确控制，为玩家提供清晰的行为引导与即时反馈。每种状态对应不同的视觉表现与操作逻辑，确保玩家始终理解当前可执行的操作。</HSAbs>
-          {states.map(([t,b,img,type],i)=><React.Fragment key={t}><HSAbs className={`gang-state-title ${type}`} style={{ left:80+i*280, top:3571 }}>{t}</HSAbs><HSImg src={img} className="gang-state-phone" style={{ left:80+i*280, top:3607, width:240, height:518 }}/><HSAbs className="gang-state-caption" style={{ left:80+i*280, top:4141 }}>{b.split('\n').map(s=><p key={s}>{s}</p>)}</HSAbs>{i<3?<HSAbs className="gang-state-arrow" style={{ left:335+i*280, top:3831 }}>→</HSAbs>:null}</React.Fragment>)}
-          <HSAbs className="gang-theory-strip small" style={{ left:80, top:4211 }}><em>NIELSEN HEURISTIC #1</em><b>系统状态可见性</b><span>4种奖励状态通过差异化的按钮文案、颜色与红点提示，让玩家始终清晰感知当前奖励的领取状态，形成完整的状态闭环。</span></HSAbs>
+        <HSSection className="hs-gang-section" top={3170} height={1080}>
+          <HSGangHeader n="04" title="英雄馈赠奖励状态机" en="HERO GIFT REWARD STATE MACHINE" top={3170} />
+          <HSAbs className="gang-desc" style={{ left:80, top:3290, width:1120 }}>英雄馈赠系统通过4种状态的精确控制，为玩家提供清晰的行为引导与即时反馈。每种状态对应不同的视觉表现与操作逻辑，确保玩家始终理解当前可执行的操作。</HSAbs>
+          {states.map(([t,b,img,type],i)=><React.Fragment key={t}><HSAbs className={`gang-state-title ${type}`} style={{ left:80+i*280, top:3381 }}>{t}</HSAbs><HSAbs className="gang-state-phone" style={{ left:80+i*280, top:3416, width:240, height:518 }}><img src={img} alt="" /></HSAbs><HSAbs className="gang-state-caption" style={{ left:80+i*280, top:3950 }}>{b.split('\n').map(s=><p key={s}>{s}</p>)}</HSAbs>{i<3?<HSAbs className="gang-state-arrow" style={{ left:335+i*280, top:3640 }}>→</HSAbs>:null}</React.Fragment>)}
+          <HSAbs className="gang-theory-strip small gang-state-theory" style={{ left:80, top:4038 }}>
+            <em>NIELSEN HEURISTIC #1</em><b>系统状态可见性</b>
+            <div className="gang-state-chain">{['未解锁','可领取','已领取','已达上限'].map((label,i)=><div key={label} className={`state-${i}`} style={{ left:i*140 }}><i />{i<3&&<><u /><b>→</b></>}<span>{label}</span></div>)}</div>
+            <p>4种奖励状态通过差异化的按钮文案、颜色与红点提示，让玩家始终清晰感知当前奖励的领取状态，形成完整的状态闭环。</p>
+          </HSAbs>
+          <HSAbs className="gang-section-divider" style={{ left:80, top:4250 }} />
         </HSSection>
 
-        <HSSection className="hs-gang-section" top={4446}>
-          <HSHeader n="05" title="目标任务系统" en="TARGET TASK SYSTEM" top={4446} />
-          <HSAbs className="gang-principle" style={{ left:74, top:4615 }}><em>GAME DESIGN THEORY</em><b>目标驱动设计</b><span>任务列表将活动目标分解为可量化的子目标，进度条(N/10)提供即时成就反馈，利用 Zeigarnik 效应——未完成的任务更具驱动力。</span><div className="gang-progress"><i /></div></HSAbs>
-          <HSAbs className="gang-black-phone" style={{ left:541, top:4615 }}><HSImg src={hsGang.panel34651} style={{ left:23, top:150, width:314, height:472 }}/></HSAbs>
+        <HSSection className="hs-gang-section" top={4250} height={1015}>
+          <HSGangHeader n="05" title="目标任务系统" en="TARGET TASK SYSTEM" top={4250} />
+          <HSAbs className="gang-principle gang-task-principle" style={{ left:80, top:4419 }}><em>GAME DESIGN THEORY</em><b>目标驱动设计</b><span>任务列表将活动目标分解为可量化的子目标，进度条(N/10)提供即时成就反馈，利用Zeigarnik效应——未完成的任务更具驱动力。</span><div className="gang-progress"><i /><b>7/10</b></div></HSAbs>
+          <HSAbs className="gang-black-phone" style={{ left:552, top:4419 }}><HSImg src={hsGang.panel34651} style={{ left:23, top:150, width:314, height:472 }}/></HSAbs>
           {[
-            [918,4857,'任务列表卡片','每条任务独立展示名称、进度(N/10)、奖励道具与操作按钮，信息密度适中'],
-            [918,5055,'差异化按钮状态','黄色=待领取，绿色=进行中，蓝色=已完成，灰色=不可操作'],
-            [918,5194,'底部Tab切换','「进度奖励」与「个人成就」双Tab，为不同目标导向的玩家提供入口'],
-            [440,4965,'奖励道具预览','道具图标+数量直观展示，已获得打勾、未解锁显示锁标识'],
-          ].map(([x,y,t,b])=><HSAbs key={String(t)} className={`gang-annotation ${Number(x)<600?'left':''}`} style={{ left:Number(x), top:Number(y) }}><i/><b>{t}</b><span>{b}</span></HSAbs>)}
+            [937,4665,'任务列表卡片','每条任务独立展示名称、进度(N/10)、奖励道具与操作按钮，信息密度适中'],
+            [937,4863,'差异化按钮状态','黄色=待领取，绿色=进行中，蓝色=已完成，灰色=不可操作'],
+            [937,5002,'底部Tab切换','「进度奖励」与「个人成就」双Tab，为不同目标导向的玩家提供入口'],
+            [467,4769,'奖励道具预览','道具图标+数量直观展示，已获得打勾、未解锁显示锁标识'],
+          ].map(([x,y,t,b])=><HSAbs key={String(t)} className={`gang-annotation task ${Number(x)<600?'left':''}`} style={{ left:Number(x), top:Number(y) }}><i/><b>{t}</b><span>{b}</span></HSAbs>)}
+          <HSAbs className="gang-section-divider" style={{ left:80, top:5265 }} />
         </HSSection>
 
-        <HSSection className="hs-gang-section" top={5501}>
-          <HSHeader n="06" title="英雄系统设计" en="HERO SYSTEM DESIGN" top={5501} />
-          <HSAbs className="gang-desc" style={{ left:80, top:5621, width:706 }}>联动英雄系统提供「详情查看」与「立绘展示」两个维度的体验。详情面板聚焦功能——属性、技能、养成进度；立绘面板聚焦情感——全幅艺术画作沉浸展示。</HSAbs>
-          <HSImg src={hsGang.sec7HeroDetailImg} className="gang-phone" style={{ left:100, top:5754, width:300, height:647 }} />
-          <HSImg src={hsGang.sec7HeroPortraitImg} className="gang-phone" style={{ left:520, top:5752, width:300, height:649 }} />
-          <HSAbs className="gang-switch" style={{ left:443, top:6031 }}>⇄<span>点击切换</span></HSAbs>
-          <HSAbs className="gang-emotion" style={{ left:860, top:5752 }}><em>DON NORMAN'S THREE LEVELS</em><b>情感化设计</b>{['♡|本能层|精美立绘引发审美愉悦','⚡|行为层|清晰的上阵/强化操作路径','✦|反思层|IP角色带来情感共鸣与收藏欲'].map((s,i)=>{const [ico,t,b]=s.split('|');return <div key={t} className={`gang-emotion-card c${i}`}><i>{ico}</i><b>{t}</b><span>{b}</span></div>})}</HSAbs>
+        <HSSection className="hs-gang-section" top={5265} height={1070}>
+          <HSGangHeader n="06" title="英雄系统设计" en="HERO SYSTEM DESIGN" top={5265} />
+          <HSAbs className="gang-desc gang-hero-desc" style={{ left:80, top:5385, width:1120 }}>
+            <span>联动英雄系统提供「详情查看」与「立绘展示」两个维度的体验。</span>
+            <span>详情面板聚焦功能——属性、技能、养成进度；</span>
+            <span>立绘面板聚焦情感——全幅艺术画作沉浸展示。两者互补，满足理性决策与感性体验的双重需求。</span>
+          </HSAbs>
+          <HSAbs className="gang-hero-crop detail" style={{ left:100, top:5518 }}><img src={hsGang.sec7HeroDetailImg} alt="英雄详情面板" /></HSAbs>
+          <HSAbs className="gang-hero-crop portrait" style={{ left:520, top:5516 }}><img src={hsGang.sec7HeroPortraitImg} alt="联动英雄立绘" /></HSAbs>
+          <HSAbs className="gang-switch" style={{ left:443, top:5795 }}>⇄<span>点击切换</span></HSAbs>
+          <HSAbs className="gang-emotion" style={{ left:860, top:5516 }}>
+            <em>DON NORMAN'S THREE LEVELS</em>
+            <b>情感化设计</b>
+            {[
+              ['♡','VISCERAL LEVEL','本能层','精美立绘引发审美愉悦'],
+              ['⚡','BEHAVIORAL LEVEL','行为层','清晰的上阵/强化操作路径'],
+              ['✦','REFLECTIVE LEVEL','反思层','IP角色带来情感共鸣与收藏欲'],
+            ].map(([icon, level, title, body], index) => (
+              <div key={title} className={`gang-emotion-card c${index}`}>
+                <i>{icon}</i><em>{level}</em><b>{title}</b><span>{body}</span>
+              </div>
+            ))}
+          </HSAbs>
+          <HSAbs className="gang-hero-caption" style={{ left:100, top:6183 }}><b>英雄详情面板</b><span>展示英雄属性、技能、等级<br/>上阵/强化双CTA按钮<br/>功能导向的理性决策界面</span></HSAbs>
+          <HSAbs className="gang-hero-caption" style={{ left:520, top:6183 }}><b>联动英雄立绘</b><span>全屏沉浸式立绘展示<br/>点击空白区域关闭的轻量交互<br/>情感导向的感性体验界面</span></HSAbs>
+          <HSAbs className="gang-section-divider" style={{ left:80, top:6335 }} />
         </HSSection>
 
-        <HSSection className="hs-gang-outcome" top={6571}>
-          <HSHeader n="07" title="设计成果" en="DESIGN OUTCOMES" top={6571} />
-          <HSAbs className="gang-desc" style={{ left:80, top:6751, width:794 }}>本案例完整展示了IP联动活动的交互设计思路：从宏观的阶段式架构设计，到微观的按钮状态机控制，每一个交互决策都有明确的理论依据支撑。通过视觉层级、渐进式披露、系统状态可见性等核心原则的综合运用，打造了一套兼顾功能性、易用性与情感化的活动交互体系。</HSAbs>
-          <HSAbs className="gang-metric" style={{ left:931, top:6751 }}><b>5</b><span>交互界面</span><small>完整的多界面交互稿</small></HSAbs>
+        <HSSection className="hs-gang-outcome" top={6335} height={2100}>
+          <HSGangHeader n="07" title="设计成果" en="DESIGN OUTCOMES" top={6335} outcome />
+          <HSAbs className="gang-desc" style={{ left:80, top:6515, width:740 }}>本案例完整展示了IP联动活动的交互设计思路：从宏观的阶段式架构设计，到微观的按钮状态机控制，每一个交互决策都有明确的理论依据支撑。通过视觉层级、渐进式披露、系统状态可见性等核心原则的综合运用，打造了一套兼顾功能性、易用性与情感化的活动交互体系。</HSAbs>
+          <HSAbs className="gang-metric" style={{ left:931, top:6515 }}><b>5</b><span>交互界面</span><small>完整的多界面交互稿</small></HSAbs>
           {[0,1,2,3,4].map((i) => (
-            <HSAbs key={i} className="gang-result-shot" style={{ left:79 + (i%3)*380, top:6976 + Math.floor(i/3)*820 }}>
+            <HSAbs key={i} className="gang-result-shot" style={{ left:79 + (i%3)*380 + (i > 2 ? 190 : 0), top:6740 + Math.floor(i/3)*800 }}>
               <img
                 alt=""
                 src={hsGang.collage}
-                style={{ height:'102.83%', width:'664.35%', objectFit:'cover', transform:`translateX(${resultOffsets[i]}) translateY(-2.81%)` }}
+                style={{ position:'absolute', height:'102.83%', width:'664.35%', maxWidth:'none', left:resultOffsets[i], top:'-2.81%' }}
               />
             </HSAbs>
           ))}
@@ -1176,6 +1435,9 @@ export function HighSeasCleanupGangExactCase() {
 
 export function renderStarFigmaCase(caseName?: string | null) {
   const name = String(caseName || '');
+  if (name.includes('职力测评') || name.includes('CDST')) return <CdstCase />;
+  if (name.includes('海军试炼')) return <HighSeasNavyTrialExactCase />;
+  if (name.includes('清理帮派') || name.includes('清理海盗')) return <HighSeasCleanupGangExactCase />;
   if (name.includes('我为球狂')) return <MadCase />;
   return null;
 }

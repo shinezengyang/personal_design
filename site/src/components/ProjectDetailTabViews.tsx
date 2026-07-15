@@ -40,7 +40,7 @@ export const PROJECT_DETAIL_TABS: ReadonlyArray<ProjectDetailTab> = [
   { key: '5', label: '玩法-海军试炼' },
   { key: '9', label: '玩法-燃海矿区' },
   { key: '8', label: '活动-许愿树' },
-  { key: '10', label: '活动-清理帮派' },
+  { key: '10', label: '活动-清理海盗' },
 ] as const;
 
 export const QINGYU_PROJECT_DETAIL_TABS: ReadonlyArray<ProjectDetailTab> = [

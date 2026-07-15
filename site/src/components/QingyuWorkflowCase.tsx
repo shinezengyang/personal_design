@@ -20,7 +20,7 @@ const figmaAssets = {
 
 function SectionTitle({ title, desc }: { title: string; desc: string }) {
   return (
-    <div className="workflow-section-title mb-[44px] border-[3px] border-black bg-white px-[22px] py-[18px]">
+    <div className="workflow-section-title mb-[22px] border-[3px] border-black bg-white px-[22px] py-[18px]">
       <h2 className="font-['Microsoft_YaHei',sans-serif] text-[34px] leading-none tracking-[3px] text-black">
         {title}
       </h2>
@@ -310,30 +310,30 @@ function ScenarioTable() {
 function DirectionBlock() {
   return (
     <div>
-      <div className="workflow-diagram relative mx-auto mb-[46px] h-[220px] w-[1040px]">
-        <ConnectorSvg markerId="workflow-direction-arrow" viewBox="0 0 1040 220">
-          <path d="M166 88 H200" />
-          <path d="M326 88 H368" />
-          <path d="M508 88 H548" />
-          <path d="M684 88 H724" />
-          <path d="M724 88 V46 H750" />
-          <path d="M724 88 V136 H750" />
-          <path d="M876 46 H900" />
-          <path d="M876 136 H900" />
+      <div className="workflow-diagram relative mx-auto mb-[15px] h-[165px] w-[1120px]">
+        <ConnectorSvg markerId="workflow-direction-arrow" viewBox="0 0 1120 165">
+          <path d="M140 72 H190" />
+          <path d="M306 72 H356" />
+          <path d="M484 72 H536" />
+          <path d="M664 72 H720" />
+          <path d="M720 72 V38 H760" />
+          <path d="M720 72 V122 H760" />
+          <path d="M876 38 H906" />
+          <path d="M876 122 H906" />
         </ConnectorSvg>
-        <BlueNode className="absolute left-[40px] top-[48px] h-[80px] w-[126px] text-[22px]">主界面</BlueNode>
-        <BlueNode className="absolute left-[200px] top-[48px] h-[80px] w-[126px] text-[22px]">招式</BlueNode>
-        <BlueNode className="absolute left-[368px] top-[48px] h-[80px] w-[140px] text-[22px]">全部招式</BlueNode>
-        <BlueNode className="absolute left-[548px] top-[48px] h-[80px] w-[136px] text-[22px]">招式强化</BlueNode>
-        <BlueNode className="absolute left-[750px] top-[6px] h-[80px] w-[126px] text-[22px]">选择招式</BlueNode>
-        <BlueNode className="absolute left-[750px] top-[96px] h-[80px] w-[126px] text-[22px]">获取道具</BlueNode>
-        <p className="absolute left-[20px] top-[142px] w-[166px] text-center text-[16px] leading-[1.45] tracking-[0.5px] text-black">主界面常规入口</p>
-        <p className="absolute left-[520px] top-[142px] w-[192px] text-center text-[16px] leading-[1.45] tracking-[0.5px] text-black">需要满足条件<br />入口才可开启</p>
-        <p className="absolute left-[904px] top-[28px] w-[126px] text-[16px] leading-[1.45] tracking-[0.4px] text-black">道具充足时进行强化</p>
-        <p className="absolute left-[904px] top-[120px] w-[126px] text-[16px] leading-[1.45] tracking-[0.4px] text-black">道具不足时前往获取道具</p>
+        <BlueNode className="absolute" style={{ left: 24, top: 44, width: 116, height: 56, padding: '0 8px', fontSize: 16, lineHeight: 1, letterSpacing: 0.5, whiteSpace: 'nowrap' }}>主界面</BlueNode>
+        <BlueNode className="absolute" style={{ left: 190, top: 44, width: 116, height: 56, padding: '0 8px', fontSize: 16, lineHeight: 1, letterSpacing: 0.5, whiteSpace: 'nowrap' }}>招式</BlueNode>
+        <BlueNode className="absolute" style={{ left: 356, top: 44, width: 128, height: 56, padding: '0 8px', fontSize: 16, lineHeight: 1, letterSpacing: 0.5, whiteSpace: 'nowrap' }}>全部招式</BlueNode>
+        <BlueNode className="absolute" style={{ left: 536, top: 44, width: 128, height: 56, padding: '0 8px', fontSize: 16, lineHeight: 1, letterSpacing: 0.5, whiteSpace: 'nowrap' }}>招式强化</BlueNode>
+        <BlueNode className="absolute" style={{ left: 760, top: 10, width: 116, height: 56, padding: '0 8px', fontSize: 16, lineHeight: 1, letterSpacing: 0.5, whiteSpace: 'nowrap' }}>选择招式</BlueNode>
+        <BlueNode className="absolute" style={{ left: 760, top: 94, width: 116, height: 56, padding: '0 8px', fontSize: 16, lineHeight: 1, letterSpacing: 0.5, whiteSpace: 'nowrap' }}>获取道具</BlueNode>
+        <p className="absolute left-[12px] top-[112px] w-[140px] text-center text-[15px] leading-[1.45] tracking-[0.5px] text-black">主界面常规入口</p>
+        <p className="absolute left-[520px] top-[112px] w-[160px] text-center text-[15px] leading-[1.45] tracking-[0.5px] text-black">需要满足条件<br />入口才可开启</p>
+        <p className="absolute left-[916px] top-[22px] w-[180px] text-[15px] leading-[1.45] tracking-[0.4px] text-black">道具充足时进行强化</p>
+        <p className="absolute left-[916px] top-[106px] w-[180px] text-[15px] leading-[1.45] tracking-[0.4px] text-black">道具不足时前往获取道具</p>
       </div>
       <VisualReferenceSection />
-      <div className="workflow-panel mt-[40px] border border-black bg-white">
+      <div className="workflow-panel mt-[20px] border border-black bg-white">
         <div className="bg-[#00F5FF] py-[18px] text-center text-[30px] font-bold tracking-[2px] text-[#061417]">
           《天涯明月刀》手游竞品分析图
         </div>
@@ -376,7 +376,7 @@ function VisualReferenceSection() {
   ] as const;
 
   return (
-    <div className="workflow-panel mb-[40px] border border-black bg-white">
+    <div className="workflow-panel mb-[20px] border border-black bg-white">
       <div className="bg-[#00F5FF] py-[18px] text-center text-[30px] font-bold tracking-[2px] text-[#061417]">
         视觉元素参考图
       </div>
@@ -411,28 +411,25 @@ function SystemFlow() {
         <path d="M144 188 H188" />
         <path d="M292 188 H336" />
         <path d="M440 188 H484" />
-        <path d="M588 188 H620" />
-        <path d="M694 188 H760" />
-        <path d="M694 188 V314 H760" />
-        <path d="M818 188 H910" />
-        <path d="M818 314 H910" />
-        <path d="M968 314 H1040" />
-        <path d="M1069 343 V398" />
+        <path d="M588 188 H645" />
+        <path d="M749 188 H796" />
+        <path d="M697 240 V314 H796" />
+        <path d="M862 188 H946" />
+        <path d="M862 314 H946" />
+        <path d="M1012 314 H1076" />
+        <path d="M1109 347 V394" />
       </ConnectorSvg>
-      <BlueNode className="absolute left-[40px] top-[158px] h-[60px] w-[104px] px-[10px] text-[17px] leading-[1.18]">打开主界面</BlueNode>
-      <BlueNode className="absolute left-[188px] top-[158px] h-[60px] w-[104px] px-[10px] text-[17px] leading-[1.18]">进入招式</BlueNode>
-      <BlueNode className="absolute left-[336px] top-[158px] h-[60px] w-[104px] px-[10px] text-[17px] leading-[1.18]">招式列表</BlueNode>
-      <BlueNode className="absolute left-[484px] top-[158px] h-[60px] w-[104px] px-[10px] text-[17px] leading-[1.18]">点击强化</BlueNode>
-      <DiamondNode className="h-[74px] w-[74px]" style={{ left: 620, top: 151 }}>材料<br />判断</DiamondNode>
-      <CircleNode className="h-[58px] w-[58px] text-[15px] leading-[1.18]" style={{ left: 760, top: 159 }}>材料<br />足够</CircleNode>
-      <CircleNode className="h-[58px] w-[58px] text-[15px] leading-[1.18]" style={{ left: 910, top: 159 }}>强化<br />成功</CircleNode>
-      <CircleNode className="h-[58px] w-[58px] text-[15px] leading-[1.18]" style={{ left: 760, top: 285 }}>材料<br />不足</CircleNode>
-      <CircleNode className="h-[58px] w-[58px] text-[15px] leading-[1.18]" style={{ left: 910, top: 285 }}>跳转<br />来源</CircleNode>
-      <CircleNode className="h-[58px] w-[58px] text-[15px] leading-[1.18]" style={{ left: 1040, top: 285 }}>获取<br />道具</CircleNode>
-      <CircleNode className="h-[58px] w-[58px] text-[15px] leading-[1.18]" style={{ left: 1040, top: 398 }}>退出<br />流程</CircleNode>
-      <p className="absolute bottom-[24px] left-[24px] text-[20px] tracking-[2px] text-black">
-        操作方式与系统结构的调整、以及部分界面表现概念的分析
-      </p>
+      <BlueNode className="absolute" style={{ left: 40, top: 158, width: 104, height: 60, padding: '0 6px', fontSize: 15, lineHeight: 1, letterSpacing: 0.5, whiteSpace: 'nowrap' }}>打开主界面</BlueNode>
+      <BlueNode className="absolute" style={{ left: 188, top: 158, width: 104, height: 60, padding: '0 6px', fontSize: 15, lineHeight: 1, letterSpacing: 0.5, whiteSpace: 'nowrap' }}>进入招式</BlueNode>
+      <BlueNode className="absolute" style={{ left: 336, top: 158, width: 104, height: 60, padding: '0 6px', fontSize: 15, lineHeight: 1, letterSpacing: 0.5, whiteSpace: 'nowrap' }}>招式列表</BlueNode>
+      <BlueNode className="absolute" style={{ left: 484, top: 158, width: 104, height: 60, padding: '0 6px', fontSize: 15, lineHeight: 1, letterSpacing: 0.5, whiteSpace: 'nowrap' }}>点击强化</BlueNode>
+      <DiamondNode style={{ left: 660, top: 151, width: 74, height: 74 }}>材料<br />判断</DiamondNode>
+      <CircleNode style={{ left: 796, top: 155, width: 66, height: 66, fontSize: 15, lineHeight: 1.18, letterSpacing: 0.5 }}>材料<br />足够</CircleNode>
+      <CircleNode style={{ left: 946, top: 155, width: 66, height: 66, fontSize: 15, lineHeight: 1.18, letterSpacing: 0.5 }}>强化<br />成功</CircleNode>
+      <CircleNode style={{ left: 796, top: 281, width: 66, height: 66, fontSize: 15, lineHeight: 1.18, letterSpacing: 0.5 }}>材料<br />不足</CircleNode>
+      <CircleNode style={{ left: 946, top: 281, width: 66, height: 66, fontSize: 15, lineHeight: 1.18, letterSpacing: 0.5 }}>跳转<br />来源</CircleNode>
+      <CircleNode style={{ left: 1076, top: 281, width: 66, height: 66, fontSize: 15, lineHeight: 1.18, letterSpacing: 0.5 }}>获取<br />道具</CircleNode>
+      <CircleNode style={{ left: 1076, top: 394, width: 66, height: 66, fontSize: 15, lineHeight: 1.18, letterSpacing: 0.5 }}>退出<br />流程</CircleNode>
     </div>
   );
 }
@@ -547,9 +544,9 @@ function TestOptimizationSection() {
 
   return (
     <div>
-      <div className="workflow-copy mb-[54px] text-black">
+      <div className="workflow-copy mb-[27px] text-black">
         <h2 className="text-[34px] leading-none tracking-[3.6px]">测试优化</h2>
-        <p className="mt-[38px] text-[28px] font-light leading-[1.55] tracking-[2.8px]">
+        <p className="mt-[19px] text-[28px] font-light leading-[1.55] tracking-[2.8px]">
           对设计内容进行走查，制作问题跟进列表，以便跟踪采纳与优化的实现情况，并自己测试
           <br />
           以确保界面可以达到外放面对玩家的程度
@@ -871,7 +868,7 @@ export function QingyuWorkflowCase() {
         <section className="workflow-no-paper w-[1280px] bg-transparent px-[30px] py-[26px] font-['Microsoft_YaHei',sans-serif] text-[#00F5FF]">
           <h1 className="workflow-entrance mb-[42px] text-[46px] font-bold leading-none tracking-[5px] text-[#00F5FF]">工作流程</h1>
 
-          <div className="mb-[78px] flex justify-center gap-[28px]">
+          <div className="mb-[98px] flex justify-center gap-[28px]">
             <WorkflowCard title="需求分析" items={['策划需求沟通', '策划需求梳理']} />
             <WorkflowCard title="用户研究" items={['玩家心理需求', '玩家应用场景']} />
             <WorkflowCard title="交互设计" items={['信息框架', '结构层梳理', '系统规范规划', '原型设计', '游戏界面制作']} />
@@ -882,45 +879,45 @@ export function QingyuWorkflowCase() {
           <RequirementMap />
           <DemandTable />
 
-          <div className="mt-[90px]">
+          <div className="mt-[112px]">
             <SectionTitle title="玩家应用场景分析" desc="从玩家目标、完成方法、关注内容与操作频率拆解招式强化流程中的关键体验要求" />
             <PsychologyNeedTable />
-            <div className="mt-[40px]">
+            <div className="mt-[20px]">
               <ScenarioTable />
             </div>
           </div>
 
-          <div className="mt-[90px]">
+          <div className="mt-[112px]">
             <SectionTitle title="确认设计方向" desc="操作方式与系统结构的调整、以及部分界面表现概念的分析" />
             <DirectionBlock />
           </div>
 
-          <div className="mt-[90px]">
+          <div className="mt-[112px]">
             <SectionTitle title="系统结构/玩法流程" desc="操作方式与系统结构的调整、以及部分界面表现概念的分析" />
             <SystemFlow />
           </div>
 
-          <div className="mt-[90px]">
+          <div className="mt-[112px]">
             <SectionTitle title="原型绘制" desc="操作方式与系统结构的调整、以及部分界面表现概念的分析" />
             <ImageShowcase src={figmaAssets.prototype} height={2140} title="招式强化原型流程图" />
           </div>
 
-          <div className="mt-[90px]">
+          <div className="mt-[112px]">
             <SectionTitle title="部门合作" desc="在交互稿通过审核后，会对接各部门提交需求表，插单推进优化进程，并进行验收" />
             <DepartmentMatrix />
           </div>
 
-          <div className="mt-[90px]">
+          <div className="mt-[112px]">
             <SectionTitle title="界面制作" desc="参照交互稿，在 unity 中使用 UGUI 进行临时界面预设搭建，搭建完成后交付给对应的客户端开发人员进行功能实现" />
             <ImageShowcase src={figmaAssets.production} height={790} objectFit="cover" title="临时界面预设搭建" />
           </div>
 
-          <div className="mt-[90px]">
+          <div className="mt-[112px]">
             <SectionTitle title="界面还原" desc="在美术绘制完成界面效果图后，把临时资源替换成正式资源，并且制作相应的界面动效" />
             <ImageShowcase src={figmaAssets.restore} height={680} objectFit="cover" title="界面效果图还原" />
           </div>
 
-          <div className="mt-[90px]">
+          <div className="mt-[112px]">
             <TestOptimizationSection />
           </div>
         </section>
