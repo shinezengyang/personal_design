@@ -190,8 +190,6 @@ function NavyTrialCase() {
 
 /* ─── CDST assets (refreshed from Figma 9434:2079) ─── */
 const cdst = {
-  /* market */
-  market: 'https://www.figma.com/api/mcp/asset/7a01ba77-6077-417b-8307-415c818d18dc',
   /* 痛点 graduation-cap icons */
   pain1: 'https://www.figma.com/api/mcp/asset/8954e8e8-8c06-402a-b4c3-780d5f37da79',
   pain2: 'https://www.figma.com/api/mcp/asset/7141ad44-5ec9-43ea-a9a5-c1c2000e375a',
@@ -224,7 +222,6 @@ const cdst = {
   /* 交互原型 main screens */
   prototypeSalary: 'https://www.figma.com/api/mcp/asset/fe700ceb-6507-4a64-858a-ff04d3077acf',
   prototypeTest: 'https://www.figma.com/api/mcp/asset/0a786076-dad5-42c3-a102-289d8b58df27',
-  prototypeProfile: 'https://www.figma.com/api/mcp/asset/48bc2b7c-53a4-4623-a526-897ca6bbeb0a',
   prototypeStatus: 'https://www.figma.com/api/mcp/asset/efa5804a-cfa2-4256-9a62-b62492f44c3f',
   /* 视觉 主页形象 */
   uiHome1: 'https://www.figma.com/api/mcp/asset/5f50009e-0500-401e-b9b8-026181b9ae65',
@@ -248,11 +245,6 @@ const cdst = {
 
 function CdstCase() {
   const pageRef = useRef<HTMLDivElement | null>(null);
-  const exactFigmaPage = {
-    src: publicUrl('/images/xingji/cdst/figma-9817-19122-full.png'),
-    width: 2448,
-    height: 32768,
-  };
 
   useEffect(() => {
     const root = pageRef.current;
@@ -283,19 +275,6 @@ function CdstCase() {
     items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
   }, []);
-
-  return (
-    <div ref={pageRef} className="star-case-page cdst-page">
-      <FigmaScaleStage width={exactFigmaPage.width} height={exactFigmaPage.height} className="cdst-stage cdst-exact-stage">
-        <img
-          src={exactFigmaPage.src}
-          alt="职力测评 Figma 作品集完整页面"
-          className="abs cdst-exact-page-image"
-          style={{ left: 0, top: 0, width: exactFigmaPage.width, height: exactFigmaPage.height }}
-        />
-      </FigmaScaleStage>
-    </div>
-  );
 
   /* stage Y bases per Figma section (frame 9434:2079) */
   const SEC = {
@@ -349,7 +328,7 @@ function CdstCase() {
         <div className="cdst-paragraph black" style={{ left: 210.5, top: SEC.project + 435.5, width: 2060 }}>职力测评(CDST4U)是专门为职场新人提供一战式职业相关能力自测的平台。致力为职场新人提供全方位自测工具，帮助新人建立“知己知彼”的健康职业发展道路。</div>
         <div className="cdst-subtitle blue" style={{ left: 209.5, top: SEC.project + 768.5 }}>市场分析 <span>market analysis</span></div>
         <div className="cdst-paragraph white" style={{ left: 212.5, top: SEC.project + 932.5, width: 1170 }}>经市场调研发现：<br />　　2010-2018年的毕业生人数按照2%-5%的同比增长率逐年增长，近8年间累计毕业生人数达到6526万人。2018年普通高校毕业生人数共计820万人，与2010年相比增长了160万人，再创新高。<br />　　大学生职前教育的主要目标群体为本科毕业生和海归群体，根据2017年中国的本科毕业生和海归学生分别为450万、43万人，以客单价约为4000元来计算，2017年中国的职前教育市场规模约为30亿元。随着我国高校人数的扩招和出国留学热潮，未来职前教育的目标群体将会逐渐扩大，市场规模也将不断攀升。</div>
-        <img src={cdst.market} className="abs img-cover" style={{ left: 1378.5, top: SEC.project + 975.5, width: 903, height: 575 }} />
+        <CdstMarketChart left={1378.5} top={SEC.project + 975.5} />
 
         {/* ── 痛点分析 (base 3695.5, h1373) — all white text ── */}
         <CdstTitle y={SEC.pain} title="痛点分析" en="User Pain Points’Analysis" w={488} />
@@ -430,7 +409,7 @@ function CdstCase() {
 
         {/* 个人资料 (组21 base 19361.5) */}
         <div className="interaction-title" style={{ left: 284.5, top: I.profile - 0.5 }}>|　　个人资料　　|</div>
-        <img src={cdst.prototypeProfile} className="abs proto img-cover" style={{ left: 281.5, top: I.profile + 131.5, width: 1999, height: 2476 }} />
+        <CdstProfilePrototype left={281.5} top={I.profile + 131.5} />
         <Anno x={918.5} y={I.profile + 2593.5} text="滑动按钮" />
         <Anno x={308.5} y={I.profile + 2565.5} multiline lines={['位置：底部', '交互：页面隐出遮罩', '层，底部弹出，可滚', '动操作列表，点击取', '消关闭(以上与此类页', '面相同的交互一致）']} />
         <Anno x={1361.5} y={I.profile + 2602.5} multiline lines={['位置：页面中部偏上', '交互：5S后渐隐消失']} />
@@ -507,6 +486,291 @@ function CdstCase() {
           ].map(([bg, fg]) => <span key={bg} style={{ background: bg, color: fg }}>{bg}</span>)}
         </div>
       </FigmaScaleStage>
+    </div>
+  );
+}
+
+const profilePhones = [
+  { x: 0, y: 0, screen: 'industryTiles', mark: 'top' },
+  { x: 255, y: 0, screen: 'schoolRecommend', mark: 'mid' },
+  { x: 535, y: 0, screen: 'profile', mark: 'lower' },
+  { x: 815, y: 0, screen: 'cityList', mark: 'top' },
+  { x: 1095, y: 0, screen: 'cityOverlay', mark: 'top' },
+  { x: 1375, y: 0, screen: 'citySearchOverlay', mark: 'top' },
+  { x: 0, y: 610, screen: 'profileCity', mark: 'mid' },
+  { x: 255, y: 610, screen: 'cityList', mark: 'top' },
+  { x: 535, y: 610, screen: 'citySearch', mark: 'top' },
+  { x: 815, y: 610, screen: 'profileCityDone', mark: 'mid' },
+  { x: 1095, y: 610, screen: 'industryList', mark: 'top' },
+  { x: 1375, y: 610, screen: 'profileIndustry', mark: 'mid' },
+  { x: 0, y: 1214, screen: 'profileBottomPicker', dimmed: true, mark: 'none' },
+  { x: 255, y: 1214, screen: 'profileSchool', mark: 'bottom' },
+  { x: 535, y: 1214, screen: 'profileBottomPicker', dimmed: true, mark: 'none' },
+  { x: 815, y: 1214, screen: 'profileYear', mark: 'bottom' },
+  { x: 1095, y: 1214, screen: 'profileBottomPicker', dimmed: true, mark: 'none' },
+  { x: 1375, y: 1214, screen: 'profileYearDone', mark: 'mid' },
+  { x: 0, y: 1826, screen: 'profileBottomPicker', dimmed: true, mark: 'none' },
+  { x: 255, y: 1826, screen: 'profileMajor', mark: 'bottom' },
+  { x: 535, y: 1826, screen: 'profileSwitchOff', mark: 'switch' },
+  { x: 815, y: 1826, screen: 'profileToast', mark: 'none' },
+] as const;
+
+function CdstProfilePrototype({ left, top }: { left: number; top: number }) {
+  return (
+    <div className="abs cdst-profile-prototype proto" style={{ left, top }}>
+      <svg className="cdst-profile-lines" viewBox="0 0 1999 2476" aria-hidden="true">
+        <path d="M136 112 H232 V436 H360 V514 H660 V436 H792 V214 H918 V514 H1090 V436 H1212 V116 H1350 V514 H1510 V438 H1782 V112 H1872" />
+        <path d="M78 852 H232 V1056 H360 V1130 H660 V1056 H792 V910 H918 V1130 H1090 V1056 H1212 V840 H1350 V1130 H1510 V1056 H1788 V842 H1872" />
+        <path d="M78 1434 H232 V1632 H360 V1718 H660 V1632 H792 V1482 H918 V1718 H1090 V1632 H1212 V1498 H1350 V1718 H1510 V1632 H1788 V1440 H1872" />
+        <path d="M78 2040 H232 V2234 H360 V2314 H660 V2234 H792 V2172 H918 V2314" />
+      </svg>
+      {profilePhones.map((phone, index) => (
+        <CdstPhone key={`${phone.screen}-${index}`} {...phone} />
+      ))}
+    </div>
+  );
+}
+
+const marketChartBars = [
+  { year: '2010', graduates: 631, rate: 3.4 },
+  { year: '2011', graduates: 660, rate: 4.6 },
+  { year: '2012', graduates: 680, rate: 3.0 },
+  { year: '2013', graduates: 699, rate: 2.8 },
+  { year: '2014', graduates: 727, rate: 4.0 },
+  { year: '2015', graduates: 749, rate: 2.9 },
+  { year: '2016', graduates: 765, rate: 2.1 },
+  { year: '2017', graduates: 795, rate: 3.9 },
+  { year: '2018', graduates: 820, rate: 3.1 },
+] as const;
+
+function CdstMarketChart({ left, top }: { left: number; top: number }) {
+  const minGraduates = 600;
+  const maxGraduates = 900;
+  const points = marketChartBars.map((item, index) => {
+    const x = 98 + index * 78;
+    const y = 382 - ((item.rate - 1.5) / 3.5) * 258;
+    return `${x},${y}`;
+  }).join(' ');
+
+  return (
+    <div className="abs cdst-market-chart" style={{ left, top }}>
+      <div className="cdst-market-title">图表4：2010-2018年全国高校毕业生人数变化情况（单位：万人，%）</div>
+      <div className="cdst-market-plot">
+        <div className="cdst-market-y-left">
+          {[900, 800, 700, 600].map((value) => <span key={value}>{value}</span>)}
+        </div>
+        <div className="cdst-market-y-right">
+          {[5, 4.5, 4, 3.5, 3, 2.5, 2, 1.5].map((value) => <span key={value}>{value}</span>)}
+        </div>
+        <svg className="cdst-market-grid" viewBox="0 0 760 420" aria-hidden="true">
+          {[0, 1, 2, 3, 4, 5, 6].map((line) => <path key={line} d={`M70 ${70 + line * 45}H715`} />)}
+          <polyline points={points} />
+          {marketChartBars.map((item, index) => {
+            const x = 98 + index * 78;
+            const y = 382 - ((item.rate - 1.5) / 3.5) * 258;
+            return <circle key={item.year} cx={x} cy={y} r="6" />;
+          })}
+        </svg>
+        <div className="cdst-market-bars">
+          {marketChartBars.map((item, index) => {
+            const height = ((item.graduates - minGraduates) / (maxGraduates - minGraduates)) * 250 + 52;
+            return (
+              <div className="cdst-market-bar-slot" key={item.year}>
+                <span className="cdst-market-bar-value" style={{ bottom: height + 8 }}>{item.graduates}</span>
+                <i style={{ height }} />
+                <b>{item.year}</b>
+                <em className="cdst-market-rate" style={{ bottom: 342 - ((item.rate - 1.5) / 3.5) * 258 }}>{item.rate}%</em>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="cdst-market-legend">
+        <span><i />全国高校毕业生(万人)</span>
+        <span><b />同比增长（%）</span>
+      </div>
+    </div>
+  );
+}
+
+function CdstPhone({
+  x,
+  y,
+  screen,
+  mark = 'mid',
+  dimmed = false,
+}: {
+  x: number;
+  y: number;
+  screen: (typeof profilePhones)[number]['screen'];
+  mark?: 'top' | 'mid' | 'lower' | 'bottom' | 'switch' | 'none';
+  dimmed?: boolean;
+}) {
+  return (
+    <div className="cdst-phone abs" style={{ left: x, top: y }}>
+      <div className="cdst-phone-shell">
+        <div className="cdst-phone-notch" />
+        <div className="cdst-phone-status">
+          <span>9:00</span>
+          <span>•••</span>
+        </div>
+        <div className="cdst-phone-screen">
+          <PhoneScreen type={screen} />
+          {mark !== 'none' ? <i className={`cdst-screen-callout is-${mark}`} /> : null}
+          {dimmed ? <div className="cdst-phone-dim" /> : null}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PhoneScreen({ type }: { type: (typeof profilePhones)[number]['screen'] }) {
+  if (type === 'industryTiles') {
+    return (
+      <>
+        <PhoneHeader title="选择您期望工作的行业" />
+        <div className="cdst-tile-list">
+          {['互联网', '房地产', '服务业', '金融'].map((item) => (
+            <div className="cdst-blue-tile" key={item}>
+              <span>{item}</span>
+              <i />
+            </div>
+          ))}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'schoolRecommend') {
+    return (
+      <>
+        <PhoneHeader title="根据您的学校查看" />
+        <div className="cdst-school-tabs"><span>自测</span><span>推荐</span><span>关注</span></div>
+        {[1, 2, 3, 4].map((item) => (
+          <div className="cdst-school-row" key={item}>
+            <b />
+            <div><span /><span /></div>
+          </div>
+        ))}
+      </>
+    );
+  }
+
+  if (type === 'cityList' || type === 'cityOverlay' || type === 'citySearch' || type === 'citySearchOverlay') {
+    return (
+      <>
+        <PhoneHeader title="期望城市" />
+        {type.includes('Search') ? <div className="cdst-phone-search">北京</div> : null}
+        <SimpleList items={['北京', '上海', '天津', '重庆', '黑龙江', '吉林', '辽宁', '内蒙古', '河北', '新疆', '甘肃', '青海', '陕西', '宁夏']} />
+        {type.includes('Overlay') ? <div className="cdst-left-overlay" /> : null}
+      </>
+    );
+  }
+
+  if (type === 'industryList') {
+    return (
+      <>
+        <PhoneHeader title="期望行业" />
+        <SimpleList items={['制造', '化工', '医药', '快消', '房地产', '服饰', '汽车', '物流', '金融', '高科技']} />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <PhoneHeader title="个人资料" />
+      <ProfileRows
+        city={type === 'profileCity' || type === 'profileCityDone' ? '北京' : '点击选择期望工作地点'}
+        industry={type === 'profileIndustry' ? '制造' : '点击选择期望工作行业'}
+        school={type === 'profileSchool' ? '清华大学' : '点击选择毕业院校'}
+        degree={type === 'profileYear' || type === 'profileYearDone' || type === 'profileSwitchOff' || type === 'profileToast' ? '本科' : '点击选择最高学历'}
+        year={type === 'profileYearDone' || type === 'profileSwitchOff' || type === 'profileToast' ? '2015' : '点击选择入学年份'}
+        major={type === 'profileMajor' || type === 'profileSwitchOff' || type === 'profileToast' ? '输入专业' : '点击输入专业'}
+        switchOn={type === 'profileSwitchOff' || type === 'profileToast'}
+      />
+      {type === 'profileBottomPicker' ? <BottomPicker /> : null}
+      {type === 'profileToast' ? <div className="cdst-toast">保存成功</div> : null}
+    </>
+  );
+}
+
+function PhoneHeader({ title }: { title: string }) {
+  return (
+    <div className="cdst-phone-header">
+      <span className="cdst-back">‹</span>
+      <span>{title}</span>
+      <span className="cdst-more">••</span>
+    </div>
+  );
+}
+
+function SimpleList({ items }: { items: string[] }) {
+  return (
+    <div className="cdst-simple-list">
+      {items.map((item) => <span key={item}>{item}</span>)}
+    </div>
+  );
+}
+
+function ProfileRows({
+  city,
+  industry,
+  school,
+  degree,
+  year,
+  major,
+  switchOn,
+}: {
+  city: string;
+  industry: string;
+  school: string;
+  degree: string;
+  year: string;
+  major: string;
+  switchOn: boolean;
+}) {
+  return (
+    <div className="cdst-profile-form">
+      <FormSection title="选择您期望工作的行业">
+        <FormRow label="期望城市" value={city} />
+        <FormRow label="期望行业" value={industry} />
+      </FormSection>
+      <FormSection title="选择您的学历信息">
+        <FormRow label="毕业院校" value={school} />
+        <FormRow label="最高学历" value={degree} />
+        <FormRow label="入学年份" value={year} />
+        <FormRow label="专业" value={major} />
+      </FormSection>
+      <FormSection title="求职状态">
+        <FormRow label="正在找工作" value={switchOn ? '' : '点击选择'} switchOn={switchOn} />
+      </FormSection>
+    </div>
+  );
+}
+
+function FormSection({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div className="cdst-form-section">
+      <b>{title}</b>
+      {children}
+    </div>
+  );
+}
+
+function FormRow({ label, value, switchOn }: { label: string; value: string; switchOn?: boolean }) {
+  return (
+    <div className="cdst-form-row">
+      <span>{label}</span>
+      {switchOn ? <i className="cdst-switch" /> : <em>{value}</em>}
+    </div>
+  );
+}
+
+function BottomPicker() {
+  return (
+    <div className="cdst-bottom-picker">
+      <div><span>取消</span><span>确定</span></div>
+      {['硕士', '本科', '博士'].map((item) => <b key={item}>{item}</b>)}
     </div>
   );
 }

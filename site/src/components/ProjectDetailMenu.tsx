@@ -34,7 +34,7 @@ export function ProjectDetailMenu({
             ? 'text-white drop-shadow-[0_0_14px_rgba(0,245,255,0.78)]'
             : 'text-neon-cyan hover:text-white hover:drop-shadow-[0_0_12px_rgba(0,245,255,0.7)]'
         }`
-      : 'cyber-btn inline-flex h-[56px] min-w-[134px] items-center justify-center gap-3 px-8 py-0';
+      : 'cyber-btn inline-flex items-center justify-center gap-2 px-6 py-3';
 
   // Split the tabs into columns of up to 10 items each (column-major fill).
   const COLUMN_SIZE = 10;
@@ -58,7 +58,7 @@ export function ProjectDetailMenu({
           isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />
         ) : (
           <>
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             <span className="font-display text-sm font-semibold tracking-[0.2em]">更多</span>
           </>
         )}

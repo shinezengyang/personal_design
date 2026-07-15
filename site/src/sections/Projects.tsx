@@ -22,11 +22,11 @@ const ProjectCard = ({
   project: Project; index: number;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
-  const imgRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLAnchorElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   /* 3D tilt on image hover */
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!imgRef.current) return;
     const rect = imgRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -84,6 +84,12 @@ const ProjectCard = ({
   }, [index]);
 
   const isEven = index % 2 === 0;
+  const projectHref =
+    project.id === 'xingji-aodaisai'
+      ? '/projects/xingji-aodaisai/cases'
+      : project.id === 'qingyu-nian'
+        ? '/projects/qingyu-nian/cases'
+        : `/projects/${project.id}`;
 
   return (
     <div
@@ -115,12 +121,14 @@ const ProjectCard = ({
         isEven ? 'flex-col lg:flex-row' : 'flex-col lg:flex-row-reverse'
       }`}>
         {/* Image */}
-        <div
+        <Link
+          to={projectHref}
           ref={imgRef}
           className="relative w-full lg:w-[55%] aspect-[16/10] rounded-xl overflow-hidden cursor-pointer group"
           style={{ transformStyle: 'preserve-3d', perspective: '1200px' }}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
+          aria-label={`查看${project.title}详情`}
         >
           {/* Neon border glow */}
           <div className="absolute -inset-px rounded-xl bg-gradient-to-br from-[#00f5ff]/25 via-transparent to-[#ff00ff]/25 z-20 pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity duration-500" />
@@ -146,7 +154,7 @@ const ProjectCard = ({
           <div className="absolute bottom-3 left-3 w-5 h-5 border-l-2 border-b-2 border-[#ff00ff]/50 z-20" />
           <div className="absolute bottom-3 right-3 w-5 h-5 border-r-2 border-b-2 border-[#ff00ff]/50 z-20" />
 
-        </div>
+        </Link>
 
         {/* Content */}
         <div ref={contentRef} className={`relative w-full lg:w-[45%] space-y-5 ${isEven ? 'lg:text-left' : 'lg:text-right'}`}>
@@ -187,7 +195,7 @@ const ProjectCard = ({
           {/* CTA Button */}
           <div data-reveal className={`flex gap-4 pt-3 ${isEven ? '' : 'lg:justify-end'}`}>
             <Link
-              to={project.id === 'xingji-aodaisai' ? '/projects/xingji-aodaisai/cases' : project.id === 'qingyu-nian' ? '/projects/qingyu-nian/cases' : `/projects/${project.id}`}
+              to={projectHref}
               className="group/btn relative inline-flex items-center gap-2 px-8 py-3 overflow-hidden rounded-sm"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-[#00f5ff] to-[#b829dd] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />

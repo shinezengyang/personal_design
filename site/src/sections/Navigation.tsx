@@ -116,7 +116,7 @@ export default function Navigation({ activeDetailTab, onDetailTabChange }: Navig
             <span className="flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-neon-cyan drop-shadow-[0_0_10px_rgba(0,245,255,0.7)] transition-all duration-300 group-hover:text-white group-hover:drop-shadow-[0_0_12px_rgba(0,245,255,0.7)]" />
               <span className="font-mono text-[14px] font-bold tracking-[0.25em] text-neon-cyan drop-shadow-[0_0_12px_rgba(0,245,255,0.5)] transition-all duration-300 group-hover:text-white group-hover:drop-shadow-[0_0_12px_rgba(0,245,255,0.7)] sm:text-[15px]">
-                shine
+                Design
               </span>
             </span>
           </Link>
