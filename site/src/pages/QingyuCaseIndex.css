@@ -5,6 +5,14 @@
     #0a0a0f;
 }
 
+.qingyu-case-index .case-index-project-name {
+  color: rgba(255, 246, 228, 0.96);
+  letter-spacing: 0.18em;
+  text-shadow:
+    0 0 22px rgba(255, 184, 76, 0.34),
+    0 12px 36px rgba(0, 0, 0, 0.62);
+}
+
 .qingyu-case-index-hero {
   border-color: rgba(255, 184, 76, 0.2);
   background: linear-gradient(135deg, rgba(28, 19, 10, 0.92), rgba(8, 9, 15, 0.78));

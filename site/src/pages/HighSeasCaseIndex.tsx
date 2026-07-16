@@ -174,11 +174,12 @@ export default function HighSeasCaseIndex() {
   return (
     <section ref={rootRef} className="high-seas-index min-h-screen px-6 pb-24 pt-10 sm:px-12 lg:px-20 2xl:px-24">
       <div className="mx-auto max-w-[1440px] 2xl:max-w-[1560px]">
-        <div className="mb-8 flex items-center justify-between gap-4" data-case-back>
+        <div className="case-index-toolbar mb-8 flex items-center justify-between gap-4" data-case-back>
           <Link to="/" className="cyber-btn inline-flex items-center">
             <ArrowLeft className="mr-2 h-4 w-4" />
             返回
           </Link>
+          <h1 className="case-index-project-name">High Seas Hero</h1>
         </div>
 
         {frameworkCase ? (
