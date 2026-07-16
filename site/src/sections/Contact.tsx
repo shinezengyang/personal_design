@@ -126,8 +126,6 @@ const Contact = () => {
         >
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(0,245,255,0.14),transparent_38%,rgba(255,0,255,0.1))]" />
           <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" />
-          <div className="pointer-events-none absolute left-5 top-5 h-8 w-8 border-l-2 border-t-2 border-neon-cyan/85" />
-          <div className="pointer-events-none absolute bottom-5 right-5 h-8 w-8 border-b-2 border-r-2 border-neon-purple/85" />
 
           <div className="relative z-10">
             <div className="grid gap-5 sm:grid-cols-2">
@@ -163,11 +161,7 @@ const Contact = () => {
               />
             </label>
 
-            <div data-contact-field className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm leading-6 text-white/42">
-                接口：<span className="font-mono text-neon-cyan/70">{endpoint}</span>
-              </p>
-
+            <div data-contact-field className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-end">
               <button
                 type="submit"
                 disabled={!canSubmit}

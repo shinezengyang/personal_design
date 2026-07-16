@@ -153,11 +153,12 @@ export default function QingyuCaseIndex() {
   return (
     <section ref={rootRef} className="high-seas-index qingyu-case-index min-h-screen px-6 pb-24 pt-10 sm:px-12 lg:px-20 2xl:px-24">
       <div className="mx-auto max-w-[1440px] 2xl:max-w-[1560px]">
-        <div className="mb-8 flex items-center justify-between gap-4" data-case-reveal>
+        <div className="case-index-toolbar mb-8 flex items-center justify-between gap-4" data-case-reveal>
           <Link to="/" className="cyber-btn inline-flex items-center">
             <ArrowLeft className="mr-2 h-4 w-4" />
             返回
           </Link>
+          <h1 className="case-index-project-name">庆余年</h1>
         </div>
 
         <button

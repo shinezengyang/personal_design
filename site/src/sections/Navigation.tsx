@@ -104,7 +104,7 @@ export default function Navigation({ activeDetailTab, onDetailTabChange }: Navig
             type="button"
             onClick={() => navigate(-1)}
             aria-label="返回"
-            className="group inline-flex h-12 w-12 items-center justify-center rounded-xl text-neon-cyan transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_14px_rgba(0,245,255,0.75)]"
+            className="project-top-icon-button group inline-flex h-12 w-12 items-center justify-center rounded-xl text-neon-cyan transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_14px_rgba(0,245,255,0.75)]"
           >
             <ArrowLeft className="h-7 w-7 drop-shadow-[0_0_12px_rgba(0,245,255,0.7)]" />
           </button>
@@ -180,6 +180,7 @@ export default function Navigation({ activeDetailTab, onDetailTabChange }: Navig
               onOpenChange={setMenuOpen}
               onTabChange={onDetailTabChange}
               tabs={detailTabs}
+              buttonClassName="project-top-icon-button"
             />
           )}
         </div>
