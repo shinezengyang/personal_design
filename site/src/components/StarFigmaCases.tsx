@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { publicUrl } from '../lib/publicUrl';
 import './StarFigmaCases.css';
 
@@ -9,19 +9,43 @@ type StageProps = {
   children: React.ReactNode;
 };
 
-function FigmaScaleStage({ width, height, className = '', children, maxScale = 1 }: StageProps & { maxScale?: number }) {
+function FigmaScaleStage({
+  width,
+  height,
+  className = '',
+  children,
+  maxScale = 1,
+  fitToViewport = false,
+  viewportInset = 24,
+}: StageProps & { maxScale?: number; fitToViewport?: boolean; viewportInset?: number }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [scale, setScale] = useState(1);
+  const [offsetX, setOffsetX] = useState(0);
+  const [frameWidth, setFrameWidth] = useState<number | null>(null);
+  const [frameOffsetX, setFrameOffsetX] = useState(0);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const node = ref.current;
     if (!node) return;
     let lastWidth = 0;
+    let lastFrameOffsetX = 0;
     const update = () => {
-      const available = node.clientWidth || width;
-      if (available === lastWidth) return;
+      const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+      const parentRect = node.parentElement?.getBoundingClientRect();
+      const shouldFitViewport = fitToViewport && viewportWidth < width;
+      const safeWidth = Math.max(280, viewportWidth - viewportInset * 2);
+      const available = shouldFitViewport ? Math.min(width, safeWidth) : node.clientWidth || width;
+      const nextFrameOffsetX = shouldFitViewport && parentRect
+        ? Math.round((viewportWidth - available) / 2 - parentRect.left)
+        : 0;
+      if (available === lastWidth && nextFrameOffsetX === lastFrameOffsetX) return;
       lastWidth = available;
-      setScale(Math.min(maxScale, Math.max(0.1, available / width)));
+      lastFrameOffsetX = nextFrameOffsetX;
+      const nextScale = Math.min(maxScale, Math.max(0.1, available / width));
+      setScale(nextScale);
+      setFrameWidth(shouldFitViewport ? available : null);
+      setFrameOffsetX(nextFrameOffsetX);
+      setOffsetX(Math.max(0, (available - width * nextScale) / 2));
     };
     update();
     const observer = new ResizeObserver(update);
@@ -31,13 +55,21 @@ function FigmaScaleStage({ width, height, className = '', children, maxScale = 1
       observer.disconnect();
       window.removeEventListener('resize', update);
     };
-  }, [width, maxScale]);
+  }, [fitToViewport, maxScale, viewportInset, width]);
 
   return (
-    <div className="star-figma-shell" ref={ref} style={{ height: height * scale }}>
+    <div
+      className="star-figma-shell"
+      ref={ref}
+      style={{
+        height: height * scale,
+        width: frameWidth ?? undefined,
+        transform: frameOffsetX ? `translateX(${frameOffsetX}px)` : undefined,
+      }}
+    >
       <div
         className={`star-figma-stage ${className}`}
-        style={{ width, height, transform: `translateX(-50%) scale(${scale})` }}
+        style={{ width, height, transform: `translateX(${offsetX}px) scale(${scale})` }}
       >
         {children}
       </div>
@@ -188,59 +220,60 @@ function NavyTrialCase() {
   );
 }
 
-/* ─── CDST assets (refreshed from Figma 9434:2079) ─── */
+/* ─── CDST assets ────────────────────────────────────────────────
+ * The page remains React/CSS driven. Only the original bitmap assets are
+ * referenced here. Stable local files are used where available; the remaining
+ * Figma image nodes use the refreshed node-specific URLs instead of one long
+ * flattened page screenshot.
+ */
 const cdst = {
-  /* 痛点 graduation-cap icons */
-  pain1: 'https://www.figma.com/api/mcp/asset/8954e8e8-8c06-402a-b4c3-780d5f37da79',
-  pain2: 'https://www.figma.com/api/mcp/asset/7141ad44-5ec9-43ea-a9a5-c1c2000e375a',
-  pain3: 'https://www.figma.com/api/mcp/asset/93b39969-b005-4c0b-aa41-a3f45d26f488',
-  pain4: 'https://www.figma.com/api/mcp/asset/0799b44e-2871-40c3-bd64-6591d6b2e65f',
-  pain5: 'https://www.figma.com/api/mcp/asset/b90e5c2f-9f93-4e89-ada7-4abf3d3240e7',
-  /* 竞品 icon cards (圆角矩形 5 plate + logos) */
-  compPlateA: 'https://www.figma.com/api/mcp/asset/ca47bb9c-d9a7-45f8-b8b2-a264a09287ba',
-  compPlateB: 'https://www.figma.com/api/mcp/asset/ea2f0e85-0c90-4da5-93f1-06e5956f32bc',
-  compPlateC: 'https://www.figma.com/api/mcp/asset/6f9c4d59-1bbe-4cf5-86a0-a3ea02e52019',
-  compPlateD: 'https://www.figma.com/api/mcp/asset/4634658f-7988-407a-8730-835e80910e92',
-  compA: 'https://www.figma.com/api/mcp/asset/e9955fb7-6d5a-49a5-882b-99e6d79e045c',
-  compB1: 'https://www.figma.com/api/mcp/asset/5d1632cd-ba10-40d8-a841-6d02ad1add86',
-  compB2: 'https://www.figma.com/api/mcp/asset/9578e5b7-c1bb-4638-bd11-69b65889b0a6',
-  compC: 'https://www.figma.com/api/mcp/asset/88ffaa7e-3e88-421c-b5f0-3e58403ee48f',
-  compD: 'https://www.figma.com/api/mcp/asset/7be583fe-8827-4974-8a19-e10589972daf',
-  compDivider: 'https://www.figma.com/api/mcp/asset/53910a97-bb8f-449e-a8b9-ec05fa81e2c2',
-  /* 用户画像 ring + avatar pairs (outer 椭圆 / inner avatar). A=大三 B=大四 C=大二 D=研一 */
-  personaRingA: 'https://www.figma.com/api/mcp/asset/c1a30c73-0f73-4d2d-9c57-a82cbb703b0b',
-  personaAvA: 'https://www.figma.com/api/mcp/asset/0556434c-2f77-4980-b2ef-d3157293b30b',
-  personaRingB: 'https://www.figma.com/api/mcp/asset/92c1deca-119e-483d-8aa9-0c64bff2b3ae',
-  personaAvB: 'https://www.figma.com/api/mcp/asset/61d1e0b1-6bae-4312-b445-8226012c7d6e',
-  personaRingC: 'https://www.figma.com/api/mcp/asset/648fbdd7-58df-4aad-a433-675bc0517166',
-  personaAvC: 'https://www.figma.com/api/mcp/asset/0359dd30-2cfa-475f-88cb-5e876fe4a7af',
-  personaRingD: 'https://www.figma.com/api/mcp/asset/1fc4f9c8-fc78-42c9-b132-5ab2cedfe1f5',
-  personaAvD: 'https://www.figma.com/api/mcp/asset/f8e7faa3-df8b-416b-ac06-5f67e9905c05',
-  /* 产品结构 / 产品流程 */
-  struct: 'https://www.figma.com/api/mcp/asset/449af68c-e631-44b3-9077-5e3baba2f524',
-  flow: 'https://www.figma.com/api/mcp/asset/4152885d-f370-4732-8719-a4dca3b79942',
-  /* 交互原型 main screens */
-  prototypeSalary: 'https://www.figma.com/api/mcp/asset/fe700ceb-6507-4a64-858a-ff04d3077acf',
-  prototypeTest: 'https://www.figma.com/api/mcp/asset/0a786076-dad5-42c3-a102-289d8b58df27',
-  prototypeStatus: 'https://www.figma.com/api/mcp/asset/efa5804a-cfa2-4256-9a62-b62492f44c3f',
-  /* 视觉 主页形象 */
-  uiHome1: 'https://www.figma.com/api/mcp/asset/5f50009e-0500-401e-b9b8-026181b9ae65',
-  uiHome2: 'https://www.figma.com/api/mcp/asset/d5324b78-7a3d-46c7-8291-05ef09e1f312',
-  uiStrip: 'https://www.figma.com/api/mcp/asset/fce2420c-594e-412e-9e7a-f658e29528b0',
-  /* 视觉 层级页面 */
-  uiLevelMain: 'https://www.figma.com/api/mcp/asset/425cf919-9a76-4df2-83e3-667fe0fca25b',
-  uiLevelMid: 'https://www.figma.com/api/mcp/asset/b7bad730-7fcc-4424-b8c2-c952a0ccae91',
-  uiLevelStack1: 'https://www.figma.com/api/mcp/asset/2cb7b3b5-e7d1-48a9-965d-9ab29f5f3784',
-  uiLevelStack2: 'https://www.figma.com/api/mcp/asset/812f4add-5a0e-4dc6-9fa2-22a6878d786b',
-  uiLevelStack3: 'https://www.figma.com/api/mcp/asset/cd05ff71-b064-4c2b-a899-751431ff881a',
-  uiLevelShadow: 'https://www.figma.com/api/mcp/asset/6da69eab-e70d-46fb-aff8-df8a23a61d10',
-  /* 视觉 其他界面 */
-  uiOther1: 'https://www.figma.com/api/mcp/asset/7ae4390d-1eed-47b5-9ec0-aa3ec4e84d83',
-  uiOther2: 'https://www.figma.com/api/mcp/asset/2da640fb-681e-47be-9c0e-09d12b04ea70',
-  uiOther3: 'https://www.figma.com/api/mcp/asset/825ae41a-4a46-42b3-a14f-81c7dc0e53ef',
-  uiOther4: 'https://www.figma.com/api/mcp/asset/3c137ed2-580e-44ca-9e61-5e6f6a47a394',
-  uiOther5: 'https://www.figma.com/api/mcp/asset/1ae16a78-61f5-4f74-a9fc-20769e600aab',
-  uiOtherStrip: 'https://www.figma.com/api/mcp/asset/3c6b1853-cf00-4196-94ec-f9045b682849',
+  /* 痛点图标：本地单图资源 */
+  pain1: publicUrl('/images/xingji/cdst/assets/pain-1.png'),
+  pain2: publicUrl('/images/xingji/cdst/assets/pain-2.png'),
+  pain3: publicUrl('/images/xingji/cdst/assets/pain-3.png'),
+  pain4: publicUrl('/images/xingji/cdst/assets/pain-4.png'),
+  pain5: publicUrl('/images/xingji/cdst/assets/pain-5.png'),
+
+  /* 竞品图标卡：底板与 Logo 合并为各自独立的小图 */
+  competitorA: publicUrl('/images/xingji/cdst/assets/competitor-a.png'),
+  competitorB: publicUrl('/images/xingji/cdst/assets/competitor-b.png'),
+  competitorC: publicUrl('/images/xingji/cdst/assets/competitor-c.png'),
+  competitorD: publicUrl('/images/xingji/cdst/assets/competitor-d.png'),
+  compDivider: publicUrl('/images/xingji/cdst/assets/competitor-divider.png'),
+
+  /* 用户画像：每个人物头像都是独立本地图片 */
+  personaA: publicUrl('/images/xingji/cdst/assets/persona-a.png'),
+  personaB: publicUrl('/images/xingji/cdst/assets/persona-b.png'),
+  personaC: publicUrl('/images/xingji/cdst/assets/persona-c.png'),
+  personaD: publicUrl('/images/xingji/cdst/assets/persona-d.png'),
+
+  /* 产品结构 / 流程：本地单图资源 */
+  struct: publicUrl('/images/xingji/cdst/assets/product-structure.png'),
+  flow: publicUrl('/images/xingji/cdst/assets/product-flow.png'),
+
+  /* 交互原型主画面：刷新为 Figma 中对应的独立图片节点 */
+  prototypeSalary: 'https://www.figma.com/api/mcp/asset/82b7305f-e03a-4302-b1be-915e005ea6ed',
+  prototypeTest: 'https://www.figma.com/api/mcp/asset/daf7c77d-efd6-45a7-8deb-2c658c297651',
+  prototypeStatus: 'https://www.figma.com/api/mcp/asset/2d7e0e0f-1305-44a6-8d59-bc86d6129eab',
+
+  /* UI 视觉：仍按独立手机稿/装饰图分层渲染 */
+  uiHome1: 'https://www.figma.com/api/mcp/asset/0b5a4c2e-dddc-4db4-8f8e-e82828ce46ce',
+  uiHome2: 'https://www.figma.com/api/mcp/asset/1d0517b5-a46f-46e8-9220-9e779b6391a3',
+  uiStrip: 'https://www.figma.com/api/mcp/asset/2b8ee9a3-f8d1-4a78-9898-1a0672d859a3',
+
+  uiLevelMain: 'https://www.figma.com/api/mcp/asset/847cdc21-c552-4af2-bed7-dc939792733e',
+  uiLevelMid: 'https://www.figma.com/api/mcp/asset/52a9e1f8-f6b9-49cc-bebd-cdd23d2d0378',
+  uiLevelStack1: 'https://www.figma.com/api/mcp/asset/262e6e26-ea0d-44dd-b212-1b03223d7019',
+  uiLevelStack2: 'https://www.figma.com/api/mcp/asset/934ced7a-2e3e-495a-b053-4191706d88b2',
+  uiLevelStack3: 'https://www.figma.com/api/mcp/asset/db116011-d50c-4a76-8417-9d66930f2bd6',
+  uiLevelShadow: 'https://www.figma.com/api/mcp/asset/7e4328c2-3dab-42e4-86f8-ec590510d3cc',
+
+  uiOther1: 'https://www.figma.com/api/mcp/asset/aed443a6-c0ee-4055-a8a4-18c6091fa3ee',
+  uiOther2: 'https://www.figma.com/api/mcp/asset/171d6f41-f3eb-4afd-a028-4813d5ba15da',
+  uiOther3: 'https://www.figma.com/api/mcp/asset/af452cf9-73e2-4907-8b6b-396f237fa345',
+  uiOther4: 'https://www.figma.com/api/mcp/asset/b8a180c6-40f0-4565-b353-545bbb3dab89',
+  uiOther5: 'https://www.figma.com/api/mcp/asset/a67660ff-a852-4840-9cc8-37d11b452b5c',
+  uiOtherStrip: 'https://www.figma.com/api/mcp/asset/6896e592-1c27-4e72-9428-4f6b57ada457',
 };
 
 function CdstCase() {
@@ -306,21 +339,12 @@ function CdstCase() {
     <div ref={pageRef} className="star-case-page cdst-page">
       <FigmaScaleStage width={2480} height={33204} className="cdst-stage">
         {/* ── 头图 hero (y0 h1471) ── */}
-        <div className="abs cdst-hero-art" style={{ left: 0, top: 0, width: 2480, height: 1471 }} aria-hidden="true">
-          <span className="cdst-hero-grid" />
-          <span className="cdst-hero-orbit cdst-hero-orbit-a" />
-          <span className="cdst-hero-orbit cdst-hero-orbit-b" />
-          <span className="cdst-hero-city" />
-        </div>
-        <div className="cdst-logo">My Production<br />我的作品</div>
-        <div className="cdst-project">大学生职前教育平台</div>
-        <div className="cdst-big">CDST</div>
-        <div className="cdst-title">Career Develop<br />Status Tendency<br /><span>属于你一个人的职场导师</span></div>
-        <div className="abs cdst-qr-code" style={{ left: 601.5, top: 942.5, width: 248, height: 249 }} aria-hidden="true">
-          <span className="cdst-qr-finder cdst-qr-finder-a" />
-          <span className="cdst-qr-finder cdst-qr-finder-b" />
-          <span className="cdst-qr-finder cdst-qr-finder-c" />
-        </div>
+        <img
+          src={publicUrl('/images/xingji/cdst/cdst-hero-cover.png')}
+          className="abs img-cover"
+          style={{ left: 0, top: 0, width: 2480, height: 1471 }}
+          alt=""
+        />
 
         {/* ── 项目概括 + 市场分析 (base 1495.5, h1887) ── */}
         <CdstTitle y={SEC.project} title="项目概括" en="Project Overview" w={337} />
@@ -343,13 +367,13 @@ function CdstCase() {
 
         {/* ── 竞品分析 (base 5500.5, h1719) ── */}
         <CdstTitle y={SEC.comp} title="竞品分析" en="User Pain Points’Analysis" w={488} />
-        <Comp base={SEC.comp} top={288.5} plate={cdst.compPlateA} logo={cdst.compA} logoStyle={{ left: 8, top: 9, width: 205, height: 205 }} name="爱思益" nameX={51}
+        <Comp base={SEC.comp} top={288.5} image={cdst.competitorA} name="爱思益" nameX={51}
           body={['专门针对大学生及职场行人提供职前', '教育的新锐互联网平台']} bodyTop={71} />
-        <Comp base={SEC.comp} top={674.5} plate={cdst.compPlateB} logo={cdst.compB2} logoStyle={{ left: 10, top: 60, width: 202, height: 113 }} name="职业蛙" nameX={48}
+        <Comp base={SEC.comp} top={674.5} image={cdst.competitorB} name="职业蛙" nameX={48}
           body={['大学生求职服务机构，为海内外大学', '生提供一站式求职解决方案的平台']} bodyTop={66} />
-        <Comp base={SEC.comp} top={1058.5} plate={cdst.compPlateC} logo={cdst.compC} logoStyle={{ left: 19, top: 23, width: 183, height: 183 }} name="职优你" nameX={44}
+        <Comp base={SEC.comp} top={1058.5} image={cdst.competitorC} name="职优你" nameX={44}
           body={['通过在线职场教育的方式切入职前教', '育 ，联合学校以及企业，打造属于大', '学生以及在职精英的职场生态圈']} bodyTop={25} />
-        <Comp base={SEC.comp} top={1441.5} plate={cdst.compPlateD} logo={cdst.compD} logoStyle={{ left: 3.5, top: 37.5, width: 214, height: 148 }} name="职梦" nameX={73}
+        <Comp base={SEC.comp} top={1441.5} image={cdst.competitorD} name="职梦" nameX={73}
           body={['依托来自全球顶尖投资银行、咨询公', '司、四大会计师事务所和世界五百强', '企业的精英导师人才库，为留学生职', '业咨询的平台']} bodyTop={0} />
         <img src={cdst.compDivider} className="abs" style={{ left: 1374.5, top: SEC.comp + 386.5, width: 7, height: 1131 }} />
         <div className="competitor-summary" style={{ left: 1481.5, top: SEC.comp + 345.5, width: 760 }}>
@@ -363,13 +387,13 @@ function CdstCase() {
 
         {/* ── 用户画像 (base 7540.5, h2789) ── */}
         <CdstTitle y={SEC.user} title="用户画像" en="User Portrait" w={268} />
-        <Persona base={SEC.user} top={294} ring={cdst.personaRingA} avatar={cdst.personaAvA} textTop={61.5}
+        <Persona base={SEC.user} top={294} portrait={cdst.personaA} textTop={61.5}
           lines={['角色：大三学生', '信息：上海外国语大学/俄语', '需求：自己毕业后想做冰球俱乐部的新媒体编辑，但', '         是学校没有就业相关的课程指导，想要到时候', '         去公司官网或者相关的公众号去看看，希望能', '           够提供更多的实习和工作机会。']} />
-        <Persona base={SEC.user} top={958} ring={cdst.personaRingB} avatar={cdst.personaAvB} textTop={111.5}
+        <Persona base={SEC.user} top={958} portrait={cdst.personaB} textTop={111.5}
           lines={['角色：大四学生', '信息：上海对外经贸大学/工商管理', '需求：自己的专业很好就业，自己已经拿到了Offer，', '         但是自己喜欢文学，很想去做个调查记者，不', '         知有没有这样的机会。']} />
-        <Persona base={SEC.user} top={1620} ring={cdst.personaRingC} avatar={cdst.personaAvC} textTop={64.5}
+        <Persona base={SEC.user} top={1620} portrait={cdst.personaC} textTop={64.5}
           lines={['角色：大二学生', '信息：上海外国语大学/统计学', '需求：在学校里学习的只是多数是纸上谈兵，我想通', '         过一些有经验前辈分享一下怎样将这些知识运', '         用到工作当中。另外也想了解怎样处理职场人', '         际关系，怎样融入工作环境这些。']} />
-        <Persona base={SEC.user} top={2285} ring={cdst.personaRingD} avatar={cdst.personaAvD} textTop={63.5}
+        <Persona base={SEC.user} top={2285} portrait={cdst.personaD} textTop={63.5}
           lines={['角色：研一学生', '信息：上海外国语大学/生化与分子', '需求：抛开自己的化学专业，想了解更多行业和职位，', '        想知道哪方面工作适合自己。而且想了解关于招', '        聘公司的环境和薪资问题。我还是很想知道跨行', '        业的话，研究生的薪资有没有比本科生有优势。']} />
 
         {/* ── 产品结构 (base 10653.5, h1755) ── */}
@@ -787,15 +811,14 @@ function CdstTitle({ y, title, en, w }: { y: number; title: string; en: string; 
 }
 
 /* competitor row — icon plate (with name beneath) on the left, body paragraph to the right */
-function Comp({ base, top, plate, logo, logoStyle, name, nameX, body, bodyTop }: {
-  base: number; top: number; plate: string; logo: string;
-  logoStyle: React.CSSProperties; name: string; nameX: number; body: string[]; bodyTop: number;
+function Comp({ base, top, image, name, nameX, body, bodyTop }: {
+  base: number; top: number; image: string;
+  name: string; nameX: number; body: string[]; bodyTop: number;
 }) {
   return (
     <>
       <div className="comp-plate abs" style={{ left: 234.5, top: base + top }}>
-        <img className="comp-bg" src={plate} />
-        <img className="comp-logo" src={logo} style={logoStyle} />
+        <img className="comp-bg" src={image} alt="" />
         <span className="comp-name" style={{ left: nameX }}>{name}</span>
       </div>
       <div className="comp-body abs" style={{ left: 234.5 + 280, top: base + top + bodyTop }}>
@@ -806,13 +829,13 @@ function Comp({ base, top, plate, logo, logoStyle, name, nameX, body, bodyTop }:
 }
 
 /* user-portrait card — white rounded card with avatar ring at left */
-function Persona({ base, top, ring, avatar, lines, textTop }: {
-  base: number; top: number; ring?: string; avatar?: string; lines: string[]; textTop: number;
+function Persona({ base, top, portrait, lines, textTop }: {
+  base: number; top: number; portrait: string; lines: string[]; textTop: number;
 }) {
   return (
     <div className="persona-card abs" style={{ left: 252, top: base + top }}>
       <div className="persona-body" />
-      <div className="avatar-ring">{ring && <img className="ring" src={ring} />}{avatar && <img className="avatar" src={avatar} />}</div>
+      <div className="avatar-ring"><img className="portrait" src={portrait} alt="" /></div>
       <div className="persona-text" style={{ top: textTop }}>
         {lines.map((l, i) => <p key={i}>{l}</p>)}
       </div>
@@ -1245,7 +1268,7 @@ export function HighSeasNavyTrialExactCase() {
   ];
   return (
     <div className="star-case-page hs-exact-page">
-      <FigmaScaleStage width={1280} height={H} className="hs-exact-stage hs-trial-stage" maxScale={1}>
+      <FigmaScaleStage width={1280} height={H} className="hs-exact-stage hs-trial-stage" maxScale={1} fitToViewport>
         <HSSection className="hs-sec hs-dark" top={0}>
           <div className="hs-hero-orb one" /><div className="hs-hero-orb two" />
           <div className="hs-dot-matrix" style={{ left: 80, top: 80 }} />
@@ -1520,8 +1543,8 @@ export function HighSeasCleanupGangExactCase() {
     ['状态四: 已达上限', '全部领完\n显示「已达到上限」', hsGang.stateImg3, 'gray'],
   ] as const;
   return (
-    <div className="star-case-page hs-exact-page">
-      <FigmaScaleStage width={1280} height={H} className="hs-exact-stage hs-gang-stage" maxScale={1}>
+    <div className="star-case-page hs-exact-page hs-gang-page">
+      <FigmaScaleStage width={1280} height={H} className="hs-exact-stage hs-gang-stage" maxScale={1} fitToViewport>
         <div className="hs-gang-bg" />
         <div className="hs-gang-topbar" />
         <HSSection className="hs-sec hs-gang-cover" top={0} height={880}>

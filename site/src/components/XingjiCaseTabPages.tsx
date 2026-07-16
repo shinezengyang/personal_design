@@ -1,4 +1,4 @@
-﻿import { publicUrl } from '../lib/publicUrl';
+import { publicUrl } from '../lib/publicUrl';
 import { HudRedesignTailContent } from './CaseDetailContent';
 import { ResponsiveScaleFrame } from './ResponsiveScaleFrame';
 import './XingjiCaseTabPages.css';
@@ -9,149 +9,53 @@ const resolveAsset = (src: string) => (src.startsWith('http') ? src : publicUrl(
 
 const caseOneAssets = {
   backgroundBefore: [
-    'https://www.figma.com/api/mcp/asset/643627c3-8411-4ebe-ba40-f01620126fe8',
-    'https://www.figma.com/api/mcp/asset/069e3fa7-deb3-4f64-9057-4c9f7681b000',
-    'https://www.figma.com/api/mcp/asset/d6e0ba38-866c-45c5-8061-dc61ee5fa84e',
+    'pencil/xingji-aodaisai/panel-2.webp',
+    'pencil/xingji-aodaisai/panel.webp',
+    'pencil/xingji-aodaisai/panel-1.webp',
   ],
-  cpaLastwarTop: 'https://www.figma.com/api/mcp/asset/7515e5d2-6734-408b-a8d7-674a08fd6d60',
-  cpaLastwarBottom: 'https://www.figma.com/api/mcp/asset/be34edcb-ee6a-480f-b72a-97ad8c0bb297',
+  cpaLastwarTop: 'images/xingji/hud/assets/cpa-lastwar.webp',
+  cpaLastwarBottom: 'images/xingji/hud/assets/cpa-lastwar.webp',
   cpaWinter: [
-    'https://www.figma.com/api/mcp/asset/aa27a0d3-22dd-46f9-8a34-08b95dd361ce',
-    'https://www.figma.com/api/mcp/asset/87b29b07-79bb-4f5b-9752-f774c2bb7003',
+    'images/xingji/hud/assets/cpa-winter.webp',
+    'images/xingji/hud/assets/cpa-winter.webp',
   ],
   cpaAfk: [
-    'https://www.figma.com/api/mcp/asset/a47351df-ff79-466b-a5c3-a6110814b7c5',
-    'https://www.figma.com/api/mcp/asset/d2cb3b58-eae4-49fd-912f-87476484ae79',
-    'https://www.figma.com/api/mcp/asset/a8a573e7-5668-41f5-8b17-7fa757724c5c',
-    'https://www.figma.com/api/mcp/asset/1542e786-2a64-4dd3-ab45-1eeed873ce31',
+    'images/xingji/hud/assets/cpa-afk.webp',
+    'images/xingji/hud/assets/cpa-afk.webp',
+    'images/xingji/hud/assets/cpa-afk.webp',
+    'images/xingji/hud/assets/cpa-afk.webp',
   ],
   cpaBrave: [
-    'https://www.figma.com/api/mcp/asset/42017788-8bc0-4841-9bcb-f8066d6631e5',
-    'https://www.figma.com/api/mcp/asset/bb0fabae-890f-4265-9d3a-06b86aeef7cb',
+    'images/xingji/hud/assets/cpa-brave.webp',
+    'images/xingji/hud/assets/cpa-brave.webp',
   ],
   cpaHeroes: [
-    'https://www.figma.com/api/mcp/asset/5644e1f0-372c-4c34-98bc-953f5bc8fe1b',
-    'https://www.figma.com/api/mcp/asset/3a21fdf6-c9b0-42fc-a31e-b542ea303bde',
-    'https://www.figma.com/api/mcp/asset/5d7321d7-7d2b-432c-83ca-c43df639df60',
-    'https://www.figma.com/api/mcp/asset/34be9b4a-9833-4d20-aa9e-0f47a365a69f',
+    'images/xingji/hud/assets/cpa-heroes.webp',
+    'images/xingji/hud/assets/cpa-heroes.webp',
+    'images/xingji/hud/assets/cpa-heroes.webp',
+    'images/xingji/hud/assets/cpa-heroes.webp',
   ],
-  cpaDao: 'https://www.figma.com/api/mcp/asset/c782804c-d095-4e15-8fce-5d7077532641',
+  cpaDao: 'images/xingji/hud/assets/cpa-dao.webp',
   cpaCapy: [
-    'https://www.figma.com/api/mcp/asset/ab056e06-3867-465d-a45f-9541e1eccd4d',
-    'https://www.figma.com/api/mcp/asset/897abf99-391e-4e00-9259-c9f8716f873a',
-    'https://www.figma.com/api/mcp/asset/3397ecd0-fba5-4e6b-9466-86e6ebb37d1b',
-    'https://www.figma.com/api/mcp/asset/289b3dc8-8b88-4577-adbf-4d6b84a98315',
-    'https://www.figma.com/api/mcp/asset/1e835ce3-a527-4e0d-a986-c5c5d2c47ce7',
-    'https://www.figma.com/api/mcp/asset/6b3d54fb-39df-4e20-aa3e-51aa6bbd6e51',
+    'images/xingji/hud/assets/cpa-capy.webp',
+    'images/xingji/hud/assets/cpa-capy.webp',
+    'images/xingji/hud/assets/cpa-capy.webp',
+    'images/xingji/hud/assets/cpa-capy.webp',
+    'images/xingji/hud/assets/cpa-capy.webp',
+    'images/xingji/hud/assets/cpa-capy.webp',
   ],
-  cpaFlowConnector: 'https://www.figma.com/api/mcp/asset/e3317633-5a09-4391-836e-db06a4b4b07f',
-  definitionOneBefore: 'https://www.figma.com/api/mcp/asset/1b91d702-4c0e-412c-8fbb-50a02e96e4ae',
-  definitionOneAfter: 'https://www.figma.com/api/mcp/asset/c8285212-bfc0-4ffd-95e6-a111f7b096f6',
+  cpaFlowConnector: 'images/xingji/hud/assets/arrow-a.svg',
+  definitionOneBefore: 'pencil/xingji-aodaisai/figma-usability-old-hud.webp',
+  definitionOneAfter: 'pencil/xingji-aodaisai/figma-usability-new-hud.webp',
   definitionFive: [
-    'https://www.figma.com/api/mcp/asset/301de37a-093c-4bdb-903e-b9539476b834',
-    'https://www.figma.com/api/mcp/asset/f92dee6a-3c59-415a-8dd1-3e08a7d19f8f',
-    'https://www.figma.com/api/mcp/asset/8e9f52ab-4c4a-481e-a232-314a15090e34',
+    'pencil/xingji-aodaisai/panel-2.webp',
+    'pencil/xingji-aodaisai/panel.webp',
+    'pencil/xingji-aodaisai/panel-1.webp',
   ],
   blockGoals: 'pencil/xingji-aodaisai/figma-block-goals.webp',
   blockCompetitor: 'pencil/xingji-aodaisai/figma-block-competitor.webp',
   blockProblem1: 'pencil/xingji-aodaisai/figma-block-problem-1.webp',
   blockProblem2: 'pencil/xingji-aodaisai/figma-block-problem-2.webp',
-};
-
-const caseFiveAssets = {
-  difficultyPre: 'images/xingji/naval-trial/difficulty-pre.webp',
-  difficultySelected: 'images/xingji/naval-trial/difficulty-selected.webp',
-  difficultyCardImage: 'images/xingji/naval-trial/difficulty-card-image.webp',
-  difficultyCardTop: 'images/xingji/naval-trial/difficulty-card-top.svg',
-  difficultyCardStar: 'images/xingji/naval-trial/difficulty-card-star.svg',
-  difficultyCardCheck: 'images/xingji/naval-trial/difficulty-card-check.svg',
-  difficultyCardLocked: 'images/xingji/naval-trial/difficulty-card-locked.svg',
-  personalSelect: 'images/xingji/naval-trial/personal-select.webp',
-  personalConfirm: 'images/xingji/naval-trial/personal-confirm.webp',
-  mapPanel: 'images/xingji/naval-trial/map-panel.webp',
-  rewardFlow: 'images/xingji/naval-trial/reward-flow.webp',
-  confirmBig: 'images/xingji/naval-trial/confirm-big.webp',
-  quickAccess: 'images/xingji/naval-trial/quick-access.webp',
-  instructorPanel: 'images/xingji/naval-trial/instructor-panel.webp',
-  allianceNo: 'images/xingji/naval-trial/alliance-no.webp',
-  allianceYes: 'images/xingji/naval-trial/alliance-yes.webp',
-  monsterPlace: 'images/xingji/naval-trial/monster-place.webp',
-  monsterInfo: 'images/xingji/naval-trial/monster-info.webp',
-  rewardPreview: 'images/xingji/naval-trial/reward-preview.webp',
-  rewardClaimed: 'images/xingji/naval-trial/reward-claimed.webp',
-  recordEmpty: 'images/xingji/naval-trial/record-empty.webp',
-  recordList: 'images/xingji/naval-trial/record-list.webp',
-  outcomePersonal: 'images/xingji/naval-trial/outcome-personal.webp',
-  outcomeDetail: 'images/xingji/naval-trial/outcome-detail.webp',
-  outcomeAlliance: 'images/xingji/naval-trial/outcome-alliance.webp',
-  iconWarning: 'images/xingji/naval-trial/icon-warning.svg',
-  iconButtons: 'images/xingji/naval-trial/icon-buttons.svg',
-  iconInfo: 'images/xingji/naval-trial/icon-info.svg',
-  iconEntry: 'images/xingji/naval-trial/icon-entry.svg',
-  iconMonster: 'images/xingji/naval-trial/icon-monster.svg',
-  iconRoute: 'images/xingji/naval-trial/icon-route.svg',
-  iconRank: 'images/xingji/naval-trial/icon-rank.svg',
-  iconHistory: 'images/xingji/naval-trial/icon-history.svg',
-  iconMedal: 'images/xingji/naval-trial/icon-medal.svg',
-  iconProgress: 'images/xingji/naval-trial/icon-progress.svg',
-  iconBattle: 'images/xingji/naval-trial/icon-battle.svg',
-};
-
-const caseNineAssets = {
-  heroBg: 'https://www.figma.com/api/mcp/asset/adae9fc1-4eef-430a-80c3-3b4ce96e4713',
-  entryIdle: 'images/xingji/embermine/entry-idle-corrected.webp',
-  entryBubble: 'https://www.figma.com/api/mcp/asset/764e4ef8-3fc0-486e-80ae-87f5ca971bad',
-  mainPanel: 'https://www.figma.com/api/mcp/asset/9fb9559f-2984-4dfb-a49c-269a1f9abe3b',
-  fullPage: 'images/xingji/embermine/figma-7645-7491-full.webp',
-  timeSelectA: 'images/xingji/embermine/time-select-a-corrected.webp',
-  timeSelectB: 'https://www.figma.com/api/mcp/asset/fd4e4bda-0712-416f-b73a-b673a67de109',
-  timeTips: 'https://www.figma.com/api/mcp/asset/96f4bff8-8aff-4d7b-be38-5f024ab4915d',
-  trialPanel: 'https://www.figma.com/api/mcp/asset/00f689b6-4c9d-46e9-bf41-807c4dbe1bd1',
-  preBattleReminder: 'https://www.figma.com/api/mcp/asset/a876aa91-a28e-4514-b7f0-9ef71486a956',
-  preBattleCountdown: 'https://www.figma.com/api/mcp/asset/bf76d19e-a632-452f-b158-bfc7ffd1c24e',
-  battleHudA: 'https://www.figma.com/api/mcp/asset/0d585e69-890a-41ee-a7b5-e26ea3c72253',
-  battleHudB: 'https://www.figma.com/api/mcp/asset/3b883c41-7f72-4c37-8935-e293e6fa3acf',
-  battleHudC: 'https://www.figma.com/api/mcp/asset/00d3bbe2-e466-4306-a49d-19e5a8409629',
-  mapSystemDetail: 'https://www.figma.com/api/mcp/asset/b8b9ad3f-46a8-4d59-8c0b-6fd1285ad682',
-  mapSystemField: 'https://www.figma.com/api/mcp/asset/5e8bc133-9f84-48aa-aaf9-9fb3371cb35a',
-  mapInteractMoveTown: 'https://www.figma.com/api/mcp/asset/2b6d9338-f596-4bcc-9987-e74cd1a07809',
-  mapInteractMarch: 'https://www.figma.com/api/mcp/asset/2b8c9844-9e7a-4932-b924-377dabfd7231',
-  mapInteractBuilding: 'https://www.figma.com/api/mcp/asset/b44c00bc-0055-4938-874b-5ec3175d9c54',
-  mapInteractTeleport: 'https://www.figma.com/api/mcp/asset/fd7901c7-7241-4f39-b9ec-00fbc1cccab6',
-  skillTreeOverview: 'https://www.figma.com/api/mcp/asset/2cef8b1e-0bd4-4756-828f-7d546c4fe670',
-  skillTreeAdvanced: 'https://www.figma.com/api/mcp/asset/543f244a-7bb2-440c-aa08-be82be83656b',
-  skillDetailPanelA: 'https://www.figma.com/api/mcp/asset/eb3c33c8-9051-4a9f-b26e-2705f600058b',
-  skillDetailPanelB: 'https://www.figma.com/api/mcp/asset/dd37af36-6d19-4cd3-933b-9358b0aee097',
-  miningHudA: 'https://www.figma.com/api/mcp/asset/5073a4bd-238e-4080-974d-a7bda1b1a082',
-  miningHudB: 'https://www.figma.com/api/mcp/asset/8584de9a-60c5-4d5c-a112-2960cedbda97',
-  smeltingPanel: 'https://www.figma.com/api/mcp/asset/c0fbb504-f784-4511-835d-1a8436d5b32c',
-  rankingLode: 'https://www.figma.com/api/mcp/asset/19b5d94b-96d0-4d58-a14a-ceed488ce695',
-  rankingStay: 'https://www.figma.com/api/mcp/asset/8a502735-da18-47e4-af0e-814cb499e171',
-  rankingReward: 'https://www.figma.com/api/mcp/asset/7fbda620-2d8f-4420-94f8-5a3aea8ce589',
-  settlementRewardA: 'https://www.figma.com/api/mcp/asset/f3ad15b6-c4d7-4a40-8f32-f65e4f4ab188',
-  settlementRewardB: 'https://www.figma.com/api/mcp/asset/fb1070b3-5e06-4123-87a6-e455fdc8e718',
-  settlementRankA: 'images/xingji/embermine/settlement-rank-a-corrected.webp',
-  settlementRankB: 'https://www.figma.com/api/mcp/asset/b3d04b10-5e11-4365-bee0-bc033468b808',
-  settlementCollectA: 'images/xingji/embermine/settlement-collect-a-corrected.webp',
-  settlementCollectB: 'https://www.figma.com/api/mcp/asset/6ae0ddbe-b680-4397-b42e-d40f205e79c6',
-  battleA: 'https://www.figma.com/api/mcp/asset/f6a5d596-ab02-409f-9fc9-2df7313d32ca',
-  battleB: 'https://www.figma.com/api/mcp/asset/3e589254-5973-45ec-98dd-cfb77c543d53',
-  battleC: 'https://www.figma.com/api/mcp/asset/27acca3a-36a7-49e2-8472-80d073d1f3ff',
-  mapDetail: 'https://www.figma.com/api/mcp/asset/659c349e-bccf-4dc5-85b1-a43027fc9033',
-  fieldInfo: 'https://www.figma.com/api/mcp/asset/129b4ff2-91c4-42f9-8e24-f41fe35a979b',
-  moveTown: 'https://www.figma.com/api/mcp/asset/2269bf3a-5696-4a57-b679-a5b19e5e7025',
-  march: 'https://www.figma.com/api/mcp/asset/41939af4-c7eb-4325-929b-ea23e0a38395',
-  building: 'https://www.figma.com/api/mcp/asset/adc6a3b2-4862-4eaa-8b62-f18b7e438de9',
-  teleport: 'https://www.figma.com/api/mcp/asset/18ae8c8f-7c8f-4348-81d8-11441fd8f726',
-  skillA: 'https://www.figma.com/api/mcp/asset/a3191e29-9402-4094-a459-00bc29d90b1b',
-  skillB: 'https://www.figma.com/api/mcp/asset/05e70e00-c2a6-4738-9018-1e830876da06',
-  skillPopup: 'https://www.figma.com/api/mcp/asset/2297c0ab-417e-45c8-b6c5-822d21d68d1a',
-  rules: 'https://www.figma.com/api/mcp/asset/4fe9f620-2369-4a23-8184-e00ef17983cd',
-  lode: 'https://www.figma.com/api/mcp/asset/27932f19-0cac-44d1-9599-5cb332200b24',
-  smelt: 'https://www.figma.com/api/mcp/asset/8cc67a9f-42fd-4c4e-bfc4-e371684fc21e',
-  staytime: 'https://www.figma.com/api/mcp/asset/3c4de054-cc39-45cd-894d-eb4f5f23394e',
-  rankReward: 'https://www.figma.com/api/mcp/asset/da1b8d89-e500-4ce7-8124-c51358793671',
-  rankFinal: 'https://www.figma.com/api/mcp/asset/c5d8cdf3-3737-4b25-ad24-b9f078832ef2',
 } as const;
 
 
@@ -181,6 +85,81 @@ const caseEightAssets = {
   coreLoopPreview: publicUrl('images/xingji/wish-tree/reward-preview.webp'),
   coreLoopResult: publicUrl('images/xingji/wish-tree/core-result.webp'),
   finalGallery: publicUrl('images/xingji/wish-tree/final-gallery.webp'),
+} as const;
+
+const caseNineAssets = {
+  heroBg: 'images/xingji/embermine/figma-7645-7491-full.webp',
+  entryIdle: 'images/xingji/embermine/entry-idle-corrected.webp',
+  mainPanel: 'pencil/xingji-aodaisai/panel5.webp',
+  timeSelectA: 'images/xingji/embermine/time-select-a-corrected.webp',
+  timeSelectB: 'pencil/xingji-aodaisai/modal-screen.webp',
+  trialPanel: 'pencil/xingji-aodaisai/panel-1.webp',
+  preBattleReminder: 'pencil/xingji-aodaisai/panel.webp',
+  preBattleCountdown: 'pencil/xingji-aodaisai/panel-2.webp',
+  battleHudA: 'pencil/xingji-aodaisai/panel-2.webp',
+  battleHudB: 'pencil/xingji-aodaisai/panel.webp',
+  battleHudC: 'pencil/xingji-aodaisai/panel-1.webp',
+  mapSystemDetail: 'pencil/xingji-aodaisai/figma-area-cabin-map.webp',
+  mapSystemField: 'pencil/xingji-aodaisai/figma-area-field-map.webp',
+  mapInteractMoveTown: 'pencil/xingji-aodaisai/panel0.webp',
+  mapInteractMarch: 'pencil/xingji-aodaisai/panel.webp',
+  mapInteractBuilding: 'pencil/xingji-aodaisai/panel-1.webp',
+  mapInteractTeleport: 'pencil/xingji-aodaisai/panel-2.webp',
+  skillTreeOverview: 'pencil/xingji-aodaisai/panel.webp',
+  skillTreeAdvanced: 'pencil/xingji-aodaisai/panel-1.webp',
+  miningHudA: 'pencil/xingji-aodaisai/panel-2.webp',
+  miningHudB: 'pencil/xingji-aodaisai/panel.webp',
+  smeltingPanel: 'pencil/xingji-aodaisai/panel-1.webp',
+  rankingLode: 'pencil/xingji-aodaisai/panel.webp',
+  rankingStay: 'pencil/xingji-aodaisai/panel-1.webp',
+  rankingReward: 'pencil/xingji-aodaisai/panel5.webp',
+  settlementRewardA: 'pencil/xingji-aodaisai/panel5.webp',
+  settlementRankA: 'images/xingji/embermine/settlement-rank-a-corrected.webp',
+  settlementCollectA: 'images/xingji/embermine/settlement-collect-a-corrected.webp',
+  settlementRewardB: 'pencil/xingji-aodaisai/modal-screen.webp',
+  settlementRankB: 'pencil/xingji-aodaisai/half-screen.webp',
+  settlementCollectB: 'pencil/xingji-aodaisai/panel-2.webp',
+} as const;
+
+const navalTrialAsset = (name: string) => publicUrl(`images/xingji/naval-trial/${name}`);
+
+const caseFiveAssets = {
+  allianceNo: navalTrialAsset('alliance-no.webp'),
+  allianceYes: navalTrialAsset('alliance-yes.webp'),
+  confirmBig: navalTrialAsset('confirm-big.webp'),
+  difficultyCardCheck: navalTrialAsset('difficulty-card-check.svg'),
+  difficultyCardImage: navalTrialAsset('difficulty-card-image.webp'),
+  difficultyCardLocked: navalTrialAsset('difficulty-card-locked.svg'),
+  difficultyCardStar: navalTrialAsset('difficulty-card-star.svg'),
+  difficultyCardTop: navalTrialAsset('difficulty-card-top.svg'),
+  difficultyPre: navalTrialAsset('difficulty-pre.webp'),
+  difficultySelected: navalTrialAsset('difficulty-selected.webp'),
+  iconBattle: navalTrialAsset('icon-battle.svg'),
+  iconButtons: navalTrialAsset('icon-buttons.svg'),
+  iconEntry: navalTrialAsset('icon-entry.svg'),
+  iconHistory: navalTrialAsset('icon-history.svg'),
+  iconInfo: navalTrialAsset('icon-info.svg'),
+  iconMedal: navalTrialAsset('icon-medal.svg'),
+  iconMonster: navalTrialAsset('icon-monster.svg'),
+  iconProgress: navalTrialAsset('icon-progress.svg'),
+  iconRank: navalTrialAsset('icon-rank.svg'),
+  iconRoute: navalTrialAsset('icon-route.svg'),
+  iconWarning: navalTrialAsset('icon-warning.svg'),
+  instructorPanel: navalTrialAsset('instructor-panel.webp'),
+  mapPanel: navalTrialAsset('map-panel.webp'),
+  monsterInfo: navalTrialAsset('monster-info.webp'),
+  monsterPlace: navalTrialAsset('monster-place.webp'),
+  outcomeAlliance: navalTrialAsset('outcome-alliance.webp'),
+  outcomeDetail: navalTrialAsset('outcome-detail.webp'),
+  outcomePersonal: navalTrialAsset('outcome-personal.webp'),
+  personalConfirm: navalTrialAsset('personal-confirm.webp'),
+  personalSelect: navalTrialAsset('personal-select.webp'),
+  quickAccess: navalTrialAsset('quick-access.webp'),
+  recordEmpty: navalTrialAsset('record-empty.webp'),
+  recordList: navalTrialAsset('record-list.webp'),
+  rewardClaimed: navalTrialAsset('reward-claimed.webp'),
+  rewardFlow: navalTrialAsset('reward-flow.webp'),
+  rewardPreview: navalTrialAsset('reward-preview.webp'),
 } as const;
 
 function LongPageSection({
@@ -2729,11 +2708,9 @@ function GeneralTrialCase() {
 
 function EmbermineHero() {
   return (
-    <LongPageSection height={900} bg="#0f071c">
-      <div className="absolute inset-0 opacity-50">
-        <img src={resolveAsset(caseNineAssets.heroBg)} alt="" className="h-full w-full object-cover" />
-      </div>
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,7,28,0.95)_0%,rgba(15,7,28,0.3)_48%,rgba(15,7,28,0.85)_100%)]" />
+    <LongPageSection height={900} bg="linear-gradient(180deg,#10071e 0%,#0b0614 100%)">
+      <div className="absolute left-[700px] top-[-210px] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(244,120,32,0.14)_0%,rgba(244,120,32,0.06)_42%,rgba(244,120,32,0)_72%)]" />
+      <div className="absolute left-[80px] top-[180px] h-[360px] w-[840px] rounded-[32px] border border-white/[0.04] bg-[rgba(255,255,255,0.02)]" />
       <p className="absolute left-[88px] top-[408px] text-[72px] font-black leading-none tracking-[2px] text-white">燃海矿区</p>
       <p className="absolute left-[92px] top-[495px] font-['Inter',sans-serif] text-[18px] font-bold tracking-[5px] text-[#f47820]">
         EMBERMINE BATTLEGROUND
@@ -3687,7 +3664,7 @@ function EmbermineQuickEntry() {
 
       <div className="absolute left-[170px] top-[270px] h-[694px] w-[320px] overflow-hidden rounded-[18px] border-[1.5px] border-[rgba(69,196,233,0.9)] shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
         <img
-          src="https://www.figma.com/api/mcp/asset/44b302a6-6339-48fc-9af7-3dcfe7f2b4b5"
+          src={resolveAsset(caseNineAssets.entryIdle)}
           alt="燃海矿区快捷入口"
           className="absolute inset-0 h-full w-full rounded-[18px] object-cover"
         />
@@ -3866,30 +3843,30 @@ function EmbermineDesignReview() {
 
 function EmbermineGallery() {
   const gallery = [
-    'https://www.figma.com/api/mcp/asset/9a8b9e45-cd2d-4333-94e8-2fd5cf371057',
-    'https://www.figma.com/api/mcp/asset/35dfd768-45b2-4c75-9ceb-cefd074530db',
-    'https://www.figma.com/api/mcp/asset/176f6200-b9f5-4fa3-b5dd-8a9aeeb848d4',
-    'https://www.figma.com/api/mcp/asset/3548c109-239c-4dad-abc3-0dc048d4a030',
-    'https://www.figma.com/api/mcp/asset/58e75aa0-1fb2-4d61-b5a1-61d99870023e',
-    'https://www.figma.com/api/mcp/asset/ba3cf8d5-eac7-496e-ba39-958ce108576c',
-    'https://www.figma.com/api/mcp/asset/f65244b9-28d3-4e8a-a825-ec7e577d8e86',
-    'https://www.figma.com/api/mcp/asset/cd711e7c-8cf5-41df-af20-7e5e1c7aabfc',
-    'https://www.figma.com/api/mcp/asset/6f6eb8c6-cc0b-4b5d-9d01-0a6ea78a7d24',
-    'https://www.figma.com/api/mcp/asset/2679c53b-5e3e-4d2d-ba01-653de36fc26b',
-    'https://www.figma.com/api/mcp/asset/679b5b53-1458-4440-9e75-8d0d0af5114f',
-    'https://www.figma.com/api/mcp/asset/e012ae73-4501-49ca-9ffc-b6b808642380',
-    'https://www.figma.com/api/mcp/asset/f59e137b-94a3-43d2-b07f-bbc53cde15c0',
-    'https://www.figma.com/api/mcp/asset/5d355663-1003-40d3-9829-5e18ac61a8b1',
-    'https://www.figma.com/api/mcp/asset/b4b0cc21-dbbc-4f34-87a1-c0768e473e08',
-    'https://www.figma.com/api/mcp/asset/03ed248e-8bfe-495a-9a6f-10b405376e8f',
-    'https://www.figma.com/api/mcp/asset/972bfae8-eafd-45b1-9b6f-1b9d61d7afb9',
-    'https://www.figma.com/api/mcp/asset/9e37680a-1678-4840-b682-b7e83a17f0a5',
-    'https://www.figma.com/api/mcp/asset/d280ecc7-612f-4ab1-8f46-7e93c2625186',
-    'https://www.figma.com/api/mcp/asset/8508df73-9303-4797-8965-82e000471fb5',
-    'https://www.figma.com/api/mcp/asset/84bd3772-48b0-47e0-befe-ce373eb74918',
-    'https://www.figma.com/api/mcp/asset/cb36b035-2e09-48b1-9d0f-f2c89d35c0fb',
-    'https://www.figma.com/api/mcp/asset/199d324c-a086-48a1-90b5-fdd102429144',
-    'https://www.figma.com/api/mcp/asset/e540902d-048a-4ffe-810f-a60e935dde3a',
+    caseNineAssets.entryIdle,
+    caseNineAssets.mainPanel,
+    caseNineAssets.timeSelectA,
+    caseNineAssets.timeSelectB,
+    caseNineAssets.trialPanel,
+    caseNineAssets.preBattleReminder,
+    caseNineAssets.preBattleCountdown,
+    caseNineAssets.battleHudA,
+    caseNineAssets.battleHudB,
+    caseNineAssets.battleHudC,
+    caseNineAssets.mapSystemDetail,
+    caseNineAssets.mapSystemField,
+    caseNineAssets.mapInteractMoveTown,
+    caseNineAssets.mapInteractMarch,
+    caseNineAssets.mapInteractBuilding,
+    caseNineAssets.mapInteractTeleport,
+    caseNineAssets.skillTreeOverview,
+    caseNineAssets.skillTreeAdvanced,
+    caseNineAssets.miningHudA,
+    caseNineAssets.miningHudB,
+    caseNineAssets.smeltingPanel,
+    caseNineAssets.rankingReward,
+    caseNineAssets.settlementRankA,
+    caseNineAssets.settlementCollectA,
   ];
 
   return (
@@ -3900,8 +3877,8 @@ function EmbermineGallery() {
 
       <div className="absolute left-[80px] top-[262px] grid w-[1140px] grid-cols-4 gap-x-[50px] gap-y-[50px]">
         {gallery.map((src, index) => (
-          <div key={src} className={`relative w-[240px] overflow-hidden ${index === 19 ? 'h-[525px]' : 'h-[520px]'}`}>
-            <img src={src} alt={`视觉稿 ${index + 1}`} className="absolute inset-0 h-full w-full object-cover" />
+          <div key={`${src}-${index}`} className={`relative w-[240px] overflow-hidden ${index === 19 ? 'h-[525px]' : 'h-[520px]'}`}>
+            <img src={resolveAsset(src)} alt={`视觉稿 ${index + 1}`} className="absolute inset-0 h-full w-full object-cover" />
           </div>
         ))}
       </div>

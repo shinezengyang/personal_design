@@ -1,7 +1,7 @@
 
 .star-case-page { width: 100%; overflow-x: hidden; background: #111; }
-.star-figma-shell { width: 100%; overflow: visible; position: relative; }
-.star-figma-stage { position: absolute; left: 50%; top: 0; transform-origin: top center; overflow: hidden; font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }
+.star-figma-shell { width: 100%; max-width: 100%; overflow: hidden; position: relative; }
+.star-figma-stage { position: absolute; left: 0; top: 0; transform-origin: top left; overflow: hidden; font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }
 .abs { position: absolute; display: block; }
 .star-figma-stage img.abs { object-fit: cover; pointer-events: none; }
 .img-cover { object-fit: cover; }
@@ -182,85 +182,6 @@
 
 .cdst-stage { background: #141414; color: #fff; }
 
-.cdst-hero-art {
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 74% 28%, rgba(30, 126, 166, 0.32), transparent 30%),
-    radial-gradient(circle at 24% 74%, rgba(32, 94, 129, 0.24), transparent 34%),
-    linear-gradient(145deg, #080d11 0%, #111a20 55%, #05080a 100%);
-}
-
-.cdst-hero-art::before {
-  position: absolute;
-  inset: 0;
-  content: "";
-  opacity: 0.18;
-  background-image:
-    linear-gradient(rgba(106, 188, 204, 0.18) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(106, 188, 204, 0.18) 1px, transparent 1px);
-  background-size: 96px 96px;
-  transform: perspective(900px) rotateX(56deg) scale(1.35);
-  transform-origin: center bottom;
-}
-
-.cdst-hero-grid {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(115deg, transparent 0 150px, rgba(99, 159, 171, 0.08) 151px 153px);
-}
-
-.cdst-hero-orbit {
-  position: absolute;
-  border: 2px solid rgba(99, 159, 171, 0.2);
-  border-radius: 50%;
-  transform: rotate(-18deg);
-}
-
-.cdst-hero-orbit-a { width: 1120px; height: 430px; right: -120px; top: 210px; }
-.cdst-hero-orbit-b { width: 880px; height: 290px; left: 420px; bottom: 190px; }
-
-.cdst-hero-city {
-  position: absolute;
-  right: 4%;
-  bottom: 0;
-  left: 48%;
-  height: 44%;
-  opacity: 0.36;
-  background: repeating-linear-gradient(90deg, #09181e 0 56px, #0d252d 57px 94px, transparent 95px 120px);
-  clip-path: polygon(0 100%, 0 72%, 5% 72%, 5% 40%, 10% 40%, 10% 60%, 15% 60%, 15% 28%, 22% 28%, 22% 70%, 29% 70%, 29% 48%, 35% 48%, 35% 20%, 43% 20%, 43% 58%, 50% 58%, 50% 34%, 57% 34%, 57% 66%, 65% 66%, 65% 18%, 73% 18%, 73% 52%, 80% 52%, 80% 30%, 88% 30%, 88% 64%, 94% 64%, 94% 42%, 100% 42%, 100% 100%);
-  box-shadow: 0 -30px 90px rgba(84, 177, 195, 0.18);
-}
-
-.cdst-qr-code {
-  box-sizing: border-box;
-  padding: 22px;
-  border: 10px solid #f5f7f5;
-  background: repeating-conic-gradient(#0b1719 0 25%, #f5f7f5 0 50%) 0 0 / 32px 32px;
-  box-shadow: 0 0 0 2px rgba(99, 159, 171, 0.45);
-}
-
-.cdst-qr-code::after {
-  position: absolute;
-  inset: 38px;
-  content: "";
-  background: repeating-conic-gradient(#0b1719 0 25%, transparent 0 50%) 0 0 / 20px 20px;
-  mix-blend-mode: multiply;
-}
-
-.cdst-qr-finder {
-  position: absolute;
-  z-index: 1;
-  width: 52px;
-  height: 52px;
-  border: 10px solid #0b1719;
-  background: #f5f7f5;
-  box-shadow: inset 0 0 0 9px #0b1719;
-}
-
-.cdst-qr-finder-a { top: 18px; left: 18px; }
-.cdst-qr-finder-b { top: 18px; right: 18px; }
-.cdst-qr-finder-c { bottom: 18px; left: 18px; }
-
 .cdst-symbol-icon {
   display: flex;
   align-items: center;
@@ -304,13 +225,6 @@
     transition: none;
   }
 }
-
-/* ── hero ── */
-.cdst-logo { position: absolute; left: 231.5px; top: 107.5px; width: 400px; color: rgba(255,255,255,.8); text-align: center; font-size: 49.9px; line-height: 60px; letter-spacing: 4.74px; }
-.cdst-project { position: absolute; left: 1872.5px; width: 407px; top: 100.5px; color: #fff; text-align: right; font-size: 41.7px; letter-spacing: 3.96px; white-space: nowrap; }
-.cdst-big { position: absolute; left: 0; width: 1646px; top: 458.5px; text-align: center; color: rgba(255,255,255,.05); font-size: 416.7px; line-height: 1; letter-spacing: 39.6px; }
-.cdst-title { position: absolute; left: 0; top: 966.5px; width: 551.5px; color: #fff; text-align: right; font-size: 41.7px; line-height: 75px; }
-.cdst-title span { display: block; font-size: 25px; }
 
 /* ── section titles — left 199.5, white, accent bar below ── */
 .cdst-section-title { position: absolute; color: #fff; font-size: 66.8px; line-height: 75.2px; white-space: nowrap; }
@@ -510,8 +424,7 @@
 .persona-card { width: 1942px; height: 505px; }
 .persona-card .persona-body { position: absolute; left: 647.5px; top: 4px; width: 1294px; height: 499px; background: #fff; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
 .persona-card .avatar-ring { position: absolute; left: 0; top: 0; width: 504px; height: 502px; overflow: visible; }
-.persona-card .avatar-ring img.ring { position: absolute; inset: 0; width: 504px; height: 502px; object-fit: contain; }
-.persona-card .avatar-ring img.avatar { position: absolute; left: 34px; top: 33px; width: 436px; height: 435px; object-fit: contain; border-radius: 50%; }
+.persona-card .avatar-ring img.portrait { position: absolute; inset: 0; width: 504px; height: 502px; object-fit: contain; }
 .persona-card .persona-text { position: absolute; left: 746.5px; width: 1110px; color: #111; font-size: 41.67px; line-height: 58.33px; letter-spacing: 3.96px; white-space: pre; }
 .persona-card .persona-text p { margin: 0 0 5px; }
 
@@ -873,7 +786,15 @@
 .phone-hero { filter: drop-shadow(0 0 175px rgba(0,0,0,.35)); }
 .color-grid { position: absolute; width: 2083px; display: grid; grid-template-columns: repeat(5, 376px); column-gap: 51px; row-gap: 129px; }
 .color-grid span { height: 131px; border-radius: 24px; display: grid; place-items: center; font-size: 50px; letter-spacing: 4.75px; }
-@media (max-width: 760px) { .star-case-page { margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); } }
+@media (max-width: 760px) {
+  .star-case-page {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+}
 
 /* 2026-06 refinement: keep the Figma canvas fitting the visible content width. */
 .star-figma-shell {
@@ -919,7 +840,8 @@
    ───────────────────────────────────────────────────────────── */
 .hs-exact-page {
   width: 100%;
-  overflow: visible;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 .hs-exact-stage {
   background: #141424;
