@@ -53,19 +53,19 @@ const ProjectCard = ({
         },
       });
 
-      // Image slides in from the side
+      // Keep cards visible by default; animation should never be a rendering dependency.
       const imgDir = index % 2 === 0 ? -80 : 80;
       tl.fromTo(imgRef.current,
-        { x: imgDir, opacity: 0, scale: 0.92 },
-        { x: 0, opacity: 1, scale: 1, duration: 0.9, ease: 'expo.out' },
+        { x: imgDir, scale: 0.98 },
+        { x: 0, scale: 1, duration: 0.9, ease: 'expo.out' },
         0
       );
 
-      // Content elements stagger in
+      // Text remains readable even if ScrollTrigger is delayed or blocked by stale caches.
       const reveals = contentRef.current!.querySelectorAll<HTMLElement>('[data-reveal]');
       tl.fromTo(reveals,
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, stagger: 0.07, ease: 'expo.out' },
+        { y: 30 },
+        { y: 0, duration: 0.7, stagger: 0.07, ease: 'expo.out' },
         0.15
       );
 
