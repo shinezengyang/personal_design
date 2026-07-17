@@ -60,8 +60,8 @@ const Process = () => {
       scrollTrigger: {
         trigger: section,
         start: 'top 60%',
-        end: 'bottom 95%',
-        scrub: 0.25,
+        end: '+=520',
+        scrub: 0.08,
       },
     });
 
