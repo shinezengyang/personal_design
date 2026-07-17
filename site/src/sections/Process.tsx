@@ -40,7 +40,6 @@ const steps = [
 const Process = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<HTMLDivElement>(null);
   const stepRefs = useRef<HTMLDivElement[]>([]);
   const cardRefs = useRef<HTMLDivElement[]>([]);
   const nodeRefs = useRef<HTMLDivElement[]>([]);
@@ -48,12 +47,11 @@ const Process = () => {
   useEffect(() => {
     const section = sectionRef.current;
     const line = lineRef.current;
-    const timeline = timelineRef.current;
     const stepElements = stepRefs.current;
     const cardElements = cardRefs.current;
     const nodeElements = nodeRefs.current;
 
-    if (!section || !line || !timeline) return;
+    if (!section || !line) return;
 
     const triggers: ScrollTrigger[] = [];
 
@@ -72,29 +70,6 @@ const Process = () => {
       { scaleY: 0 },
       { scaleY: 1, duration: 1, ease: 'none' }
     );
-
-    const lineTrack = line.parentElement;
-    const trackRect = lineTrack?.getBoundingClientRect();
-    if (trackRect && trackRect.height > 0) {
-      nodeElements.forEach((node) => {
-        const nodeRect = node.getBoundingClientRect();
-        const nodeCenter = nodeRect.top + nodeRect.height / 2 - trackRect.top;
-        const progress = Math.max(0, Math.min(0.96, nodeCenter / trackRect.height));
-
-        lineTl.fromTo(
-          node,
-          { scale: 0, borderColor: 'rgba(0,245,255,0.25)', backgroundColor: 'rgba(0,245,255,0)' },
-          {
-            scale: 1,
-            borderColor: '#00f5ff',
-            backgroundColor: '#00f5ff',
-            duration: 0.08,
-            ease: 'back.out(2.2)',
-          },
-          progress
-        );
-      });
-    }
 
     if (lineTl.scrollTrigger) triggers.push(lineTl.scrollTrigger);
 
@@ -115,6 +90,22 @@ const Process = () => {
         { x: isLeft ? -50 : 50, opacity: 0 },
         { x: 0, opacity: 1, duration: 0.8, ease: 'expo.out' }
       );
+
+      const node = nodeElements[index];
+      if (node) {
+        stepTl.fromTo(
+          node,
+          { scale: 0, borderColor: 'rgba(0,245,255,0.25)', backgroundColor: 'rgba(0,245,255,0)' },
+          {
+            scale: 1,
+            borderColor: '#00f5ff',
+            backgroundColor: '#00f5ff',
+            duration: 0.45,
+            ease: 'back.out(2.4)',
+          },
+          0.05
+        );
+      }
 
       if (stepTl.scrollTrigger) triggers.push(stepTl.scrollTrigger);
     });
@@ -160,7 +151,7 @@ const Process = () => {
         </div>
 
         {/* Timeline */}
-        <div ref={timelineRef} className="relative">
+        <div className="relative">
           {/* Center Line */}
           <div className="absolute left-1/2 top-0 bottom-28 w-px bg-white/10 -translate-x-1/2 hidden lg:block">
             <div
