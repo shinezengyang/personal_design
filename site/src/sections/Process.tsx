@@ -60,8 +60,8 @@ const Process = () => {
       scrollTrigger: {
         trigger: section,
         start: 'top 60%',
-        end: 'bottom 80%',
-        scrub: 1,
+        end: 'bottom 95%',
+        scrub: 0.25,
       },
     });
 
@@ -153,7 +153,7 @@ const Process = () => {
         {/* Timeline */}
         <div className="relative">
           {/* Center Line */}
-          <div className="absolute left-1/2 top-0 bottom-28 w-px bg-white/10 -translate-x-1/2 hidden lg:block">
+          <div className="absolute left-1/2 top-0 bottom-28 w-px -translate-x-1/2 hidden lg:block">
             <div
               ref={lineRef}
               className="absolute top-0 left-0 w-full bg-gradient-to-b from-neon-cyan via-neon-purple to-neon-pink origin-top"
