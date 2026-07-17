@@ -40,16 +40,20 @@ const steps = [
 const Process = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
   const stepRefs = useRef<HTMLDivElement[]>([]);
+  const cardRefs = useRef<HTMLDivElement[]>([]);
   const nodeRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const section = sectionRef.current;
     const line = lineRef.current;
+    const timeline = timelineRef.current;
     const stepElements = stepRefs.current;
+    const cardElements = cardRefs.current;
     const nodeElements = nodeRefs.current;
 
-    if (!section || !line) return;
+    if (!section || !line || !timeline) return;
 
     const triggers: ScrollTrigger[] = [];
 
@@ -66,51 +70,53 @@ const Process = () => {
     lineTl.fromTo(
       line,
       { scaleY: 0 },
-      { scaleY: 1, ease: 'none' }
+      { scaleY: 1, duration: 1, ease: 'none' }
     );
+
+    const lineTrack = line.parentElement;
+    const trackRect = lineTrack?.getBoundingClientRect();
+    if (trackRect && trackRect.height > 0) {
+      nodeElements.forEach((node) => {
+        const nodeRect = node.getBoundingClientRect();
+        const nodeCenter = nodeRect.top + nodeRect.height / 2 - trackRect.top;
+        const progress = Math.max(0, Math.min(0.96, nodeCenter / trackRect.height));
+
+        lineTl.fromTo(
+          node,
+          { scale: 0, borderColor: 'rgba(0,245,255,0.25)', backgroundColor: 'rgba(0,245,255,0)' },
+          {
+            scale: 1,
+            borderColor: '#00f5ff',
+            backgroundColor: '#00f5ff',
+            duration: 0.08,
+            ease: 'back.out(2.2)',
+          },
+          progress
+        );
+      });
+    }
 
     if (lineTl.scrollTrigger) triggers.push(lineTl.scrollTrigger);
 
     // Step animations
-    stepElements.forEach((step, index) => {
+    cardElements.forEach((card, index) => {
       const isLeft = index % 2 === 0;
 
       const stepTl = gsap.timeline({
         scrollTrigger: {
-          trigger: step,
+          trigger: stepElements[index],
           start: 'top 75%',
           toggleActions: 'play none none reverse',
         },
       });
 
       stepTl.fromTo(
-        step,
+        card,
         { x: isLeft ? -50 : 50, opacity: 0 },
         { x: 0, opacity: 1, duration: 0.8, ease: 'expo.out' }
       );
 
       if (stepTl.scrollTrigger) triggers.push(stepTl.scrollTrigger);
-    });
-
-    // Node activation
-    nodeElements.forEach((node, index) => {
-      const nodeTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: stepRefs.current[index],
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      nodeTl.to(node, {
-        scale: 1,
-        borderColor: '#00f5ff',
-        backgroundColor: '#00f5ff',
-        duration: 0.5,
-        ease: 'expo.out',
-      });
-
-      if (nodeTl.scrollTrigger) triggers.push(nodeTl.scrollTrigger);
     });
 
     return () => {
@@ -121,6 +127,12 @@ const Process = () => {
   const addToStepRefs = (el: HTMLDivElement | null, index: number) => {
     if (el) {
       stepRefs.current[index] = el;
+    }
+  };
+
+  const addToCardRefs = (el: HTMLDivElement | null, index: number) => {
+    if (el) {
+      cardRefs.current[index] = el;
     }
   };
 
@@ -148,7 +160,7 @@ const Process = () => {
         </div>
 
         {/* Timeline */}
-        <div className="relative">
+        <div ref={timelineRef} className="relative">
           {/* Center Line */}
           <div className="absolute left-1/2 top-0 bottom-28 w-px bg-white/10 -translate-x-1/2 hidden lg:block">
             <div
@@ -174,6 +186,7 @@ const Process = () => {
                 >
                   {/* Content Card */}
                   <div
+                    ref={(el) => addToCardRefs(el, index)}
                     className={`flex-1 ${isLeft ? 'lg:text-right' : 'lg:text-left'}`}
                   >
                     <div
