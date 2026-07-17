@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 126 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 1156">
+<g id="i2-bg">
+</g>
+<rect id="i2-stem" x="58" y="33" width="10" height="44" fill="var(--fill-0, #1B3C87)"/>
+<path id="i2-up" d="M63 13L52 31H74L63 13Z" fill="var(--fill-0, #1B3C87)"/>
+<rect id="i2-bl" x="27" y="45" width="26" height="5" fill="var(--fill-0, #1B3C87)"/>
+<path id="i2-al" d="M21 48L37 36L39 54L21 48Z" fill="var(--fill-0, #1B3C87)"/>
+<rect id="i2-br" x="73" y="45" width="26" height="5" fill="var(--fill-0, #1B3C87)"/>
+<path id="i2-ar" d="M105 48L89 36L87 54L105 48Z" fill="var(--fill-0, #1B3C87)"/>
+<rect id="i2-base" x="27" y="81" width="72" height="14" rx="6" fill="var(--fill-0, #1B3C87)"/>
+</g>
+</svg>

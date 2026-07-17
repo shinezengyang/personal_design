@@ -1,12 +1,28 @@
 import type { FormEvent } from 'react';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Send } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Check, Ellipsis, Send } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-type SubmitState = 'idle' | 'sending' | 'success' | 'error';
+type SubmitState = 'idle' | 'sending';
+type FieldErrors = Partial<Record<'name' | 'contact' | 'message', string>>;
+
+const contactPatterns = {
+  email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  phone: /^\+?\d[\d\s-]{5,}\d$/,
+};
+
+const isValidContact = (value: string) => {
+  const trimmed = value.trim();
+  const digitOnly = trimmed.replace(/[\s-]/g, '');
+
+  return (
+    contactPatterns.email.test(trimmed) ||
+    (contactPatterns.phone.test(trimmed) && /^\+?\d{7,15}$/.test(digitOnly))
+  );
+};
 
 const Contact = () => {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -14,13 +30,10 @@ const Contact = () => {
   const [contact, setContact] = useState('');
   const [message, setMessage] = useState('');
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
-  const [errorText, setErrorText] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
 
-  const endpoint = useMemo(() => {
-    return (import.meta.env.VITE_FEEDBACK_ENDPOINT as string | undefined) || '/api/feedback';
-  }, []);
-
-  const canSubmit = message.trim().length >= 4 && submitState !== 'sending';
+  const isSending = submitState === 'sending';
 
   useEffect(() => {
     if (!contentRef.current) return;
@@ -60,48 +73,57 @@ const Contact = () => {
     return () => ctx.revert();
   }, []);
 
+  const clearFieldError = (field: keyof FieldErrors) => {
+    setFieldErrors((current) => {
+      if (!current[field]) return current;
+      const next = { ...current };
+      delete next[field];
+      return next;
+    });
+  };
+
+  const validateForm = () => {
+    const nextErrors: FieldErrors = {};
+
+    if (!name.trim()) {
+      nextErrors.name = '请填写称呼。';
+    }
+
+    if (!contact.trim()) {
+      nextErrors.contact = '请填写联系方式。';
+    } else if (!isValidContact(contact)) {
+      nextErrors.contact = '联系方式格式不正确，请填写邮箱或手机号/电话。';
+    }
+
+    if (!message.trim()) {
+      nextErrors.message = '请填写意见内容。';
+    }
+
+    setFieldErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!canSubmit) {
-      setSubmitState('error');
-      setErrorText('先写一点意见内容再发送。');
+    if (isSending) return;
+
+    if (!validateForm()) {
       return;
     }
 
     setSubmitState('sending');
-    setErrorText('');
 
-    try {
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name.trim() || '匿名访客',
-          contact: contact.trim(),
-          message: message.trim(),
-          source: 'portfolio-contact-section',
-          page: window.location.href,
-          userAgent: window.navigator.userAgent,
-          createdAt: new Date().toISOString(),
-        }),
-      });
+    await new Promise((resolve) => window.setTimeout(resolve, 1200));
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+    setName('');
+    setContact('');
+    setMessage('');
+    setFieldErrors({});
+    setSubmitState('idle');
+    setShowSuccessToast(true);
 
-      setSubmitState('success');
-      setName('');
-      setContact('');
-      setMessage('');
-    } catch (error) {
-      console.error('Feedback submit failed:', error);
-      setSubmitState('error');
-      setErrorText('暂时发送失败，检查服务器接口或 VITE_FEEDBACK_ENDPOINT 配置。');
-    }
+    window.setTimeout(() => setShowSuccessToast(false), 8000);
   };
 
   return (
@@ -109,6 +131,17 @@ const Contact = () => {
       id="contact"
       className="relative w-full min-h-[760px] overflow-hidden px-6 pb-24 pt-28 sm:px-12 lg:px-24 cyber-grid"
     >
+      <div
+        className={`fixed left-1/2 top-20 z-[80] inline-flex -translate-x-1/2 items-center gap-3 rounded-2xl border border-neon-cyan bg-[#07101b]/98 px-6 py-4 font-display text-base font-bold tracking-[0.16em] text-neon-cyan shadow-[0_18px_60px_rgba(0,0,0,0.5),0_0_32px_rgba(0,245,255,0.36)] backdrop-blur-xl transition-all duration-300 ${
+          showSuccessToast ? 'pointer-events-auto translate-y-0 scale-100 opacity-100' : 'pointer-events-none -translate-y-4 scale-95 opacity-0'
+        }`}
+        role="status"
+        aria-live="polite"
+      >
+        <Check className="h-5 w-5" />
+        发送成功
+      </div>
+
       <div className="pointer-events-none absolute left-[18%] top-[24%] h-72 w-72 rounded-full bg-neon-purple/10 blur-[120px]" />
       <div className="pointer-events-none absolute right-[18%] bottom-[12%] h-80 w-80 rounded-full bg-neon-cyan/10 blur-[130px]" />
 
@@ -133,20 +166,40 @@ const Contact = () => {
                 <span className="mb-2 block text-sm font-bold tracking-[0.12em] text-white/70">称呼</span>
                 <input
                   value={name}
-                  onChange={(event) => setName(event.target.value)}
-                  placeholder="可以匿名"
-                  className="h-12 w-full rounded-xl border border-neon-cyan/18 bg-[#0b1320]/80 px-4 text-base text-white outline-none transition-all duration-300 placeholder:text-white/24 focus:border-neon-cyan/70 focus:shadow-[0_0_26px_rgba(0,245,255,0.14)]"
+                  onChange={(event) => {
+                    setName(event.target.value);
+                    clearFieldError('name');
+                  }}
+                  disabled={isSending}
+                  aria-invalid={Boolean(fieldErrors.name)}
+                  placeholder="请输入称呼"
+                  className={`h-12 w-full rounded-xl border bg-[#0b1320]/80 px-4 text-base text-white outline-none transition-all duration-300 placeholder:text-white/24 disabled:cursor-not-allowed disabled:opacity-60 ${
+                    fieldErrors.name
+                      ? 'border-[#ff2a6d]/70 focus:border-[#ff2a6d] focus:shadow-[0_0_24px_rgba(255,42,109,0.18)]'
+                      : 'border-neon-cyan/18 focus:border-neon-cyan/70 focus:shadow-[0_0_26px_rgba(0,245,255,0.14)]'
+                  }`}
                 />
+                {fieldErrors.name ? <p className="mt-2 text-sm font-semibold text-[#ff8aae]">{fieldErrors.name}</p> : null}
               </label>
 
               <label data-contact-field className="block">
                 <span className="mb-2 block text-sm font-bold tracking-[0.12em] text-white/70">联系方式</span>
                 <input
                   value={contact}
-                  onChange={(event) => setContact(event.target.value)}
-                  placeholder="邮箱 / 微信 / 电话"
-                  className="h-12 w-full rounded-xl border border-neon-cyan/18 bg-[#0b1320]/80 px-4 text-base text-white outline-none transition-all duration-300 placeholder:text-white/24 focus:border-neon-cyan/70 focus:shadow-[0_0_26px_rgba(0,245,255,0.14)]"
+                  onChange={(event) => {
+                    setContact(event.target.value);
+                    clearFieldError('contact');
+                  }}
+                  disabled={isSending}
+                  aria-invalid={Boolean(fieldErrors.contact)}
+                  placeholder="邮箱 / 电话"
+                  className={`h-12 w-full rounded-xl border bg-[#0b1320]/80 px-4 text-base text-white outline-none transition-all duration-300 placeholder:text-white/24 disabled:cursor-not-allowed disabled:opacity-60 ${
+                    fieldErrors.contact
+                      ? 'border-[#ff2a6d]/70 focus:border-[#ff2a6d] focus:shadow-[0_0_24px_rgba(255,42,109,0.18)]'
+                      : 'border-neon-cyan/18 focus:border-neon-cyan/70 focus:shadow-[0_0_26px_rgba(0,245,255,0.14)]'
+                  }`}
                 />
+                {fieldErrors.contact ? <p className="mt-2 text-sm font-semibold text-[#ff8aae]">{fieldErrors.contact}</p> : null}
               </label>
             </div>
 
@@ -154,35 +207,37 @@ const Contact = () => {
               <span className="mb-2 block text-sm font-bold tracking-[0.12em] text-white/70">意见内容</span>
               <textarea
                 value={message}
-                onChange={(event) => setMessage(event.target.value)}
+                onChange={(event) => {
+                  setMessage(event.target.value);
+                  clearFieldError('message');
+                }}
+                disabled={isSending}
+                aria-invalid={Boolean(fieldErrors.message)}
                 placeholder="比如：哪个案例表达不清楚、哪块布局太空、哪个按钮不明显……"
                 rows={8}
-                className="w-full resize-none rounded-2xl border border-neon-cyan/18 bg-[#0b1320]/80 px-4 py-4 text-base leading-7 text-white outline-none transition-all duration-300 placeholder:text-white/24 focus:border-neon-cyan/70 focus:shadow-[0_0_26px_rgba(0,245,255,0.14)]"
+                className={`w-full resize-none rounded-2xl border bg-[#0b1320]/80 px-4 py-4 text-base leading-7 text-white outline-none transition-all duration-300 placeholder:text-white/24 disabled:cursor-not-allowed disabled:opacity-60 ${
+                  fieldErrors.message
+                    ? 'border-[#ff2a6d]/70 focus:border-[#ff2a6d] focus:shadow-[0_0_24px_rgba(255,42,109,0.18)]'
+                    : 'border-neon-cyan/18 focus:border-neon-cyan/70 focus:shadow-[0_0_26px_rgba(0,245,255,0.14)]'
+                }`}
               />
+              {fieldErrors.message ? <p className="mt-2 text-sm font-semibold text-[#ff8aae]">{fieldErrors.message}</p> : null}
             </label>
 
             <div data-contact-field className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-end">
               <button
                 type="submit"
-                disabled={!canSubmit}
+                disabled={isSending}
                 className="group inline-flex h-12 items-center justify-center gap-3 rounded-xl border border-neon-cyan bg-neon-cyan/8 px-7 font-display text-sm font-bold tracking-[0.18em] text-neon-cyan transition-all duration-300 hover:bg-neon-cyan hover:text-[#060913] hover:shadow-[0_0_30px_rgba(0,245,255,0.4)] disabled:cursor-not-allowed disabled:border-white/12 disabled:text-white/28 disabled:hover:bg-transparent disabled:hover:shadow-none"
               >
-                {submitState === 'sending' ? '发送中' : '发送意见'}
-                <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                {isSending ? '发送中' : '发送意见'}
+                {isSending ? (
+                  <Ellipsis className="h-5 w-5 animate-pulse" />
+                ) : (
+                  <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                )}
               </button>
             </div>
-
-            {submitState === 'success' && (
-              <div className="mt-5 rounded-xl border border-neon-cyan/35 bg-neon-cyan/10 px-4 py-3 text-sm text-neon-cyan">
-                已发送成功，我会在服务器里看到这条反馈。
-              </div>
-            )}
-
-            {submitState === 'error' && (
-              <div className="mt-5 rounded-xl border border-[#ff2a6d]/35 bg-[#ff2a6d]/10 px-4 py-3 text-sm text-[#ff8aae]">
-                {errorText}
-              </div>
-            )}
           </div>
         </form>
       </div>

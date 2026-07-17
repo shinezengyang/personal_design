@@ -194,6 +194,8 @@ export default function HighSeasCaseIndex() {
                 className="high-seas-framework-featured-card__image"
                 src={publicUrl('highseas-framework-card.webp')}
                 alt="High Seas Hero 项目框架案例封面"
+                loading="lazy"
+                decoding="async"
               />
               <div className="high-seas-framework-featured-card__body">
                 <h2>{frameworkCase.title}</h2>
@@ -218,7 +220,7 @@ export default function HighSeasCaseIndex() {
             >
               <div className={`high-seas-case-card__media ${item.image ? 'high-seas-case-card__media--image' : 'high-seas-case-card__media--flat'}`}>
                 {item.image ? (
-                  <img src={publicUrl(item.image)} alt={`${item.title} 案例封面`} loading="lazy" />
+                  <img src={publicUrl(item.image)} alt={`${item.title} 案例封面`} loading="lazy" decoding="async" />
                 ) : (
                   <div className={`case-flat-visual case-flat-visual--${index % 6}`}>
                     <div className="case-flat-visual__grid" />

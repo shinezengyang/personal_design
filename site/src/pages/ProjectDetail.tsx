@@ -1175,12 +1175,39 @@ export default function ProjectDetail({
     const specialSections = Array.from(
       root.querySelectorAll<HTMLElement>('.xingji-motion-section, .hs-motion-section'),
     );
+    const collectMotionChildren = (canvas: HTMLElement) => {
+      const canvasRect = canvas.getBoundingClientRect();
+
+      return Array.from(canvas.children)
+        .filter((child): child is HTMLElement => {
+          if (!(child instanceof HTMLElement)) return false;
+          if (child.dataset.noReveal === 'true') return false;
+          if (child.classList.contains('opacity-0')) return false;
+          return true;
+        })
+        .map((child, domIndex) => {
+          const rect = child.getBoundingClientRect();
+          const hasMeasuredSize = rect.width > 0 || rect.height > 0;
+          return {
+            child,
+            domIndex,
+            top: hasMeasuredSize ? rect.top - canvasRect.top : child.offsetTop,
+            left: hasMeasuredSize ? rect.left - canvasRect.left : child.offsetLeft,
+          };
+        })
+        .sort((a, b) => {
+          if (Math.abs(a.top - b.top) > 8) return a.top - b.top;
+          if (Math.abs(a.left - b.left) > 8) return a.left - b.left;
+          return a.domIndex - b.domIndex;
+        })
+        .map(({ child }) => child);
+    };
     const specialChildren = new Map<HTMLElement, HTMLElement[]>();
     specialSections.forEach((section) => {
       const canvas = section.classList.contains('xingji-motion-section')
         ? section.querySelector<HTMLElement>('section')
         : section;
-      specialChildren.set(section, canvas ? Array.from(canvas.children).filter((child): child is HTMLElement => child instanceof HTMLElement) : []);
+      specialChildren.set(section, canvas ? collectMotionChildren(canvas) : []);
     });
     const firstSpecialSection = specialSections[0] ?? null;
 
@@ -1228,7 +1255,7 @@ export default function ProjectDetail({
     gsap.set(modules, { opacity: 0, y: 30 });
     gsap.set(specialSections, { opacity: 0, y: 42 });
     specialChildren.forEach((children) => {
-      if (children.length) gsap.set(children, { opacity: 0, filter: 'blur(6px)' });
+      if (children.length) gsap.set(children, { opacity: 0, y: 18, filter: 'blur(6px)' });
     });
 
     const leadIn = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -1263,7 +1290,15 @@ export default function ProjectDetail({
       if (children.length) {
         leadIn.to(
           children,
-          { opacity: 1, filter: 'blur(0px)', duration: 0.48, stagger: 0.028, ease: 'power2.out', clearProps: 'opacity,filter' },
+          {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            duration: 0.58,
+            stagger: 0.034,
+            ease: 'power2.out',
+            clearProps: 'opacity,transform,filter',
+          },
           0.34,
         );
       }
@@ -1341,11 +1376,12 @@ export default function ProjectDetail({
               children,
               {
                 opacity: 1,
+                y: 0,
                 filter: 'blur(0px)',
-                duration: 0.46,
-                stagger: 0.026,
+                duration: 0.54,
+                stagger: 0.032,
                 ease: 'power2.out',
-                clearProps: 'opacity,filter',
+                clearProps: 'opacity,transform,filter',
               },
               0.14,
             );
