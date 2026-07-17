@@ -44,28 +44,21 @@ const ProjectCard = ({
     if (!cardRef.current || !imgRef.current || !contentRef.current) return;
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: 'top 80%',
-          end: 'top 30%',
-          toggleActions: 'play none none reverse',
-        },
-      });
+      const tl = gsap.timeline({ paused: true });
 
-      // Keep cards visible by default; animation should never be a rendering dependency.
+      // Start the hidden state only when the card actually enters, so stale
+      // cache/ScrollTrigger failures cannot leave cards permanently invisible.
       const imgDir = index % 2 === 0 ? -80 : 80;
       tl.fromTo(imgRef.current,
-        { x: imgDir, scale: 0.98 },
-        { x: 0, scale: 1, duration: 0.9, ease: 'expo.out' },
+        { x: imgDir, opacity: 0, scale: 0.92 },
+        { x: 0, opacity: 1, scale: 1, duration: 0.9, ease: 'expo.out' },
         0
       );
 
-      // Text remains readable even if ScrollTrigger is delayed or blocked by stale caches.
       const reveals = contentRef.current!.querySelectorAll<HTMLElement>('[data-reveal]');
       tl.fromTo(reveals,
-        { y: 30 },
-        { y: 0, duration: 0.7, stagger: 0.07, ease: 'expo.out' },
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, stagger: 0.07, ease: 'expo.out' },
         0.15
       );
 
@@ -78,6 +71,13 @@ const ProjectCard = ({
           0.1
         );
       }
+
+      ScrollTrigger.create({
+        trigger: cardRef.current,
+        start: 'top 80%',
+        once: true,
+        onEnter: () => tl.restart(),
+      });
     }, cardRef);
 
     return () => ctx.revert();
