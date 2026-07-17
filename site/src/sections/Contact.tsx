@@ -42,13 +42,7 @@ const Contact = () => {
     if (reduceMotion) return;
 
     const ctx = gsap.context(() => {
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: contentRef.current,
-          start: 'top 82%',
-          toggleActions: 'play none none reverse',
-        },
-      });
+      const timeline = gsap.timeline({ paused: true });
 
       timeline
         .fromTo(
@@ -68,6 +62,13 @@ const Contact = () => {
           { y: 0, opacity: 1, duration: 0.55, stagger: 0.07, ease: 'power2.out' },
           '-=0.48'
         );
+
+      ScrollTrigger.create({
+        trigger: contentRef.current,
+        start: 'top 82%',
+        once: true,
+        onEnter: () => timeline.restart(),
+      });
     }, contentRef);
 
     return () => ctx.revert();
