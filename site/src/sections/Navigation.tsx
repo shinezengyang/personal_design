@@ -98,7 +98,7 @@ export default function Navigation({ activeDetailTab, onDetailTabChange }: Navig
         isVisible || menuOpen ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
-      <div className="mx-auto flex h-14 w-full max-w-[1440px] items-center justify-between px-6 sm:px-12 lg:px-16">
+      <div className="mx-auto flex h-14 w-full max-w-[1440px] items-center justify-between px-6 sm:px-12 lg:px-20 2xl:max-w-[1560px] 2xl:px-24">
         {location.pathname.startsWith('/projects/') ? (
           <button
             type="button"
