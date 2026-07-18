@@ -283,7 +283,8 @@ html { overflow-y: scroll; }
   font-size: clamp(0.8125rem, 1.35vw, 0.875rem);
 }
 
-.project-detail-header .cyber-btn {
+.project-detail-header .cyber-btn,
+.case-index-toolbar .cyber-btn {
   border-radius: 0.625rem;
 }
 
