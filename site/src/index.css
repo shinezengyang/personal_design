@@ -284,7 +284,7 @@ html { overflow-y: scroll; }
 }
 
 .project-detail-header .cyber-btn {
-  border-radius: 1rem;
+  border-radius: 0.625rem;
 }
 
 .cyber-btn::before {
