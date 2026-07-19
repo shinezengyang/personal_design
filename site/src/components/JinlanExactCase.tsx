@@ -371,7 +371,13 @@ export function JinlanExactCase() {
           ]}
         />
         <div className="jl-recruit-flow">
-          {['浏览队伍列表', '查看宣言 / 荣誉', '申请 / 发布招募', '审核通过 · 加入'].map((item, index) => <span key={item}>{item}{index < 3 ? <b>→</b> : null}</span>)}
+          <span>浏览队伍列表</span>
+          <b>→</b>
+          <span>查看宣言 / 荣誉</span>
+          <b>→</b>
+          <span>申请 / 发布招募</span>
+          <b>→</b>
+          <span>审核通过 · 加入</span>
         </div>
         <div className="jl-white-principle recruit-principle">
           <em>设计原理</em>
