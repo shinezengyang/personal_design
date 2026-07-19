@@ -57,7 +57,7 @@
 .jl-en { position: absolute; left: 0; top: 34px; color: #a8b2c4; font: 700 12px/1.2 Inter, sans-serif; letter-spacing: 4px; text-transform: uppercase; }
 .jl-header h2 { position: absolute; left: -2px; top: 68px; color: #1d222e; font-size: 40px; font-weight: 900; line-height: 1.3; }
 .jl-header h2.is-dark { color: #f4f7ff; }
-.jl-desc { position: absolute; left: 0; top: 164px; width: 1080px; color: #6b7587; font-size: 22px; line-height: 1.78; }
+.jl-desc { position: absolute; left: 0; top: 142px; width: 1060px; color: #6b7587; font-size: 18px; line-height: 1.6; }
 .jl-system .jl-eyebrow, .jl-benefit .jl-eyebrow { color: #e8c77a; }
 .jl-system .jl-header-bar, .jl-benefit .jl-header-bar { background: #e8c77a; }
 .jl-system .jl-en, .jl-benefit .jl-en { color: #5e6e92; }
@@ -78,7 +78,7 @@
 .jl-gold { --tone: #f2a43a; }
 .jl-opportunity { position: absolute; left: 90px; top: 750px; width: 1100px; height: 180px; border-radius: 20px; background: linear-gradient(90deg, #171f33, #293357); box-shadow: 0 10px 30px -6px rgba(26,33,56,.08); padding: 38px 38px; border-left: 6px solid #d4af67; }
 .jl-opportunity em { display: block; color: #d4af67; font-size: 14px; font-weight: 700; letter-spacing: 1px; font-style: normal; margin-bottom: 26px; }
-.jl-opportunity strong { color: #fff; font-size: 24px; line-height: 1.5; font-weight: 700; }
+.jl-opportunity strong { color: #fff; font-size: 23px; line-height: 1.5; font-weight: 700; white-space: nowrap; }
 .jl-tags-line { position: absolute; left: 90px; top: 968px; height: 40px; display: flex; align-items: center; gap: 24px; font-size: 17px; color: #6b7587; }
 .jl-tags-line b { min-width: 96px; height: 40px; border-radius: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 17px; }
 .jl-tags-line .gold { color: #d4af67; background: rgba(212,175,103,.12); }
@@ -100,90 +100,14 @@
   place-items: center;
 }
 .jl-goal-symbol {
-  position: relative;
   width: 52px;
   height: 52px;
   color: var(--tone);
+  stroke: currentColor;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
-.jl-goal-symbol span,
-.jl-goal-symbol i,
-.jl-goal-symbol b {
-  position: absolute;
-  display: block;
-  box-sizing: border-box;
-  font-style: normal;
-}
-.jl-goal-symbol-red span,
-.jl-goal-symbol-red i {
-  width: 18px;
-  height: 18px;
-  border: 4px solid currentColor;
-  border-radius: 50%;
-  background: transparent;
-}
-.jl-goal-symbol-red span { left: 5px; top: 7px; }
-.jl-goal-symbol-red i { right: 5px; bottom: 7px; }
-.jl-goal-symbol-red b {
-  left: 18px;
-  top: 25px;
-  width: 24px;
-  height: 4px;
-  border-radius: 999px;
-  background: currentColor;
-  transform: rotate(-36deg);
-}
-.jl-goal-symbol-gold span {
-  left: 10px;
-  top: 7px;
-  width: 32px;
-  height: 32px;
-  border: 4px solid currentColor;
-  border-radius: 50%;
-}
-.jl-goal-symbol-gold i {
-  left: 25px;
-  top: 16px;
-  width: 4px;
-  height: 14px;
-  border-radius: 999px;
-  background: currentColor;
-  transform-origin: 50% 12px;
-  transform: rotate(42deg);
-}
-.jl-goal-symbol-gold b {
-  left: 17px;
-  bottom: 8px;
-  width: 18px;
-  height: 4px;
-  border-radius: 999px;
-  background: currentColor;
-}
-.jl-goal-symbol-blue span,
-.jl-goal-symbol-blue i,
-.jl-goal-symbol-blue b {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: currentColor;
-  box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 14%, transparent);
-}
-.jl-goal-symbol-blue span { left: 20px; top: 4px; }
-.jl-goal-symbol-blue i { left: 7px; bottom: 8px; }
-.jl-goal-symbol-blue b { right: 7px; bottom: 8px; }
-.jl-goal-symbol-blue::before,
-.jl-goal-symbol-blue::after {
-  content: "";
-  position: absolute;
-  left: 18px;
-  top: 22px;
-  width: 22px;
-  height: 4px;
-  border-radius: 999px;
-  background: currentColor;
-  transform-origin: left center;
-}
-.jl-goal-symbol-blue::before { transform: rotate(42deg); }
-.jl-goal-symbol-blue::after { transform: rotate(138deg); }
 .jl-goal-card h3 { position: absolute; left: 40px; top: 174px; color: var(--tone); font-size: 30px; font-weight: 900; }
 .jl-goal-card em { position: absolute; left: 42px; top: 228px; color: #b9c4da; font: 700 12px/1 Inter, sans-serif; letter-spacing: 4px; font-style: normal; }
 .jl-goal-card p { position: absolute; left: 40px; top: 280px; width: 270px; color: #4a5468; font-size: 20px; line-height: 1.6; }
@@ -212,146 +136,15 @@
   place-items: center;
 }
 .jl-module-symbol {
-  position: relative;
   width: 32px;
   height: 32px;
   color: #e8c77a;
-}
-.jl-module-symbol span,
-.jl-module-symbol i,
-.jl-module-symbol b,
-.jl-module-symbol em {
-  position: absolute;
-  display: block;
-  box-sizing: border-box;
-  font-style: normal;
-}
-.jl-module-symbol-01 span {
-  left: 7px;
-  top: 7px;
-  width: 18px;
-  height: 18px;
-  border: 3px solid currentColor;
-  border-radius: 50%;
-}
-.jl-module-symbol-01 i,
-.jl-module-symbol-01 b {
-  width: 11px;
-  height: 3px;
-  border-radius: 999px;
-  background: currentColor;
-}
-.jl-module-symbol-01 i { left: 3px; top: 16px; transform: rotate(28deg); }
-.jl-module-symbol-01 b { right: 3px; top: 16px; transform: rotate(-28deg); }
-.jl-module-symbol-02 span,
-.jl-module-symbol-02 i {
-  width: 12px;
-  height: 12px;
-  border: 3px solid currentColor;
-  border-radius: 50%;
-}
-.jl-module-symbol-02 span { left: 5px; top: 6px; }
-.jl-module-symbol-02 i { right: 5px; top: 6px; }
-.jl-module-symbol-02 b {
-  left: 3px;
-  bottom: 5px;
-  width: 26px;
-  height: 11px;
-  border: 3px solid currentColor;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  border-bottom: 0;
-}
-.jl-module-symbol-03 span,
-.jl-module-symbol-03 i,
-.jl-module-symbol-03 b {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: currentColor;
-}
-.jl-module-symbol-03 span { left: 12px; top: 3px; }
-.jl-module-symbol-03 i { left: 4px; bottom: 6px; }
-.jl-module-symbol-03 b { right: 4px; bottom: 6px; }
-.jl-module-symbol-03 em {
-  left: 9px;
-  top: 13px;
-  width: 14px;
-  height: 12px;
-  border: 3px solid currentColor;
-  border-top: 0;
-  border-radius: 0 0 10px 10px;
-}
-.jl-module-symbol-04 span {
-  left: 7px;
-  top: 4px;
-  width: 18px;
-  height: 24px;
-  border: 3px solid currentColor;
-  border-radius: 4px;
-}
-.jl-module-symbol-04 i,
-.jl-module-symbol-04 b,
-.jl-module-symbol-04 em {
-  left: 12px;
-  width: 10px;
-  height: 3px;
-  border-radius: 999px;
-  background: currentColor;
-}
-.jl-module-symbol-04 i { top: 11px; }
-.jl-module-symbol-04 b { top: 17px; }
-.jl-module-symbol-04 em { top: 23px; }
-.jl-module-symbol-05 span {
-  left: 5px;
-  top: 8px;
-  width: 22px;
-  height: 16px;
-  border: 3px solid currentColor;
-  border-radius: 3px;
-  transform: skewX(-8deg);
-}
-.jl-module-symbol-05 i {
-  left: 8px;
-  top: 5px;
-  width: 16px;
-  height: 3px;
-  border-radius: 999px;
-  background: currentColor;
-}
-.jl-module-symbol-05 b {
-  right: 4px;
-  bottom: 5px;
-  width: 9px;
-  height: 9px;
-  border: 3px solid currentColor;
-  border-left: 0;
-  border-top: 0;
-  transform: rotate(-45deg);
-}
-.jl-module-symbol-06 span {
-  left: 6px;
-  top: 5px;
-  width: 20px;
-  height: 20px;
-  border: 3px solid currentColor;
-  border-radius: 50%;
-}
-.jl-module-symbol-06 i {
-  left: 15px;
-  top: 2px;
-  width: 3px;
-  height: 28px;
-  border-radius: 999px;
-  background: currentColor;
-}
-.jl-module-symbol-06 b {
-  left: 6px;
-  top: 14px;
-  width: 20px;
-  height: 3px;
-  border-radius: 999px;
-  background: currentColor;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
 }
 .jl-system-card b { position: absolute; top: 18px; right: 28px; color: #c99a3a; font: 700 15px/1 Inter, sans-serif; letter-spacing: 1px; }
 .jl-system-card h3 { position: absolute; left: 92px; top: 32px; color: #f4f7ff; font-size: 21px; font-weight: 700; letter-spacing: .5px; }
@@ -383,13 +176,15 @@
 .jl-system-link.link-04 { left: 857px; top: 512px; width: 118px; transform: rotate(-68deg); }
 .jl-system-link.link-05 { left: 857px; top: 610px; width: 51px; transform: rotate(-33deg); }
 .jl-system-link.link-06 { left: 857px; top: 709px; width: 68px; transform: rotate(51deg); }
-.jl-anatomy-title { position: absolute; left: 80px; top: 935px; border-top: 1px solid #2a3550; width: 1120px; padding-top: 28px; }
-.jl-anatomy-title em { color: #c8a86b; font: 500 12px/1 Inter, sans-serif; letter-spacing: 1.5px; font-style: normal; }
-.jl-anatomy-title h3 { color: #eaf0ff; font-size: 24px; font-weight: 700; margin-top: 14px; }
-.jl-anatomy-title p { color: #9aa6c0; font-size: 16px; line-height: 22px; margin-top: 12px; width: 760px; }
+.jl-anatomy-title { position: absolute; left: 80px; top: 909px; border-top: 1px solid #2a3550; width: 1120px; height: 118px; padding: 0; }
+.jl-anatomy-title::after { content: ""; position: absolute; left: 0; top: 28px; width: 4px; height: 24px; border-radius: 2px; background: #c8a86b; }
+.jl-anatomy-title em { position: absolute; left: 18px; top: 26px; color: #c8a86b; font: 500 12px/1 Inter, sans-serif; letter-spacing: 1.5px; font-style: normal; }
+.jl-anatomy-title h3 { position: absolute; left: -2px; top: 54px; color: #eaf0ff; font-size: 24px; font-weight: 700; margin: 0; }
+.jl-anatomy-title p { position: absolute; left: 0; top: 94px; color: #9aa6c0; font-size: 16px; line-height: 22px; margin: 0; width: 760px; }
 .jl-hub-big { position: absolute; left: 80px; top: 1049px; width: 760px; height: 428px; border-radius: 10px; border: 1px solid #3a4660; overflow: visible; box-shadow: 0 12px 30px rgba(0,0,0,.35); }
 .jl-hub-big > img { width: 100%; height: 100%; object-fit: contain; object-position: center; border-radius: 10px; background: #5a5d5c; }
 .jl-pin { position: absolute; width: 28px; height: 28px; border-radius: 50%; background: #3b6bf0; color: white; display: grid; place-items: center; font: 700 14px/1 Inter, sans-serif; z-index: 5; box-shadow: 0 4px 0 rgba(28, 51, 143, .25), 0 0 0 3px rgba(255,255,255,.28); }
+.jl-hub-big .jl-pin { background: #c8a86b; color: #fff; box-shadow: 0 4px 0 rgba(76, 56, 22, .28), 0 0 0 3px rgba(255,255,255,.28); }
 .jl-pin.gold { background: #e8c77a; color: #1A140C; }
 .jl-explain { position: absolute; left: 856px; top: 316px; width: 364px; color: #1a2238; }
 .jl-explain.dark { top: 1057px; color: #eaf0ff; }
@@ -402,7 +197,7 @@
 .jl-explain-row p { color: #6b7689; font-size: 16px; line-height: 18px; margin-top: 7px; width: 310px; }
 .jl-explain.dark .jl-explain-row p { color: #94a0b8; }
 .jl-principle-band { position: absolute; left: 80px; bottom: 91px; width: 1120px; min-height: 300px; border-radius: 16px; background: #111b30; border: 1px solid #283a60; border-left: 5px solid var(--band-marker); padding: 36px 36px 34px; }
-.jl-members .jl-principle-band { bottom: 80px; height: 318px; }
+.jl-members .jl-principle-band { bottom: 80px; height: 318px; background: #141d33; border-color: transparent; box-shadow: 0 12px 30px rgba(20,28,51,.25); padding: 36px 36px 34px; }
 .jl-principle-band > em { color: #c8a86b; font: 500 12px/1 Inter, sans-serif; letter-spacing: 1.5px; font-style: normal; }
 .jl-principle-band > h3 { color: white; font-size: 24px; font-weight: 900; margin-top: 16px; }
 .jl-principle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; margin-top: 50px; }
@@ -411,6 +206,7 @@
 .jl-principle em { font: 500 12px/1.1 Inter, sans-serif; letter-spacing: .8px; font-style: normal; }
 .jl-principle h4 { color: white; font-size: 18px; margin-top: 10px; font-weight: 700; }
 .jl-principle p { color: #a7b2c9; font-size: 16px; line-height: 21px; margin-top: 26px; }
+.jl-members .jl-principle em { font-size: 11px; letter-spacing: 1px; }
 .jl-members .jl-principle h4 { font-size: 16px; }
 .jl-members .jl-principle p { font-size: 13px; }
 
@@ -436,12 +232,15 @@
 .jl-white-principle p { position: absolute; left: 480px; top: 58px; width: 600px; color: #5a6680; font-size: 16px; line-height: 1.72; }
 
 .jl-recruit .jl-explain, .jl-task .jl-explain, .jl-dungeon .jl-explain { top: 300px; left: 792px; }
-.jl-recruit-flow { position: absolute; left: 80px; top: 812px; display: flex; align-items: center; gap: 9px; }
-.jl-recruit-flow span { width: 254px; height: 52px; border: 1px solid #e2e7f0; border-radius: 12px; background: #fff; color: #33405c; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 500; position: relative; }
-.jl-recruit-flow b { position: absolute; right: -23px; color: #c2cad8; font-size: 20px; }
+.jl-recruit .jl-explain-row p, .jl-task .jl-explain-row p, .jl-dungeon .jl-explain-row p { width: 368px; line-height: 1.66; }
+.jl-recruit-flow { position: absolute; left: 80px; top: 812px; display: grid; grid-template-columns: 254px 35px 254px 35px 253px 35px 254px; align-items: center; }
+.jl-recruit-flow span { height: 52px; border: 1px solid #e2e7f0; border-radius: 12px; background: #fff; color: #33405c; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 500; }
+.jl-recruit-flow b { color: #c2cad8; font-size: 20px; line-height: 1; text-align: center; font-weight: 700; }
 .recruit-principle { bottom: 66px; }
 
 .jl-members .jl-explain { left: 856px; top: 316px; }
+.jl-members .jl-explain h3 { margin-bottom: 39px; }
+.jl-members .jl-explain-row { min-height: 74px; }
 .jl-subshot-head { position: absolute; top: 824px; color: #1b2440; font-size: 18px; font-weight: 700; }
 .jl-subshot-head.left { left: 80px; }
 .jl-subshot-head.right { left: 655px; }
@@ -453,6 +252,8 @@
 .task-principle { height: 200px; bottom: 60px; }
 .task-principle h3 { font-size: 22px; }
 .task-principle p { top: 56px; }
+.task-principle .jl-principle-lines { line-height: 1.76; }
+.task-principle .jl-principle-lines span { display: block; }
 .gold-shot { border-color: #3a2e1c; box-shadow: 0 0 46px rgba(209,158,64,.3); }
 .gold-shot .jl-pin.gold { color: #1A140C !important; text-shadow: none; }
 .jl-benefit .jl-explain { left: 840px; top: 320px; }
@@ -465,29 +266,29 @@
 .jl-benefit-rationale em { color: #e8c77a; font-size: 14px; font-weight: 700; letter-spacing: 2px; font-style: normal; }
 .jl-benefit-rationale h3 { color: #f4f7ff; font-size: 26px; margin-top: 18px; }
 .jl-benefit-rationale p { color: #aeb9d4; font-size: 18px; line-height: 1.82; width: 1000px; margin-top: 26px; }
-.jl-benefit-rationale span { display: inline-flex; height: 34px; align-items: center; border-radius: 17px; padding: 0 18px; margin-right: 12px; background: #3a2e1c; color: #e8c77a; font-size: 16px; font-weight: 700; }
+.jl-benefit-rationale p + p { margin-top: 0; }
+.jl-benefit-rationale span { display: inline-flex; height: 34px; align-items: center; border-radius: 17px; padding: 0 18px; margin-top: 40px; margin-right: 12px; background: #3a2e1c; color: #e8c77a; font-size: 16px; font-weight: 700; }
 .jl-benefit-rationale span + span { background: #1c2a49; color: #7fa0e0; }
 
 .jl-spec-layout { position: absolute; left: 78px; top: 390px; width: 1133px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
 .jl-spec-card { position: relative; width: 100%; height: 636px; grid-row: span 2; background: #fff; border: 1px solid #e6edf6; border-radius: 20px; box-shadow: 0 18px 36px rgba(31,47,82,.08); padding: 32px 34px; overflow: hidden; }
-.jl-spec-card::before { content: ""; position: absolute; left: 34px; right: 34px; top: 86px; height: 1px; background: #e5ebf4; }
-.jl-spec-title { position: relative; display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 38px; }
+.jl-spec-title { position: relative; margin-bottom: 38px; }
 .jl-spec-title b { color: #1a2238; font-size: 26px; font-weight: 900; letter-spacing: .5px; }
-.jl-spec-title span { color: #a8b2c6; font: 800 11px/1 Inter, sans-serif; letter-spacing: 3px; }
 .jl-spec-card em { display: block; color: #9facbf; font: 800 11px/1 Inter, sans-serif; letter-spacing: 2px; font-style: normal; margin-bottom: 14px; text-transform: uppercase; }
 .jl-spec-panel { position: relative; margin-bottom: 24px; }
+.jl-spec-block-label { margin: 0 0 2px; }
 .jl-palette { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
 .jl-palette i { display: block; width: 100%; height: 54px; border-radius: 12px; border: 1px solid #e3e9f2; box-shadow: inset 0 1px rgba(255,255,255,.2); }
 .jl-palette b { display: block; text-align: center; color: #506079; font-size: 13px; font-weight: 900; margin-top: 9px; }
 .jl-palette span { display: block; text-align: center; color: #8794ad; font: 900 11px/1.15 Inter, sans-serif; margin-top: 6px; letter-spacing: .15px; }
-.jl-type-panel { padding: 16px 18px 14px; border-radius: 14px; background: #f5f8fc; border: 1px solid #e7edf6; }
+.jl-type-panel { padding: 18px 18px 16px; border-radius: 14px; background: #f5f8fc; border: 1px solid #e7edf6; }
 .jl-type-row { display: flex; align-items: center; gap: 36px; margin: 10px 0; }
 .jl-type-row strong { min-width: 150px; font-family: "STKaiti", "KaiTi", serif; color: #1a2238; font-size: 28px; font-weight: 400; }
 .jl-type-row.sub strong { font-family: "SimSun", "Songti SC", serif; font-size: 22px; }
 .jl-type-row span { color: #66748d; font-size: 14px; }
 .jl-ui-board { position: relative; border-radius: 0; border: 0; background: transparent; padding: 0; }
-.jl-ui-board em { margin-bottom: 12px; }
-.jl-component-img { display: block; width: calc(100% + 18px); height: 146px; margin-left: -9px; object-fit: contain; border-radius: 0; background: transparent; border: 0; }
+.jl-ui-board em { margin-bottom: 6px; }
+.jl-component-img { display: block; width: 100%; height: 124px; margin-left: 0; object-fit: contain; object-position: center; border-radius: 14px; background: #f5f8fc; border: 1px solid #e7edf6; }
 .jl-spec-shot { height: 306px; border-radius: 20px; border: 1px solid #e2e8f2; box-shadow: 0 10px 24px rgba(26,41,77,.05); background: #eef3fb; overflow: hidden; }
 .jl-spec-shot-img { width: 100%; height: 100%; object-fit: cover; object-position: center; background: transparent; }
 

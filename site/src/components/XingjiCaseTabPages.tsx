@@ -44,7 +44,6 @@ const caseOneAssets = {
     'images/xingji/hud/assets/cpa-capy.webp',
     'images/xingji/hud/assets/cpa-capy.webp',
   ],
-  cpaFlowConnector: 'images/xingji/hud/assets/arrow-a.svg',
   definitionOneBefore: 'pencil/xingji-aodaisai/figma-usability-old-hud.webp',
   definitionOneAfter: 'pencil/xingji-aodaisai/figma-usability-new-hud.webp',
   definitionFive: [
@@ -691,6 +690,7 @@ function CaseOneCompetitorAnalysis() {
     { name: '卡皮巴拉GO', left: 952, width: 237, images: caseOneAssets.cpaCapy },
   ];
   const flows = ['经营建设', '收益处理', '战力养成', '地图扩张', '联盟协作'];
+  const arrowLefts = [128, 383, 638, 893];
 
   return (
     <LongPageSection height={900} bg="#edeffe">
@@ -714,16 +714,29 @@ function CaseOneCompetitorAnalysis() {
         </div>
       ))}
       <div className="absolute left-0 top-[525px] h-[375px] w-[1280px] bg-[#edeffe]" />
+      {arrowLefts.map((left) => (
+        <svg
+          key={left}
+          className="absolute top-[505px] h-[54px] w-[255px] overflow-visible"
+          style={{ left }}
+          viewBox="0 0 255 54"
+          aria-hidden="true"
+        >
+          <path
+            d="M8 42 C58 6 190 6 247 42"
+            fill="none"
+            stroke="#6f8cff"
+            strokeWidth="2.5"
+            strokeDasharray="9 8"
+            strokeLinecap="round"
+            opacity="0.68"
+          />
+          <circle cx="8" cy="42" r="7" fill="#6f8cff" opacity="0.9" />
+          <path d="M247 42 L229 29 L232 53 Z" fill="#6f8cff" opacity="0.9" />
+        </svg>
+      ))}
       {flows.map((flow, index) => (
         <div key={flow}>
-          {index < flows.length - 1 ? (
-            <img
-              src={resolveAsset(caseOneAssets.cpaFlowConnector)}
-              alt=""
-              className="absolute h-[53.989px] w-[255.255px]"
-              style={{ left: 128 + index * 255, top: 505 }}
-            />
-          ) : null}
           <div className="absolute top-[555px] flex h-[86px] w-[205px] items-center justify-center bg-[#4974f0] text-[30px] font-black text-white" style={{ left: 46 + index * 245 }}>
             {flow}
           </div>

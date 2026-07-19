@@ -47,95 +47,97 @@ const caseOneAssets = {
   ],
   definitionOneBefore: publicUrl('pencil/xingji-aodaisai/figma-usability-old-hud.webp'),
   definitionOneAfter: publicUrl('pencil/xingji-aodaisai/figma-usability-new-hud.webp'),
-  problemOneBase: publicUrl('pencil/xingji-aodaisai/panel-2.webp'),
-  problemOneMap: publicUrl('pencil/xingji-aodaisai/panel.webp'),
+  problemOneBase: publicUrl('pencil/xingji-aodaisai/feedback-problem-1-left.webp'),
+  problemOneMap: publicUrl('pencil/xingji-aodaisai/feedback-problem-1-right.webp'),
   problemOneMapMarker: publicUrl('images/xingji/hud/assets/marker-dot.svg'),
-  problemTwoHud: publicUrl('pencil/xingji-aodaisai/panel-2.webp'),
+  problemTwoHud: publicUrl('pencil/xingji-aodaisai/feedback-problem-2.webp'),
   problemTwoDiagonal: publicUrl('images/xingji/hud/assets/white-diagonal.svg'),
-  problemThreeHud: publicUrl('pencil/xingji-aodaisai/panel.webp'),
+  problemThreeHud: publicUrl('pencil/xingji-aodaisai/feedback-problem-3.webp'),
   problemThreeDiagonal: publicUrl('images/xingji/hud/assets/white-diagonal.svg'),
   problemThreeMarker: publicUrl('images/xingji/hud/assets/marker-dot.svg'),
-  problemFourHud: publicUrl('pencil/xingji-aodaisai/panel-1.webp'),
+  problemFourHud: publicUrl('pencil/xingji-aodaisai/feedback-problem-4.webp'),
   problemFourDiagonal: publicUrl('images/xingji/hud/assets/white-diagonal.svg'),
   problemFiveDiagonal: publicUrl('images/xingji/hud/assets/white-diagonal.svg'),
   problemFiveImages: [
-    publicUrl('pencil/xingji-aodaisai/panel-2.webp'),
-    publicUrl('pencil/xingji-aodaisai/panel.webp'),
-    publicUrl('pencil/xingji-aodaisai/panel-1.webp'),
+    publicUrl('pencil/xingji-aodaisai/feedback-problem-5-left.webp'),
+    publicUrl('pencil/xingji-aodaisai/feedback-problem-5-mid.webp'),
+    publicUrl('pencil/xingji-aodaisai/feedback-problem-5-right.webp'),
   ],
   problemFiveMarker: publicUrl('images/xingji/hud/assets/marker-dot.svg'),
-  revisedWarmOrbTopLeft: publicUrl('images/xingji/hud/assets/orb-warm.svg'),
-  revisedThinCircleTopLeft: publicUrl('images/xingji/hud/assets/thin-circle.svg'),
-  revisedWarmOrbBottomRight: publicUrl('images/xingji/hud/assets/orb-warm.svg'),
-  revisedThinCircleBottomRight: publicUrl('images/xingji/hud/assets/thin-circle.svg'),
-  revisedCardDash: publicUrl('images/xingji/hud/assets/card-dash.svg'),
+  revisedWarmOrbTopLeft: publicUrl('images/xingji/hud/assets/figma-revised-warm-orb-top-left.svg'),
+  revisedThinCircleTopLeft: publicUrl('images/xingji/hud/assets/figma-revised-thin-circle-top-left.svg'),
+  revisedWarmOrbBottomRight: publicUrl('images/xingji/hud/assets/figma-revised-warm-orb-bottom-right.svg'),
+  revisedThinCircleBottomRight: publicUrl('images/xingji/hud/assets/figma-revised-thin-circle-bottom-right.svg'),
+  revisedCardDash: publicUrl('images/xingji/hud/assets/figma-revised-card-dash.svg'),
   revisedIcons: [
-    publicUrl('images/xingji/hud/assets/revised-icon-1.svg'),
-    publicUrl('images/xingji/hud/assets/revised-icon-2.svg'),
-    publicUrl('images/xingji/hud/assets/revised-icon-3.svg'),
-    publicUrl('images/xingji/hud/assets/revised-icon-4.svg'),
+    publicUrl('images/xingji/hud/assets/figma-revised-icon-1.svg'),
+    publicUrl('images/xingji/hud/assets/figma-revised-icon-2.svg'),
+    publicUrl('images/xingji/hud/assets/figma-revised-icon-3.svg'),
+    publicUrl('images/xingji/hud/assets/figma-revised-icon-4.svg'),
   ],
-  pathBlueStepCircle: publicUrl('images/xingji/hud/assets/step-circle.svg'),
-  pathArrowA: publicUrl('images/xingji/hud/assets/arrow-a.svg'),
-  pathArrowB: publicUrl('images/xingji/hud/assets/arrow-b.svg'),
-  pathDivider: publicUrl('images/xingji/hud/assets/divider.svg'),
-  pathBeforeCircle: publicUrl('images/xingji/hud/assets/circle-gray.svg'),
-  pathBeforeArrow: publicUrl('images/xingji/hud/assets/arrow-a.svg'),
-  layeringPaperLeft: publicUrl('images/xingji/hud/assets/transparent.svg'),
-  layeringPaperRight: publicUrl('images/xingji/hud/assets/transparent.svg'),
+  pathBlueStepCircle: publicUrl('images/xingji/hud/assets/figma-path-blue-step-circle.svg'),
+  pathArrowA: publicUrl('images/xingji/hud/assets/figma-path-arrow-after-1.svg'),
+  pathArrowB: publicUrl('images/xingji/hud/assets/figma-path-arrow-after-2.svg'),
+  pathDivider: publicUrl('images/xingji/hud/assets/figma-path-divider.svg'),
+  pathBeforeCircle: publicUrl('images/xingji/hud/assets/figma-path-before-circle.svg'),
+  pathBeforeArrow: publicUrl('images/xingji/hud/assets/figma-path-before-arrow.svg'),
+  layeringPaperLeft: publicUrl('images/xingji/hud/assets/figma-info-paper-left.svg'),
+  layeringPaperRight: publicUrl('images/xingji/hud/assets/figma-info-paper-right.svg'),
   layeringSlices: [
-    publicUrl('images/xingji/hud/assets/layer-slice.svg'),
-    publicUrl('images/xingji/hud/assets/layer-slice.svg'),
-    publicUrl('images/xingji/hud/assets/layer-slice.svg'),
-    publicUrl('images/xingji/hud/assets/layer-slice.svg'),
+    publicUrl('images/xingji/hud/assets/figma-info-layer-button.svg'),
+    publicUrl('images/xingji/hud/assets/figma-info-layer-function.svg'),
+    publicUrl('images/xingji/hud/assets/figma-info-layer-common-info.svg'),
+    publicUrl('images/xingji/hud/assets/figma-info-layer-common-system.svg'),
   ],
-  emphasisOverlay: publicUrl('pencil/xingji-aodaisai/figma-emphasis-diagram.webp'),
-  areaDiagonalWhite: publicUrl('images/xingji/hud/assets/area-diagonal.svg'),
-  areaDiagonalWhiteTop: publicUrl('images/xingji/hud/assets/white-diagonal-top.svg'),
-  areaDiagonalWhiteBottom: publicUrl('images/xingji/hud/assets/white-diagonal.svg'),
+  emphasisOverlay: publicUrl('images/xingji/hud/assets/figma-emphasis-overlay.svg'),
+  areaDiagonalWhite: publicUrl('images/xingji/hud/assets/figma-area-diagonal-main.svg'),
+  areaDiagonalWhiteTop: publicUrl('images/xingji/hud/assets/figma-area-diagonal-top.svg'),
+  areaDiagonalWhiteBottom: publicUrl('images/xingji/hud/assets/figma-area-diagonal-bottom.svg'),
   functionZoneSkews: [
-    publicUrl('pencil/xingji-aodaisai/panel-2.webp'),
-    publicUrl('pencil/xingji-aodaisai/panel.webp'),
-    publicUrl('pencil/xingji-aodaisai/panel-1.webp'),
+    publicUrl('images/xingji/hud/assets/figma-zone-skew-scene.svg'),
+    publicUrl('images/xingji/hud/assets/figma-zone-skew-info.svg'),
+    publicUrl('images/xingji/hud/assets/figma-zone-skew-ui.svg'),
   ],
-  functionZoneHudBg: publicUrl('pencil/xingji-aodaisai/figma-usability-new-hud.webp'),
-  functionZoneAnnotLong: publicUrl('images/xingji/hud/assets/layer-slice.svg'),
-  functionZoneAnnotShort: publicUrl('images/xingji/hud/assets/layer-slice.svg'),
-  functionZoneArrow: publicUrl('images/xingji/hud/assets/function-arrow.svg'),
-  functionZoneDot: publicUrl('images/xingji/hud/assets/cyan-dot.svg'),
+  functionZoneHudBg: publicUrl('images/xingji/hud/assets/figma-zone-hud-bg.webp'),
+  functionZoneAnnotLong: publicUrl('images/xingji/hud/assets/figma-zone-annot-long.svg'),
+  functionZoneAnnotShort: publicUrl('images/xingji/hud/assets/figma-zone-annot-short.svg'),
+  functionZoneArrow: publicUrl('images/xingji/hud/assets/figma-zone-arrow.svg'),
+  functionZoneDot: publicUrl('images/xingji/hud/assets/figma-zone-dot.svg'),
   functionZoneFull: publicUrl('pencil/xingji-aodaisai/figma-usability-zone-map.webp'),
   hudCompareBefore: publicUrl('pencil/xingji-aodaisai/figma-usability-old-hud.webp'),
   hudCompareAfter: publicUrl('pencil/xingji-aodaisai/figma-usability-new-hud.webp'),
   hudCompareCurve: publicUrl('images/xingji/hud/assets/function-arrow.svg'),
   guideCircles: [
-    publicUrl('images/xingji/hud/assets/circle-gray.svg'),
-    publicUrl('images/xingji/hud/assets/circle-gray.svg'),
-    publicUrl('images/xingji/hud/assets/circle-gray.svg'),
-    publicUrl('images/xingji/hud/assets/circle-gray.svg'),
+    publicUrl('images/xingji/hud/assets/figma-guide-circle-1.svg'),
+    publicUrl('images/xingji/hud/assets/figma-guide-circle-outer.svg'),
+    publicUrl('images/xingji/hud/assets/figma-guide-circle-2.svg'),
+    publicUrl('images/xingji/hud/assets/figma-guide-circle-3.svg'),
   ],
-  guideArrowTop: publicUrl('images/xingji/hud/assets/arrow-a.svg'),
-  guideArrowBottom: publicUrl('images/xingji/hud/assets/arrow-a.svg'),
+  guideArrowTop: publicUrl('images/xingji/hud/assets/figma-guide-arrow-top.svg'),
+  guideArrowBottom: publicUrl('images/xingji/hud/assets/figma-guide-arrow-bottom.svg'),
   guideHudScreens: [
-    publicUrl('pencil/xingji-aodaisai/panel-2.webp'),
-    publicUrl('pencil/xingji-aodaisai/panel.webp'),
+    publicUrl('images/xingji/hud/assets/figma-guide-screen-left.webp'),
+    publicUrl('images/xingji/hud/assets/figma-guide-screen-right.webp'),
   ],
-  growthShipPanel: publicUrl('pencil/xingji-aodaisai/half-screen.webp'),
-  growthWeaponPanel: publicUrl('pencil/xingji-aodaisai/modal-screen.webp'),
-  specControlsImage: publicUrl('pencil/xingji-aodaisai/basic-controls-panel.webp'),
+  growthShipPanel: publicUrl('images/xingji/hud/assets/figma-growth-screen-left.webp'),
+  growthWeaponPanel: publicUrl('images/xingji/hud/assets/figma-growth-screen-right.webp'),
+  specControlsImage: publicUrl('images/xingji/hud/assets/figma-spec-components.webp'),
   specLabelImage: publicUrl('pencil/xingji-aodaisai/typography-guide.webp'),
-  overlayPlainPanel: publicUrl('pencil/xingji-aodaisai/half-screen.webp'),
-  overlayTabbedPanel: publicUrl('pencil/xingji-aodaisai/modal-screen.webp'),
+  overlayPlainPanel: publicUrl('images/xingji/hud/assets/figma-overlay-plain.webp'),
+  overlayTabbedPanel: publicUrl('images/xingji/hud/assets/figma-overlay-tabbed.webp'),
   visualHudImages: [
-    publicUrl('pencil/xingji-aodaisai/panel-2.webp'),
-    publicUrl('pencil/xingji-aodaisai/panel.webp'),
-    publicUrl('pencil/xingji-aodaisai/panel-1.webp'),
+    publicUrl('images/xingji/hud/assets/visual-hud-cabin.webp'),
+    publicUrl('images/xingji/hud/assets/visual-hud-growth.webp'),
+    publicUrl('images/xingji/hud/assets/visual-hud-base.webp'),
   ],
   visualSystemImages: [
-    publicUrl('pencil/xingji-aodaisai/common-buttons.webp'),
-    publicUrl('pencil/xingji-aodaisai/special-buttons.webp'),
-    publicUrl('pencil/xingji-aodaisai/tab-buttons.webp'),
-    publicUrl('pencil/xingji-aodaisai/switch-buttons-updated.webp'),
+    publicUrl('images/xingji/hud/assets/figma-visual-system-1.webp'),
+    publicUrl('images/xingji/hud/assets/figma-visual-system-2.webp'),
+    publicUrl('images/xingji/hud/assets/figma-visual-system-3.webp'),
+    publicUrl('images/xingji/hud/assets/figma-visual-system-4.webp'),
   ],
+  reflectionGrain: publicUrl('images/xingji/hud/assets/figma-reflection-grain.svg'),
+  reflectionMark: publicUrl('images/xingji/hud/assets/figma-reflection-mark.svg'),
   definitionFive: [
     publicUrl('pencil/xingji-aodaisai/panel-2.webp'),
     publicUrl('pencil/xingji-aodaisai/panel.webp'),
@@ -145,7 +147,7 @@ const caseOneAssets = {
 
 function SectionFrame({ children, bg = paper, height = 900 }: { children: React.ReactNode; bg?: string; height?: number }) {
   return (
-    <div className="overflow-hidden rounded-2xl bg-transparent">
+    <div className="xingji-motion-section overflow-hidden rounded-2xl bg-transparent">
       <ResponsiveScaleFrame minDesignWidth={1280} maxScale={1}>
         <section className="relative w-[1280px] overflow-hidden" style={{ backgroundColor: bg, height }}>
           {children}
@@ -537,7 +539,7 @@ function ProblemTwoSection() {
       <img
         src={caseOneAssets.problemTwoHud}
         alt=""
-        className="absolute left-[814px] top-[142px] h-[600px] w-[337px] object-cover"
+        className="absolute left-[814px] top-[142px] h-[600px] w-[337px] object-contain"
         loading="lazy"
         decoding="async"
       />
@@ -1051,10 +1053,10 @@ function AreaUnificationSection() {
       <div className="absolute left-[88px] top-[50px] w-[330px] text-[28px] font-black leading-[34px] tracking-[2px] text-[#3d3f44]">信息减负</div>
       <div className="absolute left-[88px] top-[95px] w-[420px] text-[24px] font-bold leading-[31px] tracking-[5px] text-[#3d3f44]">其余界面信息区分</div>
       <div className="absolute left-[88px] top-[220px] w-[260px] text-[34px] font-bold leading-[41px] tracking-[1px] text-[#5e7fed]">“ 区域统一 ”</div>
-      <p className="absolute left-[88px] top-[279px] w-[325px] text-[24px] leading-[36px] text-[#8c9097]">
-        统一不同界面的信息区域规则，<br />
-        减少玩家重新学习。
-      </p>
+      <div className="absolute left-[88px] top-[279px] whitespace-nowrap text-[24px] leading-[36px] text-[#8c9097]">
+        <p>统一不同界面的信息区域规则，</p>
+        <p>减少玩家重新学习。</p>
+      </div>
 
       <div className="absolute left-[490px] top-[191px]">
         <AreaUnifiedHudMap variant="field" />
@@ -1134,21 +1136,22 @@ function FunctionZoneLayerDiagram() {
 function FunctionZoneSection() {
   return (
     <SectionFrame bg="#fbfcfd">
-      <img
-        src={caseOneAssets.functionZoneFull}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-        loading="lazy"
-        decoding="async"
-      />
-      <div className="pointer-events-none absolute opacity-0">
-        易用性 重构功能分区 重新定义界面分区，明确功能模块，清晰信息层级
+      <div className="absolute left-0 top-0 h-[449px] w-full bg-[#e5e7f6]" />
+      <div className="absolute left-[88px] top-[50px] w-[330px] text-[28px] font-black leading-[34px] tracking-[2px] text-[#3d3f44]">易用性</div>
+      <div className="absolute left-[88px] top-[95px] w-[420px] text-[24px] font-bold leading-[31px] tracking-[5px] text-[#3d3f44]">重构功能分区</div>
+      <h3 className="absolute left-[88px] top-[214px] w-[860px] text-[35px] font-bold leading-[48px] tracking-[1px] text-[#5c7df0]">
+        重新定义界面分区，明确功能模块，清晰信息层级
+      </h3>
+      <p className="absolute left-[88px] top-[273px] w-[1040px] text-[24px] leading-[36px] text-[#838890]">
         1.界面利用率提高，核心区域展示核心内容，把生成装置按钮与挂机页签按钮相结合。
+        <br />
         2.结构上，底部导航栏由原来的7个页签改成5个页签，把战舰、船员、武器整合进一个养成入口。
+        <br />
         3.次级系统性的功能归为一类，把商店入口位置显示在邮件、背包同一区域
-        个人信息区域 货币栏 行军信息区域 商业运营活动功能菜单栏 常规玩法入口区域 常规系统入口区域
-        养成功能显示区域 挂机玩法操作区域 快捷任务区域 快捷聊天区域 系统功能导航栏 场景 信息展示 UI交互层
-      </div>
+      </p>
+
+      <FunctionZoneHudMap />
+      <FunctionZoneLayerDiagram />
     </SectionFrame>
   );
 }
@@ -1297,28 +1300,51 @@ function ReflectionSection() {
     },
     {
       title: '一致性的价值高于局部炫技',
-      copy: '当不同场景下的导航、反馈和操作逻辑保持一致，玩家适应成本会明显下降，这比单点功能做得花更能提升整体体验。',
+      copy: '当不同场景下的导航、反馈和操作逻辑保持一致，玩家适应成本会明显下降，这比单点功能做得花更能提升整体体验',
     },
   ];
 
   return (
-    <SectionFrame bg="#4f78f1">
-      <div className="absolute left-[90px] top-[82px] text-[28px] font-bold text-white/90">项目反思</div>
-      <div className="absolute left-[90px] top-[130px] text-[18px] tracking-[7px] text-white/45">R E F L E C T I O N</div>
-      <div className="absolute left-[78px] top-[238px] h-[300px] w-[250px] rotate-[-12deg] bg-white/10" style={{ clipPath: 'polygon(26% 0%, 100% 24%, 84% 100%, 0% 80%)' }} />
-      <div className="absolute right-[110px] bottom-[96px] text-[128px] font-black leading-none text-[#ffd7a6]/80">?</div>
-
-      <div className="absolute left-[170px] top-[280px] h-[480px] w-[900px] rounded-[10px] bg-[#5d84f3]/55" />
-      <div className="absolute left-[132px] top-[244px] h-[480px] w-[900px] rounded-[10px] bg-[#dcecff] px-[82px] py-[60px] shadow-[0_18px_30px_rgba(39,78,173,0.22)]">
-        <div className="flex h-full flex-col justify-center gap-10 text-center">
-          {reflections.map((item) => (
-            <div key={item.title} className="space-y-3">
-              <h3 className="text-[28px] font-black leading-[36px] text-[#5476ef]">{item.title}</h3>
-              <p className="mx-auto max-w-[700px] text-[20px] leading-[31px] text-[#7f94aa]">{item.copy}</p>
-            </div>
-          ))}
-        </div>
+    <SectionFrame bg="#5476ee">
+      <div
+        className="absolute inset-0 opacity-25"
+        style={{ backgroundImage: `url(${caseOneAssets.reflectionGrain})`, backgroundSize: '97px 53px' }}
+      />
+      <div className="absolute left-0 top-[-54px] flex h-[426px] w-[333px] items-center justify-center">
+        <img
+          src={caseOneAssets.reflectionMark}
+          alt=""
+          className="h-[380px] w-[260px] max-w-none rotate-[-12deg]"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
+      <p className="absolute left-[88px] top-[89px] w-[240px] text-[35px] font-bold leading-[44px] tracking-[2px] text-white">项目反思</p>
+
+      <div className="absolute left-[158px] top-[250px] h-[490px] w-[1023px] rounded-[8px] bg-[rgba(145,165,247,0.35)]" />
+      <div className="absolute left-[117px] top-[208px] h-[500px] w-[1024px] rounded-[6px] bg-white" />
+
+      {reflections.map((item, index) => {
+        const top = 267 + index * 143;
+        return (
+          <div key={item.title}>
+            <p
+              className="absolute left-[202px] w-[840px] text-center text-[31px] font-bold leading-[39px] tracking-[1px] text-[#5f7fee]"
+              style={{ top }}
+            >
+              {item.title}
+            </p>
+            <p
+              className="absolute left-[202px] w-[840px] text-center text-[20px] leading-[34px] tracking-[1px] text-[#92969d]"
+              style={{ top: top + 43 }}
+            >
+              {item.copy}
+            </p>
+          </div>
+        );
+      })}
+
+      <p className="absolute left-[1108px] top-[610px] w-[170px] text-center text-[160px] font-bold leading-[210px] text-[#ffd1a4]">?</p>
     </SectionFrame>
   );
 }
@@ -1338,18 +1364,18 @@ function SpecSection() {
       </p>
 
       <div className="absolute left-[43px] top-[326px] h-[526px] w-[1195px] rounded-[9px] bg-white" />
-      <img
-        src={caseOneAssets.specLabelImage}
-        alt=""
-        className="absolute left-[100px] top-[352px] h-[488px] w-[131px] object-contain"
-        loading="lazy"
-        decoding="async"
-      />
+      <div className="absolute left-[100px] top-[352px] flex w-[131px] flex-col items-end gap-[7px] text-[32px] font-bold leading-[48px] tracking-[1px] text-[#80858c]">
+        {['页签', '按钮', '道具框', '资源道具', '聊天栏', '头像框', '战力值', '标题栏', '套装激活'].map((label) => (
+          <p key={label} className="w-full text-right">
+            {label}
+          </p>
+        ))}
+      </div>
 
       <img
         src={caseOneAssets.specControlsImage}
         alt=""
-        className="absolute left-[300px] top-[337px] h-[517px] w-[689px] object-contain"
+        className="absolute left-[257px] top-[337px] h-[517px] w-[690px] object-contain"
         loading="lazy"
         decoding="async"
       />
@@ -1376,7 +1402,7 @@ function OverlaySection() {
       <img
         src={caseOneAssets.overlayPlainPanel}
         alt=""
-        className="absolute left-[528px] top-[18px] h-[359px] w-[652px] object-contain"
+        className="absolute left-[528px] top-[21px] h-[359px] w-[652px] object-contain"
         loading="lazy"
         decoding="async"
       />

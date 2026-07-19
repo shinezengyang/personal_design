@@ -1,4 +1,4 @@
-
+﻿
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -281,6 +281,11 @@ html { overflow-y: scroll; }
 
 .project-detail-header .cyber-btn span {
   font-size: clamp(0.8125rem, 1.35vw, 0.875rem);
+}
+
+.project-detail-header .cyber-btn,
+.case-index-toolbar .cyber-btn {
+  border-radius: 0.625rem;
 }
 
 .cyber-btn::before {

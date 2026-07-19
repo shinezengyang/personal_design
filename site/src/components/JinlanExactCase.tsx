@@ -40,9 +40,12 @@ type SystemNode = {
   no: string;
   title: string;
   desc: string;
+  icon: ModuleIconType;
   side: 'left' | 'right';
   y: number;
 };
+
+type ModuleIconType = 'vow' | 'recruit' | 'member' | 'task' | 'dungeon' | 'benefit';
 
 type ExplainItem = {
   no: string;
@@ -78,12 +81,30 @@ function IntroCard({ no, title, body, tone }: IntroCard) {
 }
 
 function GoalIcon({ tone }: { tone: 'red' | 'gold' | 'blue' }) {
+  const icons: Record<typeof tone, ReactNode> = {
+    red: (
+      <path d="M28 43.5S12 33.8 12 21.8c0-5.7 3.6-9.8 8.7-9.8 3.1 0 5.8 1.6 7.3 4.1 1.5-2.5 4.2-4.1 7.3-4.1 5.1 0 8.7 4.1 8.7 9.8 0 12-16 21.7-16 21.7Z" />
+    ),
+    gold: (
+      <>
+        <circle cx="28" cy="28" r="15" />
+        <path d="M28 18.8V29l7.2 4.4" />
+      </>
+    ),
+    blue: (
+      <>
+        <path d="M28 15.2 15.6 36.8h24.8L28 15.2Z" />
+        <circle cx="28" cy="15.2" r="4.2" />
+        <circle cx="15.6" cy="36.8" r="4.2" />
+        <circle cx="40.4" cy="36.8" r="4.2" />
+      </>
+    ),
+  };
+
   return (
-    <div className={`jl-goal-symbol jl-goal-symbol-${tone}`} aria-hidden="true">
-      <span />
-      <i />
-      <b />
-    </div>
+    <svg className={`jl-goal-symbol jl-goal-symbol-${tone}`} viewBox="0 0 56 56" fill="none" aria-hidden="true">
+      {icons[tone]}
+    </svg>
   );
 }
 
@@ -100,21 +121,60 @@ function GoalCard({ title, en, body, result, tone }: { title: string; en: string
   );
 }
 
-function ModuleIcon({ no }: { no: string }) {
+function ModuleIcon({ icon }: { icon: ModuleIconType }) {
+  const icons: Record<ModuleIconType, ReactNode> = {
+    vow: (
+      <>
+        <circle cx="13" cy="16" r="5.2" />
+        <circle cx="19" cy="16" r="5.2" />
+        <path d="M10 16h12" />
+      </>
+    ),
+    recruit: (
+      <>
+        <circle cx="14" cy="11" r="4" />
+        <path d="M7.5 24c1.2-5.2 11.8-5.2 13 0" />
+        <path d="M24 11v8M20 15h8" />
+      </>
+    ),
+    member: (
+      <>
+        <circle cx="16" cy="10.5" r="4.5" />
+        <path d="M8.5 24c1.5-6 13.5-6 15 0" />
+      </>
+    ),
+    task: (
+      <>
+        <rect x="10" y="6" width="12" height="20" rx="2.5" />
+        <path d="M13 12h6M13 17h6M13 22h4" />
+      </>
+    ),
+    dungeon: (
+      <>
+        <path d="M16 6l9 4v6.4c0 5.5-3.8 8.7-9 10.6-5.2-1.9-9-5.1-9-10.6V10l9-4z" />
+        <path d="M12 16.5l2.8 2.8 5.5-6.1" />
+      </>
+    ),
+    benefit: (
+      <>
+        <rect x="7" y="13" width="18" height="13" rx="2.5" />
+        <path d="M16 13v13M7 18h18" />
+        <path d="M16 13c-4 0-6-1.5-6-4 0-1.4 1.2-2.5 2.8-2.5 2.2 0 3.2 2.8 3.2 6.5zM16 13c4 0 6-1.5 6-4 0-1.4-1.2-2.5-2.8-2.5-2.2 0-3.2 2.8-3.2 6.5z" />
+      </>
+    ),
+  };
+
   return (
-    <div className={`jl-module-symbol jl-module-symbol-${no}`} aria-hidden="true">
-      <span />
-      <i />
-      <b />
-      <em />
-    </div>
+    <svg className={`jl-module-symbol jl-module-symbol-${icon}`} viewBox="0 0 32 32" aria-hidden="true">
+      {icons[icon]}
+    </svg>
   );
 }
 
 function SystemCard({ node }: { node: SystemNode }) {
   return (
     <article className={`jl-system-card ${node.side}`} style={{ top: node.y }}>
-      <div className="jl-system-icon"><ModuleIcon no={node.no} /></div>
+      <div className="jl-system-icon"><ModuleIcon icon={node.icon} /></div>
       <b>{node.no}</b>
       <h3>{node.title}</h3>
       <p>{node.desc}</p>
@@ -175,10 +235,10 @@ function Principle({ color, label, title, body }: { color: string; label: string
   );
 }
 
-function PrincipleBand({ title, marker = '#c8a86b', children }: { title: string; marker?: string; children: ReactNode }) {
+function PrincipleBand({ title, eyebrow = '为什么这样设计 · DESIGN RATIONALE', marker = '#c8a86b', children }: { title: string; eyebrow?: string; marker?: string; children: ReactNode }) {
   return (
     <div className="jl-principle-band" style={{ '--band-marker': marker } as CSSProperties}>
-      <em>为什么这样设计 · DESIGN RATIONALE</em>
+      <em>{eyebrow}</em>
       <h3>{title}</h3>
       <div className="jl-principle-grid">{children}</div>
     </div>
@@ -196,12 +256,12 @@ function Shot({ src, x, y, w, h, className = '', children }: { src: string; x: n
 
 export function JinlanExactCase() {
   const systemNodes: SystemNode[] = [
-    { no: '01', title: '结义创建', desc: '仪式化建立金兰关系', side: 'left', y: 342 },
-    { no: '02', title: '金兰招募', desc: '发布招募 · 主动邀约', side: 'left', y: 522 },
-    { no: '03', title: '成员管理', desc: '职位 · 贡献 · 名册', side: 'left', y: 702 },
-    { no: '04', title: '金兰任务', desc: '共同目标驱动协作', side: 'right', y: 342 },
-    { no: '05', title: '金兰副本', desc: '组队挑战 · 协同战斗', side: 'right', y: 522 },
-    { no: '06', title: '金兰权益', desc: '成长权益 · 荣誉外显', side: 'right', y: 702 },
+    { no: '01', title: '结义创建', desc: '仪式化建立金兰关系', icon: 'vow', side: 'left', y: 342 },
+    { no: '02', title: '金兰招募', desc: '发布招募 · 主动邀约', icon: 'recruit', side: 'left', y: 522 },
+    { no: '03', title: '成员管理', desc: '职位 · 贡献 · 名册', icon: 'member', side: 'left', y: 702 },
+    { no: '04', title: '金兰任务', desc: '共同目标驱动协作', icon: 'task', side: 'right', y: 342 },
+    { no: '05', title: '金兰副本', desc: '组队挑战 · 协同战斗', icon: 'dungeon', side: 'right', y: 522 },
+    { no: '06', title: '金兰权益', desc: '成长权益 · 荣誉外显', icon: 'benefit', side: 'right', y: 702 },
   ];
 
   return (
@@ -212,7 +272,6 @@ export function JinlanExactCase() {
         <div className="jl-cover-orb orb-c" />
         <p className="jl-cover-kicker">INTERACTION&nbsp;&nbsp;DESIGN&nbsp;&nbsp;CASE</p>
         <h1>义结金兰</h1>
-        <h2>金兰系统设计</h2>
       </section>
 
       <section className="jl-section jl-bg">
@@ -281,9 +340,9 @@ export function JinlanExactCase() {
           ]}
         />
         <PrincipleBand title="为什么是「中枢式」结构？">
-          <Principle color="#ef6b5e" label="HICK’S LAW" title="单层心智模型" body="六大功能收敛到一个金兰界面，单层导航让选项一目了然。" />
-          <Principle color="#7fa0e0" label="PROXIMITY" title="中心辐射分区" body="中央是关系，外圈是行为；越靠中心越情感。" />
-          <Principle color="#5fb89b" label="HOOK" title="习惯养成钩子" body="每日豪礼一键领取，用即时奖励拉动回访。" />
+          <Principle color="#ef6b5e" label="HICK’S LAW · 席克定律" title="单层心智模型" body="六大功能收敛到一个金兰界面，单层导航让选项一目了然，决策成本最低 —— 玩家「一眼知道该去哪」。" />
+          <Principle color="#7fa0e0" label="PROXIMITY · 接近性" title="中心辐射分区" body="中央是「关系」（成员·祭坛），外圈是「行为」（任务·副本·权益）；越靠中心越情感，越向外越功能。" />
+          <Principle color="#5fb89b" label="HOOK · 即时反馈" title="习惯养成钩子" body="顶部常驻「每日豪礼一键领取」，用即时奖励把「打开金兰」养成日常，持续拉动回访与活跃。" />
         </PrincipleBand>
       </section>
 
@@ -330,7 +389,13 @@ export function JinlanExactCase() {
           ]}
         />
         <div className="jl-recruit-flow">
-          {['浏览队伍列表', '查看宣言 / 荣誉', '申请 / 发布招募', '审核通过 · 加入'].map((item, index) => <span key={item}>{item}{index < 3 ? <b>→</b> : null}</span>)}
+          <span>浏览队伍列表</span>
+          <b>→</b>
+          <span>查看宣言 / 荣誉</span>
+          <b>→</b>
+          <span>申请 / 发布招募</span>
+          <b>→</b>
+          <span>审核通过 · 加入</span>
         </div>
         <div className="jl-white-principle recruit-principle">
           <em>设计原理</em>
@@ -344,6 +409,7 @@ export function JinlanExactCase() {
         <Shot src={assets.mPanel} x={80} y={308} w={740} h={416}>
           <Pin n={1} x={41} y={50} /><Pin n={2} x={38} y={278} /><Pin n={3} x={236} y={278} /><Pin n={4} x={596} y={368} />
         </Shot>
+        <LabelPill x={80} y={738}>结义成员界面</LabelPill>
         <ExplainList
           title="一屏掌握「我是谁 · 在哪 · 贡献多少」"
           eyebrow="界面解读 · WHAT YOU SEE"
@@ -354,17 +420,17 @@ export function JinlanExactCase() {
             { no: '4', title: '协作入口', body: '退出 · 成员管理 · 一键组队，常用操作前置' },
           ]}
         />
-        <div className="jl-subshot-head left"><b>界面二</b>成员管理 · 权责名册</div>
-        <div className="jl-subshot-head right"><b>界面三</b>请离投票 · 集体决策</div>
+        <div className="jl-subshot-head left"><b>弹窗</b>成员管理 · 权责名册</div>
+        <div className="jl-subshot-head right"><b>弹窗</b>请离投票 · 集体决策</div>
         <Shot src={assets.mList} x={80} y={872} w={545} h={307} />
         <Shot src={assets.mVote} x={655} y={872} w={545} h={307} />
         <p className="jl-shot-desc left">按职位与在线状态排成名册；底部「割袍断义」可把队友请离出队伍。</p>
         <p className="jl-shot-desc right">是否把队友请离出去不由金兰大哥独断 —— 全员投票 + 倒计时，到点未同意自动拒绝。</p>
-        <PrincipleBand title="把「关系」当成「组织」来经营">
-          <Principle color="#ef6b5e" label="ROLE HIERARCHY" title="角色体系 · 权责对等" body="大哥 / 长老 / 成员分层，决策权与责任绑定。" />
-          <Principle color="#e8c77a" label="SOCIAL PROOF" title="荣誉墙 · 社会认同" body="排名与贡献公开摆台，用同侪激励驱动长期活跃。" />
-          <Principle color="#7fa0e0" label="PROCEDURAL JUSTICE" title="请离投票 · 程序正义" body="踢人交给全员投票 + 倒计时，防止权力滥用。" />
-          <Principle color="#5fb89b" label="LOSS AVERSION" title="退出代价 · 损失厌恶" body="退出清零积分 / 称号，把沉没成本摆明。" />
+        <PrincipleBand title="把「关系」当成「组织」来经营" eyebrow="为什么这样设计 · WHY IT WORKS">
+          <Principle color="#ef6b5e" label="ROLE HIERARCHY" title="角色体系 · 权责对等" body="大哥 / 长老 / 成员分层，决策权与责任绑定，减少「谁说了算」的内耗。" />
+          <Principle color="#e8c77a" label="SOCIAL PROOF" title="荣誉墙 · 社会认同" body="排名与贡献公开摆台，用同侪激励驱动长期活跃与留存。" />
+          <Principle color="#7fa0e0" label="PROCEDURAL JUSTICE" title="请离投票 · 程序正义" body="不可逆的「踢人」交给全员投票 + 倒计时，防止权力滥用与冲动决策。" />
+          <Principle color="#5fb89b" label="LOSS AVERSION" title="退出代价 · 损失厌恶" body="退出清零积分 / 称号、加保护期，把沉没成本摆明，降低冲动流失。" />
         </PrincipleBand>
       </section>
 
@@ -410,7 +476,11 @@ export function JinlanExactCase() {
         <div className="jl-white-principle task-principle">
           <em>设计原理</em>
           <h3>心流 · Flow</h3>
-          <p>首领分阶提供「难度阶梯」，配合一键组队把同伴快速凑齐。当挑战强度与队伍能力相互匹配，玩家更易进入专注而忘我的心流。</p>
+          <p className="jl-principle-lines">
+            <span>首领分阶提供「难度阶梯」，配合一键组队把同伴快速凑齐 ——</span>
+            <span>当挑战强度与队伍能力相互匹配，玩家更易进入专注而忘我的「心流」；</span>
+            <span>伤害榜的社会比较，则为这份投入再添一层荣誉驱动。</span>
+          </p>
         </div>
       </section>
 
@@ -434,7 +504,8 @@ export function JinlanExactCase() {
         <div className="jl-benefit-rationale">
           <em>为什么这样设计 · ART DIRECTION</em>
           <h3>用「生长的梅树」，而非一张权益列表</h3>
-          <p>常见做法是把权益排成冰冷的列表；这里却让它随等级绽放成一棵梅树 —— 把数值进步翻译成可被看见、被珍惜的画面。玩家为这棵树投入越多，离开的代价就越高。</p>
+          <p>常见做法是把权益排成冰冷的列表；这里却让它随等级绽放成一棵梅树 —— 把数值进步翻译成可被看见、被珍惜的画面。</p>
+          <p>玩家为这棵树投入越多，离开的代价就越高（沉没成本 / IKEA 效应）；锁定的节点与红点，则以「损失厌恶」持续牵引回访。</p>
           <span>损失厌恶 Loss Aversion</span><span>沉没成本 / IKEA 效应</span>
         </div>
       </section>
@@ -445,7 +516,6 @@ export function JinlanExactCase() {
           <div className="jl-spec-card">
             <div className="jl-spec-title">
               <b>视觉规范</b>
-              <span>VISUAL SPECIFICATION</span>
             </div>
             <div className="jl-spec-panel">
               <em>主色板 · PALETTE</em>
@@ -453,8 +523,8 @@ export function JinlanExactCase() {
                 {[['水墨', '#0E1426'], ['鎏金', '#C99A3A'], ['浅金', '#E8C77A'], ['按钮蓝', '#00A6E8'], ['琥珀', '#C7841C'], ['朱红', '#D0503E']].map(([name, color]) => <div key={name}><i style={{ background: color }} /><b>{name}</b><span>{color}</span></div>)}
               </div>
             </div>
+            <em className="jl-spec-block-label">字体 · TYPEFACE</em>
             <div className="jl-spec-panel jl-type-panel">
-              <em>字体 · TYPEFACE</em>
               <div className="jl-type-row"><strong>义结金兰</strong><span>楷体 · 主标题 / 场景标题</span></div>
               <div className="jl-type-row sub"><strong>金兰系统设计</strong><span>宋体 · 正文 / 说明文字</span></div>
             </div>

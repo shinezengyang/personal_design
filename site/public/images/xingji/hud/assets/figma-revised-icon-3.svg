@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 126 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 1155">
+<g id="i3-bg">
+</g>
+<circle id="i3-ring" cx="63" cy="63" r="26.5" stroke="var(--stroke-0, #1B3C87)" stroke-width="3"/>
+<circle id="i3-dot" cx="63" cy="63" r="7" fill="var(--fill-0, #1B3C87)"/>
+<rect id="i3-lL" x="11" y="61" width="20" height="4" fill="var(--fill-0, #1B3C87)"/>
+<rect id="i3-lR" x="95" y="61" width="20" height="4" fill="var(--fill-0, #1B3C87)"/>
+<rect id="i3-lT" x="61" y="11" width="4" height="20" fill="var(--fill-0, #1B3C87)"/>
+<rect id="i3-lB" x="61" y="95" width="4" height="20" fill="var(--fill-0, #1B3C87)"/>
+<path id="i3-at" d="M63 7L54 23H72L63 7Z" fill="var(--fill-0, #1B3C87)"/>
+<path id="i3-ab" d="M63 119L54 103H72L63 119Z" fill="var(--fill-0, #1B3C87)"/>
+<path id="i3-al" d="M7 63L23 54V72L7 63Z" fill="var(--fill-0, #1B3C87)"/>
+<path id="i3-ar" d="M119 63L103 54V72L119 63Z" fill="var(--fill-0, #1B3C87)"/>
+</g>
+</svg>

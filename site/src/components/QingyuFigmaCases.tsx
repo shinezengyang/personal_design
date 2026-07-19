@@ -89,12 +89,43 @@ function HArrow({ l, t, w, color = '#8fa4f8', thickness = 2, head = 12 }: { l: n
     </A>
   );
 }
+function HArrowLeft({ l, t, w, color = '#8fa4f8', thickness = 2, head = 12 }: { l: number; t: number; w: number; color?: string; thickness?: number; head?: number }) {
+  return (
+    <A l={l} t={t} w={w} h={head} style={{ pointerEvents: 'none' }}>
+      <span style={{ position: 'absolute', right: 0, top: head / 2 - thickness / 2, width: Math.max(0, w - head / 2), height: thickness, background: color, borderRadius: thickness }} />
+      <span style={{ position: 'absolute', left: 0, top: 0, width: 0, height: 0, borderTop: `${head / 2}px solid transparent`, borderBottom: `${head / 2}px solid transparent`, borderRight: `${head}px solid ${color}` }} />
+    </A>
+  );
+}
 function VArrow({ l, t, h, color = '#8fa4f8', thickness = 2, head = 12 }: { l: number; t: number; h: number; color?: string; thickness?: number; head?: number }) {
   return (
     <A l={l} t={t} w={head} h={h} style={{ pointerEvents: 'none' }}>
       <span style={{ position: 'absolute', left: head / 2 - thickness / 2, top: 0, width: thickness, height: Math.max(0, h - head / 2), background: color, borderRadius: thickness }} />
       <span style={{ position: 'absolute', left: 0, bottom: 0, width: 0, height: 0, borderLeft: `${head / 2}px solid transparent`, borderRight: `${head / 2}px solid transparent`, borderTop: `${head}px solid ${color}` }} />
     </A>
+  );
+}
+function VArrowUp({ l, t, h, color = '#8fa4f8', thickness = 2, head = 12 }: { l: number; t: number; h: number; color?: string; thickness?: number; head?: number }) {
+  return (
+    <A l={l} t={t} w={head} h={h} style={{ pointerEvents: 'none' }}>
+      <span style={{ position: 'absolute', left: head / 2 - thickness / 2, bottom: 0, width: thickness, height: Math.max(0, h - head / 2), background: color, borderRadius: thickness }} />
+      <span style={{ position: 'absolute', left: 0, top: 0, width: 0, height: 0, borderLeft: `${head / 2}px solid transparent`, borderRight: `${head / 2}px solid transparent`, borderBottom: `${head}px solid ${color}` }} />
+    </A>
+  );
+}
+function DashedLine({ l, t, w, h, color = '#e55959' }: { l: number; t: number; w: number; h: number; color?: string }) {
+  const horizontal = w >= h;
+  return (
+    <A
+      l={l}
+      t={t}
+      w={w}
+      h={h}
+      style={{
+        pointerEvents: 'none',
+        backgroundImage: `repeating-linear-gradient(${horizontal ? '90deg' : '180deg'}, ${color} 0 4px, transparent 4px 8px)`,
+      }}
+    />
   );
 }
 function ElbowArrow({ l, t, w, h, color = '#8fa4f8', thickness = 2 }: { l: number; t: number; w: number; h: number; color?: string; thickness?: number }) {
@@ -409,49 +440,51 @@ function HousePetCase() {
         {/* 抓捕判定流程 */}
         <A l={80} t={921} style={{ ...bold(32, '#333340'), whiteSpace: 'nowrap' }}>抓捕判定流程</A>
         <A l={192} t={999} style={{ ...bold(20, '#262633'), whiteSpace: 'nowrap' }}>多条件判定，覆盖各种抓捕结果</A>
-        <A l={130} t={1178} w={70} h={70} style={{ borderRadius: '50%', background: '#5e7df6', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', ...semi(16, '#fff') }}>执行<br />抓捕</A>
-        <HArrow l={200} t={1206} w={90} color="#5e7df6" />
-        <A l={290} t={1178} w={80} h={70} style={{ background: '#ffbf82', display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(20, '#fff') }}>判定</A>
-        <A l={442} t={1198} w={100} h={30} style={{ background: '#5e7df6', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', ...semi(16, '#fff') }}>玩家追逐中</A>
-        <HArrow l={370} t={1206} w={72} color="#5e7df6" />
-        <A l={329} t={1093} w={2} h={85} style={{ background: '#62bc74' }} />
-        <A l={338} t={1159} style={{ ...semi(16, '#62bc74'), whiteSpace: 'nowrap' }}>成功</A>
-        <A l={280} t={1043} w={100} h={50} style={{ background: '#62bc74', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(16, '#fff') }}>抓捕成功</A>
-        <HArrow l={380} t={1061} w={100} color="#62bc74" />
-        <A l={484} t={1049} w={200} style={semi(16, '#62bc74')}>弹出成功Toast<br />宠物进入物品列表</A>
-        <A l={329} t={1248} w={2} h={85} style={{ background: '#f16066' }} />
-        <A l={338} t={1248} style={{ ...semi(16, '#f16066'), whiteSpace: 'nowrap' }}>失败</A>
-        <A l={280} t={1333} w={100} h={50} style={{ background: '#f16066', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(16, '#fff') }}>抓捕失败</A>
-        <A l={165} t={1360} w={2} h={106} style={{ background: '#f16066' }} />
-        <A l={501} t={1360} w={2} h={106} style={{ background: '#f16066' }} />
-        <A l={165} t={1361} w={336} h={2} style={{ background: '#f16066' }} />
+        <A l={130} t={1178} w={70} h={70} style={{ borderRadius: '50%', background: '#5b7bf5', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', ...semi(16, '#fff') }}>执行<br />抓捕</A>
+        <HArrow l={200} t={1206} w={90} color="#5b7bf5" />
+        <A l={290} t={1178} w={80} h={70} style={{ background: '#fab880', display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(20, '#fff') }}>判定</A>
+        <A l={442} t={1198} w={100} h={30} style={{ background: '#5b7bf5', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', ...semi(16, '#fff') }}>玩家追逐中</A>
+        <HArrow l={370} t={1206} w={72} color="#5b7bf5" />
+        <A l={329} t={1093} w={2} h={85} style={{ background: '#59bf73' }} />
+        <A l={338} t={1159} style={{ ...semi(16, '#59bf73'), whiteSpace: 'nowrap' }}>成功</A>
+        <A l={280} t={1043} w={100} h={50} style={{ background: '#59bf73', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(16, '#fff') }}>抓捕成功</A>
+        <HArrow l={380} t={1061} w={100} color="#59bf73" />
+        <A l={484} t={1049} w={200} style={semi(16, '#59bf73')}>弹出成功Toast<br />宠物进入物品列表</A>
+        <A l={329} t={1248} w={2} h={85} style={{ background: '#e55959' }} />
+        <A l={338} t={1248} style={{ ...semi(16, '#e55959'), whiteSpace: 'nowrap' }}>失败</A>
+        <A l={280} t={1333} w={100} h={50} style={{ background: '#e55959', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(16, '#fff') }}>抓捕失败</A>
+        <DashedLine l={165} t={1360} w={2} h={106} color="#e55959" />
+        <DashedLine l={501} t={1360} w={2} h={106} color="#e55959" />
+        <DashedLine l={329} t={1383} w={2} h={83} color="#e55959" />
+        <DashedLine l={165} t={1361} w={115} h={2} color="#e55959" />
+        <DashedLine l={380} t={1361} w={122} h={2} color="#e55959" />
         {[
           { l: 85, txt: '被其他玩家先行抓捕' },
           { l: 251, txt: '刷新结束时间到了' },
           { l: 417, txt: '网络异常/绘制失败' },
         ].map((c) => (
           <div key={c.txt}>
-            <A l={c.l} t={1436} w={160} h={40} style={{ background: '#fff', borderRadius: 8, display: 'flex', alignItems: 'center', paddingLeft: 14, ...semi(16, '#f16066') }}>{c.txt}</A>
+            <A l={c.l} t={1436} w={160} h={40} style={{ background: '#fff', borderRadius: 8, display: 'flex', alignItems: 'center', paddingLeft: 14, ...semi(16, '#e55959') }}>{c.txt}</A>
           </div>
         ))}
         <A l={183} t={1498} style={{ ...reg(16, '#666673'), whiteSpace: 'nowrap' }}>所有结果均通过通用Toast组件反馈给玩家</A>
         {/* 行为强化循环 */}
         <A l={908} t={1253} style={{ ...bold(20, '#262626'), whiteSpace: 'nowrap' }}>行为强化循环</A>
         {[
-          { l: 772, t0: 1057, txt: '随机出没' },
-          { l: 1052, t0: 1057, txt: '限时追逐' },
-          { l: 1052, t0: 1367, txt: '即时反馈' },
-          { l: 772, t0: 1367, txt: '情感绑定' },
+          { l: 772, t0: 1057, txt: '随机出没', ring: '#fde4bf', fill: '#fff3df' },
+          { l: 1052, t0: 1057, txt: '限时追逐', ring: '#f3d1cb', fill: '#fff0ed', size: 14 },
+          { l: 1052, t0: 1367, txt: '即时反馈', ring: '#d6efd5', fill: '#eef9ec', size: 14 },
+          { l: 772, t0: 1367, txt: '情感绑定', ring: '#e8d7f0', fill: '#f6edf9' },
         ].map((c) => (
           <div key={c.txt}>
-            <A l={c.l} t={c.t0} w={110} h={110} style={{ borderRadius: '50%', background: '#fff', border: '12px solid #e5edff' }} />
-            <A l={c.l + 55 - 35} t={c.t0 + 45} w={70} style={{ ...bold(16, '#262626'), textAlign: 'center' }}>{c.txt}</A>
+            <A l={c.l} t={c.t0} w={110} h={110} style={{ borderRadius: '50%', background: c.fill, border: `12px solid ${c.ring}` }} />
+            <A l={c.l + 55 - 35} t={c.t0 + 45} w={70} style={{ ...bold(c.size ?? 16, '#262626'), textAlign: 'center' }}>{c.txt}</A>
           </div>
         ))}
-        <HArrow l={882} t={1106} w={170} color="#dbe6fb" thickness={2} head={10} />
-        <HArrow l={882} t={1416} w={170} color="#dbe6fb" thickness={2} head={10} />
-        <VArrow l={1100} t={1167} h={200} color="#dbe6fb" thickness={2} head={10} />
-        <VArrow l={821} t={1167} h={200} color="#dbe6fb" thickness={2} head={10} />
+        <HArrow l={882} t={1106} w={170} color="#8f939a" thickness={2} head={10} />
+        <HArrow l={882} t={1416} w={170} color="#8f939a" thickness={2} head={10} />
+        <VArrow l={1100} t={1167} h={200} color="#8f939a" thickness={2} head={10} />
+        <VArrow l={821} t={1167} h={200} color="#8f939a" thickness={2} head={10} />
         <A l={1257} t={447} w={6} h={6} style={{ borderRadius: '50%', background: '#5b7bf5' }} />
         {/* 体验设计要点 */}
         <A l={77} t={1600} w={200} style={bold(20, '#262626')}>抓捕体验设计要点</A>
@@ -496,19 +529,19 @@ function HousePetCase() {
         ].map((m) => (
           <A key={m.t0} l={360} t={m.t0} w={560} h={315} style={{ borderRadius: 10, overflow: 'hidden', boxShadow: '0 16px 28px rgba(26,33,51,0.12)' }}><Img src={m.src} alt={m.alt} className="hp-cover-img" /></A>
         ))}
-        <A l={638} t={318} w={96} h={2} style={{ background: '#25a8ff', borderRadius: 2 }} />
-        <A l={731} t={314} w={8} h={8} style={{ borderRadius: '50%', background: '#25a8ff' }} />
-        <VArrow l={633} t={318} h={238} color="#25a8ff" thickness={2} head={10} />
+        <A l={638} t={383} w={74} h={2} style={{ background: '#25a8ff', borderRadius: 2 }} />
+        <A l={710} t={379} w={8} h={8} style={{ borderRadius: '50%', background: '#25a8ff' }} />
+        <VArrow l={630} t={384} h={181} color="#25a8ff" thickness={2} head={10} />
         <A l={654} t={522} style={{ ...reg(18, '#57617a'), lineHeight: '26px', whiteSpace: 'nowrap' }}>退到大世界，自动寻路到“家具”处</A>
-        <A l={746} t={734} w={8} h={8} style={{ borderRadius: '50%', background: '#25a8ff' }} />
-        <HArrow l={754} t={737} w={220} color="#25a8ff" thickness={2} head={9} />
+        <A l={738} t={752} w={8} h={8} style={{ borderRadius: '50%', background: '#25a8ff' }} />
+        <HArrow l={742} t={751} w={232} color="#25a8ff" thickness={2} head={9} />
         <A l={990} t={720} style={{ ...reg(18, '#57617a'), lineHeight: '26px', whiteSpace: 'nowrap' }}>绘制完成后弹出，弹出通用Toast</A>
         <A l={636} t={876} w={8} h={8} style={{ borderRadius: '50%', background: '#25a8ff' }} />
         <VArrow l={633} t={884} h={76} color="#25a8ff" thickness={2} head={10} />
         <A l={655} t={916} style={{ ...reg(18, '#57617a'), lineHeight: '26px', whiteSpace: 'nowrap' }}>前往房屋制造家具</A>
-        <A l={636} t={1272} w={8} h={8} style={{ borderRadius: '50%', background: '#25a8ff' }} />
-        <VArrow l={633} t={1280} h={76} color="#25a8ff" thickness={2} head={10} />
-        <A l={390} t={1684} w={500} style={{ ...reg(18, '#57617a'), lineHeight: '26px', textAlign: 'center' }}>制造弹窗将“做什么、做几个、缺什么、花多少”压缩在同一屏，<br />减少背包、图纸、材料之间的反复确认。</A>
+        <A l={636} t={1174} w={8} h={8} style={{ borderRadius: '50%', background: '#25a8ff' }} />
+        <VArrow l={633} t={1178} h={177} color="#25a8ff" thickness={2} head={10} />
+        <A l={0} t={1684} w={1280} style={{ ...reg(18, '#57617a'), lineHeight: '26px', textAlign: 'center' }}>制造弹窗将“做什么、做几个、缺什么、花多少”压缩在同一屏，<br />减少背包、图纸、材料之间的反复确认。</A>
         {/* 制造判定流程 */}
         <A l={80} t={1816} w={260} style={{ ...bold(32, '#292e40'), lineHeight: '25px' }}>制造判定流程</A>
         <A l={80} t={1873} style={{ ...bold(20, '#262633'), whiteSpace: 'nowrap' }}>多条件判定覆盖可制造、材料不足、数量超限、背包不足等状态。</A>
@@ -521,7 +554,8 @@ function HousePetCase() {
         <A l={484} t={1913} w={210} style={{ ...reg(16, '#57617a'), lineHeight: '19px' }}>扣除材料<br />生成家具并提示成功</A>
         <A l={320} t={2069} w={1} h={75} style={{ background: '#597aeb' }} />
         <A l={260} t={2144} w={120} h={38} style={{ background: '#fff', border: '1px solid rgba(242,148,31,0.7)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(16, '#292e40') }}>材料不足</A>
-        <A l={155} t={2163} w={338} h={1} style={{ background: '#f2941f' }} />
+        <A l={155} t={2163} w={105} h={1} style={{ background: '#f2941f' }} />
+        <A l={380} t={2163} w={113} h={1} style={{ background: '#f2941f' }} />
         <A l={154} t={2163} w={1} h={70} style={{ background: '#f2941f' }} />
         <A l={320} t={2182} w={1} h={51} style={{ background: '#f2941f' }} />
         <A l={492} t={2163} w={1} h={70} style={{ background: '#f2941f' }} />
@@ -536,21 +570,21 @@ function HousePetCase() {
         {/* 制作决策循环 */}
         <A l={908} t={2095} w={120} style={{ ...bold(20, '#262633'), textAlign: 'center' }}>制作决策循环</A>
         {[
-          { l: 773, t0: 1903, txt: '图纸目标' },
-          { l: 1047, t0: 1903, txt: '材料收集' },
-          { l: 1047, t0: 2207, txt: '制造反馈' },
-          { l: 773, t0: 2207, txt: '空间摆放' },
+          { l: 773, t0: 1903, txt: '图纸目标', ring: '#c6d3f7', fill: '#eef2fc' },
+          { l: 1047, t0: 1903, txt: '材料收集', ring: '#c6d3f7', fill: '#eef2fc' },
+          { l: 1047, t0: 2207, txt: '制造反馈', ring: '#f0d4b4', fill: '#fff4e6' },
+          { l: 773, t0: 2207, txt: '空间摆放', ring: '#c6d3f7', fill: '#eef2fc' },
         ].map((c) => (
           <div key={c.txt}>
-            <A l={c.l} t={c.t0} w={104} h={104} style={{ borderRadius: '50%', background: '#fff', border: '2px solid #c6d3f7' }} />
-            <A l={c.l + 14} t={c.t0 + 14} w={76} h={76} style={{ borderRadius: '50%', background: '#eef2fc' }} />
+            <A l={c.l} t={c.t0} w={104} h={104} style={{ borderRadius: '50%', background: '#fff', border: `2px solid ${c.ring}` }} />
+            <A l={c.l + 14} t={c.t0 + 14} w={76} h={76} style={{ borderRadius: '50%', background: c.fill }} />
             <A l={c.l + 18} t={c.t0 + 43} w={70} style={bold(16, '#292e40')}>{c.txt}</A>
           </div>
         ))}
         <HArrow l={877} t={1949} w={170} color="#597aeb" thickness={1} head={10} />
-        <HArrow l={877} t={2253} w={170} color="#597aeb" thickness={1} head={10} />
+        <HArrowLeft l={877} t={2253} w={170} color="#597aeb" thickness={1} head={10} />
         <VArrow l={1093} t={2007} h={200} color="#597aeb" thickness={1} head={10} />
-        <VArrow l={819} t={2007} h={200} color="#597aeb" thickness={1} head={10} />
+        <VArrowUp l={819} t={2007} h={200} color="#597aeb" thickness={1} head={10} />
         {/* 体验设计要点 */}
         <A l={82} t={2387} w={220} style={bold(18, '#262626')}>家具制造体验设计要点</A>
         {[
@@ -685,16 +719,16 @@ function HousePetCase() {
         <A l={80} t={108} style={{ ...semi(16, '#5b7bf5'), whiteSpace: 'nowrap' }}>OVERVIEW</A>
         <A l={80} t={180} w={800} style={bold(22, '#33334d')}>从发现宠物到完成房屋布置的完整体验链路</A>
         {[
-          { l: 70, n: '1', d1: '宠物出没', d2: '广播通知' },
-          { l: 240, n: '2', d1: '大世界', d2: '前往抓捕' },
-          { l: 410, n: '3', d1: '抓捕判定', d2: '成功/失败' },
-          { l: 580, n: '4', d1: '进入房屋', d2: '布置界面' },
-          { l: 750, n: '5', d1: '选择物品', d2: '进入摆放' },
-          { l: 920, n: '6', d1: '移动/旋转', d2: '确定位置' },
-          { l: 1090, n: '7', d1: '确定布置', d2: '保存退出' },
+          { l: 70, n: '1', d1: '宠物出没', d2: '广播通知', color: '#5b7bf5' },
+          { l: 240, n: '2', d1: '大世界', d2: '前往抓捕', color: '#5b7bf5' },
+          { l: 410, n: '3', d1: '抓捕判定', d2: '成功/失败', color: '#fa8c59' },
+          { l: 580, n: '4', d1: '进入房屋', d2: '布置界面', color: '#5b7bf5' },
+          { l: 750, n: '5', d1: '选择物品', d2: '进入摆放', color: '#5b7bf5' },
+          { l: 920, n: '6', d1: '移动/旋转', d2: '确定位置', color: '#fa8c59' },
+          { l: 1090, n: '7', d1: '确定布置', d2: '保存退出', color: '#59bf73' },
         ].map((s, i) => (
           <div key={s.n}>
-            <A l={s.l} t={238} w={110} h={110} style={{ borderRadius: '50%', background: '#5b7bf5', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', ...semi(16, '#fff') }}>{s.d1}<br />{s.d2}</A>
+            <A l={s.l} t={238} w={110} h={110} style={{ borderRadius: '50%', background: s.color, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', ...semi(16, '#fff') }}>{s.d1}<br />{s.d2}</A>
             <A l={s.l + 55 - 6} t={358} style={{ ...bold(20, '#9eadcc'), whiteSpace: 'nowrap' }}>{s.n}</A>
             {i < 6 ? <HArrow l={s.l + 110} t={291} w={50} color="#9eadcc" thickness={2} head={8} /> : null}
           </div>

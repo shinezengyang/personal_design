@@ -172,6 +172,8 @@ export default function QingyuCaseIndex() {
               className="qingyu-framework-featured-card__image"
               src="/qingyu-framework-card.webp"
               alt="框架案例卡片图"
+              loading="lazy"
+              decoding="async"
             />
             <div className="qingyu-framework-featured-card__body">
               <h2>{frameworkCase.title}</h2>
@@ -195,41 +197,41 @@ export default function QingyuCaseIndex() {
             >
               <div className="high-seas-case-card__media high-seas-case-card__media--flat">
                 {item.key === '2' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-house-card.webp" alt="系统-房屋案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-house-card.webp" alt="系统-房屋案例卡片图" />
                 ) : item.key === '4' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-jinlan-card.webp" alt="系统-金兰结义案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-jinlan-card.webp" alt="系统-金兰结义案例卡片图" />
                 ) : item.key === '17' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-atlas-card.webp" alt="系统-图鉴收集案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-atlas-card.webp" alt="系统-图鉴收集案例卡片图" />
                 ) : item.key === '19' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-guild-card.webp" alt="系统-帮派案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-guild-card.webp" alt="系统-帮派案例卡片图" />
                 ) : item.key === '3' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-tianmai-card.webp" alt="养成-天脉案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-tianmai-card.webp" alt="养成-天脉案例卡片图" />
                 ) : item.key === '5' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-xiushen-card.webp" alt="养成-绣身案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-xiushen-card.webp" alt="养成-绣身案例卡片图" />
                 ) : item.key === '6' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-juexue-card.webp" alt="养成-绝学案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-juexue-card.webp" alt="养成-绝学案例卡片图" />
                 ) : item.key === '14' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-gem-card.webp" alt="养成-宝石镶嵌案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-gem-card.webp" alt="养成-宝石镶嵌案例卡片图" />
                 ) : item.key === '7' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-juejing-card.webp" alt="玩法-绝境试炼案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-juejing-card.webp" alt="玩法-绝境试炼案例卡片图" />
                 ) : item.key === '8' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-bianjing-card.webp" alt="玩法-边境战场案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-bianjing-card.webp" alt="玩法-边境战场案例卡片图" />
                 ) : item.key === '9' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-wedding-card.webp" alt="玩法-婚礼结缘案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-wedding-card.webp" alt="玩法-婚礼结缘案例卡片图" />
                 ) : item.key === '10' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-sancai-card.webp" alt="养成-三才案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-sancai-card.webp" alt="养成-三才案例卡片图" />
                 ) : item.key === '11' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-qingquan-card.webp" alt="玩法-清泉沐浴案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-qingquan-card.webp" alt="玩法-清泉沐浴案例卡片图" />
                 ) : item.key === '13' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-temple-card.webp" alt="玩法-神庙遗迹案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-temple-card.webp" alt="玩法-神庙遗迹案例卡片图" />
                 ) : item.key === '16' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-intel-card.webp" alt="玩法-情报簿案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-intel-card.webp" alt="玩法-情报簿案例卡片图" />
                 ) : item.key === '18' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-chengxiong-card.webp" alt="玩法-惩凶除恶案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-chengxiong-card.webp" alt="玩法-惩凶除恶案例卡片图" />
                 ) : item.key === '12' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-recall-card.webp" alt="活动-回流召回案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-recall-card.webp" alt="活动-回流召回案例卡片图" />
                 ) : item.key === '15' ? (
-                  <img className="qingyu-case-card__cover-image" src="/qingyu-glory-card.webp" alt="活动-荣耀赛季案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-glory-card.webp" alt="活动-荣耀赛季案例卡片图" />
                 ) : (
                   <div className={`case-flat-visual qingyu-flat-visual case-flat-visual--${index % 6}`}>
                     <div className="case-flat-visual__grid" />
