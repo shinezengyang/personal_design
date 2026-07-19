@@ -1434,10 +1434,8 @@ export default function ProjectDetail({
 
   if (loading) {
     return (
-      <section className="relative w-full min-h-screen py-24 px-6 sm:px-12 lg:px-24 flex items-center">
-        <div className="max-w-2xl mx-auto glass-card rounded-2xl p-8">
-          <div className="font-display font-bold text-2xl neon-text-pink">加载中…</div>
-        </div>
+      <section className="relative flex min-h-screen w-full items-center justify-center px-6 py-24 sm:px-12 lg:px-24">
+        <div className="font-display text-2xl font-bold neon-text-pink">加载中...</div>
       </section>
     );
   }
