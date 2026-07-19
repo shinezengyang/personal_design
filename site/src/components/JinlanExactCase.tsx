@@ -322,9 +322,9 @@ export function JinlanExactCase() {
           ]}
         />
         <PrincipleBand title="为什么是「中枢式」结构？">
-          <Principle color="#ef6b5e" label="HICK’S LAW" title="单层心智模型" body="六大功能收敛到一个金兰界面，单层导航让选项一目了然。" />
-          <Principle color="#7fa0e0" label="PROXIMITY" title="中心辐射分区" body="中央是关系，外圈是行为；越靠中心越情感。" />
-          <Principle color="#5fb89b" label="HOOK" title="习惯养成钩子" body="每日豪礼一键领取，用即时奖励拉动回访。" />
+          <Principle color="#ef6b5e" label="HICK’S LAW · 席克定律" title="单层心智模型" body="六大功能收敛到一个金兰界面，单层导航让选项一目了然，决策成本最低 —— 玩家「一眼知道该去哪」。" />
+          <Principle color="#7fa0e0" label="PROXIMITY · 接近性" title="中心辐射分区" body="中央是「关系」（成员·祭坛），外圈是「行为」（任务·副本·权益）；越靠中心越情感，越向外越功能。" />
+          <Principle color="#5fb89b" label="HOOK · 即时反馈" title="习惯养成钩子" body="顶部常驻「每日豪礼一键领取」，用即时奖励把「打开金兰」养成日常，持续拉动回访与活跃。" />
         </PrincipleBand>
       </section>
 

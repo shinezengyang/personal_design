@@ -252,13 +252,15 @@
 .jl-system-link.link-04 { left: 857px; top: 512px; width: 118px; transform: rotate(-68deg); }
 .jl-system-link.link-05 { left: 857px; top: 610px; width: 51px; transform: rotate(-33deg); }
 .jl-system-link.link-06 { left: 857px; top: 709px; width: 68px; transform: rotate(51deg); }
-.jl-anatomy-title { position: absolute; left: 80px; top: 935px; border-top: 1px solid #2a3550; width: 1120px; padding-top: 28px; }
-.jl-anatomy-title em { color: #c8a86b; font: 500 12px/1 Inter, sans-serif; letter-spacing: 1.5px; font-style: normal; }
-.jl-anatomy-title h3 { color: #eaf0ff; font-size: 24px; font-weight: 700; margin-top: 14px; }
-.jl-anatomy-title p { color: #9aa6c0; font-size: 16px; line-height: 22px; margin-top: 12px; width: 760px; }
+.jl-anatomy-title { position: absolute; left: 80px; top: 909px; border-top: 1px solid #2a3550; width: 1120px; height: 118px; padding: 0; }
+.jl-anatomy-title::after { content: ""; position: absolute; left: 0; top: 28px; width: 4px; height: 24px; border-radius: 2px; background: #c8a86b; }
+.jl-anatomy-title em { position: absolute; left: 18px; top: 26px; color: #c8a86b; font: 500 12px/1 Inter, sans-serif; letter-spacing: 1.5px; font-style: normal; }
+.jl-anatomy-title h3 { position: absolute; left: -2px; top: 54px; color: #eaf0ff; font-size: 24px; font-weight: 700; margin: 0; }
+.jl-anatomy-title p { position: absolute; left: 0; top: 94px; color: #9aa6c0; font-size: 16px; line-height: 22px; margin: 0; width: 760px; }
 .jl-hub-big { position: absolute; left: 80px; top: 1049px; width: 760px; height: 428px; border-radius: 10px; border: 1px solid #3a4660; overflow: visible; box-shadow: 0 12px 30px rgba(0,0,0,.35); }
 .jl-hub-big > img { width: 100%; height: 100%; object-fit: contain; object-position: center; border-radius: 10px; background: #5a5d5c; }
 .jl-pin { position: absolute; width: 28px; height: 28px; border-radius: 50%; background: #3b6bf0; color: white; display: grid; place-items: center; font: 700 14px/1 Inter, sans-serif; z-index: 5; box-shadow: 0 4px 0 rgba(28, 51, 143, .25), 0 0 0 3px rgba(255,255,255,.28); }
+.jl-hub-big .jl-pin { background: #c8a86b; color: #fff; box-shadow: 0 4px 0 rgba(76, 56, 22, .28), 0 0 0 3px rgba(255,255,255,.28); }
 .jl-pin.gold { background: #e8c77a; color: #1A140C; }
 .jl-explain { position: absolute; left: 856px; top: 316px; width: 364px; color: #1a2238; }
 .jl-explain.dark { top: 1057px; color: #eaf0ff; }
