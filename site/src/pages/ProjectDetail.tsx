@@ -1436,8 +1436,7 @@ export default function ProjectDetail({
     return (
       <section className="relative w-full min-h-screen py-24 px-6 sm:px-12 lg:px-24 flex items-center">
         <div className="max-w-2xl mx-auto glass-card rounded-2xl p-8">
-          <div className="font-display font-bold text-2xl neon-text-pink mb-2">加载中…</div>
-          <div className="text-cyber-gray">正在读取项目数据（projects.json）。</div>
+          <div className="font-display font-bold text-2xl neon-text-pink">加载中…</div>
         </div>
       </section>
     );
