@@ -1459,6 +1459,7 @@ export default function ProjectDetail({
   const usesHighSeasDetailLayout =
     project.id === 'xingji-aodaisai' || project.id === 'yingshi-toushi';
   const detailTabs = getProjectDetailTabs(project.id);
+  const showProjectDetailMenu = !['xingji-ip-collab', 'xingji-naval-trial'].includes(project.id);
   const requestedDetailTab = activeDetailTab ?? 'framework';
   const resolvedActiveDetailTab = detailTabs.some((tab) => tab.key === requestedDetailTab)
     ? requestedDetailTab
@@ -1484,16 +1485,18 @@ export default function ProjectDetail({
               返回
             </button>
 
-            <div ref={tabMenuRef} className="relative self-start sm:self-auto">
-              <ProjectDetailMenu
-                activeTab={resolvedActiveDetailTab}
-                isOpen={menuOpen}
-                menuId="project-detail-header-tab-menu"
-                onOpenChange={setMenuOpen}
-                onTabChange={(tab) => onDetailTabChange?.(tab)}
-                tabs={detailTabs}
-              />
-            </div>
+            {showProjectDetailMenu ? (
+              <div ref={tabMenuRef} className="relative self-start sm:self-auto">
+                <ProjectDetailMenu
+                  activeTab={resolvedActiveDetailTab}
+                  isOpen={menuOpen}
+                  menuId="project-detail-header-tab-menu"
+                  onOpenChange={setMenuOpen}
+                  onTabChange={(tab) => onDetailTabChange?.(tab)}
+                  tabs={detailTabs}
+                />
+              </div>
+            ) : null}
           </div>
         </div>
 

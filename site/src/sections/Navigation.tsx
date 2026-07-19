@@ -28,6 +28,8 @@ export default function Navigation({ activeDetailTab, onDetailTabChange }: Navig
   const isProjectDetailPage = location.pathname.startsWith('/projects/') && !isProjectCaseIndexPage;
   const currentProjectId = isProjectDetailPage ? location.pathname.split('/')[2] : undefined;
   const detailTabs = getProjectDetailTabs(currentProjectId);
+  const showProjectDetailMenu =
+    !currentProjectId || !['xingji-ip-collab', 'xingji-naval-trial'].includes(currentProjectId);
   const resolvedActiveDetailTab = detailTabs.some((tab) => tab.key === activeDetailTab)
     ? activeDetailTab
     : 'framework';
@@ -171,7 +173,7 @@ export default function Navigation({ activeDetailTab, onDetailTabChange }: Navig
               </div>
             </div>
             </>
-          ) : (
+          ) : showProjectDetailMenu ? (
             <ProjectDetailMenu
               activeTab={resolvedActiveDetailTab}
               buttonVariant="plain"
@@ -182,7 +184,7 @@ export default function Navigation({ activeDetailTab, onDetailTabChange }: Navig
               tabs={detailTabs}
               buttonClassName="project-top-icon-button"
             />
-          )}
+          ) : null}
         </div>
       </div>
     </header>
