@@ -1092,8 +1092,15 @@ function MadCase() {
 
 /* ─── High Seas Hero exact detail cases from Figma 9817:4765 / 9817:6955 ─── */
 const hsTrial = {
+  prototypeFrames: Array.from({ length: 28 }, (_, index) =>
+    publicUrl(`/images/xingji/naval-trial/prototype-${String(index + 1).padStart(2, '0')}.webp`),
+  ),
   phoneDifficultyPre: publicUrl('/images/xingji/naval-trial/phone-difficulty-pre.webp'),
   panel2341: publicUrl('/images/xingji/naval-trial/phone-difficulty-pre1.webp'),
+  personalSelect: publicUrl('/images/xingji/naval-trial/personal-select.webp'),
+  difficultySelected: publicUrl('/images/xingji/naval-trial/difficulty-selected.webp'),
+  mapPanel: publicUrl('/images/xingji/naval-trial/map-panel.webp'),
+  instructorPanel: publicUrl('/images/xingji/naval-trial/instructor-panel.webp'),
   flowPhoneConfirm: publicUrl('/images/xingji/naval-trial/confirm-big.webp'),
   popupFieldInfoPanel1: publicUrl('/images/xingji/naval-trial/phone-difficulty-pre4.webp'),
   flowPhoneReward: publicUrl('/images/xingji/naval-trial/reward-flow.webp'),
@@ -1246,7 +1253,7 @@ function HSMetric({ x, value, label, desc, orange = false }: { x: number; value:
 }
 
 export function HighSeasNavyTrialExactCase() {
-  const H = 12600;
+  const H = 13020;
   const diffCards = [
     ['已解锁', '可选择', 'blue'],
     ['已选中', '高亮+详情', 'orange'],
@@ -1259,6 +1266,231 @@ export function HighSeasNavyTrialExactCase() {
     ['03', '进入地图', '镜头跳转\n定位教官', hsTrial.quickAccess, false],
     ['04', '战斗领奖', '击败教官\n领取奖励', hsTrial.rewardPreview, true],
   ] as const;
+  type PrototypePreviewItem = {
+    id: string;
+    step: string;
+    group: string;
+    title: string;
+    caption: string;
+    src: string;
+    actions: Array<{
+      label: string;
+      target: string;
+      hotspot: { left: number; top: number };
+    }>;
+  };
+  const figmaHotspot = (x: number, y: number, width: number, height: number, frameHeight = 1634) => ({
+    left: ((x + width / 2) / 720) * 100,
+    top: ((y + height / 2) / frameHeight) * 100,
+  });
+  const figmaPoint = (x: number, y: number, frameHeight = 1634) => ({
+    left: (x / 720) * 100,
+    top: (y / frameHeight) * 100,
+  });
+  const prototypePreview: PrototypePreviewItem[] = [
+    {
+      id: 'idle', step: '01', group: '入口', title: '挂机界面',
+      caption: '活动提示出现后进入将军的试炼。', src: hsTrial.prototypeFrames[0],
+      actions: [{ label: '进入活动', target: 'personalPre', hotspot: figmaPoint(570, 208, 1644) }],
+    },
+    {
+      id: 'personalPre', step: '02', group: '个人线', title: '个人挑战-选择难度前',
+      caption: '默认展示个人挑战、难度、奖励入口与模式切换。', src: hsTrial.prototypeFrames[1],
+      actions: [
+        { label: '选择任意难度', target: 'confirm', hotspot: figmaHotspot(20, 470, 680, 620) },
+        { label: '奖励预览', target: 'rewardIncomplete', hotspot: figmaHotspot(595, 320, 128, 100) },
+        { label: '切换同盟挑战', target: 'allianceGate', hotspot: figmaHotspot(360, 1240, 340, 120) },
+      ],
+    },
+    {
+      id: 'personalPreB', step: '03', group: '个人线', title: '个人挑战-难度列表下段',
+      caption: '难度列表滚动后的补充状态。', src: hsTrial.prototypeFrames[2],
+      actions: [
+        { label: '选择任意难度', target: 'confirm', hotspot: figmaHotspot(20, 470, 680, 620) },
+        { label: '奖励预览', target: 'rewardIncomplete', hotspot: figmaHotspot(595, 320, 128, 100) },
+        { label: '切换同盟挑战', target: 'allianceGate', hotspot: figmaHotspot(360, 1240, 340, 120) },
+      ],
+    },
+    {
+      id: 'confirm', step: '04', group: '个人线', title: '二次确认弹窗',
+      caption: '确认难度后进入个人挑战，取消或关闭返回难度选择。', src: hsTrial.prototypeFrames[3],
+      actions: [
+        { label: '取消', target: 'personalPre', hotspot: figmaHotspot(82, 848.5, 276, 146) },
+        { label: '确定', target: 'personalChallenge', hotspot: figmaHotspot(362, 848.5, 276, 146) },
+        { label: '关闭', target: 'personalPre', hotspot: figmaHotspot(620, 80, 80, 80) },
+      ],
+    },
+    {
+      id: 'personalChallenge', step: '05', group: '个人线', title: '个人挑战',
+      caption: '难度锁定后可查看奖励或打开挑战详情。', src: hsTrial.prototypeFrames[4],
+      actions: [
+        { label: '奖励预览', target: 'rewardIncomplete', hotspot: figmaHotspot(595, 320, 128, 100) },
+        { label: '挑战详情', target: 'personalDetail', hotspot: figmaHotspot(352, 1219, 256, 131) },
+        { label: '任务卡片', target: 'personalDetail', hotspot: figmaHotspot(20, 420, 680, 640) },
+      ],
+    },
+    {
+      id: 'personalDetail', step: '06', group: '个人线', title: '个人挑战详情弹窗',
+      caption: '查看教官、奖励和推荐战力后进入野外。', src: hsTrial.prototypeFrames[5],
+      actions: [
+        { label: '进入野外', target: 'personalWorldComplete', hotspot: figmaPoint(286, 1288) },
+        { label: '关闭详情', target: 'personalChallenge', hotspot: figmaHotspot(620, 80, 80, 80, 1643) },
+      ],
+    },
+    {
+      id: 'personalWorldComplete', step: '07', group: '个人线', title: '野外主界面-个人完成',
+      caption: '个人挑战完成后显示奖励气泡。', src: hsTrial.prototypeFrames[6],
+      actions: [{ label: '完成后状态', target: 'personalWorldReward', hotspot: figmaPoint(300, 1060, 1643) }],
+    },
+    {
+      id: 'personalWorldReward', step: '08', group: '个人线', title: '野外主界面-可领奖',
+      caption: '点击领奖提示进入可领取奖励页。', src: hsTrial.prototypeFrames[7],
+      actions: [{ label: '去奖励预览', target: 'rewardAvailable', hotspot: figmaPoint(292, 1265, 1643) }],
+    },
+    {
+      id: 'rewardIncomplete', step: '09', group: '奖励线', title: '奖励预览-未完成',
+      caption: '挑战未完成时仅展示奖励进度。', src: hsTrial.prototypeFrames[8], actions: [],
+    },
+    {
+      id: 'rewardAvailable', step: '10', group: '奖励线', title: '奖励预览-可领取',
+      caption: '完成挑战后解锁领取按钮。', src: hsTrial.prototypeFrames[9],
+      actions: [
+        { label: '领取奖励', target: 'rewardClaimed', hotspot: figmaHotspot(513, 641.5, 108, 83) },
+        { label: '关闭奖励', target: 'personalWorldReward', hotspot: figmaHotspot(620, 80, 80, 80) },
+      ],
+    },
+    {
+      id: 'rewardClaimed', step: '11', group: '奖励线', title: '奖励预览-已领取',
+      caption: '奖励领取后更新完成状态。', src: hsTrial.prototypeFrames[10],
+      actions: [{ label: '领取后继续', target: 'personalLater', hotspot: figmaPoint(660, 414) }],
+    },
+    {
+      id: 'personalLater', step: '12', group: '个人线', title: '个人挑战-后续阶段',
+      caption: '进入更高难度的后续个人挑战。', src: hsTrial.prototypeFrames[11],
+      actions: [{ label: '后续挑战', target: 'personalLaterWorld', hotspot: figmaHotspot(352, 1219, 256, 131) }],
+    },
+    {
+      id: 'personalLaterWorld', step: '13', group: '个人线', title: '野外主界面-后续阶段',
+      caption: '后续个人任务回到野外推进。', src: hsTrial.prototypeFrames[12], actions: [],
+    },
+    {
+      id: 'allianceGate', step: '14', group: '同盟线', title: '同盟挑战-未加入联盟',
+      caption: '未加入联盟时显示加入引导。', src: hsTrial.prototypeFrames[13],
+      actions: [
+        { label: '立即加入', target: 'allianceChallenge', hotspot: figmaHotspot(232, 1230, 256, 131) },
+        { label: '已加入联盟', target: 'allianceChallenge', hotspot: figmaPoint(530, 1420) },
+      ],
+    },
+    {
+      id: 'allianceChallenge', step: '15', group: '同盟线', title: '同盟挑战',
+      caption: '已加入联盟后可查看记录或选择联盟难度。', src: hsTrial.prototypeFrames[14],
+      actions: [
+        { label: '打开记录', target: 'allianceRecordEmpty', hotspot: figmaHotspot(595, 333, 128, 74) },
+        { label: '挑战', target: 'allianceUnplaced', hotspot: figmaHotspot(50, 1110, 620, 78) },
+        { label: '个人挑战', target: 'personalPre', hotspot: figmaHotspot(0, 1240, 340, 120) },
+      ],
+    },
+    {
+      id: 'allianceUnplaced', step: '16', group: '同盟线', title: '同盟挑战-未放置野怪',
+      caption: '选定难度后进入野怪放置流程。', src: hsTrial.prototypeFrames[15],
+      actions: [
+        { label: '打开记录', target: 'allianceRecordList', hotspot: figmaHotspot(595, 333, 128, 74) },
+        { label: '去放置野怪', target: 'placeMonster', hotspot: figmaHotspot(220, 1230, 280, 120) },
+      ],
+    },
+    {
+      id: 'allianceRecordEmpty', step: '17', group: '记录线', title: '同盟记录-空',
+      caption: '尚无同盟挑战记录。', src: hsTrial.prototypeFrames[16],
+      actions: [{ label: '关闭记录', target: 'allianceChallenge', hotspot: figmaHotspot(620, 80, 80, 80) }],
+    },
+    {
+      id: 'allianceRecordList', step: '18', group: '记录线', title: '同盟记录-有记录',
+      caption: '展示已有同盟挑战记录。', src: hsTrial.prototypeFrames[17],
+      actions: [{ label: '关闭记录', target: 'allianceUnplaced', hotspot: figmaHotspot(620, 80, 80, 80) }],
+    },
+    {
+      id: 'placeMonster', step: '19', group: '同盟线', title: '放置野怪',
+      caption: '在世界地图确认或取消怪物放置。', src: hsTrial.prototypeFrames[18],
+      actions: [
+        { label: '确认放置', target: 'allianceWorldEntry', hotspot: figmaPoint(490, 1120) },
+        { label: '取消放置', target: 'allianceUnplaced', hotspot: figmaPoint(278, 1120) },
+        { label: '关闭放置', target: 'allianceUnplaced', hotspot: figmaHotspot(620, 80, 80, 80) },
+      ],
+    },
+    {
+      id: 'allianceWorldEntry', step: '20', group: '战斗线', title: '野外大世界-入口',
+      caption: '怪物落地后点击地图要塞。', src: hsTrial.prototypeFrames[19],
+      actions: [{ label: '点击地图要塞', target: 'alliancePreparing', hotspot: figmaHotspot(370, 760, 290, 360) }],
+    },
+    {
+      id: 'alliancePreparing', step: '21', group: '战斗线', title: '野外大世界-准备中',
+      caption: '准备阶段点击怪物气泡查看详情。', src: hsTrial.prototypeFrames[20],
+      actions: [{ label: '点击气泡查看', target: 'monsterPreparing', hotspot: figmaHotspot(370, 790, 270, 360) }],
+    },
+    {
+      id: 'monsterPreparing', step: '22', group: '战斗线', title: '公会怪物信息-准备中',
+      caption: '查看准备信息并推进到战斗中。', src: hsTrial.prototypeFrames[21],
+      actions: [
+        { label: '进入战斗中', target: 'allianceWorldBattle', hotspot: figmaPoint(360, 1290) },
+        { label: '关闭信息', target: 'alliancePreparing', hotspot: figmaHotspot(620, 80, 80, 80) },
+      ],
+    },
+    {
+      id: 'allianceWorldBattle', step: '23', group: '战斗线', title: '野外大世界-战斗中',
+      caption: '战斗中再次点击怪物气泡。', src: hsTrial.prototypeFrames[22],
+      actions: [{ label: '点击战斗气泡', target: 'monsterBattle', hotspot: figmaHotspot(370, 790, 270, 360) }],
+    },
+    {
+      id: 'monsterBattle', step: '24', group: '战斗线', title: '公会怪物信息-战斗中',
+      caption: '在战斗信息中选择攻击或集结。', src: hsTrial.prototypeFrames[23],
+      actions: [
+        { label: '攻击', target: 'marchAttack', hotspot: figmaHotspot(0, 1040, 360, 220) },
+        { label: '集结', target: 'marchRally', hotspot: figmaHotspot(360, 1040, 360, 220) },
+        { label: '关闭信息', target: 'allianceWorldBattle', hotspot: figmaHotspot(620, 80, 80, 80) },
+      ],
+    },
+    {
+      id: 'marchAttack', step: '25', group: '战斗线', title: '出征界面-攻击',
+      caption: '选择舰队并直接出征攻击。', src: hsTrial.prototypeFrames[24],
+      actions: [{ label: '出征', target: 'worldAfterBattle', hotspot: figmaPoint(550, 1260, 1643) }],
+    },
+    {
+      id: 'marchRally', step: '26', group: '战斗线', title: '出征界面-集结',
+      caption: '设置集结时间后出征。', src: hsTrial.prototypeFrames[25],
+      actions: [{ label: '发起集结', target: 'rally', hotspot: figmaPoint(550, 1260, 1643) }],
+    },
+    {
+      id: 'rally', step: '27', group: '战斗线', title: '集结界面',
+      caption: '查看集结队伍并结束集结流程。', src: hsTrial.prototypeFrames[26],
+      actions: [{ label: '结束集结', target: 'worldAfterBattle', hotspot: figmaPoint(65, 1550, 1643) }],
+    },
+    {
+      id: 'worldAfterBattle', step: '28', group: '收束', title: '野外主界面-战斗后',
+      caption: '战斗结束后返回野外主界面。', src: hsTrial.prototypeFrames[27], actions: [],
+    },
+  ];
+  const [prototypeStep, setPrototypeStep] = useState(0);
+  const prototypeRouteRef = useRef<HTMLDivElement>(null);
+  const activePrototypeRef = useRef<HTMLButtonElement>(null);
+  const currentPrototype = prototypePreview[prototypeStep];
+  const prototypeIndexById = new Map<string, number>(prototypePreview.map((item, i) => [item.id, i]));
+  const getPrototypeTitle = (id: string) => prototypePreview[prototypeIndexById.get(id) ?? 0].title;
+  const goPrototype = (id: string) => {
+    const nextIndex = prototypeIndexById.get(id);
+    if (nextIndex !== undefined) setPrototypeStep(nextIndex);
+  };
+  useEffect(() => {
+    const route = prototypeRouteRef.current;
+    const active = activePrototypeRef.current;
+    if (!route || !active) return;
+    const activeTop = active.offsetTop;
+    const activeBottom = activeTop + active.offsetHeight;
+    if (activeTop < route.scrollTop) {
+      route.scrollTo({ top: activeTop, behavior: 'smooth' });
+    } else if (activeBottom > route.scrollTop + route.clientHeight) {
+      route.scrollTo({ top: activeBottom - route.clientHeight, behavior: 'smooth' });
+    }
+  }, [prototypeStep]);
   const configItems = [
     ['portrait', '教官立绘', '后台配置不同难度对应的教官形象'],
     ['rank', '教官等级', '战力数值随难度递增，明确挑战门槛'],
@@ -1269,17 +1501,58 @@ export function HighSeasNavyTrialExactCase() {
   return (
     <div className="star-case-page hs-exact-page">
       <FigmaScaleStage width={1280} height={H} className="hs-exact-stage hs-trial-stage" maxScale={1} fitToViewport viewportInset={0}>
-        <HSSection className="hs-sec hs-dark" top={0}>
+        <HSSection className="hs-sec hs-dark hs-cover-sec" top={0} height={1320}>
+          <HSAbs className="hs-cover-panel" style={{ left: 0, top: 0 }} />
           <div className="hs-hero-orb one" /><div className="hs-hero-orb two" />
           <div className="hs-dot-matrix" style={{ left: 80, top: 80 }} />
-          <HSAbs className="hs-cover-line" style={{ left: 120, top: 340, width: 120 }} />
-          <HSAbs className="hs-cover-en" style={{ left: 120, top: 360 }}>GENERAL'S TRIAL</HSAbs>
-          <HSAbs className="hs-cover-title" style={{ left: 120, top: 390 }}>海军试炼</HSAbs>
-          <HSAbs className="hs-cover-sub" style={{ left: 120, top: 484 }}>九重难度递进 × 个人联盟双轨 × 世界地图实战</HSAbs>
-          <HSAbs className="hs-cover-endline" style={{ left: 120, top: 534 }} />
+          <HSAbs className="hs-cover-line" style={{ left: 120, top: 150, width: 120 }} />
+          <HSAbs className="hs-cover-en" style={{ left: 120, top: 175 }}>GENERAL'S TRIAL</HSAbs>
+          <HSAbs className="hs-cover-title" style={{ left: 120, top: 215 }}>海军试炼</HSAbs>
+          <HSAbs className="hs-cover-sub" style={{ left: 120, top: 309 }}>九重难度递进 × 个人联盟双轨 × 世界地图实战</HSAbs>
+          <HSAbs className="hs-cover-endline" style={{ left: 120, top: 359 }} />
+          <HSAbs className="hs-prototype-preview" style={{ left: 86, top: 390 }}>
+            <div className="hs-prototype-device">
+              <div className="hs-prototype-live" aria-label={currentPrototype.title}>
+                <img src={currentPrototype.src} alt="" />
+                {currentPrototype.actions.map((action) => (
+                  <button
+                    key={`${currentPrototype.id}-${action.label}`}
+                    type="button"
+                  className="hs-prototype-hotspot"
+                  style={{
+                    left: `${action.hotspot.left}%`,
+                    top: `${action.hotspot.top}%`,
+                  }}
+                    onClick={() => goPrototype(action.target)}
+                    aria-label={`${action.label}，跳转到${getPrototypeTitle(action.target)}`}
+                  >
+                    <i />
+                    <b>{action.label}</b>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="hs-prototype-route" ref={prototypeRouteRef}>
+              {prototypePreview.map((item, i) => (
+                <button
+                  type="button"
+                  className={`hs-prototype-node ${i === prototypeStep ? 'active' : ''}`}
+                  key={item.title}
+                  ref={i === prototypeStep ? activePrototypeRef : undefined}
+                  onClick={() => setPrototypeStep(i)}
+                >
+                  <i>{item.step}</i>
+                  <span>{item.title}</span>
+                  <em>{item.group}{item.actions.length ? ` · ${item.actions.map((action) => action.label).join(' / ')}` : ''}</em>
+                  {i < prototypePreview.length - 1 ? <strong /> : null}
+                </button>
+              ))}
+            </div>
+          </HSAbs>
           <div className="hs-cover-diag" />
         </HSSection>
 
+        <div className="hs-trial-rest-offset">
         <HSSection className="hs-sec hs-light" top={900}>
           <HSHeader n="01" title="设计概述" en="DESIGN OVERVIEW" top={900} light />
           <HSInfoCard x={120} y={1110} icon="01" title="设计挑战" body="将军的试炼作为 SLG 核心活动，涵盖九重难度、个人与联盟双轨、世界地图实战等多维系统。如何在保持策略深度的同时，降低理解门槛，让玩家快速进入心流状态？" />
@@ -1541,6 +1814,7 @@ export function HighSeasNavyTrialExactCase() {
           </HSAbs>
           {[hsTrial.outcome1, hsTrial.outcome2, hsTrial.outcome3].map((src, i) => <HSImg key={src} src={src} className="hs-phone" style={{ left: 300 + i*312, top: 11952, width: 280, height: 607 }} />)}
         </HSSection>
+        </div>
       </FigmaScaleStage>
     </div>
   );
