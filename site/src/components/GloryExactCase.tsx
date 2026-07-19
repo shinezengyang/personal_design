@@ -5,33 +5,33 @@ const asset = (name: string) => `/assets/qingyu-glory/${name}`;
 
 const A: Record<string, string> = {
   // S4 main path
-  s4_01: asset('s4_01.png'),
-  s4_02: asset('s4_02.png'),
-  s4_03: asset('s4_03.png'),
-  s4_04: asset('s4_04.png'),
-  s4_05: asset('s4_05.png'),
-  s4_s1: asset('s4_s1.png'),
-  s4_s2: asset('s4_s2.png'),
-  s4_s3: asset('s4_s3.png'),
+  s4_01: asset('s4_01.webp'),
+  s4_02: asset('s4_02.webp'),
+  s4_03: asset('s4_03.webp'),
+  s4_04: asset('s4_04.webp'),
+  s4_05: asset('s4_05.webp'),
+  s4_s1: asset('s4_s1.webp'),
+  s4_s2: asset('s4_s2.webp'),
+  s4_s3: asset('s4_s3.webp'),
   // S5A entry world
-  s5a: asset('s5a.png'),
+  s5a: asset('s5a.webp'),
   // S5B season home
-  s5b: asset('s5b.png'),
+  s5b: asset('s5b.webp'),
   // S5C reward
-  s5c_overview: asset('s5c_overview.png'),
-  s5c_popup: asset('s5c_popup.png'),
+  s5c_overview: asset('s5c_overview.webp'),
+  s5c_popup: asset('s5c_popup.webp'),
   // S5D tasks
-  s5d: asset('s5d.png'),
+  s5d: asset('s5d.webp'),
   // S5E ranking
-  s5e: asset('s5e.png'),
+  s5e: asset('s5e.webp'),
   // S5F honor
-  s5f: asset('s5f.png'),
+  s5f: asset('s5f.webp'),
   // S5G social
-  s5g_mine: asset('s5g_mine.png'),
-  s5g_other: asset('s5g_other.png'),
+  s5g_mine: asset('s5g_mine.webp'),
+  s5g_other: asset('s5g_other.webp'),
   // S7 art reference
-  s7_a: asset('s7_a.png'),
-  s7_b: asset('s7_b.png'),
+  s7_a: asset('s7_a.webp'),
+  s7_b: asset('s7_b.webp'),
 };
 
 const px = (n: number) => `${n}px`;
