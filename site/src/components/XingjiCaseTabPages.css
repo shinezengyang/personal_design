@@ -11,8 +11,8 @@
 }
 
 .wish-tree-dark > div {
-  border: 1px solid rgba(231, 213, 176, 0.08);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  border: 0;
+  box-shadow: none;
 }
 
 .wish-tree-dark section {
