@@ -498,7 +498,6 @@ export function JinlanExactCase() {
           <div className="jl-spec-card">
             <div className="jl-spec-title">
               <b>视觉规范</b>
-              <span>VISUAL SPECIFICATION</span>
             </div>
             <div className="jl-spec-panel">
               <em>主色板 · PALETTE</em>
@@ -506,8 +505,8 @@ export function JinlanExactCase() {
                 {[['水墨', '#0E1426'], ['鎏金', '#C99A3A'], ['浅金', '#E8C77A'], ['按钮蓝', '#00A6E8'], ['琥珀', '#C7841C'], ['朱红', '#D0503E']].map(([name, color]) => <div key={name}><i style={{ background: color }} /><b>{name}</b><span>{color}</span></div>)}
               </div>
             </div>
+            <em className="jl-spec-block-label">字体 · TYPEFACE</em>
             <div className="jl-spec-panel jl-type-panel">
-              <em>字体 · TYPEFACE</em>
               <div className="jl-type-row"><strong>义结金兰</strong><span>楷体 · 主标题 / 场景标题</span></div>
               <div className="jl-type-row sub"><strong>金兰系统设计</strong><span>宋体 · 正文 / 说明文字</span></div>
             </div>
