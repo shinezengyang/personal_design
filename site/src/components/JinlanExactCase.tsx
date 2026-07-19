@@ -40,9 +40,12 @@ type SystemNode = {
   no: string;
   title: string;
   desc: string;
+  icon: ModuleIconType;
   side: 'left' | 'right';
   y: number;
 };
+
+type ModuleIconType = 'vow' | 'recruit' | 'member' | 'task' | 'dungeon' | 'benefit';
 
 type ExplainItem = {
   no: string;
@@ -100,21 +103,60 @@ function GoalCard({ title, en, body, result, tone }: { title: string; en: string
   );
 }
 
-function ModuleIcon({ no }: { no: string }) {
+function ModuleIcon({ icon }: { icon: ModuleIconType }) {
+  const icons: Record<ModuleIconType, ReactNode> = {
+    vow: (
+      <>
+        <circle cx="13" cy="16" r="5.2" />
+        <circle cx="19" cy="16" r="5.2" />
+        <path d="M10 16h12" />
+      </>
+    ),
+    recruit: (
+      <>
+        <circle cx="14" cy="11" r="4" />
+        <path d="M7.5 24c1.2-5.2 11.8-5.2 13 0" />
+        <path d="M24 11v8M20 15h8" />
+      </>
+    ),
+    member: (
+      <>
+        <circle cx="16" cy="10.5" r="4.5" />
+        <path d="M8.5 24c1.5-6 13.5-6 15 0" />
+      </>
+    ),
+    task: (
+      <>
+        <rect x="10" y="6" width="12" height="20" rx="2.5" />
+        <path d="M13 12h6M13 17h6M13 22h4" />
+      </>
+    ),
+    dungeon: (
+      <>
+        <path d="M16 6l9 4v6.4c0 5.5-3.8 8.7-9 10.6-5.2-1.9-9-5.1-9-10.6V10l9-4z" />
+        <path d="M12 16.5l2.8 2.8 5.5-6.1" />
+      </>
+    ),
+    benefit: (
+      <>
+        <rect x="7" y="13" width="18" height="13" rx="2.5" />
+        <path d="M16 13v13M7 18h18" />
+        <path d="M16 13c-4 0-6-1.5-6-4 0-1.4 1.2-2.5 2.8-2.5 2.2 0 3.2 2.8 3.2 6.5zM16 13c4 0 6-1.5 6-4 0-1.4-1.2-2.5-2.8-2.5-2.2 0-3.2 2.8-3.2 6.5z" />
+      </>
+    ),
+  };
+
   return (
-    <div className={`jl-module-symbol jl-module-symbol-${no}`} aria-hidden="true">
-      <span />
-      <i />
-      <b />
-      <em />
-    </div>
+    <svg className={`jl-module-symbol jl-module-symbol-${icon}`} viewBox="0 0 32 32" aria-hidden="true">
+      {icons[icon]}
+    </svg>
   );
 }
 
 function SystemCard({ node }: { node: SystemNode }) {
   return (
     <article className={`jl-system-card ${node.side}`} style={{ top: node.y }}>
-      <div className="jl-system-icon"><ModuleIcon no={node.no} /></div>
+      <div className="jl-system-icon"><ModuleIcon icon={node.icon} /></div>
       <b>{node.no}</b>
       <h3>{node.title}</h3>
       <p>{node.desc}</p>
@@ -196,12 +238,12 @@ function Shot({ src, x, y, w, h, className = '', children }: { src: string; x: n
 
 export function JinlanExactCase() {
   const systemNodes: SystemNode[] = [
-    { no: '01', title: '结义创建', desc: '仪式化建立金兰关系', side: 'left', y: 342 },
-    { no: '02', title: '金兰招募', desc: '发布招募 · 主动邀约', side: 'left', y: 522 },
-    { no: '03', title: '成员管理', desc: '职位 · 贡献 · 名册', side: 'left', y: 702 },
-    { no: '04', title: '金兰任务', desc: '共同目标驱动协作', side: 'right', y: 342 },
-    { no: '05', title: '金兰副本', desc: '组队挑战 · 协同战斗', side: 'right', y: 522 },
-    { no: '06', title: '金兰权益', desc: '成长权益 · 荣誉外显', side: 'right', y: 702 },
+    { no: '01', title: '结义创建', desc: '仪式化建立金兰关系', icon: 'vow', side: 'left', y: 342 },
+    { no: '02', title: '金兰招募', desc: '发布招募 · 主动邀约', icon: 'recruit', side: 'left', y: 522 },
+    { no: '03', title: '成员管理', desc: '职位 · 贡献 · 名册', icon: 'member', side: 'left', y: 702 },
+    { no: '04', title: '金兰任务', desc: '共同目标驱动协作', icon: 'task', side: 'right', y: 342 },
+    { no: '05', title: '金兰副本', desc: '组队挑战 · 协同战斗', icon: 'dungeon', side: 'right', y: 522 },
+    { no: '06', title: '金兰权益', desc: '成长权益 · 荣誉外显', icon: 'benefit', side: 'right', y: 702 },
   ];
 
   return (

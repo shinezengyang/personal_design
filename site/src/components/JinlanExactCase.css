@@ -212,146 +212,15 @@
   place-items: center;
 }
 .jl-module-symbol {
-  position: relative;
   width: 32px;
   height: 32px;
   color: #e8c77a;
-}
-.jl-module-symbol span,
-.jl-module-symbol i,
-.jl-module-symbol b,
-.jl-module-symbol em {
-  position: absolute;
-  display: block;
-  box-sizing: border-box;
-  font-style: normal;
-}
-.jl-module-symbol-01 span {
-  left: 7px;
-  top: 7px;
-  width: 18px;
-  height: 18px;
-  border: 3px solid currentColor;
-  border-radius: 50%;
-}
-.jl-module-symbol-01 i,
-.jl-module-symbol-01 b {
-  width: 11px;
-  height: 3px;
-  border-radius: 999px;
-  background: currentColor;
-}
-.jl-module-symbol-01 i { left: 3px; top: 16px; transform: rotate(28deg); }
-.jl-module-symbol-01 b { right: 3px; top: 16px; transform: rotate(-28deg); }
-.jl-module-symbol-02 span,
-.jl-module-symbol-02 i {
-  width: 12px;
-  height: 12px;
-  border: 3px solid currentColor;
-  border-radius: 50%;
-}
-.jl-module-symbol-02 span { left: 5px; top: 6px; }
-.jl-module-symbol-02 i { right: 5px; top: 6px; }
-.jl-module-symbol-02 b {
-  left: 3px;
-  bottom: 5px;
-  width: 26px;
-  height: 11px;
-  border: 3px solid currentColor;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  border-bottom: 0;
-}
-.jl-module-symbol-03 span,
-.jl-module-symbol-03 i,
-.jl-module-symbol-03 b {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: currentColor;
-}
-.jl-module-symbol-03 span { left: 12px; top: 3px; }
-.jl-module-symbol-03 i { left: 4px; bottom: 6px; }
-.jl-module-symbol-03 b { right: 4px; bottom: 6px; }
-.jl-module-symbol-03 em {
-  left: 9px;
-  top: 13px;
-  width: 14px;
-  height: 12px;
-  border: 3px solid currentColor;
-  border-top: 0;
-  border-radius: 0 0 10px 10px;
-}
-.jl-module-symbol-04 span {
-  left: 7px;
-  top: 4px;
-  width: 18px;
-  height: 24px;
-  border: 3px solid currentColor;
-  border-radius: 4px;
-}
-.jl-module-symbol-04 i,
-.jl-module-symbol-04 b,
-.jl-module-symbol-04 em {
-  left: 12px;
-  width: 10px;
-  height: 3px;
-  border-radius: 999px;
-  background: currentColor;
-}
-.jl-module-symbol-04 i { top: 11px; }
-.jl-module-symbol-04 b { top: 17px; }
-.jl-module-symbol-04 em { top: 23px; }
-.jl-module-symbol-05 span {
-  left: 5px;
-  top: 8px;
-  width: 22px;
-  height: 16px;
-  border: 3px solid currentColor;
-  border-radius: 3px;
-  transform: skewX(-8deg);
-}
-.jl-module-symbol-05 i {
-  left: 8px;
-  top: 5px;
-  width: 16px;
-  height: 3px;
-  border-radius: 999px;
-  background: currentColor;
-}
-.jl-module-symbol-05 b {
-  right: 4px;
-  bottom: 5px;
-  width: 9px;
-  height: 9px;
-  border: 3px solid currentColor;
-  border-left: 0;
-  border-top: 0;
-  transform: rotate(-45deg);
-}
-.jl-module-symbol-06 span {
-  left: 6px;
-  top: 5px;
-  width: 20px;
-  height: 20px;
-  border: 3px solid currentColor;
-  border-radius: 50%;
-}
-.jl-module-symbol-06 i {
-  left: 15px;
-  top: 2px;
-  width: 3px;
-  height: 28px;
-  border-radius: 999px;
-  background: currentColor;
-}
-.jl-module-symbol-06 b {
-  left: 6px;
-  top: 14px;
-  width: 20px;
-  height: 3px;
-  border-radius: 999px;
-  background: currentColor;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
 }
 .jl-system-card b { position: absolute; top: 18px; right: 28px; color: #c99a3a; font: 700 15px/1 Inter, sans-serif; letter-spacing: 1px; }
 .jl-system-card h3 { position: absolute; left: 92px; top: 32px; color: #f4f7ff; font-size: 21px; font-weight: 700; letter-spacing: .5px; }
