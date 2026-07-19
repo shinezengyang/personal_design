@@ -217,10 +217,10 @@ function Principle({ color, label, title, body }: { color: string; label: string
   );
 }
 
-function PrincipleBand({ title, marker = '#c8a86b', children }: { title: string; marker?: string; children: ReactNode }) {
+function PrincipleBand({ title, eyebrow = '为什么这样设计 · DESIGN RATIONALE', marker = '#c8a86b', children }: { title: string; eyebrow?: string; marker?: string; children: ReactNode }) {
   return (
     <div className="jl-principle-band" style={{ '--band-marker': marker } as CSSProperties}>
-      <em>为什么这样设计 · DESIGN RATIONALE</em>
+      <em>{eyebrow}</em>
       <h3>{title}</h3>
       <div className="jl-principle-grid">{children}</div>
     </div>
@@ -391,6 +391,7 @@ export function JinlanExactCase() {
         <Shot src={assets.mPanel} x={80} y={308} w={740} h={416}>
           <Pin n={1} x={41} y={50} /><Pin n={2} x={38} y={278} /><Pin n={3} x={236} y={278} /><Pin n={4} x={596} y={368} />
         </Shot>
+        <LabelPill x={80} y={738}>结义成员界面</LabelPill>
         <ExplainList
           title="一屏掌握「我是谁 · 在哪 · 贡献多少」"
           eyebrow="界面解读 · WHAT YOU SEE"
@@ -401,17 +402,17 @@ export function JinlanExactCase() {
             { no: '4', title: '协作入口', body: '退出 · 成员管理 · 一键组队，常用操作前置' },
           ]}
         />
-        <div className="jl-subshot-head left"><b>界面二</b>成员管理 · 权责名册</div>
-        <div className="jl-subshot-head right"><b>界面三</b>请离投票 · 集体决策</div>
+        <div className="jl-subshot-head left"><b>弹窗</b>成员管理 · 权责名册</div>
+        <div className="jl-subshot-head right"><b>弹窗</b>请离投票 · 集体决策</div>
         <Shot src={assets.mList} x={80} y={872} w={545} h={307} />
         <Shot src={assets.mVote} x={655} y={872} w={545} h={307} />
         <p className="jl-shot-desc left">按职位与在线状态排成名册；底部「割袍断义」可把队友请离出队伍。</p>
         <p className="jl-shot-desc right">是否把队友请离出去不由金兰大哥独断 —— 全员投票 + 倒计时，到点未同意自动拒绝。</p>
-        <PrincipleBand title="把「关系」当成「组织」来经营">
-          <Principle color="#ef6b5e" label="ROLE HIERARCHY" title="角色体系 · 权责对等" body="大哥 / 长老 / 成员分层，决策权与责任绑定。" />
-          <Principle color="#e8c77a" label="SOCIAL PROOF" title="荣誉墙 · 社会认同" body="排名与贡献公开摆台，用同侪激励驱动长期活跃。" />
-          <Principle color="#7fa0e0" label="PROCEDURAL JUSTICE" title="请离投票 · 程序正义" body="踢人交给全员投票 + 倒计时，防止权力滥用。" />
-          <Principle color="#5fb89b" label="LOSS AVERSION" title="退出代价 · 损失厌恶" body="退出清零积分 / 称号，把沉没成本摆明。" />
+        <PrincipleBand title="把「关系」当成「组织」来经营" eyebrow="为什么这样设计 · WHY IT WORKS">
+          <Principle color="#ef6b5e" label="ROLE HIERARCHY" title="角色体系 · 权责对等" body="大哥 / 长老 / 成员分层，决策权与责任绑定，减少「谁说了算」的内耗。" />
+          <Principle color="#e8c77a" label="SOCIAL PROOF" title="荣誉墙 · 社会认同" body="排名与贡献公开摆台，用同侪激励驱动长期活跃与留存。" />
+          <Principle color="#7fa0e0" label="PROCEDURAL JUSTICE" title="请离投票 · 程序正义" body="不可逆的「踢人」交给全员投票 + 倒计时，防止权力滥用与冲动决策。" />
+          <Principle color="#5fb89b" label="LOSS AVERSION" title="退出代价 · 损失厌恶" body="退出清零积分 / 称号、加保护期，把沉没成本摆明，降低冲动流失。" />
         </PrincipleBand>
       </section>
 
