@@ -212,7 +212,6 @@ export function JinlanExactCase() {
         <div className="jl-cover-orb orb-c" />
         <p className="jl-cover-kicker">INTERACTION&nbsp;&nbsp;DESIGN&nbsp;&nbsp;CASE</p>
         <h1>义结金兰</h1>
-        <h2>金兰系统设计</h2>
       </section>
 
       <section className="jl-section jl-bg">
