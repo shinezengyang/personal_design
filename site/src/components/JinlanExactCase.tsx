@@ -458,7 +458,11 @@ export function JinlanExactCase() {
         <div className="jl-white-principle task-principle">
           <em>设计原理</em>
           <h3>心流 · Flow</h3>
-          <p>首领分阶提供「难度阶梯」，配合一键组队把同伴快速凑齐。当挑战强度与队伍能力相互匹配，玩家更易进入专注而忘我的心流。</p>
+          <p className="jl-principle-lines">
+            <span>首领分阶提供「难度阶梯」，配合一键组队把同伴快速凑齐 ——</span>
+            <span>当挑战强度与队伍能力相互匹配，玩家更易进入专注而忘我的「心流」；</span>
+            <span>伤害榜的社会比较，则为这份投入再添一层荣誉驱动。</span>
+          </p>
         </div>
       </section>
 
@@ -482,7 +486,8 @@ export function JinlanExactCase() {
         <div className="jl-benefit-rationale">
           <em>为什么这样设计 · ART DIRECTION</em>
           <h3>用「生长的梅树」，而非一张权益列表</h3>
-          <p>常见做法是把权益排成冰冷的列表；这里却让它随等级绽放成一棵梅树 —— 把数值进步翻译成可被看见、被珍惜的画面。玩家为这棵树投入越多，离开的代价就越高。</p>
+          <p>常见做法是把权益排成冰冷的列表；这里却让它随等级绽放成一棵梅树 —— 把数值进步翻译成可被看见、被珍惜的画面。</p>
+          <p>玩家为这棵树投入越多，离开的代价就越高（沉没成本 / IKEA 效应）；锁定的节点与红点，则以「损失厌恶」持续牵引回访。</p>
           <span>损失厌恶 Loss Aversion</span><span>沉没成本 / IKEA 效应</span>
         </div>
       </section>

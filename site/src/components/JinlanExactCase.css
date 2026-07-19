@@ -308,6 +308,7 @@
 .jl-white-principle p { position: absolute; left: 480px; top: 58px; width: 600px; color: #5a6680; font-size: 16px; line-height: 1.72; }
 
 .jl-recruit .jl-explain, .jl-task .jl-explain, .jl-dungeon .jl-explain { top: 300px; left: 792px; }
+.jl-recruit .jl-explain-row p, .jl-task .jl-explain-row p, .jl-dungeon .jl-explain-row p { width: 368px; line-height: 1.66; }
 .jl-recruit-flow { position: absolute; left: 80px; top: 812px; display: grid; grid-template-columns: 254px 35px 254px 35px 253px 35px 254px; align-items: center; }
 .jl-recruit-flow span { height: 52px; border: 1px solid #e2e7f0; border-radius: 12px; background: #fff; color: #33405c; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 500; }
 .jl-recruit-flow b { color: #c2cad8; font-size: 20px; line-height: 1; text-align: center; font-weight: 700; }
@@ -327,6 +328,8 @@
 .task-principle { height: 200px; bottom: 60px; }
 .task-principle h3 { font-size: 22px; }
 .task-principle p { top: 56px; }
+.task-principle .jl-principle-lines { line-height: 1.76; }
+.task-principle .jl-principle-lines span { display: block; }
 .gold-shot { border-color: #3a2e1c; box-shadow: 0 0 46px rgba(209,158,64,.3); }
 .gold-shot .jl-pin.gold { color: #1A140C !important; text-shadow: none; }
 .jl-benefit .jl-explain { left: 840px; top: 320px; }
@@ -339,7 +342,8 @@
 .jl-benefit-rationale em { color: #e8c77a; font-size: 14px; font-weight: 700; letter-spacing: 2px; font-style: normal; }
 .jl-benefit-rationale h3 { color: #f4f7ff; font-size: 26px; margin-top: 18px; }
 .jl-benefit-rationale p { color: #aeb9d4; font-size: 18px; line-height: 1.82; width: 1000px; margin-top: 26px; }
-.jl-benefit-rationale span { display: inline-flex; height: 34px; align-items: center; border-radius: 17px; padding: 0 18px; margin-right: 12px; background: #3a2e1c; color: #e8c77a; font-size: 16px; font-weight: 700; }
+.jl-benefit-rationale p + p { margin-top: 0; }
+.jl-benefit-rationale span { display: inline-flex; height: 34px; align-items: center; border-radius: 17px; padding: 0 18px; margin-top: 40px; margin-right: 12px; background: #3a2e1c; color: #e8c77a; font-size: 16px; font-weight: 700; }
 .jl-benefit-rationale span + span { background: #1c2a49; color: #7fa0e0; }
 
 .jl-spec-layout { position: absolute; left: 78px; top: 390px; width: 1133px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
