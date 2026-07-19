@@ -81,12 +81,30 @@ function IntroCard({ no, title, body, tone }: IntroCard) {
 }
 
 function GoalIcon({ tone }: { tone: 'red' | 'gold' | 'blue' }) {
+  const icons: Record<typeof tone, ReactNode> = {
+    red: (
+      <path d="M28 43.5S12 33.8 12 21.8c0-5.7 3.6-9.8 8.7-9.8 3.1 0 5.8 1.6 7.3 4.1 1.5-2.5 4.2-4.1 7.3-4.1 5.1 0 8.7 4.1 8.7 9.8 0 12-16 21.7-16 21.7Z" />
+    ),
+    gold: (
+      <>
+        <circle cx="28" cy="28" r="15" />
+        <path d="M28 18.8V29l7.2 4.4" />
+      </>
+    ),
+    blue: (
+      <>
+        <path d="M28 15.2 15.6 36.8h24.8L28 15.2Z" />
+        <circle cx="28" cy="15.2" r="4.2" />
+        <circle cx="15.6" cy="36.8" r="4.2" />
+        <circle cx="40.4" cy="36.8" r="4.2" />
+      </>
+    ),
+  };
+
   return (
-    <div className={`jl-goal-symbol jl-goal-symbol-${tone}`} aria-hidden="true">
-      <span />
-      <i />
-      <b />
-    </div>
+    <svg className={`jl-goal-symbol jl-goal-symbol-${tone}`} viewBox="0 0 56 56" fill="none" aria-hidden="true">
+      {icons[tone]}
+    </svg>
   );
 }
 
