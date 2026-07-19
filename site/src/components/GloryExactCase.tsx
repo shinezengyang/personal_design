@@ -1,35 +1,37 @@
 import './GloryExactCase.css';
 
 /* ===== Image assets (game screenshots / references) ===== */
+const asset = (name: string) => `/assets/qingyu-glory/${name}`;
+
 const A: Record<string, string> = {
   // S4 main path
-  s4_01: 'https://www.figma.com/api/mcp/asset/5ef67225-9bc4-4fc2-adf2-c10c746d20a6',
-  s4_02: 'https://www.figma.com/api/mcp/asset/ee753c83-c250-4e24-bb4d-0115eb9b3209',
-  s4_03: 'https://www.figma.com/api/mcp/asset/303426a7-7e92-4095-935d-281febb9aa06',
-  s4_04: 'https://www.figma.com/api/mcp/asset/e47506e6-8ce3-45b9-860a-3a6e6ace2807',
-  s4_05: 'https://www.figma.com/api/mcp/asset/a21d452f-6441-497a-816b-8f294bb10639',
-  s4_s1: 'https://www.figma.com/api/mcp/asset/6c60289c-d249-420f-9d30-31623a66069a',
-  s4_s2: 'https://www.figma.com/api/mcp/asset/01a5c978-60a0-4c48-8555-84c225426f50',
-  s4_s3: 'https://www.figma.com/api/mcp/asset/6237044c-8c67-441b-b818-29aa1f6e2aff',
+  s4_01: asset('s4_01.png'),
+  s4_02: asset('s4_02.png'),
+  s4_03: asset('s4_03.png'),
+  s4_04: asset('s4_04.png'),
+  s4_05: asset('s4_05.png'),
+  s4_s1: asset('s4_s1.png'),
+  s4_s2: asset('s4_s2.png'),
+  s4_s3: asset('s4_s3.png'),
   // S5A entry world
-  s5a: 'https://www.figma.com/api/mcp/asset/b3247091-113a-4b22-b90d-5e22be1732d7',
+  s5a: asset('s5a.png'),
   // S5B season home
-  s5b: 'https://www.figma.com/api/mcp/asset/68dbcb0c-1b38-4b88-85ac-e4182462143a',
+  s5b: asset('s5b.png'),
   // S5C reward
-  s5c_overview: 'https://www.figma.com/api/mcp/asset/8799e9e8-4566-4556-b61f-b1e7a7d1a112',
-  s5c_popup: 'https://www.figma.com/api/mcp/asset/94533376-1c9b-496c-8352-c711a923b364',
+  s5c_overview: asset('s5c_overview.png'),
+  s5c_popup: asset('s5c_popup.png'),
   // S5D tasks
-  s5d: 'https://www.figma.com/api/mcp/asset/c05dab62-4c99-4c08-9be1-6ee1bdcd69e0',
+  s5d: asset('s5d.png'),
   // S5E ranking
-  s5e: 'https://www.figma.com/api/mcp/asset/970ddff9-434a-462d-accb-cc8ec238342e',
+  s5e: asset('s5e.png'),
   // S5F honor
-  s5f: 'https://www.figma.com/api/mcp/asset/9d66053d-bd37-4ff0-82d4-6fb692800e0e',
+  s5f: asset('s5f.png'),
   // S5G social
-  s5g_mine: 'https://www.figma.com/api/mcp/asset/f9140048-25da-49bb-912f-661d226095f3',
-  s5g_other: 'https://www.figma.com/api/mcp/asset/1617b635-cce8-4162-b6e7-421f47efb9a2',
+  s5g_mine: asset('s5g_mine.png'),
+  s5g_other: asset('s5g_other.png'),
   // S7 art reference
-  s7_a: 'https://www.figma.com/api/mcp/asset/7415f966-14b0-47b6-bbba-9321f33f7225',
-  s7_b: 'https://www.figma.com/api/mcp/asset/cdeb26a5-c3bb-4084-a314-b2f3ef78faa7',
+  s7_a: asset('s7_a.png'),
+  s7_b: asset('s7_b.png'),
 };
 
 const px = (n: number) => `${n}px`;
