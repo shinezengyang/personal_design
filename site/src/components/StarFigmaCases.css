@@ -945,22 +945,14 @@
   height: 12600px;
 }
 .hs-prototype-preview {
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  column-gap: 36px;
-  align-items: start;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
   box-sizing: border-box;
-  padding-top: 22px;
-  padding-left: 270px;
+  padding: 22px 120px 0 0;
   width: 1110px;
   height: 780px;
   z-index: 2;
-  border-top: 1px solid rgba(97, 125, 250, .24);
-  border-bottom: 1px solid rgba(242, 153, 51, .18);
-  background:
-    radial-gradient(circle at 45% 40%, rgba(97, 125, 250, .18), transparent 34%),
-    linear-gradient(90deg, rgba(30, 34, 50, .82), rgba(26, 29, 43, .5) 58%, rgba(26, 29, 43, .1));
-  backdrop-filter: blur(8px);
 }
 .hs-prototype-device {
   width: 340px;
@@ -1034,71 +1026,6 @@
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.18);
   }
-}
-.hs-prototype-route {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
-  max-height: 732px;
-  padding-right: 8px;
-  overflow-y: auto;
-  scrollbar-color: rgba(97,125,250,.7) rgba(255,255,255,.08);
-}
-.hs-prototype-node {
-  position: relative;
-  height: 58px;
-  padding: 8px 14px 8px 54px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(18,21,32,.68);
-  color: rgba(255,255,255,.6);
-  cursor: pointer;
-  text-align: left;
-  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
-}
-.hs-prototype-node:hover,
-.hs-prototype-node.active {
-  border-color: rgba(97,125,250,.72);
-  background: rgba(97,125,250,.14);
-  color: #fff;
-  transform: translateY(-1px);
-}
-.hs-prototype-node i {
-  position: absolute;
-  left: 16px;
-  top: 15px;
-  color: #617dfa;
-  font: 800 13px/1 Inter, sans-serif;
-  font-style: normal;
-  letter-spacing: .5px;
-}
-.hs-prototype-node span {
-  display: block;
-  overflow: hidden;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 20px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.hs-prototype-node em {
-  display: block;
-  overflow: hidden;
-  margin-top: 5px;
-  color: rgba(255,255,255,.42);
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 16px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.hs-prototype-node strong {
-  position: absolute;
-  left: 24px;
-  bottom: -9px;
-  width: 1px;
-  height: 8px;
-  background: rgba(242,153,51,.45);
 }
 .hs-exact-info-card {
   width: 310px;

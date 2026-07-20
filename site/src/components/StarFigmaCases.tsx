@@ -1470,8 +1470,6 @@ export function HighSeasNavyTrialExactCase() {
     },
   ];
   const [prototypeStep, setPrototypeStep] = useState(0);
-  const prototypeRouteRef = useRef<HTMLDivElement>(null);
-  const activePrototypeRef = useRef<HTMLButtonElement>(null);
   const currentPrototype = prototypePreview[prototypeStep];
   const prototypeIndexById = new Map<string, number>(prototypePreview.map((item, i) => [item.id, i]));
   const getPrototypeTitle = (id: string) => prototypePreview[prototypeIndexById.get(id) ?? 0].title;
@@ -1479,18 +1477,6 @@ export function HighSeasNavyTrialExactCase() {
     const nextIndex = prototypeIndexById.get(id);
     if (nextIndex !== undefined) setPrototypeStep(nextIndex);
   };
-  useEffect(() => {
-    const route = prototypeRouteRef.current;
-    const active = activePrototypeRef.current;
-    if (!route || !active) return;
-    const activeTop = active.offsetTop;
-    const activeBottom = activeTop + active.offsetHeight;
-    if (activeTop < route.scrollTop) {
-      route.scrollTo({ top: activeTop, behavior: 'smooth' });
-    } else if (activeBottom > route.scrollTop + route.clientHeight) {
-      route.scrollTo({ top: activeBottom - route.clientHeight, behavior: 'smooth' });
-    }
-  }, [prototypeStep]);
   const configItems = [
     ['portrait', '教官立绘', '后台配置不同难度对应的教官形象'],
     ['rank', '教官等级', '战力数值随难度递增，明确挑战门槛'],
@@ -1505,11 +1491,11 @@ export function HighSeasNavyTrialExactCase() {
           <HSAbs className="hs-cover-panel" style={{ left: 0, top: 0 }} />
           <div className="hs-hero-orb one" /><div className="hs-hero-orb two" />
           <div className="hs-dot-matrix" style={{ left: 80, top: 80 }} />
-          <HSAbs className="hs-cover-line" style={{ left: 120, top: 150, width: 120 }} />
-          <HSAbs className="hs-cover-en" style={{ left: 120, top: 175 }}>GENERAL'S TRIAL</HSAbs>
-          <HSAbs className="hs-cover-title" style={{ left: 120, top: 215 }}>海军试炼</HSAbs>
-          <HSAbs className="hs-cover-sub" style={{ left: 120, top: 309 }}>九重难度递进 × 个人联盟双轨 × 世界地图实战</HSAbs>
-          <HSAbs className="hs-cover-endline" style={{ left: 120, top: 359 }} />
+          <HSAbs className="hs-cover-line" style={{ left: 120, top: 658, width: 120 }} />
+          <HSAbs className="hs-cover-en" style={{ left: 120, top: 683 }}>GENERAL'S TRIAL</HSAbs>
+          <HSAbs className="hs-cover-title" style={{ left: 120, top: 723 }}>海军试炼</HSAbs>
+          <HSAbs className="hs-cover-sub" style={{ left: 120, top: 817 }}>九重难度递进 × 个人联盟双轨 × 世界地图实战</HSAbs>
+          <HSAbs className="hs-cover-endline" style={{ left: 120, top: 867 }} />
           <HSAbs className="hs-prototype-preview" style={{ left: 86, top: 390 }}>
             <div className="hs-prototype-device">
               <div className="hs-prototype-live" aria-label={currentPrototype.title}>
@@ -1531,22 +1517,6 @@ export function HighSeasNavyTrialExactCase() {
                   </button>
                 ))}
               </div>
-            </div>
-            <div className="hs-prototype-route" ref={prototypeRouteRef}>
-              {prototypePreview.map((item, i) => (
-                <button
-                  type="button"
-                  className={`hs-prototype-node ${i === prototypeStep ? 'active' : ''}`}
-                  key={item.title}
-                  ref={i === prototypeStep ? activePrototypeRef : undefined}
-                  onClick={() => setPrototypeStep(i)}
-                >
-                  <i>{item.step}</i>
-                  <span>{item.title}</span>
-                  <em>{item.group}{item.actions.length ? ` · ${item.actions.map((action) => action.label).join(' / ')}` : ''}</em>
-                  {i < prototypePreview.length - 1 ? <strong /> : null}
-                </button>
-              ))}
             </div>
           </HSAbs>
           <div className="hs-cover-diag" />
