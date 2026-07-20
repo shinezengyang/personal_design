@@ -23,7 +23,8 @@ export type ProjectDetailTabKey =
   | '16'
   | '17'
   | '18'
-  | '19';
+  | '19'
+  | '20';
 
 type ProjectDetailTab = {
   key: ProjectDetailTabKey;
@@ -47,6 +48,7 @@ export const QINGYU_PROJECT_DETAIL_TABS: ReadonlyArray<ProjectDetailTab> = [
   { key: 'framework', label: '框架' },
   { key: '2', label: '系统-房屋' },
   { key: '4', label: '系统-金兰结义' },
+  { key: '20', label: '系统-伙伴' },
   { key: '17', label: '系统-图鉴收集' },
   { key: '19', label: '系统-帮派' },
   { key: '3', label: '养成-天脉' },

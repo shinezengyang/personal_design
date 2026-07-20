@@ -30,6 +30,11 @@ const QINGYU_CASES: QingyuCaseCard[] = [
     desc: '从结义创建、招募、成员管理到任务副本，完成多人关系系统设计。',
   },
   {
+    key: '20',
+    title: '系统-伙伴',
+    desc: '围绕伙伴主界面、养成、情感与收集线，整理 11 个子系统的整体体验优化。',
+  },
+  {
     key: '17',
     title: '系统-图鉴收集',
     desc: '整理图鉴收集、激活、筛选、求助与奖励反馈的收集型系统路径。',
@@ -200,6 +205,8 @@ export default function QingyuCaseIndex() {
                   <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-house-card.webp" alt="系统-房屋案例卡片图" />
                 ) : item.key === '4' ? (
                   <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-jinlan-card.webp" alt="系统-金兰结义案例卡片图" />
+                ) : item.key === '20' ? (
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-partner-card.webp" alt="系统-伙伴案例卡片图" />
                 ) : item.key === '17' ? (
                   <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-atlas-card.webp" alt="系统-图鉴收集案例卡片图" />
                 ) : item.key === '19' ? (

@@ -1,0 +1,32 @@
+.partner-case-canvas {
+  position: relative;
+  width: 1440px;
+  background: #0e1014;
+  overflow: hidden;
+}
+
+.partner-case-section {
+  position: relative;
+  width: 1440px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #0e1014;
+}
+
+.partner-case-image {
+  display: block;
+  width: 1440px;
+  height: auto;
+  margin: 0;
+  object-fit: contain;
+}
+
+.partner-case-shell .qy-reveal-section,
+.partner-case-shell .qy-reveal-item,
+.partner-case-shell .qy-reveal-media img {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  animation: none !important;
+}

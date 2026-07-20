@@ -17,10 +17,11 @@ import { IntelExactCase } from './IntelExactCase';
 import { AtlasExactCase } from './AtlasExactCase';
 import { PunishExactCase } from './PunishExactCase';
 import { GuildSystemExactCase } from './GuildSystemExactCase';
+import { QingyuPartnerExactCase } from './QingyuPartnerExactCase';
 
 import { renderStarFigmaCase } from './StarFigmaCases';
 
-type QingyuCaseKey = '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18' | '19';
+type QingyuCaseKey = '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18' | '19' | '20';
 
 const houseAssets = {
   worldPet: '/assets/qingyu-house/world-pet.webp',
@@ -1402,6 +1403,8 @@ function QingyuFigmaCaseBody({ caseKey }: { caseKey: QingyuCaseKey }) {
       return <PunishExactCase />;
     case '19':
       return <GuildSystemExactCase />;
+    case '20':
+      return <QingyuPartnerExactCase />;
     default:
       return <HousePetCase />;
   }
@@ -1472,8 +1475,8 @@ export function QingyuFigmaCase({ caseKey }: { caseKey: QingyuCaseKey }) {
   }, [caseKey]);
 
   return (
-    <div ref={shellRef} className={`qingyu-figma-case-shell${caseKey === '19' ? ' guild-case-shell' : ''}`}>
-      <ResponsiveScaleFrame minDesignWidth={caseKey === '19' ? 1440 : 1280} maxScale={1}>
+    <div ref={shellRef} className={`qingyu-figma-case-shell${caseKey === '19' ? ' guild-case-shell' : ''}${caseKey === '20' ? ' partner-case-shell' : ''}`}>
+      <ResponsiveScaleFrame minDesignWidth={caseKey === '19' || caseKey === '20' ? 1440 : 1280} maxScale={1}>
         <QingyuFigmaCaseBody caseKey={caseKey} />
       </ResponsiveScaleFrame>
     </div>
