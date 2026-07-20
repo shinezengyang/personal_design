@@ -1469,7 +1469,7 @@ export default function ProjectDetail({
   const isHighSeasNavyTrialExactCase = project.id === 'xingji-aodaisai' && resolvedActiveDetailTab === '5';
   const isHighSeasCleanupGangExactCase = project.id === 'xingji-aodaisai' && resolvedActiveDetailTab === '10';
   const isQingyuWorkflowCase = project.id === 'qingyu-nian' && resolvedActiveDetailTab === '1';
-  const isQingyuFigmaExactCase = project.id === 'qingyu-nian' && ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19'].includes(resolvedActiveDetailTab);
+  const isQingyuFigmaExactCase = project.id === 'qingyu-nian' && ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'].includes(resolvedActiveDetailTab);
   const isQingyuCaseTab = project.id === 'qingyu-nian' && resolvedActiveDetailTab !== 'framework';
 
   return (
@@ -1553,7 +1553,7 @@ export default function ProjectDetail({
           ) : isQingyuWorkflowCase ? (
             <QingyuWorkflowCase />
           ) : isQingyuFigmaExactCase ? (
-            <QingyuFigmaCase caseKey={resolvedActiveDetailTab as '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18' | '19'} />
+            <QingyuFigmaCase caseKey={resolvedActiveDetailTab as '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18' | '19' | '20'} />
           ) : usesHighSeasDetailLayout && resolvedActiveDetailTab !== 'framework' && resolvedActiveDetailTab !== '1' ? (
             <ProjectDetailPlaceholderContent activeTab={resolvedActiveDetailTab} />
           ) : project.id === 'qingyu-nian' && resolvedActiveDetailTab === 'framework' ? (

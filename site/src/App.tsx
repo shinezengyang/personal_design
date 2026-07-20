@@ -38,7 +38,8 @@ function isProjectDetailTabKey(value: unknown): value is ProjectDetailTabKey {
     value === '16' ||
     value === '17' ||
     value === '18' ||
-    value === '19'
+    value === '19' ||
+    value === '20'
   );
 }
 
