@@ -206,7 +206,7 @@ export default function QingyuCaseIndex() {
                 ) : item.key === '4' ? (
                   <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-jinlan-card.webp" alt="系统-金兰结义案例卡片图" />
                 ) : item.key === '20' ? (
-                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-partner-card.webp" alt="系统-伙伴案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-partner-card-new.png" alt="系统-伙伴案例卡片图" />
                 ) : item.key === '17' ? (
                   <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src="/qingyu-atlas-card.webp" alt="系统-图鉴收集案例卡片图" />
                 ) : item.key === '19' ? (

@@ -2,13 +2,13 @@ import type { CSSProperties, ReactNode } from 'react';
 import './JinlanExactCase.css';
 
 const assets = {
-  hub: '/assets/qingyu-jinlan/IMG_hub.webp',
-  hubBig: '/assets/qingyu-jinlan/IMG_hub.webp',
+  hub: '/assets/qingyu-jinlan/IMG_hub_uploaded.png',
+  hubBig: '/assets/qingyu-jinlan/IMG_hub_uploaded.png',
   sMain: '/assets/qingyu-jinlan/IMG_s_main.webp',
-  sCond: '/assets/qingyu-jinlan/IMG_s_cond.webp',
-  sFill: '/assets/qingyu-jinlan/IMG_s_fill.webp',
-  sFill1: '/assets/qingyu-jinlan/IMG_s_fill1.webp',
-  sFill2: '/assets/qingyu-jinlan/IMG_s_fill2.webp',
+  sCond: '/assets/qingyu-jinlan/create-condition-review.png',
+  sFill: '/assets/qingyu-jinlan/create-fill-info.png',
+  sFill1: '/assets/qingyu-jinlan/create-member-naming.png',
+  sFill2: '/assets/qingyu-jinlan/create-final-confirm.png',
   recruit: '/assets/qingyu-jinlan/IMG_recruit.webp',
   mPanel: '/assets/qingyu-jinlan/IMG_m_panel.webp',
   mList: '/assets/qingyu-jinlan/IMG_m_list.webp',
@@ -178,8 +178,6 @@ function SystemCard({ node }: { node: SystemNode }) {
       <b>{node.no}</b>
       <h3>{node.title}</h3>
       <p>{node.desc}</p>
-      <i className="jl-system-dot" />
-      <span className="jl-system-line" />
     </article>
   );
 }
@@ -254,6 +252,78 @@ function Shot({ src, x, y, w, h, className = '', children }: { src: string; x: n
   );
 }
 
+const systemConnectors = [
+  { x1: 380, y1: 402, x2: 428, y2: 497 },
+  { x1: 380, y1: 582, x2: 424, y2: 595 },
+  { x1: 380, y1: 762, x2: 424, y2: 696 },
+  { x1: 900, y1: 402, x2: 852, y2: 496 },
+  { x1: 900, y1: 582, x2: 856, y2: 616 },
+  { x1: 900, y1: 762, x2: 856, y2: 696 },
+] as const;
+
+function SystemMapSection({ nodes }: { nodes: SystemNode[] }) {
+  return (
+    <section className="jl-section jl-system">
+      <div className="jl-system-map-title">
+        <p className="jl-system-map-eyebrow">系统全景</p>
+        <p className="jl-system-map-en">SYSTEM&nbsp;&nbsp;MAP</p>
+        <h2>六大模块 · 一个金兰中枢</h2>
+        <p>「金兰主界面」是统一入口，向外辐射六条业务线 —— 一个中枢、六个模块，构成清晰的信息架构。</p>
+      </div>
+      <div className="jl-system-orb orb-left" />
+      <div className="jl-system-orb orb-center" />
+      <div className="jl-system-orb orb-right" />
+      <svg className="jl-system-map-connectors" viewBox="0 0 1280 900" aria-hidden="true">
+        {systemConnectors.map((line) => (
+          <g key={`${line.x1}-${line.y1}-${line.x2}-${line.y2}`}>
+            <line x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} />
+            <circle cx={line.x1} cy={line.y1} r="4" />
+            <circle cx={line.x2} cy={line.y2} r="3.5" />
+          </g>
+        ))}
+      </svg>
+      <div className="jl-hub-card">
+        <Img src={assets.hub} />
+      </div>
+      <div className="jl-hub-caption">金兰主界面</div>
+      {nodes.map((node) => <SystemCard node={node} key={node.no} />)}
+      <div className="jl-anatomy-title">
+        <em>界面解构 · ANATOMY</em>
+        <h3>金兰主界面 · 一屏看懂全部控件</h3>
+        <p>统一入口里塞下了「关系 + 成长 + 行为」三类控件，却依然清爽 —— 看它如何分区。</p>
+      </div>
+      <div className="jl-hub-big">
+        <Img src={assets.hubBig} />
+        <Pin n={1} x={208} y={7} />
+        <Pin n={2} x={521} y={23} />
+        <Pin n={3} x={441} y={104} />
+        <Pin n={4} x={75} y={233} />
+        <Pin n={5} x={397} y={384} />
+        <Pin n={6} x={25} y={44} />
+        <Pin n={7} x={515} y={319} />
+      </div>
+      <ExplainList
+        dark
+        title="主界面控件说明"
+        items={[
+          { no: '1', title: '金兰等级进度条', body: '团队等级与本周积分上限，成长进度总览' },
+          { no: '2', title: '每日豪礼 · 一键领取', body: '每日上线即可领，养成天天打开的习惯钩子' },
+          { no: '3', title: '中央祭坛 · 成员席位', body: '五人围坐的仪式中心，把关系摆在视觉正中' },
+          { no: '4', title: '金兰技能 / 召唤', body: '右侧常驻增益：技能装配 + 一键召唤队友' },
+          { no: '5', title: '五大功能入口', body: '[副本][成员][权益][招募][任务]环形排布于底部' },
+          { no: '6', title: '金兰队伍名称', body: '队伍身份外显，可点击查看与编辑' },
+          { no: '7', title: '交互快捷键', body: '点击成员立绘，弹出可与玩家私信、召唤、组队的交互按钮' },
+        ]}
+      />
+      <PrincipleBand title="为什么是「中枢式」结构？">
+        <Principle color="#ef6b5e" label="HICK’S LAW · 席克定律" title="单层心智模型" body="六大功能收敛到一个金兰界面，单层导航让选项一目了然，决策成本最低 —— 玩家「一眼知道该去哪」。" />
+        <Principle color="#7fa0e0" label="PROXIMITY · 接近性" title="中心辐射分区" body="中央是「关系」（成员·祭坛），外圈是「行为」（任务·副本·权益）；越靠中心越情感，越向外越功能。" />
+        <Principle color="#5fb89b" label="HOOK · 即时反馈" title="习惯养成钩子" body="顶部常驻「每日豪礼一键领取」，用即时奖励把「打开金兰」养成日常，持续拉动回访与活跃。" />
+      </PrincipleBand>
+    </section>
+  );
+}
+
 export function JinlanExactCase() {
   const systemNodes: SystemNode[] = [
     { no: '01', title: '结义创建', desc: '仪式化建立金兰关系', icon: 'vow', side: 'left', y: 342 },
@@ -300,51 +370,7 @@ export function JinlanExactCase() {
         </div>
       </section>
 
-      <section className="jl-section jl-system">
-        <Header dark eyebrow="系统全景" en="SYSTEM MAP" title="六大模块 · 一个金兰中枢" desc="「金兰主界面」是统一入口，向外辐射六条业务线 —— 一个中枢、六个模块，构成清晰的信息架构。" />
-        <div className="jl-system-orb orb-left" />
-        <div className="jl-system-orb orb-center" />
-        <div className="jl-system-orb orb-right" />
-        <div className="jl-hub-card">
-          <Img src={assets.hub} />
-        </div>
-        <div className="jl-hub-caption">金兰主界面</div>
-        {systemNodes.map((node) => <SystemCard node={node} key={node.no} />)}
-        <div className="jl-system-links" aria-hidden="true">
-          <span className="jl-system-link left link-01" />
-          <span className="jl-system-link left link-02" />
-          <span className="jl-system-link left link-03" />
-          <span className="jl-system-link right link-04" />
-          <span className="jl-system-link right link-05" />
-          <span className="jl-system-link right link-06" />
-        </div>
-        <div className="jl-anatomy-title">
-          <em>界面解构 · ANATOMY</em>
-          <h3>金兰主界面 · 一屏看懂全部控件</h3>
-          <p>统一入口里塞下了「关系 + 成长 + 行为」三类控件，却依然清爽 —— 看它如何分区。</p>
-        </div>
-        <div className="jl-hub-big">
-          <Img src={assets.hubBig} />
-          <Pin n={1} x={206} y={7} /><Pin n={2} x={519} y={22} /><Pin n={3} x={366} y={117} /><Pin n={4} x={680} y={216} /><Pin n={5} x={159} y={313} /><Pin n={6} x={445} y={394} />
-        </div>
-        <ExplainList
-          dark
-          title="主界面控件说明"
-          items={[
-            { no: '1', title: '金兰等级进度条', body: '团队等级与本周积分上限，成长进度总览' },
-            { no: '2', title: '每日豪礼 · 一键领取', body: '每日上线即可领，养成天天打开的习惯钩子' },
-            { no: '3', title: '中央祭坛 · 成员席位', body: '五人围坐的仪式中心，把关系摆在视觉正中' },
-            { no: '4', title: '金兰技能 / 召唤', body: '右侧常驻增益：技能装配 + 一键召唤队友' },
-            { no: '5', title: '五大功能入口', body: '[副本][成员][权益][招募][任务]环形排布于底部' },
-            { no: '6', title: '金兰队伍名称', body: '队伍身份外显，可点击查看与编辑' },
-          ]}
-        />
-        <PrincipleBand title="为什么是「中枢式」结构？">
-          <Principle color="#ef6b5e" label="HICK’S LAW · 席克定律" title="单层心智模型" body="六大功能收敛到一个金兰界面，单层导航让选项一目了然，决策成本最低 —— 玩家「一眼知道该去哪」。" />
-          <Principle color="#7fa0e0" label="PROXIMITY · 接近性" title="中心辐射分区" body="中央是「关系」（成员·祭坛），外圈是「行为」（任务·副本·权益）；越靠中心越情感，越向外越功能。" />
-          <Principle color="#5fb89b" label="HOOK · 即时反馈" title="习惯养成钩子" body="顶部常驻「每日豪礼一键领取」，用即时奖励把「打开金兰」养成日常，持续拉动回访与活跃。" />
-        </PrincipleBand>
-      </section>
+      <SystemMapSection nodes={systemNodes} />
 
       <section className="jl-section jl-create">
         <Header eyebrow="核心流程 01" en="FLOW · CREATION" title="结义创建 · 从组队到歃血为盟" desc="把「建立金兰」拆成一条清晰向导：入口 → 条件审核 → 填写信息 → 队员命名 → 创建成功。" />
