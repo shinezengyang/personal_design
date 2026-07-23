@@ -2164,8 +2164,8 @@
 }
 
 .guild-diplomacy-detail.enemy {
-  height: 1400px;
-  min-height: 1400px;
+  height: 1440px;
+  min-height: 1440px;
 }
 
 .guild-diplomacy-detail.ally .guild-head span,
@@ -2337,7 +2337,7 @@
 .guild-diplomacy-world {
   position: absolute;
   left: 110px;
-  top: 1088px;
+  top: 1150px;
   width: 1206px;
   height: 190px;
   display: block;
@@ -2406,6 +2406,32 @@
   border-radius: 50%;
   background: #0e1420;
   box-shadow: none;
+}
+
+.guild-world-tags i::before,
+.guild-world-tags i::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.guild-world-tags i::before {
+  top: 13px;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #8fa0ad 0%, #51606d 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24);
+}
+
+.guild-world-tags i::after {
+  bottom: 9px;
+  width: 39px;
+  height: 24px;
+  border-radius: 22px 22px 12px 12px;
+  background: linear-gradient(180deg, #63717d 0%, #2a3542 100%);
+  clip-path: ellipse(50% 65% at 50% 100%);
 }
 
 .guild-world-tags .ally i {
