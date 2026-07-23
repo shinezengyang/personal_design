@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
+import { publicUrl } from '../lib/publicUrl';
 import './JinlanExactCase.css';
 
 const assets = {
@@ -66,7 +67,7 @@ function Header({ eyebrow, en, title, desc, dark = false }: { eyebrow: string; e
 }
 
 function Img({ src, alt = '', className = '' }: { src: string; alt?: string; className?: string }) {
-  return <img src={src} alt={alt} className={className} loading="lazy" decoding="async" />;
+  return <img src={publicUrl(src)} alt={alt} className={className} loading="lazy" decoding="async" />;
 }
 
 function IntroCard({ no, title, body, tone }: IntroCard) {

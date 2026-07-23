@@ -1,5 +1,6 @@
 import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 import { ResponsiveScaleFrame } from './ResponsiveScaleFrame';
+import { publicUrl } from '../lib/publicUrl';
 import './QingyuFigmaCases.css';
 import { JuejingExactCase } from './JuejingExactCase';
 import { BianjingExactCase } from './BianjingExactCase';
@@ -58,7 +59,7 @@ const tianmaiAssets = {
 };
 
 function Img({ src, className, alt = '' }: { src: string; className?: string; alt?: string }) {
-  return <img src={src} alt={alt} className={className} loading="lazy" decoding="async" />;
+  return <img src={publicUrl(src)} alt={alt} className={className} loading="lazy" decoding="async" />;
 }
 
 function SectionTitle({ no, title, desc, dark = false }: { no?: string; title: string; desc?: string; dark?: boolean }) {

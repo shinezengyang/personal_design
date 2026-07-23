@@ -930,7 +930,7 @@
 }
 .hs-cover-panel {
   width: 1280px;
-  height: 1244px;
+  height: 1044px;
   border-top: 1px solid rgba(97, 125, 250, .26);
   background:
     radial-gradient(circle at 88% 12%, rgba(97, 125, 250, .16), transparent 30%),
@@ -940,7 +940,7 @@
 .hs-trial-rest-offset {
   position: absolute;
   left: 0;
-  top: 420px;
+  top: 220px;
   width: 1280px;
   height: 12600px;
 }

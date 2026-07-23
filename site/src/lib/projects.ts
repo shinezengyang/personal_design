@@ -50,7 +50,7 @@ const PROJECTS_DATA: Project[] = [
     description:
       '玩家在游戏里将扮演一个初入江湖、向往正义与自由的热血少侠，参与主角范闲一生所经历的，有关爱恨情仇的庙堂纷争与江湖往事。',
     tags: ['多重结局', '探索解密', '古今碰撞'],
-    image: 'pencil/qingyu-nian/Background.webp',
+    image: 'pencil/qingyu-nian/Background-new.png',
     imageObjectPosition: 'center center',
     challenge:
       '《庆余年》作为 IP 改编 MMORPG，玩家对剧情沉浸度与功能完整性均有强烈期待。交互设计需在保持 IP 风格一致性的同时，降低新手引导门槛，并在复杂系统之间建立清晰的导航逻辑。',

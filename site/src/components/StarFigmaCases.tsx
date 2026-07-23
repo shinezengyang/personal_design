@@ -1487,16 +1487,16 @@ export function HighSeasNavyTrialExactCase() {
   return (
     <div className="star-case-page hs-exact-page">
       <FigmaScaleStage width={1280} height={H} className="hs-exact-stage hs-trial-stage" maxScale={1} fitToViewport viewportInset={0}>
-        <HSSection className="hs-sec hs-dark hs-cover-sec" top={0} height={1320}>
+        <HSSection className="hs-sec hs-dark hs-cover-sec" top={0} height={1120}>
           <HSAbs className="hs-cover-panel" style={{ left: 0, top: 0 }} />
           <div className="hs-hero-orb one" /><div className="hs-hero-orb two" />
           <div className="hs-dot-matrix" style={{ left: 80, top: 80 }} />
-          <HSAbs className="hs-cover-line" style={{ left: 120, top: 658, width: 120 }} />
-          <HSAbs className="hs-cover-en" style={{ left: 120, top: 683 }}>GENERAL'S TRIAL</HSAbs>
-          <HSAbs className="hs-cover-title" style={{ left: 120, top: 723 }}>海军试炼</HSAbs>
-          <HSAbs className="hs-cover-sub" style={{ left: 120, top: 817 }}>九重难度递进 × 个人联盟双轨 × 世界地图实战</HSAbs>
-          <HSAbs className="hs-cover-endline" style={{ left: 120, top: 867 }} />
-          <HSAbs className="hs-prototype-preview" style={{ left: 86, top: 390 }}>
+          <HSAbs className="hs-cover-line" style={{ left: 120, top: 508, width: 120 }} />
+          <HSAbs className="hs-cover-en" style={{ left: 120, top: 533 }}>GENERAL'S TRIAL</HSAbs>
+          <HSAbs className="hs-cover-title" style={{ left: 120, top: 573 }}>海军试炼</HSAbs>
+          <HSAbs className="hs-cover-sub" style={{ left: 120, top: 667 }}>九重难度递进 × 个人联盟双轨 × 世界地图实战</HSAbs>
+          <HSAbs className="hs-cover-endline" style={{ left: 120, top: 717 }} />
+          <HSAbs className="hs-prototype-preview" style={{ left: 86, top: 180 }}>
             <div className="hs-prototype-device">
               <div className="hs-prototype-live" aria-label={currentPrototype.title}>
                 <img src={currentPrototype.src} alt="" />
