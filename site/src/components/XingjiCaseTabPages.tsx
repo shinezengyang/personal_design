@@ -87,37 +87,37 @@ const caseEightAssets = {
 } as const;
 
 const caseNineAssets = {
-  heroBg: 'images/xingji/embermine/figma-7645-7491-full.webp',
-  entryIdle: 'images/xingji/embermine/entry-idle-corrected.webp',
-  mainPanel: 'pencil/xingji-aodaisai/panel5.webp',
-  timeSelectA: 'images/xingji/embermine/time-select-a-corrected.webp',
-  timeSelectB: 'pencil/xingji-aodaisai/modal-screen.webp',
-  trialPanel: 'pencil/xingji-aodaisai/panel-1.webp',
-  preBattleReminder: 'pencil/xingji-aodaisai/panel.webp',
-  preBattleCountdown: 'pencil/xingji-aodaisai/panel-2.webp',
-  battleHudA: 'pencil/xingji-aodaisai/panel-2.webp',
-  battleHudB: 'pencil/xingji-aodaisai/panel.webp',
-  battleHudC: 'pencil/xingji-aodaisai/panel-1.webp',
-  mapSystemDetail: 'pencil/xingji-aodaisai/figma-area-cabin-map.webp',
-  mapSystemField: 'pencil/xingji-aodaisai/figma-area-field-map.webp',
-  mapInteractMoveTown: 'pencil/xingji-aodaisai/panel0.webp',
-  mapInteractMarch: 'pencil/xingji-aodaisai/panel.webp',
-  mapInteractBuilding: 'pencil/xingji-aodaisai/panel-1.webp',
-  mapInteractTeleport: 'pencil/xingji-aodaisai/panel-2.webp',
-  skillTreeOverview: 'pencil/xingji-aodaisai/panel.webp',
-  skillTreeAdvanced: 'pencil/xingji-aodaisai/panel-1.webp',
-  miningHudA: 'pencil/xingji-aodaisai/panel-2.webp',
-  miningHudB: 'pencil/xingji-aodaisai/panel.webp',
-  smeltingPanel: 'pencil/xingji-aodaisai/panel-1.webp',
-  rankingLode: 'pencil/xingji-aodaisai/panel.webp',
-  rankingStay: 'pencil/xingji-aodaisai/panel-1.webp',
-  rankingReward: 'pencil/xingji-aodaisai/panel5.webp',
-  settlementRewardA: 'pencil/xingji-aodaisai/panel5.webp',
-  settlementRankA: 'images/xingji/embermine/settlement-rank-a-corrected.webp',
-  settlementCollectA: 'images/xingji/embermine/settlement-collect-a-corrected.webp',
-  settlementRewardB: 'pencil/xingji-aodaisai/modal-screen.webp',
-  settlementRankB: 'pencil/xingji-aodaisai/half-screen.webp',
-  settlementCollectB: 'pencil/xingji-aodaisai/panel-2.webp',
+  heroBg: 'figma/xingji-aodaisai/assets/ember-hero-bg.png',
+  entryIdle: 'figma/xingji-aodaisai/assets/ember-entry-idle.png',
+  mainPanel: 'figma/xingji-aodaisai/assets/ember-main-panel.png',
+  timeSelectA: 'figma/xingji-aodaisai/assets/ember-time-select-a.png',
+  timeSelectB: 'figma/xingji-aodaisai/assets/ember-time-select-b.png',
+  trialPanel: 'figma/xingji-aodaisai/assets/ember-trial-panel.png',
+  preBattleReminder: 'figma/xingji-aodaisai/assets/ember-pre-battle-reminder.png',
+  preBattleCountdown: 'figma/xingji-aodaisai/assets/ember-pre-battle-countdown.png',
+  battleHudA: 'figma/xingji-aodaisai/assets/ember-battle-hud-a.png',
+  battleHudB: 'figma/xingji-aodaisai/assets/ember-battle-hud-b.png',
+  battleHudC: 'figma/xingji-aodaisai/assets/ember-battle-hud-c.png',
+  mapSystemDetail: 'figma/xingji-aodaisai/assets/ember-map-detail.png',
+  mapSystemField: 'figma/xingji-aodaisai/assets/ember-field-info.png',
+  mapInteractMoveTown: 'figma/xingji-aodaisai/assets/ember-map-move-town.png',
+  mapInteractMarch: 'figma/xingji-aodaisai/assets/ember-map-march.png',
+  mapInteractBuilding: 'figma/xingji-aodaisai/assets/ember-map-building.png',
+  mapInteractTeleport: 'figma/xingji-aodaisai/assets/ember-map-teleport.png',
+  skillTreeOverview: 'figma/xingji-aodaisai/assets/ember-skill-overview.png',
+  skillTreeAdvanced: 'figma/xingji-aodaisai/assets/ember-skill-advanced.png',
+  miningHudA: 'figma/xingji-aodaisai/assets/ember-mining-hud-a.png',
+  miningHudB: 'figma/xingji-aodaisai/assets/ember-mining-hud-b.png',
+  smeltingPanel: 'figma/xingji-aodaisai/assets/ember-smelt-panel.png',
+  rankingLode: 'figma/xingji-aodaisai/assets/ember-lode-detail.png',
+  rankingStay: 'figma/xingji-aodaisai/assets/ember-rank-staytime.png',
+  rankingReward: 'figma/xingji-aodaisai/assets/ember-rank-reward.png',
+  settlementRewardA: 'figma/xingji-aodaisai/assets/ember-rank-reward-1.png',
+  settlementRankA: 'figma/xingji-aodaisai/assets/ember-rank-final-2.png',
+  settlementCollectA: 'figma/xingji-aodaisai/assets/ember-rank-final-3.png',
+  settlementRewardB: 'figma/xingji-aodaisai/assets/ember-staytime-reward.png',
+  settlementRankB: 'figma/xingji-aodaisai/assets/ember-staytime-reward-1.png',
+  settlementCollectB: 'figma/xingji-aodaisai/assets/ember-smelt-result.png',
 } as const;
 
 const navalTrialAsset = (name: string) => publicUrl(`images/xingji/naval-trial/${name}`);
@@ -2709,15 +2709,21 @@ function GeneralTrialCase() {
 
 function EmbermineHero() {
   return (
-    <LongPageSection height={900} bg="linear-gradient(180deg,#10071e 0%,#0b0614 100%)">
-      <div className="absolute left-[700px] top-[-210px] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(244,120,32,0.14)_0%,rgba(244,120,32,0.06)_42%,rgba(244,120,32,0)_72%)]" />
-      <div className="absolute left-[80px] top-[180px] h-[360px] w-[840px] rounded-[32px] border border-white/[0.04] bg-[rgba(255,255,255,0.02)]" />
-      <p className="absolute left-[88px] top-[408px] text-[72px] font-black leading-none tracking-[2px] text-white">燃海矿区</p>
-      <p className="absolute left-[92px] top-[495px] font-['Inter',sans-serif] text-[18px] font-bold tracking-[5px] text-[#f47820]">
+    <LongPageSection height={900} bg="#0f071c">
+      <img
+        src={resolveAsset(caseNineAssets.heroBg)}
+        alt=""
+        className="absolute left-0 top-0 h-[990px] w-full max-w-none object-cover opacity-50"
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,7,28,0.95)_0%,rgba(15,7,28,0.30)_50%,rgba(15,7,28,0.85)_100%)]" />
+      <p className="absolute left-[80px] top-[380px] text-[80px] font-black leading-none tracking-[2px] text-white">燃海矿区</p>
+      <p className="absolute left-[84px] top-[480px] font-['Inter',sans-serif] text-[20px] font-bold tracking-[6px] text-[#f47820]">
         EMBERMINE BATTLEGROUND
       </p>
-      <div className="absolute left-[88px] top-[540px] h-[4px] w-[86px] rounded-[2px] bg-[#f47820]" />
-      <p className="absolute left-[88px] top-[572px] text-[16px] text-[#d9d9de]">30分钟限时PvP策略玩法 · 交互设计全流程解析</p>
+      <div className="absolute left-[80px] top-[530px] h-[4px] w-[120px] rounded-[2px] bg-[#f47820]" />
+      <p className="absolute left-[80px] top-[560px] text-[18px] font-medium text-[#d9d9de]">限时PvP策略玩法</p>
       <div className="absolute left-[1060px] top-[780px] flex gap-[13px]">
         {Array.from({ length: 8 }).map((_, index) => (
           <span key={index} className="h-[3px] w-[3px] rounded-full bg-white/55" />
