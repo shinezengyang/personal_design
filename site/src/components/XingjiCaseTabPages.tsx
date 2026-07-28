@@ -9,9 +9,9 @@ const resolveAsset = (src: string) => (src.startsWith('http') ? src : publicUrl(
 
 const caseOneAssets = {
   backgroundBefore: [
-    'pencil/xingji-aodaisai/panel-2.webp',
-    'pencil/xingji-aodaisai/panel.webp',
-    'pencil/xingji-aodaisai/panel-1.webp',
+    'images/xingji/hud/assets/figma-background-before-1.png',
+    'images/xingji/hud/assets/figma-background-before-2.png',
+    'images/xingji/hud/assets/figma-background-before-3.png',
   ],
   cpaLastwarTop: 'images/xingji/hud/assets/cpa-lastwar.webp',
   cpaLastwarBottom: 'images/xingji/hud/assets/cpa-lastwar.webp',
@@ -60,17 +60,17 @@ const caseOneAssets = {
 
 const crossServerAssets = {
   fullPage: 'images/xingji/cross-server/figma-7181-7484-full.webp',
-  fieldEntryA: 'https://www.figma.com/api/mcp/asset/a17b577c-7af7-40df-82b1-7d9b89969a09',
-  fieldEntryB: 'https://www.figma.com/api/mcp/asset/4ce70988-cee5-4ca8-a14c-76c14641becc',
-  loadingScreen: 'https://www.figma.com/api/mcp/asset/1d67c231-6afc-4aa1-a998-2cd51b4cbf93',
-  moveClickSea: 'https://www.figma.com/api/mcp/asset/6eab3182-7e38-43b7-b958-9d8bb96a4371',
-  moveMask: 'https://www.figma.com/api/mcp/asset/6270b469-3a78-43c1-b7ca-2865c4b27685',
-  moveConfirm: 'https://www.figma.com/api/mcp/asset/44956ba7-e517-41d1-a6a4-bbbd91761c3f',
-  moveComplete: 'https://www.figma.com/api/mcp/asset/bc214c1c-a4c1-42db-9b0d-e943c9f87819',
-  confirmPopup: 'https://www.figma.com/api/mcp/asset/fc82110b-2a8e-43b7-ba18-3da4840e63ef',
-  popupInfo: 'https://www.figma.com/api/mcp/asset/74e55cbf-5781-4567-b522-ad5d73af6005',
-  popupReward: 'https://www.figma.com/api/mcp/asset/c8a1917e-f214-4d74-951c-849b78d098ba',
-  chatSystem: 'https://www.figma.com/api/mcp/asset/95701011-5545-4f75-88f9-2b46a7f17384',
+  fieldEntryA: 'figma/xingji-aodaisai/assets/cross-normal-world.png',
+  fieldEntryB: 'figma/xingji-aodaisai/assets/cross-cross-world.png',
+  loadingScreen: 'figma/xingji-aodaisai/assets/cross-loading-screen.png',
+  moveClickSea: 'figma/xingji-aodaisai/assets/cross-normal-world.png',
+  moveMask: 'figma/xingji-aodaisai/assets/cross-move-mask.png',
+  moveConfirm: 'figma/xingji-aodaisai/assets/cross-move-confirm.png',
+  moveComplete: 'figma/xingji-aodaisai/assets/cross-cross-world.png',
+  confirmPopup: 'figma/xingji-aodaisai/assets/cross-confirm-popup.png',
+  popupInfo: 'figma/xingji-aodaisai/assets/cross-popup-info.png',
+  popupReward: 'figma/xingji-aodaisai/assets/cross-popup-reward.png',
+  chatSystem: 'figma/xingji-aodaisai/assets/cross-chat-system.png',
 } as const;
 
 const caseEightAssets = {
@@ -87,37 +87,37 @@ const caseEightAssets = {
 } as const;
 
 const caseNineAssets = {
-  heroBg: 'images/xingji/embermine/figma-7645-7491-full.webp',
-  entryIdle: 'images/xingji/embermine/entry-idle-corrected.webp',
-  mainPanel: 'pencil/xingji-aodaisai/panel5.webp',
-  timeSelectA: 'images/xingji/embermine/time-select-a-corrected.webp',
-  timeSelectB: 'pencil/xingji-aodaisai/modal-screen.webp',
-  trialPanel: 'pencil/xingji-aodaisai/panel-1.webp',
-  preBattleReminder: 'pencil/xingji-aodaisai/panel.webp',
-  preBattleCountdown: 'pencil/xingji-aodaisai/panel-2.webp',
-  battleHudA: 'pencil/xingji-aodaisai/panel-2.webp',
-  battleHudB: 'pencil/xingji-aodaisai/panel.webp',
-  battleHudC: 'pencil/xingji-aodaisai/panel-1.webp',
-  mapSystemDetail: 'pencil/xingji-aodaisai/figma-area-cabin-map.webp',
-  mapSystemField: 'pencil/xingji-aodaisai/figma-area-field-map.webp',
-  mapInteractMoveTown: 'pencil/xingji-aodaisai/panel0.webp',
-  mapInteractMarch: 'pencil/xingji-aodaisai/panel.webp',
-  mapInteractBuilding: 'pencil/xingji-aodaisai/panel-1.webp',
-  mapInteractTeleport: 'pencil/xingji-aodaisai/panel-2.webp',
-  skillTreeOverview: 'pencil/xingji-aodaisai/panel.webp',
-  skillTreeAdvanced: 'pencil/xingji-aodaisai/panel-1.webp',
-  miningHudA: 'pencil/xingji-aodaisai/panel-2.webp',
-  miningHudB: 'pencil/xingji-aodaisai/panel.webp',
-  smeltingPanel: 'pencil/xingji-aodaisai/panel-1.webp',
-  rankingLode: 'pencil/xingji-aodaisai/panel.webp',
-  rankingStay: 'pencil/xingji-aodaisai/panel-1.webp',
-  rankingReward: 'pencil/xingji-aodaisai/panel5.webp',
-  settlementRewardA: 'pencil/xingji-aodaisai/panel5.webp',
-  settlementRankA: 'images/xingji/embermine/settlement-rank-a-corrected.webp',
-  settlementCollectA: 'images/xingji/embermine/settlement-collect-a-corrected.webp',
-  settlementRewardB: 'pencil/xingji-aodaisai/modal-screen.webp',
-  settlementRankB: 'pencil/xingji-aodaisai/half-screen.webp',
-  settlementCollectB: 'pencil/xingji-aodaisai/panel-2.webp',
+  heroBg: 'figma/xingji-aodaisai/assets/ember-hero-bg.png',
+  entryIdle: 'figma/xingji-aodaisai/assets/ember-entry-idle.png',
+  mainPanel: 'figma/xingji-aodaisai/assets/ember-main-panel.png',
+  timeSelectA: 'figma/xingji-aodaisai/assets/ember-time-select-a.png',
+  timeSelectB: 'figma/xingji-aodaisai/assets/ember-time-select-b.png',
+  trialPanel: 'figma/xingji-aodaisai/assets/ember-trial-panel.png',
+  preBattleReminder: 'figma/xingji-aodaisai/assets/ember-pre-battle-reminder.png',
+  preBattleCountdown: 'figma/xingji-aodaisai/assets/ember-pre-battle-countdown.png',
+  battleHudA: 'figma/xingji-aodaisai/assets/ember-battle-hud-a.png',
+  battleHudB: 'figma/xingji-aodaisai/assets/ember-battle-hud-b.png',
+  battleHudC: 'figma/xingji-aodaisai/assets/ember-battle-hud-c.png',
+  mapSystemDetail: 'figma/xingji-aodaisai/assets/ember-map-detail.png',
+  mapSystemField: 'figma/xingji-aodaisai/assets/ember-field-info.png',
+  mapInteractMoveTown: 'figma/xingji-aodaisai/assets/ember-map-move-town.png',
+  mapInteractMarch: 'figma/xingji-aodaisai/assets/ember-map-march.png',
+  mapInteractBuilding: 'figma/xingji-aodaisai/assets/ember-map-building.png',
+  mapInteractTeleport: 'figma/xingji-aodaisai/assets/ember-map-teleport.png',
+  skillTreeOverview: 'figma/xingji-aodaisai/assets/ember-skill-overview.png',
+  skillTreeAdvanced: 'figma/xingji-aodaisai/assets/ember-skill-advanced.png',
+  miningHudA: 'figma/xingji-aodaisai/assets/ember-mining-hud-a.png',
+  miningHudB: 'figma/xingji-aodaisai/assets/ember-mining-hud-b.png',
+  smeltingPanel: 'figma/xingji-aodaisai/assets/ember-smelt-panel.png',
+  rankingLode: 'figma/xingji-aodaisai/assets/ember-lode-detail.png',
+  rankingStay: 'figma/xingji-aodaisai/assets/ember-rank-staytime.png',
+  rankingReward: 'figma/xingji-aodaisai/assets/ember-rank-reward.png',
+  settlementRewardA: 'figma/xingji-aodaisai/assets/ember-rank-reward-1.png',
+  settlementRankA: 'figma/xingji-aodaisai/assets/ember-rank-final-2.png',
+  settlementCollectA: 'figma/xingji-aodaisai/assets/ember-rank-final-3.png',
+  settlementRewardB: 'figma/xingji-aodaisai/assets/ember-staytime-reward.png',
+  settlementRankB: 'figma/xingji-aodaisai/assets/ember-staytime-reward-1.png',
+  settlementCollectB: 'figma/xingji-aodaisai/assets/ember-smelt-result.png',
 } as const;
 
 const navalTrialAsset = (name: string) => publicUrl(`images/xingji/naval-trial/${name}`);
@@ -446,32 +446,12 @@ function AnnotationCard({
 function CaseOneTitleHero() {
   return (
     <LongPageSection height={900} bg="#4d6eeb">
-      {[
-        { left: 130, top: 250, width: 260, size: 210, opacity: 0.34 },
-        { left: 680, top: 252, width: 360, size: 250, opacity: 0.32 },
-        { left: 1115, top: 250, width: 320, size: 210, opacity: 0.32 },
-      ].map((item) => (
-        <p
-          key={`${item.left}-${item.top}`}
-          className="absolute -translate-x-1/2 text-center font-['Inter',sans-serif] font-bold leading-none text-[#4667dd]"
-          style={{
-            left: item.left,
-            top: item.top,
-            width: item.width,
-            height: 150,
-            fontSize: item.size,
-            opacity: item.opacity,
-          }}
-        >
-          ∞
-        </p>
-      ))}
       <div className="pointer-events-none absolute left-[100px] top-[254px] h-[230px] w-[230px] rounded-full bg-[radial-gradient(circle,rgba(255,247,230,0.96)_0%,rgba(255,215,196,0.82)_24%,rgba(250,184,158,0.42)_42%,rgba(250,184,158,0.16)_58%,rgba(250,184,158,0)_74%)] blur-[10px]" />
-      <p className="absolute left-[218px] top-[300px] -translate-x-1/2 font-['Inter',sans-serif] text-[150px] font-bold leading-none text-[#fff7e6]">
-        1
+      <p className="absolute left-[218.5px] top-[300px] -translate-x-1/2 whitespace-nowrap text-center font-['Inter',sans-serif] text-[150px] font-bold leading-[normal] text-[#fff7e6]">
+        UX
       </p>
-      <p className="absolute left-[340px] top-[330px] text-[54px] font-bold leading-none text-white">HUD-改版设计</p>
-      <p className="absolute left-[340px] top-[420px] w-[770px] text-[24px] leading-[1.35] text-white">
+      <p className="absolute left-[340px] top-[330px] h-[72px] w-[700px] font-['Inter',sans-serif] text-[54px] font-bold leading-[normal] text-white">HUD-改版设计</p>
+      <p className="absolute left-[340px] top-[420px] h-[78px] w-[770px] font-['Inter',sans-serif] text-[24px] leading-[normal] text-white">
         HUD，是游戏里的第一入口，把最重要的功能统一收纳起来，让玩家在战斗、基地、地图之间快速切换，同时通过红点提醒玩家去做任务、领奖励、升级、消费
       </p>
     </LongPageSection>
@@ -691,6 +671,7 @@ function CaseOneCompetitorAnalysis() {
   ];
   const flows = ['经营建设', '收益处理', '战力养成', '地图扩张', '联盟协作'];
   const arrowLefts = [128, 383, 638, 893];
+  const flowLefts = [46, 290, 535, 780, 1025];
 
   return (
     <LongPageSection height={900} bg="#edeffe">
@@ -717,27 +698,28 @@ function CaseOneCompetitorAnalysis() {
       {arrowLefts.map((left) => (
         <svg
           key={left}
-          className="absolute top-[505px] h-[54px] w-[255px] overflow-visible"
+          className="absolute top-[505px] h-[53.989px] w-[255.255px] overflow-visible"
           style={{ left }}
-          viewBox="0 0 255 54"
+          viewBox="0 0 255.255 53.9886"
+          fill="none"
           aria-hidden="true"
         >
           <path
-            d="M8 42 C58 6 190 6 247 42"
-            fill="none"
-            stroke="#6f8cff"
-            strokeWidth="2.5"
-            strokeDasharray="9 8"
-            strokeLinecap="round"
-            opacity="0.68"
+            d="M6.926 45.1759C6.926 45.1759 38.7476 9.70249 115.068 5.8942C191.388 2.08591 233.906 33.7548 233.906 33.7548"
+            stroke="#BCC6F7"
+            strokeWidth="2"
+            strokeDasharray="8 8"
           />
-          <circle cx="8" cy="42" r="7" fill="#6f8cff" opacity="0.9" />
-          <path d="M247 42 L229 29 L232 53 Z" fill="#6f8cff" opacity="0.9" />
+          <circle cx="9" cy="43.9133" r="9" fill="#BCC6F7" />
+          <path
+            d="M246.786 41.0195C247.421 42.4223 246.299 43.9859 244.767 43.834L230.844 42.4539C229.312 42.302 228.519 40.5486 229.416 39.2977L237.573 27.9304C238.47 26.6796 240.386 26.8694 241.02 28.2722L246.786 41.0195Z"
+            fill="#BCC6F7"
+          />
         </svg>
       ))}
       {flows.map((flow, index) => (
         <div key={flow}>
-          <div className="absolute top-[555px] flex h-[86px] w-[205px] items-center justify-center bg-[#4974f0] text-[30px] font-black text-white" style={{ left: 46 + index * 245 }}>
+          <div className="absolute top-[555px] flex h-[86px] w-[205px] items-center justify-center bg-[#4974f0] text-[30px] font-black text-white" style={{ left: flowLefts[index] }}>
             {flow}
           </div>
         </div>
@@ -1683,29 +1665,35 @@ function CoordBookmarkCase() {
 }
 
 const caseFourAssets = {
-  staticBase: 'https://www.figma.com/api/mcp/asset/6be4cbfa-e527-4754-920b-5057f9bace02',
-  staticRule: 'https://www.figma.com/api/mcp/asset/4b0d5b0a-a714-4bd1-8e2f-31a67e2a301d',
-  staticOld: 'https://www.figma.com/api/mcp/asset/c4c91cb1-a10f-4f03-b901-5f5bdf51ab53',
-  popupRule1: 'https://www.figma.com/api/mcp/asset/dca4ebb1-99ba-4a9a-a66a-fef4735b08bc',
-  popupRule2: 'https://www.figma.com/api/mcp/asset/7665a2c0-db74-4dc4-b2af-04bf45e1ad1a',
-  popupRule3: 'https://www.figma.com/api/mcp/asset/27aa650d-7af5-4697-b120-ea474a34e8b3',
-  popupRule4: 'https://www.figma.com/api/mcp/asset/8f808c6d-0ac0-4546-bf39-ceb5c87486ff',
-  popupRule5: 'https://www.figma.com/api/mcp/asset/f34b8ee8-0ddb-49c5-ae32-6f4d5dba8642',
-  movingTrade: 'https://www.figma.com/api/mcp/asset/94b7c8da-676c-40c0-82ac-833317facf19',
-  movingFleet: 'https://www.figma.com/api/mcp/asset/5c0139e2-2641-42fd-845d-6a3ed3c0e6d4',
-  minimapNear: 'https://www.figma.com/api/mcp/asset/12ebb2db-7e1b-49f7-aa0f-d76aedfa6409',
-  minimapFar: 'https://www.figma.com/api/mcp/asset/5e0a7675-9a8b-4a55-be52-87657ae6996f',
-  minimapOld: 'https://www.figma.com/api/mcp/asset/b9e31ae4-f4e4-4655-8f4c-f70498457699',
-  minimapCurrent: 'https://www.figma.com/api/mcp/asset/482c88d0-2558-4297-832a-50f1cabc9375',
-  minimapFilter: 'https://www.figma.com/api/mcp/asset/11338d5b-2102-47f0-9b1b-c3a5ac02ee32',
+  titleOrangeGlow: 'figma/xingji-aodaisai/assets/map-title-orange-glow.svg',
+  titleBlueGlow: 'figma/xingji-aodaisai/assets/map-title-blue-glow.svg',
+  titleCenterEllipse: 'figma/xingji-aodaisai/assets/map-title-center-ellipse.svg',
+  staticBase: 'figma/xingji-aodaisai/assets/map-static-base.png',
+  staticRule: 'figma/xingji-aodaisai/assets/map-static-rule.png',
+  staticOld: 'figma/xingji-aodaisai/assets/map-static-old.png',
+  popupRule1: 'figma/xingji-aodaisai/assets/map-popup-rule-1.png',
+  popupRule2: 'figma/xingji-aodaisai/assets/map-popup-rule-2.png',
+  popupRule3: 'figma/xingji-aodaisai/assets/map-popup-rule-3.png',
+  popupRule4: 'figma/xingji-aodaisai/assets/map-popup-rule-4.png',
+  popupRule5: 'figma/xingji-aodaisai/assets/map-popup-rule-5.png',
+  movingTrade: 'figma/xingji-aodaisai/assets/map-moving-trade.png',
+  movingFleet: 'figma/xingji-aodaisai/assets/map-moving-fleet.png',
+  minimapNear: 'figma/xingji-aodaisai/assets/map-minimap-near.png',
+  minimapFar: 'figma/xingji-aodaisai/assets/map-minimap-far.png',
+  minimapOld: 'figma/xingji-aodaisai/assets/map-minimap-old.png',
+  minimapCurrent: 'figma/xingji-aodaisai/assets/map-minimap-current.png',
+  minimapFilter: 'figma/xingji-aodaisai/assets/map-minimap-filter.png',
 };
 
 function CaseFourTitleHero() {
   return (
     <LongPageSection height={900} bg="linear-gradient(180deg, #3847A6 0%, #262E73 100%)">
-      <div className="absolute left-[900px] top-[-210px] h-[540px] w-[540px] rounded-full bg-[radial-gradient(circle,rgba(245,183,112,0.18)_0%,rgba(245,183,112,0.14)_32%,rgba(245,183,112,0.08)_54%,rgba(245,183,112,0)_76%)]" />
-      <div className="absolute left-[-180px] top-[650px] h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(128,150,255,0.14)_0%,rgba(128,150,255,0.08)_45%,rgba(128,150,255,0)_74%)]" />
-      <div className="absolute left-[180px] top-[320px] h-[200px] w-[200px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,239,195,0.7)_0%,rgba(255,231,176,0.36)_18%,rgba(255,221,154,0.16)_36%,rgba(255,255,255,0)_72%)] blur-[2px]" />
+      <img src={publicUrl(caseFourAssets.titleOrangeGlow)} alt="" className="absolute left-[900px] top-[-210px] size-[540px] max-w-none" loading="lazy" decoding="async" />
+      <img src={publicUrl(caseFourAssets.titleBlueGlow)} alt="" className="absolute left-[-180px] top-[650px] size-[380px] max-w-none" loading="lazy" decoding="async" />
+      <img src={publicUrl(caseFourAssets.titleCenterEllipse)} alt="" className="absolute left-[180px] top-[320px] size-[200px] max-w-none" loading="lazy" decoding="async" />
+      <p className="absolute left-[120px] top-[240px] w-[280px] font-['Inter',sans-serif] text-[220px] font-black leading-none text-white/10">
+        UX
+      </p>
       <h2 className="absolute left-[380px] top-[310px] text-[72px] font-black leading-none text-white">
         世界地图交互优化
       </h2>
@@ -2721,15 +2709,21 @@ function GeneralTrialCase() {
 
 function EmbermineHero() {
   return (
-    <LongPageSection height={900} bg="linear-gradient(180deg,#10071e 0%,#0b0614 100%)">
-      <div className="absolute left-[700px] top-[-210px] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(244,120,32,0.14)_0%,rgba(244,120,32,0.06)_42%,rgba(244,120,32,0)_72%)]" />
-      <div className="absolute left-[80px] top-[180px] h-[360px] w-[840px] rounded-[32px] border border-white/[0.04] bg-[rgba(255,255,255,0.02)]" />
-      <p className="absolute left-[88px] top-[408px] text-[72px] font-black leading-none tracking-[2px] text-white">燃海矿区</p>
-      <p className="absolute left-[92px] top-[495px] font-['Inter',sans-serif] text-[18px] font-bold tracking-[5px] text-[#f47820]">
+    <LongPageSection height={900} bg="#0f071c">
+      <img
+        src={resolveAsset(caseNineAssets.heroBg)}
+        alt=""
+        className="absolute left-0 top-0 h-[990px] w-full max-w-none object-cover opacity-50"
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,7,28,0.95)_0%,rgba(15,7,28,0.30)_50%,rgba(15,7,28,0.85)_100%)]" />
+      <p className="absolute left-[80px] top-[380px] text-[80px] font-black leading-none tracking-[2px] text-white">燃海矿区</p>
+      <p className="absolute left-[84px] top-[480px] font-['Inter',sans-serif] text-[20px] font-bold tracking-[6px] text-[#f47820]">
         EMBERMINE BATTLEGROUND
       </p>
-      <div className="absolute left-[88px] top-[540px] h-[4px] w-[86px] rounded-[2px] bg-[#f47820]" />
-      <p className="absolute left-[88px] top-[572px] text-[16px] text-[#d9d9de]">30分钟限时PvP策略玩法 · 交互设计全流程解析</p>
+      <div className="absolute left-[80px] top-[530px] h-[4px] w-[120px] rounded-[2px] bg-[#f47820]" />
+      <p className="absolute left-[80px] top-[560px] text-[18px] font-medium text-[#d9d9de]">限时PvP策略玩法</p>
       <div className="absolute left-[1060px] top-[780px] flex gap-[13px]">
         {Array.from({ length: 8 }).map((_, index) => (
           <span key={index} className="h-[3px] w-[3px] rounded-full bg-white/55" />
@@ -5497,7 +5491,7 @@ function CrossServerHighlights() {
         {highlights.map(([num, title, body]) => (
           <div key={num} className="relative h-[120px] w-[980px]">
             <p className="absolute left-0 top-[-20px] font-['Inter',sans-serif] text-[80px] text-[#5466bf]/10">{num}</p>
-            <div className="absolute left-[92px] top-[28px] h-[10px] w-[10px] rounded-full bg-[#5466bf]" />
+            <div className="absolute left-[116px] top-[28px] h-[10px] w-[10px] rounded-full bg-[#5466bf]" />
             <p className="absolute left-[136px] top-[18px] text-[20px] font-bold text-[#212126]">{title}</p>
             <p className="absolute left-[136px] top-[54px] w-[884px] text-[14px] leading-[26px] text-[#737380]">{body}</p>
           </div>

@@ -1209,9 +1209,32 @@ export default function ProjectDetail({
         : section;
       specialChildren.set(section, canvas ? collectMotionChildren(canvas) : []);
     });
+    const getZoneLayerParts = (scope: ParentNode) => ({
+      planes: Array.from(scope.querySelectorAll<SVGGraphicsElement>('.xingji-zone-layer-plane')),
+      dots: Array.from(scope.querySelectorAll<SVGGraphicsElement>('.xingji-zone-layer-dot')),
+      lines: Array.from(scope.querySelectorAll<SVGGraphicsElement>('.xingji-zone-layer-line')),
+      arrows: Array.from(scope.querySelectorAll<SVGGraphicsElement>('.xingji-zone-layer-arrow')),
+      labels: Array.from(scope.querySelectorAll<SVGGraphicsElement>('.xingji-zone-layer-label')),
+    });
+    const zoneLayerMotionParts = specialSections.flatMap((section) => Object.values(getZoneLayerParts(section)).flat());
+    const animateZoneLayerDiagram = (timeline: gsap.core.Timeline, scope: ParentNode, at: number) => {
+      const parts = getZoneLayerParts(scope);
+      const allParts = Object.values(parts).flat();
+      if (!allParts.length) return;
+
+      timeline
+        .to(parts.planes, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.58, stagger: 0.08, ease: 'power3.out' }, at)
+        .to(parts.dots, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.08, ease: 'back.out(2.4)' }, at + 0.24)
+        .to(parts.lines, { opacity: 1, scaleX: 1, duration: 0.46, stagger: 0.08, ease: 'power2.out' }, at + 0.3)
+        .to(parts.arrows, { opacity: 1, x: 0, scale: 1, duration: 0.34, stagger: 0.08, ease: 'back.out(2)' }, at + 0.5)
+        .to(parts.labels, { opacity: 1, x: 0, duration: 0.38, stagger: 0.08, ease: 'power2.out' }, at + 0.55)
+        .call(() => {
+          gsap.set(allParts, { clearProps: 'opacity,transform,transformOrigin' });
+        }, undefined, at + 1.05);
+    };
     const firstSpecialSection = specialSections[0] ?? null;
 
-    const everything: HTMLElement[] = [
+    const everything: Element[] = [
       ...(backBtn ? [backBtn] : []),
       ...(menuBtn ? [menuBtn] : []),
       ...(heroCard ? [heroCard] : []),
@@ -1224,6 +1247,7 @@ export default function ProjectDetail({
       ...modules,
       ...specialSections,
       ...Array.from(specialChildren.values()).flat(),
+      ...zoneLayerMotionParts,
     ];
     modules.forEach((m) => {
       everything.push(...Array.from(m.querySelectorAll<HTMLElement>('.project-detail-inner-card')));
@@ -1257,6 +1281,18 @@ export default function ProjectDetail({
     specialChildren.forEach((children) => {
       if (children.length) gsap.set(children, { opacity: 0, y: 18, filter: 'blur(6px)' });
     });
+    if (zoneLayerMotionParts.length) {
+      const zoneLayerPlanes = Array.from(root.querySelectorAll<SVGGraphicsElement>('.xingji-zone-layer-plane'));
+      const zoneLayerDots = Array.from(root.querySelectorAll<SVGGraphicsElement>('.xingji-zone-layer-dot'));
+      const zoneLayerLines = Array.from(root.querySelectorAll<SVGGraphicsElement>('.xingji-zone-layer-line'));
+      const zoneLayerArrows = Array.from(root.querySelectorAll<SVGGraphicsElement>('.xingji-zone-layer-arrow'));
+      const zoneLayerLabels = Array.from(root.querySelectorAll<SVGGraphicsElement>('.xingji-zone-layer-label'));
+      gsap.set(zoneLayerPlanes, { opacity: 0, x: -24, y: 18, scale: 0.96, transformOrigin: '50% 50%' });
+      gsap.set(zoneLayerDots, { opacity: 0, scale: 0.36, transformOrigin: '50% 50%' });
+      gsap.set(zoneLayerLines, { opacity: 0, scaleX: 0, transformOrigin: 'left center' });
+      gsap.set(zoneLayerArrows, { opacity: 0, x: -14, scale: 0.72, transformOrigin: '50% 50%' });
+      gsap.set(zoneLayerLabels, { opacity: 0, x: 16 });
+    }
 
     const leadIn = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
@@ -1302,6 +1338,7 @@ export default function ProjectDetail({
           0.34,
         );
       }
+      animateZoneLayerDiagram(leadIn, firstSpecialSection, 0.48);
     }
 
     // ── Below-the-fold: scroll-triggered module reveals ──
@@ -1386,6 +1423,7 @@ export default function ProjectDetail({
               0.14,
             );
           }
+          animateZoneLayerDiagram(sectionTimeline, section, 0.3);
           obs.unobserve(section);
         });
       },

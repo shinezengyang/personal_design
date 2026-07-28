@@ -8,9 +8,9 @@ const blue = '#4d6eeb';
 const accent = '#ff2a6d';
 
 const hudShots = [
-  'pencil/xingji-aodaisai/panel-2.webp',
-  'pencil/xingji-aodaisai/panel.webp',
-  'pencil/xingji-aodaisai/panel-1.webp',
+  'images/xingji/hud/assets/figma-background-before-1.png',
+  'images/xingji/hud/assets/figma-background-before-2.png',
+  'images/xingji/hud/assets/figma-background-before-3.png',
 ] as const;
 
 const caseOneAssets = {
@@ -50,7 +50,7 @@ const caseOneAssets = {
   problemOneBase: publicUrl('pencil/xingji-aodaisai/feedback-problem-1-left.webp'),
   problemOneMap: publicUrl('pencil/xingji-aodaisai/feedback-problem-1-right.webp'),
   problemOneMapMarker: publicUrl('images/xingji/hud/assets/marker-dot.svg'),
-  problemTwoHud: publicUrl('pencil/xingji-aodaisai/feedback-problem-2.webp'),
+  problemTwoHud: publicUrl('images/xingji/hud/assets/figma-problem-two-hud.png'),
   problemTwoDiagonal: publicUrl('images/xingji/hud/assets/white-diagonal.svg'),
   problemThreeHud: publicUrl('pencil/xingji-aodaisai/feedback-problem-3.webp'),
   problemThreeDiagonal: publicUrl('images/xingji/hud/assets/white-diagonal.svg'),
@@ -94,9 +94,9 @@ const caseOneAssets = {
   areaDiagonalWhiteTop: publicUrl('images/xingji/hud/assets/figma-area-diagonal-top.svg'),
   areaDiagonalWhiteBottom: publicUrl('images/xingji/hud/assets/figma-area-diagonal-bottom.svg'),
   functionZoneSkews: [
-    publicUrl('images/xingji/hud/assets/figma-zone-skew-scene.svg'),
-    publicUrl('images/xingji/hud/assets/figma-zone-skew-info.svg'),
-    publicUrl('images/xingji/hud/assets/figma-zone-skew-ui.svg'),
+    publicUrl('images/xingji/hud/assets/figma-zone-skew-scene.png'),
+    publicUrl('images/xingji/hud/assets/figma-zone-skew-info.png'),
+    publicUrl('images/xingji/hud/assets/figma-zone-skew-ui.png'),
   ],
   functionZoneHudBg: publicUrl('images/xingji/hud/assets/figma-zone-hud-bg.webp'),
   functionZoneAnnotLong: publicUrl('images/xingji/hud/assets/figma-zone-annot-long.svg'),
@@ -279,30 +279,12 @@ function HudBeforeSketch({ variant, width }: { variant: 'base' | 'task' | 'map';
 function CoverSection() {
   return (
     <SectionFrame bg="#4d6eeb">
-      {[
-        { left: 130, top: 250, width: 260, size: 210, opacity: 0.34 },
-        { left: 680, top: 252, width: 360, size: 250, opacity: 0.32 },
-        { left: 1115, top: 250, width: 320, size: 210, opacity: 0.32 },
-      ].map((item) => (
-        <p
-          key={`${item.left}-${item.top}`}
-          className="absolute -translate-x-1/2 text-center font-bold leading-none text-[#4667dd]"
-          style={{
-            left: item.left,
-            top: item.top,
-            width: item.width,
-            height: 150,
-            fontSize: item.size,
-            opacity: item.opacity,
-          }}
-        >
-          ∞
-        </p>
-      ))}
       <div className="pointer-events-none absolute left-[100px] top-[254px] h-[230px] w-[230px] rounded-full bg-[radial-gradient(circle,rgba(255,247,230,0.96)_0%,rgba(255,215,196,0.82)_24%,rgba(250,184,158,0.42)_42%,rgba(250,184,158,0.16)_58%,rgba(250,184,158,0)_74%)] blur-[10px]" />
-      <div className="absolute left-[218px] top-[300px] w-[120px] -translate-x-1/2 text-center text-[150px] font-bold leading-none text-[#fff7e6]">1</div>
-      <h2 className="absolute left-[340px] top-[330px] text-[54px] font-bold leading-none text-white">HUD-改版设计</h2>
-      <p className="absolute left-[340px] top-[420px] w-[770px] text-[24px] leading-[1.35] text-white">
+      <p className="absolute left-[218.5px] top-[300px] -translate-x-1/2 whitespace-nowrap text-center font-['Inter',sans-serif] text-[150px] font-bold leading-[normal] text-[#fff7e6]">
+        UX
+      </p>
+      <h2 className="absolute left-[340px] top-[330px] h-[72px] w-[700px] font-['Inter',sans-serif] text-[54px] font-bold leading-[normal] text-white">HUD-改版设计</h2>
+      <p className="absolute left-[340px] top-[420px] h-[78px] w-[770px] font-['Inter',sans-serif] text-[24px] leading-[normal] text-white">
         HUD，是游戏里的第一入口，把最重要的功能统一收纳起来，让玩家在战斗、基地、地图之间快速切换，同时通过红点提醒玩家去做任务、领奖励、升级、消费
       </p>
     </SectionFrame>
@@ -687,14 +669,14 @@ function RedesignDirectionSection() {
   ] as const;
 
   return (
-    <SectionFrame bg="#4f72e7">
-      <img src={caseOneAssets.revisedWarmOrbTopLeft} alt="" className="absolute left-0 top-[27px] size-[145px]" loading="lazy" decoding="async" />
+    <SectionFrame bg="#4d70e6">
+      <img src={caseOneAssets.revisedWarmOrbTopLeft} alt="" className="absolute left-0 top-[27px] size-[145px] opacity-20" loading="lazy" decoding="async" />
       <img src={caseOneAssets.revisedThinCircleTopLeft} alt="" className="absolute left-[31px] top-[31px] size-[110px]" loading="lazy" decoding="async" />
-      <img src={caseOneAssets.revisedWarmOrbBottomRight} alt="" className="absolute left-[927px] top-[681px] h-[300px] w-[330px]" loading="lazy" decoding="async" />
-      <img src={caseOneAssets.revisedThinCircleBottomRight} alt="" className="absolute left-[910px] top-[628px] size-[410px]" loading="lazy" decoding="async" />
+      <img src={caseOneAssets.revisedWarmOrbBottomRight} alt="" className="absolute left-[927px] top-[681px] h-[300px] w-[330px] opacity-20" loading="lazy" decoding="async" />
+      <img src={caseOneAssets.revisedThinCircleBottomRight} alt="" className="absolute left-[910px] top-[628px] size-[410px] opacity-20" loading="lazy" decoding="async" />
 
       <p className="absolute left-[88px] top-[89px] w-[240px] text-[32px] font-bold leading-[38px] tracking-[1.5px] text-white">改版方向</p>
-      <p className="absolute left-[89px] top-[132px] w-[440px] whitespace-pre-wrap text-[21px] font-normal leading-[26px] tracking-[8px] text-[#dbe4ff]/90">{`R E V I S E D   T A R G E T`}</p>
+      <p className="absolute left-[89px] top-[132px] w-[620px] whitespace-pre text-[21px] font-normal leading-[26px] tracking-[8px] text-[#dbe4ff]/90">{`R E V I S E D   T A R G E T`}</p>
 
       {cards.map(({ title, copy, left, center }, index) => (
         <div key={title}>
@@ -708,11 +690,11 @@ function RedesignDirectionSection() {
             {title}
           </p>
           <div
-            className="absolute top-[569px] w-[198px] -translate-x-1/2 text-center text-[30px] font-bold leading-[38px] tracking-[1px] text-[#8f9399]"
+            className="absolute top-[569px] w-[250px] -translate-x-1/2 text-center text-[30px] font-bold leading-[38px] tracking-[1px] text-[#8f9399]"
             style={{ left: center }}
           >
-            <p>{copy[0]}</p>
-            <p>{copy[1]}</p>
+            <p className="whitespace-nowrap">{copy[0]}</p>
+            <p className="whitespace-nowrap">{copy[1]}</p>
           </div>
         </div>
       ))}
@@ -1098,37 +1080,57 @@ function FunctionZoneHudMap() {
 }
 
 function FunctionZoneLayerDiagram() {
-  const labels = [
-    { text: '场景', left: 604, top: 80, lineLeft: 621, lineTop: 94, lineWidth: 95 },
-    { text: '信息展示', left: 454, top: 213, lineLeft: 466, lineTop: 228, lineWidth: 250, long: true },
-    { text: 'UI交互层', left: 604, top: 294, lineLeft: 621, lineTop: 309, lineWidth: 95 },
-  ];
-  return (
-    <div className="absolute left-0 top-0">
-      <img src={caseOneAssets.functionZoneSkews[0]} alt="" className="absolute left-[710px] top-[552px] h-[197px] w-[250px] object-cover" />
-      <img src={caseOneAssets.functionZoneSkews[1]} alt="" className="absolute left-[640px] top-[492px] h-[223px] w-[283px] object-cover opacity-50" />
-      <img src={caseOneAssets.functionZoneSkews[2]} alt="" className="absolute left-[677px] top-[611px] h-[128px] w-[65px] object-cover opacity-80" />
+  const arrow = (x: number, y: number) => `${x + 5},${y + 2} ${x + 24},${y + 11} ${x + 5},${y + 20}`;
 
-      {labels.map((label) => (
-        <div key={label.text}>
-          <img
-            src={label.long ? caseOneAssets.functionZoneAnnotLong : caseOneAssets.functionZoneAnnotShort}
-            alt=""
-            className="absolute h-[6px]"
-            style={{ left: label.lineLeft, top: label.lineTop, width: label.lineWidth }}
-          />
-          <img
-            src={caseOneAssets.functionZoneArrow}
-            alt=""
-            className="absolute left-[704px] h-[24px] w-[22px]"
-            style={{ top: label.top, transform: 'rotate(-90deg) scaleY(-1)' }}
-          />
-          <img src={caseOneAssets.functionZoneDot} alt="" className="absolute size-[22px]" style={{ left: label.left, top: label.top + 3 }} />
-          <p className="absolute left-[736px] w-[120px] text-[23px] leading-[28px] text-[#8e9299]" style={{ top: label.top }}>
-            {label.text}
-          </p>
-        </div>
-      ))}
+  return (
+    <div className="absolute left-0 top-0 h-[900px] w-[1280px]">
+      <svg
+        className="xingji-zone-layer-diagram absolute left-[640px] top-[492px] h-[257px] w-[473px] overflow-visible"
+        viewBox="0 0 473 257"
+        fill="none"
+        aria-hidden="true"
+      >
+        <g className="xingji-zone-layer-plane">
+          <polygon points="0,41 283,1 283,181 0,222" fill="#8e9299" opacity="0.5" />
+        </g>
+        <g className="xingji-zone-layer-plane">
+          <polygon points="70,96 320,61 320,220 70,257" fill="#5A78ED" opacity="0.52" />
+        </g>
+        <g className="xingji-zone-layer-plane">
+          <polygon points="37,142 102,120 102,223 37,247" fill="#00176F" opacity="0.42" />
+        </g>
+
+        <line className="xingji-zone-layer-line" x1="258" y1="15.5" x2="353" y2="15.5" stroke="#5A78ED" strokeWidth="3" strokeDasharray="6 7" />
+        <line className="xingji-zone-layer-line" x1="103" y1="148.5" x2="353" y2="148.5" stroke="#5A78ED" strokeWidth="3" strokeDasharray="6 7" />
+        <line className="xingji-zone-layer-line" x1="258" y1="230.5" x2="353" y2="230.5" stroke="#5A78ED" strokeWidth="3" strokeDasharray="6 7" />
+
+        <g className="xingji-zone-layer-dot">
+          <circle cx="252" cy="14" r="11" fill="#00176F" opacity="0.3" />
+          <circle cx="252" cy="14" r="6" fill="#5A78ED" />
+        </g>
+        <g className="xingji-zone-layer-dot">
+          <circle cx="102" cy="147" r="11" fill="#00176F" opacity="0.3" />
+          <circle cx="102" cy="147" r="6" fill="#5A78ED" />
+        </g>
+        <g className="xingji-zone-layer-dot">
+          <circle cx="252" cy="228" r="11" fill="#00176F" opacity="0.3" />
+          <circle cx="252" cy="228" r="6" fill="#5A78ED" />
+        </g>
+
+        <polygon className="xingji-zone-layer-arrow" points={arrow(341, 0)} fill="#5A78ED" />
+        <polygon className="xingji-zone-layer-arrow" points={arrow(341, 135)} fill="#5A78ED" />
+        <polygon className="xingji-zone-layer-arrow" points={arrow(341, 217)} fill="#5A78ED" />
+
+        <text className="xingji-zone-layer-label" x="373" y="0" fill="#8e9299" fontFamily="Inter, sans-serif" fontSize="23" dominantBaseline="hanging">
+          场景
+        </text>
+        <text className="xingji-zone-layer-label" x="373" y="133" fill="#8e9299" fontFamily="Inter, sans-serif" fontSize="23" dominantBaseline="hanging">
+          信息展示
+        </text>
+        <text className="xingji-zone-layer-label" x="373" y="214" fill="#8e9299" fontFamily="Inter, sans-serif" fontSize="23" dominantBaseline="hanging">
+          UI交互层
+        </text>
+      </svg>
     </div>
   );
 }
