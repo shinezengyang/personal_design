@@ -89,6 +89,8 @@ const caseEightAssets = {
 const caseNineAssets = {
   heroBg: 'figma/xingji-aodaisai/assets/ember-hero-bg.png',
   entryIdle: 'figma/xingji-aodaisai/assets/ember-entry-idle.png',
+  entryBubble: 'figma/xingji-aodaisai/assets/ember-entry-bubble.png',
+  quickEntry: 'figma/xingji-aodaisai/assets/ember-quick-entry.png',
   mainPanel: 'figma/xingji-aodaisai/assets/ember-main-panel.png',
   timeSelectA: 'figma/xingji-aodaisai/assets/ember-time-select-a.png',
   timeSelectB: 'figma/xingji-aodaisai/assets/ember-time-select-b.png',
@@ -118,6 +120,7 @@ const caseNineAssets = {
   settlementRewardB: 'figma/xingji-aodaisai/assets/ember-staytime-reward.png',
   settlementRankB: 'figma/xingji-aodaisai/assets/ember-staytime-reward-1.png',
   settlementCollectB: 'figma/xingji-aodaisai/assets/ember-smelt-result.png',
+  gallery: Array.from({ length: 24 }, (_, index) => `figma/xingji-aodaisai/assets/ember-gallery-${String(index + 1).padStart(2, '0')}.png`),
 } as const;
 
 const navalTrialAsset = (name: string) => publicUrl(`images/xingji/naval-trial/${name}`);
@@ -2929,7 +2932,13 @@ function EmbermineEntryDiscovery() {
         <p>这种非侵入式曝光降低了玩家的决策疲劳，让他们在预览活动概况后再自主决定是否参与，而非一进入游戏就被强制弹窗打断。</p>
       </div>
       <div className="absolute left-[764px] top-[310px] h-[545px] w-[240px] overflow-hidden rounded-[16px] border border-[#f47820] bg-[#161c2a] shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
-        <img src={resolveAsset(caseNineAssets.entryIdle)} alt="" className="absolute inset-0 h-full w-full object-contain" />
+        <img src={resolveAsset(caseNineAssets.entryIdle)} alt="" className="absolute left-0 top-[-0.05%] h-[100.06%] w-full max-w-none" />
+        <img
+          src={resolveAsset(caseNineAssets.entryBubble)}
+          alt=""
+          className="absolute left-[149px] top-[35px] h-[28px] w-[65px] max-w-none"
+          decoding="async"
+        />
       </div>
       <div className="absolute left-[80px] top-[495px] h-[360px] w-[600px] rounded-[6px] bg-[linear-gradient(180deg,rgba(38,46,71,0.6)_0%,rgba(26,31,46,0)_100%)]" />
       <p className="absolute left-[100px] top-[515px] font-['Inter',sans-serif] text-[14px] font-semibold text-[#f47820]">DESIGN INSIGHT</p>
@@ -3047,8 +3056,8 @@ function EmbermineTimeSelection() {
         时段选择提供多个时间场次，玩家根据自身时间安排自主选择。这一看似简单的功能背后是"感知控制"（Perceived Control）理论的应用——Deci与Ryan的自我决定理论指出，当个体感到对行为拥有选择权时，内在动机和承诺度显著提升。清晰的时段状态（可选/已满/已报名）和实时人数显示辅助决策，确认后Toast反馈闭合操作环路。
       </p>
 
-      <div className="absolute left-[80px] top-[294px] h-[651px] w-[300px] overflow-hidden rounded-[16px] border border-[#45c4e9] bg-[#0c0a12] shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
-              <img src={resolveAsset(caseNineAssets.timeSelectA)} alt="时段选择弹窗 — 选择前" className="absolute inset-0 h-full w-full object-cover object-top" />
+      <div className="absolute left-[80px] top-[295px] h-[650px] w-[300px] overflow-hidden rounded-[16px] border border-[#45c4e9] bg-[#0c0a12] shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
+        <img src={resolveAsset(caseNineAssets.timeSelectA)} alt="时段选择弹窗 — 选择前" className="absolute left-0 top-[-4.8%] h-[104.82%] w-full max-w-none" />
       </div>
       <div className="absolute left-[460px] top-[294px] h-[650px] w-[300px] overflow-hidden rounded-[16px] border border-[#45c4e9]">
         <img src={resolveAsset(caseNineAssets.timeSelectB)} alt="时段选择弹窗 — 确认后" className="absolute inset-0 h-full w-full object-cover" />
@@ -3588,12 +3597,60 @@ function EmbermineRankingSystem() {
 
 function EmbermineRewardsSettlement() {
   const cards = [
-    [caseNineAssets.settlementRewardA, 80, 263, '战斗结算 · 奖励发放', '通过结算页逐步揭示奖励', '强化战斗收尾的成就感'],
-    [caseNineAssets.settlementRankA, 460, 263, '占领排名榜', '占领时长维度的排名', '为防守型玩家提供成就路径'],
-    [caseNineAssets.settlementCollectA, 840, 263, '采集总排行', '综合采集量排行', '触发社会比较的核心驱动力'],
-    [caseNineAssets.settlementRewardB, 80, 1059, '邮件详情 · 奖励发放', '通过邮件承接排名奖励', '让结算反馈延续到领取动作'],
-    [caseNineAssets.settlementRankB, 460, 1059, '邮件详情 · 采集报告', '按矿脉明细回顾采集收益', '帮助玩家复盘资源获取路径'],
-    [caseNineAssets.settlementCollectB, 840, 1059, '详情对比', '并列展示双方采集与排行结果', '把胜负差距讲得更直观'],
+    {
+      src: caseNineAssets.settlementRewardA,
+      left: 80,
+      top: 263,
+      title: '战斗结算 · 奖励发放',
+      line1: '通过结算页逐步揭示奖励',
+      line2: '强化战斗收尾的成就感',
+      imageClass: 'absolute inset-0 h-full w-full max-w-none rounded-[16px] object-cover',
+    },
+    {
+      src: caseNineAssets.settlementRankA,
+      left: 460,
+      top: 263,
+      title: '占领排名榜',
+      line1: '占领时长维度的排名',
+      line2: '为防守型玩家提供成就路径',
+      imageClass: 'absolute left-0 top-[-4.63%] h-[104.64%] w-full max-w-none',
+    },
+    {
+      src: caseNineAssets.settlementCollectA,
+      left: 840,
+      top: 263,
+      title: '采集总排行',
+      line1: '综合采集量排行',
+      line2: '触发社会比较的核心驱动力',
+      imageClass: 'absolute left-0 top-[-4.63%] h-[104.64%] w-full max-w-none',
+    },
+    {
+      src: caseNineAssets.settlementRewardB,
+      left: 80,
+      top: 1059,
+      title: '邮件详情 · 奖励发放',
+      line1: '通过邮件承接排名奖励',
+      line2: '让结算反馈延续到领取动作',
+      imageClass: 'absolute inset-0 h-full w-full max-w-none rounded-[16px] object-cover',
+    },
+    {
+      src: caseNineAssets.settlementRankB,
+      left: 460,
+      top: 1059,
+      title: '邮件详情 · 采集报告',
+      line1: '按矿脉明细回顾采集收益',
+      line2: '帮助玩家复盘资源获取路径',
+      imageClass: 'absolute inset-0 h-full w-full max-w-none rounded-[16px] object-cover',
+    },
+    {
+      src: caseNineAssets.settlementCollectB,
+      left: 840,
+      top: 1059,
+      title: '详情对比',
+      line1: '并列展示双方采集与排行结果',
+      line2: '把胜负差距讲得更直观',
+      imageClass: 'absolute inset-0 h-full w-full max-w-none rounded-[16px] object-cover',
+    },
   ] as const;
 
   return (
@@ -3607,7 +3664,7 @@ function EmbermineRewardsSettlement() {
         结算界面是整场体验的情感终点。奖励弹窗采用级联展开动效逐步揭示内容，最大化惊喜感。设计运用了禀赋效应（Endowment Effect）——30分钟内积累的资源和排名形成了心理所有权，结算时的奖励兑现强化"这是我赢得的"的拥有感。
       </p>
 
-      {cards.map(([src, left, top, title, line1, line2]) => (
+      {cards.map(({ src, left, top, title, line1, line2, imageClass }) => (
         <div key={`${title}-${top}`}>
           <div
             className="absolute h-[651px] w-[300px] overflow-hidden rounded-[16px] border border-[#f59e26] shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
@@ -3616,11 +3673,7 @@ function EmbermineRewardsSettlement() {
             <img
               src={resolveAsset(src)}
               alt={title}
-              className={
-                title === '占领排名榜' || title === '采集总排行'
-                  ? 'absolute inset-0 h-full w-full object-contain'
-                  : 'absolute inset-0 h-full w-full rounded-[16px] object-cover'
-              }
+              className={imageClass}
             />
           </div>
           <p className="absolute text-[17px] font-bold text-[#f59e26]" style={{ left, top: top + 661 }}>
@@ -3671,7 +3724,7 @@ function EmbermineQuickEntry() {
 
       <div className="absolute left-[170px] top-[270px] h-[694px] w-[320px] overflow-hidden rounded-[18px] border-[1.5px] border-[rgba(69,196,233,0.9)] shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
         <img
-          src={resolveAsset(caseNineAssets.entryIdle)}
+          src={resolveAsset(caseNineAssets.quickEntry)}
           alt="燃海矿区快捷入口"
           className="absolute inset-0 h-full w-full rounded-[18px] object-cover"
         />
@@ -3849,43 +3902,16 @@ function EmbermineDesignReview() {
 }
 
 function EmbermineGallery() {
-  const gallery = [
-    caseNineAssets.entryIdle,
-    caseNineAssets.mainPanel,
-    caseNineAssets.timeSelectA,
-    caseNineAssets.timeSelectB,
-    caseNineAssets.trialPanel,
-    caseNineAssets.preBattleReminder,
-    caseNineAssets.preBattleCountdown,
-    caseNineAssets.battleHudA,
-    caseNineAssets.battleHudB,
-    caseNineAssets.battleHudC,
-    caseNineAssets.mapSystemDetail,
-    caseNineAssets.mapSystemField,
-    caseNineAssets.mapInteractMoveTown,
-    caseNineAssets.mapInteractMarch,
-    caseNineAssets.mapInteractBuilding,
-    caseNineAssets.mapInteractTeleport,
-    caseNineAssets.skillTreeOverview,
-    caseNineAssets.skillTreeAdvanced,
-    caseNineAssets.miningHudA,
-    caseNineAssets.miningHudB,
-    caseNineAssets.smeltingPanel,
-    caseNineAssets.rankingReward,
-    caseNineAssets.settlementRankA,
-    caseNineAssets.settlementCollectA,
-  ];
-
   return (
-    <LongPageSection height={3650} bg="#0d0617">
+    <LongPageSection height={3717} bg="#0d0617">
       <p className="absolute left-[80px] top-[80px] font-['Inter',sans-serif] text-[16px] font-semibold text-[#f47820]">DESIGN SUMMARY</p>
       <p className="absolute left-[80px] top-[115px] text-[48px] font-black text-white">视觉稿欣赏</p>
       <div className="absolute left-[80px] top-[178px] h-[5px] w-[80px] bg-[#f47820]" />
 
-      <div className="absolute left-[80px] top-[262px] grid w-[1140px] grid-cols-4 gap-x-[50px] gap-y-[50px]">
-        {gallery.map((src, index) => (
-          <div key={`${src}-${index}`} className={`relative w-[240px] overflow-hidden ${index === 19 ? 'h-[525px]' : 'h-[520px]'}`}>
-            <img src={resolveAsset(src)} alt={`视觉稿 ${index + 1}`} className="absolute inset-0 h-full w-full object-cover" />
+      <div className="absolute left-[80px] top-[262px] flex w-[1140px] flex-wrap content-start items-start justify-center gap-[50px]">
+        {caseNineAssets.gallery.map((src, index) => (
+          <div key={src} className={`relative w-[240px] shrink-0 overflow-hidden ${index === 19 ? 'h-[525px]' : 'h-[520px]'}`}>
+            <img src={resolveAsset(src)} alt={`视觉稿 ${index + 1}`} className="pointer-events-none absolute inset-0 h-full w-full max-w-none object-cover" />
           </div>
         ))}
       </div>

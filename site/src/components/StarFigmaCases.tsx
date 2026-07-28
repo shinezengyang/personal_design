@@ -1138,17 +1138,17 @@ const hsTrial = {
 };
 
 const hsGang = {
-  eventIpSceneBg01: publicUrl('/images/xingji/ip-collab/scene-bg.webp'),
-  eventIpCrewDetailShow02: publicUrl('/images/xingji/ip-collab/hero-character.webp'),
-  panel23441: 'https://www.figma.com/api/mcp/asset/5e378436-52a2-49de-93d6-3e62e897995d',
-  stateImg0: 'https://www.figma.com/api/mcp/asset/67791c81-33f5-4ef1-b4f6-34a925f997d4',
-  stateImg1: 'https://www.figma.com/api/mcp/asset/1dc068d5-b05e-42fd-8725-c752ca964daa',
-  stateImg2: 'https://www.figma.com/api/mcp/asset/3b75a069-2b59-44e7-ba58-68549717414e',
-  stateImg3: 'https://www.figma.com/api/mcp/asset/f563eecf-f14d-481c-b79d-c3db2177b98e',
-  panel34651: 'https://www.figma.com/api/mcp/asset/aa5572f5-cece-4931-908c-2263c05d9068',
-  sec7HeroDetailImg: 'https://www.figma.com/api/mcp/asset/486fc820-78da-44f4-8d20-2dc402e0bfb9',
-  sec7HeroPortraitImg: 'https://www.figma.com/api/mcp/asset/e754f909-832c-4880-8331-709ffbc6907e',
-  collage: 'https://www.figma.com/api/mcp/asset/19783108-7c06-4013-905a-adc2c9ffa7ba',
+  eventIpSceneBg01: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-scene-bg.png'),
+  eventIpCrewDetailShow02: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-character.png'),
+  panel23441: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-main-panel.png'),
+  stateImg0: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-locked.png'),
+  stateImg1: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-claimable.png'),
+  stateImg2: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-claimed.png'),
+  stateImg3: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-maxed.png'),
+  panel34651: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-task-panel.png'),
+  sec7HeroDetailImg: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-detail.png'),
+  sec7HeroPortraitImg: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-portrait.png'),
+  collage: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-outcome-collage.png'),
 };
 
 type HSAbsProps = {
@@ -1934,7 +1934,11 @@ export function HighSeasCleanupGangExactCase() {
         <HSSection className="hs-gang-section" top={4250} height={1015}>
           <HSGangHeader n="05" title="目标任务系统" en="TARGET TASK SYSTEM" top={4250} />
           <HSAbs className="gang-principle gang-task-principle" style={{ left:80, top:4419 }}><em>GAME DESIGN THEORY</em><b>目标驱动设计</b><span>任务列表将活动目标分解为可量化的子目标，进度条(N/10)提供即时成就反馈，利用Zeigarnik效应——未完成的任务更具驱动力。</span><div className="gang-progress"><i /><b>7/10</b></div></HSAbs>
-          <HSAbs className="gang-black-phone" style={{ left:552, top:4419 }}><HSImg src={hsGang.panel34651} style={{ left:23, top:150, width:314, height:472 }}/></HSAbs>
+          <HSAbs className="gang-black-phone" style={{ left:552, top:4419 }}>
+            <div className="gang-task-panel-crop abs" style={{ left:23, top:150, width:314, height:472 }}>
+              <img src={hsGang.panel34651} alt="" loading="lazy" decoding="async" />
+            </div>
+          </HSAbs>
           {[
             [937,4665,'任务列表卡片','每条任务独立展示名称、进度(N/10)、奖励道具与操作按钮，信息密度适中'],
             [937,4863,'差异化按钮状态','黄色=待领取，绿色=进行中，蓝色=已完成，灰色=不可操作'],
