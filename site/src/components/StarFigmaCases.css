@@ -182,6 +182,7 @@
 
 .cdst-stage { background: #141414; color: #fff; }
 .cdst-bg-slab {
+  max-width: none;
   object-fit: fill !important;
   pointer-events: none;
   z-index: 0;
