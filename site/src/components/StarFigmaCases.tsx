@@ -348,6 +348,8 @@ function CdstCase() {
 
         <div className="cdst-project-wedge abs" style={{ top: SEC.project }} />
         <div className="cdst-pain-wedge abs" style={{ top: SEC.pain + 380 }} />
+        <div className="cdst-user-wedge abs" style={{ top: SEC.user + 206 }} />
+        <div className="cdst-structure-wedge abs" style={{ top: SEC.struct + 644 }} />
 
         {/* ── 项目概括 + 市场分析 (base 1495.5, h1887) ── */}
         <CdstTitle y={SEC.project} title="项目概括" en="Project Overview" w={337} tone="black" />
@@ -382,10 +384,17 @@ function CdstCase() {
         <div className="competitor-summary" style={{ left: 1481.5, top: SEC.comp + 345.5, width: 760 }}>
           <span className="cs-title">总结</span>
           <p>四款都是非常成熟的职前教育型产品</p>
-          <p>爱思益是与企业合作进行课程教研，甚至将爱思益课程作为新员工入职培训课，作为合作企业的全新招聘渠道。</p>
-          <p>职业蛙拥有自主研发“在线求职竞争力评估系统”，数据覆盖学员求职全过程的特色。</p>
-          <p>职优你前期在北美独家签约一些高校，成为后续和国内高校合作的背书。</p>
-          <p>职梦师具有通过每周两场免费在线讲座获客，以及付费群体90%是中国留学生的优势。</p>
+          <p>爱思益是与企业合作进行课程教研，</p>
+          <p>甚至将爱思益课程作为新员工入职培</p>
+          <p>训课，作为合作企业的全新招聘渠道。</p>
+          <p>职业蛙拥有自主研发“在线求职竞争</p>
+          <p>力评估系统”，数据覆盖学员求职全</p>
+          <p>过程的特色。</p>
+          <p>职优你前期在北美独家签约一些高校，</p>
+          <p>成为后续和国内高校合作的背书。</p>
+          <p>职梦师具有通过每周两场免费在线讲座获</p>
+          <p>客，以及付费群体90%是中国留学生</p>
+          <p>的优势。</p>
         </div>
 
         {/* ── 用户画像 (base 7540.5, h2789) ── */}
@@ -401,7 +410,7 @@ function CdstCase() {
 
         {/* ── 产品结构 (base 10653.5, h1755) ── */}
         <CdstTitle y={SEC.struct} title="产品结构" en="Product Structure" w={350} />
-        <div className="cdst-paragraph white" style={{ left: 201.5, top: SEC.struct + 249.5, width: 1300 }}>说明：<br />　　该项目共分为小程序-用户端、运营后台系统两部分；<br />　　　本次设计主要针对小程序-用户端展开。</div>
+        <div className="cdst-paragraph white cdst-structure-copy" style={{ left: 201.5, top: SEC.struct + 249.5, width: 1300 }}>说明：<br />　　该项目共分为小程序-用户端、运营后台系统两部分；<br />　　本次设计主要针对小程序-用户端展开。</div>
         <img src={cdst.struct} className="abs img-cover" style={{ left: 198.5, top: SEC.struct + 703.5, width: 2082, height: 1052 }} />
 
         {/* ── 产品流程 (base 12691.5, h819) ── */}
