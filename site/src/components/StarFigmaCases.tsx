@@ -300,7 +300,7 @@ function CdstCase() {
   };
   return (
     <div ref={pageRef} className="star-case-page cdst-page">
-      <FigmaScaleStage width={2480} height={33204} className="cdst-stage">
+      <FigmaScaleStage width={2480} height={33204} className="cdst-stage" fitToViewport viewportInset={0}>
         {/* ── 头图 hero (y0 h1471) ── */}
         <img
           src={publicUrl('/images/xingji/cdst/cdst-hero-cover.webp')}

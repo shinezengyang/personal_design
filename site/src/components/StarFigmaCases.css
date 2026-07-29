@@ -885,6 +885,17 @@
   .star-figma-shell { margin: 0 auto; }
 }
 
+.cdst-page {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50vw - 1240px);
+  margin-right: calc(50vw - 1240px);
+  overflow: visible;
+}
+.cdst-page .star-figma-shell {
+  margin: 0;
+}
+
 /* ─────────────────────────────────────────────────────────────
    High Seas exact case pages: Navy Trial + Cleanup Gang
    ───────────────────────────────────────────────────────────── */
