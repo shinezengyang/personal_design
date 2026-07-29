@@ -58,6 +58,13 @@ const tianmaiAssets = {
   resourceMain: '/assets/qingyu-tianmai/resource-main.png',
   resourceConfirmA: '/assets/qingyu-tianmai/resource-confirm-a.png',
   resourceConfirmB: '/assets/qingyu-tianmai/resource-confirm-b.png',
+  resourceLine185: '/assets/qingyu-tianmai/line-185.svg',
+  resourceLine186: '/assets/qingyu-tianmai/line-186.svg',
+  resourceLine187: '/assets/qingyu-tianmai/line-187.svg',
+  resourceLine193: '/assets/qingyu-tianmai/line-193.svg',
+  resourceLine196: '/assets/qingyu-tianmai/line-196.svg',
+  resourceLine194: '/assets/qingyu-tianmai/line-194.svg',
+  resourceLine195: '/assets/qingyu-tianmai/line-195.svg',
   final: '/assets/qingyu-tianmai/final.png',
 };
 
@@ -830,7 +837,15 @@ function TianmaiCase() {
         <Img src={tianmaiAssets.resourceMain} className="tm-small b" alt="主界面" />
         <Img src={tianmaiAssets.resourceConfirmA} className="tm-confirm a" alt="局部确认弹窗" />
         <Img src={tianmaiAssets.resourceConfirmB} className="tm-confirm b" alt="局部反馈弹窗" />
-        <div className="tm-resource-lines" aria-hidden="true"><i className="a" /><i className="b" /><i className="c" /><i className="d" /><i className="e" /><i className="f" /></div>
+        <div className="tm-resource-lines" aria-hidden="true">
+          <Img src={tianmaiAssets.resourceLine185} className="line185" alt="" />
+          <Img src={tianmaiAssets.resourceLine186} className="line186" alt="" />
+          <Img src={tianmaiAssets.resourceLine187} className="line187" alt="" />
+          <Img src={tianmaiAssets.resourceLine193} className="line193" alt="" />
+          <Img src={tianmaiAssets.resourceLine196} className="line196" alt="" />
+          <Img src={tianmaiAssets.resourceLine194} className="line194" alt="" />
+          <Img src={tianmaiAssets.resourceLine195} className="line195" alt="" />
+        </div>
         <div className="tm-resource-captions"><b>A. 合成天脉晶石</b><b>B. 分解天脉晶石</b></div>
         <Img src={tianmaiAssets.compose} className="tm-resource-img a" alt="合成天脉晶石" />
         <Img src={tianmaiAssets.split} className="tm-resource-img b" alt="分解天脉晶石" />
