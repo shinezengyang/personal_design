@@ -1510,12 +1510,13 @@ export default function ProjectDetail({
   const isQingyuFigmaExactCase = project.id === 'qingyu-nian' && ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'].includes(resolvedActiveDetailTab);
   const isQingyuCaseTab = project.id === 'qingyu-nian' && resolvedActiveDetailTab !== 'framework';
   const usesFullWidthFigmaCanvas = isStarStandaloneFigmaCase;
+  const trimsStandaloneFigmaFooter = project.id === 'xingji-ip-collab';
 
   return (
     <section
       className={
         usesFullWidthFigmaCanvas
-          ? 'relative min-h-screen w-full overflow-x-auto px-0 pb-24 pt-10'
+          ? `relative min-h-screen w-full overflow-x-auto px-0 ${trimsStandaloneFigmaFooter ? 'pb-0' : 'pb-24'} pt-10`
           : 'relative w-full min-h-screen px-6 pb-24 pt-10 sm:px-12 lg:px-20 2xl:px-24'
       }
     >

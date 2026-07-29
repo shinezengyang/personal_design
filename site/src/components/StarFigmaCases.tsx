@@ -367,6 +367,7 @@ function CdstCase() {
     other: SEC.visual + 4923.5, // 组9  -> 29521
     icon: SEC.visual + 6321.5,  // 组10 -> 30919
   };
+  const stageHeight = V.icon + 1686;
   const bgSlabs = [
     { src: cdst.bgStrokeHero, left: -260, top: 1411, width: 3000, height: 1490, flip: true },
     { src: cdst.bgStrokeStandard, left: -260, top: 3908, width: 3000, height: 2013.5 },
@@ -381,7 +382,7 @@ function CdstCase() {
 
   return (
     <div ref={pageRef} className="star-case-page cdst-page">
-      <FigmaScaleStage width={2480} height={33204} className="cdst-stage" fitToViewport viewportInset={0}>
+      <FigmaScaleStage width={2480} height={stageHeight} className="cdst-stage" fitToViewport viewportInset={0}>
         {bgSlabs.map((slab, index) => (
           <img
             key={`${slab.src}-${index}`}
