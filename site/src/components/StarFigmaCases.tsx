@@ -256,6 +256,7 @@ const cdst = {
   /* UI 视觉：独立手机稿/装饰图分层渲染 */
   uiVisionHomeExact: publicUrl('/images/xingji/cdst/layers/ui-vision-home-exact.png?v=figma-9817-19294'),
   uiVisionLevelExact: publicUrl('/images/xingji/cdst/layers/ui-vision-level-exact.png?v=figma-9817-19303'),
+  uiVisionOtherExact: publicUrl('/images/xingji/cdst/layers/ui-vision-other-exact.png?v=figma-9817-19322'),
   uiHome1: publicUrl('/images/xingji/cdst/layers/ui-home-1.webp'),
   uiHome2: publicUrl('/images/xingji/cdst/layers/ui-home-2.webp'),
   uiStrip: publicUrl('/images/xingji/cdst/layers/ui-strip.webp'),
@@ -280,6 +281,41 @@ const cdst = {
   bgStrokeEnd: publicUrl('/images/xingji/cdst/bg/stroke-end.svg'),
 };
 
+const cdstIconAsset = (name: string) => publicUrl(`/images/xingji/cdst/layers/icons/${name}.png?v=figma-9817-19330`);
+
+const cdstUiIconLayers = [
+  ['icon-27', 425, 4, 113, 147],
+  ['icon-10', 834, 15, 137, 127],
+  ['icon-11', 1286, 0, 139, 133],
+  ['icon-12', 0, 2, 143, 151],
+  ['icon-13', 40, 820, 89, 95],
+  ['icon-14', 449, 820, 89, 88],
+  ['icon-15', 858, 818, 89, 88],
+  ['icon-16', 1312, 816, 88, 88],
+  ['icon-17', 21, 317, 134, 134],
+  ['icon-28', 62, 317, 41, 134],
+  ['icon-18', 836, 316, 132, 133],
+  ['icon-19', 1306, 327, 109, 135],
+  ['icon-20', 422, 324, 132, 129],
+  ['icon-22', 455, 592, 74, 88],
+  ['icon-23', 865, 603, 77, 77],
+  ['icon-24', 43, 589, 77, 79],
+  ['icon-25', 1310, 602, 89, 78],
+] as const;
+
+const cdstColorSwatches = [
+  ['swatch-efc28b', '#efc28b', 0, 190, 376, 131, 74, 46, '#fff'],
+  ['swatch-ec965d', '#ec965d', 427, 190, 376, 131, 74, 46, '#fefefe'],
+  ['swatch-7f8bd3', '#7f8bd3', 855, 192, 375, 130, 73, 45, '#fff'],
+  ['swatch-64a6da', '#64a6da', 1281, 192, 375, 130, 76, 45, '#fff'],
+  ['swatch-fb6e5a', '#fb6e5a', 1707, 192, 376, 130, 69, 45, '#fff'],
+  ['swatch-04b77f', '#04b77f', 0, 450, 376, 131, 74, 46, '#fff'],
+  ['swatch-56c1bb', '#56c1bb', 427, 450, 376, 131, 74, 46, '#fefefe'],
+  ['swatch-626a81', '#626a81', 855, 451, 375, 131, 73, 46, '#fff'],
+  ['swatch-fdfdfd', '#fdfdfd', 1281, 451, 375, 131, 87, 46, '#000'],
+  ['swatch-979797', '#979797', 1707, 451, 376, 131, 70, 46, '#fff'],
+] as const;
+
 function CdstCase() {
   const pageRef = useRef<HTMLDivElement | null>(null);
 
@@ -287,7 +323,7 @@ function CdstCase() {
     const root = pageRef.current;
     if (!root) return;
 
-    const items = Array.from(root.querySelectorAll<HTMLElement>('.cdst-stage > *:not(.cdst-bg-slab):not(.cdst-section-shield):not(.cdst-interaction-shield):not(.cdst-exact-section):not(.cdst-exact-subsection)'));
+    const items = Array.from(root.querySelectorAll<HTMLElement>('.cdst-stage > *:not(.cdst-bg-slab):not(.cdst-section-shield):not(.cdst-interaction-shield):not(.cdst-exact-section):not(.cdst-exact-subsection):not(.cdst-color-swatch):not(.cdst-ui-icon-asset)'));
     items.forEach((item, index) => {
       item.classList.add('cdst-reveal-item');
       item.style.setProperty('--cdst-reveal-delay', `${(index % 6) * 55}ms`);
@@ -463,47 +499,26 @@ function CdstCase() {
         {/* 层级页面 (组6 base 26459) */}
         <img src={cdst.uiVisionLevelExact} className="abs cdst-exact-subsection" style={{ left: 270, top: V.level, width: 1898, height: 2910 }} alt="" />
 
-        {/* 其他界面 (组9 base 29521) */}
-        <div className="visual-label" style={{ left: 272.5 + 14, top: V.other }}>—　　其他界面　　—</div>
-        <img src={cdst.uiOtherStrip} className="abs img-cover" style={{ left: 272.5, top: V.other + 948, width: 1931, height: 308, opacity: .9 }} />
-        <img src={cdst.uiOther1} className="abs phone-hero img-cover" style={{ left: 272.5, top: V.other + 255, width: 371, height: 801 }} />
-        <img src={cdst.uiOther2} className="abs phone-hero img-cover" style={{ left: 272.5 + 361, top: V.other + 224, width: 405, height: 875 }} />
-        <img src={cdst.uiOther3} className="abs phone-hero img-cover" style={{ left: 272.5 + 741, top: V.other + 161, width: 447, height: 966 }} />
-        <img src={cdst.uiOther4} className="abs phone-hero img-cover" style={{ left: 272.5 + 1163, top: V.other + 210, width: 412, height: 891 }} />
-        <img src={cdst.uiOther5} className="abs phone-hero img-cover" style={{ left: 272.5 + 1561, top: V.other + 259, width: 370, height: 800 }} />
+        {/* 其他界面 (Figma 9817:19322) */}
+        <img src={cdst.uiVisionOtherExact} className="abs cdst-exact-subsection" style={{ left: 170, top: V.other, width: 2311, height: 1346 }} alt="" />
 
         {/* ICON & 配色 (组10 base 30919) */}
         <div className="visual-label" style={{ left: 197.5 + 902, top: V.icon }}>ICONH&amp;配色</div>
-        {([
-          ['30862268-fbae-4a0f-8f22-334e8440de2d', 425, 4, 113, 147],
-          ['f99cf099-573a-4fe3-81b0-24528244e2a0', 834, 15, 137, 127],
-          ['023b802d-0e4b-4f98-9129-6fdb5878a954', 1286, 0, 139, 133],
-          ['d58cf41b-cdc0-4dad-b1c4-572769b29286', 0, 2, 143, 151],
-          ['e6c210b6-61fe-4c11-81e9-f6dec65b898c', 40, 820, 89, 95],
-          ['8fc48c89-0ca0-44d0-9a77-85ee46a10cd5', 449, 820, 89, 88],
-          ['557718d3-d1d4-403a-bbab-5a00b1c6114d', 858, 818, 89, 88],
-          ['6f32134c-eb2b-4651-8a4e-ad428835f6d3', 1312, 816, 88, 88],
-          ['fddb2a45-552a-4c22-b178-3146773dc26c', 21, 317, 134, 134],
-          ['b7472369-928b-4db5-a630-35056844a323', 62, 317, 41, 134],
-          ['accdb998-633a-4e8f-a659-5a1f25974a86', 836, 316, 132, 133],
-          ['50a0d443-65a7-4bcd-9102-8b0d7c5f4f36', 1306, 327, 109, 135],
-          ['ada66750-7c9a-457b-8f54-4e59dcc4c45a', 422, 324, 132, 129],
-          ['1627e91b-031c-4cad-b2cb-4e18de2c7e01', 455, 592, 74, 88],
-          ['5cafb531-e97b-4836-a0e6-7a950915acf1', 865, 603, 77, 77],
-          ['73ba1c0b-a4dc-427a-b828-1e8071c35f3c', 43, 589, 77, 79],
-          ['dc29857d-f17e-4b4c-bce4-e2a96f6871bc', 1310, 602, 89, 78],
-        ] as [string, number, number, number, number][]).map(([id, ix, iy, iw, ih], iconIndex) => (
-          <span key={id} className="abs cdst-symbol-icon"
-            style={{ left: 530.5 + ix, top: V.icon + 771 + iy, width: iw, height: ih }}>
-            {['◇', '○', '△', '＋'][iconIndex % 4]}
+        {cdstColorSwatches.map(([asset, label, x, y, w, h, textX, textY, color]) => (
+          <span key={asset} className="abs cdst-color-swatch" style={{ left: 197.5 + x, top: V.icon + y, width: w, height: h }}>
+            <img src={cdstIconAsset(asset)} className="abs img-fill" alt="" />
+            <span className="abs cdst-color-label" style={{ left: textX, top: textY, color }}>{label}</span>
           </span>
         ))}
-        <div className="color-grid" style={{ left: 197.5, top: V.icon + 190 }}>
-          {[
-            ['#efc28b', '#fff'], ['#ec965d', '#fefefe'], ['#7f8bd3', '#fff'], ['#64a6da', '#fff'], ['#fb6e5a', '#fff'],
-            ['#04b77f', '#fff'], ['#56c1bb', '#fefefe'], ['#626a81', '#fff'], ['#fdfdfd', '#111'], ['#979797', '#fff'],
-          ].map(([bg, fg]) => <span key={bg} style={{ background: bg, color: fg }}>{bg}</span>)}
-        </div>
+        {cdstUiIconLayers.map(([asset, ix, iy, iw, ih]) => (
+          <img
+            key={asset}
+            src={cdstIconAsset(asset)}
+            className="abs cdst-ui-icon-asset"
+            style={{ left: 197.5 + 333 + ix, top: V.icon + 771 + iy, width: iw, height: ih }}
+            alt=""
+          />
+        ))}
       </FigmaScaleStage>
     </div>
   );
