@@ -191,6 +191,8 @@
 
 /* Tianmai local restoration: images, arrows, annotation lines, and Figma text colors. */
 .tianmai-canvas img { display: block; object-fit: cover; opacity: 1 !important; }
+.tm-cover h1 { font-weight: 900; }
+.tm-cover p { font-weight: 500; }
 .tm-loop-grid { gap: 95px; z-index: 2; }
 .tm-loop-card { position: relative; padding: 31px 16px 0 80px; }
 .tm-loop-grid h3, .tm-loop-grid p { margin: 0; white-space: nowrap; }
@@ -201,7 +203,7 @@
 .tm-loop-icon.hex { left: 12px; top: 16px; width: 64px; height: 64px; }
 .tm-loop-icon.hex::before, .tm-loop-icon.hex::after { content: ""; position: absolute; display: block; background-repeat: no-repeat; background-size: 100% 100%; transform: rotate(-30deg); }
 .tm-loop-icon.hex::before { left: 6px; top: 7px; width: 40.61px; height: 46.9px; background-image: url("/assets/qingyu-tianmai/loop-hex-outer.svg"); }
-.tm-loop-icon.hex::after { left: 14px; top: 15px; width: 30.3px; height: 34.98px; background-image: url("/assets/qingyu-tianmai/loop-hex-inner-soft.svg"); }
+.tm-loop-icon.hex::after { left: 11.15px; top: 12.95px; width: 30.3px; height: 34.98px; background-image: url("/assets/qingyu-tianmai/loop-hex-inner-soft.svg"); }
 .tm-loop-icon.hex.inject::after { width: 30.24px; height: 34.92px; background-image: url("/assets/qingyu-tianmai/loop-hex-inner-solid.svg"); }
 .tm-loop-icon.bag { left: 26px; top: 28px; width: 42px; height: 43px; }
 .tm-loop-icon.bag::before { content: ""; position: absolute; left: 0; top: 10px; width: 41px; height: 33px; border: 1.4px solid #8db8ff; border-radius: 6px; background: #111823; }
