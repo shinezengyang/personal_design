@@ -461,6 +461,11 @@
   filter: none;
   object-fit: fill !important;
 }
+.cdst-exact-section {
+  max-width: none;
+  object-fit: fill !important;
+  pointer-events: none;
+}
 
 .cdst-profile-prototype {
   width: 1999px;

@@ -250,11 +250,8 @@ const cdst = {
   struct: publicUrl('/images/xingji/cdst/assets/product-structure.png'),
   flow: publicUrl('/images/xingji/cdst/assets/product-flow.webp'),
 
-  /* 交互原型：手机稿和流程线使用 Figma 原始图层，说明文字由 DOM 渲染 */
-  prototypeSalary: publicUrl('/images/xingji/cdst/layers/prototype-salary.png'),
-  prototypeTest: publicUrl('/images/xingji/cdst/layers/prototype-test.png'),
-  prototypeProfile: publicUrl('/images/xingji/cdst/layers/prototype-profile.png'),
-  prototypeStatus: publicUrl('/images/xingji/cdst/layers/prototype-status.png'),
+  /* 交互原型：整段使用 Figma 9817:19235 精确导出，避免局部分层裁切/叠字 */
+  interactionPrototype: publicUrl('/images/xingji/cdst/layers/interaction-prototype-full.png'),
 
   /* UI 视觉：独立手机稿/装饰图分层渲染 */
   uiHome1: publicUrl('/images/xingji/cdst/layers/ui-home-1.webp'),
@@ -324,13 +321,6 @@ function CdstCase() {
     flow: 12691.5,
     inter: 13826.5,
     visual: 24597.5,
-  };
-  /* 交互 sub-block bases (frame y inside 交互) */
-  const I = {
-    salary: SEC.inter + 293,   // 组19  -> 14119.5
-    test: SEC.inter + 3289,    // 组20  -> 17115.5
-    profile: SEC.inter + 5535, // 组21  -> 19361.5
-    status: SEC.inter + 8426,  // 组22  -> 22252.5
   };
   /* 视觉 sub-block bases (frame y inside 视觉) */
   const V = {
@@ -449,45 +439,13 @@ function CdstCase() {
         <div className="cdst-paragraph white" style={{ left: 200.5, top: SEC.flow + 256.5, width: 1400, lineHeight: '50px' }}>用户测试与咨询流程</div>
         <img src={cdst.flow} className="abs img-cover" style={{ left: 199.5, top: SEC.flow + 437.5, width: 2080, height: 382 }} />
 
-        {/* ── 交互原型 (base 13826.5, h10413) ── */}
-        <CdstTitle y={SEC.inter} title="交互原型" en="Interactive Prototype" w={415} />
-
-        {/* 薪资计算器 (组19 base 14119.5) */}
-        <div className="interaction-title" style={{ left: 280.5, top: I.salary - 0.5 }}>|　　薪资计算器　　|<br /><span>用户选择自己所期望的城市、期望的行业、毕业院校、最高学历，系统将估算出用户毕业后大<br />概的工资水平，从而对自身能够有基本的判断，并且了解当地的五险一金情况。</span></div>
-        <img src={cdst.prototypeSalary} className="abs cdst-prototype-layer img-cover" style={{ left: 292.5, top: I.salary + 248.5, width: 1311, height: 2422 }} />
-        <Anno x={1263} y={I.salary + 437} text="计算该城市的开支" vertical />
-        <Anno x={1190.5} y={I.salary + 750.5} text="进入测试页面" />
-        <Anno x={880.5} y={I.salary + 2111.5} text="计算出最低的薪资水平" black />
-        <Anno x={244} y={I.salary + 2257} text="当地五险一金明细参考" vertical />
-        <Anno x={577} y={I.salary + 2374} text="向下拖动" vertical />
-        <Anno x={829.5} y={I.salary + 2709.5} text="进入职力测评小程序" />
-        <Anno x={306.5} y={I.salary + 2684.5} dim multiline lines={['位置：底部（Home', ' Indicator 上方）', '交互：页面隐出遮罩', '层，底部弹出，可', '手动关闭']} />
-        <Anno x={1625.5} y={I.salary + 1191.5} dim multiline lines={['位置：右部（Home', ' Indicator 上方）', '交互：页面隐出遮罩', '层，向左滑出，点击', '遮罩处操作列表关闭']} />
-
-        {/* 测评 (组20 base 17115.5) */}
-        <div className="interaction-title" style={{ left: 273.5, top: I.test - 0.5 }}>|　　测评　　|<br /><span>了解自己适合的职业、职业竞争力上的优劣势以及自我内心的强度；了解职场社会，发现自我<br />职业道路选择项。借力自测工具，不断开发自己的职业潜能，获得更好的职业生涯。</span></div>
-        <img src={cdst.prototypeTest} className="abs cdst-prototype-layer img-cover" style={{ left: 199.5, top: I.test + 238.5, width: 1696, height: 1844 }} />
-        <Anno x={533} y={I.test + 336} text="左右滑动" vertical />
-        <Anno x={907} y={I.test + 429} text="向下滑动" vertical />
-        <Anno x={1190.5} y={I.test + 750.5} text="进入测试页面" />
-        <Anno x={1247} y={I.test + 429} text="向下滑动" vertical />
-        <Anno x={667.5} y={I.test + 847.5} text="交互：向下推拉" dim />
-        <Anno x={1936.5} y={I.test + 1849} multiline lines={['点击单选按钮', '位置：底部', '交互：底部弹出']} firstBig />
-
-        {/* 个人资料 (组21 base 19361.5) */}
-        <div className="interaction-title" style={{ left: 284.5, top: I.profile - 0.5 }}>|　　个人资料　　|</div>
-        <img src={cdst.prototypeProfile} className="abs cdst-prototype-layer img-cover" style={{ left: 281.5, top: I.profile + 131.5, width: 1999, height: 2476 }} />
-        <Anno x={918.5} y={I.profile + 2593.5} text="滑动按钮" />
-        <Anno x={308.5} y={I.profile + 2565.5} multiline lines={['位置：底部', '交互：页面隐出遮罩', '层，底部弹出，可滚', '动操作列表，点击取', '消关闭(以上与此类页', '面相同的交互一致）']} />
-        <Anno x={1361.5} y={I.profile + 2602.5} multiline lines={['位置：页面中部偏上', '交互：5S后渐隐消失']} />
-
-        {/* 状态 / 咨询 (组22 base 22252.5) */}
-        <div className="interaction-title" style={{ left: 287.5, top: I.status - 0.5 }}>|　　状态　　|<br /><span>选择职业状态</span></div>
-        <img src={cdst.prototypeStatus} className="abs cdst-prototype-layer img-cover" style={{ left: 235.5, top: I.status + 169.5, width: 1727, height: 1817 }} />
-        <Anno x={1028.5} y={I.status + 127.5} text="交互：向下推拉" dim />
-        <Anno x={1989.5} y={I.status + 510.5} multiline lines={['位置：页面中部', '交互：底部弹出,', '可手动关闭']} />
-        <div className="interaction-title plain" style={{ left: 292.5, top: I.status + 1568.5 }}>|　　咨询　　|</div>
-        <Anno x={226} y={I.status + 1130} text="咨询职前教育心理学导师" vertical black />
+        {/* ── 交互原型 (Figma 9817:19235, y13673 h10800) ── */}
+        <img
+          src={cdst.interactionPrototype}
+          className="abs cdst-exact-section"
+          style={{ left: 0, top: SEC.inter - 153.5, width: 2480, height: 10800 }}
+          alt=""
+        />
 
         {/* ── UI视觉 (base 24597.5, h8607) ── */}
         <CdstTitle y={SEC.visual} title="UI视觉" en="UI Vision" w={201} />
