@@ -181,33 +181,10 @@
 .mad-guide-card .mad-guide-sign.up { transform: rotate(-12deg); transform-origin: left center; }
 
 .cdst-stage { background: #141414; color: #fff; }
-.cdst-project-wedge {
-  left: 0;
-  width: 2480px;
-  height: 2162px;
-  background: #fff;
-  clip-path: polygon(0 0, 100% 0, 100% 56%, 0 28%);
-}
-.cdst-pain-wedge {
-  left: 0;
-  width: 2480px;
-  height: 1580px;
-  background: #fff;
-  clip-path: polygon(0 0, 100% 45%, 100% 100%, 0 70%);
-}
-.cdst-user-wedge {
-  left: -218px;
-  width: 2938px;
-  height: 1990px;
-  background: #fff;
-  clip-path: polygon(0 0, 100% 39%, 100% 76%, 0 42%);
-}
-.cdst-structure-wedge {
-  left: -218px;
-  width: 2938px;
-  height: 1168px;
-  background: #fff;
-  clip-path: polygon(0 0, 100% 45%, 100% 100%, 0 66%);
+.cdst-bg-slab {
+  object-fit: fill !important;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .cdst-symbol-icon {
@@ -880,9 +857,11 @@
 .cdst-page {
   width: 100vw;
   max-width: 100vw;
-  margin-left: calc(50vw - 1240px);
-  margin-right: calc(50vw - 1240px);
-  overflow: visible;
+  margin-left: 0;
+  margin-right: 0;
+  overflow-x: hidden;
+  overflow-y: visible;
+  background: #141414;
 }
 .cdst-page .star-figma-shell {
   margin: 0;

@@ -273,6 +273,11 @@ const cdst = {
   uiOther4: publicUrl('/images/xingji/cdst/layers/ui-other-4.webp'),
   uiOther5: publicUrl('/images/xingji/cdst/layers/ui-other-5.webp'),
   uiOtherStrip: publicUrl('/images/xingji/cdst/layers/ui-other-strip.webp'),
+
+  bgStrokeHero: publicUrl('/images/xingji/cdst/bg/stroke-hero.svg'),
+  bgStrokeStandard: publicUrl('/images/xingji/cdst/bg/stroke-standard.svg'),
+  bgStrokeLate: publicUrl('/images/xingji/cdst/bg/stroke-late.svg'),
+  bgStrokeEnd: publicUrl('/images/xingji/cdst/bg/stroke-end.svg'),
 };
 
 function CdstCase() {
@@ -282,7 +287,7 @@ function CdstCase() {
     const root = pageRef.current;
     if (!root) return;
 
-    const items = Array.from(root.querySelectorAll<HTMLElement>('.cdst-stage > *'));
+    const items = Array.from(root.querySelectorAll<HTMLElement>('.cdst-stage > *:not(.cdst-bg-slab)'));
     items.forEach((item, index) => {
       item.classList.add('cdst-reveal-item');
       item.style.setProperty('--cdst-reveal-delay', `${(index % 6) * 55}ms`);
@@ -333,10 +338,37 @@ function CdstCase() {
     other: SEC.visual + 4923.5, // 组9  -> 29521
     icon: SEC.visual + 6321.5,  // 组10 -> 30919
   };
+  const bgSlabs = [
+    { src: cdst.bgStrokeHero, left: -218, top: 1411, width: 2944, height: 1490, flip: true },
+    { src: cdst.bgStrokeStandard, left: -218, top: 3908, width: 2943, height: 2013.5 },
+    { src: cdst.bgStrokeStandard, left: -218, top: 7607, width: 2943, height: 2013.5 },
+    { src: cdst.bgStrokeStandard, left: -218, top: 11309, width: 2943, height: 2013.5 },
+    { src: cdst.bgStrokeLate, left: -218, top: 15015, width: 2943, height: 2022.3 },
+    { src: cdst.bgStrokeLate, left: -218, top: 18731, width: 2943, height: 2022.3 },
+    { src: cdst.bgStrokeLate, left: -218, top: 22450, width: 2943, height: 2022.3 },
+    { src: cdst.bgStrokeStandard, left: -218, top: 26104, width: 2943, height: 2013.5 },
+    { src: cdst.bgStrokeEnd, left: -218, top: 31034, width: 2944, height: 1500 },
+  ];
 
   return (
     <div ref={pageRef} className="star-case-page cdst-page">
       <FigmaScaleStage width={2480} height={33204} className="cdst-stage" fitToViewport viewportInset={0}>
+        {bgSlabs.map((slab, index) => (
+          <img
+            key={`${slab.src}-${index}`}
+            src={slab.src}
+            className="abs cdst-bg-slab"
+            style={{
+              left: slab.left,
+              top: slab.top,
+              width: slab.width,
+              height: slab.height,
+              transform: slab.flip ? 'scaleX(-1)' : undefined,
+            }}
+            alt=""
+          />
+        ))}
+
         {/* ── 头图 hero (y0 h1471) ── */}
         <img
           src={publicUrl('/images/xingji/cdst/cdst-hero-cover.webp')}
@@ -344,11 +376,6 @@ function CdstCase() {
           style={{ left: 0, top: 0, width: 2480, height: 1471 }}
           alt=""
         />
-
-        <div className="cdst-project-wedge abs" style={{ top: SEC.project }} />
-        <div className="cdst-pain-wedge abs" style={{ top: SEC.pain + 380 }} />
-        <div className="cdst-user-wedge abs" style={{ top: SEC.user + 206 }} />
-        <div className="cdst-structure-wedge abs" style={{ top: SEC.struct + 644 }} />
 
         {/* ── 项目概括 + 市场分析 (base 1495.5, h1887) ── */}
         <CdstTitle y={SEC.project} title="项目概括" en="Project Overview" w={337} tone="black" />
