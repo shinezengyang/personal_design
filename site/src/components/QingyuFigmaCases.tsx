@@ -48,14 +48,17 @@ const houseAssets = {
 };
 
 const tianmaiAssets = {
-  main: 'https://www.figma.com/api/mcp/asset/cbd61953-6648-42af-9191-a1815cc622eb',
-  dialog: 'https://www.figma.com/api/mcp/asset/b912c7e8-8900-4ba0-bf8f-88f31a1cc883',
-  split: 'https://www.figma.com/api/mcp/asset/01782d7f-a2c4-4afc-90b4-b9e48757bd5f',
-  compose: 'https://www.figma.com/api/mcp/asset/cad4668d-3130-429b-aaa8-35168c6d2a6d',
-  entry: 'https://www.figma.com/api/mcp/asset/02010d22-64fd-43b7-bef7-223639013461',
-  toast: 'https://www.figma.com/api/mcp/asset/f41be282-c4b1-42ee-a588-35d938107135',
-  final: 'https://www.figma.com/api/mcp/asset/ae4f7570-e0ff-44e4-a756-deaf2a782afa',
-  overview: 'https://www.figma.com/api/mcp/asset/742988d8-f200-4a42-9b52-70401558fb63',
+  main: '/assets/qingyu-tianmai/main.png',
+  overview: '/assets/qingyu-tianmai/overview.png',
+  dialog: '/assets/qingyu-tianmai/risk-dialog.png',
+  riskState: '/assets/qingyu-tianmai/risk-state.png',
+  split: '/assets/qingyu-tianmai/split.png',
+  compose: '/assets/qingyu-tianmai/compose.png',
+  entry: '/assets/qingyu-tianmai/entry.png',
+  resourceMain: '/assets/qingyu-tianmai/resource-main.png',
+  resourceConfirmA: '/assets/qingyu-tianmai/resource-confirm-a.png',
+  resourceConfirmB: '/assets/qingyu-tianmai/resource-confirm-b.png',
+  final: '/assets/qingyu-tianmai/final.png',
 };
 
 function Img({ src, className, alt = '' }: { src: string; className?: string; alt?: string }) {
@@ -772,9 +775,18 @@ function HousePetCase() {
 }
 
 function TianmaiCase() {
-  const loop = ['入口发现\n大世界入口进入系统', '装备对象\n选择装备与槽位', '晶石背包\n读取可注入材料', '注入替换\n形成可见成长结果', '分解合成\n资源回流与补足', '反馈闭环\n确认与 Toast'];
+  const loop = [
+    { title: '入口发现', desc: '大世界入口进入系统', icon: 'entry', tone: 'gold' },
+    { title: '装备对象', desc: '选择装备与槽位', icon: 'hex', tone: 'teal' },
+    { title: '晶石背包', desc: '读取可注入材料', icon: 'bag', tone: 'blue' },
+    { title: '注入替换', desc: '形成可见成长结果', icon: 'hex', tone: 'teal' },
+    { title: '分解合成', desc: '资源回流与补足', icon: 'compose', tone: 'gold' },
+    { title: '反馈闭环', desc: '确认与 Toast', icon: 'feedback', tone: 'red' },
+  ];
   const labels = ['层级入口清晰\n一级/三级界面承接常规系统结构。', '材料包独立\n晶石作为可管理材料存在，不和装备信息混杂。', '替换可取消\n通过切换/剥离降低进入替换态后的焦虑。'];
   const callouts = ['渐进披露\n入口只负责进入；具体分解、合成、替换放进对应界面，避免主界面过载。', '心智模型匹配\n装备像目标，晶石像材料，按钮像动作，三者位置关系符合玩家预期。', '反馈可追踪\nToast 与确认弹窗让玩家知道操作是否执行、执行了什么。', '邻近性原则\n选择对象、可用材料和主操作保持空间邻近，玩家能更快建立因果关系。', '可见的系统状态\n选中态、空状态、替换态都被显式呈现，减少“我现在在哪一步”的不确定。', '容错性\n剥离、切换武器、确认弹窗共同构成低风险试错路径。'];
+  const riskNotes = ['二次确认\n展示品质、数量和目标动作，避免批量操作误触。', '替换状态\n进入替换后仍可切换或剥离，降低回退成本。'];
+  const resourceCallouts = ['数量选择\n直接操控\n数量步进与确认信息让消耗变得可控，而不是隐藏在按钮之后。', '品质绑定\n一致性\n分解与合成都保留同品质材料关系，避免玩家误解产出层级。', '二次确认\n错误预防\n批量或高价值材料操作前先确认，降低不可逆成本。'];
   return (
     <div className="fg-canvas tianmai-canvas" data-node-id="8328:14865">
       <section className="tm-cover">
@@ -785,34 +797,45 @@ function TianmaiCase() {
       </section>
       <section className="tm-loop tm-section">
         <SectionTitle no="01" title="玩法闭环：从装备目标到材料回收" desc="把玩家的成长目标、选择对象、消耗材料和结果反馈压缩到一条可理解路径。" dark />
-        <div className="tm-loop-grid">{loop.map((it) => {const [a,b]=it.split('\n'); return <article key={a}><i /><h3>{a}</h3><p>{b}</p></article>})}</div>
+        <div className="tm-loop-grid">{loop.map((it) => <article key={it.title} className={`tm-loop-card ${it.tone}`}><span className={`tm-loop-icon ${it.icon}`} /><h3>{it.title}</h3><p>{it.desc}</p></article>)}</div>
+        <div className="tm-loop-flow" aria-hidden="true"><i className="right a" /><i className="right b" /><i className="left c" /><i className="left d" /><i className="down e" /></div>
         <h4>设计思路：不是堆功能，而是把“我想提升哪件装备”与“我手里有什么材料”持续放在同一视线里。</h4>
       </section>
       <section className="tm-interface tm-section">
         <SectionTitle no="02" title="关键界面：目标、背包、操作" desc="展示“对象选择—材料选择—结果反馈”的同步关系。" dark />
+        <h4 className="tm-design-focus">设计重点</h4>
         <div className="tm-labels">{labels.map((it) => {const [a,b]=it.split('\n'); return <article key={a}><b>{a}</b><p>{b}</p></article>})}</div>
-        <Img src={tianmaiAssets.overview} className="tm-overview-pop" alt="天脉总览弹窗" />
         <Img src={tianmaiAssets.main} className="tm-main-img" alt="天脉界面" />
+        <div className="tm-image-caption main">天脉界面</div>
         <div className="tm-side-note left"><b>天脉总览</b><p>点击会显示如下弹窗</p></div>
+        <Img src={tianmaiAssets.overview} className="tm-overview-pop" alt="天脉总览弹窗" />
         <div className="tm-side-note right r1"><b>天脉晶石背包</b><p>存放天脉晶石的储物袋，会显示天脉名称、品质、数量、图标、适配装备。</p></div>
         <div className="tm-side-note right r2"><b>天脉页签</b><p>切换武器可取消替换态，降低误操作后果。</p></div>
         <div className="tm-side-note right r3"><b>当前角色装备</b><p>角色每个部位的装备，会显示当前装备图标、装备名称、是否已注入晶石。</p></div>
+        <div className="tm-interface-lines" aria-hidden="true"><i className="top a" /><i className="top b" /><i className="note l1" /><i className="note r1" /><i className="note r2" /><i className="note r3" /></div>
         <div className="tm-callouts">{callouts.map((it, i) => {const [a,b]=it.split('\n'); return <article key={a} className={`c${i}`}><h3>为什么这样设计</h3><b>{a}</b><p>{b}</p></article>})}</div>
       </section>
       <section className="tm-risk tm-section">
         <SectionTitle no="03" title="风险控制：让高成本操作先被看见" desc="分解、合成、替换、剥离都可能影响材料资产，因此需要明确的前置校验。" dark />
         <Img src={tianmaiAssets.dialog} className="tm-risk-img a" alt="二次确认" />
-        <Img src={tianmaiAssets.main} className="tm-risk-img b" alt="替换状态" />
+        <Img src={tianmaiAssets.riskState} className="tm-risk-img b" alt="替换状态" />
+        <div className="tm-risk-lines" aria-hidden="true"><i className="a" /><i className="b" /></div>
+        <div className="tm-risk-notes">{riskNotes.map((it, i) => {const [a,b]=it.split('\n'); return <article key={a} className={`n${i}`}><b>{a}</b><p>{b}</p></article>})}</div>
         <div className="tm-risk-cards">{['误触成本\n关键操作前确认', '理解成本\n用同品质规则稳定预期', '回退成本\n切换/剥离取消替换态', '等待成本\nToast 快速给出结果'].map((it,i)=>{const [a,b]=it.split('\n');return <article key={a}><em>RISK 0{i+1}</em><h3>{a}</h3><p>{b}</p></article>})}</div>
       </section>
       <section className="tm-resource tm-section">
         <SectionTitle no="04" title="材料循环：晶石与碎片形成回流" desc="源稿中明确出现分解与合成的可配置数量，说明这是服务长期养成的资源闭环。" dark />
         <div className="tm-steps3"><article><b>入口</b><p>只负责触发进入，不提前暴露复杂规则。</p></article><article><b>主界面</b><p>装备目标与晶石背包成为核心工作区。</p></article><article><b>二级操作</b><p>数量、确认、结果反馈进入局部弹窗。</p></article></div>
         <Img src={tianmaiAssets.entry} className="tm-small a" alt="入口" />
-        <Img src={tianmaiAssets.toast} className="tm-small b" alt="Toast" />
+        <Img src={tianmaiAssets.resourceMain} className="tm-small b" alt="主界面" />
+        <Img src={tianmaiAssets.resourceConfirmA} className="tm-confirm a" alt="局部确认弹窗" />
+        <Img src={tianmaiAssets.resourceConfirmB} className="tm-confirm b" alt="局部反馈弹窗" />
+        <div className="tm-resource-lines" aria-hidden="true"><i className="a" /><i className="b" /><i className="c" /><i className="d" /><i className="e" /><i className="f" /></div>
+        <div className="tm-resource-captions"><b>A. 合成天脉晶石</b><b>B. 分解天脉晶石</b></div>
         <Img src={tianmaiAssets.compose} className="tm-resource-img a" alt="合成天脉晶石" />
         <Img src={tianmaiAssets.split} className="tm-resource-img b" alt="分解天脉晶石" />
-        <div className="tm-material-loop"><article><b>晶石碎片</b><p>合成后生成同品质晶石</p></article><span>合成：10 → 1（可配置）<br />分解：1 → 2（可配置）</span><article><b>天脉晶石</b><p>分解后获得同品质碎片</p></article></div>
+        <div className="tm-material-loop"><article className="fragment"><i /><b>晶石碎片</b><p>合成后生成同品质晶石</p></article><span><b>合成：10 → 1（可配置）</b><b>分解：1 → 2（可配置）</b></span><article className="gem"><i /><b>天脉晶石</b><p>分解后获得同品质碎片</p></article></div>
+        <div className="tm-resource-callouts">{resourceCallouts.map((it, i) => {const [a,b,c]=it.split('\n'); return <article key={a} className={`c${i}`}><h3>{a}</h3><b>{b}</b><p>{c}</p></article>})}</div>
       </section>
       <section className="tm-final tm-section">
         <SectionTitle no="05" title="设计交付：把成长系统设计成可判断的体验" desc="天脉系统的价值，是让玩家始终知道目标在哪、材料在哪、风险在哪、结果在哪。" dark />
