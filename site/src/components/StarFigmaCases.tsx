@@ -251,7 +251,7 @@ const cdst = {
   flow: publicUrl('/images/xingji/cdst/assets/product-flow.webp'),
 
   /* 交互原型：整段使用 Figma 9817:19235 精确导出，避免局部分层裁切/叠字 */
-  interactionPrototype: publicUrl('/images/xingji/cdst/layers/interaction-prototype-full.png'),
+  interactionPrototype: publicUrl('/images/xingji/cdst/layers/interaction-prototype-full.png?v=figma-9817-19235-isolated-20260729'),
 
   /* UI 视觉：独立手机稿/装饰图分层渲染 */
   uiHome1: publicUrl('/images/xingji/cdst/layers/ui-home-1.webp'),
@@ -285,7 +285,7 @@ function CdstCase() {
     const root = pageRef.current;
     if (!root) return;
 
-    const items = Array.from(root.querySelectorAll<HTMLElement>('.cdst-stage > *:not(.cdst-bg-slab):not(.cdst-section-shield)'));
+    const items = Array.from(root.querySelectorAll<HTMLElement>('.cdst-stage > *:not(.cdst-bg-slab):not(.cdst-section-shield):not(.cdst-interaction-shield):not(.cdst-exact-section)'));
     items.forEach((item, index) => {
       item.classList.add('cdst-reveal-item');
       item.style.setProperty('--cdst-reveal-delay', `${(index % 6) * 55}ms`);
@@ -440,6 +440,10 @@ function CdstCase() {
         <img src={cdst.flow} className="abs img-cover" style={{ left: 199.5, top: SEC.flow + 437.5, width: 2080, height: 382 }} />
 
         {/* ── 交互原型 (Figma 9817:19235, y13673 h10800) ── */}
+        <div
+          className="abs cdst-interaction-shield"
+          style={{ left: 0, top: SEC.inter - 153.5, width: 2480, height: 10800 }}
+        />
         <img
           src={cdst.interactionPrototype}
           className="abs cdst-exact-section"

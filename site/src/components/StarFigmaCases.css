@@ -190,6 +190,15 @@
 .cdst-section-shield {
   background: #141414;
   pointer-events: none;
+  z-index: 1;
+}
+.cdst-stage > *:not(.cdst-bg-slab):not(.cdst-section-shield):not(.cdst-interaction-shield):not(.cdst-exact-section) {
+  z-index: 2;
+}
+.cdst-interaction-shield {
+  background: #141414;
+  pointer-events: none;
+  z-index: 3;
 }
 
 .cdst-symbol-icon {
@@ -465,6 +474,10 @@
   max-width: none;
   object-fit: fill !important;
   pointer-events: none;
+  z-index: 4;
+}
+.cdst-stage > .cdst-exact-section {
+  z-index: 4;
 }
 
 .cdst-profile-prototype {
