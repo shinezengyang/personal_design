@@ -198,13 +198,12 @@
 .tm-loop-grid h3, .tm-loop-grid p { margin: 0; white-space: nowrap; }
 .tm-loop-grid p { margin-top: 18px; }
 .tm-loop-icon { position: absolute; left: 18px; top: 28px; width: 55px; height: 48px; }
-.tm-loop-icon.entry { left: 12px; top: 32px; width: 55px; height: 30px; border: 1.4px solid #e5c772; border-radius: 8px; background: #111823; }
-.tm-loop-icon.entry::after { content: ""; position: absolute; left: 12px; right: 12px; top: 12px; height: 4px; border-radius: 2px; background: #e5c772; }
-.tm-loop-icon.hex { left: 12px; top: 16px; width: 64px; height: 64px; }
-.tm-loop-icon.hex::before, .tm-loop-icon.hex::after { content: ""; position: absolute; display: block; background-repeat: no-repeat; background-size: 100% 100%; transform: rotate(-30deg); }
-.tm-loop-icon.hex::before { left: 6px; top: 7px; width: 40.61px; height: 46.9px; background-image: url("/assets/qingyu-tianmai/loop-hex-outer.svg"); }
-.tm-loop-icon.hex::after { left: 11.15px; top: 12.95px; width: 30.3px; height: 34.98px; background-image: url("/assets/qingyu-tianmai/loop-hex-inner-soft.svg"); }
-.tm-loop-icon.hex.inject::after { width: 30.24px; height: 34.92px; background-image: url("/assets/qingyu-tianmai/loop-hex-inner-solid.svg"); }
+.tm-loop-icon.entry { left: 12px; top: 33px; width: 55.17px; height: 30.34px; border: 0; border-radius: 0; background: url("/assets/qingyu-tianmai/loop-entry.svg") center / 100% 100% no-repeat; }
+.tm-loop-icon.entry::after { content: none; }
+.tm-loop-icon.hex { width: 64.06px; height: 64.06px; background-position: center; background-repeat: no-repeat; background-size: 100% 100%; }
+.tm-loop-icon.hex::before, .tm-loop-icon.hex::after { content: none; }
+.tm-loop-icon.hex.equip { left: 15px; top: 11.03px; background-image: url("/assets/qingyu-tianmai/loop-hex-equip.svg"); }
+.tm-loop-icon.hex.inject { left: 5px; top: 16px; background-image: url("/assets/qingyu-tianmai/loop-hex-inject.svg"); }
 .tm-loop-icon.bag { left: 26px; top: 28px; width: 42px; height: 43px; }
 .tm-loop-icon.bag::before { content: ""; position: absolute; left: 0; top: 10px; width: 41px; height: 33px; border: 1.4px solid #8db8ff; border-radius: 6px; background: #111823; }
 .tm-loop-icon.bag::after { content: ""; position: absolute; left: 8px; top: 0; width: 25px; height: 8px; border: 1.4px solid #8db8ff; border-radius: 6px; background: #111823; }
@@ -212,8 +211,8 @@
 .tm-loop-icon.compose::before, .tm-loop-icon.compose::after { content: ""; position: absolute; width: 40px; height: 40px; }
 .tm-loop-icon.compose::before { left: 0; top: 0; border-left: 4px solid #e5c772; border-top: 4px solid #e5c772; }
 .tm-loop-icon.compose::after { right: 0; bottom: 0; border-right: 4px solid #e5c772; border-bottom: 4px solid #e5c772; }
-.tm-loop-icon.feedback { left: 20px; top: 30px; width: 55px; height: 30px; border: 1.4px solid #ff6b6b; border-radius: 8px; background: #111823; }
-.tm-loop-icon.feedback::after { content: ""; position: absolute; left: 12px; top: 12px; width: 6px; height: 6px; border-radius: 2px; background: #ff6b6b; box-shadow: 13px 0 0 #ff6b6b, 27px 0 0 #ff6b6b; }
+.tm-loop-icon.feedback { left: 20px; top: 30px; width: 55px; height: 30px; border: 0; border-radius: 0; background: url("/assets/qingyu-tianmai/loop-feedback.svg") center / 100% 100% no-repeat; }
+.tm-loop-icon.feedback::after { content: none; }
 .tm-loop-flow i { position: absolute; display: block; z-index: 1; color: #4dd2c0; background: currentColor; pointer-events: none; }
 .tm-loop-flow .right, .tm-loop-flow .left { height: 2px; width: 95px; }
 .tm-loop-flow .right::before, .tm-loop-flow .left::before, .tm-loop-flow .down::before { content: ""; position: absolute; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
