@@ -254,6 +254,8 @@ const cdst = {
   interactionPrototype: publicUrl('/images/xingji/cdst/layers/interaction-prototype-full.png?v=figma-9817-19235-isolated-20260729'),
 
   /* UI 视觉：独立手机稿/装饰图分层渲染 */
+  uiVisionHomeExact: publicUrl('/images/xingji/cdst/layers/ui-vision-home-exact.png?v=figma-9817-19294'),
+  uiVisionLevelExact: publicUrl('/images/xingji/cdst/layers/ui-vision-level-exact.png?v=figma-9817-19303'),
   uiHome1: publicUrl('/images/xingji/cdst/layers/ui-home-1.webp'),
   uiHome2: publicUrl('/images/xingji/cdst/layers/ui-home-2.webp'),
   uiStrip: publicUrl('/images/xingji/cdst/layers/ui-strip.webp'),
@@ -285,7 +287,7 @@ function CdstCase() {
     const root = pageRef.current;
     if (!root) return;
 
-    const items = Array.from(root.querySelectorAll<HTMLElement>('.cdst-stage > *:not(.cdst-bg-slab):not(.cdst-section-shield):not(.cdst-interaction-shield):not(.cdst-exact-section)'));
+    const items = Array.from(root.querySelectorAll<HTMLElement>('.cdst-stage > *:not(.cdst-bg-slab):not(.cdst-section-shield):not(.cdst-interaction-shield):not(.cdst-exact-section):not(.cdst-exact-subsection)'));
     items.forEach((item, index) => {
       item.classList.add('cdst-reveal-item');
       item.style.setProperty('--cdst-reveal-delay', `${(index % 6) * 55}ms`);
@@ -456,21 +458,10 @@ function CdstCase() {
         <div className="visual-note" style={{ left: 1527.5, top: SEC.visual + 2498.5, width: 700 }}>统一视觉风格，设计语言营造品牌基调，加强用户对品牌的认知<br /><br />使用层级化的卡片设计，轻量级的设计让用户长时间翻阅不易引起视觉疲劳</div>
 
         {/* 主页形象 (组7 base 24878) */}
-        <div className="visual-label" style={{ left: 286.5, top: V.home }}>—　　主页形象　　—</div>
-        <div className="cdst-paragraph white" style={{ left: 451.5, top: V.home + 146, width: 1700, lineHeight: '50px' }}>创建了一套合理的网络系统和界面规范，来增强软件扩展和统一性</div>
-        <img src={cdst.uiStrip} className="abs img-cover" style={{ left: 147.5, top: V.home + 1407, width: 1696, height: 294, opacity: .5 }} />
-        <img src={cdst.uiStrip} className="abs img-cover" style={{ left: 680.5, top: V.home + 1496, width: 1696, height: 294, opacity: .5 }} />
-        <img src={cdst.uiHome1} className="abs phone-hero img-cover" style={{ left: 504.68, top: V.home + 271.97, width: 920.79, height: 1011.46 }} />
-        <img src={cdst.uiHome2} className="abs phone-hero img-cover" style={{ left: 979.32, top: V.home + 366.45, width: 918.29, height: 1010.14 }} />
+        <img src={cdst.uiVisionHomeExact} className="abs cdst-exact-subsection" style={{ left: 148, top: V.home, width: 2229, height: 1566 }} alt="" />
 
         {/* 层级页面 (组6 base 26459) */}
-        <div className="visual-label dark" style={{ left: 271.5, top: V.level }}>—　　层级页面　　—</div>
-        <img src={cdst.uiLevelShadow} className="abs img-cover" style={{ left: 269.5 + 549, top: V.level + 1524 + 811, width: 1346, height: 408, opacity: .9 }} />
-        <img src={cdst.uiLevelMain} className="abs phone-hero img-cover" style={{ left: 269.5 + 90, top: V.level + 147, width: 497, height: 1243 }} />
-        <img src={cdst.uiLevelMid} className="abs phone-hero img-cover" style={{ left: 269.5 + 627, top: V.level + 372, width: 451, height: 1019 }} />
-        <img src={cdst.uiLevelStack3} className="abs phone-hero img-cover" style={{ left: 269.5 + 549 + 0.47, top: V.level + 1524 + 140.99, width: 488.53, height: 1070.01 }} />
-        <img src={cdst.uiLevelStack2} className="abs phone-hero img-cover" style={{ left: 269.5 + 549 + 347.6, top: V.level + 1524 + 80, width: 484.4, height: 1064 }} />
-        <img src={cdst.uiLevelStack1} className="abs phone-hero img-cover" style={{ left: 269.5 + 549 + 673.74, top: V.level + 1524, width: 486.26, height: 1072 }} />
+        <img src={cdst.uiVisionLevelExact} className="abs cdst-exact-subsection" style={{ left: 270, top: V.level, width: 1898, height: 2910 }} alt="" />
 
         {/* 其他界面 (组9 base 29521) */}
         <div className="visual-label" style={{ left: 272.5 + 14, top: V.other }}>—　　其他界面　　—</div>

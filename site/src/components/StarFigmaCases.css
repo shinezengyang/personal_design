@@ -479,6 +479,11 @@
 .cdst-stage > .cdst-exact-section {
   z-index: 4;
 }
+.cdst-exact-subsection {
+  max-width: none;
+  object-fit: fill !important;
+  pointer-events: none;
+}
 
 .cdst-profile-prototype {
   width: 1999px;
