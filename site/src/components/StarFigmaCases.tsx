@@ -246,12 +246,33 @@ const cdst = {
   personaC: publicUrl('/images/xingji/cdst/assets/persona-c.webp'),
   personaD: publicUrl('/images/xingji/cdst/assets/persona-d.webp'),
 
-  /* 产品结构：本地单图资源 */
+  /* 产品结构 / 流程：本地单图资源 */
   struct: publicUrl('/images/xingji/cdst/assets/product-structure.webp'),
+  flow: publicUrl('/images/xingji/cdst/assets/product-flow.webp'),
 
-  flowSection: publicUrl('/images/xingji/cdst/sections/product-flow-section.webp'),
-  interactiveSection: publicUrl('/images/xingji/cdst/sections/interactive-prototype-section-full.webp'),
-  visualSection: publicUrl('/images/xingji/cdst/sections/ui-visual-section-full.webp'),
+  /* 交互原型：手机稿画面使用本地裁切资源，文字/注释/箭头仍由 DOM 渲染 */
+  prototypeSalary: publicUrl('/images/xingji/cdst/layers/prototype-salary.webp'),
+  prototypeTest: publicUrl('/images/xingji/cdst/layers/prototype-test.webp'),
+  prototypeStatus: publicUrl('/images/xingji/cdst/layers/prototype-status.webp'),
+
+  /* UI 视觉：独立手机稿/装饰图分层渲染 */
+  uiHome1: publicUrl('/images/xingji/cdst/layers/ui-home-1.webp'),
+  uiHome2: publicUrl('/images/xingji/cdst/layers/ui-home-2.webp'),
+  uiStrip: publicUrl('/images/xingji/cdst/layers/ui-strip.webp'),
+
+  uiLevelMain: publicUrl('/images/xingji/cdst/layers/ui-level-main.webp'),
+  uiLevelMid: publicUrl('/images/xingji/cdst/layers/ui-level-mid.webp'),
+  uiLevelStack1: publicUrl('/images/xingji/cdst/layers/ui-level-stack-1.webp'),
+  uiLevelStack2: publicUrl('/images/xingji/cdst/layers/ui-level-stack-2.webp'),
+  uiLevelStack3: publicUrl('/images/xingji/cdst/layers/ui-level-stack-3.webp'),
+  uiLevelShadow: publicUrl('/images/xingji/cdst/layers/ui-level-shadow.webp'),
+
+  uiOther1: publicUrl('/images/xingji/cdst/layers/ui-other-1.webp'),
+  uiOther2: publicUrl('/images/xingji/cdst/layers/ui-other-2.webp'),
+  uiOther3: publicUrl('/images/xingji/cdst/layers/ui-other-3.webp'),
+  uiOther4: publicUrl('/images/xingji/cdst/layers/ui-other-4.webp'),
+  uiOther5: publicUrl('/images/xingji/cdst/layers/ui-other-5.webp'),
+  uiOtherStrip: publicUrl('/images/xingji/cdst/layers/ui-other-strip.webp'),
 };
 
 function CdstCase() {
@@ -298,6 +319,21 @@ function CdstCase() {
     inter: 13826.5,
     visual: 24597.5,
   };
+  /* 交互 sub-block bases (frame y inside 交互) */
+  const I = {
+    salary: SEC.inter + 293,   // 组19  -> 14119.5
+    test: SEC.inter + 3289,    // 组20  -> 17115.5
+    profile: SEC.inter + 5535, // 组21  -> 19361.5
+    status: SEC.inter + 8426,  // 组22  -> 22252.5
+  };
+  /* 视觉 sub-block bases (frame y inside 视觉) */
+  const V = {
+    home: SEC.visual + 280.5,   // 组7  -> 24878
+    level: SEC.visual + 1861.5, // 组6  -> 26459
+    other: SEC.visual + 4923.5, // 组9  -> 29521
+    icon: SEC.visual + 6321.5,  // 组10 -> 30919
+  };
+
   return (
     <div ref={pageRef} className="star-case-page cdst-page">
       <FigmaScaleStage width={2480} height={33204} className="cdst-stage" fitToViewport viewportInset={0}>
@@ -376,24 +412,113 @@ function CdstCase() {
         <div className="cdst-paragraph white cdst-structure-copy" style={{ left: 201.5, top: SEC.struct + 249.5, width: 1300 }}>说明：<br />　　该项目共分为小程序-用户端、运营后台系统两部分；<br />　　本次设计主要针对小程序-用户端展开。</div>
         <img src={cdst.struct} className="abs img-cover" style={{ left: 198.5, top: SEC.struct + 703.5, width: 2082, height: 1052 }} />
 
-        <img
-          src={cdst.flowSection}
-          className="abs img-cover cdst-static-export"
-          style={{ left: 0, top: SEC.flow, width: 2480, height: 1100 }}
-          alt=""
-        />
-        <img
-          src={cdst.interactiveSection}
-          className="abs img-cover cdst-static-export"
-          style={{ left: 0, top: SEC.inter, width: 2480, height: SEC.visual - SEC.inter }}
-          alt=""
-        />
-        <img
-          src={cdst.visualSection}
-          className="abs img-cover cdst-static-export"
-          style={{ left: 0, top: SEC.visual, width: 2480, height: 8732 }}
-          alt=""
-        />
+        {/* ── 产品流程 (base 12691.5, h819) ── */}
+        <CdstTitle y={SEC.flow} title="产品流程" en="Product Flow" w={268} />
+        <div className="cdst-paragraph white" style={{ left: 200.5, top: SEC.flow + 256.5, width: 1400, lineHeight: '50px' }}>用户测试与咨询流程</div>
+        <img src={cdst.flow} className="abs img-cover" style={{ left: 199.5, top: SEC.flow + 437.5, width: 2080, height: 382 }} />
+
+        {/* ── 交互原型 (base 13826.5, h10413) ── */}
+        <CdstTitle y={SEC.inter} title="交互原型" en="Interactive Prototype" w={415} />
+
+        {/* 薪资计算器 (组19 base 14119.5) */}
+        <div className="interaction-title" style={{ left: 280.5, top: I.salary - 0.5 }}>|　　薪资计算器　　|<br /><span>用户选择自己所期望的城市、期望的行业、毕业院校、最高学历，系统将估算出用户毕业后大<br />概的工资水平，从而对自身能够有基本的判断，并且了解当地的五险一金情况。</span></div>
+        <img src={cdst.prototypeSalary} className="abs proto img-cover" style={{ left: 292.5, top: I.salary + 248.5, width: 1311, height: 2422 }} />
+        <Anno x={1263} y={I.salary + 437} text="计算该城市的开支" vertical bar={{ dir: 'v', len: 201, at: -20 }} />
+        <Anno x={1190.5} y={I.salary + 750.5} text="进入测试页面" hidden />
+        <Anno x={880.5} y={I.salary + 2111.5} text="计算出最低的薪资水平" black />
+        <Anno x={244} y={I.salary + 2257} text="当地五险一金明细参考" vertical />
+        <Anno x={577} y={I.salary + 2374} text="向下拖动" vertical />
+        <Anno x={829.5} y={I.salary + 2709.5} text="进入职力测评小程序" />
+        <Anno x={306.5} y={I.salary + 2684.5} dim multiline lines={['位置：底部（Home', ' Indicator 上方）', '交互：页面隐出遮罩', '层，底部弹出，可', '手动关闭']} />
+        <Anno x={1625.5} y={I.salary + 1191.5} dim multiline lines={['位置：右部（Home', ' Indicator 上方）', '交互：页面隐出遮罩', '层，向左滑出，点击', '遮罩处操作列表关闭']} />
+
+        {/* 测评 (组20 base 17115.5) */}
+        <div className="interaction-title" style={{ left: 273.5, top: I.test - 0.5 }}>|　　测评　　|<br /><span>了解自己适合的职业、职业竞争力上的优劣势以及自我内心的强度；了解职场社会，发现自我<br />职业道路选择项。借力自测工具，不断开发自己的职业潜能，获得更好的职业生涯。</span></div>
+        <img src={cdst.prototypeTest} className="abs proto img-cover" style={{ left: 199.5, top: I.test + 238.5, width: 1696, height: 1844 }} />
+        <Anno x={533} y={I.test + 336} text="左右滑动" vertical />
+        <Anno x={907} y={I.test + 429} text="向下滑动" vertical />
+        <Anno x={1190.5} y={I.test + 750.5} text="进入测试页面" />
+        <Anno x={1247} y={I.test + 429} text="向下滑动" vertical />
+        <Anno x={667.5} y={I.test + 847.5} text="交互：向下推拉" dim />
+        <Anno x={1936.5} y={I.test + 1849} multiline lines={['点击单选按钮', '位置：底部', '交互：底部弹出']} firstBig />
+
+        {/* 个人资料 (组21 base 19361.5) */}
+        <div className="interaction-title" style={{ left: 284.5, top: I.profile - 0.5 }}>|　　个人资料　　|</div>
+        <CdstProfilePrototype left={281.5} top={I.profile + 131.5} />
+        <Anno x={918.5} y={I.profile + 2593.5} text="滑动按钮" />
+        <Anno x={308.5} y={I.profile + 2565.5} multiline lines={['位置：底部', '交互：页面隐出遮罩', '层，底部弹出，可滚', '动操作列表，点击取', '消关闭(以上与此类页', '面相同的交互一致）']} />
+        <Anno x={1361.5} y={I.profile + 2602.5} multiline lines={['位置：页面中部偏上', '交互：5S后渐隐消失']} />
+
+        {/* 状态 / 咨询 (组22 base 22252.5) */}
+        <div className="interaction-title" style={{ left: 287.5, top: I.status - 0.5 }}>|　　状态　　|<br /><span>选择职业状态</span></div>
+        <img src={cdst.prototypeStatus} className="abs proto img-cover" style={{ left: 235.5, top: I.status + 169.5, width: 1727, height: 1817 }} />
+        <Anno x={1028.5} y={I.status + 127.5} text="交互：向下推拉" dim />
+        <Anno x={1989.5} y={I.status + 510.5} multiline lines={['位置：页面中部', '交互：底部弹出,', '可手动关闭']} />
+        <div className="interaction-title plain" style={{ left: 292.5, top: I.status + 1568.5 }}>|　　咨询　　|</div>
+        <Anno x={226} y={I.status + 1130} text="咨询职前教育心理学导师" vertical black />
+
+        {/* ── UI视觉 (base 24597.5, h8607) ── */}
+        <CdstTitle y={SEC.visual} title="UI视觉" en="UI Vision" w={201} />
+        <div className="visual-note" style={{ left: 1527.5, top: SEC.visual + 2498.5, width: 700 }}>统一视觉风格，设计语言营造品牌基调，加强用户对品牌的认知<br /><br />使用层级化的卡片设计，轻量级的设计让用户长时间翻阅不易引起视觉疲劳</div>
+
+        {/* 主页形象 (组7 base 24878) */}
+        <div className="visual-label" style={{ left: 286.5, top: V.home }}>—　　主页形象　　—</div>
+        <div className="cdst-paragraph white" style={{ left: 451.5, top: V.home + 146, width: 1700, lineHeight: '50px' }}>创建了一套合理的网络系统和界面规范，来增强软件扩展和统一性</div>
+        <img src={cdst.uiStrip} className="abs img-cover" style={{ left: 147.5, top: V.home + 1407, width: 1696, height: 294, opacity: .5 }} />
+        <img src={cdst.uiStrip} className="abs img-cover" style={{ left: 680.5, top: V.home + 1496, width: 1696, height: 294, opacity: .5 }} />
+        <img src={cdst.uiHome1} className="abs phone-hero img-cover" style={{ left: 504.68, top: V.home + 271.97, width: 920.79, height: 1011.46 }} />
+        <img src={cdst.uiHome2} className="abs phone-hero img-cover" style={{ left: 979.32, top: V.home + 366.45, width: 918.29, height: 1010.14 }} />
+
+        {/* 层级页面 (组6 base 26459) */}
+        <div className="visual-label dark" style={{ left: 271.5, top: V.level }}>—　　层级页面　　—</div>
+        <img src={cdst.uiLevelShadow} className="abs img-cover" style={{ left: 269.5 + 549, top: V.level + 1524 + 811, width: 1346, height: 408, opacity: .9 }} />
+        <img src={cdst.uiLevelMain} className="abs phone-hero img-cover" style={{ left: 269.5 + 90, top: V.level + 147, width: 497, height: 1243 }} />
+        <img src={cdst.uiLevelMid} className="abs phone-hero img-cover" style={{ left: 269.5 + 627, top: V.level + 372, width: 451, height: 1019 }} />
+        <img src={cdst.uiLevelStack3} className="abs phone-hero img-cover" style={{ left: 269.5 + 549 + 0.47, top: V.level + 1524 + 140.99, width: 488.53, height: 1070.01 }} />
+        <img src={cdst.uiLevelStack2} className="abs phone-hero img-cover" style={{ left: 269.5 + 549 + 347.6, top: V.level + 1524 + 80, width: 484.4, height: 1064 }} />
+        <img src={cdst.uiLevelStack1} className="abs phone-hero img-cover" style={{ left: 269.5 + 549 + 673.74, top: V.level + 1524, width: 486.26, height: 1072 }} />
+
+        {/* 其他界面 (组9 base 29521) */}
+        <div className="visual-label" style={{ left: 272.5 + 14, top: V.other }}>—　　其他界面　　—</div>
+        <img src={cdst.uiOtherStrip} className="abs img-cover" style={{ left: 272.5, top: V.other + 948, width: 1931, height: 308, opacity: .9 }} />
+        <img src={cdst.uiOther1} className="abs phone-hero img-cover" style={{ left: 272.5, top: V.other + 255, width: 371, height: 801 }} />
+        <img src={cdst.uiOther2} className="abs phone-hero img-cover" style={{ left: 272.5 + 361, top: V.other + 224, width: 405, height: 875 }} />
+        <img src={cdst.uiOther3} className="abs phone-hero img-cover" style={{ left: 272.5 + 741, top: V.other + 161, width: 447, height: 966 }} />
+        <img src={cdst.uiOther4} className="abs phone-hero img-cover" style={{ left: 272.5 + 1163, top: V.other + 210, width: 412, height: 891 }} />
+        <img src={cdst.uiOther5} className="abs phone-hero img-cover" style={{ left: 272.5 + 1561, top: V.other + 259, width: 370, height: 800 }} />
+
+        {/* ICON & 配色 (组10 base 30919) */}
+        <div className="visual-label" style={{ left: 197.5 + 902, top: V.icon }}>ICONH&amp;配色</div>
+        {([
+          ['30862268-fbae-4a0f-8f22-334e8440de2d', 425, 4, 113, 147],
+          ['f99cf099-573a-4fe3-81b0-24528244e2a0', 834, 15, 137, 127],
+          ['023b802d-0e4b-4f98-9129-6fdb5878a954', 1286, 0, 139, 133],
+          ['d58cf41b-cdc0-4dad-b1c4-572769b29286', 0, 2, 143, 151],
+          ['e6c210b6-61fe-4c11-81e9-f6dec65b898c', 40, 820, 89, 95],
+          ['8fc48c89-0ca0-44d0-9a77-85ee46a10cd5', 449, 820, 89, 88],
+          ['557718d3-d1d4-403a-bbab-5a00b1c6114d', 858, 818, 89, 88],
+          ['6f32134c-eb2b-4651-8a4e-ad428835f6d3', 1312, 816, 88, 88],
+          ['fddb2a45-552a-4c22-b178-3146773dc26c', 21, 317, 134, 134],
+          ['b7472369-928b-4db5-a630-35056844a323', 62, 317, 41, 134],
+          ['accdb998-633a-4e8f-a659-5a1f25974a86', 836, 316, 132, 133],
+          ['50a0d443-65a7-4bcd-9102-8b0d7c5f4f36', 1306, 327, 109, 135],
+          ['ada66750-7c9a-457b-8f54-4e59dcc4c45a', 422, 324, 132, 129],
+          ['1627e91b-031c-4cad-b2cb-4e18de2c7e01', 455, 592, 74, 88],
+          ['5cafb531-e97b-4836-a0e6-7a950915acf1', 865, 603, 77, 77],
+          ['73ba1c0b-a4dc-427a-b828-1e8071c35f3c', 43, 589, 77, 79],
+          ['dc29857d-f17e-4b4c-bce4-e2a96f6871bc', 1310, 602, 89, 78],
+        ] as [string, number, number, number, number][]).map(([id, ix, iy, iw, ih], iconIndex) => (
+          <span key={id} className="abs cdst-symbol-icon"
+            style={{ left: 530.5 + ix, top: V.icon + 771 + iy, width: iw, height: ih }}>
+            {['◇', '○', '△', '＋'][iconIndex % 4]}
+          </span>
+        ))}
+        <div className="color-grid" style={{ left: 197.5, top: V.icon + 190 }}>
+          {[
+            ['#efc28b', '#fff'], ['#ec965d', '#fefefe'], ['#7f8bd3', '#fff'], ['#64a6da', '#fff'], ['#fb6e5a', '#fff'],
+            ['#04b77f', '#fff'], ['#56c1bb', '#fefefe'], ['#626a81', '#fff'], ['#fdfdfd', '#111'], ['#979797', '#fff'],
+          ].map(([bg, fg]) => <span key={bg} style={{ background: bg, color: fg }}>{bg}</span>)}
+        </div>
       </FigmaScaleStage>
     </div>
   );
