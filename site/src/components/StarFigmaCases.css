@@ -187,6 +187,10 @@
   pointer-events: none;
   z-index: 0;
 }
+.cdst-section-shield {
+  background: #141414;
+  pointer-events: none;
+}
 
 .cdst-symbol-icon {
   display: flex;
@@ -453,6 +457,7 @@
 .interaction-title span { display: block; font-size: 41.67px; line-height: 74.95px; }
 .interaction-title.plain { line-height: 1; }
 .proto { filter: drop-shadow(0 30px 80px rgba(0,0,0,.4)); }
+.cdst-prototype-layer { filter: none; }
 
 .cdst-profile-prototype {
   width: 1999px;
