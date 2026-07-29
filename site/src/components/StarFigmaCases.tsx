@@ -346,15 +346,18 @@ function CdstCase() {
           alt=""
         />
 
+        <div className="cdst-project-wedge abs" style={{ top: SEC.project }} />
+        <div className="cdst-pain-wedge abs" style={{ top: SEC.pain + 380 }} />
+
         {/* ── 项目概括 + 市场分析 (base 1495.5, h1887) ── */}
-        <CdstTitle y={SEC.project} title="项目概括" en="Project Overview" w={337} />
+        <CdstTitle y={SEC.project} title="项目概括" en="Project Overview" w={337} tone="black" />
         <div className="cdst-subtitle blue end" style={{ left: 0, top: SEC.project + 300.5, width: 693 }}>项目介绍 <span>Introduction</span></div>
         <div className="cdst-paragraph black" style={{ left: 210.5, top: SEC.project + 435.5, width: 2060 }}>职力测评(CDST4U)是专门为职场新人提供一战式职业相关能力自测的平台。致力为职场新人提供全方位自测工具，帮助新人建立“知己知彼”的健康职业发展道路。</div>
         <div className="cdst-subtitle blue" style={{ left: 209.5, top: SEC.project + 768.5 }}>市场分析 <span>market analysis</span></div>
         <div className="cdst-paragraph white" style={{ left: 212.5, top: SEC.project + 932.5, width: 1170 }}>经市场调研发现：<br />　　2010-2018年的毕业生人数按照2%-5%的同比增长率逐年增长，近8年间累计毕业生人数达到6526万人。2018年普通高校毕业生人数共计820万人，与2010年相比增长了160万人，再创新高。<br />　　大学生职前教育的主要目标群体为本科毕业生和海归群体，根据2017年中国的本科毕业生和海归学生分别为450万、43万人，以客单价约为4000元来计算，2017年中国的职前教育市场规模约为30亿元。随着我国高校人数的扩招和出国留学热潮，未来职前教育的目标群体将会逐渐扩大，市场规模也将不断攀升。</div>
         <CdstMarketChart left={1378.5} top={SEC.project + 975.5} />
 
-        {/* ── 痛点分析 (base 3695.5, h1373) — all white text ── */}
+        {/* ── 痛点分析 (base 3695.5, h1373) ── */}
         <CdstTitle y={SEC.pain} title="痛点分析" en="User Pain Points’Analysis" w={488} />
         <img src={cdst.pain1} className="abs img-cover" style={{ left: 813.5, top: SEC.pain + 625.5, width: 359, height: 359 }} />
         <img src={cdst.pain2} className="abs img-cover" style={{ left: 1358.5, top: SEC.pain + 669.5, width: 319, height: 319 }} />
@@ -362,8 +365,8 @@ function CdstCase() {
         <img src={cdst.pain3} className="abs img-cover" style={{ left: 1112.5, top: SEC.pain + 863.5, width: 293, height: 293 }} />
         <img src={cdst.pain5} className="abs img-cover" style={{ left: 617.5, top: SEC.pain + 850.5, width: 230, height: 230 }} />
         <div className="pain-text" style={{ left: 975.5, top: SEC.pain + 309.5 }}><b>产业教育分离：</b><br />产教分离导致高校教育和企业需求<br />之间产生的信息差，是大部分大学<br />生职业选择困惑的源头。</div>
-        <div className="pain-text" style={{ left: 198.5, top: SEC.pain + 1061.5 }}><b>就业压力巨大：</b><br />宏观经济下行压力加大和结构性改<br />革产生的行业变化，在一定程度上<br />影响就业形势，就业仍然是社会各<br />方都关注的话题。</div>
-        <div className="pain-text" style={{ left: 1579.5, top: SEC.pain + 1009.5 }}><b>职业规划缺失：</b><br />老师基本都是院党委书记或学工教<br />师，老师们本身就缺少社会上相关<br />职业的经验，当然也就无法给出实<br />际中行业发展、企业概况、岗位要<br />求，只能照本宣科。</div>
+        <div className="pain-text black" style={{ left: 198.5, top: SEC.pain + 1061.5 }}><b>就业压力巨大：</b><br />宏观经济下行压力加大和结构性改<br />革产生的行业变化，在一定程度上<br />影响就业形势，就业仍然是社会各<br />方都关注的话题。</div>
+        <div className="pain-text black" style={{ left: 1579.5, top: SEC.pain + 1009.5 }}><b>职业规划缺失：</b><br />老师基本都是院党委书记或学工教<br />师，老师们本身就缺少社会上相关<br />职业的经验，当然也就无法给出实<br />际中行业发展、企业概况、岗位要<br />求，只能照本宣科。</div>
 
         {/* ── 竞品分析 (base 5500.5, h1719) ── */}
         <CdstTitle y={SEC.comp} title="竞品分析" en="User Pain Points’Analysis" w={488} />
@@ -800,9 +803,9 @@ function BottomPicker() {
 }
 
 /* section title — left 199.5, white; gold-teal accent bar above */
-function CdstTitle({ y, title, en, w }: { y: number; title: string; en: string; w?: number }) {
+function CdstTitle({ y, title, en, w, tone }: { y: number; title: string; en: string; w?: number; tone?: 'black' }) {
   return (
-    <div className="cdst-section-title" style={{ top: y, left: 199.5, width: w }}>
+    <div className={`cdst-section-title${tone === 'black' ? ' black' : ''}`} style={{ top: y, left: 199.5, width: w }}>
       <strong>{title}</strong>
       <small>{en}</small>
       <i />

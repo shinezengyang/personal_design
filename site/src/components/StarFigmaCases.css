@@ -181,6 +181,20 @@
 .mad-guide-card .mad-guide-sign.up { transform: rotate(-12deg); transform-origin: left center; }
 
 .cdst-stage { background: #141414; color: #fff; }
+.cdst-project-wedge {
+  left: 0;
+  width: 2480px;
+  height: 2162px;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 0, 100% 56%, 0 28%);
+}
+.cdst-pain-wedge {
+  left: 0;
+  width: 2480px;
+  height: 1580px;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 45%, 100% 100%, 0 70%);
+}
 
 .cdst-symbol-icon {
   display: flex;
@@ -228,6 +242,7 @@
 
 /* ── section titles — left 199.5, white, accent bar below ── */
 .cdst-section-title { position: absolute; color: #fff; font-size: 66.8px; line-height: 75.2px; white-space: nowrap; }
+.cdst-section-title.black { color: #111; }
 .cdst-section-title strong { display: block; font-weight: 400; }
 .cdst-section-title small { display: block; font-size: 41.7px; line-height: 75.2px; }
 .cdst-section-title i { display: block; width: 139px; height: 15px; margin-top: 4px; background: linear-gradient(90deg,#639fab,#7cc0c9); }
@@ -404,8 +419,9 @@
   background: #9eb8d6;
 }
 
-/* ── 痛点 — all white text ── */
+/* ── 痛点 ── */
 .pain-text { position: absolute; width: 660px; color: #fff; font-size: 41.67px; line-height: 60px; letter-spacing: 0; white-space: nowrap; }
+.pain-text.black { color: #111; }
 .pain-text b { font-weight: 400; font-size: 50px; }
 
 /* ── 竞品 ── */
