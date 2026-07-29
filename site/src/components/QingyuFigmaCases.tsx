@@ -784,9 +784,9 @@ function HousePetCase() {
 function TianmaiCase() {
   const loop = [
     { title: '入口发现', desc: '大世界入口进入系统', icon: 'entry', tone: 'gold' },
-    { title: '装备对象', desc: '选择装备与槽位', icon: 'hex', tone: 'teal' },
+    { title: '装备对象', desc: '选择装备与槽位', icon: 'hex equip', tone: 'teal' },
     { title: '晶石背包', desc: '读取可注入材料', icon: 'bag', tone: 'blue' },
-    { title: '注入替换', desc: '形成可见成长结果', icon: 'hex', tone: 'teal' },
+    { title: '注入替换', desc: '形成可见成长结果', icon: 'hex inject', tone: 'teal' },
     { title: '分解合成', desc: '资源回流与补足', icon: 'compose', tone: 'gold' },
     { title: '反馈闭环', desc: '确认与 Toast', icon: 'feedback', tone: 'red' },
   ];
