@@ -244,6 +244,14 @@
   filter: none;
 }
 
+.cdst-page .cdst-static-export.cdst-reveal-item {
+  opacity: 1;
+  translate: none;
+  scale: 1;
+  filter: none;
+  transition: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cdst-page .cdst-reveal-item {
     opacity: 1;
