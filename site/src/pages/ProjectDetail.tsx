@@ -1510,7 +1510,7 @@ export default function ProjectDetail({
   const isQingyuFigmaExactCase = project.id === 'qingyu-nian' && ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'].includes(resolvedActiveDetailTab);
   const isQingyuCaseTab = project.id === 'qingyu-nian' && resolvedActiveDetailTab !== 'framework';
   const usesFullWidthFigmaCanvas = isStarStandaloneFigmaCase;
-  const trimsStandaloneFigmaFooter = project.id === 'xingji-ip-collab';
+  const trimsStandaloneFigmaFooter = ['xingji-ip-collab', 'xingji-naval-trial'].includes(project.id);
 
   return (
     <section
@@ -1522,7 +1522,7 @@ export default function ProjectDetail({
     >
       <div
         ref={pageRef}
-        className={usesFullWidthFigmaCanvas ? 'w-[2480px] max-w-none' : 'mx-auto max-w-[1440px] 2xl:max-w-[1560px]'}
+        className={usesFullWidthFigmaCanvas ? 'w-full max-w-none' : 'mx-auto max-w-[1440px] 2xl:max-w-[1560px]'}
       >
         {/* Header */}
         <div className={`project-detail-header relative z-50 mb-8${usesFullWidthFigmaCanvas ? ' px-20' : ''}`}>
@@ -1592,7 +1592,7 @@ export default function ProjectDetail({
         </div>
 
         {/* Content */}
-        <div ref={contentRef} className={usesFullWidthFigmaCanvas ? 'mt-10 grid w-[2480px] gap-6' : 'mt-10 grid gap-6'}>
+        <div ref={contentRef} className={usesFullWidthFigmaCanvas ? 'mt-10 grid w-full gap-6' : 'mt-10 grid gap-6'}>
           {isHighSeasNavyTrialExactCase ? (
             <HighSeasNavyTrialExactCase />
           ) : isHighSeasCleanupGangExactCase ? (

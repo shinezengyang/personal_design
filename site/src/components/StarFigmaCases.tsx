@@ -872,66 +872,32 @@ function Anno({ x, y, text, lines, vertical = false, black = false, dim = false,
   );
 }
 
-/* ─── MAD assets (我为球狂 / 原型作品, Figma 9434:2339) ─── */
+/* ─── MAD assets (我为球狂 / 原型作品, Figma 9817:19381) ─── */
 const mad = {
-  /* 组 10 — cover */
-  coverBg:        'https://www.figma.com/api/mcp/asset/e9ce4152-571e-40ef-b24f-bd9a6156e1ec',
-  coverSplash:    'https://www.figma.com/api/mcp/asset/f744cad6-c12b-43ea-bc0b-3b6f4ccf741f',
-  coverBadge:     'https://www.figma.com/api/mcp/asset/a688df50-59e8-42ee-8b47-52307259fd45',
-  coverStroke:    'https://www.figma.com/api/mcp/asset/6504e8da-319e-4a45-a6c2-eec7a7d960bc',
-  /* 组 13 — analyst */
-  analyst:        'https://www.figma.com/api/mcp/asset/bd48a412-b20b-4562-884e-ab17d91b6c66',
-  /* 组 12 — icon design */
-  iconBg:         'https://www.figma.com/api/mcp/asset/6c2e90e2-adb0-47fc-a3f7-6fdd27cb377b',
-  iconPlate:      'https://www.figma.com/api/mcp/asset/6e377531-2e4d-4972-8bfe-412ec8ae0301',
-  iconGlyph:      'https://www.figma.com/api/mcp/asset/7f45ea9a-225d-4137-b9b4-6dc39d412a44',
-  iconBig:        'https://www.figma.com/api/mcp/asset/0bbe32f4-007c-44eb-8c4f-5b7116572f73',
-  /* 组 5 — concise guide (4 perspective cards) */
-  guideCard1:     'https://www.figma.com/api/mcp/asset/b3465e13-8578-4f7c-8c14-eae4348e1fdc',
-  guideShot1:     'https://www.figma.com/api/mcp/asset/dae70e5a-cf5c-41f3-b874-e700c19a71ac',
-  guideCard2:     'https://www.figma.com/api/mcp/asset/e78ba632-b93a-4fc5-872e-1d798f97a64f',
-  guideShot2:     'https://www.figma.com/api/mcp/asset/bc07ed99-cf7e-40be-9bcf-75543b7fc1ae',
-  guideCard3:     'https://www.figma.com/api/mcp/asset/d9dfc27f-e9fd-4058-96f9-f0741f84b1aa',
-  guideShot3:     'https://www.figma.com/api/mcp/asset/48786047-6a28-43e7-ad1e-1d8f21a43105',
-  guideCard4:     'https://www.figma.com/api/mcp/asset/99288dfa-3f05-4b52-be0e-2a65d0a26f0a',
-  guideShot4:     'https://www.figma.com/api/mcp/asset/56b15bf8-406c-44a3-b890-355881b52ad8',
-  /* 组 14 — product detail */
-  productBg:      'https://www.figma.com/api/mcp/asset/b9282222-5d6a-4a8e-bb98-45fa4a1a0e86',
-  productPhone:   'https://www.figma.com/api/mcp/asset/230c4b93-f203-47f2-a884-84bba508017f',
-  /* 组 15 — recommend */
-  recommendGlow:  'https://www.figma.com/api/mcp/asset/d161276d-d1e6-4da6-8162-927408f30fe8',
-  recommendPhone: 'https://www.figma.com/api/mcp/asset/d56cf839-bd05-4f6f-a65a-d58f222fc0c6',
-  recDivider:     'https://www.figma.com/api/mcp/asset/fcb59c61-19f5-45c0-b5b2-79018d373c80',
-  recDotL:        'https://www.figma.com/api/mcp/asset/6b71db93-6c06-4fd1-8014-51d478addff7',
-  recDotM:        'https://www.figma.com/api/mcp/asset/8f067e1a-63bf-4b37-8a7a-0241d15cc5fe',
-  recDotR:        'https://www.figma.com/api/mcp/asset/6b65f6b8-a055-480f-a19e-ebf9a573cae7',
-  /* 组 16 — me (cascade of 5 phones + circular zoom callout) */
-  mePhones:       'https://www.figma.com/api/mcp/asset/5600e09e-9a9b-4899-94ff-1fb498a9233c',
-  meDivider:      'https://www.figma.com/api/mcp/asset/2babb377-d79d-46e3-a790-ed8ad7706d8e',
-  meDotL:         'https://www.figma.com/api/mcp/asset/4b26053f-4b25-494e-861f-0355a1fff8cd',
-  meDotM:         'https://www.figma.com/api/mcp/asset/a1dbed91-f324-46dd-a976-70b3b5825d7d',
-  meDotR:         'https://www.figma.com/api/mcp/asset/d4c1e532-06ae-4ba2-8170-f0bebe1ba7e8',
-  /* 组 18 — recharge */
-  rechargeBg:     'https://www.figma.com/api/mcp/asset/fec2adf0-f0f8-425b-87c4-34a36bdfddcf',
-  rechargePhone:  'https://www.figma.com/api/mcp/asset/1613672d-b91c-4574-accb-52b6b096bca1',
-  rcDivider:      'https://www.figma.com/api/mcp/asset/182a4253-c1df-4586-93c7-85e6bce6a0c1',
-  rcDotL:         'https://www.figma.com/api/mcp/asset/8f07fd7d-5a5d-4643-9fd5-94040c025066',
-  rcDotM:         'https://www.figma.com/api/mcp/asset/e403af55-cca6-49a1-b337-76dd36232054',
-  rcDotR:         'https://www.figma.com/api/mcp/asset/d2bffb8d-03d8-400f-a913-f1d22e72996f',
-  /* 组 20 — dialog */
-  dialogPhone:    'https://www.figma.com/api/mcp/asset/e2b6bf62-8f6c-4801-8f96-31197d34e444',
-  dialogDivider:  'https://www.figma.com/api/mcp/asset/17824bff-feb5-4d24-bd0b-c493bd711ce9',
-  dialogBar:      'https://www.figma.com/api/mcp/asset/b4ec1a15-7157-4edd-bc57-341229e75920',
-  /* 组 21 — charts */
-  structChart:    'https://www.figma.com/api/mcp/asset/df833a55-d9dc-42c7-aed5-2818f09920e2',
-  flowChart:      'https://www.figma.com/api/mcp/asset/799e17fe-046a-4ed3-9298-3240b6102c18',
-  wireframe:      'https://www.figma.com/api/mcp/asset/0e43e079-42a9-4e8f-a46c-36422b18a0ca',
-  /* 组 22 — end */
-  endBg:          'https://www.figma.com/api/mcp/asset/58f0f3e3-f743-4086-b8ed-18c00ae4d797',
-  endLaptop:      'https://www.figma.com/api/mcp/asset/cef304a9-0ada-4447-ac6f-21e950682410',
-  endDivider:     'https://www.figma.com/api/mcp/asset/f46d4d85-a5e8-4be7-bc1f-3fc9d5af0c32',
-  endBadge:       'https://www.figma.com/api/mcp/asset/16e53659-1364-424b-9951-3c1b3a8f4d9c',
-  endIcons:       'https://www.figma.com/api/mcp/asset/b31e9852-b451-455d-974a-61dea4b0e716',
+  coverBg:        publicUrl('/images/xingji/mad/cover-bg.png'),
+  coverBadge:     publicUrl('/images/xingji/mad/cover-badge.png'),
+  analyst:        publicUrl('/images/xingji/mad/analyst.png'),
+  iconBg:         publicUrl('/images/xingji/mad/icon-bg.png'),
+  iconMark:       publicUrl('/images/xingji/mad/icon-mark.png'),
+  iconBig:        publicUrl('/images/xingji/mad/icon-big.png'),
+  guideCard1:     publicUrl('/images/xingji/mad/guide-card-1.png'),
+  guideCard2:     publicUrl('/images/xingji/mad/guide-card-2.png'),
+  guideCard3:     publicUrl('/images/xingji/mad/guide-card-3.png'),
+  guideCard4:     publicUrl('/images/xingji/mad/guide-card-4.png'),
+  productBg:      publicUrl('/images/xingji/mad/product-bg.png'),
+  productPhone:   publicUrl('/images/xingji/mad/product-phone.png'),
+  recommendGlow:  publicUrl('/images/xingji/mad/recommend-bg.png'),
+  recommendPhone: publicUrl('/images/xingji/mad/recommend-phone.png'),
+  mePhones:       publicUrl('/images/xingji/mad/me-phones.png'),
+  rechargeBg:     publicUrl('/images/xingji/mad/recharge-bg.png'),
+  rechargePhone:  publicUrl('/images/xingji/mad/recharge-phone.png'),
+  dialogPhone:    publicUrl('/images/xingji/mad/dialog-phone.png'),
+  structChart:    publicUrl('/images/xingji/mad/structure-chart.png'),
+  flowChart:      publicUrl('/images/xingji/mad/flow-chart.png'),
+  wireframe:      publicUrl('/images/xingji/mad/wireframe-chart.png'),
+  endBg:          publicUrl('/images/xingji/mad/end-bg.png'),
+  endLaptop:      publicUrl('/images/xingji/mad/end-laptop.png'),
+  endIcons:       publicUrl('/images/xingji/mad/end-icons.png'),
 };
 
 /* MAD section title — 128px Inter, #f9f7f2 @ 50% */
@@ -942,6 +908,17 @@ function MadTitle({ x, y, w, align, children }: { x: number; y: number; w: numbe
 /* MAD section sub-label — 96px Inter, #f9f7f2 @ 50% */
 function MadLabel({ x, y, w, align, children }: { x: number; y: number; w: number; align?: 'center' | 'right'; children: React.ReactNode }) {
   return <div className="mad-sec-label abs" style={{ left: x, top: y, width: w, textAlign: align }}>{children}</div>;
+}
+
+function MadDivider({ x, y, w, dots }: { x: number; y: number; w: number; dots: number[] }) {
+  return (
+    <>
+      <span className="mad-divider-line abs" style={{ left: x, top: y, width: w }} />
+      {dots.map((left, index) => (
+        <span key={`${left}-${index}`} className="mad-divider-dot abs" style={{ left, top: y - 19 }} />
+      ))}
+    </>
+  );
 }
 
 /* one concise-guide perspective card: skewed plate + screenshot + nav-label text */
@@ -982,13 +959,12 @@ function MadCase() {
 
   return (
     <div className="star-case-page mad-page">
-      <FigmaScaleStage width={2480} height={34946} className="mad-stage">
+      <FigmaScaleStage width={2480} height={34946} className="mad-stage" fitToViewport viewportInset={0}>
 
         {/* ── 组 10 cover (y0 h2318) ── */}
         <img src={mad.coverBg} className="abs img-cover" style={{ left: 0, top: S.cover, width: 2480, height: 1655 }} />
-        <img src={mad.coverSplash} className="abs img-cover" style={{ left: 696, top: S.cover + 172, width: 1187, height: 1368 }} />
         <img src={mad.coverBadge} className="abs img-cover" style={{ left: 1994, top: S.cover + 1187, width: 286, height: 351 }} />
-        <img src={mad.coverStroke} className="abs" style={{ left: 60, top: S.cover + 49, width: 596, height: 207 }} />
+        <div className="mad-cover-frame abs" style={{ left: 60, top: S.cover + 49, width: 596, height: 207 }} />
         <div className="mad-cover-badge abs" style={{ left: 98, top: S.cover + 81, width: 531 }}>My Production<br />我的作品</div>
         <div className="mad-cover-intro abs" style={{ left: 219, top: S.cover + 1763, width: 2043 }}>通过调查了解，许多球友对于比赛结果推断不准，导致足球博彩逢赌必输，即使他们能询问一些看球经验很丰富的老球迷，甚至向专业的分析师请教，但是由于不同的比赛有不同的体制，所以很多情况下是凭借运气来购买足球彩票，运气不好就预测不准，造成了很大的经济损失以及浪费了大量的时间精力，所以，对于一些没有太多时间来分析球赛的球友来说，特别是经验水平不足的新人，这款应用是为了广大球友设计的。</div>
 
@@ -999,31 +975,14 @@ function MadCase() {
         {/* ── 组 12 icon design (y3788 h2200) ── */}
         <img src={mad.iconBg} className="abs img-cover mad-icon-bg" style={{ left: 0, top: S.icon, width: 2480, height: 2200 }} />
         <img src={mad.iconBig} className="abs img-cover" style={{ left: 384, top: S.icon + 953, width: 678, height: 829 }} />
-        <img src={mad.iconPlate} className="abs" style={{ left: 1470, top: S.icon + 957, width: 833, height: 833 }} />
-        <img src={mad.iconGlyph} className="abs img-cover" style={{ left: 1594, top: S.icon + 1097, width: 592, height: 596 }} />
+        <img src={mad.iconMark} className="abs img-cover" style={{ left: 1470, top: S.icon + 957, width: 833, height: 833 }} />
         <MadTitle x={252} y={S.icon + 409} w={833}>Icon Design<br />图标设计</MadTitle>
 
         {/* ── 组 5 concise guide — 4 perspective cards (y6004 h2146) ── */}
-        <MadGuideCard x={-5} y={S.guide + 716} card={mad.guideCard1} shot={mad.guideShot1}
-          shotStyle={{ left: 208, top: 100, width: 283, height: 696 }}
-          num="1" numPos={{ left: 350, top: 1154 }}
-          label="登录账号" labelPos={{ left: 273, top: 974, w: 167 }}
-          sign={{ inX: 137, inY: 1254, upX: 435, upY: 1188 }} />
-        <MadGuideCard x={616} y={S.guide + 750} card={mad.guideCard2} shot={mad.guideShot2}
-          shotStyle={{ left: 134, top: 95, width: 290, height: 670 }}
-          num="2" numPos={{ left: 262, top: 1124 }}
-          label="预测比赛结果" labelPos={{ left: 169, top: 893, w: 204 }}
-          sign={{ inX: 85, inY: 1167, upX: 360, upY: 1226 }} />
-        <MadGuideCard x={1236} y={S.guide + 750} card={mad.guideCard3} shot={mad.guideShot3}
-          shotStyle={{ left: 203, top: 106, width: 290, height: 673 }}
-          num="3" numPos={{ left: 349, top: 1123 }}
-          label="个人与管理分类" labelPos={{ left: 236, top: 903, w: 233 }}
-          sign={{ inX: 133, inY: 1220, upX: 435, upY: 1161 }} />
-        <MadGuideCard x={1861} y={S.guide + 750} card={mad.guideCard4} shot={mad.guideShot4}
-          shotStyle={{ left: 163, top: 74, width: 294, height: 673 }}
-          num="4" numPos={{ left: 257, top: 1127 }}
-          label="充值与充值记录" labelPos={{ left: 171, top: 930, w: 238 }}
-          sign={{ inX: 82, inY: 1165, upX: 348, upY: 1222 }} />
+        <img src={mad.guideCard1} className="abs img-cover mad-guide-export" style={{ left: -5, top: S.guide + 716, width: 623, height: 1430 }} />
+        <img src={mad.guideCard2} className="abs img-cover mad-guide-export" style={{ left: 616, top: S.guide + 750, width: 623, height: 1381 }} />
+        <img src={mad.guideCard3} className="abs img-cover mad-guide-export" style={{ left: 1236, top: S.guide + 750, width: 627, height: 1384 }} />
+        <img src={mad.guideCard4} className="abs img-cover mad-guide-export" style={{ left: 1861, top: S.guide + 750, width: 619, height: 1391 }} />
         <MadTitle x={290} y={S.guide} w={1026}>Concise Guide<br />简介引导</MadTitle>
 
         {/* ── 组 14 product detail (y8605 h1662) ── */}
@@ -1034,20 +993,14 @@ function MadCase() {
         {/* ── 组 15 recommend (y10583 h3487) ── */}
         <img src={mad.recommendGlow} className="abs img-cover mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1379, height: 3060 }} />
         <img src={mad.recommendPhone} className="abs img-cover mad-phone" style={{ left: 1300, top: S.recommend + 1044, width: 905, height: 2442 }} />
-        <img src={mad.recDivider} className="abs" style={{ left: 565, top: S.recommend + 166, width: 1719, height: 19 }} />
-        <img src={mad.recDotL} className="abs" style={{ left: 547, top: S.recommend + 147, width: 53, height: 53 }} />
-        <img src={mad.recDotM} className="abs" style={{ left: 1398, top: S.recommend + 147, width: 53, height: 53 }} />
-        <img src={mad.recDotR} className="abs" style={{ left: 2250, top: S.recommend + 147, width: 53, height: 53 }} />
+        <MadDivider x={573} y={S.recommend + 174} w={1707} dots={[554, 1406, 2258]} />
         <MadTitle x={200} y={S.recommend + 39} w={854}>Recommend<br />推荐</MadTitle>
         <MadLabel x={207} y={S.recommend + 786} w={558}>Forecast<br />预测赛果</MadLabel>
         <MadLabel x={207} y={S.recommend + 1444} w={421}>Live<br />实时比赛</MadLabel>
 
         {/* ── 组 16 me (y14467 h2345) ── */}
         <img src={mad.mePhones} className="abs mad-me-phones" style={{ left: 633, top: S.me + 413, width: 1696, height: 1873 }} />
-        <img src={mad.meDivider} className="abs" style={{ left: 569, top: S.me + 145, width: 1719, height: 19 }} />
-        <img src={mad.meDotL} className="abs" style={{ left: 550, top: S.me + 127, width: 53, height: 53 }} />
-        <img src={mad.meDotM} className="abs" style={{ left: 1402, top: S.me + 127, width: 53, height: 53 }} />
-        <img src={mad.meDotR} className="abs" style={{ left: 2254, top: S.me + 127, width: 53, height: 53 }} />
+        <MadDivider x={574} y={S.me + 153} w={1706} dots={[555, 1406, 2258]} />
         {/* leader-line connectors: gold square node + thin line per label */}
         <span className="mad-leader-sq abs" style={{ left: 1398, top: S.me + 518, width: 30, height: 30 }} />
         <span className="mad-leader-ln abs" style={{ left: 1417, top: S.me + 526, width: 358 }} />
@@ -1066,16 +1019,13 @@ function MadCase() {
         {/* ── 组 18 recharge (y17286 h2147) ── */}
         <img src={mad.rechargeBg} className="abs img-cover" style={{ left: 45, top: S.recharge + 421, width: 2420, height: 1726 }} />
         <img src={mad.rechargePhone} className="abs img-cover mad-phone" style={{ left: 298, top: S.recharge + 519, width: 1952, height: 1391 }} />
-        <img src={mad.rcDivider} className="abs" style={{ left: 569, top: S.recharge + 127, width: 1719, height: 19 }} />
-        <img src={mad.rcDotL} className="abs" style={{ left: 547, top: S.recharge + 108, width: 53, height: 53 }} />
-        <img src={mad.rcDotM} className="abs" style={{ left: 1398, top: S.recharge + 108, width: 53, height: 53 }} />
-        <img src={mad.rcDotR} className="abs" style={{ left: 2250, top: S.recharge + 108, width: 53, height: 53 }} />
+        <MadDivider x={573} y={S.recharge + 135} w={1707} dots={[554, 1405, 2258]} />
         <MadTitle x={151} y={S.recharge} w={660}>Recharge<br />充值</MadTitle>
 
         {/* ── 组 20 dialog (y20051 h3065) ── */}
         <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 641, top: S.dialog + 565, width: 1209, height: 2500 }} />
-        <img src={mad.dialogDivider} className="abs" style={{ left: 0, top: S.dialog + 60, width: 2495, height: 19 }} />
-        <img src={mad.dialogBar} className="abs" style={{ left: 527, top: S.dialog, width: 1438, height: 147 }} />
+        <span className="mad-dialog-divider abs" style={{ left: 0, top: S.dialog + 60, width: 2495 }} />
+        <span className="mad-dialog-titleplate abs" style={{ left: 527, top: S.dialog, width: 1438, height: 147 }} />
         <MadTitle x={0} y={S.dialog + 20} w={2480} align="center">Dialog Box Pops Up<br />弹出对话框</MadTitle>
 
         {/* ── 组 21 charts (y23696 h7579) ── */}
@@ -1089,8 +1039,8 @@ function MadCase() {
         {/* ── 组 22 end (y31852 h3094) ── */}
         <img src={mad.endBg} className="abs img-cover" style={{ left: 0, top: S.end, width: 2480, height: 1504 }} />
         <img src={mad.endLaptop} className="abs img-cover" style={{ left: 957, top: S.end + 539, width: 765, height: 512 }} />
-        <img src={mad.endBadge} className="abs" style={{ left: 1006, top: S.end + 1636, width: 475, height: 143 }} />
-        <img src={mad.endDivider} className="abs" style={{ left: -4, top: S.end + 1696, width: 2495, height: 19 }} />
+        <span className="mad-end-badge abs" style={{ left: 1006, top: S.end + 1636, width: 475, height: 143 }} />
+        <span className="mad-dialog-divider abs" style={{ left: -4, top: S.end + 1696, width: 2495 }} />
         <img src={mad.endIcons} className="abs img-cover" style={{ left: 444, top: S.end + 2031, width: 1600, height: 379 }} />
         <MadTitle x={1080} y={S.end + 1675} w={350} align="center">ICON</MadTitle>
 
