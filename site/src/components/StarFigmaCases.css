@@ -224,7 +224,7 @@
 .cdst-interaction-shield {
   background: #141414;
   pointer-events: none;
-  z-index: 3;
+  z-index: 1;
 }
 
 .cdst-page .cdst-reveal-item {
@@ -476,8 +476,50 @@
 
 /* ── 交互 ── */
 .interaction-title { position: absolute; color: #fff; font-size: 50px; line-height: 74.95px; letter-spacing: 4.75px; white-space: nowrap; }
+.interaction-title p { margin: 0 0 5px; }
 .interaction-title span { display: block; font-size: 41.67px; line-height: 74.95px; }
 .interaction-title.plain { line-height: 1; }
+.cdst-product-flow {
+  width: 2080px;
+  height: 382px;
+  overflow: visible;
+}
+.cdst-product-flow marker path {
+  fill: rgba(255,255,255,.86);
+}
+.cdst-flow-line {
+  fill: none;
+  stroke: rgba(255,255,255,.86);
+  stroke-width: 2.2px;
+  marker-end: url(#cdst-flow-arrow);
+}
+.cdst-flow-node rect,
+.cdst-flow-node polygon {
+  fill: rgba(20,20,20,.95);
+  stroke: rgba(255,255,255,.82);
+  stroke-width: 2.2px;
+}
+.cdst-flow-node.is-accent rect,
+.cdst-flow-node.is-accent polygon {
+  stroke: rgba(213,68,74,.9);
+}
+.cdst-flow-node text {
+  fill: #fff;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.cdst-flow-node.is-accent text {
+  fill: #f05f64;
+}
+.cdst-flow-decision-label {
+  fill: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  text-anchor: middle;
+}
 .proto { filter: drop-shadow(0 30px 80px rgba(0,0,0,.4)); }
 .cdst-prototype-layer {
   filter: none;
@@ -498,15 +540,40 @@
   pointer-events: none;
   z-index: 2;
 }
+.cdst-interaction-code,
+.cdst-interaction-lower-crop {
+  z-index: 4;
+}
+.cdst-interaction-lower-crop {
+  overflow: hidden;
+  pointer-events: none;
+}
+.cdst-interaction-lower-crop .cdst-exact-section {
+  z-index: 1;
+}
+.cdst-salary-prototype {
+  width: 2479px;
+  height: 2855px;
+  pointer-events: none;
+}
+.cdst-salary-copy {
+  width: 1800px;
+}
+.cdst-salary-copy span {
+  letter-spacing: 3.96px;
+}
 
 .cdst-profile-prototype {
   width: 1999px;
   height: 2476px;
-  background:
-    linear-gradient(157deg, #f7f7f7 0 31.5%, transparent 31.58%),
-    linear-gradient(14deg, transparent 0 35.2%, #f7f7f7 35.28% 44.5%, transparent 44.58%),
-    #141414;
+  background: #141414;
   overflow: hidden;
+}
+.cdst-salary-phone-flow {
+  width: 1311px;
+  height: 2471px;
+  background: #141414;
+  overflow: visible;
 }
 
 .cdst-profile-lines {
@@ -710,6 +777,175 @@
   line-height: 24px;
 }
 
+.cdst-salary-form {
+  padding: 54px 18px 0;
+}
+
+.cdst-salary-choice {
+  position: relative;
+  display: grid;
+  grid-template-columns: 28px 1fr 12px;
+  align-items: center;
+  height: 42px;
+  margin-bottom: 13px;
+  border-radius: 21px;
+  padding: 0 10px;
+  background: #f2f6f8;
+  color: #8c969d;
+  font-size: 12px;
+}
+
+.cdst-salary-choice::after {
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #bec6ca;
+  border-right: 2px solid #bec6ca;
+  transform: rotate(45deg);
+  content: "";
+}
+
+.cdst-salary-choice em {
+  display: none;
+  font-style: normal;
+}
+
+.salary-icon {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  color: #57bd7d;
+}
+
+.salary-icon.city::before {
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50% 50% 50% 0;
+  background: currentColor;
+  transform: rotate(-45deg);
+  content: "";
+}
+
+.salary-icon.city::after {
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+}
+
+.salary-icon.industry {
+  display: grid;
+  grid-template-columns: repeat(2, 8px);
+  grid-template-rows: repeat(2, 8px);
+  gap: 2px;
+}
+
+.salary-icon.industry::before,
+.salary-icon.industry::after {
+  width: 8px;
+  height: 18px;
+  border-radius: 8px;
+  background: currentColor;
+  content: "";
+}
+
+.salary-icon.industry::before {
+  transform: rotate(45deg);
+}
+
+.salary-icon.industry::after {
+  transform: rotate(-45deg);
+}
+
+.salary-icon.school::before {
+  position: absolute;
+  left: 1px;
+  top: 3px;
+  border-right: 8px solid transparent;
+  border-bottom: 5px solid currentColor;
+  border-left: 8px solid transparent;
+  content: "";
+}
+
+.salary-icon.school::after {
+  position: absolute;
+  left: 3px;
+  top: 9px;
+  width: 12px;
+  height: 8px;
+  border-radius: 1px 1px 4px 4px;
+  background: currentColor;
+  content: "";
+}
+
+.salary-icon.degree::before {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px 4px 8px 8px;
+  background: currentColor;
+  content: "";
+}
+
+.cdst-salary-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cdst-salary-metrics span {
+  display: block;
+  min-height: 60px;
+  border: 1px solid #e6ecef;
+  border-radius: 8px;
+  padding: 9px 8px;
+  color: #8a9399;
+  font-size: 10px;
+}
+
+.cdst-salary-metrics b,
+.cdst-salary-metrics em {
+  display: block;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.cdst-salary-metrics em {
+  margin-top: 8px;
+  color: #222;
+  font-size: 15px;
+  text-align: right;
+}
+
+.cdst-salary-form button {
+  display: block;
+  width: 92px;
+  height: 28px;
+  margin: 18px auto 0;
+  border: 0;
+  border-radius: 14px;
+  background: #d8d8d8;
+  color: #555;
+  font-size: 11px;
+}
+
+.cdst-salary-form small {
+  display: block;
+  margin-top: 11px;
+  color: #b1b1b1;
+  font-size: 9px;
+  text-align: center;
+}
+
 .cdst-phone-search {
   height: 28px;
   margin: 8px 30px 3px;
@@ -842,6 +1078,81 @@
   font-size: 10px;
   line-height: 24px;
   text-align: center;
+}
+.cdst-interaction-note {
+  position: absolute;
+  color: #fff;
+  font-size: 20.834px;
+  line-height: 24.997px;
+  letter-spacing: 1.979px;
+  white-space: nowrap;
+}
+.cdst-interaction-note.vertical {
+  width: 22px;
+  white-space: normal;
+}
+.cdst-interaction-note.vertical span {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+.cdst-interaction-note.dark-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 256px;
+  height: 41px;
+  padding: 0 9px;
+  background: #f7f7f7;
+  color: #111;
+  box-sizing: border-box;
+}
+.cdst-interaction-note i {
+  position: absolute;
+  display: block;
+  width: 2px;
+  background: rgba(255,255,255,.72);
+}
+.cdst-interaction-note i::after {
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(255,255,255,.72);
+  border-bottom: 2px solid rgba(255,255,255,.72);
+  transform: translateX(-50%) rotate(45deg);
+  content: "";
+}
+.cdst-interaction-note i.down.tall {
+  left: 9px;
+  top: 0;
+  height: 201px;
+}
+.cdst-interaction-note i.down.tall + span {
+  position: absolute;
+  left: 34px;
+  top: 0;
+}
+.cdst-interaction-note i.down.short {
+  left: 0;
+  top: 0;
+  height: 100px;
+}
+.cdst-interaction-note i.down.short + span {
+  position: absolute;
+  left: 20px;
+  top: 0;
+}
+.cdst-interaction-side-note {
+  position: absolute;
+  color: rgba(255,255,255,.8);
+  font-size: 20.834px;
+  line-height: 24.997px;
+  letter-spacing: 1.979px;
+  white-space: nowrap;
+}
+.cdst-interaction-side-note p {
+  margin: 0 0 5px;
 }
 
 /* ── UI视觉 ── */

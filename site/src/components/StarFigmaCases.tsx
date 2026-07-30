@@ -246,11 +246,10 @@ const cdst = {
   personaC: publicUrl('/images/xingji/cdst/assets/persona-c.webp'),
   personaD: publicUrl('/images/xingji/cdst/assets/persona-d.webp'),
 
-  /* 产品结构 / 流程：本地单图资源 */
+  /* 产品结构：本地单图资源 */
   struct: publicUrl('/images/xingji/cdst/assets/product-structure.png'),
-  flow: publicUrl('/images/xingji/cdst/assets/product-flow.webp'),
 
-  /* 交互原型：整段使用 Figma 9817:19235 精确导出，避免局部分层裁切/叠字 */
+  /* 交互原型：后半段暂用裁切导出，首段以 HTML/CSS/SVG 重建 */
   interactionPrototype: publicUrl('/images/xingji/cdst/layers/interaction-prototype-full.png?v=figma-9817-19235-isolated-20260729'),
 
   /* UI 视觉：独立手机稿/装饰图分层渲染 */
@@ -368,6 +367,8 @@ function CdstCase() {
     icon: SEC.visual + 6321.5,  // 组10 -> 30919
   };
   const stageHeight = V.icon + 1686;
+  const interactionTop = SEC.inter - 153.5;
+  const interactionCodeHeight = 3302;
   const bgSlabs = [
     { src: cdst.bgStrokeHero, left: -260, top: 1411, width: 3000, height: 1490, flip: true },
     { src: cdst.bgStrokeStandard, left: -260, top: 3908, width: 3000, height: 2013.5 },
@@ -476,19 +477,26 @@ function CdstCase() {
         {/* ── 产品流程 (base 12691.5, h819) ── */}
         <CdstTitle y={SEC.flow} title="产品流程" en="Product Flow" w={268} />
         <div className="cdst-paragraph white" style={{ left: 200.5, top: SEC.flow + 256.5, width: 1400, lineHeight: '50px' }}>用户测试与咨询流程</div>
-        <img src={cdst.flow} className="abs img-cover" style={{ left: 199.5, top: SEC.flow + 437.5, width: 2080, height: 382 }} />
+        <CdstProductFlow left={199.5} top={SEC.flow + 437.5} />
 
         {/* ── 交互原型 (Figma 9817:19235, y13673 h10800) ── */}
         <div
           className="abs cdst-interaction-shield"
-          style={{ left: 0, top: SEC.inter - 153.5, width: 2480, height: 10800 }}
+          style={{ left: 0, top: interactionTop, width: 2480, height: 10800 }}
         />
-        <img
-          src={cdst.interactionPrototype}
-          className="abs cdst-exact-section"
-          style={{ left: 0, top: SEC.inter - 153.5, width: 2480, height: 10800 }}
-          alt=""
-        />
+        <CdstTitle y={interactionTop + 154} title="交互原型" en="Interactive Prototype" w={350} />
+        <CdstSalaryPrototype top={interactionTop + 446.5} />
+        <div
+          className="abs cdst-interaction-lower-crop"
+          style={{ left: 0, top: interactionTop + interactionCodeHeight, width: 2480, height: 10800 - interactionCodeHeight }}
+        >
+          <img
+            src={cdst.interactionPrototype}
+            className="abs cdst-exact-section"
+            style={{ left: 0, top: -interactionCodeHeight, width: 2480, height: 10800 }}
+            alt=""
+          />
+        </div>
 
         {/* ── UI视觉 (base 24597.5, h8607) ── */}
         <CdstTitle y={SEC.visual} title="UI视觉" en="UI Vision" w={201} />
@@ -550,6 +558,130 @@ const profilePhones = [
   { x: 815, y: 1826, screen: 'profileToast', mark: 'none' },
 ] as const;
 
+const salaryPhones = [
+  { x: 0, y: 0, screen: 'salaryCalc', mark: 'mid' },
+  { x: 300, y: 0, screen: 'cityList', mark: 'bottom' },
+  { x: 600, y: 0, screen: 'citySearch', mark: 'bottom' },
+  { x: 900, y: 0, screen: 'salaryCalcCity', mark: 'mid' },
+  { x: 0, y: 610, screen: 'industryList', mark: 'mid' },
+  { x: 300, y: 610, screen: 'salaryCalcCity', mark: 'mid' },
+  { x: 600, y: 610, screen: 'cityList', mark: 'bottom' },
+  { x: 900, y: 610, screen: 'citySearch', mark: 'bottom' },
+  { x: 0, y: 1214, screen: 'cityOverlay', dimmed: true, mark: 'none' },
+  { x: 300, y: 1214, screen: 'salaryCalcIndustry', mark: 'mid' },
+  { x: 600, y: 1214, screen: 'profileSchool', mark: 'bottom' },
+  { x: 900, y: 1214, screen: 'profileYearDone', mark: 'mid' },
+  { x: 0, y: 1935, screen: 'profileBottomPicker', dimmed: true, mark: 'none' },
+  { x: 300, y: 1935, screen: 'profileSwitchOff', mark: 'switch' },
+  { x: 600, y: 1935, screen: 'industryTiles', mark: 'top' },
+] as const;
+
+type CdstPhoneScreen = (typeof profilePhones)[number]['screen'] | (typeof salaryPhones)[number]['screen'];
+
+function CdstProductFlow({ left, top }: { left: number; top: number }) {
+  const nodes = [
+    { kind: 'rect', x: 0, y: 112, w: 120, h: 64, label: '用户' },
+    { kind: 'rect', x: 246, y: 112, w: 120, h: 64, label: '职力测评', accent: true },
+    { kind: 'rect', x: 0, y: 252, w: 120, h: 64, label: '薪资计算器' },
+    { kind: 'rect', x: 246, y: 252, w: 120, h: 64, label: '方案分析' },
+    { kind: 'para', x: 470, y: 86, w: 160, h: 92, label: '选择兴趣\n项目类型' },
+    { kind: 'diamond', x: 745, y: 92, w: 132, h: 132, label: '是否做测试' },
+    { kind: 'para', x: 745, y: 248, w: 160, h: 94, label: '选择感兴趣\n的职业话题' },
+    { kind: 'rect', x: 1032, y: 112, w: 120, h: 64, label: '微信登录' },
+    { kind: 'rect', x: 1243, y: 112, w: 120, h: 64, label: '开始测试', accent: true },
+    { kind: 'rect', x: 1465, y: 112, w: 120, h: 64, label: '查看报告' },
+    { kind: 'diamond', x: 1703, y: 92, w: 132, h: 132, label: '是否咨询' },
+    { kind: 'rect', x: 1946, y: 112, w: 120, h: 64, label: '职业咨询', accent: true },
+    { kind: 'rect', x: 1032, y: 252, w: 120, h: 64, label: '填资料' },
+    { kind: 'rect', x: 1243, y: 252, w: 120, h: 64, label: '我的状态' },
+    { kind: 'rect', x: 1465, y: 252, w: 120, h: 64, label: '微信登录' },
+  ] as const;
+  const arrows = [
+    'M120 144H246', 'M120 284H246', 'M306 252V176', 'M366 144H470',
+    'M630 132H745', 'M877 158H1032', 'M1152 144H1243', 'M1363 144H1465',
+    'M1585 144H1703', 'M1835 158H1946', 'M811 224V248', 'M905 294H1032',
+    'M1152 284H1243', 'M1363 284H1465', 'M1585 284H1770V224',
+    'M1784 92V34H575V86', 'M1770 92V34H811',
+  ];
+
+  return (
+    <svg className="abs cdst-product-flow" style={{ left, top }} viewBox="0 0 2080 382" aria-label="用户测试与咨询流程">
+      <defs>
+        <marker id="cdst-flow-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <path d="M0 0L10 5L0 10Z" />
+        </marker>
+      </defs>
+      {arrows.map((path) => <path key={path} className="cdst-flow-line" d={path} />)}
+      <text className="cdst-flow-decision-label" x="944" y="132">是</text>
+      <text className="cdst-flow-decision-label" x="811" y="238">否</text>
+      <text className="cdst-flow-decision-label" x="1814" y="132">是</text>
+      <text className="cdst-flow-decision-label" x="1268" y="22">否</text>
+      {nodes.map((node) => (
+        <g key={`${node.label}-${node.x}-${node.y}`} className={`cdst-flow-node${'accent' in node && node.accent ? ' is-accent' : ''}`}>
+          {node.kind === 'diamond' ? (
+            <polygon points={`${node.x + node.w / 2},${node.y} ${node.x + node.w},${node.y + node.h / 2} ${node.x + node.w / 2},${node.y + node.h} ${node.x},${node.y + node.h / 2}`} />
+          ) : node.kind === 'para' ? (
+            <polygon points={`${node.x + 30},${node.y} ${node.x + node.w},${node.y} ${node.x + node.w - 30},${node.y + node.h} ${node.x},${node.y + node.h}`} />
+          ) : (
+            <rect x={node.x} y={node.y} width={node.w} height={node.h} rx="4" />
+          )}
+          <text x={node.x + node.w / 2} y={node.y + node.h / 2}>
+            {node.label.split('\n').map((line, index, arr) => (
+              <tspan key={line} x={node.x + node.w / 2} dy={index === 0 ? `${(1 - arr.length) * 13}px` : '26px'}>{line}</tspan>
+            ))}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+function CdstSalaryPrototype({ top }: { top: number }) {
+  return (
+    <div className="abs cdst-salary-prototype cdst-interaction-code" style={{ left: 0.5, top }}>
+      <div className="interaction-title cdst-salary-copy" style={{ left: 280.5, top: 0.5 }}>
+        <p>|&nbsp;&nbsp;&nbsp;&nbsp;薪资计算器&nbsp;&nbsp;&nbsp;&nbsp;|</p>
+        <span>用户选择自己所期望的城市、期望的行业、毕业院校、最高学历，系统将估算出用户毕业后大</span>
+        <span>概的工资水平，从而对自身能够有基本的判断，并且了解当地的五险一金情况。</span>
+      </div>
+      <CdstSalaryPhoneFlow left={292.5} top={248.5} />
+      <div className="cdst-interaction-note vertical" style={{ left: 1250.5, top: 420.5 }}>
+        <i className="down tall" />
+        <span>计算该城市的开支</span>
+      </div>
+      <div className="cdst-interaction-note vertical" style={{ left: 244, top: 2257 }}>
+        <span>当地五险一金明细参考</span>
+      </div>
+      <div className="cdst-interaction-note vertical" style={{ left: 573.5, top: 2366.5 }}>
+        <i className="down short" />
+        <span>向下拖动</span>
+      </div>
+      <div className="cdst-interaction-note dark-label" style={{ left: 880.5, top: 2111.5 }}>
+        计算出最低的薪资水平
+      </div>
+      <div className="cdst-interaction-note" style={{ left: 829.5, top: 2709.5 }}>
+        进入职力测评小程序
+      </div>
+      <div className="cdst-interaction-side-note" style={{ left: 1625.5, top: 1191.5 }}>
+        <p>位置：右部（Home</p>
+        <p>Indicator 上方）</p>
+        <p>&nbsp;</p>
+        <p>交互：页面隐出遮罩</p>
+        <p>层，向左滑出，点击</p>
+        <p>遮罩处操作列表关闭</p>
+      </div>
+      <div className="cdst-interaction-side-note" style={{ left: 306.5, top: 2684.5 }}>
+        <p>位置：底部（Home</p>
+        <p>Indicator 上方）</p>
+        <p>&nbsp;</p>
+        <p>交互：页面隐出遮罩</p>
+        <p>层，底部弹出，可</p>
+        <p>手动关闭</p>
+      </div>
+    </div>
+  );
+}
+
 function CdstProfilePrototype({ left, top }: { left: number; top: number }) {
   return (
     <div className="abs cdst-profile-prototype proto" style={{ left, top }}>
@@ -561,6 +693,22 @@ function CdstProfilePrototype({ left, top }: { left: number; top: number }) {
       </svg>
       {profilePhones.map((phone, index) => (
         <CdstPhone key={`${phone.screen}-${index}`} {...phone} />
+      ))}
+    </div>
+  );
+}
+
+function CdstSalaryPhoneFlow({ left, top }: { left: number; top: number }) {
+  return (
+    <div className="abs cdst-salary-phone-flow proto" style={{ left, top }}>
+      <svg className="cdst-profile-lines" viewBox="0 0 1311 2471" aria-hidden="true">
+        <path d="M94 84H206V416H306V492H506V416H606V492H806V416H906V492H1208V84" />
+        <path d="M94 702H206V1010H306V1086H506V1010H606V1086H806V1010H906V1086H1208V702" />
+        <path d="M94 1302H206V1594H306V1670H506V1594H606V1670H806V1594H906V1670H1208V1302" />
+        <path d="M94 2028H206V2306H306V2392H506V2306H606V2392H806" />
+      </svg>
+      {salaryPhones.map((phone, index) => (
+        <CdstPhone key={`salary-${phone.screen}-${index}`} {...phone} />
       ))}
     </div>
   );
@@ -637,7 +785,7 @@ function CdstPhone({
 }: {
   x: number;
   y: number;
-  screen: (typeof profilePhones)[number]['screen'];
+  screen: CdstPhoneScreen;
   mark?: 'top' | 'mid' | 'lower' | 'bottom' | 'switch' | 'none';
   dimmed?: boolean;
 }) {
@@ -659,7 +807,27 @@ function CdstPhone({
   );
 }
 
-function PhoneScreen({ type }: { type: (typeof profilePhones)[number]['screen'] }) {
+function PhoneScreen({ type }: { type: CdstPhoneScreen }) {
+  if (type === 'salaryCalc' || type === 'salaryCalcCity' || type === 'salaryCalcIndustry') {
+    return (
+      <>
+        <PhoneHeader title="薪资计算器" />
+        <div className="cdst-salary-form">
+          <SalaryChoice icon="city" label="期望城市" value={type === 'salaryCalc' ? '请选择期望城市' : '北京'} />
+          <SalaryChoice icon="industry" label="期望行业" value={type === 'salaryCalcIndustry' ? '制造' : '请选择期望行业'} />
+          <SalaryChoice icon="school" label="毕业院校" value="请选择毕业院校" />
+          <SalaryChoice icon="degree" label="最高学历" value="请选择最高学历" />
+          <div className="cdst-salary-metrics">
+            <span><b>月度住房开销</b><em>￥ 368</em></span>
+            <span><b>五险一金参考</b><em>￥ 2350</em></span>
+          </div>
+          <button type="button">开始计算</button>
+          <small>此处显示为市场平均水平</small>
+        </div>
+      </>
+    );
+  }
+
   if (type === 'industryTiles') {
     return (
       <>
@@ -908,6 +1076,16 @@ function MadTitle({ x, y, w, align, children }: { x: number; y: number; w: numbe
 /* MAD section sub-label — 96px Inter, #f9f7f2 @ 50% */
 function MadLabel({ x, y, w, align, children }: { x: number; y: number; w: number; align?: 'center' | 'right'; children: React.ReactNode }) {
   return <div className="mad-sec-label abs" style={{ left: x, top: y, width: w, textAlign: align }}>{children}</div>;
+}
+
+function SalaryChoice({ icon, label, value }: { icon: 'city' | 'industry' | 'school' | 'degree'; label: string; value: string }) {
+  return (
+    <div className="cdst-salary-choice">
+      <i className={`salary-icon ${icon}`} />
+      <span>{label}</span>
+      <em>{value}</em>
+    </div>
+  );
 }
 
 function MadDivider({ x, y, w, dots }: { x: number; y: number; w: number; dots: number[] }) {
