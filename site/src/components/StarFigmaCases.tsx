@@ -362,9 +362,9 @@ function CdstCase() {
     home: SEC.visual + 280.5,   // 组7  -> 24878
     level: SEC.visual + 1861.5, // 组6  -> 26459
     other: SEC.visual + 4923.5, // 组9  -> 29521
-    icon: SEC.visual + 6321.5,  // 组10 -> 30919
+    icon: SEC.visual + 6446,    // 组10 -> 31043.5
   };
-  const stageHeight = V.icon + 1686;
+  const stageHeight = V.icon + 1950;
   const interactionTop = SEC.inter - 153.5;
   const bgSlabs = [
     { src: cdst.bgStrokeHero, left: -260, top: 1411, width: 3000, height: 1490, flip: true },
@@ -375,7 +375,7 @@ function CdstCase() {
     { src: cdst.bgStrokeLate, left: -260, top: 18731, width: 3000, height: 2022.3 },
     { src: cdst.bgStrokeLate, left: -260, top: 22450, width: 3000, height: 2022.3 },
     { src: cdst.bgStrokeStandard, left: -260, top: 26104, width: 3000, height: 2013.5 },
-    { src: cdst.bgStrokeEnd, left: -260, top: 31034, width: 3000, height: 1500 },
+    { src: cdst.bgStrokeEnd, left: -260, top: 31034, width: 3000, height: stageHeight - 31034 },
   ];
 
   return (

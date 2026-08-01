@@ -1516,7 +1516,7 @@ export default function ProjectDetail({
     <section
       className={
         usesFullWidthFigmaCanvas
-          ? `relative min-h-screen w-full overflow-x-auto px-0 ${trimsStandaloneFigmaFooter ? 'pb-0' : 'pb-24'} pt-10`
+          ? `relative min-h-screen w-full ${trimsStandaloneFigmaFooter ? 'overflow-x-hidden pb-0' : 'overflow-x-auto pb-24'} px-0 pt-10`
           : 'relative w-full min-h-screen px-6 pb-24 pt-10 sm:px-12 lg:px-20 2xl:px-24'
       }
     >
