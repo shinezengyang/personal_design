@@ -272,6 +272,23 @@ const cdst = {
   uiOther5: publicUrl('/images/xingji/cdst/layers/ui-other-5.webp'),
   uiOtherStrip: publicUrl('/images/xingji/cdst/layers/ui-other-strip.webp'),
 
+  interactionSalaryFlow: publicUrl('/images/xingji/cdst/layers/interaction/salary-flow.png?v=figma-9817-19270'),
+  interactionSalaryExtraPhone: publicUrl('/images/xingji/cdst/layers/interaction/salary-extra-phone.png?v=figma-9817-19282'),
+  interactionSalaryBottomStrip: publicUrl('/images/xingji/cdst/layers/interaction/salary-bottom-strip.png?v=figma-9817-19283'),
+  interactionSalaryArrowCity: publicUrl('/images/xingji/cdst/layers/interaction/salary-arrow-city.svg?v=figma-9817-19274'),
+  interactionSalaryArrowDrag: publicUrl('/images/xingji/cdst/layers/interaction/salary-arrow-drag.png?v=figma-9817-19278'),
+  interactionSalaryLabelMin: publicUrl('/images/xingji/cdst/layers/interaction/salary-label-min.svg?v=figma-9817-19284'),
+  interactionSalaryLabelEnter: publicUrl('/images/xingji/cdst/layers/interaction/salary-label-enter.svg?v=figma-9817-19286'),
+  interactionAssessmentFlow: publicUrl('/images/xingji/cdst/layers/interaction/assessment-flow.png?v=figma-9817-19254'),
+  interactionAssessmentTopStrip: publicUrl('/images/xingji/cdst/layers/interaction/assessment-top-strip.png?v=figma-9817-19255'),
+  interactionAssessmentSidePhone: publicUrl('/images/xingji/cdst/layers/interaction/assessment-side-phone.png?v=figma-9817-19256'),
+  interactionAssessmentArrowSwipe: publicUrl('/images/xingji/cdst/layers/interaction/assessment-arrow-swipe.png?v=figma-9817-19260'),
+  interactionAssessmentArrowDownA: publicUrl('/images/xingji/cdst/layers/interaction/assessment-arrow-down-a.png?v=figma-9817-19263'),
+  interactionAssessmentArrowDownB: publicUrl('/images/xingji/cdst/layers/interaction/assessment-arrow-down-b.png?v=figma-9817-19268'),
+  interactionProfileFlow: publicUrl('/images/xingji/cdst/layers/interaction/profile-flow.png?v=figma-9817-19247'),
+  interactionStatusConsultFlow: publicUrl('/images/xingji/cdst/layers/interaction/status-consult-flow.png?v=figma-9817-19239'),
+  interactionStatusConsultVerticalBg: publicUrl('/images/xingji/cdst/layers/interaction/status-consult-vertical-bg.png?v=figma-9817-19242'),
+
   bgStrokeHero: publicUrl('/images/xingji/cdst/bg/stroke-hero.svg'),
   bgStrokeStandard: publicUrl('/images/xingji/cdst/bg/stroke-standard.svg'),
   bgStrokeLate: publicUrl('/images/xingji/cdst/bg/stroke-late.svg'),
@@ -667,24 +684,26 @@ function CdstSalaryPrototype({ top }: { top: number }) {
         <span>概的工资水平，从而对自身能够有基本的判断，并且了解当地的五险一金情况。</span>
       </div>
       <CdstSalaryPhoneFlow left={292.5} top={248.5} />
-      <div className="cdst-interaction-note vertical" style={{ left: 1328.5, top: 420.5 }}>
-        <i className="down tall" />
+      <img src={cdst.interactionSalaryArrowCity} className="abs cdst-interaction-asset" style={{ left: 1250.5, top: 420.5, width: 46, height: 201 }} alt="" />
+      <div className="cdst-interaction-note vertical" style={{ left: 1284.5, top: 420.5 }}>
         <span>计算该城市的开支</span>
       </div>
       <div className="cdst-interaction-note vertical" style={{ left: 244, top: 2257 }}>
         <span>当地五险一金明细参考</span>
       </div>
-      <div className="cdst-interaction-note vertical" style={{ left: 573.5, top: 2366.5 }}>
-        <i className="down short" />
+      <img src={cdst.interactionSalaryArrowDrag} className="abs cdst-interaction-asset" style={{ left: 573.5, top: 2366.5, width: 30, height: 100 }} alt="" />
+      <div className="cdst-interaction-note vertical" style={{ left: 593.5, top: 2366.5 }}>
         <span>向下拖动</span>
       </div>
+      <img src={cdst.interactionSalaryLabelMin} className="abs cdst-interaction-asset" style={{ left: 864.5, top: 2099.5, width: 256, height: 41 }} alt="" />
       <div className="cdst-interaction-note dark-label" style={{ left: 880.5, top: 2111.5 }}>
         计算出最低的薪资水平
       </div>
+      <img src={cdst.interactionSalaryLabelEnter} className="abs cdst-interaction-asset" style={{ left: 814.5, top: 2700.5, width: 228, height: 44 }} alt="" />
       <div className="cdst-interaction-note" style={{ left: 829.5, top: 2709.5 }}>
         进入职力测评小程序
       </div>
-      <div className="cdst-interaction-side-note" style={{ left: 1715.5, top: 1191.5 }}>
+      <div className="cdst-interaction-side-note" style={{ left: 1625.5, top: 1191.5 }}>
         <p>位置：右部（Home</p>
         <p>Indicator 上方）</p>
         <p>&nbsp;</p>
@@ -713,10 +732,14 @@ function CdstAssessmentPrototype({ top }: { top: number }) {
         <span>职业道路选择项。借力自测工具，不断开发自己的职业潜能，获得更好的职业生涯。</span>
       </div>
       <CdstAssessmentPhoneFlow left={199.5} top={238.5} />
+      <img src={cdst.interactionAssessmentArrowSwipe} className="abs cdst-interaction-asset rotate-neg-90" style={{ left: 531, top: 328, width: 96, height: 37 }} alt="" />
       <div className="cdst-interaction-note" style={{ left: 531, top: 328 }}>左右滑动</div>
-      <div className="cdst-interaction-note vertical" style={{ left: 900.5, top: 419.5 }}><i className="down short" /><span>向下滑动</span></div>
-      <div className="cdst-interaction-note vertical" style={{ left: 1239.5, top: 421.5 }}><i className="down short" /><span>向下滑动</span></div>
-      <div className="cdst-interaction-note vertical" style={{ left: 1239.5, top: 1078.5 }}><i className="down short" /><span>向下滑动</span></div>
+      <img src={cdst.interactionAssessmentArrowDownA} className="abs cdst-interaction-asset" style={{ left: 900.5, top: 419.5, width: 37, height: 98 }} alt="" />
+      <div className="cdst-interaction-note vertical" style={{ left: 927.5, top: 429 }}><span>向下滑动</span></div>
+      <img src={cdst.interactionAssessmentArrowDownB} className="abs cdst-interaction-asset" style={{ left: 1239.5, top: 421.5, width: 37, height: 98 }} alt="" />
+      <div className="cdst-interaction-note vertical" style={{ left: 1267, top: 429 }}><span>向下滑动</span></div>
+      <img src={cdst.interactionAssessmentArrowDownB} className="abs cdst-interaction-asset" style={{ left: 1239.5, top: 1078.5, width: 37, height: 98 }} alt="" />
+      <div className="cdst-interaction-note vertical" style={{ left: 1267, top: 1086 }}><span>向下滑动</span></div>
       <div className="cdst-interaction-note dark-label" style={{ left: 1172.5, top: 742.5 }}>进入测试页面</div>
       <div className="cdst-interaction-side-note" style={{ left: 1936.5, top: 1849 }}>
         <p className="large">点击单选按钮</p>
@@ -764,6 +787,10 @@ function CdstStatusConsultPrototype({ top }: { top: number }) {
         <span>选择职业状态</span>
       </div>
       <CdstStatusConsultFlow left={235.5} top={169.5} />
+      <img src={cdst.interactionStatusConsultVerticalBg} className="abs cdst-interaction-asset" style={{ left: 218.5, top: 1108.5, width: 38, height: 273 }} alt="" />
+      <div className="cdst-interaction-note vertical black" style={{ left: 218.5, top: 1108.5 }}>
+        <span>咨询职前教育心理学导师</span>
+      </div>
       <div className="interaction-title plain" style={{ left: 292.5, top: 1568.5 }}>
         <p>|&nbsp;&nbsp;&nbsp;&nbsp;咨询&nbsp;&nbsp;&nbsp;&nbsp;|</p>
       </div>
@@ -781,15 +808,7 @@ function CdstStatusConsultPrototype({ top }: { top: number }) {
 function CdstProfilePrototype({ left, top }: { left: number; top: number }) {
   return (
     <div className="abs cdst-profile-prototype proto" style={{ left, top }}>
-      <svg className="cdst-profile-lines" viewBox="0 0 1999 2476" aria-hidden="true">
-        <path d="M136 112 H232 V436 H360 V514 H660 V436 H792 V214 H918 V514 H1090 V436 H1212 V116 H1350 V514 H1510 V438 H1782 V112 H1872" />
-        <path d="M78 852 H232 V1056 H360 V1130 H660 V1056 H792 V910 H918 V1130 H1090 V1056 H1212 V840 H1350 V1130 H1510 V1056 H1788 V842 H1872" />
-        <path d="M78 1434 H232 V1632 H360 V1718 H660 V1632 H792 V1482 H918 V1718 H1090 V1632 H1212 V1498 H1350 V1718 H1510 V1632 H1788 V1440 H1872" />
-        <path d="M78 2040 H232 V2234 H360 V2314 H660 V2234 H792 V2172 H918 V2314" />
-      </svg>
-      {profilePhones.map((phone, index) => (
-        <CdstPhone key={`${phone.screen}-${index}`} {...phone} />
-      ))}
+      <img src={cdst.interactionProfileFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1999, height: 2476 }} alt="" />
     </div>
   );
 }
@@ -797,14 +816,9 @@ function CdstProfilePrototype({ left, top }: { left: number; top: number }) {
 function CdstAssessmentPhoneFlow({ left, top }: { left: number; top: number }) {
   return (
     <div className="abs cdst-assessment-phone-flow proto" style={{ left, top }}>
-      <svg className="cdst-profile-lines" viewBox="0 0 1696 1844" aria-hidden="true">
-        <path d="M92 130H210V560H330V650H628V560H760V650H958V560H1088V650H1390V130" />
-        <path d="M86 790H210V1136H330V1218H628V1136H760V1218H958V1136H1088V1218H1390V790" />
-        <path d="M86 1412H210V1726H330V1810H628V1726H760V1810H958V1726H1088V1810H1540" />
-      </svg>
-      {assessmentPhones.map((phone, index) => (
-        <CdstPhone key={`assessment-${phone.screen}-${index}`} {...phone} />
-      ))}
+      <img src={cdst.interactionAssessmentFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1696, height: 1844 }} alt="" />
+      <img src={cdst.interactionAssessmentTopStrip} className="abs cdst-interaction-asset" style={{ left: 592, top: 337, width: 1020, height: 190 }} alt="" />
+      <img src={cdst.interactionAssessmentSidePhone} className="abs cdst-interaction-asset" style={{ left: 1454, top: 0, width: 240, height: 486 }} alt="" />
     </div>
   );
 }
@@ -812,15 +826,9 @@ function CdstAssessmentPhoneFlow({ left, top }: { left: number; top: number }) {
 function CdstSalaryPhoneFlow({ left, top }: { left: number; top: number }) {
   return (
     <div className="abs cdst-salary-phone-flow proto" style={{ left, top }}>
-      <svg className="cdst-profile-lines" viewBox="0 0 1311 2471" aria-hidden="true">
-        <path d="M94 84H206V416H306V492H506V416H606V492H806V416H906V492H1208V84" />
-        <path d="M94 702H206V1010H306V1086H506V1010H606V1086H806V1010H906V1086H1208V702" />
-        <path d="M94 1302H206V1594H306V1670H506V1594H606V1670H806V1594H906V1670H1208V1302" />
-        <path d="M94 2028H206V2306H306V2392H506V2306H606V2392H806" />
-      </svg>
-      {salaryPhones.map((phone, index) => (
-        <CdstPhone key={`salary-${phone.screen}-${index}`} {...phone} />
-      ))}
+      <img src={cdst.interactionSalaryFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1311, height: 2422 }} alt="" />
+      <img src={cdst.interactionSalaryExtraPhone} className="abs cdst-interaction-asset" style={{ left: 683, top: 1935, width: 240, height: 486 }} alt="" />
+      <img src={cdst.interactionSalaryBottomStrip} className="abs cdst-interaction-asset" style={{ left: 463, top: 2389, width: 349, height: 82 }} alt="" />
     </div>
   );
 }
@@ -828,13 +836,7 @@ function CdstSalaryPhoneFlow({ left, top }: { left: number; top: number }) {
 function CdstStatusConsultFlow({ left, top }: { left: number; top: number }) {
   return (
     <div className="abs cdst-status-consult-flow proto" style={{ left, top }}>
-      <svg className="cdst-profile-lines" viewBox="0 0 1727 1817" aria-hidden="true">
-        <path d="M86 130H210V540H330V625H628V540H760V625H958V540H1088V625H1390V130" />
-        <path d="M360 1515H532V1788H650V1812H850V1788H972V1812H1172V1788H1378" />
-      </svg>
-      {statusConsultPhones.map((phone, index) => (
-        <CdstPhone key={`status-${phone.screen}-${index}`} {...phone} />
-      ))}
+      <img src={cdst.interactionStatusConsultFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1727, height: 1817 }} alt="" />
     </div>
   );
 }

@@ -527,6 +527,19 @@
   filter: none;
   object-fit: fill !important;
 }
+.cdst-interaction-asset {
+  z-index: 6;
+  max-width: none;
+  object-fit: fill !important;
+  pointer-events: none;
+}
+.cdst-interaction-code .proto {
+  filter: none;
+}
+.cdst-interaction-asset.rotate-neg-90 {
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
 .cdst-exact-section {
   max-width: none;
   object-fit: fill !important;
@@ -1325,6 +1338,9 @@
   line-height: 24.997px;
   letter-spacing: 1.979px;
   white-space: nowrap;
+}
+.cdst-interaction-note.black {
+  color: #111;
 }
 .cdst-interaction-note.vertical {
   width: 22px;
