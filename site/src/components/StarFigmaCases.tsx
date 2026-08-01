@@ -1296,6 +1296,7 @@ function Anno({ x, y, text, lines, vertical = false, black = false, dim = false,
 const mad = {
   coverBg:        publicUrl('/images/xingji/mad/cover-bg.png'),
   coverBadge:     publicUrl('/images/xingji/mad/cover-badge.png'),
+  coverBadgeClean: publicUrl('/images/xingji/mad/cover-badge-transparent.png'),
   analyst:        publicUrl('/images/xingji/mad/analyst.png'),
   iconBg:         publicUrl('/images/xingji/mad/icon-bg.png'),
   iconMark:       publicUrl('/images/xingji/mad/icon-mark.png'),
@@ -1306,9 +1307,8 @@ const mad = {
   guideCard4:     publicUrl('/images/xingji/mad/guide-card-4.png'),
   productBg:      publicUrl('/images/xingji/mad/product-bg.png'),
   productPhone:   publicUrl('/images/xingji/mad/product-phone.png'),
+  productPhoneClean: publicUrl('/images/xingji/mad/product-phone-transparent.png'),
   recommendGlow:  publicUrl('/images/xingji/mad/recommend-bg.png'),
-  recommendScreen: publicUrl('/images/xingji/mad/recommend-screen.png'),
-  recommendTopbar: publicUrl('/images/xingji/mad/recommend-topbar.png'),
   recommendPhone: publicUrl('/images/xingji/mad/recommend-phone.png'),
   mePhones:       publicUrl('/images/xingji/mad/me-phones.png'),
   rechargeBg:     publicUrl('/images/xingji/mad/recharge-bg.png'),
@@ -1319,6 +1319,7 @@ const mad = {
   wireframe:      publicUrl('/images/xingji/mad/wireframe-chart.png'),
   endBg:          publicUrl('/images/xingji/mad/end-bg.png'),
   endLaptop:      publicUrl('/images/xingji/mad/end-laptop.png'),
+  endLaptopClean: publicUrl('/images/xingji/mad/end-laptop-transparent.png'),
   endIcons:       publicUrl('/images/xingji/mad/end-icons.png'),
 };
 
@@ -1342,13 +1343,18 @@ function SalaryChoice({ icon, label, value }: { icon: 'city' | 'industry' | 'sch
   );
 }
 
-function MadDivider({ x, y, w, dots }: { x: number; y: number; w: number; dots: number[] }) {
+type MadDividerDot = number | [number, number] | { x: number; y?: number; tone?: 'gold' | 'light' };
+
+function MadDivider({ x, y, w, dots }: { x: number; y: number; w: number; dots: MadDividerDot[] }) {
   return (
     <>
       <span className="mad-divider-line abs" style={{ left: x, top: y, width: w }} />
-      {dots.map((left, index) => (
-        <span key={`${left}-${index}`} className="mad-divider-dot abs" style={{ left, top: y - 19 }} />
-      ))}
+      {dots.map((dot, index) => {
+        const left = Array.isArray(dot) ? dot[0] : typeof dot === 'number' ? dot : dot.x;
+        const top = Array.isArray(dot) ? dot[1] : typeof dot === 'number' ? y - 23 : dot.y ?? y - 23;
+        const tone = typeof dot === 'object' && !Array.isArray(dot) ? dot.tone : undefined;
+        return <span key={`${left}-${top}-${index}`} className={`mad-divider-dot abs${tone === 'light' ? ' is-light' : ''}`} style={{ left, top }} />;
+      })}
     </>
   );
 }
@@ -1481,7 +1487,8 @@ function MadCase() {
       const rest = ordered.filter((item) => !handled.has(item));
       const targetOpacity = (item: HTMLElement) => Number(item.dataset.madMotionOpacity || 1);
       const clear = (targets: HTMLElement[]) => {
-        if (targets.length) gsap.set(targets, { clearProps: 'opacity,transform,filter,transformOrigin' });
+        const liveTargets = targets.filter((target) => target.isConnected);
+        if (liveTargets.length) gsap.set(liveTargets, { clearProps: 'opacity,transform,filter,transformOrigin' });
       };
 
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -1578,9 +1585,8 @@ function MadCase() {
 
         {/* ── 组 10 cover (y0 h2318) ── */}
         <img src={mad.coverBg} className="abs mad-exact-img" style={{ left: 0, top: S.cover, width: 2480, height: 1655 }} />
-        <img src={mad.coverBadge} className="abs mad-exact-img" style={{ left: 1994, top: S.cover + 1187, width: 286, height: 351 }} />
-        <div className="mad-cover-frame abs" style={{ left: 60, top: S.cover + 49, width: 596, height: 207 }} />
-        <div className="mad-cover-badge abs" style={{ left: 98, top: S.cover + 81, width: 531 }}>My Production<br />我的作品</div>
+        <img src={mad.coverBadgeClean} className="abs mad-exact-img" style={{ left: 1994, top: S.cover + 1187, width: 286, height: 351 }} />
+        <div className="mad-cover-frame mad-cover-badge abs" style={{ left: 60, top: S.cover + 49, width: 596, height: 207 }}>My Production<br />我的作品</div>
         <div className="mad-cover-intro abs" style={{ left: 219, top: S.cover + 1763, width: 2043 }}>通过调查了解，许多球友对于比赛结果推断不准，导致足球博彩逢赌必输，即使他们能询问一些看球经验很丰富的老球迷，甚至向专业的分析师请教，但是由于不同的比赛有不同的体制，所以很多情况下是凭借运气来购买足球彩票，运气不好就预测不准，造成了很大的经济损失以及浪费了大量的时间精力，所以，对于一些没有太多时间来分析球赛的球友来说，特别是经验水平不足的新人，这款应用是为了广大球友设计的。</div>
 
         {/* ── 组 13 analyst (y2555 h1312) ── */}
@@ -1602,31 +1608,47 @@ function MadCase() {
 
         {/* ── 组 14 product detail (y8605 h1662) ── */}
         <img src={mad.productBg} className="abs mad-exact-img" style={{ left: 0, top: S.product + 426, width: 2480, height: 1237 }} />
-        <img src={mad.productPhone} className="abs mad-exact-img mad-phone" style={{ left: 1119, top: S.product + 611, width: 592, height: 916 }} />
+        <img src={mad.productPhoneClean} className="abs mad-exact-img mad-phone" style={{ left: 1119, top: S.product + 611, width: 592, height: 916 }} />
         <MadTitle x={32} y={S.product + 2} w={2480} align="center">Product Detail<br />产品细节</MadTitle>
 
         {/* ── 组 15 recommend (y10583 h3487) ── */}
-        <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1380, height: 3061 }} />
-        <img src={mad.recommendScreen} className="abs mad-exact-img" style={{ left: 1327, top: S.recommend + 1106, width: 773, height: 2332 }} />
-        <img src={mad.recommendTopbar} className="abs mad-exact-img" style={{ left: 1300, top: S.recommend + 1124, width: 769, height: 136 }} />
-        <img src={mad.recommendPhone} className="abs mad-exact-img mad-phone" style={{ left: 1300, top: S.recommend + 1044, width: 905, height: 2443 }} />
-        <MadDivider x={705} y={S.recommend + 166} w={1579} dots={[686, 1398, 2250]} />
+        <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1379, height: 3060 }} />
+        <img src={mad.recommendPhone} className="abs mad-exact-img mad-phone" style={{ left: 1327, top: S.recommend + 1106, width: 773, height: 2332 }} />
+        <MadDivider
+          x={573}
+          y={S.recommend + 178}
+          w={1707}
+          dots={[
+            { x: 554, y: S.recommend + 155, tone: 'gold' },
+            { x: 1406, y: S.recommend + 155, tone: 'light' },
+            { x: 2258, y: S.recommend + 155, tone: 'light' },
+          ]}
+        />
         <MadTitle x={200} y={S.recommend + 39} w={854}>Recommend<br />推荐</MadTitle>
         <MadLabel x={207} y={S.recommend + 786} w={558}>Forecast<br />预测赛果</MadLabel>
         <MadLabel x={207} y={S.recommend + 1444} w={421}>Live<br />实时比赛</MadLabel>
 
         {/* ── 组 16 me (y14467 h2345) ── */}
-        <img src={mad.mePhones} className="abs mad-me-phones" style={{ left: 633, top: S.me + 413, width: 1696, height: 1873 }} />
-        <MadDivider x={574} y={S.me + 153} w={1706} dots={[555, 1406, 2258]} />
+        <img src={mad.mePhones} className="abs mad-me-phones" style={{ left: 633, top: S.me + 413, width: 1670, height: 1768 }} />
+        <MadDivider
+          x={574}
+          y={S.me + 157}
+          w={1706}
+          dots={[
+            { x: 555, y: S.me + 134, tone: 'light' },
+            { x: 1406, y: S.me + 134, tone: 'gold' },
+            { x: 2258, y: S.me + 134, tone: 'light' },
+          ]}
+        />
         {/* leader-line connectors: gold square node + thin line per label */}
-        <span className="mad-leader-sq abs" style={{ left: 1398, top: S.me + 518, width: 30, height: 30 }} />
-        <span className="mad-leader-ln abs" style={{ left: 1417, top: S.me + 526, width: 358 }} />
+        <span className="mad-leader-sq abs" style={{ left: 1398, top: S.me + 519, width: 30, height: 30 }} />
+        <span className="mad-leader-ln abs" style={{ left: 1424, top: S.me + 534, width: 347 }} />
         <span className="mad-leader-sq abs" style={{ left: 935, top: S.me + 952, width: 30, height: 30 }} />
-        <span className="mad-leader-ln abs" style={{ left: 633, top: S.me + 960, width: 313 }} />
+        <span className="mad-leader-ln abs" style={{ left: 641, top: S.me + 967, width: 302 }} />
         <span className="mad-leader-sq abs" style={{ left: 965, top: S.me + 1683, width: 30, height: 30 }} />
-        <span className="mad-leader-ln abs" style={{ left: 637, top: S.me + 1691, width: 339 }} />
+        <span className="mad-leader-ln abs" style={{ left: 645, top: S.me + 1698, width: 328 }} />
         <span className="mad-leader-sq abs" style={{ left: 1474, top: S.me + 2056, width: 30, height: 30 }} />
-        <span className="mad-leader-ln abs" style={{ left: 1493, top: S.me + 2064, width: 286 }} />
+        <span className="mad-leader-ln abs" style={{ left: 1500, top: S.me + 2071, width: 275 }} />
         <MadTitle x={204} y={S.me} w={269}>Me<br />我的</MadTitle>
         <MadLabel x={1616} y={S.me + 437} w={638} align="right">Classify<br />分类</MadLabel>
         <MadLabel x={204} y={S.me + 867} w={421}>Record<br />充值记录</MadLabel>
@@ -1636,13 +1658,21 @@ function MadCase() {
         {/* ── 组 18 recharge (y17286 h2147) ── */}
         <img src={mad.rechargeBg} className="abs img-cover" style={{ left: 45, top: S.recharge + 421, width: 2420, height: 1726 }} />
         <img src={mad.rechargePhone} className="abs img-cover mad-phone" style={{ left: 298, top: S.recharge + 519, width: 1952, height: 1391 }} />
-        <MadDivider x={730} y={S.recharge + 135} w={1550} dots={[711, 1405, 2258]} />
+        <MadDivider
+          x={573}
+          y={S.recharge + 154}
+          w={1707}
+          dots={[
+            { x: 554, y: S.recharge + 131, tone: 'light' },
+            { x: 1405, y: S.recharge + 131, tone: 'light' },
+            { x: 2258, y: S.recharge + 131, tone: 'gold' },
+          ]}
+        />
         <MadTitle x={151} y={S.recharge} w={660}>Recharge<br />充值</MadTitle>
 
         {/* ── 组 20 dialog (y20051 h3065) ── */}
-        <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 641, top: S.dialog + 565, width: 1209, height: 2500 }} />
-        <span className="mad-dialog-titleplate abs" style={{ left: 527, top: S.dialog, width: 1438, height: 147 }} />
-        <MadSplitDivider y={S.dialog + 73} segments={[{ x: 0, w: 527 }, { x: 1965, w: 515 }]} />
+        <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 633, top: S.dialog + 565, width: 1209, height: 2500 }} />
+        <MadSplitDivider y={S.dialog + 68} segments={[{ x: 0, w: 520 }, { x: 1958, w: 522 }]} />
         <MadTitle x={0} y={S.dialog + 20} w={2480} align="center">Dialog Box Pops Up<br />弹出对话框</MadTitle>
 
         {/* ── 组 21 charts (y23696 h7579) ── */}
@@ -1655,9 +1685,9 @@ function MadCase() {
 
         {/* ── 组 22 end (y31852 h3094) ── */}
         <img src={mad.endBg} className="abs img-cover" style={{ left: 0, top: S.end, width: 2480, height: 1504 }} />
-        <img src={mad.endLaptop} className="abs img-cover" style={{ left: 957, top: S.end + 539, width: 765, height: 512 }} />
+        <img src={mad.endLaptopClean} className="abs img-cover" style={{ left: 957, top: S.end + 539, width: 765, height: 512 }} />
         <span className="mad-end-badge abs" style={{ left: 1006, top: S.end + 1636, width: 475, height: 143 }} />
-        <MadSplitDivider y={S.end + 1696} segments={[{ x: -4, w: 1010 }, { x: 1481, w: 1010 }]} />
+        <MadSplitDivider y={S.end + 1704} segments={[{ x: 4, w: 1002 }, { x: 1481, w: 1003 }]} />
         <img src={mad.endIcons} className="abs img-cover" style={{ left: 444, top: S.end + 2031, width: 1600, height: 379 }} />
         <MadTitle x={1080} y={S.end + 1675} w={350} align="center">ICON</MadTitle>
 

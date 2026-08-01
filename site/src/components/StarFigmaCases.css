@@ -123,14 +123,17 @@
   font-family: Inter, 'Noto Sans SC', 'Microsoft YaHei', Arial, sans-serif;
   font-weight: 400;
   font-size: 64px;
-  line-height: 98.75px;
-  letter-spacing: 6.87px;
+  line-height: 1.1;
+  letter-spacing: 4.7px;
   color: rgba(255, 255, 255, .8);
   text-align: center;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .mad-cover-frame {
-  border: 3px solid rgba(249, 247, 242, .62);
+  border: 3px solid rgba(255, 255, 255, .35);
   border-radius: 6px;
   box-sizing: border-box;
 }
@@ -148,13 +151,17 @@
 .mad-dialog-divider {
   height: 8px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(142, 95, 50, .08) 0%, rgba(218, 159, 77, .92) 50%, rgba(142, 95, 50, .08) 100%);
+  background: rgba(218, 159, 77, .88);
 }
 .mad-divider-dot {
-  width: 53px;
-  height: 53px;
+  width: 41px;
+  height: 41px;
   border-radius: 50%;
-  background: radial-gradient(circle, #f2ad4c 0 34%, #90643a 38% 62%, rgba(144, 100, 58, 0) 66%);
+  background: radial-gradient(circle, #e8a647 40%, #936638 100%);
+  opacity: .85;
+}
+.mad-divider-dot.is-light {
+  background: #f9f7f2;
   opacity: .9;
 }
 .mad-dialog-titleplate,
