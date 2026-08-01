@@ -419,12 +419,14 @@ function CdstCase() {
         />
 
         {/* ── 头图 hero (y0 h1471) ── */}
-        <img
-          src={publicUrl('/images/xingji/cdst/cdst-hero-cover.webp')}
-          className="abs img-cover"
-          style={{ left: 0, top: 0, width: 2480, height: 1471 }}
-          alt=""
-        />
+        <div className="abs cdst-hero-cover-frame" style={{ left: 0, top: 0, width: 2480, height: 1471 }}>
+          <img
+            src={publicUrl('/images/xingji/cdst/cdst-hero-cover.webp')}
+            className="abs cdst-hero-cover-img"
+            style={{ left: 0, top: -2, width: 2480, height: 1473 }}
+            alt=""
+          />
+        </div>
 
         {/* ── 项目概括 + 市场分析 (base 1495.5, h1887) ── */}
         <CdstTitle y={SEC.project} title="项目概括" en="Project Overview" w={337} tone="black" />

@@ -209,6 +209,15 @@
 .mad-guide-card .mad-guide-sign.up { transform: rotate(-12deg); transform-origin: left center; }
 
 .cdst-stage { background: #141414; color: #fff; }
+.cdst-hero-cover-frame {
+  overflow: hidden;
+  background: #141414;
+}
+.cdst-hero-cover-img {
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+}
 .cdst-bg-slab {
   max-width: none;
   object-fit: fill !important;
