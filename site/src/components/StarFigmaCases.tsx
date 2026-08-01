@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
 import { publicUrl } from '../lib/publicUrl';
 import './StarFigmaCases.css';
 
@@ -249,9 +250,6 @@ const cdst = {
   /* 产品结构：本地单图资源 */
   struct: publicUrl('/images/xingji/cdst/assets/product-structure.png'),
 
-  /* 交互原型：后半段暂用裁切导出，首段以 HTML/CSS/SVG 重建 */
-  interactionPrototype: publicUrl('/images/xingji/cdst/layers/interaction-prototype-full.png?v=figma-9817-19235-isolated-20260729'),
-
   /* UI 视觉：独立手机稿/装饰图分层渲染 */
   uiVisionHomeExact: publicUrl('/images/xingji/cdst/layers/ui-vision-home-exact.png?v=figma-9817-19294'),
   uiVisionLevelExact: publicUrl('/images/xingji/cdst/layers/ui-vision-level-exact.png?v=figma-9817-19303'),
@@ -368,7 +366,6 @@ function CdstCase() {
   };
   const stageHeight = V.icon + 1686;
   const interactionTop = SEC.inter - 153.5;
-  const interactionCodeHeight = 3302;
   const bgSlabs = [
     { src: cdst.bgStrokeHero, left: -260, top: 1411, width: 3000, height: 1490, flip: true },
     { src: cdst.bgStrokeStandard, left: -260, top: 3908, width: 3000, height: 2013.5 },
@@ -486,17 +483,9 @@ function CdstCase() {
         />
         <CdstTitle y={interactionTop + 154} title="交互原型" en="Interactive Prototype" w={350} />
         <CdstSalaryPrototype top={interactionTop + 446.5} />
-        <div
-          className="abs cdst-interaction-lower-crop"
-          style={{ left: 0, top: interactionTop + interactionCodeHeight, width: 2480, height: 10800 - interactionCodeHeight }}
-        >
-          <img
-            src={cdst.interactionPrototype}
-            className="abs cdst-exact-section"
-            style={{ left: 0, top: -interactionCodeHeight, width: 2480, height: 10800 }}
-            alt=""
-          />
-        </div>
+        <CdstAssessmentPrototype top={interactionTop + 3442.5} />
+        <CdstProfileInteraction top={interactionTop + 5688.5} />
+        <CdstStatusConsultPrototype top={interactionTop + 8579.5} />
 
         {/* ── UI视觉 (base 24597.5, h8607) ── */}
         <CdstTitle y={SEC.visual} title="UI视觉" en="UI Vision" w={201} />
@@ -576,7 +565,40 @@ const salaryPhones = [
   { x: 600, y: 1935, screen: 'industryTiles', mark: 'top' },
 ] as const;
 
-type CdstPhoneScreen = (typeof profilePhones)[number]['screen'] | (typeof salaryPhones)[number]['screen'];
+const assessmentPhones = [
+  { x: 0, y: 0, screen: 'assessmentHome', mark: 'mid' },
+  { x: 320, y: 0, screen: 'assessmentHomeActive', mark: 'mid' },
+  { x: 640, y: 0, screen: 'assessmentList', mark: 'bottom' },
+  { x: 960, y: 0, screen: 'assessmentList', mark: 'bottom' },
+  { x: 1280, y: 0, screen: 'assessmentArticle', mark: 'mid' },
+  { x: 0, y: 665, screen: 'assessmentTiles', mark: 'mid' },
+  { x: 320, y: 665, screen: 'assessmentTiles', mark: 'mid' },
+  { x: 640, y: 665, screen: 'assessmentArticle', mark: 'bottom' },
+  { x: 960, y: 665, screen: 'reportList', mark: 'bottom' },
+  { x: 0, y: 1288, screen: 'reportList', mark: 'bottom' },
+  { x: 320, y: 1288, screen: 'assessmentArticle', mark: 'mid' },
+  { x: 640, y: 1288, screen: 'assessmentQuestion', mark: 'mid' },
+  { x: 960, y: 1288, screen: 'assessmentQuestionOpen', mark: 'mid' },
+  { x: 1280, y: 1288, screen: 'assessmentQuestion', mark: 'mid' },
+] as const;
+
+const statusConsultPhones = [
+  { x: 0, y: 0, screen: 'industryTiles', mark: 'mid' },
+  { x: 320, y: 0, screen: 'statusList', mark: 'mid' },
+  { x: 640, y: 0, screen: 'assessmentArticle', mark: 'bottom' },
+  { x: 960, y: 0, screen: 'assessmentQuestionOpen', mark: 'mid' },
+  { x: 1280, y: 0, screen: 'assessmentQuestion', mark: 'mid' },
+  { x: 320, y: 1400, screen: 'consultAbout', mark: 'bottom' },
+  { x: 640, y: 1400, screen: 'consultCategories', mark: 'bottom' },
+  { x: 960, y: 1400, screen: 'consultOnline', mark: 'bottom' },
+  { x: 1280, y: 1400, screen: 'blankConsult', mark: 'none' },
+] as const;
+
+type CdstPhoneScreen =
+  | (typeof profilePhones)[number]['screen']
+  | (typeof salaryPhones)[number]['screen']
+  | (typeof assessmentPhones)[number]['screen']
+  | (typeof statusConsultPhones)[number]['screen'];
 
 function CdstProductFlow({ left, top }: { left: number; top: number }) {
   const nodes = [
@@ -645,7 +667,7 @@ function CdstSalaryPrototype({ top }: { top: number }) {
         <span>概的工资水平，从而对自身能够有基本的判断，并且了解当地的五险一金情况。</span>
       </div>
       <CdstSalaryPhoneFlow left={292.5} top={248.5} />
-      <div className="cdst-interaction-note vertical" style={{ left: 1250.5, top: 420.5 }}>
+      <div className="cdst-interaction-note vertical" style={{ left: 1328.5, top: 420.5 }}>
         <i className="down tall" />
         <span>计算该城市的开支</span>
       </div>
@@ -662,7 +684,7 @@ function CdstSalaryPrototype({ top }: { top: number }) {
       <div className="cdst-interaction-note" style={{ left: 829.5, top: 2709.5 }}>
         进入职力测评小程序
       </div>
-      <div className="cdst-interaction-side-note" style={{ left: 1625.5, top: 1191.5 }}>
+      <div className="cdst-interaction-side-note" style={{ left: 1715.5, top: 1191.5 }}>
         <p>位置：右部（Home</p>
         <p>Indicator 上方）</p>
         <p>&nbsp;</p>
@@ -678,6 +700,80 @@ function CdstSalaryPrototype({ top }: { top: number }) {
         <p>层，底部弹出，可</p>
         <p>手动关闭</p>
       </div>
+    </div>
+  );
+}
+
+function CdstAssessmentPrototype({ top }: { top: number }) {
+  return (
+    <div className="abs cdst-assessment-prototype cdst-interaction-code" style={{ left: 0.5, top }}>
+      <div className="interaction-title cdst-assessment-copy" style={{ left: 273.5, top: -0.5 }}>
+        <p>|&nbsp;&nbsp;&nbsp;&nbsp;测评&nbsp;&nbsp;&nbsp;&nbsp;|</p>
+        <span>了解自己适合的职业、职业竞争力上的优劣势以及自我内心的强度；了解职场社会，发现自我</span>
+        <span>职业道路选择项。借力自测工具，不断开发自己的职业潜能，获得更好的职业生涯。</span>
+      </div>
+      <CdstAssessmentPhoneFlow left={199.5} top={238.5} />
+      <div className="cdst-interaction-note" style={{ left: 531, top: 328 }}>左右滑动</div>
+      <div className="cdst-interaction-note vertical" style={{ left: 900.5, top: 419.5 }}><i className="down short" /><span>向下滑动</span></div>
+      <div className="cdst-interaction-note vertical" style={{ left: 1239.5, top: 421.5 }}><i className="down short" /><span>向下滑动</span></div>
+      <div className="cdst-interaction-note vertical" style={{ left: 1239.5, top: 1078.5 }}><i className="down short" /><span>向下滑动</span></div>
+      <div className="cdst-interaction-note dark-label" style={{ left: 1172.5, top: 742.5 }}>进入测试页面</div>
+      <div className="cdst-interaction-side-note" style={{ left: 1936.5, top: 1849 }}>
+        <p className="large">点击单选按钮</p>
+        <p>&nbsp;</p>
+        <p>位置：底部</p>
+        <p>&nbsp;</p>
+        <p>交互：底部弹出</p>
+      </div>
+      <div className="cdst-interaction-note" style={{ left: 667.5, top: 847.5, opacity: .8 }}>交互：向下推拉</div>
+    </div>
+  );
+}
+
+function CdstProfileInteraction({ top }: { top: number }) {
+  return (
+    <div className="abs cdst-profile-interaction cdst-interaction-code" style={{ left: 0.5, top }}>
+      <div className="interaction-title plain" style={{ left: 284.5, top: -0.5 }}>
+        <p>|&nbsp;&nbsp;&nbsp;&nbsp;个人资料&nbsp;&nbsp;&nbsp;&nbsp;|</p>
+      </div>
+      <CdstProfilePrototype left={281.5} top={131.5} />
+      <div className="cdst-interaction-note dark-label" style={{ left: 912.5, top: 2587.5 }}>滑动按钮</div>
+      <div className="cdst-interaction-side-note" style={{ left: 308.5, top: 2565.5 }}>
+        <p>位置：底部</p>
+        <p>&nbsp;</p>
+        <p>交互：页面隐出遮罩</p>
+        <p>层，底部弹出，可滚</p>
+        <p>动操作列表，点击取</p>
+        <p>消关闭(以上与此类页</p>
+        <p>面相同的交互一致）</p>
+      </div>
+      <div className="cdst-interaction-side-note" style={{ left: 1361.5, top: 2602.5 }}>
+        <p>位置：页面中部偏上</p>
+        <p>&nbsp;</p>
+        <p>交互：5S后渐隐消失</p>
+      </div>
+    </div>
+  );
+}
+
+function CdstStatusConsultPrototype({ top }: { top: number }) {
+  return (
+    <div className="abs cdst-status-consult-prototype cdst-interaction-code" style={{ left: 0.5, top }}>
+      <div className="interaction-title cdst-status-copy" style={{ left: 287.5, top: -0.5 }}>
+        <p>|&nbsp;&nbsp;&nbsp;&nbsp;状态&nbsp;&nbsp;&nbsp;&nbsp;|</p>
+        <span>选择职业状态</span>
+      </div>
+      <CdstStatusConsultFlow left={235.5} top={169.5} />
+      <div className="interaction-title plain" style={{ left: 292.5, top: 1568.5 }}>
+        <p>|&nbsp;&nbsp;&nbsp;&nbsp;咨询&nbsp;&nbsp;&nbsp;&nbsp;|</p>
+      </div>
+      <div className="cdst-interaction-side-note" style={{ left: 1989.5, top: 510.5 }}>
+        <p>位置：页面中部</p>
+        <p>&nbsp;</p>
+        <p>交互：底部弹出,</p>
+        <p>可手动关闭</p>
+      </div>
+      <div className="cdst-interaction-note" style={{ left: 1028.5, top: 127.5, opacity: .8 }}>交互：向下推拉</div>
     </div>
   );
 }
@@ -698,6 +794,21 @@ function CdstProfilePrototype({ left, top }: { left: number; top: number }) {
   );
 }
 
+function CdstAssessmentPhoneFlow({ left, top }: { left: number; top: number }) {
+  return (
+    <div className="abs cdst-assessment-phone-flow proto" style={{ left, top }}>
+      <svg className="cdst-profile-lines" viewBox="0 0 1696 1844" aria-hidden="true">
+        <path d="M92 130H210V560H330V650H628V560H760V650H958V560H1088V650H1390V130" />
+        <path d="M86 790H210V1136H330V1218H628V1136H760V1218H958V1136H1088V1218H1390V790" />
+        <path d="M86 1412H210V1726H330V1810H628V1726H760V1810H958V1726H1088V1810H1540" />
+      </svg>
+      {assessmentPhones.map((phone, index) => (
+        <CdstPhone key={`assessment-${phone.screen}-${index}`} {...phone} />
+      ))}
+    </div>
+  );
+}
+
 function CdstSalaryPhoneFlow({ left, top }: { left: number; top: number }) {
   return (
     <div className="abs cdst-salary-phone-flow proto" style={{ left, top }}>
@@ -709,6 +820,20 @@ function CdstSalaryPhoneFlow({ left, top }: { left: number; top: number }) {
       </svg>
       {salaryPhones.map((phone, index) => (
         <CdstPhone key={`salary-${phone.screen}-${index}`} {...phone} />
+      ))}
+    </div>
+  );
+}
+
+function CdstStatusConsultFlow({ left, top }: { left: number; top: number }) {
+  return (
+    <div className="abs cdst-status-consult-flow proto" style={{ left, top }}>
+      <svg className="cdst-profile-lines" viewBox="0 0 1727 1817" aria-hidden="true">
+        <path d="M86 130H210V540H330V625H628V540H760V625H958V540H1088V625H1390V130" />
+        <path d="M360 1515H532V1788H650V1812H850V1788H972V1812H1172V1788H1378" />
+      </svg>
+      {statusConsultPhones.map((phone, index) => (
+        <CdstPhone key={`status-${phone.screen}-${index}`} {...phone} />
       ))}
     </div>
   );
@@ -824,6 +949,129 @@ function PhoneScreen({ type }: { type: CdstPhoneScreen }) {
           <button type="button">开始计算</button>
           <small>此处显示为市场平均水平</small>
         </div>
+      </>
+    );
+  }
+
+  if (type === 'assessmentHome' || type === 'assessmentHomeActive') {
+    return (
+      <>
+        <PhoneHeader title="职力测评" />
+        <div className="cdst-assessment-home">
+          <div className="cdst-mini-hero">发现你的职业兴趣</div>
+          <div className="cdst-phone-tabs"><span>做测试</span><span>看报告</span><span>填资料</span><span>去咨询</span></div>
+          <b>最新上线</b>
+          <div className="cdst-card-row"><i /><i /><i /></div>
+          <b>热门测试</b>
+          <div className="cdst-card-list"><span /><span /></div>
+          {type === 'assessmentHomeActive' ? <div className="cdst-phone-dim subtle" /> : null}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'assessmentList') {
+    return (
+      <>
+        <PhoneHeader title="职力测评" />
+        <div className="cdst-report-list">
+          {['你适合哪一种工作方式？', '你的职场脑洞有多大？', '你是社交型人才吗？', '你会为了兴趣换方向吗？', '职场小白的你适合什么？'].map((item) => (
+            <div className="cdst-report-row" key={item}><i /><span>{item}</span></div>
+          ))}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'assessmentArticle') {
+    return (
+      <>
+        <PhoneHeader title="职业详情" />
+        <div className="cdst-article-screen">
+          <div className="cdst-article-cover" />
+          <h4>什么职业和你的气质更配？</h4>
+          <button type="button">开始测试</button>
+          <p>职业发展、能力模型和行业信息，帮助用户理解不同方向的真实要求。</p>
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'assessmentQuestion' || type === 'assessmentQuestionOpen') {
+    return (
+      <>
+        <PhoneHeader title="职业测试" />
+        <div className="cdst-question-screen">
+          <h4>最近一题</h4>
+          <div className="cdst-question-panel">
+            {['非常不符合', '不确定', '比较符合', '重要'].map((item, index) => (
+              <span key={item} className={index === 3 ? 'active' : ''}>{item}</span>
+            ))}
+          </div>
+          {type === 'assessmentQuestionOpen' ? <div className="cdst-test-modal"><b>确认提交结果</b><button type="button">确定</button></div> : null}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'assessmentTiles') {
+    return (
+      <>
+        <PhoneHeader title="职业选择" />
+        <div className="cdst-tile-list compact">
+          {['选择期望工作的行业', '选择期望职业状态', '选择测评方向', '进入咨询'].map((item) => (
+            <div className="cdst-blue-tile" key={item}><span>{item}</span><i /></div>
+          ))}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'reportList') {
+    return (
+      <>
+        <PhoneHeader title="全部报告" />
+        <div className="cdst-report-list">
+          {[1, 2, 3, 4, 5, 6, 7].map((item) => (
+            <div className="cdst-report-row" key={item}><i /><span>职场竞争力报告 {item}</span></div>
+          ))}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'statusList') {
+    return (
+      <>
+        <PhoneHeader title="选择职业状态" />
+        <div className="cdst-tile-list compact">
+          {['暂时没想好，什么都看看', '我有想做的，但还不确定', '我很清楚自己要什么', '已经工作了，但不太满意'].map((item) => (
+            <div className="cdst-blue-tile" key={item}><span>{item}</span><i /></div>
+          ))}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'consultAbout' || type === 'consultCategories' || type === 'consultOnline' || type === 'blankConsult') {
+    return (
+      <>
+        <PhoneHeader title={type === 'blankConsult' ? '职力咨询' : '职业咨询'} />
+        {type === 'blankConsult' ? (
+          <div className="cdst-blank-screen" />
+        ) : type === 'consultAbout' ? (
+          <div className="cdst-consult-copy">
+            <h4>关于我们</h4>
+            <p>提供职业规划、行业认知、求职准备和职场适应相关咨询服务。</p>
+            <p>通过线上问答与导师资源，帮助用户获得可执行建议。</p>
+          </div>
+        ) : (
+          <div className="cdst-report-list">
+            {[1, 2, 3, 4, 5].map((item) => (
+              <div className="cdst-report-row" key={item}><i /><span>{type === 'consultOnline' ? '在线咨询问题' : '浏览类别'} {item}</span></div>
+            ))}
+          </div>
+        )}
       </>
     );
   }
@@ -1055,6 +1303,8 @@ const mad = {
   productBg:      publicUrl('/images/xingji/mad/product-bg.png'),
   productPhone:   publicUrl('/images/xingji/mad/product-phone.png'),
   recommendGlow:  publicUrl('/images/xingji/mad/recommend-bg.png'),
+  recommendScreen: publicUrl('/images/xingji/mad/recommend-screen.png'),
+  recommendTopbar: publicUrl('/images/xingji/mad/recommend-topbar.png'),
   recommendPhone: publicUrl('/images/xingji/mad/recommend-phone.png'),
   mePhones:       publicUrl('/images/xingji/mad/me-phones.png'),
   rechargeBg:     publicUrl('/images/xingji/mad/recharge-bg.png'),
@@ -1099,6 +1349,16 @@ function MadDivider({ x, y, w, dots }: { x: number; y: number; w: number; dots: 
   );
 }
 
+function MadSplitDivider({ y, segments }: { y: number; segments: Array<{ x: number; w: number }> }) {
+  return (
+    <>
+      {segments.map(({ x, w }, index) => (
+        <span key={`${x}-${w}-${index}`} className="mad-divider-line abs" style={{ left: x, top: y, width: w }} />
+      ))}
+    </>
+  );
+}
+
 /* one concise-guide perspective card: skewed plate + screenshot + nav-label text */
 function MadGuideCard({ x, y, card, shot, shotStyle, num, numPos, label, labelPos, sign }: {
   x: number; y: number; card: string; shot: string;
@@ -1134,14 +1394,187 @@ function MadCase() {
     charts: 23696,
     end: 31852,
   };
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    const stage = root?.querySelector<HTMLElement>('.mad-stage');
+    if (!root || !stage || typeof IntersectionObserver === 'undefined') return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      root.classList.add('mad-motion-disabled');
+      return;
+    }
+
+    root.classList.add('mad-motion-ready');
+
+    const starts = Object.values(S).sort((a, b) => a - b);
+    const groups = new Map<number, HTMLElement[]>();
+    const directItems = Array.from(stage.children).filter((child): child is HTMLElement => child instanceof HTMLElement);
+
+    directItems.forEach((item, domIndex) => {
+      const top = Number.parseFloat(item.style.top || '0') || item.offsetTop || 0;
+      const left = Number.parseFloat(item.style.left || '0') || item.offsetLeft || 0;
+      const group = starts.reduce((active, start, index) => (top >= start ? index : active), 0);
+      const finalOpacity = Number.parseFloat(window.getComputedStyle(item).opacity || '1') || 1;
+
+      item.dataset.madMotionGroup = String(group);
+      item.dataset.madMotionDomIndex = String(domIndex);
+      item.dataset.madMotionTop = String(top);
+      item.dataset.madMotionLeft = String(left);
+      item.dataset.madMotionOpacity = String(finalOpacity);
+
+      if (!groups.has(group)) groups.set(group, []);
+      groups.get(group)!.push(item);
+    });
+
+    const textSelector = '.mad-sec-title, .mad-sec-label, .mad-cover-badge, .mad-cover-intro';
+    const lineSelector = '.mad-divider-line, .mad-leader-ln';
+    const pointSelector = '.mad-divider-dot, .mad-leader-sq';
+    const frameSelector = '.mad-cover-frame, .mad-dialog-titleplate, .mad-end-badge';
+
+    const setInitialState = (items: HTMLElement[]) => {
+      const images = items.filter((item) => item.tagName === 'IMG');
+      const texts = items.filter((item) => item.matches(textSelector));
+      const lines = items.filter((item) => item.matches(lineSelector));
+      const points = items.filter((item) => item.matches(pointSelector));
+      const frames = items.filter((item) => item.matches(frameSelector));
+      const handled = new Set<HTMLElement>([...images, ...texts, ...lines, ...points, ...frames]);
+      const rest = items.filter((item) => !handled.has(item));
+
+      if (images.length) gsap.set(images, { opacity: 0, y: 44, scale: 0.985, filter: 'blur(8px)', transformOrigin: '50% 50%' });
+      if (texts.length) gsap.set(texts, { opacity: 0, y: 34, filter: 'blur(6px)' });
+      if (lines.length) gsap.set(lines, { opacity: 0, scaleX: 0, transformOrigin: 'left center' });
+      if (points.length) gsap.set(points, { opacity: 0, scale: 0.28, transformOrigin: '50% 50%' });
+      if (frames.length) gsap.set(frames, { opacity: 0, scaleX: 0.92, transformOrigin: 'left center' });
+      if (rest.length) gsap.set(rest, { opacity: 0, y: 22, filter: 'blur(4px)' });
+    };
+
+    groups.forEach((items) => setInitialState(items));
+
+    const revealGroup = (group: number) => {
+      const items = groups.get(group);
+      if (!items?.length || stage.dataset[`madGroup${group}`] === 'shown') return;
+      stage.dataset[`madGroup${group}`] = 'shown';
+
+      const ordered = [...items].sort((a, b) => {
+        const topA = Number(a.dataset.madMotionTop || 0);
+        const topB = Number(b.dataset.madMotionTop || 0);
+        if (Math.abs(topA - topB) > 18) return topA - topB;
+        const leftA = Number(a.dataset.madMotionLeft || 0);
+        const leftB = Number(b.dataset.madMotionLeft || 0);
+        if (Math.abs(leftA - leftB) > 18) return leftA - leftB;
+        return Number(a.dataset.madMotionDomIndex || 0) - Number(b.dataset.madMotionDomIndex || 0);
+      });
+
+      const images = ordered.filter((item) => item.tagName === 'IMG');
+      const texts = ordered.filter((item) => item.matches(textSelector));
+      const frames = ordered.filter((item) => item.matches(frameSelector));
+      const lines = ordered.filter((item) => item.matches(lineSelector));
+      const points = ordered.filter((item) => item.matches(pointSelector));
+      const handled = new Set<HTMLElement>([...images, ...texts, ...frames, ...lines, ...points]);
+      const rest = ordered.filter((item) => !handled.has(item));
+      const targetOpacity = (item: HTMLElement) => Number(item.dataset.madMotionOpacity || 1);
+      const clear = (targets: HTMLElement[]) => {
+        if (targets.length) gsap.set(targets, { clearProps: 'opacity,transform,filter,transformOrigin' });
+      };
+
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      if (images.length) {
+        tl.to(images, {
+          opacity: (index, target) => targetOpacity(target as HTMLElement),
+          y: 0,
+          scale: 1,
+          filter: 'blur(0px)',
+          duration: 0.72,
+          stagger: 0.055,
+          onComplete: () => clear(images),
+        }, 0);
+      }
+      if (frames.length) {
+        tl.to(frames, {
+          opacity: (index, target) => targetOpacity(target as HTMLElement),
+          scaleX: 1,
+          duration: 0.5,
+          stagger: 0.045,
+          onComplete: () => clear(frames),
+        }, 0.1);
+      }
+      if (texts.length) {
+        tl.to(texts, {
+          opacity: (index, target) => targetOpacity(target as HTMLElement),
+          y: 0,
+          filter: 'blur(0px)',
+          duration: 0.55,
+          stagger: 0.045,
+          onComplete: () => clear(texts),
+        }, 0.18);
+      }
+      if (rest.length) {
+        tl.to(rest, {
+          opacity: (index, target) => targetOpacity(target as HTMLElement),
+          y: 0,
+          filter: 'blur(0px)',
+          duration: 0.5,
+          stagger: 0.04,
+          onComplete: () => clear(rest),
+        }, 0.26);
+      }
+      if (lines.length) {
+        tl.to(lines, {
+          opacity: (index, target) => targetOpacity(target as HTMLElement),
+          scaleX: 1,
+          duration: 0.62,
+          stagger: 0.055,
+          ease: 'power2.out',
+          onComplete: () => clear(lines),
+        }, 0.36);
+      }
+      if (points.length) {
+        tl.to(points, {
+          opacity: (index, target) => targetOpacity(target as HTMLElement),
+          scale: 1,
+          duration: 0.38,
+          stagger: 0.055,
+          ease: 'back.out(2.2)',
+          onComplete: () => clear(points),
+        }, 0.52);
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const group = Number((entry.target as HTMLElement).dataset.madMotionGroup || 0);
+          revealGroup(group);
+        });
+      },
+      { rootMargin: '0px 0px -12% 0px', threshold: 0.06 },
+    );
+
+    directItems.forEach((item) => {
+      observer.observe(item);
+      const rect = item.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.88 && rect.bottom > 0) {
+        window.requestAnimationFrame(() => revealGroup(Number(item.dataset.madMotionGroup || 0)));
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+      gsap.killTweensOf(directItems);
+    };
+  }, []);
 
   return (
-    <div className="star-case-page mad-page">
+    <div ref={rootRef} className="star-case-page mad-page">
       <FigmaScaleStage width={2480} height={34946} className="mad-stage" fitToViewport viewportInset={0}>
 
         {/* ── 组 10 cover (y0 h2318) ── */}
-        <img src={mad.coverBg} className="abs img-cover" style={{ left: 0, top: S.cover, width: 2480, height: 1655 }} />
-        <img src={mad.coverBadge} className="abs img-cover" style={{ left: 1994, top: S.cover + 1187, width: 286, height: 351 }} />
+        <img src={mad.coverBg} className="abs mad-exact-img" style={{ left: 0, top: S.cover, width: 2480, height: 1655 }} />
+        <img src={mad.coverBadge} className="abs mad-exact-img" style={{ left: 1994, top: S.cover + 1187, width: 286, height: 351 }} />
         <div className="mad-cover-frame abs" style={{ left: 60, top: S.cover + 49, width: 596, height: 207 }} />
         <div className="mad-cover-badge abs" style={{ left: 98, top: S.cover + 81, width: 531 }}>My Production<br />我的作品</div>
         <div className="mad-cover-intro abs" style={{ left: 219, top: S.cover + 1763, width: 2043 }}>通过调查了解，许多球友对于比赛结果推断不准，导致足球博彩逢赌必输，即使他们能询问一些看球经验很丰富的老球迷，甚至向专业的分析师请教，但是由于不同的比赛有不同的体制，所以很多情况下是凭借运气来购买足球彩票，运气不好就预测不准，造成了很大的经济损失以及浪费了大量的时间精力，所以，对于一些没有太多时间来分析球赛的球友来说，特别是经验水平不足的新人，这款应用是为了广大球友设计的。</div>
@@ -1164,14 +1597,16 @@ function MadCase() {
         <MadTitle x={290} y={S.guide} w={1026}>Concise Guide<br />简介引导</MadTitle>
 
         {/* ── 组 14 product detail (y8605 h1662) ── */}
-        <img src={mad.productBg} className="abs img-cover" style={{ left: 0, top: S.product + 426, width: 2480, height: 1236 }} />
-        <img src={mad.productPhone} className="abs img-cover mad-phone" style={{ left: 1119, top: S.product + 611, width: 592, height: 916 }} />
+        <img src={mad.productBg} className="abs mad-exact-img" style={{ left: 0, top: S.product + 426, width: 2480, height: 1237 }} />
+        <img src={mad.productPhone} className="abs mad-exact-img mad-phone" style={{ left: 1119, top: S.product + 611, width: 592, height: 916 }} />
         <MadTitle x={32} y={S.product + 2} w={2480} align="center">Product Detail<br />产品细节</MadTitle>
 
         {/* ── 组 15 recommend (y10583 h3487) ── */}
-        <img src={mad.recommendGlow} className="abs img-cover mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1379, height: 3060 }} />
-        <img src={mad.recommendPhone} className="abs img-cover mad-phone" style={{ left: 1300, top: S.recommend + 1044, width: 905, height: 2442 }} />
-        <MadDivider x={573} y={S.recommend + 174} w={1707} dots={[554, 1406, 2258]} />
+        <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1380, height: 3061 }} />
+        <img src={mad.recommendScreen} className="abs mad-exact-img" style={{ left: 1327, top: S.recommend + 1106, width: 773, height: 2332 }} />
+        <img src={mad.recommendTopbar} className="abs mad-exact-img" style={{ left: 1300, top: S.recommend + 1124, width: 769, height: 136 }} />
+        <img src={mad.recommendPhone} className="abs mad-exact-img mad-phone" style={{ left: 1300, top: S.recommend + 1044, width: 905, height: 2443 }} />
+        <MadDivider x={705} y={S.recommend + 166} w={1579} dots={[686, 1398, 2250]} />
         <MadTitle x={200} y={S.recommend + 39} w={854}>Recommend<br />推荐</MadTitle>
         <MadLabel x={207} y={S.recommend + 786} w={558}>Forecast<br />预测赛果</MadLabel>
         <MadLabel x={207} y={S.recommend + 1444} w={421}>Live<br />实时比赛</MadLabel>
@@ -1197,13 +1632,13 @@ function MadCase() {
         {/* ── 组 18 recharge (y17286 h2147) ── */}
         <img src={mad.rechargeBg} className="abs img-cover" style={{ left: 45, top: S.recharge + 421, width: 2420, height: 1726 }} />
         <img src={mad.rechargePhone} className="abs img-cover mad-phone" style={{ left: 298, top: S.recharge + 519, width: 1952, height: 1391 }} />
-        <MadDivider x={573} y={S.recharge + 135} w={1707} dots={[554, 1405, 2258]} />
+        <MadDivider x={730} y={S.recharge + 135} w={1550} dots={[711, 1405, 2258]} />
         <MadTitle x={151} y={S.recharge} w={660}>Recharge<br />充值</MadTitle>
 
         {/* ── 组 20 dialog (y20051 h3065) ── */}
         <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 641, top: S.dialog + 565, width: 1209, height: 2500 }} />
-        <span className="mad-dialog-divider abs" style={{ left: 0, top: S.dialog + 60, width: 2495 }} />
         <span className="mad-dialog-titleplate abs" style={{ left: 527, top: S.dialog, width: 1438, height: 147 }} />
+        <MadSplitDivider y={S.dialog + 73} segments={[{ x: 0, w: 527 }, { x: 1965, w: 515 }]} />
         <MadTitle x={0} y={S.dialog + 20} w={2480} align="center">Dialog Box Pops Up<br />弹出对话框</MadTitle>
 
         {/* ── 组 21 charts (y23696 h7579) ── */}
@@ -1218,7 +1653,7 @@ function MadCase() {
         <img src={mad.endBg} className="abs img-cover" style={{ left: 0, top: S.end, width: 2480, height: 1504 }} />
         <img src={mad.endLaptop} className="abs img-cover" style={{ left: 957, top: S.end + 539, width: 765, height: 512 }} />
         <span className="mad-end-badge abs" style={{ left: 1006, top: S.end + 1636, width: 475, height: 143 }} />
-        <span className="mad-dialog-divider abs" style={{ left: -4, top: S.end + 1696, width: 2495 }} />
+        <MadSplitDivider y={S.end + 1696} segments={[{ x: -4, w: 1010 }, { x: 1481, w: 1010 }]} />
         <img src={mad.endIcons} className="abs img-cover" style={{ left: 444, top: S.end + 2031, width: 1600, height: 379 }} />
         <MadTitle x={1080} y={S.end + 1675} w={350} align="center">ICON</MadTitle>
 
