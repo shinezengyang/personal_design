@@ -1,25 +1,33 @@
 import './BianjingExactCase.css';
 
+/* Local copies of the Figma exports. These used to point at
+   https://www.figma.com/api/mcp/asset/... URLs, which Figma expires after ~7 days —
+   every screenshot on this page had gone dead. Node ids noted for re-pulling.
+   (`frame663` used to sit here too but was never referenced, so it is gone.) */
+const BJ = '/images/qingyu/bianjing';
 const assets = {
-  mainHub: 'https://www.figma.com/api/mcp/asset/dc138190-6963-4f29-a98d-754334279d1f',
-  mainWorld: 'https://www.figma.com/api/mcp/asset/e485b725-7f54-4038-99cd-33b2e9a8ff4c',
-  frame663: 'https://www.figma.com/api/mcp/asset/393b59c8-6b55-46fa-814e-ef427051ab57',
-  personalInfo: 'https://www.figma.com/api/mcp/asset/8d9f54d4-0112-4cc3-b58d-53b10b48de64',
-  buffSelect: 'https://www.figma.com/api/mcp/asset/cac6b3b0-a083-4a79-9be9-6a6408a15c28',
-  battle1: 'https://www.figma.com/api/mcp/asset/a1381390-18d7-405d-82c2-fe648ee8d1d1',
-  battle2: 'https://www.figma.com/api/mcp/asset/bca10d6a-06d0-49e4-86ff-79726664d341',
-  battle3: 'https://www.figma.com/api/mcp/asset/4bd19e86-7628-4675-8855-1fa424c0f7f6',
-  battle4: 'https://www.figma.com/api/mcp/asset/93af1c25-487b-4faa-b77b-ac3766a7dab4',
-  battle5: 'https://www.figma.com/api/mcp/asset/cd94a560-f8ed-4701-ba7b-6a621077c8b3',
-  victoryA: 'https://www.figma.com/api/mcp/asset/8be5b138-e480-4dbf-9be8-518a70f654ee',
-  victoryB: 'https://www.figma.com/api/mcp/asset/03cc3c17-e5b5-4a7c-8c15-57644cf75a4b',
-  publicStage: 'https://www.figma.com/api/mcp/asset/488b5293-a8f6-4d70-b3fc-bf3caec1608e',
-  public1: 'https://www.figma.com/api/mcp/asset/15d5a5c6-15c8-489f-986b-09ceda4a72ab',
-  public2: 'https://www.figma.com/api/mcp/asset/dde365bc-8729-4671-a437-bad4d46a0f3c',
-  public3: 'https://www.figma.com/api/mcp/asset/5b9e6024-be37-4919-856e-b0a22ba41096',
-  public4: 'https://www.figma.com/api/mcp/asset/9e0beae8-91a9-4c95-aad5-6a225fbcd1cc',
-  public5: 'https://www.figma.com/api/mcp/asset/00ed669e-9c40-4515-b5f8-e05d120f78cb',
-  boss: 'https://www.figma.com/api/mcp/asset/0e80ef1d-d8cc-4be4-8749-005d19c85282',
+  mainHub: `${BJ}/main-hub.webp`,             // Figma 9817:8530 img_main_hub
+  /* S4 shows three distinct entry states; A and B both used to point at `mainWorld`,
+     so the 大世界HUD screenshot was shown twice and 活动主界面 never appeared. */
+  entryWorld: `${BJ}/entry-a-world-hud.webp`, // Figma 9817:8645 A 大世界HUD
+  entryActivity: `${BJ}/entry-b-activity.webp`, // Figma 9817:8638 B 活动主界面
+  entryHub: `${BJ}/entry-c-hub.webp`,         // Figma 9817:8643 C 边境战场主界面
+  personalInfo: `${BJ}/personal-info.webp`,   // Figma 9817:8688
+  buffSelect: `${BJ}/buff-select.webp`,       // Figma 9817:8858
+  battle1: `${BJ}/battle1.webp`,              // Figma 9817:8814
+  battle2: `${BJ}/battle2.webp`,              // Figma 9817:8815
+  battle3: `${BJ}/battle3.webp`,              // Figma 9817:8818
+  battle4: `${BJ}/battle4.webp`,              // Figma 9817:8816
+  battle5: `${BJ}/battle5.webp`,              // Figma 9817:8817
+  victoryA: `${BJ}/victory-a.webp`,           // Figma 9817:8820 img_victory
+  victoryB: `${BJ}/victory-b.webp`,           // Figma 9817:8821 img_victory
+  publicStage: `${BJ}/public-stage.webp`,     // Figma 9817:8889 img_public_stage
+  public1: `${BJ}/public1.webp`,              // Figma 9817:8952
+  public2: `${BJ}/public2.webp`,              // Figma 9817:8953
+  public3: `${BJ}/public3.webp`,              // Figma 9817:8954
+  public4: `${BJ}/public4.webp`,              // Figma 9817:8955
+  public5: `${BJ}/public5.webp`,              // Figma 9817:8956
+  boss: `${BJ}/boss.webp`,                    // Figma 9817:8960 img_boss_combat
 };
 
 type Tone = 'red' | 'gold' | 'blue' | 'green' | 'purple' | 'gray';
@@ -140,9 +148,9 @@ export function BianjingExactCase() {
         <p className="bj-state-title green">A. 大世界HUD</p>
         <p className="bj-state-title blue">B. 活动主界面</p>
         <p className="bj-state-title red">C. 边境战场主界面</p>
-        <div className="bj-shot bj-entry-shot a"><Img src={assets.mainWorld} /></div>
-        <div className="bj-shot bj-entry-shot b"><Img src={assets.mainWorld} /></div>
-        <div className="bj-shot bj-entry-shot c"><Img src={assets.mainHub} /></div>
+        <div className="bj-shot bj-entry-shot a"><Img src={assets.entryWorld} /></div>
+        <div className="bj-shot bj-entry-shot b"><Img src={assets.entryActivity} /></div>
+        <div className="bj-shot bj-entry-shot c"><Img src={assets.entryHub} /></div>
         <div className="bj-entry-arrow left" /><div className="bj-entry-arrow right" />
         <div className="bj-anno-grid four">
           <SmallAnno tone="blue" title="活动入口" body="日常商业区域点击活动入口进入边疆战场界面。入口位置符合玩家已有心智模型。" />

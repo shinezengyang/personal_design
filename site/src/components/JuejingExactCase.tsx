@@ -1,12 +1,17 @@
 import './JuejingExactCase.css';
 
+/* Local copies of the Figma exports. These used to point at
+   https://www.figma.com/api/mcp/asset/... URLs, which Figma expires after ~7 days —
+   every screenshot on this page had gone dead. Node ids noted for re-pulling. */
+const JJ = '/images/qingyu/juejing';
 const assets = {
-  entryOverview: 'https://www.figma.com/api/mcp/asset/24865515-8518-4055-96b9-b14406493db8',
-  entryLocked: 'https://www.figma.com/api/mcp/asset/b1449929-0345-4836-9eee-3bccc5df1618',
-  combatInitial: 'https://www.figma.com/api/mcp/asset/1f38e2ed-c1f7-43bf-8adc-68c00f75cd0b',
-  combatDefeated: 'https://www.figma.com/api/mcp/asset/d61a1f66-8549-4957-8e00-7853800b4c6c',
-  mapView: 'https://www.figma.com/api/mcp/asset/a3c14aef-cf1d-4921-abf3-b4ef6dcd9bab',
-  outcome: 'https://www.figma.com/api/mcp/asset/9991e2cd-651b-464c-9e82-1a215371eb8b',
+  entryOverview: `${JJ}/entry-overview.webp`,    // Figma 9817:8018 img_entry_overview
+  entryLocked: `${JJ}/entry-locked.webp`,        // Figma 9817:8149 img_entry_locked
+  entryUnlocked: `${JJ}/entry-unlocked.webp`,    // Figma 9817:8151 img_entry_unlocked
+  combatInitial: `${JJ}/combat-initial.webp`,    // Figma 9817:8305 img_combat_initial
+  combatDefeated: `${JJ}/combat-defeated.webp`,  // Figma 9817:8307 img_combat_defeated
+  mapView: `${JJ}/map-view.webp`,                // Figma 9817:8349 img_map_view
+  outcome: `${JJ}/outcome.webp`,                 // Figma 9817:8490 绝境试炼02
 };
 
 function Img({ src, alt = '', className = '' }: { src: string; alt?: string; className?: string }) {
@@ -235,7 +240,9 @@ export function JuejingExactCase() {
         <p className="jj-state-title bad">A. 进入条件不满足</p>
         <p className="jj-state-title ok">B. 进入条件满足</p>
         <div className="jj-shot jj-entry-shot left"><Img src={assets.entryLocked} alt="进入条件不满足" /></div>
-        <div className="jj-shot jj-entry-shot right"><Img src={assets.entryOverview} alt="进入条件满足" /></div>
+        {/* Figma 9817:8151 is a dedicated unlocked-state shot; this had been reusing the
+            overview screenshot, so both A and B showed the same picture. */}
+        <div className="jj-shot jj-entry-shot right"><Img src={assets.entryUnlocked} alt="进入条件满足" /></div>
         <div className="jj-entry-anno-grid">
           <AnnoCard title="按钮置灰反馈" body="进入条件不满足时，「前往」按钮置灰不可点击。点击置灰按钮弹出通用Toast，明确告知玩家差距。" />
           <AnnoCard title="关卡选中态" body="关卡选中时高亮展示，显示该关卡入口背景图（可配置）、可获得奖励、伙伴装备次数等关键信息。" />

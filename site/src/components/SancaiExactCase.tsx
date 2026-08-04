@@ -1,28 +1,33 @@
 import type { CSSProperties } from 'react';
 import './SancaiExactCase.css';
 
+/* Local copies of the Figma exports. These used to point at
+   https://www.figma.com/api/mcp/asset/... URLs, which Figma expires after ~7 days —
+   every image on this page had gone dead. Node ids noted for re-pulling.
+   The orbit rings and节点 are plain stroked circles, kept as SVG so they stay crisp. */
+const SC = '/images/qingyu/sancai';
 const A = {
-  heroOrbit1: 'https://www.figma.com/api/mcp/asset/90544ed1-bc87-46af-9042-c6b4f15d651f',
-  heroOrbit2: 'https://www.figma.com/api/mcp/asset/5604ab2c-6183-40e8-83f4-2a49bde200cc',
-  heroOrbit3: 'https://www.figma.com/api/mcp/asset/6734fc16-3e82-4f6e-8bc8-94f59d969efe',
-  s2Orbit1: 'https://www.figma.com/api/mcp/asset/17820a5b-1b57-45aa-a789-cc8f8b2c99ac',
-  s2Orbit2: 'https://www.figma.com/api/mcp/asset/4fd49827-af9f-44c3-8c32-7bb97dce6911',
-  s2Center: 'https://www.figma.com/api/mcp/asset/ff1c4bfb-ca91-43fc-bde0-b95a72c6bb1c',
-  s2NodeGold: 'https://www.figma.com/api/mcp/asset/bd5d5943-d1ae-4df4-ab52-8cee71429af8',
-  s2NodeGold2: 'https://www.figma.com/api/mcp/asset/43e3fdbb-0a6b-4e77-9225-1961cc52f8c1',
-  s2NodeBlue: 'https://www.figma.com/api/mcp/asset/30436e3d-acc9-4ec0-96c5-84ba6106c021',
-  main: 'https://www.figma.com/api/mcp/asset/76f9d627-ea31-4316-b6ce-898975228bcc',
-  decompose: 'https://www.figma.com/api/mcp/asset/2cffd966-a082-46af-9c1f-f9a81fa85dc7',
-  exchange: 'https://www.figma.com/api/mcp/asset/f3bd536d-26e1-40f6-af4f-d28215da22c6',
-  set: 'https://www.figma.com/api/mcp/asset/1b238cff-f608-4369-8a65-92637c866e14',
-  visual1: 'https://www.figma.com/api/mcp/asset/f2494880-b36b-48c0-94e1-60e7d843426e',
-  visual2: 'https://www.figma.com/api/mcp/asset/d65581ff-2200-42b7-b45d-8459e206c961',
-  visual3: 'https://www.figma.com/api/mcp/asset/edbaa1bb-d8ac-4394-81f8-2bf1aae5eb41',
-  visual4: 'https://www.figma.com/api/mcp/asset/d4ea5dfc-d03f-4bf2-b946-0a6e4c921498',
-  visual5: 'https://www.figma.com/api/mcp/asset/fd5cdd01-c0b6-4027-acf4-e88b93d4109e',
-  visual6: 'https://www.figma.com/api/mcp/asset/656b6ff6-ae9d-49e9-9f3a-7e3652a0f796',
-  visual7: 'https://www.figma.com/api/mcp/asset/f4302e00-e2b1-4169-a4d9-0e3418cf8844',
-  visual8: 'https://www.figma.com/api/mcp/asset/696103ee-e81f-4af6-8728-ef69e7afcf4f',
+  heroOrbit1: `${SC}/hero-orbit1.svg`,   // Figma 9817:10741
+  heroOrbit2: `${SC}/hero-orbit2.svg`,   // Figma 9817:10742
+  heroOrbit3: `${SC}/hero-orbit3.svg`,   // Figma 9817:10743
+  s2Orbit1: `${SC}/s2-orbit1.svg`,       // Figma 9817:10817
+  s2Orbit2: `${SC}/s2-orbit2.svg`,       // Figma 9817:10818
+  s2Center: `${SC}/s2-center.svg`,       // Figma 9817:10835 s2_center
+  s2NodeGold: `${SC}/s2-node-gold.svg`,  // Figma 9817:10827 s2_node_日
+  s2NodeGold2: `${SC}/s2-node-gold2.svg`,// Figma 9817:10829 s2_node_星
+  s2NodeBlue: `${SC}/s2-node-blue.svg`,  // Figma 9817:10831 s2_node_月 (also used for 辰)
+  main: `${SC}/main.webp`,                // Figma 9817:10856
+  decompose: `${SC}/decompose.webp`,      // Figma 9817:10955 s6_decompose_img
+  exchange: `${SC}/exchange.webp`,        // Figma 9817:10968 s6_exchange_img
+  set: `${SC}/set.webp`,                  // Figma 9817:11060
+  visual1: `${SC}/visual1-main-state1.webp`,      // Figma 9817:11152 三才主界面状态1
+  visual2: `${SC}/visual2-main-state2.webp`,      // Figma 9817:11159 三才主界面状态2
+  visual3: `${SC}/visual3-di.webp`,               // Figma 9817:11158 主界面_地才
+  visual4: `${SC}/visual4-ren.webp`,              // Figma 9817:11157 主界面_人才
+  visual5: `${SC}/visual5-shen.webp`,             // Figma 9817:11160 主界面_神才
+  visual6: `${SC}/visual6-exchange-popup.webp`,   // Figma 9817:11153 兑换弹窗
+  visual7: `${SC}/visual7-decompose-popup.webp`,  // Figma 9817:11154 分解弹窗
+  visual8: `${SC}/visual8-attr-popup.webp`,       // Figma 9817:11155 属性弹窗
 };
 
 function Img({ src, className = '', alt = '' }: { src: string; className?: string; alt?: string }) {

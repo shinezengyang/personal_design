@@ -78,149 +78,11 @@ function FigmaScaleStage({
   );
 }
 
-/* ─── Navy (MAD Football) assets ─── */
-const navy = {
-  coverBg:       'https://www.figma.com/api/mcp/asset/de6e2718-957b-41db-89da-83c31bf9e0db',
-  coverBadge:    'https://www.figma.com/api/mcp/asset/aaca2a1c-b8d4-46ca-93f9-0a3fe219218a',
-  stadium:       'https://www.figma.com/api/mcp/asset/7a13c869-fe27-4ae7-b56b-1f9eee57f312',
-  iconBg:        'https://www.figma.com/api/mcp/asset/3e7cb266-956d-4db4-8423-d6550a940e9a',
-  iconCircle:    'https://www.figma.com/api/mcp/asset/8102b83a-84af-40cb-baf7-4d4c526cb0ba',
-  iconApp:       'https://www.figma.com/api/mcp/asset/e6c543fb-8847-4554-939a-8ab47510acdd',
-  guide:         'https://www.figma.com/api/mcp/asset/5a1047cc-0f0c-4470-95a9-5b18827a73a4',
-  productBg:     'https://www.figma.com/api/mcp/asset/b8f12a93-9ac0-4a2a-bebc-ff7a38fb747c',
-  productPhone:  'https://www.figma.com/api/mcp/asset/a4cb7f15-956f-487f-8f2a-d3792fc04d85',
-  recommendBg:   'https://www.figma.com/api/mcp/asset/3f2e8801-398b-48bf-9d42-9b2bd454897a',
-  recommendPhone:'https://www.figma.com/api/mcp/asset/4226cc92-b7d5-4dd0-b162-bd00e0e82cf3',
-  mePhones:      'https://www.figma.com/api/mcp/asset/b8df2302-4dc5-4020-b812-e4c339e6d466',
-  rechargeBg:    'https://www.figma.com/api/mcp/asset/ee6cb13a-2095-4a00-a4f7-8b459dfe134c',
-  rechargePhone: 'https://www.figma.com/api/mcp/asset/683e9234-1b1f-46f9-8919-e864ee4b3159',
-  dialogPhone:   'https://www.figma.com/api/mcp/asset/bcd71785-bdc3-4031-a705-256bbd25258c',
-  structChart:   'https://www.figma.com/api/mcp/asset/d80490bb-7c3a-4ad4-82a1-834e3acdd57b',
-  flowChart:     'https://www.figma.com/api/mcp/asset/f170496c-7827-4ed6-a91c-5178b00eb61f',
-  wireframe:     'https://www.figma.com/api/mcp/asset/ee82396f-865e-486c-9a07-26b7c8913c01',
-  endBg:         'https://www.figma.com/api/mcp/asset/929d4786-f554-46a7-89d1-255173226716',
-  endLaptop:     'https://www.figma.com/api/mcp/asset/b689deac-95de-4e48-b812-488209f9fe1c',
-  endIcons:      'https://www.figma.com/api/mcp/asset/67e9975a-c978-40be-bd5b-f3f09745f826',
-  coverPhone:    'https://www.figma.com/api/mcp/asset/b34b3c8f-71c4-4243-b12d-266e13986115',
-};
-
-/* ─── Navy helper components ─── */
-
-function NavyTitle({ x, y, w, align, children }: { x: number; y: number; w: number; align?: 'center' | 'right'; children: React.ReactNode }) {
-  return <div className="navy-sec-title abs" style={{ left: x, top: y, width: w, textAlign: align }}>{children}</div>;
-}
-
-function NavyLabel({ x, y, w, align, children }: { x: number; y: number; w: number; align?: 'center' | 'right'; children: React.ReactNode }) {
-  return <div className="navy-sec-label abs" style={{ left: x, top: y, width: w, textAlign: align }}>{children}</div>;
-}
-
-function NavyDivider({ x, y, w, dots }: { x: number; y: number; w: number; dots: [number, number][] }) {
-  return (
-    <>
-      <div className="navy-divider-line abs" style={{ left: x, top: y, width: w }} />
-      {dots.map(([dx, dy], i) => (
-        <div key={i} className="navy-divider-dot abs" style={{ left: dx, top: dy }} />
-      ))}
-    </>
-  );
-}
-
-function NavyCalloutLine({ x, y, w }: { x: number; y: number; w: number }) {
-  return <div className="navy-callout-line abs" style={{ left: x, top: y, width: w }} />;
-}
-
-/* ─── NavyTrialCase (MAD Football App) ─── */
-
-function NavyTrialCase() {
-  const W = 2480;
-  const totalH = 34946;
-
-  return (
-    <div className="star-case-page">
-      <FigmaScaleStage width={W} height={totalH} className="navy-stage">
-
-        {/* ── Cover (y=0, h=2318) ── */}
-        <img src={navy.coverBg} className="abs" style={{ left: 0, top: 0, width: 2480, height: 1655 }} />
-        <div className="navy-cover-badge abs" style={{ left: 60, top: 49, width: 596, height: 207 }}>
-          <span>My Production<br />我的作品</span>
-        </div>
-        <img src={navy.coverBadge} className="abs" style={{ left: 1994, top: 1187, width: 286, height: 351 }} />
-        <div className="navy-cover-intro abs" style={{ left: 219, top: 1763, width: 2043 }}>
-          通过调查了解，许多球友对于比赛结果推断不准，导致足球博彩逢赌必输，即使他们能询问一些看球经验很丰富的老球迷，甚至向专业的分析师请教，但是由于不同的比赛有不同的体制，所以很多情况下是凭借运气来购买足球彩票，运气不好就预测不准，造成了很大的经济损失以及浪费了大量的时间精力，所以，对于一些没有太多时间来分析球赛的球友来说，特别是经验水平不足的新人，这款应用是为了广大球友设计的。
-        </div>
-
-        {/* ── Analyst (y=2555, h=1312) ── */}
-        <img src={navy.stadium} className="abs" style={{ left: 498, top: 2751, width: 1489, height: 1116 }} />
-        <NavyTitle x={0} y={2661} w={2480} align="center">Your Personal Analyst<br />你的私人分析师</NavyTitle>
-
-        {/* ── Icon (y=3788, h=2200) ── */}
-        <img src={navy.iconBg} className="abs" style={{ left: 0, top: 3788, width: 2480, height: 2200 }} />
-        <NavyTitle x={253} y={4197} w={833}>Icon Design<br />图标设计</NavyTitle>
-        <img src={navy.iconCircle} className="abs" style={{ left: 384, top: 4741, width: 678, height: 829 }} />
-        <img src={navy.iconApp} className="abs" style={{ left: 1470, top: 4745, width: 833, height: 833 }} />
-
-        {/* ── Guide (y=6004, h=2146) — composite for 3D perspective cards ── */}
-        <img src={navy.guide} className="abs" style={{ left: 0, top: 6004, width: 2480, height: 2146 }} />
-        <NavyTitle x={290} y={6004} w={1026}>Concise Guide<br />简介引导</NavyTitle>
-
-        {/* ── Product (y=8605, h=1662) ── */}
-        <NavyTitle x={0} y={8607} w={2480} align="center">Product Detail<br />产品细节</NavyTitle>
-        <img src={navy.productBg} className="abs" style={{ left: 0, top: 9031, width: 2480, height: 1236 }} />
-        <img src={navy.productPhone} className="abs navy-phone" style={{ left: 1119, top: 9216, width: 592, height: 916 }} />
-
-        {/* ── Recommend (y=10583, h=3487) ── */}
-        <NavyTitle x={200} y={10622} w={854}>Recommend<br />推荐</NavyTitle>
-        <NavyDivider x={573} y={10761} w={1707} dots={[[554, 10738], [1406, 10738], [2258, 10738]]} />
-        <img src={navy.recommendBg} className="abs" style={{ left: 1101, top: 10896, width: 1379, height: 3060 }} />
-        <img src={navy.recommendPhone} className="abs navy-phone" style={{ left: 1327, top: 11689, width: 773, height: 2332 }} />
-        <NavyLabel x={207} y={11369} w={558}>Forecast<br />预测赛果</NavyLabel>
-        <NavyLabel x={207} y={12027} w={421}>Live<br />实时比赛</NavyLabel>
-
-        {/* ── Me (y=14467, h=2345) ── */}
-        <NavyTitle x={204} y={14467} w={269}>Me<br />我的</NavyTitle>
-        <NavyDivider x={574} y={14624} w={1706} dots={[[555, 14601], [1406, 14601], [2258, 14601]]} />
-        <img src={navy.mePhones} className="abs" style={{ left: 633, top: 14880, width: 1670, height: 1768 }} />
-        <NavyLabel x={1809} y={14904} w={445} align="right">Classify<br />分类</NavyLabel>
-        <NavyCalloutLine x={1424} y={15001} w={347} />
-        <NavyLabel x={204} y={15334} w={421}>Record<br />充值记录</NavyLabel>
-        <NavyCalloutLine x={641} y={15434} w={302} />
-        <NavyLabel x={209} y={16054} w={527}>Invitation<br />邀请码</NavyLabel>
-        <NavyCalloutLine x={645} y={16165} w={328} />
-        <NavyLabel x={1616} y={16455} w={638} align="right">Unlock<br />已解锁的比赛</NavyLabel>
-        <NavyCalloutLine x={1500} y={16538} w={275} />
-
-        {/* ── Recharge (y=17286, h=2147) ── */}
-        <NavyTitle x={151} y={17286} w={660}>Recharge<br />充值</NavyTitle>
-        <NavyDivider x={573} y={17424} w={1707} dots={[[554, 17401], [1405, 17401], [2258, 17401]]} />
-        <img src={navy.rechargeBg} className="abs" style={{ left: 45, top: 17707, width: 2420, height: 1726 }} />
-        <img src={navy.rechargePhone} className="abs navy-phone" style={{ left: 298, top: 17805, width: 1952, height: 1391 }} />
-
-        {/* ── Dialog (y=20051, h=3065) ── */}
-        <NavyTitle x={0} y={20071} w={2480} align="center">Dialog Box Pops Up<br />弹出对话框</NavyTitle>
-        <div className="navy-divider-line abs" style={{ left: 0, top: 20119, width: 2480 }} />
-        <img src={navy.dialogPhone} className="abs navy-phone" style={{ left: 633, top: 20616, width: 1209, height: 2500 }} />
-
-        {/* ── Charts (y=23696, h=7579) ── */}
-        <NavyTitle x={151} y={23694} w={1111}>Structure Chart<br />结构图</NavyTitle>
-        <img src={navy.structChart} className="abs" style={{ left: 2, top: 24178, width: 2480, height: 1402 }} />
-        <NavyTitle x={155} y={26010} w={770}>Flow Chart<br />流程图</NavyTitle>
-        <img src={navy.flowChart} className="abs" style={{ left: 0, top: 26426, width: 2480, height: 400 }} />
-        <NavyTitle x={155} y={27314} w={1172}>Wireframe Chart<br />线框图</NavyTitle>
-        <img src={navy.wireframe} className="abs" style={{ left: 25, top: 27815, width: 2433, height: 3460 }} />
-
-        {/* ── End (y=31852, h=3094) ── */}
-        <img src={navy.endBg} className="abs" style={{ left: 0, top: 31852, width: 2480, height: 1504 }} />
-        <img src={navy.endLaptop} className="abs" style={{ left: 957, top: 32391, width: 765, height: 512 }} />
-        <div className="navy-end-badge abs" style={{ left: 1006, top: 33488, width: 475, height: 143 }} />
-        <NavyTitle x={1080} y={33527} w={350} align="center">ICON</NavyTitle>
-        <div className="navy-divider-line abs" style={{ left: 4, top: 33556, width: 2480 }} />
-        <img src={navy.endIcons} className="abs" style={{ left: 444, top: 33883, width: 1600, height: 379 }} />
-
-      </FigmaScaleStage>
-    </div>
-  );
-}
-
+/* NavyTrialCase used to live here: the original 我为球狂 (MAD Football) page, built
+ * entirely from figma.com/api/mcp/asset URLs. It was superseded by MadCase below
+ * (local assets, exact Figma geometry) and had been unreachable ever since —
+ * renderStarFigmaCase only ever dispatches to MadCase. Removed with its 22 dead
+ * remote URLs and its four Navy* helper components. */
 /* ─── CDST assets ────────────────────────────────────────────────
  * The page remains React/CSS driven for the text-heavy sections. The lower
  * process/prototype/visual sections use local Figma exports so their dense
@@ -248,46 +110,27 @@ const cdst = {
   personaD: publicUrl('/images/xingji/cdst/assets/persona-d.webp'),
 
   /* 产品结构：本地单图资源 */
-  struct: publicUrl('/images/xingji/cdst/assets/product-structure.png'),
+  struct: publicUrl('/images/xingji/cdst/assets/product-structure.webp'),
 
   /* UI 视觉：独立手机稿/装饰图分层渲染 */
-  uiVisionHomeExact: publicUrl('/images/xingji/cdst/layers/ui-vision-home-exact.png?v=figma-9817-19294'),
-  uiVisionLevelExact: publicUrl('/images/xingji/cdst/layers/ui-vision-level-exact.png?v=figma-9817-19303'),
-  uiVisionOtherExact: publicUrl('/images/xingji/cdst/layers/ui-vision-other-exact.png?v=figma-9817-19322'),
-  uiHome1: publicUrl('/images/xingji/cdst/layers/ui-home-1.webp'),
-  uiHome2: publicUrl('/images/xingji/cdst/layers/ui-home-2.webp'),
-  uiStrip: publicUrl('/images/xingji/cdst/layers/ui-strip.webp'),
-
-  uiLevelMain: publicUrl('/images/xingji/cdst/layers/ui-level-main.webp'),
-  uiLevelMid: publicUrl('/images/xingji/cdst/layers/ui-level-mid.webp'),
-  uiLevelStack1: publicUrl('/images/xingji/cdst/layers/ui-level-stack-1.webp'),
-  uiLevelStack2: publicUrl('/images/xingji/cdst/layers/ui-level-stack-2.webp'),
-  uiLevelStack3: publicUrl('/images/xingji/cdst/layers/ui-level-stack-3.webp'),
-  uiLevelShadow: publicUrl('/images/xingji/cdst/layers/ui-level-shadow.webp'),
-
-  uiOther1: publicUrl('/images/xingji/cdst/layers/ui-other-1.webp'),
-  uiOther2: publicUrl('/images/xingji/cdst/layers/ui-other-2.webp'),
-  uiOther3: publicUrl('/images/xingji/cdst/layers/ui-other-3.webp'),
-  uiOther4: publicUrl('/images/xingji/cdst/layers/ui-other-4.webp'),
-  uiOther5: publicUrl('/images/xingji/cdst/layers/ui-other-5.webp'),
-  uiOtherStrip: publicUrl('/images/xingji/cdst/layers/ui-other-strip.webp'),
-
-  interactionSalaryFlow: publicUrl('/images/xingji/cdst/layers/interaction/salary-flow.png?v=figma-9817-19270'),
-  interactionSalaryExtraPhone: publicUrl('/images/xingji/cdst/layers/interaction/salary-extra-phone.png?v=figma-9817-19282'),
-  interactionSalaryBottomStrip: publicUrl('/images/xingji/cdst/layers/interaction/salary-bottom-strip.png?v=figma-9817-19283'),
+  uiVisionHomeExact: publicUrl('/images/xingji/cdst/layers/ui-vision-home-exact.webp?v=figma-9817-19294'),
+  uiVisionLevelExact: publicUrl('/images/xingji/cdst/layers/ui-vision-level-exact.webp?v=figma-9817-19303'),
+  uiVisionOtherExact: publicUrl('/images/xingji/cdst/layers/ui-vision-other-exact.webp?v=figma-9817-19322'),
+  interactionSalaryFlow: publicUrl('/images/xingji/cdst/layers/interaction/salary-flow.webp?v=figma-9817-19270'),
+  interactionSalaryExtraPhone: publicUrl('/images/xingji/cdst/layers/interaction/salary-extra-phone.webp?v=figma-9817-19282'),
+  interactionSalaryBottomStrip: publicUrl('/images/xingji/cdst/layers/interaction/salary-bottom-strip.webp?v=figma-9817-19283'),
   interactionSalaryArrowCity: publicUrl('/images/xingji/cdst/layers/interaction/salary-arrow-city.svg?v=figma-9817-19274'),
-  interactionSalaryArrowDrag: publicUrl('/images/xingji/cdst/layers/interaction/salary-arrow-drag.png?v=figma-9817-19278'),
-  interactionSalaryLabelMin: publicUrl('/images/xingji/cdst/layers/interaction/salary-label-min.svg?v=figma-9817-19284'),
+  interactionSalaryArrowDrag: publicUrl('/images/xingji/cdst/layers/interaction/salary-arrow-drag.webp?v=figma-9817-19278'),
   interactionSalaryLabelEnter: publicUrl('/images/xingji/cdst/layers/interaction/salary-label-enter.svg?v=figma-9817-19286'),
-  interactionAssessmentFlow: publicUrl('/images/xingji/cdst/layers/interaction/assessment-flow.png?v=figma-9817-19254'),
-  interactionAssessmentTopStrip: publicUrl('/images/xingji/cdst/layers/interaction/assessment-top-strip.png?v=figma-9817-19255'),
-  interactionAssessmentSidePhone: publicUrl('/images/xingji/cdst/layers/interaction/assessment-side-phone.png?v=figma-9817-19256'),
-  interactionAssessmentArrowSwipe: publicUrl('/images/xingji/cdst/layers/interaction/assessment-arrow-swipe.png?v=figma-9817-19260'),
-  interactionAssessmentArrowDownA: publicUrl('/images/xingji/cdst/layers/interaction/assessment-arrow-down-a.png?v=figma-9817-19263'),
-  interactionAssessmentArrowDownB: publicUrl('/images/xingji/cdst/layers/interaction/assessment-arrow-down-b.png?v=figma-9817-19268'),
-  interactionProfileFlow: publicUrl('/images/xingji/cdst/layers/interaction/profile-flow.png?v=figma-9817-19247'),
-  interactionStatusConsultFlow: publicUrl('/images/xingji/cdst/layers/interaction/status-consult-flow.png?v=figma-9817-19239'),
-  interactionStatusConsultVerticalBg: publicUrl('/images/xingji/cdst/layers/interaction/status-consult-vertical-bg.png?v=figma-9817-19242'),
+  interactionAssessmentFlow: publicUrl('/images/xingji/cdst/layers/interaction/assessment-flow.webp?v=figma-9817-19254'),
+  interactionAssessmentTopStrip: publicUrl('/images/xingji/cdst/layers/interaction/assessment-top-strip.webp?v=figma-9817-19255'),
+  interactionAssessmentSidePhone: publicUrl('/images/xingji/cdst/layers/interaction/assessment-side-phone.webp?v=figma-9817-19256'),
+  interactionAssessmentArrowSwipe: publicUrl('/images/xingji/cdst/layers/interaction/assessment-arrow-swipe.webp?v=figma-9817-19260'),
+  interactionAssessmentArrowDownA: publicUrl('/images/xingji/cdst/layers/interaction/assessment-arrow-down-a.webp?v=figma-9817-19263'),
+  interactionAssessmentArrowDownB: publicUrl('/images/xingji/cdst/layers/interaction/assessment-arrow-down-b.webp?v=figma-9817-19268'),
+  interactionProfileFlow: publicUrl('/images/xingji/cdst/layers/interaction/profile-flow.webp?v=figma-9817-19247'),
+  interactionStatusConsultFlow: publicUrl('/images/xingji/cdst/layers/interaction/status-consult-flow.webp?v=figma-9817-19239'),
+  interactionStatusConsultVerticalBg: publicUrl('/images/xingji/cdst/layers/interaction/status-consult-vertical-bg-dark.webp?v=figma-9817-19242'),
 
   bgStrokeHero: publicUrl('/images/xingji/cdst/bg/stroke-hero.svg'),
   bgStrokeStandard: publicUrl('/images/xingji/cdst/bg/stroke-standard.svg'),
@@ -687,18 +530,21 @@ function CdstSalaryPrototype({ top }: { top: number }) {
       </div>
       <CdstSalaryPhoneFlow left={292.5} top={248.5} />
       <img src={cdst.interactionSalaryArrowCity} className="abs cdst-interaction-asset" style={{ left: 1250.5, top: 420.5, width: 46, height: 201 }} alt="" />
-      <div className="cdst-interaction-note vertical" style={{ left: 1284.5, top: 420.5 }}>
+      {/* Figma 9817:19275 — the text node's own frame, not the 9817:19273 group box */}
+      <div className="cdst-interaction-note vertical" style={{ left: 1263, top: 437 }}>
         <span>计算该城市的开支</span>
       </div>
       <div className="cdst-interaction-note vertical" style={{ left: 244, top: 2257 }}>
         <span>当地五险一金明细参考</span>
       </div>
       <img src={cdst.interactionSalaryArrowDrag} className="abs cdst-interaction-asset" style={{ left: 573.5, top: 2366.5, width: 30, height: 100 }} alt="" />
-      <div className="cdst-interaction-note vertical" style={{ left: 593.5, top: 2366.5 }}>
+      {/* Figma 9817:19279 */}
+      <div className="cdst-interaction-note vertical" style={{ left: 577, top: 2374 }}>
         <span>向下拖动</span>
       </div>
-      <img src={cdst.interactionSalaryLabelMin} className="abs cdst-interaction-asset" style={{ left: 864.5, top: 2099.5, width: 256, height: 41 }} alt="" />
-      <div className="cdst-interaction-note dark-label" style={{ left: 880.5, top: 2111.5 }}>
+      {/* Figma draws this plate white with dark text (矩形 5), but every label on a
+          connector line is dark-plate/white-text here, so it uses .dark-label like the rest. */}
+      <div className="cdst-interaction-note dark-label" style={{ left: 864.5, top: 2099.5, width: 256, height: 41 }}>
         计算出最低的薪资水平
       </div>
       <img src={cdst.interactionSalaryLabelEnter} className="abs cdst-interaction-asset" style={{ left: 814.5, top: 2700.5, width: 228, height: 44 }} alt="" />
@@ -734,15 +580,20 @@ function CdstAssessmentPrototype({ top }: { top: number }) {
         <span>职业道路选择项。借力自测工具，不断开发自己的职业潜能，获得更好的职业生涯。</span>
       </div>
       <CdstAssessmentPhoneFlow left={199.5} top={238.5} />
-      <img src={cdst.interactionAssessmentArrowSwipe} className="abs cdst-interaction-asset rotate-neg-90" style={{ left: 531, top: 328, width: 96, height: 37 }} alt="" />
-      <div className="cdst-interaction-note" style={{ left: 531, top: 328 }}>左右滑动</div>
+      {/* Figma 9817:19260 renders this 37x96 and *then* rotates -90deg, landing on 96x37.
+          The pre-rotation box goes here; centred rotation shifts it by ±29.5 to sit at 531,328. */}
+      <img src={cdst.interactionAssessmentArrowSwipe} className="abs cdst-interaction-asset rotate-neg-90" style={{ left: 560.5, top: 298.5, width: 37, height: 96 }} alt="" />
+      {/* Notes below sit at their own Figma text-node frames (9817:19261 / 19264 / 19269 / 10312:1998),
+          not at the enclosing group boxes the arrows use. */}
+      <div className="cdst-interaction-note" style={{ left: 534, top: 336 }}>左右滑动</div>
       <img src={cdst.interactionAssessmentArrowDownA} className="abs cdst-interaction-asset" style={{ left: 900.5, top: 419.5, width: 37, height: 98 }} alt="" />
-      <div className="cdst-interaction-note vertical" style={{ left: 927.5, top: 429 }}><span>向下滑动</span></div>
+      <div className="cdst-interaction-note vertical" style={{ left: 907, top: 429 }}><span>向下滑动</span></div>
       <img src={cdst.interactionAssessmentArrowDownB} className="abs cdst-interaction-asset" style={{ left: 1239.5, top: 421.5, width: 37, height: 98 }} alt="" />
-      <div className="cdst-interaction-note vertical" style={{ left: 1267, top: 429 }}><span>向下滑动</span></div>
+      <div className="cdst-interaction-note vertical" style={{ left: 1247, top: 429 }}><span>向下滑动</span></div>
       <img src={cdst.interactionAssessmentArrowDownB} className="abs cdst-interaction-asset" style={{ left: 1239.5, top: 1078.5, width: 37, height: 98 }} alt="" />
-      <div className="cdst-interaction-note vertical" style={{ left: 1267, top: 1086 }}><span>向下滑动</span></div>
-      <div className="cdst-interaction-note dark-label" style={{ left: 1172.5, top: 742.5 }}>进入测试页面</div>
+      <div className="cdst-interaction-note vertical" style={{ left: 1247, top: 1086 }}><span>向下滑动</span></div>
+      {/* Figma 10312:1999 — plate is 166×39, not the 256×41 default the class assumes */}
+      <div className="cdst-interaction-note dark-label" style={{ left: 1172.5, top: 742.5, width: 166, height: 39 }}>进入测试页面</div>
       <div className="cdst-interaction-side-note" style={{ left: 1936.5, top: 1849 }}>
         <p className="large">点击单选按钮</p>
         <p>&nbsp;</p>
@@ -762,7 +613,8 @@ function CdstProfileInteraction({ top }: { top: number }) {
         <p>|&nbsp;&nbsp;&nbsp;&nbsp;个人资料&nbsp;&nbsp;&nbsp;&nbsp;|</p>
       </div>
       <CdstProfilePrototype left={281.5} top={131.5} />
-      <div className="cdst-interaction-note dark-label" style={{ left: 912.5, top: 2587.5 }}>滑动按钮</div>
+      {/* Figma 10312:2001 — plate is 101×33 */}
+      <div className="cdst-interaction-note dark-label" style={{ left: 912.5, top: 2587.5, width: 101, height: 33 }}>滑动按钮</div>
       <div className="cdst-interaction-side-note" style={{ left: 308.5, top: 2565.5 }}>
         <p>位置：底部</p>
         <p>&nbsp;</p>
@@ -790,7 +642,9 @@ function CdstStatusConsultPrototype({ top }: { top: number }) {
       </div>
       <CdstStatusConsultFlow left={235.5} top={169.5} />
       <img src={cdst.interactionStatusConsultVerticalBg} className="abs cdst-interaction-asset" style={{ left: 218.5, top: 1108.5, width: 38, height: 273 }} alt="" />
-      <div className="cdst-interaction-note vertical black" style={{ left: 218.5, top: 1108.5 }}>
+      {/* Figma 9817:19243 — text node, inset from the 9817:19241 backing bar the image above draws.
+          Bar recoloured white -> #141414 so this reads white-on-dark like every other line label. */}
+      <div className="cdst-interaction-note vertical" style={{ left: 226, top: 1130 }}>
         <span>咨询职前教育心理学导师</span>
       </div>
       <div className="interaction-title plain" style={{ left: 292.5, top: 1568.5 }}>
@@ -1294,38 +1148,37 @@ function Anno({ x, y, text, lines, vertical = false, black = false, dim = false,
 
 /* ─── MAD assets (我为球狂 / 原型作品, Figma 9817:19381) ─── */
 const mad = {
-  coverBg:        publicUrl('/images/xingji/mad/cover-bg.png'),
-  coverBadge:     publicUrl('/images/xingji/mad/cover-badge.png'),
-  coverBadgeClean: publicUrl('/images/xingji/mad/cover-badge-transparent.png'),
-  analyst:        publicUrl('/images/xingji/mad/analyst.png'),
-  iconBg:         publicUrl('/images/xingji/mad/icon-bg.png'),
-  iconMark:       publicUrl('/images/xingji/mad/icon-mark.png'),
-  iconBig:        publicUrl('/images/xingji/mad/icon-big.png'),
-  guideCard1:     publicUrl('/images/xingji/mad/guide-card-1.png'),
-  guideCard2:     publicUrl('/images/xingji/mad/guide-card-2.png'),
-  guideCard3:     publicUrl('/images/xingji/mad/guide-card-3.png'),
-  guideCard4:     publicUrl('/images/xingji/mad/guide-card-4.png'),
-  productBg:      publicUrl('/images/xingji/mad/product-bg.png'),
-  productPhone:   publicUrl('/images/xingji/mad/product-phone.png'),
-  productPhoneClean: publicUrl('/images/xingji/mad/product-phone-transparent.png'),
-  recommendGlow:  publicUrl('/images/xingji/mad/recommend-bg.png'),
-  recommendPhone: publicUrl('/images/xingji/mad/recommend-phone.png'),
-  mePhones:       publicUrl('/images/xingji/mad/me-phones.png'),
-  rechargeBg:     publicUrl('/images/xingji/mad/recharge-bg.png'),
-  rechargePhone:  publicUrl('/images/xingji/mad/recharge-phone.png'),
-  dialogPhone:    publicUrl('/images/xingji/mad/dialog-phone.png'),
-  structChart:    publicUrl('/images/xingji/mad/structure-chart.png'),
-  flowChart:      publicUrl('/images/xingji/mad/flow-chart.png'),
-  wireframe:      publicUrl('/images/xingji/mad/wireframe-chart.png'),
-  endBg:          publicUrl('/images/xingji/mad/end-bg.png'),
-  endLaptop:      publicUrl('/images/xingji/mad/end-laptop.png'),
-  endLaptopClean: publicUrl('/images/xingji/mad/end-laptop-transparent.png'),
-  endIcons:       publicUrl('/images/xingji/mad/end-icons.png'),
+  coverBg:        publicUrl('/images/xingji/mad/cover-bg.webp'),
+  coverBadgeClean: publicUrl('/images/xingji/mad/cover-badge-transparent.webp'),
+  analyst:        publicUrl('/images/xingji/mad/analyst.webp'),
+  iconBg:         publicUrl('/images/xingji/mad/icon-bg.webp'),
+  iconMark:       publicUrl('/images/xingji/mad/icon-mark.webp'),
+  iconBig:        publicUrl('/images/xingji/mad/icon-big.webp'),
+  guideCard1:     publicUrl('/images/xingji/mad/guide-card-1.webp'),
+  guideCard2:     publicUrl('/images/xingji/mad/guide-card-2.webp'),
+  guideCard3:     publicUrl('/images/xingji/mad/guide-card-3.webp'),
+  guideCard4:     publicUrl('/images/xingji/mad/guide-card-4.webp'),
+  productBg:      publicUrl('/images/xingji/mad/product-bg.webp'),
+  productPhoneClean: publicUrl('/images/xingji/mad/product-phone-transparent.webp'),
+  recommendGlow:  publicUrl('/images/xingji/mad/recommend-bg.webp'),
+  recommendScreen: publicUrl('/images/xingji/mad/recommend-screen.webp'),
+  recommendStatusBar: publicUrl('/images/xingji/mad/recommend-statusbar.webp'),
+  recommendPhone: publicUrl('/images/xingji/mad/recommend-phone-transparent.webp'),
+  mePhones:       publicUrl('/images/xingji/mad/me-phones.webp'),
+  rechargeBg:     publicUrl('/images/xingji/mad/recharge-bg.webp'),
+  rechargePhone:  publicUrl('/images/xingji/mad/recharge-phone-transparent.webp'),
+  dialogPhone:    publicUrl('/images/xingji/mad/dialog-phone.webp'),
+  structChart:    publicUrl('/images/xingji/mad/structure-chart.webp'),
+  flowChart:      publicUrl('/images/xingji/mad/flow-chart.webp'),
+  wireframe:      publicUrl('/images/xingji/mad/wireframe-chart.webp'),
+  endBg:          publicUrl('/images/xingji/mad/end-bg.webp'),
+  endLaptopClean: publicUrl('/images/xingji/mad/end-laptop-transparent.webp'),
+  endIcons:       publicUrl('/images/xingji/mad/end-icons.webp'),
 };
 
 /* MAD section title — 128px Inter, #f9f7f2 @ 50% */
-function MadTitle({ x, y, w, align, children }: { x: number; y: number; w: number; align?: 'center' | 'right'; children: React.ReactNode }) {
-  return <div className="mad-sec-title abs" style={{ left: x, top: y, width: w, textAlign: align }}>{children}</div>;
+function MadTitle({ x, y, w, align, tracking, children }: { x: number; y: number; w: number; align?: 'center' | 'right'; tracking?: number; children: React.ReactNode }) {
+  return <div className="mad-sec-title abs" style={{ left: x, top: y, width: w, textAlign: align, letterSpacing: tracking }}>{children}</div>;
 }
 
 /* MAD section sub-label — 96px Inter, #f9f7f2 @ 50% */
@@ -1345,13 +1198,17 @@ function SalaryChoice({ icon, label, value }: { icon: 'city' | 'industry' | 'sch
 
 type MadDividerDot = number | [number, number] | { x: number; y?: number; tone?: 'gold' | 'light' };
 
+/* The rule and its dots sit 12px below their Figma y. Kept as one constant so the
+   call sites can stay on the raw Figma coordinates. */
+const MAD_DIVIDER_NUDGE_Y = 12;
+
 function MadDivider({ x, y, w, dots }: { x: number; y: number; w: number; dots: MadDividerDot[] }) {
   return (
     <>
-      <span className="mad-divider-line abs" style={{ left: x, top: y, width: w }} />
+      <span className="mad-divider-line abs" style={{ left: x, top: y + MAD_DIVIDER_NUDGE_Y, width: w }} />
       {dots.map((dot, index) => {
         const left = Array.isArray(dot) ? dot[0] : typeof dot === 'number' ? dot : dot.x;
-        const top = Array.isArray(dot) ? dot[1] : typeof dot === 'number' ? y - 23 : dot.y ?? y - 23;
+        const top = (Array.isArray(dot) ? dot[1] : typeof dot === 'number' ? y - 23 : dot.y ?? y - 23) + MAD_DIVIDER_NUDGE_Y;
         const tone = typeof dot === 'object' && !Array.isArray(dot) ? dot.tone : undefined;
         return <span key={`${left}-${top}-${index}`} className={`mad-divider-dot abs${tone === 'light' ? ' is-light' : ''}`} style={{ left, top }} />;
       })}
@@ -1613,7 +1470,12 @@ function MadCase() {
 
         {/* ── 组 15 recommend (y10583 h3487) ── */}
         <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1379, height: 3060 }} />
-        <img src={mad.recommendPhone} className="abs mad-exact-img mad-phone" style={{ left: 1327, top: S.recommend + 1106, width: 773, height: 2332 }} />
+        {/* Figma 10333:3853 "Group 2359" — three stacked layers. The screen sits behind a
+            device frame whose screen area is a cut-out; only the frame was here before,
+            sized to the screen's box, so the phone rendered as a solid black slab. */}
+        <img src={mad.recommendScreen} className="abs mad-exact-img" style={{ left: 1327, top: S.recommend + 1106, width: 772.6, height: 2331.9 }} />
+        <img src={mad.recommendStatusBar} className="abs mad-exact-img" style={{ left: 1300.3, top: S.recommend + 1123.5, width: 768.9, height: 135.7 }} />
+        <img src={mad.recommendPhone} className="abs mad-exact-img mad-phone" style={{ left: 1300.3, top: S.recommend + 1044.4, width: 904.6, height: 2442.3 }} />
         <MadDivider
           x={573}
           y={S.recommend + 178}
@@ -1686,10 +1548,13 @@ function MadCase() {
         {/* ── 组 22 end (y31852 h3094) ── */}
         <img src={mad.endBg} className="abs img-cover" style={{ left: 0, top: S.end, width: 2480, height: 1504 }} />
         <img src={mad.endLaptopClean} className="abs img-cover" style={{ left: 957, top: S.end + 539, width: 765, height: 512 }} />
-        <span className="mad-end-badge abs" style={{ left: 1006, top: S.end + 1636, width: 475, height: 143 }} />
-        <MadSplitDivider y={S.end + 1704} segments={[{ x: 4, w: 1002 }, { x: 1481, w: 1003 }]} />
+        {/* Figma 9817:19385 — one unbroken rule, masked in the middle by the plate below */}
+        <div className="mad-divider-line abs" style={{ left: 3.7, top: S.end + 1699.6, width: 2480.1 }} />
+        {/* Figma 9817:19389 — a solid #131313 plate, not a bordered frame: it punches the gap for ICON */}
+        <span className="mad-end-badge abs" style={{ left: 1006.3, top: S.end + 1635.5, width: 474.9, height: 143.2 }} />
         <img src={mad.endIcons} className="abs img-cover" style={{ left: 444, top: S.end + 2031, width: 1600, height: 379 }} />
-        <MadTitle x={1080} y={S.end + 1675} w={350} align="center">ICON</MadTitle>
+        {/* Figma trims this text to its cap box (cap top at 1675.1); `top` here is the 160px line box, 31.7px higher */}
+        <MadTitle x={1080} y={S.end + 1643.4} w={350} align="center" tracking={9.54}>ICON</MadTitle>
 
       </FigmaScaleStage>
     </div>
@@ -1746,17 +1611,17 @@ const hsTrial = {
 };
 
 const hsGang = {
-  eventIpSceneBg01: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-scene-bg.png'),
-  eventIpCrewDetailShow02: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-character.png'),
-  panel23441: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-main-panel.png'),
-  stateImg0: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-locked.png'),
-  stateImg1: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-claimable.png'),
-  stateImg2: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-claimed.png'),
-  stateImg3: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-maxed.png'),
-  panel34651: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-task-panel.png'),
-  sec7HeroDetailImg: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-detail.png'),
-  sec7HeroPortraitImg: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-portrait.png'),
-  collage: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-outcome-collage.png'),
+  eventIpSceneBg01: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-scene-bg.webp'),
+  eventIpCrewDetailShow02: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-character.webp'),
+  panel23441: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-main-panel.webp'),
+  stateImg0: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-locked.webp'),
+  stateImg1: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-claimable.webp'),
+  stateImg2: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-claimed.webp'),
+  stateImg3: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-maxed.webp'),
+  panel34651: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-task-panel.webp'),
+  sec7HeroDetailImg: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-detail.webp'),
+  sec7HeroPortraitImg: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-portrait.webp'),
+  collage: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-outcome-collage.webp'),
 };
 
 type HSAbsProps = {

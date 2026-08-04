@@ -1,17 +1,20 @@
 import type { CSSProperties } from 'react';
 import './QingquanBathExactCase.css';
 
+/* Local copies of the Figma exports — the figma.com/api/mcp/asset URLs they used to
+   point at expire after ~7 days and had all gone dead. Node ids kept for re-pulling. */
+const QQ = '/images/qingyu/qingquan';
 const qqAssets = {
-  entryPopup: 'https://www.figma.com/api/mcp/asset/245ed7b0-38fa-472e-8314-a6c60efa6427',
-  entryList: 'https://www.figma.com/api/mcp/asset/6f5884a9-d30a-4e36-bb8f-c1563393cce5',
-  main: 'https://www.figma.com/api/mcp/asset/8fca63ef-d164-4ea6-9334-c560f4819d46',
-  signup: 'https://www.figma.com/api/mcp/asset/0276eced-901a-4317-89a4-c05bc8b3cf8b',
-  vote: 'https://www.figma.com/api/mcp/asset/dedbdd13-3ddc-449d-9123-f7b44fe82cdf',
-  live: 'https://www.figma.com/api/mcp/asset/fc48daaa-a1a7-4071-bbc3-1c28af5c0617',
-  result: 'https://www.figma.com/api/mcp/asset/ec0386b1-f40b-4d74-b925-2929af0b2d66',
-  refHotSpring: 'https://www.figma.com/api/mcp/asset/278abcd9-4e99-4bc9-b939-28ff59d18fca',
-  refLive: 'https://www.figma.com/api/mcp/asset/c5dca3d0-25c8-42bf-8203-56a534e8c8c3',
-  flowCurve: 'https://www.figma.com/api/mcp/asset/1b934eda-a443-4e20-9e41-9cf1e6b7f393',
+  entryPopup: `${QQ}/entry-popup.webp`, // Figma 9817:16402 入口 1 · 大世界弹窗
+  entryList: `${QQ}/entry-list.webp`,   // Figma 9817:16409 入口 2 · 帮派活动列表
+  entryHud: `${QQ}/entry-hud.webp`,     // Figma 9817:16410 入口 3 · 帮派驻地HUD — never implemented
+  main: `${QQ}/main.webp`,              // Figma 9817:16451
+  signup: `${QQ}/signup.webp`,          // Figma 9817:16500
+  vote: `${QQ}/vote.webp`,              // Figma 9817:16543
+  live: `${QQ}/live.webp`,              // Figma 9817:16586
+  result: `${QQ}/result.webp`,          // Figma 9817:16619
+  refHotSpring: `${QQ}/ref-hotspring.webp`, // Figma 9817:16709
+  refLive: `${QQ}/ref-live.webp`,           // Figma 9817:16752
 };
 
 type Accent = 'cyan' | 'pink' | 'gold';
@@ -57,16 +60,32 @@ function FlowNode({ n, title, desc, x, accent = 'cyan' }: { n: number; title: st
   );
 }
 
-function Bullet({ children }: { children: string }) {
-  return <p className="qq-bullet"><i />{children}</p>;
-}
-
 function ImageFrame({ src, className = '', caption, style }: { src: string; className?: string; caption?: string; style?: CSSProperties }) {
   return (
     <figure className={`qq-image-frame ${className}`} style={style}>
       <img src={src} alt={caption ?? ''} loading="lazy" decoding="async" />
       {caption ? <figcaption>{caption}</figcaption> : null}
     </figure>
+  );
+}
+
+/* Section 03 places its shots and annotations at absolute Figma coordinates rather than
+   in a grid — the three entries do not sit on one row. */
+function EntryShot({ src, x, y, caption, capX }: { src: string; x: number; y: number; caption: string; capX: number }) {
+  return (
+    <>
+      <img className="qq-entry-shot" style={{ left: x, top: y }} src={src} alt={caption} loading="lazy" decoding="async" />
+      <span className="qq-entry-cap" style={{ left: capX, top: y + 320 }}>{caption}</span>
+    </>
+  );
+}
+
+function EntryBullet({ x, y, dotX, dotY, children }: { x: number; y: number; dotX: number; dotY: number; children: string }) {
+  return (
+    <>
+      <i className="qq-entry-dot" style={{ left: dotX, top: dotY }} />
+      <span className="qq-entry-note" style={{ left: x, top: y }}>{children}</span>
+    </>
   );
 }
 
@@ -204,20 +223,34 @@ export function QingquanBathExactCase() {
 
       <section className="qq-page qq-entry">
         <SectionHeader no="03" eyebrow="DUAL ENTRY" title="双入口触达" desc="活动开启的那一刻，玩家无论身在大世界还是帮派页，都有一条最短路径进场。" accent="cyan" />
-        <div className="qq-entry-grid">
-          <ImageFrame src={qqAssets.entryPopup} caption="入口 1 · 大世界弹窗" />
-          <ImageFrame src={qqAssets.entryList} caption="入口 2 · 帮派活动列表" />
-        </div>
-        <div className="qq-entry-notes">
-          <div><Bullet>系统公告 + 弹窗直达，25 秒可暂缓</Bullet><Bullet>「前往」一键传送，不打断当前节奏</Bullet></div>
-          <div><Bullet>活动列表常驻入口，错过弹窗也能进</Bullet><Bullet>完成沐浴可得 30 帮派活跃度</Bullet></div>
-        </div>
-        <span className="qq-entry-marker m1" /><span className="qq-entry-marker m2" />
+        {/* Three entries, laid out exactly as Figma 9817:16396 — two side by side, with a
+            connector converging into the third below. The third (帮派驻地HUD, s3_img
+            9817:16410) had never been built, so the section stopped at 「稍后」. */}
+        <EntryShot src={qqAssets.entryPopup} x={84} y={330} caption="入口 1 · 大世界弹窗" capX={291} />
+        <EntryShot src={qqAssets.entryList} x={662} y={330} caption="入口 2 · 帮派活动列表" capX={841} />
+        <EntryShot src={qqAssets.entryHud} x={373} y={986} caption="入口 3 · 帮派驻地HUD" capX={536} />
+
+        <EntryBullet x={232} y={700} dotX={214} dotY={708}>系统公告 + 弹窗直达，25 秒可暂缓</EntryBullet>
+        <EntryBullet x={232} y={736} dotX={214} dotY={744}>「前往」一键传送，不打断当前节奏</EntryBullet>
+        <EntryBullet x={810} y={700} dotX={792} dotY={708}>活动列表常驻入口，错过弹窗也能进</EntryBullet>
+        <EntryBullet x={810} y={736} dotX={792} dotY={744}>完成沐浴可得 30 帮派活跃度</EntryBullet>
+        <EntryBullet x={507} y={1363} dotX={489} dotY={1371}>未真正抵达温泉处时，活动入口15分钟限时显示</EntryBullet>
+        <EntryBullet x={507} y={1399} dotX={489} dotY={1407}>「清泉沐浴」一键自动寻路去驻地温泉处</EntryBullet>
+
+        {/* Figma Line 197–200: both entries drop to y=882, merge, then one line down into
+            entry 3. Line 200 reports x=928 w=561 because Figma gives a right-to-left line
+            its far edge — it actually runs 367 → 928. */}
+        <span className="qq-entry-link v" style={{ left: 367, top: 762, height: 120 }} />
+        <span className="qq-entry-link v" style={{ left: 927, top: 762, height: 120 }} />
+        <span className="qq-entry-link h" style={{ left: 367, top: 882, width: 561 }} />
+        <span className="qq-entry-link v" style={{ left: 640.5, top: 882, height: 103 }} />
+        <span className="qq-entry-link-label" style={{ left: 568, top: 854 }}>进入帮派驻地副本内</span>
+
         <div className="qq-wide-principle cyan">
           <i />
           <h3>交互原则 · 多触点可见性</h3>
           <h4>VISIBILITY · MULTI TOUCHPOINT</h4>
-          <p>主动推送与常驻入口互为冗余：弹窗抓住「现在」，列表兜住「稍后」，活跃度奖励再补一个非来不可的理由。</p>
+          <p>主动推送与常驻入口互为辅助：弹窗抓住「现在」，列表兜住「稍后」，活跃度奖励再补一个非来不可的理由，最终进入驻地，HUD呈现即将「抵达」。</p>
         </div>
       </section>
 
@@ -335,7 +368,17 @@ export function QingquanBathExactCase() {
           <span className="qq-axis-x">单场进程 15:00 →</span>
           <span className="qq-axis-line-y" />
           <span className="qq-axis-line-x" />
-          <img className="qq-curve-img" src={qqAssets.flowCurve} alt="清泉沐浴心流曲线" loading="lazy" decoding="async" />
+          {/* Figma 9817:16661 s9_curve. Inlined rather than loaded as an <img>: Figma's SVG
+              export wraps the path in two opaque background rects that would paint over
+              the panel. viewBox is 773x308 (770x305 path + 1.25 stroke bleed each side). */}
+          <svg className="qq-curve-img" viewBox="0 0 773 308" fill="none" role="img" aria-label="清泉沐浴心流曲线">
+            <path
+              d="M1.25 306.25C61.25 306.25 91.25 236.25 151.25 236.25C211.25 236.25 241.25 161.25 301.25 161.25C361.25 161.25 391.25 86.25 451.25 86.25C515.25 86.25 547.25 1.25 611.25 1.25C675.25 1.25 707.25 46.25 771.25 46.25"
+              stroke="#f29eb3"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+          </svg>
 
           <span className="qq-journey-dot m1" />
           <span className="qq-journey-dot m2" />

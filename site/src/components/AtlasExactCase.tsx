@@ -821,6 +821,34 @@ function S7() {
   );
 }
 
+/* ===================== S8 — 封底 =====================
+   Figma 9817:14163. This section had never been built, so the case just stopped
+   after S7. Note two of its layers are hidden="true" in Figma — the 1088x2 top rule
+   (9817:14164) and the 《庆余年》图鉴手册 subtitle (9817:14166) — so neither is drawn.
+   Wordmark is a flat #E2B54B (sampled uniform across its width, not a gradient);
+   the diamond is the case's teal #4FA08B; the dots are #E2B54B at 60%. */
+function S8() {
+  return (
+    <div className="atlas-sec al-bg-dark" style={{ height: px(400) }}>
+      <p
+        className="al-bebas"
+        style={{ position: 'absolute', left: px(96), top: px(139), color: '#e2b54b', fontSize: '101px', letterSpacing: '4px', lineHeight: 1.2, whiteSpace: 'nowrap' }}
+      >
+        THANKS FOR WATCHING
+      </p>
+      {/* 9817:14167 is the rotated square's bounding box (22.627 = 16*√2), so the
+          16px box sits at its centre: 1100 + (22.627-16)/2 = 1103.3 */}
+      <Diamond left={1103.3} top={177.6} size={16} color="#4fa08b" />
+      {[1060, 1082, 1104].map((x) => (
+        <div
+          key={x}
+          style={{ position: 'absolute', left: px(x), top: px(224.31), width: px(6), height: px(6), borderRadius: '50%', background: 'rgba(226,181,75,0.6)' }}
+        />
+      ))}
+    </div>
+  );
+}
+
 /* ===================== Root ===================== */
 export function AtlasExactCase() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -888,7 +916,7 @@ export function AtlasExactCase() {
 
   return (
     <div ref={rootRef} className="atlas-canvas">
-      <S0 /><S1 /><S2 /><S3 /><S4 /><S5A /><S5B /><S5C /><S5D /><S5E /><S6 /><S7 />
+      <S0 /><S1 /><S2 /><S3 /><S4 /><S5A /><S5B /><S5C /><S5D /><S5E /><S6 /><S7 /><S8 />
     </div>
   );
 }

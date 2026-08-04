@@ -1,26 +1,36 @@
 import './GemSocketExactCase.css';
 
-/* ===== Image assets (game screenshots) ===== */
+/* ===== Image assets (game screenshots) =====
+   Local copies of the Figma exports. These used to point at
+   https://www.figma.com/api/mcp/asset/... URLs, which Figma expires after ~7 days —
+   every screenshot on this page had gone dead. Node ids noted for re-pulling. */
+const GS = '/images/qingyu/gem-socket';
 const A = {
-  s02:  'https://www.figma.com/api/mcp/asset/cad01c89-3875-4360-96cb-c5159029e666',
-  s05:  'https://www.figma.com/api/mcp/asset/5c55badc-e1d7-4424-a7fc-2eadc0974a78',
-  s06:  'https://www.figma.com/api/mcp/asset/35f752ed-c7b9-4827-809c-222edd8c1eaa',
-  s08op1: 'https://www.figma.com/api/mcp/asset/a5d0f9d7-8dab-4132-b21b-ff1e5e0394eb',
-  s08op2: 'https://www.figma.com/api/mcp/asset/b63f97cf-fc7d-4e0f-884b-13dd8532887e',
-  s08op3: 'https://www.figma.com/api/mcp/asset/fdf22273-a743-4585-8f41-ac252d8201fe',
-  s10:  'https://www.figma.com/api/mcp/asset/1313b2f9-a3a5-4730-b519-cd597c0c447b',
-  s15a: 'https://www.figma.com/api/mcp/asset/e8f8aaea-49c9-465d-bbb6-ee1356b588d5',
-  s15b: 'https://www.figma.com/api/mcp/asset/43103d2f-5566-4b6b-b679-b8ff36b6ba79',
+  s02:    `${GS}/s02-equip.webp`,        // Figma 9817:11207 img_equip
+  s05:    `${GS}/s05-mainworld.webp`,    // Figma 9817:11341 img_mainworld
+  s06:    `${GS}/s06-socket.webp`,       // Figma 9817:11360 img_socket
+  s08op1: `${GS}/s08-op1-remove.webp`,   // Figma 9817:11481 (660,229) 卸下
+  s08op2: `${GS}/s08-op2-inlay.webp`,    // Figma 9817:11476 (80,666) 镶嵌
+  s08op3: `${GS}/s08-op3-replace.webp`,  // Figma 9817:11482 (660,666) 替换
+  s10:    `${GS}/s10-synthesis.webp`,    // Figma 9817:11591
+  s15a:   `${GS}/s15-a.webp`,            // Figma 9817:11770 602镶嵌1（效果图）
+  s15b:   `${GS}/s15-b.webp`,            // Figma 9817:11771 602镶嵌2（效果图）
 };
 
 const px = (n: number) => `${n}px`;
 
-/* hexagon SVG (pointy-top, matches Figma -90deg rotated polygon) */
+/* Pointy-top hexagon. Figma 9817:11532 is 39.8372x46 inside a 46px box
+   (a 6.7% horizontal inset), not a 46x46 square — drawing it square made the
+   gem icons visibly too wide. */
 function Hex({ size, fill, stroke }: { size: number; fill: string; stroke?: string }) {
-  const pts = '50,2 95,26 95,74 50,98 5,74 5,26';
   return (
-    <svg width={size} height={size} viewBox="0 0 100 100">
-      <polygon points={pts} fill={fill} stroke={stroke || 'none'} strokeWidth={stroke ? 4 : 0} />
+    <svg width={size} height={size} viewBox="0 0 46 46" style={{ overflow: 'visible' }}>
+      <path
+        d="M23 0 L42.92 11.5 L42.92 34.5 L23 46 L3.08 34.5 L3.08 11.5 Z"
+        fill={fill}
+        stroke={stroke || 'none'}
+        strokeWidth={stroke ? 4 : 0}
+      />
     </svg>
   );
 }
@@ -293,7 +303,8 @@ function S07() {
         <div className="gs-simp-row" style={{ top: px(253) }}><span className="label">宝石合成</span></div>
       </div>
 
-      <div className="gs-en" style={{ position: 'absolute', left: px(620), top: px(360), transform: 'translateX(-50%)', fontWeight: 700, fontSize: px(51), color: '#4f80f5' }}>→</div>
+      {/* Figma 9817:11451 spans x 604..676, so its centre is 640 — not 620 */}
+      <div className="gs-en" style={{ position: 'absolute', left: px(640), top: px(360), transform: 'translateX(-50%)', fontWeight: 700, fontSize: px(51), color: '#4f80f5' }}>→</div>
 
       {/* After */}
       <div style={{ position: 'absolute', left: px(710), top: px(210), width: px(490), height: px(331), background: '#fff', border: '1.5px solid #4f80f5', borderRadius: px(16), boxShadow: '0 10px 28px rgba(79,128,245,0.16)', overflow: 'hidden' }}>
@@ -305,10 +316,11 @@ function S07() {
         <div className="gs-simp-after-sub">
           <div className="t">宝石合成</div><div className="s">养成支线 · 红点按需唤起</div>
         </div>
-        <div className="gs-simp-sub" style={{ left: px(50.5), top: px(289.5), whiteSpace: 'nowrap' }}>可见决策项</div>
-        <div className="gs-en" style={{ position: 'absolute', left: px(150.5), top: px(278.5), transform: 'translateX(-50%)', fontWeight: 700, fontSize: px(35), color: '#616b80' }}>4</div>
-        <div className="gs-en" style={{ position: 'absolute', left: px(283.5), top: px(285.5), transform: 'translateX(-50%)', fontWeight: 700, fontSize: px(23), color: '#4f80f5' }}>→</div>
-        <div className="gs-en" style={{ position: 'absolute', left: px(416), top: px(275.5), transform: 'translateX(-50%)', fontWeight: 700, fontSize: px(39), color: '#4f80f5' }}>2</div>
+        {/* Centres from Figma 9817:11462-11465 (x + width/2): 4→197, →→285, 2→385.5 */}
+        <div className="gs-simp-sub" style={{ left: px(52), top: px(291), whiteSpace: 'nowrap' }}>可见决策项</div>
+        <div className="gs-en" style={{ position: 'absolute', left: px(197), top: px(280), transform: 'translateX(-50%)', fontWeight: 700, fontSize: px(35), color: '#616b80' }}>4</div>
+        <div className="gs-en" style={{ position: 'absolute', left: px(285), top: px(287), transform: 'translateX(-50%)', fontWeight: 700, fontSize: px(23), color: '#4f80f5' }}>→</div>
+        <div className="gs-en" style={{ position: 'absolute', left: px(385.5), top: px(277), transform: 'translateX(-50%)', fontWeight: 700, fontSize: px(39), color: '#4f80f5' }}>2</div>
       </div>
 
       {/* dark theory bar */}

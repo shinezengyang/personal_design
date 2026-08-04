@@ -1,26 +1,31 @@
 import './IntelExactCase.css';
 
-/* ===== Image assets (game screenshots, Figma img_* frames) ===== */
+/* ===== Image assets (game screenshots, Figma img_* frames) =====
+   Local copies. These used to point at figma.com/api/mcp/asset URLs, which Figma expires
+   after ~7 days — the whole page had gone imageless. Re-exported at 2x from the
+   placement nodes inside 9817:15726 and cropped to the node box (Figma bakes the page
+   background and a downward-offset drop shadow into every export). */
+const IL = '/images/qingyu/intel';
 const A = {
   // S4 — 7 state-flow cards
-  s4_1: 'https://www.figma.com/api/mcp/asset/13cf647e-30e9-41e5-b1bd-e301f95af1d7',
-  s4_2: 'https://www.figma.com/api/mcp/asset/9b1cdbb4-6942-4445-a24c-388c0c65118f',
-  s4_3: 'https://www.figma.com/api/mcp/asset/865c8748-b1f2-4fe0-9f61-44d4cc654065',
-  s4_4: 'https://www.figma.com/api/mcp/asset/110b48d8-9a0f-4189-bd5c-b1041f43ece8',
-  s4_5: 'https://www.figma.com/api/mcp/asset/3d5fd01a-7214-4c3d-84b9-f3bd397e4074',
-  s4_6: 'https://www.figma.com/api/mcp/asset/cf85585e-0d81-4e8c-ad7c-19ed36b6baa1',
-  s4_7: 'https://www.figma.com/api/mcp/asset/c07a73e8-3821-45e8-8b16-d9d282a6ecf1',
+  s4_1: `${IL}/s4-1-catalog.webp`,  // Figma 9817:15937
+  s4_2: `${IL}/s4-2-detail.webp`,   // Figma 9817:15940
+  s4_3: `${IL}/s4-3-dungeon.webp`,  // Figma 9817:15943
+  s4_4: `${IL}/s4-4-claim.webp`,    // Figma 9817:15946
+  s4_5: `${IL}/s4-5-unlock.webp`,   // Figma 9817:15949
+  s4_6: `${IL}/s4-6-archive.webp`,  // Figma 9817:15952
+  s4_7: `${IL}/s4-7-next.webp`,     // Figma 9817:15955
   // S5A — 8 catalog/detail screenshots
-  s5_catalog:  'https://www.figma.com/api/mcp/asset/305bc8dc-8e91-4f42-93ad-b952759f788a', // 9680:2044
-  s5_accord:   'https://www.figma.com/api/mcp/asset/f82887a2-8858-42aa-ab05-8895efffe040', // 9680:2045
-  s5_intel1:   'https://www.figma.com/api/mcp/asset/2955d6f4-24a6-4499-a862-ef51355987c9', // 9714:3188
-  s5_intel2:   'https://www.figma.com/api/mcp/asset/5b85937c-bae5-4bbd-9f99-fd47842b860f', // 9714:3202
-  s5_dungeon:  'https://www.figma.com/api/mcp/asset/67baaf69-f34a-4aa4-85be-e30459581b9b', // 9712:3076
-  s5_revive:   'https://www.figma.com/api/mcp/asset/dc180ebd-dfc3-4d63-9450-b697bdbe92b4', // 9712:3087
-  s5_unlock:   'https://www.figma.com/api/mcp/asset/c82b79c5-fc1f-427f-8e9d-d9f659279a06', // 9714:3260
-  s5_archive:  'https://www.figma.com/api/mcp/asset/bc43bd57-501d-4fbf-998d-50bca264b7e3', // 9714:3271
+  s5_catalog:  `${IL}/s5-catalog.webp`,  // Figma 9817:16019
+  s5_accord:   `${IL}/s5-accord.webp`,   // Figma 9817:16008
+  s5_intel1:   `${IL}/s5-intel1.webp`,   // Figma 9817:16046
+  s5_intel2:   `${IL}/s5-intel2.webp`,   // Figma 9817:16060
+  s5_dungeon:  `${IL}/s5-dungeon.webp`,  // Figma 9817:16108
+  s5_revive:   `${IL}/s5-revive.webp`,   // Figma 9817:16119
+  s5_unlock:   `${IL}/s5-unlock.webp`,   // Figma 9817:16158
+  s5_archive:  `${IL}/s5-archive.webp`,  // Figma 9817:16169
   // S7 — reference image
-  s7_ref: 'https://www.figma.com/api/mcp/asset/91eaddc8-98d3-49d5-be5d-a706317fd969',
+  s7_ref: `${IL}/s7-ref.webp`,           // Figma 9817:16254
 };
 
 const px = (n: number) => `${n}px`;

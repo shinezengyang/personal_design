@@ -1,30 +1,35 @@
 import './TempleExactCase.css';
 
-/* ===== Assets ===== */
+/* ===== Assets =====
+   Local copies of the Figma exports. These pointed at figma.com/api/mcp/asset URLs, which
+   Figma expires after ~7 days — every screenshot on the page had gone dead. Each was
+   re-exported at 2x and cropped to its node box: Figma bakes the surrounding page
+   background and a downward-offset drop shadow into the PNG. Node ids kept for re-pulling. */
+const TP = '/images/qingyu/temple';
 const A = {
-  p06:  'https://www.figma.com/api/mcp/asset/ba4aba38-8a25-4341-bf0f-a0305677d2d6',
-  p07a: 'https://www.figma.com/api/mcp/asset/58d16b28-f6db-411a-82a9-0e6ae4a5ab43',
-  p07b: 'https://www.figma.com/api/mcp/asset/105e7c81-55f6-4203-bd7b-3bec173b5202',
-  p08:  'https://www.figma.com/api/mcp/asset/ae317e57-681b-4376-b8c9-cb58f9a90058',
-  p09:  'https://www.figma.com/api/mcp/asset/cc0440b5-d0af-47f8-8f6c-5cadf73fc2b7',
-  p10a: 'https://www.figma.com/api/mcp/asset/950f15bb-f269-4e48-b327-573c5d3d2236',
-  p10b: 'https://www.figma.com/api/mcp/asset/54c67320-351d-4d6a-ad74-60cadc3040c1',
-  p10c: 'https://www.figma.com/api/mcp/asset/1e237a78-2bcd-4a14-9ccc-b5510c4fa13a',
-  p11a: 'https://www.figma.com/api/mcp/asset/5fc01912-6137-4ff5-bb19-297ab601cdfc',
-  p11b: 'https://www.figma.com/api/mcp/asset/65fb2086-f981-481e-b51e-d6bcace22056',
-  p11c: 'https://www.figma.com/api/mcp/asset/ca2e3938-06ec-43e4-bfc9-57c4c187d5d4',
-  p12a: 'https://www.figma.com/api/mcp/asset/10315bae-5ef5-4981-95cd-52376f0924b4',
-  p12b: 'https://www.figma.com/api/mcp/asset/b0d409fe-d3b7-4e70-a9e6-e9813b2ef9d5',
-  p12c: 'https://www.figma.com/api/mcp/asset/5cbae542-9407-428f-8803-871b9188e0ce',
-  p13a: 'https://www.figma.com/api/mcp/asset/03f6db79-1269-46fd-95c6-0cc327a65247',
-  p13b: 'https://www.figma.com/api/mcp/asset/bcc5e0d3-98b6-4cd3-85f4-3db99f668e2a',
-  p14a: 'https://www.figma.com/api/mcp/asset/9fbc3cb5-c50c-4575-98b3-1d921440de9b',
-  p14b: 'https://www.figma.com/api/mcp/asset/9b8556db-e936-4d82-bdb4-29ffbaf1c70a',
-  p15:  'https://www.figma.com/api/mcp/asset/a8a82edc-75bf-41e3-86c6-2a941e854fba',
-  p16a: 'https://www.figma.com/api/mcp/asset/753c8927-ad96-40bf-a688-efef3164bc87',
-  p16b: 'https://www.figma.com/api/mcp/asset/88bb0ca1-3143-4dc7-be22-e061c6d4fdd6',
-  p16c: 'https://www.figma.com/api/mcp/asset/b7b4f345-1590-4ace-8957-43d56f96b968',
-  p16d: 'https://www.figma.com/api/mcp/asset/0be31ae4-c909-4e99-884d-e61b91ac8b62',
+  p06:  `${TP}/p06-entry.webp`,           // Figma 9817:17769 入口
+  p07a: `${TP}/p07a-energy.webp`,         // Figma 9817:17801 全服能量
+  p07b: `${TP}/p07b-energy-detail.webp`,  // Figma 9817:17815
+  p08:  `${TP}/p08-rank.webp`,            // Figma 9817:17861 进度排行
+  p09:  `${TP}/p09-main.webp`,            // Figma 9817:17912 秘境主界面
+  p10a: `${TP}/p10a-explore.webp`,        // Figma 9817:17934 探索链路
+  p10b: `${TP}/p10b-explore-detail.webp`, // Figma 9817:17943
+  p10c: `${TP}/p10c-path.webp`,           // Figma 9817:17994
+  p11a: `${TP}/p11a-event.webp`,          // Figma 9817:18041 奇遇事件
+  p11b: `${TP}/p11b-event.webp`,          // Figma 9817:18052
+  p11c: `${TP}/p11c-event.webp`,          // Figma 9817:18057
+  p12a: `${TP}/p12a-boss.webp`,           // Figma 9817:18183 遗迹首领
+  p12b: `${TP}/p12b-boss.webp`,           // Figma 9817:18200
+  p12c: `${TP}/p12c-boss-card.webp`,      // Figma 9817:18251
+  p13a: `${TP}/p13a-reward.webp`,         // Figma 9817:18296 奖励结算
+  p13b: `${TP}/p13b-reward.webp`,         // Figma 9817:18302
+  p14a: `${TP}/p14a-envoy.webp`,          // Figma 9817:18324 遗迹使者
+  p14b: `${TP}/p14b-envoy.webp`,          // Figma 9817:18380
+  p15:  `${TP}/p15-fault.webp`,           // Figma 9817:18394 容错与运营弹性
+  p16a: `${TP}/p16a-ref.webp`,            // Figma 9817:18464 美术参考 1
+  p16b: `${TP}/p16b-ref.webp`,            // Figma 9817:18469 美术参考 2
+  p16c: `${TP}/p16c-ref.webp`,            // Figma 9817:18474 美术参考 3
+  p16d: `${TP}/p16d-ref.webp`,            // Figma 9817:18479 美术参考 4
 };
 
 function Img({ src, alt = '', className = '' }: { src: string; alt?: string; className?: string }) {

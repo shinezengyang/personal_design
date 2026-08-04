@@ -147,29 +147,32 @@
   letter-spacing: 5.54px;
   color: rgba(255, 255, 255, .8);
 }
+/* Figma strokes every rule and dot as a flat fill — #F59A23 gold, #E5E0D9 cream.
+   No gradient, no reduced opacity (checked against 9817:19385 and 9817:19419/19423/19427/19431). */
 .mad-divider-line,
 .mad-dialog-divider {
-  height: 8px;
+  height: 7.55px;
   border-radius: 999px;
-  background: rgba(218, 159, 77, .88);
+  background: #f59a23;
 }
 .mad-divider-dot {
   width: 41px;
   height: 41px;
   border-radius: 50%;
-  background: radial-gradient(circle, #e8a647 40%, #936638 100%);
-  opacity: .85;
+  background: #f59a23;
 }
 .mad-divider-dot.is-light {
-  background: #f9f7f2;
-  opacity: .9;
+  background: #e5e0d9;
 }
-.mad-dialog-titleplate,
-.mad-end-badge {
+.mad-dialog-titleplate {
   border: 4px solid rgba(174, 128, 75, .5);
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+/* Figma 9817:19389 — a plain #131313 rectangle sitting on top of the full-width
+   rule, so the rule reads as broken around the ICON title. No stroke. */
+.mad-end-badge { background: #131313; }
 
 /* Me-section leader-line connectors (label → phone): small square node + thin line */
 .mad-leader-sq { background: #f9f7f2; border-radius: 2px; }
@@ -1369,15 +1372,16 @@
   white-space: nowrap;
   line-height: 1.2;
 }
+/* A label sitting on a connector line: #141414 plate, white text
+   (Figma 10312:1999 / 10312:2001). Size comes from the call site — the old
+   256x41 default silently stretched every plate to the same width. */
 .cdst-interaction-note.dark-label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 256px;
-  height: 41px;
   padding: 0 9px;
-  background: #f7f7f7;
-  color: #111;
+  background: #141414;
+  color: #fff;
   box-sizing: border-box;
 }
 .cdst-interaction-note i {

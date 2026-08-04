@@ -22,7 +22,7 @@
 .qq-page { height: 1140px; }
 .qq-brief { height: 860px; }
 .qq-flow { height: 700px; }
-.qq-entry { height: 1010px; }
+.qq-entry { height: 1700px; }
 .qq-shot-page { height: 1140px; }
 .qq-journey { height: 1130px; }
 .qq-reference { height: 900px; }
@@ -97,18 +97,17 @@
 .qq-flow-node:not(:last-of-type)::before { content: ''; position: absolute; left: 236px; top: 20px; width: 10px; height: 10px; border-top: 2px solid rgba(242,158,178,.65); border-right: 2px solid rgba(242,158,178,.65); transform: rotate(45deg); }
 .qq-flow-note { position: absolute; left: 0; right: 0; top: 590px; margin: 0; text-align: center; color: rgba(163,173,178,.7); font-size: 16px; }
 
-.qq-entry-grid { position: absolute; left: 84px; top: 330px; display: grid; grid-template-columns: repeat(2, 548px); gap: 16px; }
-.qq-entry-grid .qq-image-frame { width: 548px; }
-.qq-entry-grid .qq-image-frame img { width: 548px; height: 308px; }
-.qq-entry-notes { position: absolute; left: 84px; top: 692px; display: grid; grid-template-columns: repeat(2, 548px); gap: 16px; }
-.qq-bullet { position: relative; margin: 0 0 16px 40px; color: #a3adb2; font-size: 16px; line-height: 20px; }
-.qq-bullet i { position: absolute; left: -20px; top: 7px; width: 7px; height: 7px; border-radius: 50%; background: #8cd1cc; box-shadow: 0 0 8px rgba(140,209,204,.7); }
-.qq-entry-marker { position: absolute; width: 14px; height: 14px; border-radius: 50%; border: 1px solid #8cd1cc; box-shadow: 0 0 8px rgba(140,209,204,.6); z-index: 5; }
-.qq-entry-marker::before { content: ''; position: absolute; left: 4px; top: 4px; width: 6px; height: 6px; border-radius: 50%; background: #8cd1cc; box-shadow: 0 0 8px rgba(140,209,204,.75); }
-.qq-entry-marker::after { content: ''; position: absolute; left: 7px; top: 13px; height: var(--qq-entry-line-h); border-left: 1px solid #8cd1cc; opacity: .9; }
-.qq-entry-marker.m1 { left: 363px; top: 568px; --qq-entry-line-h: 66px; }
-.qq-entry-marker.m2 { left: 907px; top: 480px; --qq-entry-line-h: 154px; }
-.qq-wide-principle { position: absolute; left: 84px; top: 860px; width: 1112px; height: 120px; padding: 18px 36px; border-radius: 12px; background: #121a1c; border: 1px solid #2e3b3d; border-left: 4px solid #8cd1cc; }
+/* section 03 — everything at Figma 9817:16396 coordinates (left/top come from inline style) */
+.qq-entry-shot { position: absolute; width: 534px; height: 300px; border-radius: 10px; object-fit: cover; }
+.qq-entry-cap { position: absolute; color: #8cd1cc; font-size: 16px; line-height: 20px; font-weight: 800; white-space: nowrap; }
+.qq-entry-dot { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #8cd1cc; box-shadow: 0 0 8px rgba(140,209,204,.7); }
+.qq-entry-note { position: absolute; color: #a3adb2; font-size: 16px; line-height: 19px; white-space: nowrap; }
+.qq-entry-link { position: absolute; background: rgba(140,209,204,.58); }
+.qq-entry-link.v { width: 1px; }
+.qq-entry-link.h { height: 1px; }
+.qq-entry-link-label { position: absolute; color: #a3adb2; font-size: 16px; line-height: 19px; white-space: nowrap; }
+
+.qq-wide-principle { position: absolute; left: 84px; top: 1525px; width: 1112px; height: 120px; padding: 18px 36px; border-radius: 12px; background: #121a1c; border: 1px solid #2e3b3d; border-left: 4px solid #8cd1cc; }
 .qq-wide-principle h3 { margin: 0; color: #8cd1cc; font-size: 18px; font-weight: 800; }
 .qq-wide-principle h4 { margin: 6px 0 0; color: rgba(140,209,204,.55); font: 700 16px/1.2 Inter, sans-serif; letter-spacing: 1px; }
 .qq-wide-principle p { margin: 14px 0 0; width: 1040px; color: #a3adb2; font-size: 16px; line-height: 1.6; }
@@ -149,39 +148,43 @@
 .qq-callout-ring.gold { border-color: #e5bf73; box-shadow: 0 0 9px rgba(229,191,115,.6); }
 .qq-callout-ring.gold::after { background: #e5bf73; }
 
-.qq-journey .qq-curve-panel { position: absolute; left: 160px; top: 330px; width: 940px; height: 500px; background: #0e1618; border: 1px solid #293638; border-radius: 14px; overflow: visible; }
-.qq-axis-y { position: absolute; left: 16px; top: 14px; color: rgba(163,173,178,.8); font-size: 16px; line-height: 19px; font-weight: 500; }
-.qq-axis-x { position: absolute; left: 720px; top: 456px; width: 180px; color: rgba(163,173,178,.8); font-size: 16px; line-height: 20px; font-weight: 500; text-align: right; }
-.qq-axis-line-y { position: absolute; left: 50px; top: 40px; width: 1px; height: 400px; background: rgba(140,209,204,.58); }
+/* Figma 9817:16652 s9_panel is (160,300,940,530); the panel used to be 30px lower and
+   30px shorter, so every child below carries the matching +30 on its top. */
+.qq-journey .qq-curve-panel { position: absolute; left: 160px; top: 300px; width: 940px; height: 530px; background: #0e1618; border: 1px solid #293638; border-radius: 14px; overflow: visible; }
+.qq-axis-y { position: absolute; left: 16px; top: 44px; color: rgba(163,173,178,.8); font-size: 16px; line-height: 19px; font-weight: 500; }
+.qq-axis-x { position: absolute; left: 720px; top: 486px; width: 180px; color: rgba(163,173,178,.8); font-size: 16px; line-height: 20px; font-weight: 500; text-align: right; }
+.qq-axis-line-y { position: absolute; left: 50px; top: 70px; width: 1px; height: 400px; background: rgba(140,209,204,.58); }
 .qq-axis-line-y::before,
 .qq-axis-line-y::after { content: ''; position: absolute; left: -4px; top: 0; width: 9px; height: 1px; background: rgba(140,209,204,.58); transform-origin: right center; }
 .qq-axis-line-y::before { transform: rotate(-66deg); }
 .qq-axis-line-y::after { transform: rotate(66deg); }
-.qq-axis-line-x { position: absolute; left: 50px; top: 440px; width: 850px; height: 1px; background: rgba(140,209,204,.58); }
+.qq-axis-line-x { position: absolute; left: 50px; top: 470px; width: 850px; height: 1px; background: rgba(140,209,204,.58); }
 .qq-axis-line-x::before,
 .qq-axis-line-x::after { content: ''; position: absolute; right: -1px; top: -1px; width: 12px; height: 1px; background: rgba(140,209,204,.58); transform-origin: right center; }
 .qq-axis-line-x::before { transform: rotate(153deg); }
 .qq-axis-line-x::after { transform: rotate(-153deg); }
-.qq-curve-img { position: absolute; left: 90px; top: 55px; width: 770px; height: 305px; object-fit: fill; pointer-events: none; }
+/* 773x308 viewBox = the 770x305 path plus its 1.25px stroke bleed, so the box sits at
+   Figma (250,385) minus 1.25 on each axis. */
+.qq-curve-img { position: absolute; left: 88.75px; top: 83.75px; width: 773px; height: 308px; overflow: visible; pointer-events: none; }
 .qq-journey-dot { position: absolute; width: 16px; height: 16px; border-radius: 50%; background: #8cd1cc; border: 3px solid rgba(140,209,204,.35); box-shadow: 0 0 18px rgba(140,209,204,.75); z-index: 3; }
-.qq-journey-dot.m1 { left: 82px; top: 352px; }
-.qq-journey-dot.m2 { left: 232px; top: 282px; }
-.qq-journey-dot.m3 { left: 382px; top: 207px; }
-.qq-journey-dot.m4 { left: 532px; top: 132px; }
-.qq-journey-dot.m5 { left: 687px; top: 42px; }
-.qq-journey-dot.m6 { left: 852px; top: 92px; }
+.qq-journey-dot.m1 { left: 82px; top: 382px; }
+.qq-journey-dot.m2 { left: 232px; top: 312px; }
+.qq-journey-dot.m3 { left: 382px; top: 237px; }
+.qq-journey-dot.m4 { left: 532px; top: 162px; }
+.qq-journey-dot.m5 { left: 687px; top: 72px; }
+.qq-journey-dot.m6 { left: 852px; top: 122px; }
 .qq-journey-dot.peak { width: 26px; height: 26px; background: #e5bf73; border-color: rgba(229,191,115,.35); box-shadow: 0 0 24px rgba(229,191,115,.8); }
 .qq-journey-copy { position: absolute; width: 190px; text-align: center; z-index: 4; }
 .qq-journey-copy b { display: block; color: #f7f7f7; font-size: 18px; line-height: 24px; font-weight: 800; }
 .qq-journey-copy span { display: block; margin-top: 2px; color: rgba(163,173,178,.85); font-size: 16px; line-height: 20px; }
-.qq-journey-copy.c1 { left: -5px; top: 376px; }
-.qq-journey-copy.c2 { left: 145px; top: 216px; }
-.qq-journey-copy.c3 { left: 295px; top: 241px; }
-.qq-journey-copy.c4 { left: 445px; top: 66px; }
-.qq-journey-copy.c5 { left: 605px; top: -19px; }
-.qq-journey-copy.c6 { left: 765px; top: 126px; }
+.qq-journey-copy.c1 { left: -5px; top: 406px; }
+.qq-journey-copy.c2 { left: 145px; top: 246px; }
+.qq-journey-copy.c3 { left: 295px; top: 271px; }
+.qq-journey-copy.c4 { left: 445px; top: 96px; }
+.qq-journey-copy.c5 { left: 605px; top: 11px; }
+.qq-journey-copy.c6 { left: 765px; top: 156px; }
 .qq-journey-copy.peak b { color: #e5bf73; font-size: 19px; }
-.qq-caption { position: absolute; left: 0; top: 516px; width: 940px; margin: 0; text-align: center; color: rgba(163,173,178,.58); font-size: 16px; line-height: 20px; }
+.qq-caption { position: absolute; left: 0; top: 546px; width: 940px; margin: 0; text-align: center; color: rgba(163,173,178,.58); font-size: 16px; line-height: 20px; }
 .qq-player-cards { position: absolute; left: 84px; top: 906px; display: grid; grid-template-columns: repeat(3, 362px); gap: 20px; }
 .qq-player-cards article { height: 180px; padding: 24px; border-radius: 14px; background: #121a1c; border: 1px solid #2e3b3d; }
 .qq-player-cards b { float: left; display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; margin-right: 14px; border-radius: 50%; border: 1px solid rgba(140,209,204,.6); color: #8cd1cc; font-size: 20px; }

@@ -110,26 +110,34 @@
 }
 .gl-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* annotation dot + leader line + text */
+/* Annotation dot + leader line.
+   Figma (9817:13101 / 9817:13098) draws the dot as circle r=4.4 fill #A87E22 with a
+   1.2px white stroke, and the leader as a 1.2px #A87E22 stroke at 70% opacity.
+   These were 1px / #E2B54B / 55% with no ring — at the stage's 0.71 scale that
+   lands under one device pixel, so the leaders washed out almost completely. */
 .gl-dot {
   position: absolute;
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #e2b54b;
+  box-sizing: border-box;
+  background: #a87e22;
+  border: 1.2px solid #fff;
 }
 .gl-dot-red { background: #e0492f; }
 .gl-line {
   position: absolute;
-  height: 1px;
-  background: rgba(226,181,75,0.55);
+  height: 1.2px;
+  background: rgba(168,126,34,0.7);
 }
 .gl-line-red { background: rgba(224,73,47,0.7); }
-.gl-vline {
+/* vertical arm of an L-shaped leader (S5A's two elbow leaders) */
+.gl-line-v {
   position: absolute;
-  width: 1px;
-  background: rgba(226,181,75,0.55);
+  width: 1.2px;
+  background: rgba(168,126,34,0.7);
 }
+.gl-line-v.gl-line-red { background: rgba(224,73,47,0.7); }
 
 /* card (driver / rationale) */
 .gl-card-dark {

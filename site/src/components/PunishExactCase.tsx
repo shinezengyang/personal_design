@@ -1,31 +1,35 @@
 import type { CSSProperties, ReactNode } from 'react';
 import './PunishExactCase.css';
 
-/* ===== Game-screenshot / image-fill assets (interaction-doc originals) ===== */
+/* ===== Game-screenshot / image-fill assets (interaction-doc originals) =====
+   Local copies. These pointed at figma.com/api/mcp/asset URLs, which Figma expires after
+   ~7 days — the whole page had gone imageless. Re-exported at 2x from the image-fill
+   rectangles inside 9817:14171; node ids kept for re-pulling. */
+const PN = '/images/qingyu/punish';
 const A: Record<string, string> = {
   // P06 入口强化
-  p06_main: 'https://www.figma.com/api/mcp/asset/bba0f220-4a00-4af8-a542-1c9faf33290e',
-  p06_popup: 'https://www.figma.com/api/mcp/asset/89f4e3a3-7b3c-4f25-87b5-f2c32328e745',
+  p06_main: `${PN}/p06-main.webp`,         // Figma 9817:14484
+  p06_popup: `${PN}/p06-popup.webp`,       // Figma 9817:14523
   // P07 入口界面
-  p07_panel: 'https://www.figma.com/api/mcp/asset/a137f2c3-b83b-487b-843c-fa0e9225e12a',
-  p07_stagebar: 'https://www.figma.com/api/mcp/asset/4aa89d89-73bc-4957-b989-fe16176c0067',
-  p07_buttons: 'https://www.figma.com/api/mcp/asset/495725d7-c0bf-4154-9a94-8d17792725ea',
+  p07_panel: `${PN}/p07-panel.webp`,       // Figma 9817:14542
+  p07_stagebar: `${PN}/p07-stagebar.webp`, // Figma 9817:14564
+  p07_buttons: `${PN}/p07-buttons.webp`,   // Figma 9817:14569
   // P08 镜像副本 — 4 steps
-  p08_s1: 'https://www.figma.com/api/mcp/asset/f5443df7-4b66-4ace-82db-2ddda3cd0c70',
-  p08_s2: 'https://www.figma.com/api/mcp/asset/71d6731f-c457-47b0-bf18-89f712e44ea8',
-  p08_s3: 'https://www.figma.com/api/mcp/asset/323ada56-0849-47cd-a256-c1535619a5ef',
-  p08_s4: 'https://www.figma.com/api/mcp/asset/a68f3b83-7043-42ec-a64c-093de756b647',
+  p08_s1: `${PN}/p08-s1.webp`,             // Figma 9817:14621
+  p08_s2: `${PN}/p08-s2.webp`,             // Figma 9817:14627
+  p08_s3: `${PN}/p08-s3.webp`,             // Figma 9817:14633
+  p08_s4: `${PN}/p08-s4.webp`,             // Figma 9817:14639
   // P09 追踪栏
-  p09_t1: 'https://www.figma.com/api/mcp/asset/276dd71c-3ff0-43f9-bc21-750a6d057761',
-  p09_t2: 'https://www.figma.com/api/mcp/asset/977565ec-76ae-4ca5-b5a0-f23aec181883',
+  p09_t1: `${PN}/p09-t1.webp`,             // Figma 9817:14684
+  p09_t2: `${PN}/p09-t2.webp`,             // Figma 9817:14697
   // P10 BOSS共斗
-  p10_rank: 'https://www.figma.com/api/mcp/asset/412bfaa1-07ff-4c81-8cfb-8686f3cc04be',
+  p10_rank: `${PN}/p10-rank.webp`,         // Figma 9817:14756
   // P11 结算
-  p11_screen: 'https://www.figma.com/api/mcp/asset/8fd6dcb5-a696-4bfc-942d-673077f8eb60',
-  p11_row: 'https://www.figma.com/api/mcp/asset/4f56fa15-f9c7-447f-8a48-8c30338c9571',
+  p11_screen: `${PN}/p11-screen.webp`,     // Figma 9817:14823
+  p11_row: `${PN}/p11-row.webp`,           // Figma 9817:14833
   // P12 容错
-  p12_enter: 'https://www.figma.com/api/mcp/asset/223beef5-d8bd-4269-853d-8607501b6952',
-  p12_exit: 'https://www.figma.com/api/mcp/asset/25a2a1b7-9ba8-49b0-9f3d-d3a258e659bd',
+  p12_enter: `${PN}/p12-enter.webp`,       // Figma 9817:14869
+  p12_exit: `${PN}/p12-exit.webp`,         // Figma 9817:14872
 };
 
 type CSS = CSSProperties;

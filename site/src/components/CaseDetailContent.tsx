@@ -8,9 +8,9 @@ const blue = '#4d6eeb';
 const accent = '#ff2a6d';
 
 const hudShots = [
-  'images/xingji/hud/assets/figma-background-before-1.png',
-  'images/xingji/hud/assets/figma-background-before-2.png',
-  'images/xingji/hud/assets/figma-background-before-3.png',
+  'images/xingji/hud/assets/figma-background-before-1.webp',
+  'images/xingji/hud/assets/figma-background-before-2.webp',
+  'images/xingji/hud/assets/figma-background-before-3.webp',
 ] as const;
 
 const caseOneAssets = {
@@ -50,7 +50,7 @@ const caseOneAssets = {
   problemOneBase: publicUrl('pencil/xingji-aodaisai/feedback-problem-1-left.webp'),
   problemOneMap: publicUrl('pencil/xingji-aodaisai/feedback-problem-1-right.webp'),
   problemOneMapMarker: publicUrl('images/xingji/hud/assets/marker-dot.svg'),
-  problemTwoHud: publicUrl('images/xingji/hud/assets/figma-problem-two-hud.png'),
+  problemTwoHud: publicUrl('images/xingji/hud/assets/figma-problem-two-hud.webp'),
   problemTwoDiagonal: publicUrl('images/xingji/hud/assets/white-diagonal.svg'),
   problemThreeHud: publicUrl('pencil/xingji-aodaisai/feedback-problem-3.webp'),
   problemThreeDiagonal: publicUrl('images/xingji/hud/assets/white-diagonal.svg'),
@@ -94,9 +94,9 @@ const caseOneAssets = {
   areaDiagonalWhiteTop: publicUrl('images/xingji/hud/assets/figma-area-diagonal-top.svg'),
   areaDiagonalWhiteBottom: publicUrl('images/xingji/hud/assets/figma-area-diagonal-bottom.svg'),
   functionZoneSkews: [
-    publicUrl('images/xingji/hud/assets/figma-zone-skew-scene.png'),
-    publicUrl('images/xingji/hud/assets/figma-zone-skew-info.png'),
-    publicUrl('images/xingji/hud/assets/figma-zone-skew-ui.png'),
+    publicUrl('images/xingji/hud/assets/figma-zone-skew-scene.webp'),
+    publicUrl('images/xingji/hud/assets/figma-zone-skew-info.webp'),
+    publicUrl('images/xingji/hud/assets/figma-zone-skew-ui.webp'),
   ],
   functionZoneHudBg: publicUrl('images/xingji/hud/assets/figma-zone-hud-bg.webp'),
   functionZoneAnnotLong: publicUrl('images/xingji/hud/assets/figma-zone-annot-long.svg'),

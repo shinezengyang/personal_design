@@ -1,15 +1,21 @@
 import './XiushenExactCase.css';
 
+/* Local copies of the Figma exports. These used to point at
+   https://www.figma.com/api/mcp/asset/... URLs, which Figma expires after ~7 days —
+   every image on this page had gone dead. Node ids are noted so they can be re-pulled. */
+const XS = '/images/qingyu/xiushen';
 const xsAssets = {
-  tree: 'https://www.figma.com/api/mcp/asset/e6fa0660-d376-4139-8c6c-bbd516ab8cef',
-  equip: 'https://www.figma.com/api/mcp/asset/d62e9d5d-c03c-4425-8810-83baa9943ac7',
-  upgrade: 'https://www.figma.com/api/mcp/asset/10567c53-3334-459a-bffb-5fb6a15580d9',
-  genshin: 'https://www.figma.com/api/mcp/asset/04acfca0-ebc1-4f51-b5a5-4da77140b39c',
-  ref2: 'https://www.figma.com/api/mcp/asset/76eb5328-50d2-4863-ab60-d7684714e7b7',
-  ref3: 'https://www.figma.com/api/mcp/asset/e714129f-94b6-42c6-a6d6-0082508fe6fd',
-  finalA: 'https://www.figma.com/api/mcp/asset/ed0affa1-cb39-4098-802f-94c326ef6fa8',
-  finalB: 'https://www.figma.com/api/mcp/asset/2a51aaaa-1316-4831-a3ed-370f403692e3',
-  finalC: 'https://www.figma.com/api/mcp/asset/38d16d46-086d-4d1a-a4b3-5336ac1f9ad6',
+  tree: `${XS}/star-map.webp`,          // Figma 9817:12000 IMG_tree
+  equip: `${XS}/equip.webp`,            // Figma 9817:12058 IMG_equip
+  upgrade: `${XS}/upgrade.webp`,        // Figma 9817:12117 IMG_up
+  genshin: `${XS}/ref-genshin.webp`,    // Figma 9817:12194 《原神》命之座
+  ref2: `${XS}/ref-naraka.webp`,        // Figma 9817:12200 《永劫无间》魂玉经脉
+  ref3: `${XS}/ref-moonlight.webp`,     // Figma 9817:12206 《天涯明月刀》心法
+  /* The 视觉稿展示 gallery has no separate frames in Figma — it re-shows the three
+     UI states above, matching its own 主界面 / 提示 / 升级 captions. */
+  finalA: `${XS}/star-map.webp`,
+  finalB: `${XS}/equip.webp`,
+  finalC: `${XS}/upgrade.webp`,
 };
 
 type Theme = 'human' | 'earth' | 'heaven' | 'blue' | 'gold' | 'gray';
