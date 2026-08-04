@@ -5,6 +5,7 @@
 .abs { position: absolute; display: block; }
 .star-figma-stage img.abs { object-fit: cover; pointer-events: none; }
 .img-cover { object-fit: cover; }
+.img-fill { inset: 0; width: 100%; height: 100%; max-width: none; object-fit: fill !important; pointer-events: none; }
 .blend { mix-blend-mode: multiply; opacity: .75; }
 .blend-lighten { mix-blend-mode: lighten; }
 .blend-darken { mix-blend-mode: darken; opacity: .9; }
@@ -122,10 +123,19 @@
   font-family: Inter, 'Noto Sans SC', 'Microsoft YaHei', Arial, sans-serif;
   font-weight: 400;
   font-size: 64px;
-  line-height: 98.75px;
-  letter-spacing: 6.87px;
+  line-height: 1.1;
+  letter-spacing: 4.7px;
   color: rgba(255, 255, 255, .8);
   text-align: center;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mad-cover-frame {
+  border: 3px solid rgba(255, 255, 255, .35);
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
 /* Cover intro paragraph — Inter Regular 64px, white @ 80% */
@@ -137,6 +147,32 @@
   letter-spacing: 5.54px;
   color: rgba(255, 255, 255, .8);
 }
+/* Figma strokes every rule and dot as a flat fill — #F59A23 gold, #E5E0D9 cream.
+   No gradient, no reduced opacity (checked against 9817:19385 and 9817:19419/19423/19427/19431). */
+.mad-divider-line,
+.mad-dialog-divider {
+  height: 7.55px;
+  border-radius: 999px;
+  background: #f59a23;
+}
+.mad-divider-dot {
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  background: #f59a23;
+}
+.mad-divider-dot.is-light {
+  background: #e5e0d9;
+}
+.mad-dialog-titleplate {
+  border: 4px solid rgba(174, 128, 75, .5);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Figma 9817:19389 — a plain #131313 rectangle sitting on top of the full-width
+   rule, so the rule reads as broken around the ICON title. No stroke. */
+.mad-end-badge { background: #131313; }
 
 /* Me-section leader-line connectors (label → phone): small square node + thin line */
 .mad-leader-sq { background: #f9f7f2; border-radius: 2px; }
@@ -144,9 +180,11 @@
 
 .mad-icon-bg { opacity: .1; }
 .mad-rec-glow { opacity: .2; }
-.mad-phone { object-fit: contain; filter: drop-shadow(0 24px 40px rgba(0,0,0,.4)); }
-.mad-me-phones { object-fit: contain; }
-.mad-dialog-phone { object-fit: contain; filter: drop-shadow(0 24px 60px rgba(0,0,0,.4)); }
+.star-figma-stage img.mad-exact-img { object-fit: fill; }
+.star-figma-stage img.mad-phone { object-fit: contain; filter: drop-shadow(0 24px 40px rgba(0,0,0,.4)); }
+.star-figma-stage img.mad-me-phones { object-fit: contain; }
+.star-figma-stage img.mad-dialog-phone { object-fit: contain; filter: drop-shadow(0 24px 60px rgba(0,0,0,.4)); }
+.star-figma-stage img.mad-guide-export { object-fit: contain; }
 
 /* Concise-guide perspective cards */
 .mad-guide-card { width: 626px; height: 1432px; }
@@ -181,18 +219,33 @@
 .mad-guide-card .mad-guide-sign.up { transform: rotate(-12deg); transform-origin: left center; }
 
 .cdst-stage { background: #141414; color: #fff; }
-
-.cdst-symbol-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 5px solid rgba(99, 159, 171, 0.72);
-  border-radius: 22px;
-  color: #87c6d0;
-  background: rgba(7, 18, 24, 0.72);
-  font-size: 58px;
-  font-weight: 300;
-  box-shadow: inset 0 0 30px rgba(99, 159, 171, 0.14);
+.cdst-hero-cover-frame {
+  overflow: hidden;
+  background: #141414;
+}
+.cdst-hero-cover-img {
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+}
+.cdst-bg-slab {
+  max-width: none;
+  object-fit: fill !important;
+  pointer-events: none;
+  z-index: 0;
+}
+.cdst-section-shield {
+  background: #141414;
+  pointer-events: none;
+  z-index: 1;
+}
+.cdst-stage > *:not(.cdst-bg-slab):not(.cdst-section-shield):not(.cdst-interaction-shield):not(.cdst-exact-section):not(.cdst-exact-subsection) {
+  z-index: 2;
+}
+.cdst-interaction-shield {
+  background: #141414;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .cdst-page .cdst-reveal-item {
@@ -228,6 +281,7 @@
 
 /* ── section titles — left 199.5, white, accent bar below ── */
 .cdst-section-title { position: absolute; color: #fff; font-size: 66.8px; line-height: 75.2px; white-space: nowrap; }
+.cdst-section-title.black { color: #111; }
 .cdst-section-title strong { display: block; font-weight: 400; }
 .cdst-section-title small { display: block; font-size: 41.7px; line-height: 75.2px; }
 .cdst-section-title i { display: block; width: 139px; height: 15px; margin-top: 4px; background: linear-gradient(90deg,#639fab,#7cc0c9); }
@@ -404,8 +458,9 @@
   background: #9eb8d6;
 }
 
-/* ── 痛点 — all white text ── */
+/* ── 痛点 ── */
 .pain-text { position: absolute; width: 660px; color: #fff; font-size: 41.67px; line-height: 60px; letter-spacing: 0; white-space: nowrap; }
+.pain-text.black { color: #111; }
 .pain-text b { font-weight: 400; font-size: 50px; }
 
 /* ── 竞品 ── */
@@ -417,31 +472,167 @@
 .comp-body p { margin: 0 0 5px; }
 .competitor-summary { position: absolute; color: #fff; font-size: 41.67px; line-height: 58.33px; letter-spacing: 0; white-space: nowrap; }
 .competitor-summary .cs-title { display: block; font-size: 50px; line-height: 58.33px; margin-bottom: 63px; }
-.competitor-summary p { margin: 0 0 53px; }
+.competitor-summary p { margin: 0 0 5px; }
+.competitor-summary p:nth-of-type(1),
+.competitor-summary p:nth-of-type(4),
+.competitor-summary p:nth-of-type(7),
+.competitor-summary p:nth-of-type(9) {
+  margin-bottom: 63px;
+}
 .competitor-summary p:last-child { margin-bottom: 0; }
 
 /* ── 用户画像 ── */
 .persona-card { width: 1942px; height: 505px; }
-.persona-card .persona-body { position: absolute; left: 647.5px; top: 4px; width: 1294px; height: 499px; background: #fff; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+.persona-card .persona-body { position: absolute; left: 647.5px; top: 4px; width: 1294px; height: 499px; background: #fff; border-radius: 14px; box-shadow: 0 28px 70px rgba(0,0,0,.42); }
 .persona-card .avatar-ring { position: absolute; left: 0; top: 0; width: 504px; height: 502px; overflow: visible; }
-.persona-card .avatar-ring img.portrait { position: absolute; inset: 0; width: 504px; height: 502px; object-fit: contain; }
+.persona-card .avatar-ring img.portrait { position: absolute; inset: 0; width: 504px; height: 502px; border-radius: 50%; object-fit: contain; }
 .persona-card .persona-text { position: absolute; left: 746.5px; width: 1110px; color: #111; font-size: 41.67px; line-height: 58.33px; letter-spacing: 3.96px; white-space: pre; }
 .persona-card .persona-text p { margin: 0 0 5px; }
 
+.cdst-structure-copy {
+  line-height: 74.956px;
+  text-align: left;
+  white-space: nowrap;
+}
+
 /* ── 交互 ── */
 .interaction-title { position: absolute; color: #fff; font-size: 50px; line-height: 74.95px; letter-spacing: 4.75px; white-space: nowrap; }
+.interaction-title p { margin: 0 0 5px; }
 .interaction-title span { display: block; font-size: 41.67px; line-height: 74.95px; }
 .interaction-title.plain { line-height: 1; }
+.cdst-product-flow {
+  width: 2080px;
+  height: 382px;
+  overflow: visible;
+}
+.cdst-product-flow marker path {
+  fill: rgba(255,255,255,.86);
+}
+.cdst-flow-line {
+  fill: none;
+  stroke: rgba(255,255,255,.86);
+  stroke-width: 2.2px;
+  marker-end: url(#cdst-flow-arrow);
+}
+.cdst-flow-node rect,
+.cdst-flow-node polygon {
+  fill: rgba(20,20,20,.95);
+  stroke: rgba(255,255,255,.82);
+  stroke-width: 2.2px;
+}
+.cdst-flow-node.is-accent rect,
+.cdst-flow-node.is-accent polygon {
+  stroke: rgba(213,68,74,.9);
+}
+.cdst-flow-node text {
+  fill: #fff;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.cdst-flow-node.is-accent text {
+  fill: #f05f64;
+}
+.cdst-flow-decision-label {
+  fill: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  text-anchor: middle;
+}
 .proto { filter: drop-shadow(0 30px 80px rgba(0,0,0,.4)); }
+.cdst-prototype-layer {
+  filter: none;
+  object-fit: fill !important;
+}
+.cdst-interaction-asset {
+  z-index: 6;
+  max-width: none;
+  object-fit: fill !important;
+  pointer-events: none;
+}
+.cdst-interaction-code .proto {
+  filter: none;
+}
+.cdst-interaction-asset.rotate-neg-90 {
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+.cdst-exact-section {
+  max-width: none;
+  object-fit: fill !important;
+  pointer-events: none;
+  z-index: 4;
+}
+.cdst-stage > .cdst-exact-section {
+  z-index: 4;
+}
+.cdst-exact-subsection {
+  max-width: none;
+  object-fit: fill !important;
+  pointer-events: none;
+  z-index: 2;
+}
+.cdst-interaction-code {
+  z-index: 4;
+}
+.cdst-salary-prototype {
+  width: 2479px;
+  height: 2855px;
+  pointer-events: none;
+}
+.cdst-assessment-prototype {
+  width: 2479px;
+  height: 2083px;
+  pointer-events: none;
+}
+.cdst-profile-interaction {
+  width: 2479px;
+  height: 2766px;
+  pointer-events: none;
+}
+.cdst-status-consult-prototype {
+  width: 2479px;
+  height: 1987px;
+  pointer-events: none;
+}
+.cdst-salary-copy {
+  width: 1800px;
+}
+.cdst-salary-copy span {
+  letter-spacing: 3.96px;
+}
+.cdst-assessment-copy {
+  width: 1900px;
+}
+.cdst-status-copy {
+  width: 900px;
+}
 
 .cdst-profile-prototype {
   width: 1999px;
   height: 2476px;
-  background:
-    linear-gradient(157deg, #f7f7f7 0 31.5%, transparent 31.58%),
-    linear-gradient(14deg, transparent 0 35.2%, #f7f7f7 35.28% 44.5%, transparent 44.58%),
-    #141414;
+  background: #141414;
   overflow: hidden;
+}
+.cdst-salary-phone-flow,
+.cdst-assessment-phone-flow,
+.cdst-status-consult-flow {
+  background: #141414;
+  overflow: visible;
+}
+.cdst-salary-phone-flow {
+  width: 1311px;
+  height: 2471px;
+}
+.cdst-assessment-phone-flow {
+  width: 1696px;
+  height: 1844px;
+}
+.cdst-status-consult-flow {
+  width: 1727px;
+  height: 1817px;
 }
 
 .cdst-profile-lines {
@@ -576,6 +767,9 @@
 .cdst-tile-list {
   padding: 20px 16px;
 }
+.cdst-tile-list.compact {
+  padding-top: 58px;
+}
 
 .cdst-blue-tile {
   position: relative;
@@ -645,6 +839,175 @@
   line-height: 24px;
 }
 
+.cdst-salary-form {
+  padding: 54px 18px 0;
+}
+
+.cdst-salary-choice {
+  position: relative;
+  display: grid;
+  grid-template-columns: 28px 1fr 12px;
+  align-items: center;
+  height: 42px;
+  margin-bottom: 13px;
+  border-radius: 21px;
+  padding: 0 10px;
+  background: #f2f6f8;
+  color: #8c969d;
+  font-size: 12px;
+}
+
+.cdst-salary-choice::after {
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #bec6ca;
+  border-right: 2px solid #bec6ca;
+  transform: rotate(45deg);
+  content: "";
+}
+
+.cdst-salary-choice em {
+  display: none;
+  font-style: normal;
+}
+
+.salary-icon {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  color: #57bd7d;
+}
+
+.salary-icon.city::before {
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50% 50% 50% 0;
+  background: currentColor;
+  transform: rotate(-45deg);
+  content: "";
+}
+
+.salary-icon.city::after {
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+}
+
+.salary-icon.industry {
+  display: grid;
+  grid-template-columns: repeat(2, 8px);
+  grid-template-rows: repeat(2, 8px);
+  gap: 2px;
+}
+
+.salary-icon.industry::before,
+.salary-icon.industry::after {
+  width: 8px;
+  height: 18px;
+  border-radius: 8px;
+  background: currentColor;
+  content: "";
+}
+
+.salary-icon.industry::before {
+  transform: rotate(45deg);
+}
+
+.salary-icon.industry::after {
+  transform: rotate(-45deg);
+}
+
+.salary-icon.school::before {
+  position: absolute;
+  left: 1px;
+  top: 3px;
+  border-right: 8px solid transparent;
+  border-bottom: 5px solid currentColor;
+  border-left: 8px solid transparent;
+  content: "";
+}
+
+.salary-icon.school::after {
+  position: absolute;
+  left: 3px;
+  top: 9px;
+  width: 12px;
+  height: 8px;
+  border-radius: 1px 1px 4px 4px;
+  background: currentColor;
+  content: "";
+}
+
+.salary-icon.degree::before {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px 4px 8px 8px;
+  background: currentColor;
+  content: "";
+}
+
+.cdst-salary-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cdst-salary-metrics span {
+  display: block;
+  min-height: 60px;
+  border: 1px solid #e6ecef;
+  border-radius: 8px;
+  padding: 9px 8px;
+  color: #8a9399;
+  font-size: 10px;
+}
+
+.cdst-salary-metrics b,
+.cdst-salary-metrics em {
+  display: block;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.cdst-salary-metrics em {
+  margin-top: 8px;
+  color: #222;
+  font-size: 15px;
+  text-align: right;
+}
+
+.cdst-salary-form button {
+  display: block;
+  width: 92px;
+  height: 28px;
+  margin: 18px auto 0;
+  border: 0;
+  border-radius: 14px;
+  background: #d8d8d8;
+  color: #555;
+  font-size: 11px;
+}
+
+.cdst-salary-form small {
+  display: block;
+  margin-top: 11px;
+  color: #b1b1b1;
+  font-size: 9px;
+  text-align: center;
+}
+
 .cdst-phone-search {
   height: 28px;
   margin: 8px 30px 3px;
@@ -653,6 +1016,214 @@
   color: #777;
   font-size: 12px;
   line-height: 28px;
+}
+
+.cdst-phone-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin: 0 8px 16px;
+  color: #777;
+  font-size: 10px;
+  text-align: center;
+}
+
+.cdst-phone-tabs span::before {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 0 auto 5px;
+  border-radius: 4px;
+  background: #31a9da;
+  content: "";
+}
+
+.cdst-assessment-home {
+  padding-top: 46px;
+}
+
+.cdst-mini-hero {
+  height: 92px;
+  margin: 0 12px 14px;
+  border-radius: 4px;
+  padding: 14px 12px;
+  background:
+    linear-gradient(135deg, rgba(95,202,199,.92), rgba(98,142,216,.9)),
+    linear-gradient(160deg, transparent 48%, rgba(255,255,255,.2) 49% 62%, transparent 63%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cdst-assessment-home b {
+  display: block;
+  margin: 0 14px 10px;
+  color: #222;
+  font-size: 13px;
+}
+
+.cdst-card-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0 13px 18px;
+}
+
+.cdst-card-row i,
+.cdst-card-list span {
+  display: block;
+  border-radius: 4px;
+  background:
+    linear-gradient(154deg, transparent 45%, #29aee0 45.8% 64%, transparent 64.8%),
+    #e7eef2;
+}
+
+.cdst-card-row i {
+  height: 68px;
+}
+
+.cdst-card-list span {
+  height: 54px;
+  margin: 0 13px 9px;
+}
+
+.cdst-report-list {
+  padding: 56px 12px 0;
+}
+
+.cdst-report-row {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 8px;
+  align-items: center;
+  min-height: 38px;
+  border-bottom: 1px solid #edf1f3;
+  color: #49545b;
+  font-size: 10px;
+}
+
+.cdst-report-row i {
+  width: 18px;
+  height: 15px;
+  border-radius: 2px;
+  background: #28a9dc;
+}
+
+.cdst-article-screen {
+  padding: 54px 13px 0;
+  color: #333;
+}
+
+.cdst-article-cover {
+  height: 115px;
+  margin-bottom: 14px;
+  border-radius: 4px;
+  background:
+    radial-gradient(circle at 70% 28%, #c7d4da 0 16px, transparent 17px),
+    linear-gradient(148deg, transparent 45%, #26a9dc 45.5% 65%, transparent 65.5%),
+    #eaf1f4;
+}
+
+.cdst-article-screen h4,
+.cdst-question-screen h4,
+.cdst-consult-copy h4 {
+  margin: 0 0 10px;
+  color: #222;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.cdst-article-screen button,
+.cdst-test-modal button {
+  border: 0;
+  border-radius: 3px;
+  background: #77828a;
+  color: #fff;
+  font-size: 10px;
+}
+
+.cdst-article-screen button {
+  height: 24px;
+  padding: 0 18px;
+}
+
+.cdst-article-screen p,
+.cdst-consult-copy p {
+  color: #60686e;
+  font-size: 9px;
+  line-height: 1.8;
+}
+
+.cdst-question-screen {
+  padding: 66px 18px 0;
+}
+
+.cdst-question-panel {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(0,0,0,.12);
+  padding: 13px 15px;
+}
+
+.cdst-question-panel span {
+  display: block;
+  height: 26px;
+  color: #53606a;
+  font-size: 10px;
+  line-height: 26px;
+}
+
+.cdst-question-panel span::before {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 7px;
+  border: 1px solid #b6c0c8;
+  border-radius: 50%;
+  vertical-align: -1px;
+  content: "";
+}
+
+.cdst-question-panel span.active::before {
+  border-color: #76a5df;
+  box-shadow: inset 0 0 0 3px #fff;
+  background: #76a5df;
+}
+
+.cdst-test-modal {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 154px;
+  z-index: 8;
+  border-radius: 4px;
+  padding: 15px;
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 12px 26px rgba(0,0,0,.2);
+  text-align: center;
+}
+
+.cdst-test-modal b {
+  display: block;
+  margin-bottom: 14px;
+  color: #333;
+  font-size: 12px;
+}
+
+.cdst-test-modal button {
+  height: 24px;
+  min-width: 62px;
+}
+
+.cdst-consult-copy {
+  padding: 58px 15px 0;
+}
+
+.cdst-blank-screen {
+  position: absolute;
+  inset: 48px 12px 20px;
+  border-radius: 4px;
+  background: #b8cadd;
 }
 
 .cdst-left-overlay {
@@ -778,14 +1349,102 @@
   line-height: 24px;
   text-align: center;
 }
+.cdst-interaction-note {
+  position: absolute;
+  z-index: 8;
+  color: #fff;
+  font-size: 20.834px;
+  line-height: 24.997px;
+  letter-spacing: 1.979px;
+  white-space: nowrap;
+}
+.cdst-interaction-note.black {
+  color: #111;
+}
+.cdst-interaction-note.vertical {
+  width: 22px;
+  white-space: normal;
+}
+.cdst-interaction-note.vertical span {
+  display: block;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+/* A label sitting on a connector line: #141414 plate, white text
+   (Figma 10312:1999 / 10312:2001). Size comes from the call site — the old
+   256x41 default silently stretched every plate to the same width. */
+.cdst-interaction-note.dark-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  background: #141414;
+  color: #fff;
+  box-sizing: border-box;
+}
+.cdst-interaction-note i {
+  position: absolute;
+  display: block;
+  width: 2px;
+  background: rgba(255,255,255,.72);
+}
+.cdst-interaction-note i::after {
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(255,255,255,.72);
+  border-bottom: 2px solid rgba(255,255,255,.72);
+  transform: translateX(-50%) rotate(45deg);
+  content: "";
+}
+.cdst-interaction-note i.down.tall {
+  left: 9px;
+  top: 0;
+  height: 201px;
+}
+.cdst-interaction-note i.down.tall + span {
+  position: absolute;
+  left: 34px;
+  top: 0;
+}
+.cdst-interaction-note i.down.short {
+  left: 0;
+  top: 0;
+  height: 100px;
+}
+.cdst-interaction-note i.down.short + span {
+  position: absolute;
+  left: 20px;
+  top: 0;
+}
+.cdst-interaction-side-note {
+  position: absolute;
+  z-index: 8;
+  color: rgba(255,255,255,.8);
+  font-size: 20.834px;
+  line-height: 24.997px;
+  letter-spacing: 1.979px;
+  white-space: nowrap;
+}
+.cdst-interaction-side-note p {
+  margin: 0 0 5px;
+}
+.cdst-interaction-side-note .large {
+  font-size: 25px;
+}
 
 /* ── UI视觉 ── */
 .visual-note { position: absolute; color: #111; font-size: 50px; line-height: 75px; letter-spacing: 4.75px; white-space: pre-wrap; }
 .visual-label { position: absolute; color: #fff; font-size: 50px; line-height: 1; letter-spacing: 4.75px; white-space: nowrap; }
 .visual-label.dark { color: #111; }
 .phone-hero { filter: drop-shadow(0 0 175px rgba(0,0,0,.35)); }
-.color-grid { position: absolute; width: 2083px; display: grid; grid-template-columns: repeat(5, 376px); column-gap: 51px; row-gap: 129px; }
-.color-grid span { height: 131px; border-radius: 24px; display: grid; place-items: center; font-size: 50px; letter-spacing: 4.75px; }
+.cdst-color-swatch { display: block; pointer-events: none; }
+.cdst-color-label { font-size: 50px; line-height: 1; letter-spacing: 4.75px; white-space: nowrap; }
+.cdst-ui-icon-asset { max-width: none; object-fit: fill !important; pointer-events: none; }
 @media (max-width: 760px) {
   .star-case-page {
     width: 100vw;
@@ -833,6 +1492,22 @@
 @media (min-width: 761px) {
   .star-case-page { background: #0d0d0d; }
   .star-figma-shell { margin: 0 auto; }
+}
+
+.cdst-page {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: 0;
+  margin-right: 0;
+  overflow-x: clip;
+  overflow-y: visible;
+  background: #141414;
+}
+.cdst-page .star-figma-shell {
+  margin: 0;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: clip;
 }
 
 /* ─────────────────────────────────────────────────────────────

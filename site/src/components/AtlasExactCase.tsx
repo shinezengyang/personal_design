@@ -67,14 +67,16 @@ function Badge({
   n,
   kind = 'gold',
   color,
+  size = 22,
 }: {
   left: number;
   top: number;
   n: number | string;
-  kind?: 'gold' | 'green' | 'teal';
+  kind?: 'gold' | 'green' | 'teal' | 'red';
   color?: string;
+  size?: number;
 }) {
-  return <div className={`al-badge al-badge-${kind}`} style={{ left: px(left), top: px(top), color }}>{n}</div>;
+  return <div className={`al-badge al-badge-${kind}`} style={{ left: px(left), top: px(top), width: px(size), height: px(size), color }}>{n}</div>;
 }
 
 /* Section header (zh title, en sub, rule, big index number) */
@@ -458,36 +460,36 @@ function S4() {
       ))}
       {/* state cards */}
       <Shot left={96} top={378} k="s4_st0" />
-      {lbl(96, 'ST.0', 148, '未收藏', 588)}
-      <p style={{ position: 'absolute', left: px(96), top: px(620), color: '#8b9c93', fontSize: '15px', whiteSpace: 'nowrap' }}>按钮：金兰借阅 · 获取图鉴</p>
+      {lbl(96, 'ST.0', 148, '未收藏', 564)}
+      <p style={{ position: 'absolute', left: px(96), top: px(596), color: '#8b9c93', fontSize: '15px', whiteSpace: 'nowrap' }}>按钮：金兰借阅 · 获取图鉴</p>
       <Shot left={490} top={378} k="s4_st1" />
-      {lbl(490, 'ST.1', 542, '收集中 25/100', 588)}
-      <p style={{ position: 'absolute', left: px(490), top: px(620), color: '#8b9c93', fontSize: '15px', whiteSpace: 'nowrap' }}>按钮不变，进度条持续外显</p>
+      {lbl(490, 'ST.1', 542, '收集中 25/100', 564)}
+      <p style={{ position: 'absolute', left: px(490), top: px(596), color: '#8b9c93', fontSize: '15px', whiteSpace: 'nowrap' }}>按钮不变，进度条持续外显</p>
       <Shot left={884} top={378} k="s4_st2" />
-      {lbl(884, 'ST.2', 936, '收集完成 100/100', 588)}
-      <p style={{ position: 'absolute', left: px(884), top: px(620), color: '#8b9c93', fontSize: '15px', whiteSpace: 'nowrap' }}>「合成」出现，借阅 / 获取按钮消失</p>
+      {lbl(884, 'ST.2', 936, '收集完成 100/100', 564)}
+      <p style={{ position: 'absolute', left: px(884), top: px(596), color: '#8b9c93', fontSize: '15px', whiteSpace: 'nowrap' }}>「合成」出现，借阅 / 获取按钮消失</p>
       <Shot left={884} top={818} k="s4_st3" />
-      {lbl(884, 'ST.3', 936, '已合成 · 可研读', 1028)}
-      <p style={{ position: 'absolute', left: px(884), top: px(1060), color: '#8b9c93', fontSize: '15px', whiteSpace: 'nowrap' }}>按钮：研读 · 研读进度（0/5）</p>
+      {lbl(884, 'ST.3', 936, '已合成 · 可研读', 1004)}
+      <p style={{ position: 'absolute', left: px(884), top: px(1036), color: '#8b9c93', fontSize: '15px', whiteSpace: 'nowrap' }}>按钮：研读 · 研读进度（0/5）</p>
       <Shot left={490} top={818} k="s4_st4" />
-      {lbl(490, 'ST.4', 542, '研读中 2/5', 1028)}
-      <p style={{ position: 'absolute', left: px(490), top: px(1060), color: '#8b9c93', fontSize: '15px', whiteSpace: 'nowrap' }}>按钮：帮我助力 · 停止研读</p>
+      {lbl(490, 'ST.4', 542, '研读中 2/5', 1004)}
+      <p style={{ position: 'absolute', left: px(490), top: px(1036), color: '#8b9c93', fontSize: '15px', whiteSpace: 'nowrap' }}>按钮：帮我助力 · 停止研读</p>
       <Shot left={96} top={818} k="s4_st5" teal />
-      {lbl(96, 'ST.5', 148, '研读完成 · 已激活', 1028, true)}
-      <p style={{ position: 'absolute', left: px(96), top: px(1060), color: '#8b9c93', fontSize: '15px', whiteSpace: 'nowrap' }}>无按钮，属性标签转为「已激活」</p>
+      {lbl(96, 'ST.5', 148, '研读完成 · 已激活', 1004, true)}
+      <p style={{ position: 'absolute', left: px(96), top: px(1036), color: '#8b9c93', fontSize: '15px', whiteSpace: 'nowrap' }}>无按钮，属性标签转为「已激活」</p>
       {/* transition arrows + labels */}
       <svg style={{ position: 'absolute', left: 0, top: 0, width: '1280px', height: '1700px', pointerEvents: 'none' }} stroke="rgba(226,181,75,0.7)" fill="#e2b54b">
-        <line x1="398" y1="562" x2="482" y2="562" strokeWidth="1.5" /><path d="M482 557 L 489 562 L 482 567 Z" />
-        <line x1="792" y1="562" x2="876" y2="562" strokeWidth="1.5" /><path d="M876 557 L 883 562 L 876 567 Z" />
-        <line x1="1188" y1="672" x2="1188" y2="790" strokeWidth="1.5" /><path d="M1183 790 L 1188 797 L 1193 790 Z" />
-        <line x1="887" y1="1000" x2="803" y2="1000" strokeWidth="1.5" /><path d="M803 995 L 796 1000 L 803 1005 Z" />
-        <line x1="493" y1="1000" x2="409" y2="1000" strokeWidth="1.5" /><path d="M409 995 L 402 1000 L 409 1005 Z" />
+        <line x1="398" y1="530" x2="482" y2="530" strokeWidth="1.5" /><path d="M482 525 L 489 530 L 482 535 Z" />
+        <line x1="792" y1="530" x2="876" y2="530" strokeWidth="1.5" /><path d="M876 525 L 883 530 L 876 535 Z" />
+        <line x1="1188" y1="640" x2="1188" y2="758" strokeWidth="1.5" /><path d="M1183 758 L 1188 765 L 1193 758 Z" />
+        <line x1="885" y1="968" x2="801" y2="968" strokeWidth="1.5" /><path d="M801 963 L 794 968 L 801 973 Z" />
+        <line x1="491" y1="968" x2="407" y2="968" strokeWidth="1.5" /><path d="M407 963 L 400 968 L 407 973 Z" />
       </svg>
-      {transLabel(428, 470, '获取碎片')}
-      {transLabel(822, 470, '集满100')}
-      {transLabel(1208, 674, '点击合成·必配特效反馈')}
-      {transLabel(835, 908, '点击研读')}
-      {transLabel(441, 908, '进度读满')}
+      {transLabel(428, 438, '获取碎片')}
+      {transLabel(822, 438, '集满100')}
+      {transLabel(1208, 642, '点击合成·必配特效反馈')}
+      {transLabel(835, 876, '点击研读')}
+      {transLabel(441, 876, '进度读满')}
       {/* design points */}
       <p className="al-serif" style={{ position: 'absolute', left: px(96), top: px(1178), color: '#f4efe3', fontSize: '28px', fontWeight: 700, whiteSpace: 'nowrap' }}>状态机的三个设计要点</p>
       <p className="al-bebas" style={{ position: 'absolute', left: px(388), top: px(1186), color: '#e2b54b', fontSize: '16px', letterSpacing: '4px', whiteSpace: 'nowrap' }}>DESIGN POINTS</p>
@@ -511,23 +513,23 @@ function S5A() {
       <div className="al-shot" style={{ left: px(250), top: px(290), width: px(760), height: px(428), border: '1px solid rgba(13,20,17,0.25)', borderRadius: '10px', boxShadow: '0 12px 32px rgba(0,0,0,0.25)' }}><Img k="s5a" /></div>
       <p style={{ position: 'absolute', left: px(250), top: px(732), color: '#6f6754', fontSize: '16px', whiteSpace: 'nowrap' }}>▲ 图鉴主界面 · 收集中（交互稿原图）</p>
       {/* left annotations */}
-      <div className="al-dot" style={{ left: px(366.6), top: px(417.4) }} /><div className="al-line" style={{ left: px(227), top: px(422.4), width: px(140) }} />
+      <div className="al-dot" style={{ left: px(371.6), top: px(422.4) }} /><div className="al-line" style={{ left: px(227), top: px(422.4), width: px(140) }} />
       <div style={{ position: 'absolute', left: px(83), top: px(410), width: px(140), textAlign: 'right' }}>
         <p style={{ color: '#292924', fontSize: '16px', fontWeight: 500, lineHeight: 1.5 }}>图鉴列表</p>
         <p style={{ color: '#6f6754', fontSize: '16px', lineHeight: 1.5 }}>每册「收藏进度 20/100」缺口外显</p>
       </div>
-      <div className="al-dot" style={{ left: px(471), top: px(591) }} /><div className="al-line" style={{ left: px(227), top: px(596), width: px(249) }} />
+      <div className="al-dot" style={{ left: px(476), top: px(596) }} /><div className="al-line" style={{ left: px(227), top: px(596), width: px(249) }} />
       <p style={{ position: 'absolute', left: px(83), top: px(609), width: px(140), textAlign: 'right', color: '#6f6754', fontSize: '16px', lineHeight: 1.5 }}>每册「收藏进度 20/100」缺口外显</p>
-      <p style={{ position: 'absolute', left: px(127), top: px(585), width: px(64), textAlign: 'center', color: '#292924', fontSize: '16px', fontWeight: 500 }}>研读等级</p>
+      <p style={{ position: 'absolute', left: px(191), top: px(585), transform: 'translateX(-50%)', textAlign: 'center', color: '#292924', fontSize: '16px', fontWeight: 500, whiteSpace: 'nowrap' }}>研读等级</p>
       {/* right annotations */}
-      <div className="al-dot al-dot-teal" style={{ left: px(725), top: px(342.78) }} /><div className="al-dot al-dot-teal" style={{ left: px(725), top: px(381.3) }} />
-      <div className="al-vline al-line-teal" style={{ left: px(730), top: px(352.78), height: px(28.5) }} /><div className="al-line al-line-teal" style={{ left: px(730), top: px(386), width: px(294) }} />
+      <div className="al-dot al-dot-teal" style={{ left: px(730), top: px(347.78) }} /><div className="al-dot al-dot-teal" style={{ left: px(730), top: px(386.3) }} />
+      <div className="al-vline al-line-teal" style={{ left: px(730), top: px(347.78), height: px(38.52) }} /><div className="al-line al-line-teal" style={{ left: px(730), top: px(386.3), width: px(294) }} />
       <p style={{ position: 'absolute', left: px(1032), top: px(372), width: px(148), color: '#4fa08b', fontSize: '16px', fontWeight: 500, lineHeight: 1.5 }}>评论区 · 研读助力</p>
       <p style={{ position: 'absolute', left: px(1032), top: px(396), color: '#6f6754', fontSize: '16px', whiteSpace: 'nowrap' }}>两个社交入口常驻详情页</p>
-      <div className="al-dot" style={{ left: px(946), top: px(464.76) }} /><div className="al-line" style={{ left: px(951), top: px(469.76), width: px(73) }} />
+      <div className="al-dot" style={{ left: px(951), top: px(469.76) }} /><div className="al-line" style={{ left: px(951), top: px(469.76), width: px(73) }} />
       <p style={{ position: 'absolute', left: px(1032), top: px(456), color: '#292924', fontSize: '16px', fontWeight: 500, whiteSpace: 'nowrap' }}>双属性 +「未激活」标签</p>
       <p style={{ position: 'absolute', left: px(1032), top: px(480), color: '#6f6754', fontSize: '16px', whiteSpace: 'nowrap' }}>收益提前可见，等待解锁</p>
-      <div className="al-dot" style={{ left: px(970), top: px(665.92) }} /><div className="al-line" style={{ left: px(975), top: px(670.92), width: px(49) }} />
+      <div className="al-dot" style={{ left: px(975), top: px(670.92) }} /><div className="al-line" style={{ left: px(975), top: px(670.92), width: px(49) }} />
       <p style={{ position: 'absolute', left: px(1032), top: px(656), color: '#292924', fontSize: '16px', fontWeight: 500, whiteSpace: 'nowrap' }}>金兰借阅 · 获取图鉴</p>
       <p style={{ position: 'absolute', left: px(1032), top: px(680), color: '#6f6754', fontSize: '16px', whiteSpace: 'nowrap' }}>当前状态唯二可用的动作</p>
       <RatCardL left={96} top={860} zh="目标梯度" en="GOAL GRADIENT" body="「收藏进度 20/100」写在每一行：缺口越具体，补齐的冲动越强——列表本身就是任务清单。" />
@@ -545,22 +547,22 @@ function S5B() {
       {/* channel popup (portrait) */}
       <div className="al-shot" style={{ left: px(96), top: px(230), width: px(240), height: px(321), border: '1px solid rgba(226,181,75,0.5)', borderRadius: '8px', boxShadow: '0 10px 28px rgba(0,0,0,0.4)' }}><Img k="s5b_channel" /></div>
       <p style={{ position: 'absolute', left: px(96), top: px(203), color: '#8b9c93', fontSize: '16px', whiteSpace: 'nowrap' }}>▼ 获取图鉴 · 玩法入口弹窗</p>
-      <div className="al-dot" style={{ left: px(211), top: px(524) }} /><div className="al-vline" style={{ left: px(216), top: px(529), height: px(111) }} />
+      <div className="al-dot" style={{ left: px(216), top: px(529) }} /><div className="al-vline" style={{ left: px(216), top: px(529), height: px(111) }} />
       <p style={{ position: 'absolute', left: px(80), top: px(648), color: '#f4efe3', fontSize: '16px', fontWeight: 500, whiteSpace: 'nowrap' }}>四条获取渠道：活动 / 商店 / 派遣 / 赠送</p>
       <p style={{ position: 'absolute', left: px(88), top: px(672), color: '#8b9c93', fontSize: '16px', whiteSpace: 'nowrap' }}>点击直接跳转对应场景，玩法即矿脉</p>
       {/* borrow popup */}
       <div className="al-shot" style={{ left: px(420), top: px(230), width: px(534), height: px(300), border: '1px solid rgba(226,181,75,0.5)', borderRadius: '8px', boxShadow: '0 10px 28px rgba(0,0,0,0.4)' }}><Img k="s5b_borrow" /></div>
       <p style={{ position: 'absolute', left: px(420), top: px(538), color: '#8b9c93', fontSize: '16px', whiteSpace: 'nowrap' }}>▲ 金兰借阅 · 三级弹窗</p>
-      <div className="al-dot al-dot-teal" style={{ left: px(728), top: px(450) }} /><div className="al-line al-line-teal" style={{ left: px(733), top: px(455), width: px(238) }} />
+      <div className="al-dot al-dot-teal" style={{ left: px(733), top: px(455) }} /><div className="al-line al-line-teal" style={{ left: px(733), top: px(455), width: px(238) }} />
       <p style={{ position: 'absolute', left: px(976), top: px(443), color: '#4fa08b', fontSize: '16px', fontWeight: 500, whiteSpace: 'nowrap' }}>只有结义 1 级以上金兰可借阅</p>
       <p style={{ position: 'absolute', left: px(976), top: px(468), color: '#8b9c93', fontSize: '16px', whiteSpace: 'nowrap' }}>亲密关系专属通道，社交即资源</p>
-      <div className="al-dot" style={{ left: px(718), top: px(274.4) }} /><div className="al-line" style={{ left: px(725), top: px(279.4), width: px(246) }} />
+      <div className="al-dot" style={{ left: px(725), top: px(279.4) }} /><div className="al-line" style={{ left: px(725), top: px(279.4), width: px(246) }} />
       <p style={{ position: 'absolute', left: px(976), top: px(264), color: '#f4efe3', fontSize: '16px', fontWeight: 500, whiteSpace: 'nowrap' }}>借阅 / 已借阅 双态按钮</p>
       <p style={{ position: 'absolute', left: px(976), top: px(288), color: '#8b9c93', fontSize: '16px', whiteSpace: 'nowrap' }}>每人只可借一次，状态即记录</p>
       {/* filter popup */}
       <div className="al-shot" style={{ left: px(420), top: px(615), width: px(534), height: px(300), border: '1px solid rgba(226,181,75,0.5)', borderRadius: '8px', boxShadow: '0 10px 28px rgba(0,0,0,0.4)' }}><Img k="s5b_filter" /></div>
       <p style={{ position: 'absolute', left: px(420), top: px(923), color: '#8b9c93', fontSize: '16px', whiteSpace: 'nowrap' }}>▲ 筛选图鉴 · 三级弹窗</p>
-      <div className="al-dot" style={{ left: px(549), top: px(676.15) }} /><div className="al-line" style={{ left: px(554.5), top: px(681.15), width: px(417) }} />
+      <div className="al-dot" style={{ left: px(554.5), top: px(681.15) }} /><div className="al-line" style={{ left: px(554.5), top: px(681.15), width: px(417) }} />
       <p style={{ position: 'absolute', left: px(976), top: px(669), color: '#f4efe3', fontSize: '16px', fontWeight: 500, whiteSpace: 'nowrap' }}>品质 / 属性 / 进度 三组条件</p>
       <p style={{ position: 'absolute', left: px(976), top: px(694), color: '#8b9c93', fontSize: '16px', whiteSpace: 'nowrap' }}>勾选确定后，列表即筛选结果</p>
       <RatCardD left={96} top={1040} zh="用户控制与自由" en="USER CONTROL" body="肝活动、逛商店、等派遣、求赠送——四条路任选，不同时间预算的玩家都有一条能走。" />
@@ -576,7 +578,7 @@ function S5C() {
     { y: 629, n: 1, k: 'gold' as const, t: '好友 / 帮派双圈子分页 —— 先帮亲近的人' },
     { y: 669, n: 2, k: 'gold' as const, t: '对方正在研读的图鉴与进度 —— 帮谁，帮得明白' },
     { y: 709, n: 3, k: 'gold' as const, t: '助力 / 已助力双态 —— 杜绝重复消耗' },
-    { y: 749, n: 4, k: 'gold' as const, t: '一键助力所有可助力对象 —— 一次点完，已助力自动沉底' },
+    { y: 749, n: 4, k: 'red' as const, t: '一键助力所有可助力对象 —— 一次点完，已助力自动沉底' },
   ];
   return (
     <div className="atlas-sec al-bg-cream" style={{ height: px(1100), color: '#0d1411' }}>
@@ -589,7 +591,7 @@ function S5C() {
       <Badge left={232} top={304.5} n={1} kind="gold" />
       <Badge left={502} top={348} n={2} kind="gold" />
       <Badge left={652} top={356} n={3} kind="gold" />
-      <Badge left={648} top={532} n={4} kind="gold" />
+      <Badge left={576} top={539} n={4} kind="red" />
       <Badge left={1002} top={335} n={5} kind="teal" />
       <Badge left={959} top={356} n={6} kind="teal" />
       {/* left list */}
@@ -600,10 +602,10 @@ function S5C() {
         </div>
       ))}
       {/* right list (send popup) */}
-      <Badge left={760} top={513} n={5} kind="teal" />
+      <Badge left={760} top={512} n={5} kind="teal" size={24} />
       <p style={{ position: 'absolute', left: px(794), top: px(512), width: px(420), color: '#292924', fontSize: '16px', fontWeight: 500, lineHeight: 1.5 }}>今日剩余助力 2/10 —— 每日限额</p>
-      <Badge left={760} top={552} n={6} kind="teal" />
-      <p style={{ position: 'absolute', left: px(794), top: px(551), color: '#292924', fontSize: '16px', fontWeight: 500, whiteSpace: 'nowrap' }}>勾选好友 / 帮派频道，确定即广播求助</p>
+      <Badge left={760} top={551} n={6} kind="teal" size={24} />
+      <p style={{ position: 'absolute', left: px(794), top: px(551), color: '#292924', fontSize: '16px', fontWeight: 500, lineHeight: 1.5, whiteSpace: 'nowrap' }}>勾选好友 / 帮派频道，确定即广播求助</p>
       <RatCardL left={96} top={840} accent="#4fa08b" zh="互惠原则" en="RECIPROCITY" body="「帮我助力」发出的是可一键完成的小忙：成本低到不好意思拒绝，欠下的人情下次还回来。" />
       <RatCardL left={464} top={840} zh="限额防扰" en="RATE LIMIT" body="每日 2/10 的助力次数与频道勾选发送：求助有节制、触达有边界，社交不变成骚扰。" />
       <RatCardL left={832} top={840} zh="批量效率" en="BATCH ACTION" body="一键助力 + 已助力自动沉底：把 N 次重复决策压缩成 1 次，列表永远把「还能帮的」排在前面。" />
@@ -613,13 +615,13 @@ function S5C() {
 
 /* ===================== S5D — 赠送与往来 ===================== */
 function S5D() {
-  const badgeTextColor = '#1a140c';
+  const badgeTextColor = '#fff';
   const leftList = [
     { y: 585, n: 1, k: 'gold' as const, t: '好友 / 帮派收礼对象列表 —— 先选给谁' },
     { y: 625, n: 2, k: 'gold' as const, t: '碎片网格按品质从高到低排列 —— 颜色即价值' },
     { y: 665, n: 3, k: 'gold' as const, t: '「− 2 +」数量选择 —— 只送背包溢出的碎片' },
     { y: 705, n: 4, k: 'green' as const, t: '往来记录入口常驻赠送页' },
-    { y: 745, n: 5, k: 'teal' as const, t: '筛选 + 赠送：点击赠送即完成，飘字提示确认' },
+    { y: 745, n: 5, k: 'red' as const, t: '筛选 + 赠送：点击赠送即完成，飘字提示确认' },
   ];
   const rightList = [
     { y: 586, n: 6, t: '收礼 / 赠礼双页签，双向可查' },
@@ -637,7 +639,7 @@ function S5D() {
       <Badge left={457} top={265} n={2} kind="gold" color={badgeTextColor} />
       <Badge left={413.6} top={393.5} n={3} kind="gold" color={badgeTextColor} />
       <Badge left={316} top={484} n={4} kind="green" color={badgeTextColor} />
-      <Badge left={499} top={476} n={5} kind="teal" color={badgeTextColor} />
+      <Badge left={499} top={476} n={5} kind="red" color={badgeTextColor} />
       <Badge left={924} top={273} n={6} kind="green" color={badgeTextColor} />
       <Badge left={977} top={327} n={7} kind="green" color={badgeTextColor} />
       {/* left list */}
@@ -654,7 +656,7 @@ function S5D() {
           <p style={{ position: 'absolute', left: px(684), top: px(l.y), width: px(400), color: '#f4efe3', fontSize: '16px', fontWeight: 500, lineHeight: 1.5 }}>{l.t}</p>
         </div>
       ))}
-      <p style={{ position: 'absolute', left: px(650), top: px(669), width: px(548), color: '#8b9c93', fontSize: '16px', lineHeight: 1.5 }}>※ 防错前置：未完成该图鉴研读时，赠送页显示「没有可以赠送的图鉴碎片」空态拦截。</p>
+      <p style={{ position: 'absolute', left: px(650), top: px(649), width: px(548), color: '#8b9c93', fontSize: '16px', lineHeight: 1.5 }}>※ 防错前置：未完成该图鉴研读时，赠送页显示「没有可以赠送的图鉴碎片」空态拦截。</p>
       <RatCardD left={96} top={840} zh="防错前置" en="ERROR PREVENTION" body="只送「溢出」的碎片，未完成研读则直接空态拦截——从源头杜绝「把自己还要用的送出去」。" />
       <RatCardD left={464} top={840} accent="#4fa08b" zh="损失规避" en="LOSS AVERSION" body="多余碎片本是闲置损耗，赠送把它折算成人情——玩家乐意清库存，关系白得一份礼。" />
       <RatCardD left={832} top={840} zh="可追溯" en="TRACEABILITY" body="收礼 / 赠礼双向记录、数量对象时间俱全——人情有账本，信任才有依据。" />
@@ -666,7 +668,7 @@ function S5D() {
 function S5E() {
   const rightList = [
     { y: 570, n: 1, k: 'gold' as const, t: '最新 / 最热双排序 —— 时效与质量两种读法' },
-    { y: 610, n: 2, k: 'green' as const, t: '我的评论永远置顶 —— 自己的声音先被看见' },
+    { y: 610, n: 2, k: 'red' as const, t: '我的评论永远置顶 —— 自己的声音先被看见' },
     { y: 650, n: 3, k: 'gold' as const, t: '点赞与举报长在每条评论上' },
     { y: 690, n: 4, k: 'gold' as const, t: '输入框限 30 字 + 发送 —— 短评低门槛' },
     { y: 730, n: 5, k: 'teal' as const, t: '热门评论 / 收集排行双页签收纳' },
@@ -681,7 +683,7 @@ function S5E() {
       <p style={{ position: 'absolute', left: px(650), top: px(489), color: '#6f6754', fontSize: '16px', whiteSpace: 'nowrap' }}>▲ 收集排行 · 前十榜（交互稿原图）</p>
       {/* badges over comment screenshot */}
       <Badge left={360} top={229} n={1} kind="gold" />
-      <Badge left={303} top={254} n={2} kind="green" />
+      <Badge left={303} top={254} n={2} kind="red" />
       <Badge left={454} top={304} n={3} kind="gold" />
       <Badge left={390} top={430} n={4} kind="gold" />
       <Badge left={582} top={237} n={5} kind="teal" />
@@ -807,7 +809,7 @@ function S7() {
       <p style={{ position: 'absolute', left: px(96), top: px(748), width: px(454), color: '#6f6754', fontSize: '16px', lineHeight: 1.5 }}>碎片网格与往来记录均沿用同一套品质色——跨界面的颜色语言保持一致。</p>
       {/* reference screenshot (portrait) */}
       <div className="al-shot" style={{ left: px(600), top: px(230), width: px(316), height: px(562), border: '2px solid rgba(13,20,17,0.3)', borderRadius: '18px', boxShadow: '0 12px 30px rgba(0,0,0,0.25)' }}><Img k="s7_ref" /></div>
-      <p style={{ position: 'absolute', left: px(600), top: px(806), color: '#0d1411', fontSize: '16px', fontWeight: 500, whiteSpace: 'nowrap' }}>参考 ·《阴阳师：妖怪屋》图鉴页</p>
+      <p style={{ position: 'absolute', left: px(600), top: px(812), color: '#0d1411', fontSize: '16px', fontWeight: 500, whiteSpace: 'nowrap' }}>参考 ·《阴阳师：妖怪屋》图鉴页</p>
       {/* why borrow text */}
       <div style={{ position: 'absolute', left: px(927), top: px(238), width: px(321), color: '#4a4538', fontSize: '16px', lineHeight: 1.65 }}>
         <p style={{ fontFamily: "'Noto Sans SC', sans-serif", fontWeight: 900 }}>为什么可借鉴——</p>
@@ -819,16 +821,29 @@ function S7() {
   );
 }
 
-/* ===================== S8 — 封底 ===================== */
+/* ===================== S8 — 封底 =====================
+   Figma 9817:14163. This section had never been built, so the case just stopped
+   after S7. Note two of its layers are hidden="true" in Figma — the 1088x2 top rule
+   (9817:14164) and the 《庆余年》图鉴手册 subtitle (9817:14166) — so neither is drawn.
+   Wordmark is a flat #E2B54B (sampled uniform across its width, not a gradient);
+   the diamond is the case's teal #4FA08B; the dots are #E2B54B at 60%. */
 function S8() {
   return (
     <div className="atlas-sec al-bg-dark" style={{ height: px(400) }}>
-      <div style={{ position: 'absolute', left: px(96), top: 0, width: px(1088), height: px(2), background: '#e2b54b' }} />
-      <p className="al-bebas" style={{ position: 'absolute', left: px(96), top: px(84), fontSize: '101px', letterSpacing: '4px', lineHeight: 1, whiteSpace: 'nowrap', background: 'linear-gradient(90deg,#e2b54b,#f4d98a)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>THANKS FOR WATCHING</p>
-      <p className="al-serif" style={{ position: 'absolute', left: px(96), top: px(226), color: '#f4efe3', fontSize: '23px', fontWeight: 700, whiteSpace: 'nowrap' }}>《庆余年》图鉴手册 · 交互设计</p>
-      <div className="al-diamond" style={{ left: px(1100), top: px(120), width: px(16), height: px(16), background: '#4fa08b' }} />
+      <p
+        className="al-bebas"
+        style={{ position: 'absolute', left: px(96), top: px(139), color: '#e2b54b', fontSize: '101px', letterSpacing: '4px', lineHeight: 1.2, whiteSpace: 'nowrap' }}
+      >
+        THANKS FOR WATCHING
+      </p>
+      {/* 9817:14167 is the rotated square's bounding box (22.627 = 16*√2), so the
+          16px box sits at its centre: 1100 + (22.627-16)/2 = 1103.3 */}
+      <Diamond left={1103.3} top={177.6} size={16} color="#4fa08b" />
       {[1060, 1082, 1104].map((x) => (
-        <div key={x} style={{ position: 'absolute', left: px(x), top: px(170), width: '6px', height: '6px', borderRadius: '50%', background: '#e2b54b' }} />
+        <div
+          key={x}
+          style={{ position: 'absolute', left: px(x), top: px(224.31), width: px(6), height: px(6), borderRadius: '50%', background: 'rgba(226,181,75,0.6)' }}
+        />
       ))}
     </div>
   );

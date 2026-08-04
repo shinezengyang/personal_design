@@ -1,16 +1,23 @@
 import './WeddingExactCase.css';
 
+/* Local copies of the Figma exports (the old figma.com/api/mcp/asset URLs expire
+   after ~7 days and had all gone dead). Each was exported at 2x and cropped back
+   to the node box — Figma bakes drop-shadow bleed into the PNG otherwise. */
+const WE = '/images/qingyu/wedding';
 const assets = {
-  cover: 'https://www.figma.com/api/mcp/asset/c02d60ac-db52-4956-9d83-1923e16035b7',
-  coverOverlay: 'https://www.figma.com/api/mcp/asset/aa76e568-2094-4e7e-a645-33cd1cd7cd93',
-  schedule: 'https://www.figma.com/api/mcp/asset/60e7e945-4489-43d5-99bf-1ae32159c05b',
-  invite: 'https://www.figma.com/api/mcp/asset/f8c2b3b6-a783-4f96-a374-12cfd5945046',
-  scene: 'https://www.figma.com/api/mcp/asset/273ea912-e0fc-4b21-aec5-57ac0803e559',
-  bless: 'https://www.figma.com/api/mcp/asset/7aafa71f-6a49-446d-b90b-a38a6bf105c3',
-  stone: 'https://www.figma.com/api/mcp/asset/95b1983c-0fa0-406b-9e6e-4b37dd5eaca0',
-  ref1: 'https://www.figma.com/api/mcp/asset/69b8d5cf-2bf1-4a2c-b04d-2bd25c6470c2',
-  ref2: 'https://www.figma.com/api/mcp/asset/ccaf42f6-f55d-4ebd-a2a0-d2bff7ae1c4c',
-  ref3: 'https://www.figma.com/api/mcp/asset/4e7685ff-52a8-4dd9-a889-d2858464bb1b',
+  cover: `${WE}/cover.webp`,       // Figma 9817:10221 IMG_cover — flat composite, replaces the
+                                  // old two-layer cover + coverOverlay hand-composite
+  schedule: `${WE}/schedule.webp`, // Figma 9817:10402
+  invite: `${WE}/invite.webp`,     // Figma 9817:10460
+  scene: `${WE}/scene.webp`,       // Figma 9817:10519 IMG_scene
+  bless: `${WE}/bless.webp`,       // Figma 9817:10520 IMG_bless
+  /* 08_分享传播 used to render `cover` — the 立绘 with all five annotation pins
+     pointing at UI that only exists in IMG_share (贺图 / 频道勾选 / 分享按钮). */
+  share: `${WE}/share.webp`,       // Figma 9817:10561 IMG_share
+  stone: `${WE}/stone.webp`,       // Figma 9817:10619 IMG_stone
+  ref1: `${WE}/ref1-jx3.webp`,     // Figma 9817:10696 《剑网3》
+  ref2: `${WE}/ref2-nsh.webp`,     // Figma 9817:10701 《逆水寒》
+  ref3: `${WE}/ref3-tymd.webp`,    // Figma 9817:10706 《天涯明月刀》
 };
 
 type Accent = 'gold' | 'orange' | 'rose' | 'purple' | 'cyan';
@@ -100,7 +107,7 @@ function ScreenSection({
   title,
   desc,
   image,
-  imageClass = '',
+  box,
   caption,
   pins,
   pointsTitle,
@@ -113,7 +120,8 @@ function ScreenSection({
   title: string;
   desc: string;
   image: string;
-  imageClass?: string;
+  /** Figma frame box of the screenshot [x, y, w, h] — pins are given relative to it. */
+  box: [number, number, number, number];
   caption?: string;
   pins: Array<[number, number, number]>;
   pointsTitle: string;
@@ -125,8 +133,8 @@ function ScreenSection({
   return (
     <section className={`we-section we-screen-section ${dark ? 'dark' : ''}`}>
       <SectionHead eyebrow={eyebrow} title={title} desc={desc} dark={dark} />
-      <div className="we-shot-wrap">
-        <Img src={image} className={`we-shot ${imageClass}`} />
+      <div className="we-shot-wrap" style={{ left: box[0], top: box[1], width: box[2], height: box[3] }}>
+        <Img src={image} className="we-shot" />
         {pins.map(([n, x, y]) => <NumberPin key={n} n={n} x={x} y={y} dark={dark} />)}
       </div>
       {caption ? <p className="we-caption">{caption}</p> : null}
@@ -160,7 +168,6 @@ export function WeddingExactCase() {
         </div>
         <div className="we-cover-img">
           <Img src={assets.cover} />
-          <Img src={assets.coverOverlay} className="overlay" />
         </div>
       </section>
 
@@ -228,8 +235,9 @@ export function WeddingExactCase() {
         title="吉宴排期 · 让婚礼可被发现"
         desc="像一张婚礼日历：按日期分页陈列吉宴，预约即承诺，把「围观婚礼」变成可计划的事。"
         image={assets.schedule}
+        box={[83, 300, 747, 420]}
         caption="吉宴排期界面"
-        pins={[[1,48,46],[2,34,107],[3,568,145],[4,244,183],[5,679,81]]}
+        pins={[[1,45,46],[2,31,107],[3,565,145],[4,241,183],[5,676,81]]}
         pointsTitle="一张可计划的「婚礼日历」"
         points={[
           '日期分页｜按日期分页陈列吉宴，减少一屏信息过载',
@@ -252,8 +260,9 @@ export function WeddingExactCase() {
         title="吉宴受邀 · 被点名的归属感"
         desc="新人亲自发来的定向邀请 —— 比公共围观更进一步，也给足「我可以不去」的体面。"
         image={assets.invite}
+        box={[76, 300, 748, 421]}
         caption="吉宴受邀界面"
-        pins={[[1,253,89],[2,43,117],[3,476,117],[4,256,372],[5,672,126]]}
+        pins={[[1,257,89],[2,47,117],[3,480,117],[4,260,372],[5,676,126]]}
         pointsTitle="被新人「点名」的定向邀请"
         points={[
           '邀请抬头｜「XX 邀请您成为他的 XX」，强关系定向邀约',
@@ -299,8 +308,8 @@ export function WeddingExactCase() {
         eyebrow="FLOW · 分享传播"
         title="分享传播 · 让喜事自己扩散"
         desc="把现场喜悦做成一张贺图，一键转发到频道 —— 一次婚礼，触达世界、好友与帮会。"
-        image={assets.cover}
-        imageClass="share-shot"
+        image={assets.share}
+        box={[80, 300, 740, 416]}
         caption="吉宴分享贺图"
         pins={[[1,305,54],[2,462,162],[3,560,233],[4,336,257],[5,482,337]]}
         pointsTitle="一张可转发的「喜事贺图」"
@@ -325,6 +334,7 @@ export function WeddingExactCase() {
         title="三生石 · 婚恋的情缘入口"
         desc="大世界里的情缘广场：发缘签、找有缘人 —— 一段婚礼的前奏，往往从这里开始。"
         image={assets.stone}
+        box={[80, 300, 740, 416]}
         caption="三生石界面"
         pins={[[1,55,140],[2,351,104],[3,356,371],[4,703,76],[5,180,298]]}
         pointsTitle="大世界里的「情缘广场」"

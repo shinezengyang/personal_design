@@ -176,7 +176,7 @@ export default function QingyuCaseIndex() {
           <div className="qingyu-framework-featured-card__media">
             <img
               className="qingyu-framework-featured-card__image"
-              src={publicUrl('pencil/qingyu-nian/Background-new.png')}
+              src={publicUrl('pencil/qingyu-nian/Background-new.webp')}
               alt="框架案例卡片图"
               loading="lazy"
               decoding="async"
@@ -207,7 +207,7 @@ export default function QingyuCaseIndex() {
                 ) : item.key === '4' ? (
                   <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src={publicUrl('qingyu-jinlan-card.webp')} alt="系统-金兰结义案例卡片图" />
                 ) : item.key === '20' ? (
-                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src={publicUrl('qingyu-partner-card-new.png')} alt="系统-伙伴案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src={publicUrl('qingyu-partner-card-new.webp')} alt="系统-伙伴案例卡片图" />
                 ) : item.key === '17' ? (
                   <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src={publicUrl('qingyu-atlas-card.webp')} alt="系统-图鉴收集案例卡片图" />
                 ) : item.key === '19' ? (

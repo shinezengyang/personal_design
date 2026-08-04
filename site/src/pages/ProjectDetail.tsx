@@ -1509,12 +1509,23 @@ export default function ProjectDetail({
   const isQingyuWorkflowCase = project.id === 'qingyu-nian' && resolvedActiveDetailTab === '1';
   const isQingyuFigmaExactCase = project.id === 'qingyu-nian' && ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'].includes(resolvedActiveDetailTab);
   const isQingyuCaseTab = project.id === 'qingyu-nian' && resolvedActiveDetailTab !== 'framework';
+  const usesFullWidthFigmaCanvas = isStarStandaloneFigmaCase;
+  const trimsStandaloneFigmaFooter = ['xingji-ip-collab', 'xingji-naval-trial'].includes(project.id);
 
   return (
-    <section className="relative w-full min-h-screen px-6 pb-24 pt-10 sm:px-12 lg:px-20 2xl:px-24">
-      <div ref={pageRef} className="mx-auto max-w-[1440px] 2xl:max-w-[1560px]">
+    <section
+      className={
+        usesFullWidthFigmaCanvas
+          ? `relative min-h-screen w-full ${trimsStandaloneFigmaFooter ? 'overflow-x-hidden pb-0' : 'overflow-x-auto pb-24'} px-0 pt-10`
+          : 'relative w-full min-h-screen px-6 pb-24 pt-10 sm:px-12 lg:px-20 2xl:px-24'
+      }
+    >
+      <div
+        ref={pageRef}
+        className={usesFullWidthFigmaCanvas ? 'w-full max-w-none' : 'mx-auto max-w-[1440px] 2xl:max-w-[1560px]'}
+      >
         {/* Header */}
-        <div className="project-detail-header relative z-50 mb-8">
+        <div className={`project-detail-header relative z-50 mb-8${usesFullWidthFigmaCanvas ? ' px-20' : ''}`}>
           <div className="relative flex flex-row items-center justify-between gap-3">
             <button className="cyber-btn inline-flex items-center" onClick={handleBack} type="button">
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -1581,7 +1592,7 @@ export default function ProjectDetail({
         </div>
 
         {/* Content */}
-        <div ref={contentRef} className="mt-10 grid gap-6">
+        <div ref={contentRef} className={usesFullWidthFigmaCanvas ? 'mt-10 grid w-full gap-6' : 'mt-10 grid gap-6'}>
           {isHighSeasNavyTrialExactCase ? (
             <HighSeasNavyTrialExactCase />
           ) : isHighSeasCleanupGangExactCase ? (

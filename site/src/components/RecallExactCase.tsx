@@ -1,22 +1,41 @@
 import './RecallExactCase.css';
 
-/* ===== Assets ===== */
+/* ===== Assets =====
+   Local copies of the Figma exports. These used to point at
+   https://www.figma.com/api/mcp/asset/... URLs, which Figma expires after ~7 days —
+   every screenshot on this page had gone dead. Node ids noted for re-pulling.
+   (`hero` and `finale` used to sit here too but were never referenced, so they are gone.) */
+const RC = '/images/qingyu/recall';
 const A = {
-  hero: 'https://www.figma.com/api/mcp/asset/6a8b6b1a-dfc8-4d79-9a16-0fd122a4b040',
-  s5: 'https://www.figma.com/api/mcp/asset/a04d369b-1d17-4842-af90-f11e0d213979',
-  s6a: 'https://www.figma.com/api/mcp/asset/fadb38b3-64ce-4260-97a7-8ecd397f2f2b',
-  s6b: 'https://www.figma.com/api/mcp/asset/2ba97cc2-0ed6-4c13-8a25-c691a2b41bde',
-  s7: 'https://www.figma.com/api/mcp/asset/cccc939f-cbf4-4edf-8702-e29910047e7b',
-  s9: 'https://www.figma.com/api/mcp/asset/3c604582-5649-413f-997c-a3ef4e98684c',
-  s10: 'https://www.figma.com/api/mcp/asset/761f9351-f21c-4973-bc1b-92b704e3196b',
-  s11: 'https://www.figma.com/api/mcp/asset/eb315a5d-71c0-4165-bf0f-3ab3e30528d5',
-  s12: 'https://www.figma.com/api/mcp/asset/816c42cb-edab-4d42-8bb3-c81e4bf1b554',
-  journey: 'https://www.figma.com/api/mcp/asset/c02b7eab-2de8-4070-9ad6-4ffdae75ded1',
-  ref1: 'https://www.figma.com/api/mcp/asset/47732102-2fc9-4909-8832-fedc0db52c09',
-  ref2: 'https://www.figma.com/api/mcp/asset/bd36d190-ba21-4efb-8f92-d3b37f75786e',
-  ref3: 'https://www.figma.com/api/mcp/asset/30a8e589-e792-4b1b-bcd3-7555fa8b625d',
-  finale: 'https://www.figma.com/api/mcp/asset/9929e735-b5b1-4b1e-9912-96665c3934a8',
+  s5: `${RC}/s05-caller-entry.webp`,       // Figma 9817:18709 shot_召回之礼
+  s6a: `${RC}/s06a-fight-together.webp`,   // Figma 9817:18753 shot_共同战斗
+  s6b: `${RC}/s06b-fight-together.webp`,   // Figma 9817:18754 shot_共同战斗
+  s7: `${RC}/s07-caller-gift.webp`,        // Figma 9817:18818 shot_召回豪礼
+  s9: `${RC}/s09-welcome.webp`,            // Figma 9817:18853 shot_拍脸
+  s10: `${RC}/s10-return-gift.webp`,       // Figma 9817:18892 shot_回归之礼
+  s11: `${RC}/s11-active-reward.webp`,     // Figma 9817:18931 shot_活跃奖励
+  s12: `${RC}/s12-exclusive-pack.webp`,    // Figma 9817:18970 shot_专属礼包
+  /* The flow curve is vector + text in Figma (9817:19017 s7_curve and siblings),
+     so there is no image node — this is a crop of the 09 心流历程 section render. */
+  journey: `${RC}/journey.webp`,
+  ref1: `${RC}/ref-1.webp`,                // Figma 9817:19063
+  ref2: `${RC}/ref-2.webp`,                // Figma 9817:19070
+  ref3: `${RC}/ref-3.webp`,                // Figma 9817:19077
 };
+
+/* 结语 gallery (Figma 9817:19114-19121): two columns, 回归者线 left / 召回者线 right.
+   x/y are the Figma section coordinates rebased onto the .rc-finale-gallery box,
+   which sits at top 580 — so y here is the Figma y minus 580. */
+const GALLERY = [
+  { src: `${RC}/gallery-r1-return-gift.webp`, alt: '回归之礼', x: 124, y: 230, w: 500, h: 280 },
+  { src: `${RC}/gallery-r1-caller-gift.webp`, alt: '召回之礼', x: 656, y: 230, w: 500, h: 280 },
+  { src: `${RC}/gallery-r2-active-reward.webp`, alt: '回归福利 · 活跃奖励', x: 124, y: 543, w: 500, h: 231 },
+  { src: `${RC}/gallery-r2-fight-progress.webp`, alt: '召回福利 · 共同战斗活跃进度', x: 656, y: 543, w: 500, h: 231 },
+  { src: `${RC}/gallery-r3-exclusive-pack.webp`, alt: '回归福利 · 专属礼包', x: 124, y: 806, w: 500, h: 231 },
+  { src: `${RC}/gallery-r3-fight-recharge.webp`, alt: '召回福利 · 共同战斗累计充值', x: 656, y: 806, w: 500, h: 231 },
+  { src: `${RC}/gallery-r4-recall-flow.webp`, alt: '回流召回流程', x: 122, y: 1050, w: 500, h: 280 },
+  { src: `${RC}/gallery-r4-caller-bonus.webp`, alt: '召回福利 · 召回豪礼', x: 656, y: 1069, w: 500, h: 231 },
+];
 
 function Img({ src, alt = '', className = '' }: { src: string; alt?: string; className?: string }) {
   return <img className={className} src={src} alt={alt} loading="lazy" decoding="async" />;
@@ -562,6 +581,15 @@ export function RecallExactCase() {
             ))}
           </div>
           <p className="rc-finale-gallery-label">视觉稿展示</p>
+          {/* Figma 9817:19114-19121 — a two-column grid, 回归者线 left / 召回者线 right.
+              The label was here but the grid itself had never been built. */}
+          <div className="rc-finale-gallery">
+            {GALLERY.map((g) => (
+              <figure key={g.src} style={{ left: g.x, top: g.y, width: g.w, height: g.h }}>
+                <img src={g.src} alt={g.alt} loading="lazy" decoding="async" />
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
     </div>

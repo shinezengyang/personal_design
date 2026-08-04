@@ -75,10 +75,10 @@
 .jx-multiply { position: absolute; left: 610px; top: 440px; width: 60px; height: 60px; color: #6a5226; font-size: 50px; font-weight: 900; line-height: 60px; text-align: center; }
 
 .jx-loadout-diagram { position: absolute; left: 0; top: 0; width: 545px; height: 380px; }
-.jx-loadout-diagram svg { position: absolute; left: 215px; top: 86px; width: 260px; height: 260px; overflow: visible; }
+.jx-loadout-diagram svg { position: absolute; left: 172px; top: 82px; width: 200px; height: 196px; overflow: visible; }
 .jx-loadout-diagram path { fill: none; stroke: rgba(224,178,90,.45); stroke-width: 2; }
 .jx-loadout-diagram span { position: absolute; transform: translate(-50%, -50%); width: 48px; height: 48px; border-radius: 999px; display: flex; align-items: center; justify-content: center; color: #e0b25a; background: rgba(224,178,90,.1); box-shadow: 0 0 24px rgba(224,178,90,.35); border: 1px solid rgba(224,178,90,.5); font-weight: 900; }
-.jx-loadout-diagram b { position: absolute; left: 335px; top: 453px; width: 34px; height: 34px; border-radius: 999px; background: #e0b25a; color: #16100c; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(224,178,90,.5); }
+.jx-loadout-diagram b { position: absolute; left: 255px; top: 163px; width: 34px; height: 34px; border-radius: 999px; background: #e0b25a; color: #16100c; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(224,178,90,.5); }
 .jx-layer-bars { position: absolute; left: 57px; right: 42px; bottom: 70px; height: 240px; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 0 0 0; }
 .jx-layer-bars article { position: relative; width: 70px; border-radius: 6px 6px 0 0; background: #9c6a34; }
 .jx-layer-bars article b { position: absolute; left: 50%; top: -30px; transform: translateX(-50%); width: 70px; text-align: center; font-size: 16px; color: inherit; }

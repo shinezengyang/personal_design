@@ -15,6 +15,8 @@ const A: Record<string, string> = {
   s4_s3: asset('s4_s3.webp'),
   // S5A entry world
   s5a: asset('s5a.webp'),
+  // S5A magnifier — Figma 9817:12988 exports the ring, its shadow and the x3 crop as one image
+  s5a_zoom: asset('s5a_zoom.webp'),
   // S5B season home
   s5b: asset('s5b.webp'),
   // S5C reward
@@ -380,9 +382,30 @@ function S5A() {
       <p style={{ position: 'absolute', left: px(96), top: px(718), color: '#6f6754', fontSize: '16px', whiteSpace: 'nowrap' }}>▲ 常规大世界主界面（交互稿原图）：荣耀赛季入口位于左上玩法入口组</p>
       {/* highlight circle on entry + magnifier */}
       <div style={{ position: 'absolute', left: px(280), top: px(317), width: px(64), height: px(64), borderRadius: '50%', border: '2px solid #e0492f' }} />
-      <div style={{ position: 'absolute', left: px(880), top: px(300), width: px(240), height: px(240), borderRadius: '50%', border: '2px solid rgba(18,21,27,0.3)', background: 'rgba(255,255,255,0.4)' }} />
+      {/* Figma 9817:12988 — the magnifier is an exported image (x3 crop of the main-world
+          shot centred on the entry icon, gold ring + shadow baked in). It had been drawn as
+          an empty bordered circle, so the zoomed content was missing entirely.
+          The export carries a shadow bleed: inset -7.5%/-11.67%/-15.83%/-11.67% of 240. */}
+      <img
+        src={A.s5a_zoom}
+        alt="荣耀赛季入口 ×3 放大"
+        loading="lazy"
+        decoding="async"
+        style={{ position: 'absolute', left: px(880 - 28), top: px(300 - 18), width: px(296), height: px(296), maxWidth: 'none' }}
+      />
       <div style={{ position: 'absolute', left: px(1008), top: px(348), width: px(21), height: px(21), borderRadius: '50%', background: '#e0492f' }} />
       <div style={{ position: 'absolute', left: px(347), top: px(343), width: px(560), height: '0', borderTop: '1.5px dashed rgba(18,21,27,0.4)' }} />
+      {/* Two elbow leaders from the magnifier down to the notes below it. Both exist in
+          Figma as L-shaped groups but had never been drawn, so the notes floated unattached.
+          Figma reports only the group box, so the arms come from the child vectors:
+          Group 1809 (9817:12992) runs dot → left → down; Group 1808 (9817:13012, red,
+          child vector 9817:13013) runs dot → right → down. */}
+      <div className="gl-dot" style={{ left: px(990.4), top: px(424) }} />
+      <div className="gl-line" style={{ left: px(866), top: px(429), width: px(129.4) }} />
+      <div className="gl-line-v" style={{ left: px(866), top: px(429), height: px(166) }} />
+      <div className="gl-dot gl-dot-red" style={{ left: px(1028.8), top: px(354) }} />
+      <div className="gl-line gl-line-red" style={{ left: px(1033.8), top: px(359), width: px(124.2) }} />
+      <div className="gl-line-v gl-line-red" style={{ left: px(1156.8), top: px(359), height: px(331) }} />
       <p style={{ position: 'absolute', left: px(972), top: px(550), color: '#a87e22', fontSize: '16px', whiteSpace: 'nowrap' }}>× 3 放大</p>
       <div style={{ position: 'absolute', left: px(853), top: px(599), width: px(260), color: '#12151b', fontSize: '16px', fontWeight: 500, lineHeight: 1.6 }}>
         <p>新增「荣耀赛季」入口</p><p>与相邻玩法入口同形制、同组排布</p>
@@ -447,13 +470,17 @@ function S5C() {
       <p style={{ position: 'absolute', left: px(320), top: px(482), color: '#6f6754', fontSize: '16px', whiteSpace: 'nowrap' }}>▲ 段位奖励弹窗 · 细节（交互稿原图）</p>
       <p style={{ position: 'absolute', left: px(619), top: px(652), color: '#6f6754', fontSize: '16px', whiteSpace: 'nowrap' }}>▲ 赛季奖励总览（交互稿原图）</p>
       {/* annotations */}
-      <div className="gl-dot" style={{ left: px(507), top: px(432), background: '#292924' }} /><div className="gl-line" style={{ left: px(308), top: px(437), width: px(199), background: 'rgba(41,41,36,0.45)' }} />
+      {/* Figma 9817:13094 — gold like the rest; only the 可领取 leader below is red.
+          These three had been recoloured to dark grey / green by hand. */}
+      <div className="gl-dot" style={{ left: px(507), top: px(432) }} /><div className="gl-line" style={{ left: px(308), top: px(437), width: px(203) }} />
       <div style={{ position: 'absolute', left: px(96), top: px(408), width: px(208), textAlign: 'right', color: '#292924', fontSize: '16px', fontWeight: 500, lineHeight: 1.55 }}><p>已领取：盖「已领取」印章，</p><p>状态不可误读</p></div>
       <div className="gl-dot gl-dot-red" style={{ left: px(512), top: px(255) }} /><div className="gl-line gl-line-red" style={{ left: px(308), top: px(261), width: px(204) }} />
       <p style={{ position: 'absolute', left: px(63), top: px(247), color: '#e0492f', fontSize: '16px', fontWeight: 500, lineHeight: 1.55 }}>可领取：金色「领取」按钮 + 红点</p>
-      <div className="gl-dot" style={{ left: px(665), top: px(272), background: '#2aa86a' }} /><div className="gl-line" style={{ left: px(668), top: px(277), width: px(323), background: 'rgba(42,168,106,0.45)' }} />
+      {/* Figma 9817:13101 */}
+      <div className="gl-dot" style={{ left: px(665), top: px(272) }} /><div className="gl-line" style={{ left: px(668), top: px(277), width: px(323) }} />
       <p style={{ position: 'absolute', left: px(999), top: px(266), width: px(176), color: '#292924', fontSize: '16px', fontWeight: 500, lineHeight: 1.55 }}>「当前」绿标，自己段位永远置顶</p>
-      <div className="gl-dot" style={{ left: px(794), top: px(611), background: '#2aa86a' }} /><div className="gl-line" style={{ left: px(800), top: px(616), width: px(191), background: 'rgba(42,168,106,0.45)' }} />
+      {/* Figma 9817:13104 */}
+      <div className="gl-dot" style={{ left: px(794), top: px(611) }} /><div className="gl-line" style={{ left: px(800), top: px(616), width: px(191) }} />
       <div style={{ position: 'absolute', left: px(999), top: px(602), color: '#292924', fontSize: '16px', fontWeight: 500, lineHeight: 1.55 }}><p>奖励均以邮件形式发放 ，</p><p> 结算统一、不打断当前操作</p></div>
       <RatCardL left={96} top={740} zh="识别优于回忆" en="RECOGNITION" body="打开即见「当前」绿标置顶，玩家不需要记住、也不需要寻找自己所在的段位。" />
       <RatCardL left={464} top={740} zh="期望管理" en="EXPECTATION" body="高档奖励提前可见——先看见想要的，再用积分一步步去兑现。" />
@@ -498,9 +525,14 @@ function S5E() {
       {/* self-row highlight */}
       <div style={{ position: 'absolute', left: px(571.75), top: px(578.3), width: px(514), height: px(44), border: '2px dashed #e0492f', borderRadius: '6px' }} />
       {/* annotations (leaders) */}
-      <div className="gl-dot" style={{ left: px(537), top: px(296), background: '#2aa86a' }} /><div className="gl-vline" style={{ left: px(541), top: px(301), height: px(105), background: 'rgba(42,168,106,0.45)' }} />
+      {/* Figma 9817:13172 runs 366→589, i.e. 47px past the dot; trimmed to stop at the dot
+          centre, matching the 赛季列表 leader below. (It had also been built as a green
+          vertical line dropping from the dot, which matched nothing in the design.) */}
+      <div className="gl-dot" style={{ left: px(537), top: px(296) }} /><div className="gl-line" style={{ left: px(366), top: px(301), width: px(176) }} />
       <p style={{ position: 'absolute', left: px(110), top: px(290), color: '#292924', fontSize: '16px', fontWeight: 500, lineHeight: 1.55, whiteSpace: 'nowrap' }}>「当前」绿标 — 默认选中当前赛季</p>
-      <div className="gl-dot" style={{ left: px(480.5), top: px(394.8) }} /><div className="gl-vline" style={{ left: px(485), top: px(399), height: px(110) }} />
+      {/* Figma 9817:13151 runs 366→573, i.e. 82px past the dot; trimmed to stop at the
+          dot centre so the leader reads as pointing at the season list. */}
+      <div className="gl-dot" style={{ left: px(480.52), top: px(394.8) }} /><div className="gl-line" style={{ left: px(366), top: px(400), width: px(119.5) }} />
       <div style={{ position: 'absolute', left: px(100), top: px(389) }}>
         <p style={{ color: '#292924', fontSize: '16px', fontWeight: 500, lineHeight: 1.55, whiteSpace: 'nowrap' }}>赛季列表：由新到旧、自上而下排列</p>
         <p style={{ color: '#6f6754', fontSize: '16px', lineHeight: 1.55, whiteSpace: 'nowrap' }}>历史赛季可回看，但近的永远更近</p>
@@ -527,12 +559,14 @@ function S5F() {
       <ScreenHead no="06" title="荣誉沉淀 —— 每一季都值得被陈列" dark />
       <div className="gl-shot" style={{ left: px(96), top: px(200), width: px(790), height: px(444), borderRadius: '10px', boxShadow: '0 12px 36px rgba(0,0,0,0.45)' }}><Img k="s5f" /></div>
       <p style={{ position: 'absolute', left: px(96), top: px(658), color: '#8d99a8', fontSize: '16px', whiteSpace: 'nowrap' }}>▲ 荣耀赛季荣誉界面（交互稿原图）</p>
-      {/* annotations w/ vertical leaders */}
-      <div className="gl-dot" style={{ left: px(294), top: px(234) }} /><div className="gl-vline" style={{ left: px(298), top: px(239), height: px(616) }} />
+      {/* Figma 9817:13195/13192/13189/13200 — all four leaders are horizontal, running
+          right to the copy column at x≈917. The first three had the Figma lengths applied
+          as vline heights instead, so they hung down from the dots. */}
+      <div className="gl-dot" style={{ left: px(294), top: px(234) }} /><div className="gl-line" style={{ left: px(301), top: px(239), width: px(616) }} />
       <p style={{ position: 'absolute', left: px(926), top: px(227), width: px(300), color: '#f4efe3', fontSize: '16px', fontWeight: 500, lineHeight: 1.55 }}>「当前」标记 — 进行中的赛季同样在列</p>
-      <div className="gl-dot" style={{ left: px(666), top: px(263) }} /><div className="gl-vline" style={{ left: px(670), top: px(268), height: px(243) }} />
+      <div className="gl-dot" style={{ left: px(666), top: px(263) }} /><div className="gl-line" style={{ left: px(666), top: px(268), width: px(250.3) }} />
       <p style={{ position: 'absolute', left: px(926), top: px(254), width: px(260), color: '#f4efe3', fontSize: '16px', fontWeight: 500, lineHeight: 1.55 }}>赛季由新到旧 · 从左到右</p>
-      <div className="gl-dot" style={{ left: px(637), top: px(455) }} /><div className="gl-vline" style={{ left: px(641), top: px(460), height: px(274) }} />
+      <div className="gl-dot" style={{ left: px(637), top: px(455) }} /><div className="gl-line" style={{ left: px(642), top: px(460), width: px(274.3) }} />
       <div style={{ position: 'absolute', left: px(926), top: px(444), width: px(360) }}>
         <p style={{ color: '#f4efe3', fontSize: '16px', fontWeight: 500, lineHeight: 1.55 }}>各赛季结束时的最终段位 — 徽章永久定格</p>
         <p style={{ color: '#8d99a8', fontSize: '16px', lineHeight: 1.55 }}>打到哪一段，墙上就挂哪一枚</p>
@@ -668,9 +702,19 @@ function S7() {
         </div>
       ))}
       <p className="gl-serif" style={{ position: 'absolute', left: px(96), top: px(630), color: '#12151b', fontSize: '21px', fontWeight: 700, whiteSpace: 'nowrap' }}>参考 ·《王者荣耀》王者段位徽章焕新</p>
-      <div className="gl-shot" style={{ left: px(96), top: px(676), width: px(436), height: px(200), border: '1px solid rgba(18,21,27,0.2)', borderRadius: '10px', boxShadow: '0 10px 26px rgba(0,0,0,0.22)' }}><Img k="s7_a" /></div>
-      <div className="gl-shot" style={{ left: px(534), top: px(676), width: px(324), height: px(200), border: '1px solid rgba(18,21,27,0.12)', borderRadius: '8px' }}><Img k="s7_b" /></div>
-      <div className="gl-shot" style={{ left: px(860), top: px(676), width: px(318), height: px(200), border: '1px solid rgba(18,21,27,0.12)', borderRadius: '8px' }}><Img k="s7_b" /></div>
+      {/* Figma 9817:13364-13366. s7_b.webp (590x752) holds BOTH badge rows stacked;
+          13365 crops to the top row (0-24 / 25-49星), 13366 to the bottom row
+          (50-99 / 100星+). `object-fit: cover` centred both on the same middle
+          band, so the two panels rendered identical content. */}
+      <div className="gl-shot" style={{ left: px(96), top: px(676), width: px(436), height: px(200), border: '1px solid rgba(18,21,27,0.2)', borderRadius: '10px', boxShadow: '0 10px 26px rgba(0,0,0,0.22)' }}>
+        <img src={A.s7_a} alt="王者段位徽章焕新" loading="lazy" decoding="async" style={{ position: 'absolute', height: '118.06%', width: '102%', left: '-0.91%', top: '-0.1%', maxWidth: 'none', objectFit: 'fill' }} />
+      </div>
+      <div className="gl-shot" style={{ left: px(534), top: px(676), width: px(324), height: px(200), border: '1px solid rgba(18,21,27,0.12)', borderRadius: '8px' }}>
+        <img src={A.s7_b} alt="最强王者 / 传奇王者" loading="lazy" decoding="async" style={{ position: 'absolute', height: '207.94%', width: '100.76%', left: '-0.71%', top: '-2.65%', maxWidth: 'none', objectFit: 'fill' }} />
+      </div>
+      <div className="gl-shot" style={{ left: px(860), top: px(676), width: px(318), height: px(200), border: '1px solid rgba(18,21,27,0.12)', borderRadius: '8px' }}>
+        <img src={A.s7_b} alt="荣耀王者 / 百星王者" loading="lazy" decoding="async" style={{ position: 'absolute', height: '207.94%', width: '102.67%', left: '-1.98%', top: '-105.82%', maxWidth: 'none', objectFit: 'fill' }} />
+      </div>
       <div className="gl-card-light" style={{ left: px(96), top: px(931), width: px(1082), height: px(193) }}>
         <div className="gl-card-left" style={{ background: '#e0492f' }} />
         <p className="gl-serif" style={{ position: 'absolute', left: px(27), top: px(23), color: '#12151b', fontSize: '23px', fontWeight: 700, whiteSpace: 'nowrap' }}>为什么可借鉴</p>
@@ -690,9 +734,14 @@ function S8() {
   return (
     <div className="glory-sec gl-bg-dark" style={{ height: px(400) }}>
       <div style={{ position: 'absolute', left: px(96), top: 0, width: px(1088), height: px(2), background: '#e2b54b' }} />
-      <p className="gl-bebas" style={{ position: 'absolute', left: px(96), top: px(84), fontSize: '101px', letterSpacing: '4px', lineHeight: 1, whiteSpace: 'nowrap', background: 'linear-gradient(90deg,#e2b54b,#f4d98a)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>THANKS FOR WATCHING</p>
+      {/* Figma 9817:13375 is 121 tall for a 101px face, i.e. line-height 1.2. With
+          line-height 1 the half-leading vanished and the wordmark rode 10px high. */}
+      <p className="gl-bebas" style={{ position: 'absolute', left: px(96), top: px(84), fontSize: '101px', letterSpacing: '4px', lineHeight: 1.2, whiteSpace: 'nowrap', background: 'linear-gradient(90deg,#e2b54b,#f4d98a)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>THANKS FOR WATCHING</p>
       <p className="gl-serif" style={{ position: 'absolute', left: px(96), top: px(226), color: '#f4efe3', fontSize: '23px', fontWeight: 700, whiteSpace: 'nowrap' }}>《庆余年》荣耀赛季 · 交互设计</p>
-      <div className="gl-diamond" style={{ left: px(1100), top: px(112), width: px(16), height: px(16), background: '#e0492f' }} />
+      {/* Figma 9817:13377 is the rotated square's bounding box: x 1100, y 120, 22.627 (=16*√2).
+          A 16px box rotated about its centre must therefore sit at 1103.3 / 123.3 — it was
+          at 1100/112, putting the diamond 3.3px left and 11.3px high. */}
+      <div className="gl-diamond" style={{ left: px(1103.3), top: px(123.3), width: px(16), height: px(16), background: '#e0492f' }} />
       {[1060, 1082, 1104].map((x) => (
         <div key={x} style={{ position: 'absolute', left: px(x), top: px(170), width: '6px', height: '6px', borderRadius: '50%', background: '#e2b54b' }} />
       ))}

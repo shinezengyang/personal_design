@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
 import { publicUrl } from '../lib/publicUrl';
 import './StarFigmaCases.css';
 
@@ -77,154 +78,15 @@ function FigmaScaleStage({
   );
 }
 
-/* ─── Navy (MAD Football) assets ─── */
-const navy = {
-  coverBg:       'https://www.figma.com/api/mcp/asset/de6e2718-957b-41db-89da-83c31bf9e0db',
-  coverBadge:    'https://www.figma.com/api/mcp/asset/aaca2a1c-b8d4-46ca-93f9-0a3fe219218a',
-  stadium:       'https://www.figma.com/api/mcp/asset/7a13c869-fe27-4ae7-b56b-1f9eee57f312',
-  iconBg:        'https://www.figma.com/api/mcp/asset/3e7cb266-956d-4db4-8423-d6550a940e9a',
-  iconCircle:    'https://www.figma.com/api/mcp/asset/8102b83a-84af-40cb-baf7-4d4c526cb0ba',
-  iconApp:       'https://www.figma.com/api/mcp/asset/e6c543fb-8847-4554-939a-8ab47510acdd',
-  guide:         'https://www.figma.com/api/mcp/asset/5a1047cc-0f0c-4470-95a9-5b18827a73a4',
-  productBg:     'https://www.figma.com/api/mcp/asset/b8f12a93-9ac0-4a2a-bebc-ff7a38fb747c',
-  productPhone:  'https://www.figma.com/api/mcp/asset/a4cb7f15-956f-487f-8f2a-d3792fc04d85',
-  recommendBg:   'https://www.figma.com/api/mcp/asset/3f2e8801-398b-48bf-9d42-9b2bd454897a',
-  recommendPhone:'https://www.figma.com/api/mcp/asset/4226cc92-b7d5-4dd0-b162-bd00e0e82cf3',
-  mePhones:      'https://www.figma.com/api/mcp/asset/b8df2302-4dc5-4020-b812-e4c339e6d466',
-  rechargeBg:    'https://www.figma.com/api/mcp/asset/ee6cb13a-2095-4a00-a4f7-8b459dfe134c',
-  rechargePhone: 'https://www.figma.com/api/mcp/asset/683e9234-1b1f-46f9-8919-e864ee4b3159',
-  dialogPhone:   'https://www.figma.com/api/mcp/asset/bcd71785-bdc3-4031-a705-256bbd25258c',
-  structChart:   'https://www.figma.com/api/mcp/asset/d80490bb-7c3a-4ad4-82a1-834e3acdd57b',
-  flowChart:     'https://www.figma.com/api/mcp/asset/f170496c-7827-4ed6-a91c-5178b00eb61f',
-  wireframe:     'https://www.figma.com/api/mcp/asset/ee82396f-865e-486c-9a07-26b7c8913c01',
-  endBg:         'https://www.figma.com/api/mcp/asset/929d4786-f554-46a7-89d1-255173226716',
-  endLaptop:     'https://www.figma.com/api/mcp/asset/b689deac-95de-4e48-b812-488209f9fe1c',
-  endIcons:      'https://www.figma.com/api/mcp/asset/67e9975a-c978-40be-bd5b-f3f09745f826',
-  coverPhone:    'https://www.figma.com/api/mcp/asset/b34b3c8f-71c4-4243-b12d-266e13986115',
-};
-
-/* ─── Navy helper components ─── */
-
-function NavyTitle({ x, y, w, align, children }: { x: number; y: number; w: number; align?: 'center' | 'right'; children: React.ReactNode }) {
-  return <div className="navy-sec-title abs" style={{ left: x, top: y, width: w, textAlign: align }}>{children}</div>;
-}
-
-function NavyLabel({ x, y, w, align, children }: { x: number; y: number; w: number; align?: 'center' | 'right'; children: React.ReactNode }) {
-  return <div className="navy-sec-label abs" style={{ left: x, top: y, width: w, textAlign: align }}>{children}</div>;
-}
-
-function NavyDivider({ x, y, w, dots }: { x: number; y: number; w: number; dots: [number, number][] }) {
-  return (
-    <>
-      <div className="navy-divider-line abs" style={{ left: x, top: y, width: w }} />
-      {dots.map(([dx, dy], i) => (
-        <div key={i} className="navy-divider-dot abs" style={{ left: dx, top: dy }} />
-      ))}
-    </>
-  );
-}
-
-function NavyCalloutLine({ x, y, w }: { x: number; y: number; w: number }) {
-  return <div className="navy-callout-line abs" style={{ left: x, top: y, width: w }} />;
-}
-
-/* ─── NavyTrialCase (MAD Football App) ─── */
-
-function NavyTrialCase() {
-  const W = 2480;
-  const totalH = 34946;
-
-  return (
-    <div className="star-case-page">
-      <FigmaScaleStage width={W} height={totalH} className="navy-stage">
-
-        {/* ── Cover (y=0, h=2318) ── */}
-        <img src={navy.coverBg} className="abs" style={{ left: 0, top: 0, width: 2480, height: 1655 }} />
-        <div className="navy-cover-badge abs" style={{ left: 60, top: 49, width: 596, height: 207 }}>
-          <span>My Production<br />我的作品</span>
-        </div>
-        <img src={navy.coverBadge} className="abs" style={{ left: 1994, top: 1187, width: 286, height: 351 }} />
-        <div className="navy-cover-intro abs" style={{ left: 219, top: 1763, width: 2043 }}>
-          通过调查了解，许多球友对于比赛结果推断不准，导致足球博彩逢赌必输，即使他们能询问一些看球经验很丰富的老球迷，甚至向专业的分析师请教，但是由于不同的比赛有不同的体制，所以很多情况下是凭借运气来购买足球彩票，运气不好就预测不准，造成了很大的经济损失以及浪费了大量的时间精力，所以，对于一些没有太多时间来分析球赛的球友来说，特别是经验水平不足的新人，这款应用是为了广大球友设计的。
-        </div>
-
-        {/* ── Analyst (y=2555, h=1312) ── */}
-        <img src={navy.stadium} className="abs" style={{ left: 498, top: 2751, width: 1489, height: 1116 }} />
-        <NavyTitle x={0} y={2661} w={2480} align="center">Your Personal Analyst<br />你的私人分析师</NavyTitle>
-
-        {/* ── Icon (y=3788, h=2200) ── */}
-        <img src={navy.iconBg} className="abs" style={{ left: 0, top: 3788, width: 2480, height: 2200 }} />
-        <NavyTitle x={253} y={4197} w={833}>Icon Design<br />图标设计</NavyTitle>
-        <img src={navy.iconCircle} className="abs" style={{ left: 384, top: 4741, width: 678, height: 829 }} />
-        <img src={navy.iconApp} className="abs" style={{ left: 1470, top: 4745, width: 833, height: 833 }} />
-
-        {/* ── Guide (y=6004, h=2146) — composite for 3D perspective cards ── */}
-        <img src={navy.guide} className="abs" style={{ left: 0, top: 6004, width: 2480, height: 2146 }} />
-        <NavyTitle x={290} y={6004} w={1026}>Concise Guide<br />简介引导</NavyTitle>
-
-        {/* ── Product (y=8605, h=1662) ── */}
-        <NavyTitle x={0} y={8607} w={2480} align="center">Product Detail<br />产品细节</NavyTitle>
-        <img src={navy.productBg} className="abs" style={{ left: 0, top: 9031, width: 2480, height: 1236 }} />
-        <img src={navy.productPhone} className="abs navy-phone" style={{ left: 1119, top: 9216, width: 592, height: 916 }} />
-
-        {/* ── Recommend (y=10583, h=3487) ── */}
-        <NavyTitle x={200} y={10622} w={854}>Recommend<br />推荐</NavyTitle>
-        <NavyDivider x={573} y={10761} w={1707} dots={[[554, 10738], [1406, 10738], [2258, 10738]]} />
-        <img src={navy.recommendBg} className="abs" style={{ left: 1101, top: 10896, width: 1379, height: 3060 }} />
-        <img src={navy.recommendPhone} className="abs navy-phone" style={{ left: 1327, top: 11689, width: 773, height: 2332 }} />
-        <NavyLabel x={207} y={11369} w={558}>Forecast<br />预测赛果</NavyLabel>
-        <NavyLabel x={207} y={12027} w={421}>Live<br />实时比赛</NavyLabel>
-
-        {/* ── Me (y=14467, h=2345) ── */}
-        <NavyTitle x={204} y={14467} w={269}>Me<br />我的</NavyTitle>
-        <NavyDivider x={574} y={14624} w={1706} dots={[[555, 14601], [1406, 14601], [2258, 14601]]} />
-        <img src={navy.mePhones} className="abs" style={{ left: 633, top: 14880, width: 1670, height: 1768 }} />
-        <NavyLabel x={1809} y={14904} w={445} align="right">Classify<br />分类</NavyLabel>
-        <NavyCalloutLine x={1424} y={15001} w={347} />
-        <NavyLabel x={204} y={15334} w={421}>Record<br />充值记录</NavyLabel>
-        <NavyCalloutLine x={641} y={15434} w={302} />
-        <NavyLabel x={209} y={16054} w={527}>Invitation<br />邀请码</NavyLabel>
-        <NavyCalloutLine x={645} y={16165} w={328} />
-        <NavyLabel x={1616} y={16455} w={638} align="right">Unlock<br />已解锁的比赛</NavyLabel>
-        <NavyCalloutLine x={1500} y={16538} w={275} />
-
-        {/* ── Recharge (y=17286, h=2147) ── */}
-        <NavyTitle x={151} y={17286} w={660}>Recharge<br />充值</NavyTitle>
-        <NavyDivider x={573} y={17424} w={1707} dots={[[554, 17401], [1405, 17401], [2258, 17401]]} />
-        <img src={navy.rechargeBg} className="abs" style={{ left: 45, top: 17707, width: 2420, height: 1726 }} />
-        <img src={navy.rechargePhone} className="abs navy-phone" style={{ left: 298, top: 17805, width: 1952, height: 1391 }} />
-
-        {/* ── Dialog (y=20051, h=3065) ── */}
-        <NavyTitle x={0} y={20071} w={2480} align="center">Dialog Box Pops Up<br />弹出对话框</NavyTitle>
-        <div className="navy-divider-line abs" style={{ left: 0, top: 20119, width: 2480 }} />
-        <img src={navy.dialogPhone} className="abs navy-phone" style={{ left: 633, top: 20616, width: 1209, height: 2500 }} />
-
-        {/* ── Charts (y=23696, h=7579) ── */}
-        <NavyTitle x={151} y={23694} w={1111}>Structure Chart<br />结构图</NavyTitle>
-        <img src={navy.structChart} className="abs" style={{ left: 2, top: 24178, width: 2480, height: 1402 }} />
-        <NavyTitle x={155} y={26010} w={770}>Flow Chart<br />流程图</NavyTitle>
-        <img src={navy.flowChart} className="abs" style={{ left: 0, top: 26426, width: 2480, height: 400 }} />
-        <NavyTitle x={155} y={27314} w={1172}>Wireframe Chart<br />线框图</NavyTitle>
-        <img src={navy.wireframe} className="abs" style={{ left: 25, top: 27815, width: 2433, height: 3460 }} />
-
-        {/* ── End (y=31852, h=3094) ── */}
-        <img src={navy.endBg} className="abs" style={{ left: 0, top: 31852, width: 2480, height: 1504 }} />
-        <img src={navy.endLaptop} className="abs" style={{ left: 957, top: 32391, width: 765, height: 512 }} />
-        <div className="navy-end-badge abs" style={{ left: 1006, top: 33488, width: 475, height: 143 }} />
-        <NavyTitle x={1080} y={33527} w={350} align="center">ICON</NavyTitle>
-        <div className="navy-divider-line abs" style={{ left: 4, top: 33556, width: 2480 }} />
-        <img src={navy.endIcons} className="abs" style={{ left: 444, top: 33883, width: 1600, height: 379 }} />
-
-      </FigmaScaleStage>
-    </div>
-  );
-}
-
+/* NavyTrialCase used to live here: the original 我为球狂 (MAD Football) page, built
+ * entirely from figma.com/api/mcp/asset URLs. It was superseded by MadCase below
+ * (local assets, exact Figma geometry) and had been unreachable ever since —
+ * renderStarFigmaCase only ever dispatches to MadCase. Removed with its 22 dead
+ * remote URLs and its four Navy* helper components. */
 /* ─── CDST assets ────────────────────────────────────────────────
- * The page remains React/CSS driven. Only the original bitmap assets are
- * referenced here. Stable local files are used where available; the remaining
- * Figma image nodes use the refreshed node-specific URLs instead of one long
- * flattened page screenshot.
+ * The page remains React/CSS driven for the text-heavy sections. The lower
+ * process/prototype/visual sections use local Figma exports so their dense
+ * images, arrows, annotations, and backplates do not depend on expiring URLs.
  */
 const cdst = {
   /* 痛点图标：本地单图资源 */
@@ -247,34 +109,69 @@ const cdst = {
   personaC: publicUrl('/images/xingji/cdst/assets/persona-c.webp'),
   personaD: publicUrl('/images/xingji/cdst/assets/persona-d.webp'),
 
-  /* 产品结构 / 流程：本地单图资源 */
+  /* 产品结构：本地单图资源 */
   struct: publicUrl('/images/xingji/cdst/assets/product-structure.webp'),
-  flow: publicUrl('/images/xingji/cdst/assets/product-flow.webp'),
 
-  /* 交互原型主画面：刷新为 Figma 中对应的独立图片节点 */
-  prototypeSalary: 'https://www.figma.com/api/mcp/asset/82b7305f-e03a-4302-b1be-915e005ea6ed',
-  prototypeTest: 'https://www.figma.com/api/mcp/asset/daf7c77d-efd6-45a7-8deb-2c658c297651',
-  prototypeStatus: 'https://www.figma.com/api/mcp/asset/2d7e0e0f-1305-44a6-8d59-bc86d6129eab',
+  /* UI 视觉：独立手机稿/装饰图分层渲染 */
+  uiVisionHomeExact: publicUrl('/images/xingji/cdst/layers/ui-vision-home-exact.webp?v=figma-9817-19294'),
+  uiVisionLevelExact: publicUrl('/images/xingji/cdst/layers/ui-vision-level-exact.webp?v=figma-9817-19303'),
+  uiVisionOtherExact: publicUrl('/images/xingji/cdst/layers/ui-vision-other-exact.webp?v=figma-9817-19322'),
+  interactionSalaryFlow: publicUrl('/images/xingji/cdst/layers/interaction/salary-flow.webp?v=figma-9817-19270'),
+  interactionSalaryExtraPhone: publicUrl('/images/xingji/cdst/layers/interaction/salary-extra-phone.webp?v=figma-9817-19282'),
+  interactionSalaryBottomStrip: publicUrl('/images/xingji/cdst/layers/interaction/salary-bottom-strip.webp?v=figma-9817-19283'),
+  interactionSalaryArrowCity: publicUrl('/images/xingji/cdst/layers/interaction/salary-arrow-city.svg?v=figma-9817-19274'),
+  interactionSalaryArrowDrag: publicUrl('/images/xingji/cdst/layers/interaction/salary-arrow-drag.webp?v=figma-9817-19278'),
+  interactionSalaryLabelEnter: publicUrl('/images/xingji/cdst/layers/interaction/salary-label-enter.svg?v=figma-9817-19286'),
+  interactionAssessmentFlow: publicUrl('/images/xingji/cdst/layers/interaction/assessment-flow.webp?v=figma-9817-19254'),
+  interactionAssessmentTopStrip: publicUrl('/images/xingji/cdst/layers/interaction/assessment-top-strip.webp?v=figma-9817-19255'),
+  interactionAssessmentSidePhone: publicUrl('/images/xingji/cdst/layers/interaction/assessment-side-phone.webp?v=figma-9817-19256'),
+  interactionAssessmentArrowSwipe: publicUrl('/images/xingji/cdst/layers/interaction/assessment-arrow-swipe.webp?v=figma-9817-19260'),
+  interactionAssessmentArrowDownA: publicUrl('/images/xingji/cdst/layers/interaction/assessment-arrow-down-a.webp?v=figma-9817-19263'),
+  interactionAssessmentArrowDownB: publicUrl('/images/xingji/cdst/layers/interaction/assessment-arrow-down-b.webp?v=figma-9817-19268'),
+  interactionProfileFlow: publicUrl('/images/xingji/cdst/layers/interaction/profile-flow.webp?v=figma-9817-19247'),
+  interactionStatusConsultFlow: publicUrl('/images/xingji/cdst/layers/interaction/status-consult-flow.webp?v=figma-9817-19239'),
+  interactionStatusConsultVerticalBg: publicUrl('/images/xingji/cdst/layers/interaction/status-consult-vertical-bg-dark.webp?v=figma-9817-19242'),
 
-  /* UI 视觉：仍按独立手机稿/装饰图分层渲染 */
-  uiHome1: 'https://www.figma.com/api/mcp/asset/0b5a4c2e-dddc-4db4-8f8e-e82828ce46ce',
-  uiHome2: 'https://www.figma.com/api/mcp/asset/1d0517b5-a46f-46e8-9220-9e779b6391a3',
-  uiStrip: 'https://www.figma.com/api/mcp/asset/2b8ee9a3-f8d1-4a78-9898-1a0672d859a3',
-
-  uiLevelMain: 'https://www.figma.com/api/mcp/asset/847cdc21-c552-4af2-bed7-dc939792733e',
-  uiLevelMid: 'https://www.figma.com/api/mcp/asset/52a9e1f8-f6b9-49cc-bebd-cdd23d2d0378',
-  uiLevelStack1: 'https://www.figma.com/api/mcp/asset/262e6e26-ea0d-44dd-b212-1b03223d7019',
-  uiLevelStack2: 'https://www.figma.com/api/mcp/asset/934ced7a-2e3e-495a-b053-4191706d88b2',
-  uiLevelStack3: 'https://www.figma.com/api/mcp/asset/db116011-d50c-4a76-8417-9d66930f2bd6',
-  uiLevelShadow: 'https://www.figma.com/api/mcp/asset/7e4328c2-3dab-42e4-86f8-ec590510d3cc',
-
-  uiOther1: 'https://www.figma.com/api/mcp/asset/aed443a6-c0ee-4055-a8a4-18c6091fa3ee',
-  uiOther2: 'https://www.figma.com/api/mcp/asset/171d6f41-f3eb-4afd-a028-4813d5ba15da',
-  uiOther3: 'https://www.figma.com/api/mcp/asset/af452cf9-73e2-4907-8b6b-396f237fa345',
-  uiOther4: 'https://www.figma.com/api/mcp/asset/b8a180c6-40f0-4565-b353-545bbb3dab89',
-  uiOther5: 'https://www.figma.com/api/mcp/asset/a67660ff-a852-4840-9cc8-37d11b452b5c',
-  uiOtherStrip: 'https://www.figma.com/api/mcp/asset/6896e592-1c27-4e72-9428-4f6b57ada457',
+  bgStrokeHero: publicUrl('/images/xingji/cdst/bg/stroke-hero.svg'),
+  bgStrokeStandard: publicUrl('/images/xingji/cdst/bg/stroke-standard.svg'),
+  bgStrokeLate: publicUrl('/images/xingji/cdst/bg/stroke-late.svg'),
+  bgStrokeEnd: publicUrl('/images/xingji/cdst/bg/stroke-end.svg'),
 };
+
+const cdstIconAsset = (name: string) => publicUrl(`/images/xingji/cdst/layers/icons/${name}.png?v=figma-9817-19330`);
+
+const cdstUiIconLayers = [
+  ['icon-27', 425, 4, 113, 147],
+  ['icon-10', 834, 15, 137, 127],
+  ['icon-11', 1286, 0, 139, 133],
+  ['icon-12', 0, 2, 143, 151],
+  ['icon-13', 40, 820, 89, 95],
+  ['icon-14', 449, 820, 89, 88],
+  ['icon-15', 858, 818, 89, 88],
+  ['icon-16', 1312, 816, 88, 88],
+  ['icon-17', 21, 317, 134, 134],
+  ['icon-28', 62, 317, 41, 134],
+  ['icon-18', 836, 316, 132, 133],
+  ['icon-19', 1306, 327, 109, 135],
+  ['icon-20', 422, 324, 132, 129],
+  ['icon-22', 455, 592, 74, 88],
+  ['icon-23', 865, 603, 77, 77],
+  ['icon-24', 43, 589, 77, 79],
+  ['icon-25', 1310, 602, 89, 78],
+] as const;
+
+const cdstColorSwatches = [
+  ['swatch-efc28b', '#efc28b', 0, 190, 376, 131, 74, 46, '#fff'],
+  ['swatch-ec965d', '#ec965d', 427, 190, 376, 131, 74, 46, '#fefefe'],
+  ['swatch-7f8bd3', '#7f8bd3', 855, 192, 375, 130, 73, 45, '#fff'],
+  ['swatch-64a6da', '#64a6da', 1281, 192, 375, 130, 76, 45, '#fff'],
+  ['swatch-fb6e5a', '#fb6e5a', 1707, 192, 376, 130, 69, 45, '#fff'],
+  ['swatch-04b77f', '#04b77f', 0, 450, 376, 131, 74, 46, '#fff'],
+  ['swatch-56c1bb', '#56c1bb', 427, 450, 376, 131, 74, 46, '#fefefe'],
+  ['swatch-626a81', '#626a81', 855, 451, 375, 131, 73, 46, '#fff'],
+  ['swatch-fdfdfd', '#fdfdfd', 1281, 451, 375, 131, 87, 46, '#000'],
+  ['swatch-979797', '#979797', 1707, 451, 376, 131, 70, 46, '#fff'],
+] as const;
 
 function CdstCase() {
   const pageRef = useRef<HTMLDivElement | null>(null);
@@ -283,7 +180,7 @@ function CdstCase() {
     const root = pageRef.current;
     if (!root) return;
 
-    const items = Array.from(root.querySelectorAll<HTMLElement>('.cdst-stage > *'));
+    const items = Array.from(root.querySelectorAll<HTMLElement>('.cdst-stage > *:not(.cdst-bg-slab):not(.cdst-section-shield):not(.cdst-interaction-shield):not(.cdst-exact-section):not(.cdst-exact-subsection):not(.cdst-color-swatch):not(.cdst-ui-icon-asset)'));
     items.forEach((item, index) => {
       item.classList.add('cdst-reveal-item');
       item.style.setProperty('--cdst-reveal-delay', `${(index % 6) * 55}ms`);
@@ -320,41 +217,69 @@ function CdstCase() {
     inter: 13826.5,
     visual: 24597.5,
   };
-  /* 交互 sub-block bases (frame y inside 交互) */
-  const I = {
-    salary: SEC.inter + 293,   // 组19  -> 14119.5
-    test: SEC.inter + 3289,    // 组20  -> 17115.5
-    profile: SEC.inter + 5535, // 组21  -> 19361.5
-    status: SEC.inter + 8426,  // 组22  -> 22252.5
-  };
   /* 视觉 sub-block bases (frame y inside 视觉) */
   const V = {
     home: SEC.visual + 280.5,   // 组7  -> 24878
     level: SEC.visual + 1861.5, // 组6  -> 26459
     other: SEC.visual + 4923.5, // 组9  -> 29521
-    icon: SEC.visual + 6321.5,  // 组10 -> 30919
+    icon: SEC.visual + 6446,    // 组10 -> 31043.5
   };
+  const stageHeight = V.icon + 1950;
+  const interactionTop = SEC.inter - 153.5;
+  const bgSlabs = [
+    { src: cdst.bgStrokeHero, left: -260, top: 1411, width: 3000, height: 1490, flip: true },
+    { src: cdst.bgStrokeStandard, left: -260, top: 3908, width: 3000, height: 2013.5 },
+    { src: cdst.bgStrokeStandard, left: -260, top: 7607, width: 3000, height: 2013.5 },
+    { src: cdst.bgStrokeStandard, left: -260, top: 11309, width: 3000, height: 2013.5 },
+    { src: cdst.bgStrokeLate, left: -260, top: 15015, width: 3000, height: 2022.3 },
+    { src: cdst.bgStrokeLate, left: -260, top: 18731, width: 3000, height: 2022.3 },
+    { src: cdst.bgStrokeLate, left: -260, top: 22450, width: 3000, height: 2022.3 },
+    { src: cdst.bgStrokeStandard, left: -260, top: 26104, width: 3000, height: 2013.5 },
+    { src: cdst.bgStrokeEnd, left: -260, top: 31034, width: 3000, height: stageHeight - 31034 },
+  ];
 
   return (
     <div ref={pageRef} className="star-case-page cdst-page">
-      <FigmaScaleStage width={2480} height={33204} className="cdst-stage">
-        {/* ── 头图 hero (y0 h1471) ── */}
-        <img
-          src={publicUrl('/images/xingji/cdst/cdst-hero-cover.webp')}
-          className="abs img-cover"
-          style={{ left: 0, top: 0, width: 2480, height: 1471 }}
-          alt=""
+      <FigmaScaleStage width={2480} height={stageHeight} className="cdst-stage" fitToViewport viewportInset={0}>
+        {bgSlabs.map((slab, index) => (
+          <img
+            key={`${slab.src}-${index}`}
+            src={slab.src}
+            className="abs cdst-bg-slab"
+            style={{
+              left: slab.left,
+              top: slab.top,
+              width: slab.width,
+              height: slab.height,
+              transform: slab.flip ? 'scaleX(-1)' : undefined,
+            }}
+            alt=""
+          />
+        ))}
+        <div
+          className="abs cdst-section-shield"
+          style={{ left: 0, top: SEC.struct - 80, width: 2480, height: SEC.visual - SEC.struct + 80 }}
         />
 
+        {/* ── 头图 hero (y0 h1471) ── */}
+        <div className="abs cdst-hero-cover-frame" style={{ left: 0, top: 0, width: 2480, height: 1471 }}>
+          <img
+            src={publicUrl('/images/xingji/cdst/cdst-hero-cover.webp')}
+            className="abs cdst-hero-cover-img"
+            style={{ left: 0, top: -2, width: 2480, height: 1473 }}
+            alt=""
+          />
+        </div>
+
         {/* ── 项目概括 + 市场分析 (base 1495.5, h1887) ── */}
-        <CdstTitle y={SEC.project} title="项目概括" en="Project Overview" w={337} />
+        <CdstTitle y={SEC.project} title="项目概括" en="Project Overview" w={337} tone="black" />
         <div className="cdst-subtitle blue end" style={{ left: 0, top: SEC.project + 300.5, width: 693 }}>项目介绍 <span>Introduction</span></div>
         <div className="cdst-paragraph black" style={{ left: 210.5, top: SEC.project + 435.5, width: 2060 }}>职力测评(CDST4U)是专门为职场新人提供一战式职业相关能力自测的平台。致力为职场新人提供全方位自测工具，帮助新人建立“知己知彼”的健康职业发展道路。</div>
         <div className="cdst-subtitle blue" style={{ left: 209.5, top: SEC.project + 768.5 }}>市场分析 <span>market analysis</span></div>
         <div className="cdst-paragraph white" style={{ left: 212.5, top: SEC.project + 932.5, width: 1170 }}>经市场调研发现：<br />　　2010-2018年的毕业生人数按照2%-5%的同比增长率逐年增长，近8年间累计毕业生人数达到6526万人。2018年普通高校毕业生人数共计820万人，与2010年相比增长了160万人，再创新高。<br />　　大学生职前教育的主要目标群体为本科毕业生和海归群体，根据2017年中国的本科毕业生和海归学生分别为450万、43万人，以客单价约为4000元来计算，2017年中国的职前教育市场规模约为30亿元。随着我国高校人数的扩招和出国留学热潮，未来职前教育的目标群体将会逐渐扩大，市场规模也将不断攀升。</div>
         <CdstMarketChart left={1378.5} top={SEC.project + 975.5} />
 
-        {/* ── 痛点分析 (base 3695.5, h1373) — all white text ── */}
+        {/* ── 痛点分析 (base 3695.5, h1373) ── */}
         <CdstTitle y={SEC.pain} title="痛点分析" en="User Pain Points’Analysis" w={488} />
         <img src={cdst.pain1} className="abs img-cover" style={{ left: 813.5, top: SEC.pain + 625.5, width: 359, height: 359 }} />
         <img src={cdst.pain2} className="abs img-cover" style={{ left: 1358.5, top: SEC.pain + 669.5, width: 319, height: 319 }} />
@@ -362,8 +287,8 @@ function CdstCase() {
         <img src={cdst.pain3} className="abs img-cover" style={{ left: 1112.5, top: SEC.pain + 863.5, width: 293, height: 293 }} />
         <img src={cdst.pain5} className="abs img-cover" style={{ left: 617.5, top: SEC.pain + 850.5, width: 230, height: 230 }} />
         <div className="pain-text" style={{ left: 975.5, top: SEC.pain + 309.5 }}><b>产业教育分离：</b><br />产教分离导致高校教育和企业需求<br />之间产生的信息差，是大部分大学<br />生职业选择困惑的源头。</div>
-        <div className="pain-text" style={{ left: 198.5, top: SEC.pain + 1061.5 }}><b>就业压力巨大：</b><br />宏观经济下行压力加大和结构性改<br />革产生的行业变化，在一定程度上<br />影响就业形势，就业仍然是社会各<br />方都关注的话题。</div>
-        <div className="pain-text" style={{ left: 1579.5, top: SEC.pain + 1009.5 }}><b>职业规划缺失：</b><br />老师基本都是院党委书记或学工教<br />师，老师们本身就缺少社会上相关<br />职业的经验，当然也就无法给出实<br />际中行业发展、企业概况、岗位要<br />求，只能照本宣科。</div>
+        <div className="pain-text black" style={{ left: 198.5, top: SEC.pain + 1061.5 }}><b>就业压力巨大：</b><br />宏观经济下行压力加大和结构性改<br />革产生的行业变化，在一定程度上<br />影响就业形势，就业仍然是社会各<br />方都关注的话题。</div>
+        <div className="pain-text black" style={{ left: 1579.5, top: SEC.pain + 1009.5 }}><b>职业规划缺失：</b><br />老师基本都是院党委书记或学工教<br />师，老师们本身就缺少社会上相关<br />职业的经验，当然也就无法给出实<br />际中行业发展、企业概况、岗位要<br />求，只能照本宣科。</div>
 
         {/* ── 竞品分析 (base 5500.5, h1719) ── */}
         <CdstTitle y={SEC.comp} title="竞品分析" en="User Pain Points’Analysis" w={488} />
@@ -379,10 +304,17 @@ function CdstCase() {
         <div className="competitor-summary" style={{ left: 1481.5, top: SEC.comp + 345.5, width: 760 }}>
           <span className="cs-title">总结</span>
           <p>四款都是非常成熟的职前教育型产品</p>
-          <p>爱思益是与企业合作进行课程教研，甚至将爱思益课程作为新员工入职培训课，作为合作企业的全新招聘渠道。</p>
-          <p>职业蛙拥有自主研发“在线求职竞争力评估系统”，数据覆盖学员求职全过程的特色。</p>
-          <p>职优你前期在北美独家签约一些高校，成为后续和国内高校合作的背书。</p>
-          <p>职梦师具有通过每周两场免费在线讲座获客，以及付费群体90%是中国留学生的优势。</p>
+          <p>爱思益是与企业合作进行课程教研，</p>
+          <p>甚至将爱思益课程作为新员工入职培</p>
+          <p>训课，作为合作企业的全新招聘渠道。</p>
+          <p>职业蛙拥有自主研发“在线求职竞争</p>
+          <p>力评估系统”，数据覆盖学员求职全</p>
+          <p>过程的特色。</p>
+          <p>职优你前期在北美独家签约一些高校，</p>
+          <p>成为后续和国内高校合作的背书。</p>
+          <p>职梦师具有通过每周两场免费在线讲座获</p>
+          <p>客，以及付费群体90%是中国留学生</p>
+          <p>的优势。</p>
         </div>
 
         {/* ── 用户画像 (base 7540.5, h2789) ── */}
@@ -398,117 +330,55 @@ function CdstCase() {
 
         {/* ── 产品结构 (base 10653.5, h1755) ── */}
         <CdstTitle y={SEC.struct} title="产品结构" en="Product Structure" w={350} />
-        <div className="cdst-paragraph white" style={{ left: 201.5, top: SEC.struct + 249.5, width: 1300 }}>说明：<br />　　该项目共分为小程序-用户端、运营后台系统两部分；<br />　　　本次设计主要针对小程序-用户端展开。</div>
+        <div className="cdst-paragraph white cdst-structure-copy" style={{ left: 201.5, top: SEC.struct + 249.5, width: 1300 }}>说明：<br />　　该项目共分为小程序-用户端、运营后台系统两部分；<br />　　本次设计主要针对小程序-用户端展开。</div>
         <img src={cdst.struct} className="abs img-cover" style={{ left: 198.5, top: SEC.struct + 703.5, width: 2082, height: 1052 }} />
 
         {/* ── 产品流程 (base 12691.5, h819) ── */}
         <CdstTitle y={SEC.flow} title="产品流程" en="Product Flow" w={268} />
         <div className="cdst-paragraph white" style={{ left: 200.5, top: SEC.flow + 256.5, width: 1400, lineHeight: '50px' }}>用户测试与咨询流程</div>
-        <img src={cdst.flow} className="abs img-cover" style={{ left: 199.5, top: SEC.flow + 437.5, width: 2080, height: 382 }} />
+        <CdstProductFlow left={199.5} top={SEC.flow + 437.5} />
 
-        {/* ── 交互原型 (base 13826.5, h10413) ── */}
-        <CdstTitle y={SEC.inter} title="交互原型" en="Interactive Prototype" w={415} />
-
-        {/* 薪资计算器 (组19 base 14119.5) */}
-        <div className="interaction-title" style={{ left: 280.5, top: I.salary - 0.5 }}>|　　薪资计算器　　|<br /><span>用户选择自己所期望的城市、期望的行业、毕业院校、最高学历，系统将估算出用户毕业后大<br />概的工资水平，从而对自身能够有基本的判断，并且了解当地的五险一金情况。</span></div>
-        <img src={cdst.prototypeSalary} className="abs proto img-cover" style={{ left: 292.5, top: I.salary + 248.5, width: 1311, height: 2422 }} />
-        <Anno x={1263} y={I.salary + 437} text="计算该城市的开支" vertical bar={{ dir: 'v', len: 201, at: -20 }} />
-        <Anno x={1190.5} y={I.salary + 750.5} text="进入测试页面" hidden />
-        <Anno x={880.5} y={I.salary + 2111.5} text="计算出最低的薪资水平" black />
-        <Anno x={244} y={I.salary + 2257} text="当地五险一金明细参考" vertical />
-        <Anno x={577} y={I.salary + 2374} text="向下拖动" vertical />
-        <Anno x={829.5} y={I.salary + 2709.5} text="进入职力测评小程序" />
-        <Anno x={306.5} y={I.salary + 2684.5} dim multiline lines={['位置：底部（Home', ' Indicator 上方）', '交互：页面隐出遮罩', '层，底部弹出，可', '手动关闭']} />
-        <Anno x={1625.5} y={I.salary + 1191.5} dim multiline lines={['位置：右部（Home', ' Indicator 上方）', '交互：页面隐出遮罩', '层，向左滑出，点击', '遮罩处操作列表关闭']} />
-
-        {/* 测评 (组20 base 17115.5) */}
-        <div className="interaction-title" style={{ left: 273.5, top: I.test - 0.5 }}>|　　测评　　|<br /><span>了解自己适合的职业、职业竞争力上的优劣势以及自我内心的强度；了解职场社会，发现自我<br />职业道路选择项。借力自测工具，不断开发自己的职业潜能，获得更好的职业生涯。</span></div>
-        <img src={cdst.prototypeTest} className="abs proto img-cover" style={{ left: 199.5, top: I.test + 238.5, width: 1696, height: 1844 }} />
-        <Anno x={533} y={I.test + 336} text="左右滑动" vertical />
-        <Anno x={907} y={I.test + 429} text="向下滑动" vertical />
-        <Anno x={1190.5} y={I.test + 750.5} text="进入测试页面" />
-        <Anno x={1247} y={I.test + 429} text="向下滑动" vertical />
-        <Anno x={667.5} y={I.test + 847.5} text="交互：向下推拉" dim />
-        <Anno x={1936.5} y={I.test + 1849} multiline lines={['点击单选按钮', '位置：底部', '交互：底部弹出']} firstBig />
-
-        {/* 个人资料 (组21 base 19361.5) */}
-        <div className="interaction-title" style={{ left: 284.5, top: I.profile - 0.5 }}>|　　个人资料　　|</div>
-        <CdstProfilePrototype left={281.5} top={I.profile + 131.5} />
-        <Anno x={918.5} y={I.profile + 2593.5} text="滑动按钮" />
-        <Anno x={308.5} y={I.profile + 2565.5} multiline lines={['位置：底部', '交互：页面隐出遮罩', '层，底部弹出，可滚', '动操作列表，点击取', '消关闭(以上与此类页', '面相同的交互一致）']} />
-        <Anno x={1361.5} y={I.profile + 2602.5} multiline lines={['位置：页面中部偏上', '交互：5S后渐隐消失']} />
-
-        {/* 状态 / 咨询 (组22 base 22252.5) */}
-        <div className="interaction-title" style={{ left: 287.5, top: I.status - 0.5 }}>|　　状态　　|<br /><span>选择职业状态</span></div>
-        <img src={cdst.prototypeStatus} className="abs proto img-cover" style={{ left: 235.5, top: I.status + 169.5, width: 1727, height: 1817 }} />
-        <Anno x={1028.5} y={I.status + 127.5} text="交互：向下推拉" dim />
-        <Anno x={1989.5} y={I.status + 510.5} multiline lines={['位置：页面中部', '交互：底部弹出,', '可手动关闭']} />
-        <div className="interaction-title plain" style={{ left: 292.5, top: I.status + 1568.5 }}>|　　咨询　　|</div>
-        <Anno x={226} y={I.status + 1130} text="咨询职前教育心理学导师" vertical black />
+        {/* ── 交互原型 (Figma 9817:19235, y13673 h10800) ── */}
+        <div
+          className="abs cdst-interaction-shield"
+          style={{ left: 0, top: interactionTop, width: 2480, height: 10800 }}
+        />
+        <CdstTitle y={interactionTop + 154} title="交互原型" en="Interactive Prototype" w={350} />
+        <CdstSalaryPrototype top={interactionTop + 446.5} />
+        <CdstAssessmentPrototype top={interactionTop + 3442.5} />
+        <CdstProfileInteraction top={interactionTop + 5688.5} />
+        <CdstStatusConsultPrototype top={interactionTop + 8579.5} />
 
         {/* ── UI视觉 (base 24597.5, h8607) ── */}
         <CdstTitle y={SEC.visual} title="UI视觉" en="UI Vision" w={201} />
         <div className="visual-note" style={{ left: 1527.5, top: SEC.visual + 2498.5, width: 700 }}>统一视觉风格，设计语言营造品牌基调，加强用户对品牌的认知<br /><br />使用层级化的卡片设计，轻量级的设计让用户长时间翻阅不易引起视觉疲劳</div>
 
         {/* 主页形象 (组7 base 24878) */}
-        <div className="visual-label" style={{ left: 286.5, top: V.home }}>—　　主页形象　　—</div>
-        <div className="cdst-paragraph white" style={{ left: 451.5, top: V.home + 146, width: 1700, lineHeight: '50px' }}>创建了一套合理的网络系统和界面规范，来增强软件扩展和统一性</div>
-        <img src={cdst.uiStrip} className="abs img-cover" style={{ left: 147.5, top: V.home + 1407, width: 1696, height: 294, opacity: .5 }} />
-        <img src={cdst.uiStrip} className="abs img-cover" style={{ left: 680.5, top: V.home + 1496, width: 1696, height: 294, opacity: .5 }} />
-        <img src={cdst.uiHome1} className="abs phone-hero img-cover" style={{ left: 504.68, top: V.home + 271.97, width: 920.79, height: 1011.46 }} />
-        <img src={cdst.uiHome2} className="abs phone-hero img-cover" style={{ left: 979.32, top: V.home + 366.45, width: 918.29, height: 1010.14 }} />
+        <img src={cdst.uiVisionHomeExact} className="abs cdst-exact-subsection" style={{ left: 148, top: V.home, width: 2229, height: 1566 }} alt="" />
 
         {/* 层级页面 (组6 base 26459) */}
-        <div className="visual-label dark" style={{ left: 271.5, top: V.level }}>—　　层级页面　　—</div>
-        <img src={cdst.uiLevelShadow} className="abs img-cover" style={{ left: 269.5 + 549, top: V.level + 1524 + 811, width: 1346, height: 408, opacity: .9 }} />
-        <img src={cdst.uiLevelMain} className="abs phone-hero img-cover" style={{ left: 269.5 + 90, top: V.level + 147, width: 497, height: 1243 }} />
-        <img src={cdst.uiLevelMid} className="abs phone-hero img-cover" style={{ left: 269.5 + 627, top: V.level + 372, width: 451, height: 1019 }} />
-        <img src={cdst.uiLevelStack3} className="abs phone-hero img-cover" style={{ left: 269.5 + 549 + 0.47, top: V.level + 1524 + 140.99, width: 488.53, height: 1070.01 }} />
-        <img src={cdst.uiLevelStack2} className="abs phone-hero img-cover" style={{ left: 269.5 + 549 + 347.6, top: V.level + 1524 + 80, width: 484.4, height: 1064 }} />
-        <img src={cdst.uiLevelStack1} className="abs phone-hero img-cover" style={{ left: 269.5 + 549 + 673.74, top: V.level + 1524, width: 486.26, height: 1072 }} />
+        <img src={cdst.uiVisionLevelExact} className="abs cdst-exact-subsection" style={{ left: 270, top: V.level, width: 1898, height: 2910 }} alt="" />
 
-        {/* 其他界面 (组9 base 29521) */}
-        <div className="visual-label" style={{ left: 272.5 + 14, top: V.other }}>—　　其他界面　　—</div>
-        <img src={cdst.uiOtherStrip} className="abs img-cover" style={{ left: 272.5, top: V.other + 948, width: 1931, height: 308, opacity: .9 }} />
-        <img src={cdst.uiOther1} className="abs phone-hero img-cover" style={{ left: 272.5, top: V.other + 255, width: 371, height: 801 }} />
-        <img src={cdst.uiOther2} className="abs phone-hero img-cover" style={{ left: 272.5 + 361, top: V.other + 224, width: 405, height: 875 }} />
-        <img src={cdst.uiOther3} className="abs phone-hero img-cover" style={{ left: 272.5 + 741, top: V.other + 161, width: 447, height: 966 }} />
-        <img src={cdst.uiOther4} className="abs phone-hero img-cover" style={{ left: 272.5 + 1163, top: V.other + 210, width: 412, height: 891 }} />
-        <img src={cdst.uiOther5} className="abs phone-hero img-cover" style={{ left: 272.5 + 1561, top: V.other + 259, width: 370, height: 800 }} />
+        {/* 其他界面 (Figma 9817:19322) */}
+        <img src={cdst.uiVisionOtherExact} className="abs cdst-exact-subsection" style={{ left: 170, top: V.other, width: 2311, height: 1346 }} alt="" />
 
         {/* ICON & 配色 (组10 base 30919) */}
         <div className="visual-label" style={{ left: 197.5 + 902, top: V.icon }}>ICONH&amp;配色</div>
-        {/* icon glyph cluster (组15 @ left 333, top 771 within 组10) */}
-        {([
-          ['30862268-fbae-4a0f-8f22-334e8440de2d', 425, 4, 113, 147],
-          ['f99cf099-573a-4fe3-81b0-24528244e2a0', 834, 15, 137, 127],
-          ['023b802d-0e4b-4f98-9129-6fdb5878a954', 1286, 0, 139, 133],
-          ['d58cf41b-cdc0-4dad-b1c4-572769b29286', 0, 2, 143, 151],
-          ['e6c210b6-61fe-4c11-81e9-f6dec65b898c', 40, 820, 89, 95],
-          ['8fc48c89-0ca0-44d0-9a77-85ee46a10cd5', 449, 820, 89, 88],
-          ['557718d3-d1d4-403a-bbab-5a00b1c6114d', 858, 818, 89, 88],
-          ['6f32134c-eb2b-4651-8a4e-ad428835f6d3', 1312, 816, 88, 88],
-          ['fddb2a45-552a-4c22-b178-3146773dc26c', 21, 317, 134, 134],
-          ['b7472369-928b-4db5-a630-35056844a323', 62, 317, 41, 134],
-          ['accdb998-633a-4e8f-a659-5a1f25974a86', 836, 316, 132, 133],
-          ['50a0d443-65a7-4bcd-9102-8b0d7c5f4f36', 1306, 327, 109, 135],
-          ['ada66750-7c9a-457b-8f54-4e59dcc4c45a', 422, 324, 132, 129],
-          ['1627e91b-031c-4cad-b2cb-4e18de2c7e01', 455, 592, 74, 88],
-          ['5cafb531-e97b-4836-a0e6-7a950915acf1', 865, 603, 77, 77],
-          ['73ba1c0b-a4dc-427a-b828-1e8071c35f3c', 43, 589, 77, 79],
-          ['dc29857d-f17e-4b4c-bce4-e2a96f6871bc', 1310, 602, 89, 78],
-        ] as [string, number, number, number, number][]).map(([id, ix, iy, iw, ih], iconIndex) => (
-          <span key={id} className="abs cdst-symbol-icon"
-            style={{ left: 530.5 + ix, top: V.icon + 771 + iy, width: iw, height: ih }}>
-            {['◇', '○', '△', '＋'][iconIndex % 4]}
+        {cdstColorSwatches.map(([asset, label, x, y, w, h, textX, textY, color]) => (
+          <span key={asset} className="abs cdst-color-swatch" style={{ left: 197.5 + x, top: V.icon + y, width: w, height: h }}>
+            <img src={cdstIconAsset(asset)} className="abs img-fill" alt="" />
+            <span className="abs cdst-color-label" style={{ left: textX, top: textY, color }}>{label}</span>
           </span>
         ))}
-        <div className="color-grid" style={{ left: 197.5, top: V.icon + 190 }}>
-          {[
-            ['#efc28b', '#fff'], ['#ec965d', '#fefefe'], ['#7f8bd3', '#fff'], ['#64a6da', '#fff'], ['#fb6e5a', '#fff'],
-            ['#04b77f', '#fff'], ['#56c1bb', '#fefefe'], ['#626a81', '#fff'], ['#fdfdfd', '#111'], ['#979797', '#fff'],
-          ].map(([bg, fg]) => <span key={bg} style={{ background: bg, color: fg }}>{bg}</span>)}
-        </div>
+        {cdstUiIconLayers.map(([asset, ix, iy, iw, ih]) => (
+          <img
+            key={asset}
+            src={cdstIconAsset(asset)}
+            className="abs cdst-ui-icon-asset"
+            style={{ left: 197.5 + 333 + ix, top: V.icon + 771 + iy, width: iw, height: ih }}
+            alt=""
+          />
+        ))}
       </FigmaScaleStage>
     </div>
   );
@@ -539,18 +409,290 @@ const profilePhones = [
   { x: 815, y: 1826, screen: 'profileToast', mark: 'none' },
 ] as const;
 
+const salaryPhones = [
+  { x: 0, y: 0, screen: 'salaryCalc', mark: 'mid' },
+  { x: 300, y: 0, screen: 'cityList', mark: 'bottom' },
+  { x: 600, y: 0, screen: 'citySearch', mark: 'bottom' },
+  { x: 900, y: 0, screen: 'salaryCalcCity', mark: 'mid' },
+  { x: 0, y: 610, screen: 'industryList', mark: 'mid' },
+  { x: 300, y: 610, screen: 'salaryCalcCity', mark: 'mid' },
+  { x: 600, y: 610, screen: 'cityList', mark: 'bottom' },
+  { x: 900, y: 610, screen: 'citySearch', mark: 'bottom' },
+  { x: 0, y: 1214, screen: 'cityOverlay', dimmed: true, mark: 'none' },
+  { x: 300, y: 1214, screen: 'salaryCalcIndustry', mark: 'mid' },
+  { x: 600, y: 1214, screen: 'profileSchool', mark: 'bottom' },
+  { x: 900, y: 1214, screen: 'profileYearDone', mark: 'mid' },
+  { x: 0, y: 1935, screen: 'profileBottomPicker', dimmed: true, mark: 'none' },
+  { x: 300, y: 1935, screen: 'profileSwitchOff', mark: 'switch' },
+  { x: 600, y: 1935, screen: 'industryTiles', mark: 'top' },
+] as const;
+
+const assessmentPhones = [
+  { x: 0, y: 0, screen: 'assessmentHome', mark: 'mid' },
+  { x: 320, y: 0, screen: 'assessmentHomeActive', mark: 'mid' },
+  { x: 640, y: 0, screen: 'assessmentList', mark: 'bottom' },
+  { x: 960, y: 0, screen: 'assessmentList', mark: 'bottom' },
+  { x: 1280, y: 0, screen: 'assessmentArticle', mark: 'mid' },
+  { x: 0, y: 665, screen: 'assessmentTiles', mark: 'mid' },
+  { x: 320, y: 665, screen: 'assessmentTiles', mark: 'mid' },
+  { x: 640, y: 665, screen: 'assessmentArticle', mark: 'bottom' },
+  { x: 960, y: 665, screen: 'reportList', mark: 'bottom' },
+  { x: 0, y: 1288, screen: 'reportList', mark: 'bottom' },
+  { x: 320, y: 1288, screen: 'assessmentArticle', mark: 'mid' },
+  { x: 640, y: 1288, screen: 'assessmentQuestion', mark: 'mid' },
+  { x: 960, y: 1288, screen: 'assessmentQuestionOpen', mark: 'mid' },
+  { x: 1280, y: 1288, screen: 'assessmentQuestion', mark: 'mid' },
+] as const;
+
+const statusConsultPhones = [
+  { x: 0, y: 0, screen: 'industryTiles', mark: 'mid' },
+  { x: 320, y: 0, screen: 'statusList', mark: 'mid' },
+  { x: 640, y: 0, screen: 'assessmentArticle', mark: 'bottom' },
+  { x: 960, y: 0, screen: 'assessmentQuestionOpen', mark: 'mid' },
+  { x: 1280, y: 0, screen: 'assessmentQuestion', mark: 'mid' },
+  { x: 320, y: 1400, screen: 'consultAbout', mark: 'bottom' },
+  { x: 640, y: 1400, screen: 'consultCategories', mark: 'bottom' },
+  { x: 960, y: 1400, screen: 'consultOnline', mark: 'bottom' },
+  { x: 1280, y: 1400, screen: 'blankConsult', mark: 'none' },
+] as const;
+
+type CdstPhoneScreen =
+  | (typeof profilePhones)[number]['screen']
+  | (typeof salaryPhones)[number]['screen']
+  | (typeof assessmentPhones)[number]['screen']
+  | (typeof statusConsultPhones)[number]['screen'];
+
+function CdstProductFlow({ left, top }: { left: number; top: number }) {
+  const nodes = [
+    { kind: 'rect', x: 0, y: 112, w: 120, h: 64, label: '用户' },
+    { kind: 'rect', x: 246, y: 112, w: 120, h: 64, label: '职力测评', accent: true },
+    { kind: 'rect', x: 0, y: 252, w: 120, h: 64, label: '薪资计算器' },
+    { kind: 'rect', x: 246, y: 252, w: 120, h: 64, label: '方案分析' },
+    { kind: 'para', x: 470, y: 86, w: 160, h: 92, label: '选择兴趣\n项目类型' },
+    { kind: 'diamond', x: 745, y: 92, w: 132, h: 132, label: '是否做测试' },
+    { kind: 'para', x: 745, y: 248, w: 160, h: 94, label: '选择感兴趣\n的职业话题' },
+    { kind: 'rect', x: 1032, y: 112, w: 120, h: 64, label: '微信登录' },
+    { kind: 'rect', x: 1243, y: 112, w: 120, h: 64, label: '开始测试', accent: true },
+    { kind: 'rect', x: 1465, y: 112, w: 120, h: 64, label: '查看报告' },
+    { kind: 'diamond', x: 1703, y: 92, w: 132, h: 132, label: '是否咨询' },
+    { kind: 'rect', x: 1946, y: 112, w: 120, h: 64, label: '职业咨询', accent: true },
+    { kind: 'rect', x: 1032, y: 252, w: 120, h: 64, label: '填资料' },
+    { kind: 'rect', x: 1243, y: 252, w: 120, h: 64, label: '我的状态' },
+    { kind: 'rect', x: 1465, y: 252, w: 120, h: 64, label: '微信登录' },
+  ] as const;
+  const arrows = [
+    'M120 144H246', 'M120 284H246', 'M306 252V176', 'M366 144H470',
+    'M630 132H745', 'M877 158H1032', 'M1152 144H1243', 'M1363 144H1465',
+    'M1585 144H1703', 'M1835 158H1946', 'M811 224V248', 'M905 294H1032',
+    'M1152 284H1243', 'M1363 284H1465', 'M1585 284H1770V224',
+    'M1784 92V34H575V86', 'M1770 92V34H811',
+  ];
+
+  return (
+    <svg className="abs cdst-product-flow" style={{ left, top }} viewBox="0 0 2080 382" aria-label="用户测试与咨询流程">
+      <defs>
+        <marker id="cdst-flow-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <path d="M0 0L10 5L0 10Z" />
+        </marker>
+      </defs>
+      {arrows.map((path) => <path key={path} className="cdst-flow-line" d={path} />)}
+      <text className="cdst-flow-decision-label" x="944" y="132">是</text>
+      <text className="cdst-flow-decision-label" x="811" y="238">否</text>
+      <text className="cdst-flow-decision-label" x="1814" y="132">是</text>
+      <text className="cdst-flow-decision-label" x="1268" y="22">否</text>
+      {nodes.map((node) => (
+        <g key={`${node.label}-${node.x}-${node.y}`} className={`cdst-flow-node${'accent' in node && node.accent ? ' is-accent' : ''}`}>
+          {node.kind === 'diamond' ? (
+            <polygon points={`${node.x + node.w / 2},${node.y} ${node.x + node.w},${node.y + node.h / 2} ${node.x + node.w / 2},${node.y + node.h} ${node.x},${node.y + node.h / 2}`} />
+          ) : node.kind === 'para' ? (
+            <polygon points={`${node.x + 30},${node.y} ${node.x + node.w},${node.y} ${node.x + node.w - 30},${node.y + node.h} ${node.x},${node.y + node.h}`} />
+          ) : (
+            <rect x={node.x} y={node.y} width={node.w} height={node.h} rx="4" />
+          )}
+          <text x={node.x + node.w / 2} y={node.y + node.h / 2}>
+            {node.label.split('\n').map((line, index, arr) => (
+              <tspan key={line} x={node.x + node.w / 2} dy={index === 0 ? `${(1 - arr.length) * 13}px` : '26px'}>{line}</tspan>
+            ))}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+function CdstSalaryPrototype({ top }: { top: number }) {
+  return (
+    <div className="abs cdst-salary-prototype cdst-interaction-code" style={{ left: 0.5, top }}>
+      <div className="interaction-title cdst-salary-copy" style={{ left: 280.5, top: 0.5 }}>
+        <p>|&nbsp;&nbsp;&nbsp;&nbsp;薪资计算器&nbsp;&nbsp;&nbsp;&nbsp;|</p>
+        <span>用户选择自己所期望的城市、期望的行业、毕业院校、最高学历，系统将估算出用户毕业后大</span>
+        <span>概的工资水平，从而对自身能够有基本的判断，并且了解当地的五险一金情况。</span>
+      </div>
+      <CdstSalaryPhoneFlow left={292.5} top={248.5} />
+      <img src={cdst.interactionSalaryArrowCity} className="abs cdst-interaction-asset" style={{ left: 1250.5, top: 420.5, width: 46, height: 201 }} alt="" />
+      {/* Figma 9817:19275 — the text node's own frame, not the 9817:19273 group box */}
+      <div className="cdst-interaction-note vertical" style={{ left: 1263, top: 437 }}>
+        <span>计算该城市的开支</span>
+      </div>
+      <div className="cdst-interaction-note vertical" style={{ left: 244, top: 2257 }}>
+        <span>当地五险一金明细参考</span>
+      </div>
+      <img src={cdst.interactionSalaryArrowDrag} className="abs cdst-interaction-asset" style={{ left: 573.5, top: 2366.5, width: 30, height: 100 }} alt="" />
+      {/* Figma 9817:19279 */}
+      <div className="cdst-interaction-note vertical" style={{ left: 577, top: 2374 }}>
+        <span>向下拖动</span>
+      </div>
+      {/* Figma draws this plate white with dark text (矩形 5), but every label on a
+          connector line is dark-plate/white-text here, so it uses .dark-label like the rest. */}
+      <div className="cdst-interaction-note dark-label" style={{ left: 864.5, top: 2099.5, width: 256, height: 41 }}>
+        计算出最低的薪资水平
+      </div>
+      <img src={cdst.interactionSalaryLabelEnter} className="abs cdst-interaction-asset" style={{ left: 814.5, top: 2700.5, width: 228, height: 44 }} alt="" />
+      <div className="cdst-interaction-note" style={{ left: 829.5, top: 2709.5 }}>
+        进入职力测评小程序
+      </div>
+      <div className="cdst-interaction-side-note" style={{ left: 1625.5, top: 1191.5 }}>
+        <p>位置：右部（Home</p>
+        <p>Indicator 上方）</p>
+        <p>&nbsp;</p>
+        <p>交互：页面隐出遮罩</p>
+        <p>层，向左滑出，点击</p>
+        <p>遮罩处操作列表关闭</p>
+      </div>
+      <div className="cdst-interaction-side-note" style={{ left: 306.5, top: 2684.5 }}>
+        <p>位置：底部（Home</p>
+        <p>Indicator 上方）</p>
+        <p>&nbsp;</p>
+        <p>交互：页面隐出遮罩</p>
+        <p>层，底部弹出，可</p>
+        <p>手动关闭</p>
+      </div>
+    </div>
+  );
+}
+
+function CdstAssessmentPrototype({ top }: { top: number }) {
+  return (
+    <div className="abs cdst-assessment-prototype cdst-interaction-code" style={{ left: 0.5, top }}>
+      <div className="interaction-title cdst-assessment-copy" style={{ left: 273.5, top: -0.5 }}>
+        <p>|&nbsp;&nbsp;&nbsp;&nbsp;测评&nbsp;&nbsp;&nbsp;&nbsp;|</p>
+        <span>了解自己适合的职业、职业竞争力上的优劣势以及自我内心的强度；了解职场社会，发现自我</span>
+        <span>职业道路选择项。借力自测工具，不断开发自己的职业潜能，获得更好的职业生涯。</span>
+      </div>
+      <CdstAssessmentPhoneFlow left={199.5} top={238.5} />
+      {/* Figma 9817:19260 renders this 37x96 and *then* rotates -90deg, landing on 96x37.
+          The pre-rotation box goes here; centred rotation shifts it by ±29.5 to sit at 531,328. */}
+      <img src={cdst.interactionAssessmentArrowSwipe} className="abs cdst-interaction-asset rotate-neg-90" style={{ left: 560.5, top: 298.5, width: 37, height: 96 }} alt="" />
+      {/* Notes below sit at their own Figma text-node frames (9817:19261 / 19264 / 19269 / 10312:1998),
+          not at the enclosing group boxes the arrows use. */}
+      <div className="cdst-interaction-note" style={{ left: 534, top: 336 }}>左右滑动</div>
+      <img src={cdst.interactionAssessmentArrowDownA} className="abs cdst-interaction-asset" style={{ left: 900.5, top: 419.5, width: 37, height: 98 }} alt="" />
+      <div className="cdst-interaction-note vertical" style={{ left: 907, top: 429 }}><span>向下滑动</span></div>
+      <img src={cdst.interactionAssessmentArrowDownB} className="abs cdst-interaction-asset" style={{ left: 1239.5, top: 421.5, width: 37, height: 98 }} alt="" />
+      <div className="cdst-interaction-note vertical" style={{ left: 1247, top: 429 }}><span>向下滑动</span></div>
+      <img src={cdst.interactionAssessmentArrowDownB} className="abs cdst-interaction-asset" style={{ left: 1239.5, top: 1078.5, width: 37, height: 98 }} alt="" />
+      <div className="cdst-interaction-note vertical" style={{ left: 1247, top: 1086 }}><span>向下滑动</span></div>
+      {/* Figma 10312:1999 — plate is 166×39, not the 256×41 default the class assumes */}
+      <div className="cdst-interaction-note dark-label" style={{ left: 1172.5, top: 742.5, width: 166, height: 39 }}>进入测试页面</div>
+      <div className="cdst-interaction-side-note" style={{ left: 1936.5, top: 1849 }}>
+        <p className="large">点击单选按钮</p>
+        <p>&nbsp;</p>
+        <p>位置：底部</p>
+        <p>&nbsp;</p>
+        <p>交互：底部弹出</p>
+      </div>
+      <div className="cdst-interaction-note" style={{ left: 667.5, top: 847.5, opacity: .8 }}>交互：向下推拉</div>
+    </div>
+  );
+}
+
+function CdstProfileInteraction({ top }: { top: number }) {
+  return (
+    <div className="abs cdst-profile-interaction cdst-interaction-code" style={{ left: 0.5, top }}>
+      <div className="interaction-title plain" style={{ left: 284.5, top: -0.5 }}>
+        <p>|&nbsp;&nbsp;&nbsp;&nbsp;个人资料&nbsp;&nbsp;&nbsp;&nbsp;|</p>
+      </div>
+      <CdstProfilePrototype left={281.5} top={131.5} />
+      {/* Figma 10312:2001 — plate is 101×33 */}
+      <div className="cdst-interaction-note dark-label" style={{ left: 912.5, top: 2587.5, width: 101, height: 33 }}>滑动按钮</div>
+      <div className="cdst-interaction-side-note" style={{ left: 308.5, top: 2565.5 }}>
+        <p>位置：底部</p>
+        <p>&nbsp;</p>
+        <p>交互：页面隐出遮罩</p>
+        <p>层，底部弹出，可滚</p>
+        <p>动操作列表，点击取</p>
+        <p>消关闭(以上与此类页</p>
+        <p>面相同的交互一致）</p>
+      </div>
+      <div className="cdst-interaction-side-note" style={{ left: 1361.5, top: 2602.5 }}>
+        <p>位置：页面中部偏上</p>
+        <p>&nbsp;</p>
+        <p>交互：5S后渐隐消失</p>
+      </div>
+    </div>
+  );
+}
+
+function CdstStatusConsultPrototype({ top }: { top: number }) {
+  return (
+    <div className="abs cdst-status-consult-prototype cdst-interaction-code" style={{ left: 0.5, top }}>
+      <div className="interaction-title cdst-status-copy" style={{ left: 287.5, top: -0.5 }}>
+        <p>|&nbsp;&nbsp;&nbsp;&nbsp;状态&nbsp;&nbsp;&nbsp;&nbsp;|</p>
+        <span>选择职业状态</span>
+      </div>
+      <CdstStatusConsultFlow left={235.5} top={169.5} />
+      <img src={cdst.interactionStatusConsultVerticalBg} className="abs cdst-interaction-asset" style={{ left: 218.5, top: 1108.5, width: 38, height: 273 }} alt="" />
+      {/* Figma 9817:19243 — text node, inset from the 9817:19241 backing bar the image above draws.
+          Bar recoloured white -> #141414 so this reads white-on-dark like every other line label. */}
+      <div className="cdst-interaction-note vertical" style={{ left: 226, top: 1130 }}>
+        <span>咨询职前教育心理学导师</span>
+      </div>
+      <div className="interaction-title plain" style={{ left: 292.5, top: 1568.5 }}>
+        <p>|&nbsp;&nbsp;&nbsp;&nbsp;咨询&nbsp;&nbsp;&nbsp;&nbsp;|</p>
+      </div>
+      <div className="cdst-interaction-side-note" style={{ left: 1989.5, top: 510.5 }}>
+        <p>位置：页面中部</p>
+        <p>&nbsp;</p>
+        <p>交互：底部弹出,</p>
+        <p>可手动关闭</p>
+      </div>
+      <div className="cdst-interaction-note" style={{ left: 1028.5, top: 127.5, opacity: .8 }}>交互：向下推拉</div>
+    </div>
+  );
+}
+
 function CdstProfilePrototype({ left, top }: { left: number; top: number }) {
   return (
     <div className="abs cdst-profile-prototype proto" style={{ left, top }}>
-      <svg className="cdst-profile-lines" viewBox="0 0 1999 2476" aria-hidden="true">
-        <path d="M136 112 H232 V436 H360 V514 H660 V436 H792 V214 H918 V514 H1090 V436 H1212 V116 H1350 V514 H1510 V438 H1782 V112 H1872" />
-        <path d="M78 852 H232 V1056 H360 V1130 H660 V1056 H792 V910 H918 V1130 H1090 V1056 H1212 V840 H1350 V1130 H1510 V1056 H1788 V842 H1872" />
-        <path d="M78 1434 H232 V1632 H360 V1718 H660 V1632 H792 V1482 H918 V1718 H1090 V1632 H1212 V1498 H1350 V1718 H1510 V1632 H1788 V1440 H1872" />
-        <path d="M78 2040 H232 V2234 H360 V2314 H660 V2234 H792 V2172 H918 V2314" />
-      </svg>
-      {profilePhones.map((phone, index) => (
-        <CdstPhone key={`${phone.screen}-${index}`} {...phone} />
-      ))}
+      <img src={cdst.interactionProfileFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1999, height: 2476 }} alt="" />
+    </div>
+  );
+}
+
+function CdstAssessmentPhoneFlow({ left, top }: { left: number; top: number }) {
+  return (
+    <div className="abs cdst-assessment-phone-flow proto" style={{ left, top }}>
+      <img src={cdst.interactionAssessmentFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1696, height: 1844 }} alt="" />
+      <img src={cdst.interactionAssessmentTopStrip} className="abs cdst-interaction-asset" style={{ left: 592, top: 337, width: 1020, height: 190 }} alt="" />
+      <img src={cdst.interactionAssessmentSidePhone} className="abs cdst-interaction-asset" style={{ left: 1454, top: 0, width: 240, height: 486 }} alt="" />
+    </div>
+  );
+}
+
+function CdstSalaryPhoneFlow({ left, top }: { left: number; top: number }) {
+  return (
+    <div className="abs cdst-salary-phone-flow proto" style={{ left, top }}>
+      <img src={cdst.interactionSalaryFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1311, height: 2422 }} alt="" />
+      <img src={cdst.interactionSalaryExtraPhone} className="abs cdst-interaction-asset" style={{ left: 683, top: 1935, width: 240, height: 486 }} alt="" />
+      <img src={cdst.interactionSalaryBottomStrip} className="abs cdst-interaction-asset" style={{ left: 463, top: 2389, width: 349, height: 82 }} alt="" />
+    </div>
+  );
+}
+
+function CdstStatusConsultFlow({ left, top }: { left: number; top: number }) {
+  return (
+    <div className="abs cdst-status-consult-flow proto" style={{ left, top }}>
+      <img src={cdst.interactionStatusConsultFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1727, height: 1817 }} alt="" />
     </div>
   );
 }
@@ -626,7 +768,7 @@ function CdstPhone({
 }: {
   x: number;
   y: number;
-  screen: (typeof profilePhones)[number]['screen'];
+  screen: CdstPhoneScreen;
   mark?: 'top' | 'mid' | 'lower' | 'bottom' | 'switch' | 'none';
   dimmed?: boolean;
 }) {
@@ -648,7 +790,150 @@ function CdstPhone({
   );
 }
 
-function PhoneScreen({ type }: { type: (typeof profilePhones)[number]['screen'] }) {
+function PhoneScreen({ type }: { type: CdstPhoneScreen }) {
+  if (type === 'salaryCalc' || type === 'salaryCalcCity' || type === 'salaryCalcIndustry') {
+    return (
+      <>
+        <PhoneHeader title="薪资计算器" />
+        <div className="cdst-salary-form">
+          <SalaryChoice icon="city" label="期望城市" value={type === 'salaryCalc' ? '请选择期望城市' : '北京'} />
+          <SalaryChoice icon="industry" label="期望行业" value={type === 'salaryCalcIndustry' ? '制造' : '请选择期望行业'} />
+          <SalaryChoice icon="school" label="毕业院校" value="请选择毕业院校" />
+          <SalaryChoice icon="degree" label="最高学历" value="请选择最高学历" />
+          <div className="cdst-salary-metrics">
+            <span><b>月度住房开销</b><em>￥ 368</em></span>
+            <span><b>五险一金参考</b><em>￥ 2350</em></span>
+          </div>
+          <button type="button">开始计算</button>
+          <small>此处显示为市场平均水平</small>
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'assessmentHome' || type === 'assessmentHomeActive') {
+    return (
+      <>
+        <PhoneHeader title="职力测评" />
+        <div className="cdst-assessment-home">
+          <div className="cdst-mini-hero">发现你的职业兴趣</div>
+          <div className="cdst-phone-tabs"><span>做测试</span><span>看报告</span><span>填资料</span><span>去咨询</span></div>
+          <b>最新上线</b>
+          <div className="cdst-card-row"><i /><i /><i /></div>
+          <b>热门测试</b>
+          <div className="cdst-card-list"><span /><span /></div>
+          {type === 'assessmentHomeActive' ? <div className="cdst-phone-dim subtle" /> : null}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'assessmentList') {
+    return (
+      <>
+        <PhoneHeader title="职力测评" />
+        <div className="cdst-report-list">
+          {['你适合哪一种工作方式？', '你的职场脑洞有多大？', '你是社交型人才吗？', '你会为了兴趣换方向吗？', '职场小白的你适合什么？'].map((item) => (
+            <div className="cdst-report-row" key={item}><i /><span>{item}</span></div>
+          ))}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'assessmentArticle') {
+    return (
+      <>
+        <PhoneHeader title="职业详情" />
+        <div className="cdst-article-screen">
+          <div className="cdst-article-cover" />
+          <h4>什么职业和你的气质更配？</h4>
+          <button type="button">开始测试</button>
+          <p>职业发展、能力模型和行业信息，帮助用户理解不同方向的真实要求。</p>
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'assessmentQuestion' || type === 'assessmentQuestionOpen') {
+    return (
+      <>
+        <PhoneHeader title="职业测试" />
+        <div className="cdst-question-screen">
+          <h4>最近一题</h4>
+          <div className="cdst-question-panel">
+            {['非常不符合', '不确定', '比较符合', '重要'].map((item, index) => (
+              <span key={item} className={index === 3 ? 'active' : ''}>{item}</span>
+            ))}
+          </div>
+          {type === 'assessmentQuestionOpen' ? <div className="cdst-test-modal"><b>确认提交结果</b><button type="button">确定</button></div> : null}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'assessmentTiles') {
+    return (
+      <>
+        <PhoneHeader title="职业选择" />
+        <div className="cdst-tile-list compact">
+          {['选择期望工作的行业', '选择期望职业状态', '选择测评方向', '进入咨询'].map((item) => (
+            <div className="cdst-blue-tile" key={item}><span>{item}</span><i /></div>
+          ))}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'reportList') {
+    return (
+      <>
+        <PhoneHeader title="全部报告" />
+        <div className="cdst-report-list">
+          {[1, 2, 3, 4, 5, 6, 7].map((item) => (
+            <div className="cdst-report-row" key={item}><i /><span>职场竞争力报告 {item}</span></div>
+          ))}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'statusList') {
+    return (
+      <>
+        <PhoneHeader title="选择职业状态" />
+        <div className="cdst-tile-list compact">
+          {['暂时没想好，什么都看看', '我有想做的，但还不确定', '我很清楚自己要什么', '已经工作了，但不太满意'].map((item) => (
+            <div className="cdst-blue-tile" key={item}><span>{item}</span><i /></div>
+          ))}
+        </div>
+      </>
+    );
+  }
+
+  if (type === 'consultAbout' || type === 'consultCategories' || type === 'consultOnline' || type === 'blankConsult') {
+    return (
+      <>
+        <PhoneHeader title={type === 'blankConsult' ? '职力咨询' : '职业咨询'} />
+        {type === 'blankConsult' ? (
+          <div className="cdst-blank-screen" />
+        ) : type === 'consultAbout' ? (
+          <div className="cdst-consult-copy">
+            <h4>关于我们</h4>
+            <p>提供职业规划、行业认知、求职准备和职场适应相关咨询服务。</p>
+            <p>通过线上问答与导师资源，帮助用户获得可执行建议。</p>
+          </div>
+        ) : (
+          <div className="cdst-report-list">
+            {[1, 2, 3, 4, 5].map((item) => (
+              <div className="cdst-report-row" key={item}><i /><span>{type === 'consultOnline' ? '在线咨询问题' : '浏览类别'} {item}</span></div>
+            ))}
+          </div>
+        )}
+      </>
+    );
+  }
+
   if (type === 'industryTiles') {
     return (
       <>
@@ -800,9 +1085,9 @@ function BottomPicker() {
 }
 
 /* section title — left 199.5, white; gold-teal accent bar above */
-function CdstTitle({ y, title, en, w }: { y: number; title: string; en: string; w?: number }) {
+function CdstTitle({ y, title, en, w, tone }: { y: number; title: string; en: string; w?: number; tone?: 'black' }) {
   return (
-    <div className="cdst-section-title" style={{ top: y, left: 199.5, width: w }}>
+    <div className={`cdst-section-title${tone === 'black' ? ' black' : ''}`} style={{ top: y, left: 199.5, width: w }}>
       <strong>{title}</strong>
       <small>{en}</small>
       <i />
@@ -861,76 +1146,84 @@ function Anno({ x, y, text, lines, vertical = false, black = false, dim = false,
   );
 }
 
-/* ─── MAD assets (我为球狂 / 原型作品, Figma 9434:2339) ─── */
+/* ─── MAD assets (我为球狂 / 原型作品, Figma 9817:19381) ─── */
 const mad = {
-  /* 组 10 — cover */
-  coverBg:        'https://www.figma.com/api/mcp/asset/e9ce4152-571e-40ef-b24f-bd9a6156e1ec',
-  coverSplash:    'https://www.figma.com/api/mcp/asset/f744cad6-c12b-43ea-bc0b-3b6f4ccf741f',
-  coverBadge:     'https://www.figma.com/api/mcp/asset/a688df50-59e8-42ee-8b47-52307259fd45',
-  coverStroke:    'https://www.figma.com/api/mcp/asset/6504e8da-319e-4a45-a6c2-eec7a7d960bc',
-  /* 组 13 — analyst */
-  analyst:        'https://www.figma.com/api/mcp/asset/bd48a412-b20b-4562-884e-ab17d91b6c66',
-  /* 组 12 — icon design */
-  iconBg:         'https://www.figma.com/api/mcp/asset/6c2e90e2-adb0-47fc-a3f7-6fdd27cb377b',
-  iconPlate:      'https://www.figma.com/api/mcp/asset/6e377531-2e4d-4972-8bfe-412ec8ae0301',
-  iconGlyph:      'https://www.figma.com/api/mcp/asset/7f45ea9a-225d-4137-b9b4-6dc39d412a44',
-  iconBig:        'https://www.figma.com/api/mcp/asset/0bbe32f4-007c-44eb-8c4f-5b7116572f73',
-  /* 组 5 — concise guide (4 perspective cards) */
-  guideCard1:     'https://www.figma.com/api/mcp/asset/b3465e13-8578-4f7c-8c14-eae4348e1fdc',
-  guideShot1:     'https://www.figma.com/api/mcp/asset/dae70e5a-cf5c-41f3-b874-e700c19a71ac',
-  guideCard2:     'https://www.figma.com/api/mcp/asset/e78ba632-b93a-4fc5-872e-1d798f97a64f',
-  guideShot2:     'https://www.figma.com/api/mcp/asset/bc07ed99-cf7e-40be-9bcf-75543b7fc1ae',
-  guideCard3:     'https://www.figma.com/api/mcp/asset/d9dfc27f-e9fd-4058-96f9-f0741f84b1aa',
-  guideShot3:     'https://www.figma.com/api/mcp/asset/48786047-6a28-43e7-ad1e-1d8f21a43105',
-  guideCard4:     'https://www.figma.com/api/mcp/asset/99288dfa-3f05-4b52-be0e-2a65d0a26f0a',
-  guideShot4:     'https://www.figma.com/api/mcp/asset/56b15bf8-406c-44a3-b890-355881b52ad8',
-  /* 组 14 — product detail */
-  productBg:      'https://www.figma.com/api/mcp/asset/b9282222-5d6a-4a8e-bb98-45fa4a1a0e86',
-  productPhone:   'https://www.figma.com/api/mcp/asset/230c4b93-f203-47f2-a884-84bba508017f',
-  /* 组 15 — recommend */
-  recommendGlow:  'https://www.figma.com/api/mcp/asset/d161276d-d1e6-4da6-8162-927408f30fe8',
-  recommendPhone: 'https://www.figma.com/api/mcp/asset/d56cf839-bd05-4f6f-a65a-d58f222fc0c6',
-  recDivider:     'https://www.figma.com/api/mcp/asset/fcb59c61-19f5-45c0-b5b2-79018d373c80',
-  recDotL:        'https://www.figma.com/api/mcp/asset/6b71db93-6c06-4fd1-8014-51d478addff7',
-  recDotM:        'https://www.figma.com/api/mcp/asset/8f067e1a-63bf-4b37-8a7a-0241d15cc5fe',
-  recDotR:        'https://www.figma.com/api/mcp/asset/6b65f6b8-a055-480f-a19e-ebf9a573cae7',
-  /* 组 16 — me (cascade of 5 phones + circular zoom callout) */
-  mePhones:       'https://www.figma.com/api/mcp/asset/5600e09e-9a9b-4899-94ff-1fb498a9233c',
-  meDivider:      'https://www.figma.com/api/mcp/asset/2babb377-d79d-46e3-a790-ed8ad7706d8e',
-  meDotL:         'https://www.figma.com/api/mcp/asset/4b26053f-4b25-494e-861f-0355a1fff8cd',
-  meDotM:         'https://www.figma.com/api/mcp/asset/a1dbed91-f324-46dd-a976-70b3b5825d7d',
-  meDotR:         'https://www.figma.com/api/mcp/asset/d4c1e532-06ae-4ba2-8170-f0bebe1ba7e8',
-  /* 组 18 — recharge */
-  rechargeBg:     'https://www.figma.com/api/mcp/asset/fec2adf0-f0f8-425b-87c4-34a36bdfddcf',
-  rechargePhone:  'https://www.figma.com/api/mcp/asset/1613672d-b91c-4574-accb-52b6b096bca1',
-  rcDivider:      'https://www.figma.com/api/mcp/asset/182a4253-c1df-4586-93c7-85e6bce6a0c1',
-  rcDotL:         'https://www.figma.com/api/mcp/asset/8f07fd7d-5a5d-4643-9fd5-94040c025066',
-  rcDotM:         'https://www.figma.com/api/mcp/asset/e403af55-cca6-49a1-b337-76dd36232054',
-  rcDotR:         'https://www.figma.com/api/mcp/asset/d2bffb8d-03d8-400f-a913-f1d22e72996f',
-  /* 组 20 — dialog */
-  dialogPhone:    'https://www.figma.com/api/mcp/asset/e2b6bf62-8f6c-4801-8f96-31197d34e444',
-  dialogDivider:  'https://www.figma.com/api/mcp/asset/17824bff-feb5-4d24-bd0b-c493bd711ce9',
-  dialogBar:      'https://www.figma.com/api/mcp/asset/b4ec1a15-7157-4edd-bc57-341229e75920',
-  /* 组 21 — charts */
-  structChart:    'https://www.figma.com/api/mcp/asset/df833a55-d9dc-42c7-aed5-2818f09920e2',
-  flowChart:      'https://www.figma.com/api/mcp/asset/799e17fe-046a-4ed3-9298-3240b6102c18',
-  wireframe:      'https://www.figma.com/api/mcp/asset/0e43e079-42a9-4e8f-a46c-36422b18a0ca',
-  /* 组 22 — end */
-  endBg:          'https://www.figma.com/api/mcp/asset/58f0f3e3-f743-4086-b8ed-18c00ae4d797',
-  endLaptop:      'https://www.figma.com/api/mcp/asset/cef304a9-0ada-4447-ac6f-21e950682410',
-  endDivider:     'https://www.figma.com/api/mcp/asset/f46d4d85-a5e8-4be7-bc1f-3fc9d5af0c32',
-  endBadge:       'https://www.figma.com/api/mcp/asset/16e53659-1364-424b-9951-3c1b3a8f4d9c',
-  endIcons:       'https://www.figma.com/api/mcp/asset/b31e9852-b451-455d-974a-61dea4b0e716',
+  coverBg:        publicUrl('/images/xingji/mad/cover-bg.webp'),
+  coverBadgeClean: publicUrl('/images/xingji/mad/cover-badge-transparent.webp'),
+  analyst:        publicUrl('/images/xingji/mad/analyst.webp'),
+  iconBg:         publicUrl('/images/xingji/mad/icon-bg.webp'),
+  iconMark:       publicUrl('/images/xingji/mad/icon-mark.webp'),
+  iconBig:        publicUrl('/images/xingji/mad/icon-big.webp'),
+  guideCard1:     publicUrl('/images/xingji/mad/guide-card-1.webp'),
+  guideCard2:     publicUrl('/images/xingji/mad/guide-card-2.webp'),
+  guideCard3:     publicUrl('/images/xingji/mad/guide-card-3.webp'),
+  guideCard4:     publicUrl('/images/xingji/mad/guide-card-4.webp'),
+  productBg:      publicUrl('/images/xingji/mad/product-bg.webp'),
+  productPhoneClean: publicUrl('/images/xingji/mad/product-phone-transparent.webp'),
+  recommendGlow:  publicUrl('/images/xingji/mad/recommend-bg.webp'),
+  recommendScreen: publicUrl('/images/xingji/mad/recommend-screen.webp'),
+  recommendStatusBar: publicUrl('/images/xingji/mad/recommend-statusbar.webp'),
+  recommendPhone: publicUrl('/images/xingji/mad/recommend-phone-transparent.webp'),
+  mePhones:       publicUrl('/images/xingji/mad/me-phones.webp'),
+  rechargeBg:     publicUrl('/images/xingji/mad/recharge-bg.webp'),
+  rechargePhone:  publicUrl('/images/xingji/mad/recharge-phone-transparent.webp'),
+  dialogPhone:    publicUrl('/images/xingji/mad/dialog-phone.webp'),
+  structChart:    publicUrl('/images/xingji/mad/structure-chart.webp'),
+  flowChart:      publicUrl('/images/xingji/mad/flow-chart.webp'),
+  wireframe:      publicUrl('/images/xingji/mad/wireframe-chart.webp'),
+  endBg:          publicUrl('/images/xingji/mad/end-bg.webp'),
+  endLaptopClean: publicUrl('/images/xingji/mad/end-laptop-transparent.webp'),
+  endIcons:       publicUrl('/images/xingji/mad/end-icons.webp'),
 };
 
 /* MAD section title — 128px Inter, #f9f7f2 @ 50% */
-function MadTitle({ x, y, w, align, children }: { x: number; y: number; w: number; align?: 'center' | 'right'; children: React.ReactNode }) {
-  return <div className="mad-sec-title abs" style={{ left: x, top: y, width: w, textAlign: align }}>{children}</div>;
+function MadTitle({ x, y, w, align, tracking, children }: { x: number; y: number; w: number; align?: 'center' | 'right'; tracking?: number; children: React.ReactNode }) {
+  return <div className="mad-sec-title abs" style={{ left: x, top: y, width: w, textAlign: align, letterSpacing: tracking }}>{children}</div>;
 }
 
 /* MAD section sub-label — 96px Inter, #f9f7f2 @ 50% */
 function MadLabel({ x, y, w, align, children }: { x: number; y: number; w: number; align?: 'center' | 'right'; children: React.ReactNode }) {
   return <div className="mad-sec-label abs" style={{ left: x, top: y, width: w, textAlign: align }}>{children}</div>;
+}
+
+function SalaryChoice({ icon, label, value }: { icon: 'city' | 'industry' | 'school' | 'degree'; label: string; value: string }) {
+  return (
+    <div className="cdst-salary-choice">
+      <i className={`salary-icon ${icon}`} />
+      <span>{label}</span>
+      <em>{value}</em>
+    </div>
+  );
+}
+
+type MadDividerDot = number | [number, number] | { x: number; y?: number; tone?: 'gold' | 'light' };
+
+/* The rule and its dots sit 12px below their Figma y. Kept as one constant so the
+   call sites can stay on the raw Figma coordinates. */
+const MAD_DIVIDER_NUDGE_Y = 12;
+
+function MadDivider({ x, y, w, dots }: { x: number; y: number; w: number; dots: MadDividerDot[] }) {
+  return (
+    <>
+      <span className="mad-divider-line abs" style={{ left: x, top: y + MAD_DIVIDER_NUDGE_Y, width: w }} />
+      {dots.map((dot, index) => {
+        const left = Array.isArray(dot) ? dot[0] : typeof dot === 'number' ? dot : dot.x;
+        const top = (Array.isArray(dot) ? dot[1] : typeof dot === 'number' ? y - 23 : dot.y ?? y - 23) + MAD_DIVIDER_NUDGE_Y;
+        const tone = typeof dot === 'object' && !Array.isArray(dot) ? dot.tone : undefined;
+        return <span key={`${left}-${top}-${index}`} className={`mad-divider-dot abs${tone === 'light' ? ' is-light' : ''}`} style={{ left, top }} />;
+      })}
+    </>
+  );
+}
+
+function MadSplitDivider({ y, segments }: { y: number; segments: Array<{ x: number; w: number }> }) {
+  return (
+    <>
+      {segments.map(({ x, w }, index) => (
+        <span key={`${x}-${w}-${index}`} className="mad-divider-line abs" style={{ left: x, top: y, width: w }} />
+      ))}
+    </>
+  );
 }
 
 /* one concise-guide perspective card: skewed plate + screenshot + nav-label text */
@@ -968,17 +1261,189 @@ function MadCase() {
     charts: 23696,
     end: 31852,
   };
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    const stage = root?.querySelector<HTMLElement>('.mad-stage');
+    if (!root || !stage || typeof IntersectionObserver === 'undefined') return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      root.classList.add('mad-motion-disabled');
+      return;
+    }
+
+    root.classList.add('mad-motion-ready');
+
+    const starts = Object.values(S).sort((a, b) => a - b);
+    const groups = new Map<number, HTMLElement[]>();
+    const directItems = Array.from(stage.children).filter((child): child is HTMLElement => child instanceof HTMLElement);
+
+    directItems.forEach((item, domIndex) => {
+      const top = Number.parseFloat(item.style.top || '0') || item.offsetTop || 0;
+      const left = Number.parseFloat(item.style.left || '0') || item.offsetLeft || 0;
+      const group = starts.reduce((active, start, index) => (top >= start ? index : active), 0);
+      const finalOpacity = Number.parseFloat(window.getComputedStyle(item).opacity || '1') || 1;
+
+      item.dataset.madMotionGroup = String(group);
+      item.dataset.madMotionDomIndex = String(domIndex);
+      item.dataset.madMotionTop = String(top);
+      item.dataset.madMotionLeft = String(left);
+      item.dataset.madMotionOpacity = String(finalOpacity);
+
+      if (!groups.has(group)) groups.set(group, []);
+      groups.get(group)!.push(item);
+    });
+
+    const textSelector = '.mad-sec-title, .mad-sec-label, .mad-cover-badge, .mad-cover-intro';
+    const lineSelector = '.mad-divider-line, .mad-leader-ln';
+    const pointSelector = '.mad-divider-dot, .mad-leader-sq';
+    const frameSelector = '.mad-cover-frame, .mad-dialog-titleplate, .mad-end-badge';
+
+    const setInitialState = (items: HTMLElement[]) => {
+      const images = items.filter((item) => item.tagName === 'IMG');
+      const texts = items.filter((item) => item.matches(textSelector));
+      const lines = items.filter((item) => item.matches(lineSelector));
+      const points = items.filter((item) => item.matches(pointSelector));
+      const frames = items.filter((item) => item.matches(frameSelector));
+      const handled = new Set<HTMLElement>([...images, ...texts, ...lines, ...points, ...frames]);
+      const rest = items.filter((item) => !handled.has(item));
+
+      if (images.length) gsap.set(images, { opacity: 0, y: 44, scale: 0.985, filter: 'blur(8px)', transformOrigin: '50% 50%' });
+      if (texts.length) gsap.set(texts, { opacity: 0, y: 34, filter: 'blur(6px)' });
+      if (lines.length) gsap.set(lines, { opacity: 0, scaleX: 0, transformOrigin: 'left center' });
+      if (points.length) gsap.set(points, { opacity: 0, scale: 0.28, transformOrigin: '50% 50%' });
+      if (frames.length) gsap.set(frames, { opacity: 0, scaleX: 0.92, transformOrigin: 'left center' });
+      if (rest.length) gsap.set(rest, { opacity: 0, y: 22, filter: 'blur(4px)' });
+    };
+
+    groups.forEach((items) => setInitialState(items));
+
+    const revealGroup = (group: number) => {
+      const items = groups.get(group);
+      if (!items?.length || stage.dataset[`madGroup${group}`] === 'shown') return;
+      stage.dataset[`madGroup${group}`] = 'shown';
+
+      const ordered = [...items].sort((a, b) => {
+        const topA = Number(a.dataset.madMotionTop || 0);
+        const topB = Number(b.dataset.madMotionTop || 0);
+        if (Math.abs(topA - topB) > 18) return topA - topB;
+        const leftA = Number(a.dataset.madMotionLeft || 0);
+        const leftB = Number(b.dataset.madMotionLeft || 0);
+        if (Math.abs(leftA - leftB) > 18) return leftA - leftB;
+        return Number(a.dataset.madMotionDomIndex || 0) - Number(b.dataset.madMotionDomIndex || 0);
+      });
+
+      const images = ordered.filter((item) => item.tagName === 'IMG');
+      const texts = ordered.filter((item) => item.matches(textSelector));
+      const frames = ordered.filter((item) => item.matches(frameSelector));
+      const lines = ordered.filter((item) => item.matches(lineSelector));
+      const points = ordered.filter((item) => item.matches(pointSelector));
+      const handled = new Set<HTMLElement>([...images, ...texts, ...frames, ...lines, ...points]);
+      const rest = ordered.filter((item) => !handled.has(item));
+      const targetOpacity = (item: HTMLElement) => Number(item.dataset.madMotionOpacity || 1);
+      const clear = (targets: HTMLElement[]) => {
+        const liveTargets = targets.filter((target) => target.isConnected);
+        if (liveTargets.length) gsap.set(liveTargets, { clearProps: 'opacity,transform,filter,transformOrigin' });
+      };
+
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      if (images.length) {
+        tl.to(images, {
+          opacity: (index, target) => targetOpacity(target as HTMLElement),
+          y: 0,
+          scale: 1,
+          filter: 'blur(0px)',
+          duration: 0.72,
+          stagger: 0.055,
+          onComplete: () => clear(images),
+        }, 0);
+      }
+      if (frames.length) {
+        tl.to(frames, {
+          opacity: (index, target) => targetOpacity(target as HTMLElement),
+          scaleX: 1,
+          duration: 0.5,
+          stagger: 0.045,
+          onComplete: () => clear(frames),
+        }, 0.1);
+      }
+      if (texts.length) {
+        tl.to(texts, {
+          opacity: (index, target) => targetOpacity(target as HTMLElement),
+          y: 0,
+          filter: 'blur(0px)',
+          duration: 0.55,
+          stagger: 0.045,
+          onComplete: () => clear(texts),
+        }, 0.18);
+      }
+      if (rest.length) {
+        tl.to(rest, {
+          opacity: (index, target) => targetOpacity(target as HTMLElement),
+          y: 0,
+          filter: 'blur(0px)',
+          duration: 0.5,
+          stagger: 0.04,
+          onComplete: () => clear(rest),
+        }, 0.26);
+      }
+      if (lines.length) {
+        tl.to(lines, {
+          opacity: (index, target) => targetOpacity(target as HTMLElement),
+          scaleX: 1,
+          duration: 0.62,
+          stagger: 0.055,
+          ease: 'power2.out',
+          onComplete: () => clear(lines),
+        }, 0.36);
+      }
+      if (points.length) {
+        tl.to(points, {
+          opacity: (index, target) => targetOpacity(target as HTMLElement),
+          scale: 1,
+          duration: 0.38,
+          stagger: 0.055,
+          ease: 'back.out(2.2)',
+          onComplete: () => clear(points),
+        }, 0.52);
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const group = Number((entry.target as HTMLElement).dataset.madMotionGroup || 0);
+          revealGroup(group);
+        });
+      },
+      { rootMargin: '0px 0px -12% 0px', threshold: 0.06 },
+    );
+
+    directItems.forEach((item) => {
+      observer.observe(item);
+      const rect = item.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.88 && rect.bottom > 0) {
+        window.requestAnimationFrame(() => revealGroup(Number(item.dataset.madMotionGroup || 0)));
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+      gsap.killTweensOf(directItems);
+    };
+  }, []);
 
   return (
-    <div className="star-case-page mad-page">
-      <FigmaScaleStage width={2480} height={34946} className="mad-stage">
+    <div ref={rootRef} className="star-case-page mad-page">
+      <FigmaScaleStage width={2480} height={34946} className="mad-stage" fitToViewport viewportInset={0}>
 
         {/* ── 组 10 cover (y0 h2318) ── */}
-        <img src={mad.coverBg} className="abs img-cover" style={{ left: 0, top: S.cover, width: 2480, height: 1655 }} />
-        <img src={mad.coverSplash} className="abs img-cover" style={{ left: 696, top: S.cover + 172, width: 1187, height: 1368 }} />
-        <img src={mad.coverBadge} className="abs img-cover" style={{ left: 1994, top: S.cover + 1187, width: 286, height: 351 }} />
-        <img src={mad.coverStroke} className="abs" style={{ left: 60, top: S.cover + 49, width: 596, height: 207 }} />
-        <div className="mad-cover-badge abs" style={{ left: 98, top: S.cover + 81, width: 531 }}>My Production<br />我的作品</div>
+        <img src={mad.coverBg} className="abs mad-exact-img" style={{ left: 0, top: S.cover, width: 2480, height: 1655 }} />
+        <img src={mad.coverBadgeClean} className="abs mad-exact-img" style={{ left: 1994, top: S.cover + 1187, width: 286, height: 351 }} />
+        <div className="mad-cover-frame mad-cover-badge abs" style={{ left: 60, top: S.cover + 49, width: 596, height: 207 }}>My Production<br />我的作品</div>
         <div className="mad-cover-intro abs" style={{ left: 219, top: S.cover + 1763, width: 2043 }}>通过调查了解，许多球友对于比赛结果推断不准，导致足球博彩逢赌必输，即使他们能询问一些看球经验很丰富的老球迷，甚至向专业的分析师请教，但是由于不同的比赛有不同的体制，所以很多情况下是凭借运气来购买足球彩票，运气不好就预测不准，造成了很大的经济损失以及浪费了大量的时间精力，所以，对于一些没有太多时间来分析球赛的球友来说，特别是经验水平不足的新人，这款应用是为了广大球友设计的。</div>
 
         {/* ── 组 13 analyst (y2555 h1312) ── */}
@@ -988,64 +1453,64 @@ function MadCase() {
         {/* ── 组 12 icon design (y3788 h2200) ── */}
         <img src={mad.iconBg} className="abs img-cover mad-icon-bg" style={{ left: 0, top: S.icon, width: 2480, height: 2200 }} />
         <img src={mad.iconBig} className="abs img-cover" style={{ left: 384, top: S.icon + 953, width: 678, height: 829 }} />
-        <img src={mad.iconPlate} className="abs" style={{ left: 1470, top: S.icon + 957, width: 833, height: 833 }} />
-        <img src={mad.iconGlyph} className="abs img-cover" style={{ left: 1594, top: S.icon + 1097, width: 592, height: 596 }} />
+        <img src={mad.iconMark} className="abs img-cover" style={{ left: 1470, top: S.icon + 957, width: 833, height: 833 }} />
         <MadTitle x={252} y={S.icon + 409} w={833}>Icon Design<br />图标设计</MadTitle>
 
         {/* ── 组 5 concise guide — 4 perspective cards (y6004 h2146) ── */}
-        <MadGuideCard x={-5} y={S.guide + 716} card={mad.guideCard1} shot={mad.guideShot1}
-          shotStyle={{ left: 208, top: 100, width: 283, height: 696 }}
-          num="1" numPos={{ left: 350, top: 1154 }}
-          label="登录账号" labelPos={{ left: 273, top: 974, w: 167 }}
-          sign={{ inX: 137, inY: 1254, upX: 435, upY: 1188 }} />
-        <MadGuideCard x={616} y={S.guide + 750} card={mad.guideCard2} shot={mad.guideShot2}
-          shotStyle={{ left: 134, top: 95, width: 290, height: 670 }}
-          num="2" numPos={{ left: 262, top: 1124 }}
-          label="预测比赛结果" labelPos={{ left: 169, top: 893, w: 204 }}
-          sign={{ inX: 85, inY: 1167, upX: 360, upY: 1226 }} />
-        <MadGuideCard x={1236} y={S.guide + 750} card={mad.guideCard3} shot={mad.guideShot3}
-          shotStyle={{ left: 203, top: 106, width: 290, height: 673 }}
-          num="3" numPos={{ left: 349, top: 1123 }}
-          label="个人与管理分类" labelPos={{ left: 236, top: 903, w: 233 }}
-          sign={{ inX: 133, inY: 1220, upX: 435, upY: 1161 }} />
-        <MadGuideCard x={1861} y={S.guide + 750} card={mad.guideCard4} shot={mad.guideShot4}
-          shotStyle={{ left: 163, top: 74, width: 294, height: 673 }}
-          num="4" numPos={{ left: 257, top: 1127 }}
-          label="充值与充值记录" labelPos={{ left: 171, top: 930, w: 238 }}
-          sign={{ inX: 82, inY: 1165, upX: 348, upY: 1222 }} />
+        <img src={mad.guideCard1} className="abs img-cover mad-guide-export" style={{ left: -5, top: S.guide + 716, width: 623, height: 1430 }} />
+        <img src={mad.guideCard2} className="abs img-cover mad-guide-export" style={{ left: 616, top: S.guide + 750, width: 623, height: 1381 }} />
+        <img src={mad.guideCard3} className="abs img-cover mad-guide-export" style={{ left: 1236, top: S.guide + 750, width: 627, height: 1384 }} />
+        <img src={mad.guideCard4} className="abs img-cover mad-guide-export" style={{ left: 1861, top: S.guide + 750, width: 619, height: 1391 }} />
         <MadTitle x={290} y={S.guide} w={1026}>Concise Guide<br />简介引导</MadTitle>
 
         {/* ── 组 14 product detail (y8605 h1662) ── */}
-        <img src={mad.productBg} className="abs img-cover" style={{ left: 0, top: S.product + 426, width: 2480, height: 1236 }} />
-        <img src={mad.productPhone} className="abs img-cover mad-phone" style={{ left: 1119, top: S.product + 611, width: 592, height: 916 }} />
+        <img src={mad.productBg} className="abs mad-exact-img" style={{ left: 0, top: S.product + 426, width: 2480, height: 1237 }} />
+        <img src={mad.productPhoneClean} className="abs mad-exact-img mad-phone" style={{ left: 1119, top: S.product + 611, width: 592, height: 916 }} />
         <MadTitle x={32} y={S.product + 2} w={2480} align="center">Product Detail<br />产品细节</MadTitle>
 
         {/* ── 组 15 recommend (y10583 h3487) ── */}
-        <img src={mad.recommendGlow} className="abs img-cover mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1379, height: 3060 }} />
-        <img src={mad.recommendPhone} className="abs img-cover mad-phone" style={{ left: 1300, top: S.recommend + 1044, width: 905, height: 2442 }} />
-        <img src={mad.recDivider} className="abs" style={{ left: 565, top: S.recommend + 166, width: 1719, height: 19 }} />
-        <img src={mad.recDotL} className="abs" style={{ left: 547, top: S.recommend + 147, width: 53, height: 53 }} />
-        <img src={mad.recDotM} className="abs" style={{ left: 1398, top: S.recommend + 147, width: 53, height: 53 }} />
-        <img src={mad.recDotR} className="abs" style={{ left: 2250, top: S.recommend + 147, width: 53, height: 53 }} />
+        <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1379, height: 3060 }} />
+        {/* Figma 10333:3853 "Group 2359" — three stacked layers. The screen sits behind a
+            device frame whose screen area is a cut-out; only the frame was here before,
+            sized to the screen's box, so the phone rendered as a solid black slab. */}
+        <img src={mad.recommendScreen} className="abs mad-exact-img" style={{ left: 1327, top: S.recommend + 1106, width: 772.6, height: 2331.9 }} />
+        <img src={mad.recommendStatusBar} className="abs mad-exact-img" style={{ left: 1300.3, top: S.recommend + 1123.5, width: 768.9, height: 135.7 }} />
+        <img src={mad.recommendPhone} className="abs mad-exact-img mad-phone" style={{ left: 1300.3, top: S.recommend + 1044.4, width: 904.6, height: 2442.3 }} />
+        <MadDivider
+          x={573}
+          y={S.recommend + 178}
+          w={1707}
+          dots={[
+            { x: 554, y: S.recommend + 155, tone: 'gold' },
+            { x: 1406, y: S.recommend + 155, tone: 'light' },
+            { x: 2258, y: S.recommend + 155, tone: 'light' },
+          ]}
+        />
         <MadTitle x={200} y={S.recommend + 39} w={854}>Recommend<br />推荐</MadTitle>
         <MadLabel x={207} y={S.recommend + 786} w={558}>Forecast<br />预测赛果</MadLabel>
         <MadLabel x={207} y={S.recommend + 1444} w={421}>Live<br />实时比赛</MadLabel>
 
         {/* ── 组 16 me (y14467 h2345) ── */}
-        <img src={mad.mePhones} className="abs mad-me-phones" style={{ left: 633, top: S.me + 413, width: 1696, height: 1873 }} />
-        <img src={mad.meDivider} className="abs" style={{ left: 569, top: S.me + 145, width: 1719, height: 19 }} />
-        <img src={mad.meDotL} className="abs" style={{ left: 550, top: S.me + 127, width: 53, height: 53 }} />
-        <img src={mad.meDotM} className="abs" style={{ left: 1402, top: S.me + 127, width: 53, height: 53 }} />
-        <img src={mad.meDotR} className="abs" style={{ left: 2254, top: S.me + 127, width: 53, height: 53 }} />
+        <img src={mad.mePhones} className="abs mad-me-phones" style={{ left: 633, top: S.me + 413, width: 1670, height: 1768 }} />
+        <MadDivider
+          x={574}
+          y={S.me + 157}
+          w={1706}
+          dots={[
+            { x: 555, y: S.me + 134, tone: 'light' },
+            { x: 1406, y: S.me + 134, tone: 'gold' },
+            { x: 2258, y: S.me + 134, tone: 'light' },
+          ]}
+        />
         {/* leader-line connectors: gold square node + thin line per label */}
-        <span className="mad-leader-sq abs" style={{ left: 1398, top: S.me + 518, width: 30, height: 30 }} />
-        <span className="mad-leader-ln abs" style={{ left: 1417, top: S.me + 526, width: 358 }} />
+        <span className="mad-leader-sq abs" style={{ left: 1398, top: S.me + 519, width: 30, height: 30 }} />
+        <span className="mad-leader-ln abs" style={{ left: 1424, top: S.me + 534, width: 347 }} />
         <span className="mad-leader-sq abs" style={{ left: 935, top: S.me + 952, width: 30, height: 30 }} />
-        <span className="mad-leader-ln abs" style={{ left: 633, top: S.me + 960, width: 313 }} />
+        <span className="mad-leader-ln abs" style={{ left: 641, top: S.me + 967, width: 302 }} />
         <span className="mad-leader-sq abs" style={{ left: 965, top: S.me + 1683, width: 30, height: 30 }} />
-        <span className="mad-leader-ln abs" style={{ left: 637, top: S.me + 1691, width: 339 }} />
+        <span className="mad-leader-ln abs" style={{ left: 645, top: S.me + 1698, width: 328 }} />
         <span className="mad-leader-sq abs" style={{ left: 1474, top: S.me + 2056, width: 30, height: 30 }} />
-        <span className="mad-leader-ln abs" style={{ left: 1493, top: S.me + 2064, width: 286 }} />
+        <span className="mad-leader-ln abs" style={{ left: 1500, top: S.me + 2071, width: 275 }} />
         <MadTitle x={204} y={S.me} w={269}>Me<br />我的</MadTitle>
         <MadLabel x={1616} y={S.me + 437} w={638} align="right">Classify<br />分类</MadLabel>
         <MadLabel x={204} y={S.me + 867} w={421}>Record<br />充值记录</MadLabel>
@@ -1055,16 +1520,21 @@ function MadCase() {
         {/* ── 组 18 recharge (y17286 h2147) ── */}
         <img src={mad.rechargeBg} className="abs img-cover" style={{ left: 45, top: S.recharge + 421, width: 2420, height: 1726 }} />
         <img src={mad.rechargePhone} className="abs img-cover mad-phone" style={{ left: 298, top: S.recharge + 519, width: 1952, height: 1391 }} />
-        <img src={mad.rcDivider} className="abs" style={{ left: 569, top: S.recharge + 127, width: 1719, height: 19 }} />
-        <img src={mad.rcDotL} className="abs" style={{ left: 547, top: S.recharge + 108, width: 53, height: 53 }} />
-        <img src={mad.rcDotM} className="abs" style={{ left: 1398, top: S.recharge + 108, width: 53, height: 53 }} />
-        <img src={mad.rcDotR} className="abs" style={{ left: 2250, top: S.recharge + 108, width: 53, height: 53 }} />
+        <MadDivider
+          x={573}
+          y={S.recharge + 154}
+          w={1707}
+          dots={[
+            { x: 554, y: S.recharge + 131, tone: 'light' },
+            { x: 1405, y: S.recharge + 131, tone: 'light' },
+            { x: 2258, y: S.recharge + 131, tone: 'gold' },
+          ]}
+        />
         <MadTitle x={151} y={S.recharge} w={660}>Recharge<br />充值</MadTitle>
 
         {/* ── 组 20 dialog (y20051 h3065) ── */}
-        <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 641, top: S.dialog + 565, width: 1209, height: 2500 }} />
-        <img src={mad.dialogDivider} className="abs" style={{ left: 0, top: S.dialog + 60, width: 2495, height: 19 }} />
-        <img src={mad.dialogBar} className="abs" style={{ left: 527, top: S.dialog, width: 1438, height: 147 }} />
+        <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 633, top: S.dialog + 565, width: 1209, height: 2500 }} />
+        <MadSplitDivider y={S.dialog + 68} segments={[{ x: 0, w: 520 }, { x: 1958, w: 522 }]} />
         <MadTitle x={0} y={S.dialog + 20} w={2480} align="center">Dialog Box Pops Up<br />弹出对话框</MadTitle>
 
         {/* ── 组 21 charts (y23696 h7579) ── */}
@@ -1077,11 +1547,14 @@ function MadCase() {
 
         {/* ── 组 22 end (y31852 h3094) ── */}
         <img src={mad.endBg} className="abs img-cover" style={{ left: 0, top: S.end, width: 2480, height: 1504 }} />
-        <img src={mad.endLaptop} className="abs img-cover" style={{ left: 957, top: S.end + 539, width: 765, height: 512 }} />
-        <img src={mad.endBadge} className="abs" style={{ left: 1006, top: S.end + 1636, width: 475, height: 143 }} />
-        <img src={mad.endDivider} className="abs" style={{ left: -4, top: S.end + 1696, width: 2495, height: 19 }} />
+        <img src={mad.endLaptopClean} className="abs img-cover" style={{ left: 957, top: S.end + 539, width: 765, height: 512 }} />
+        {/* Figma 9817:19385 — one unbroken rule, masked in the middle by the plate below */}
+        <div className="mad-divider-line abs" style={{ left: 3.7, top: S.end + 1699.6, width: 2480.1 }} />
+        {/* Figma 9817:19389 — a solid #131313 plate, not a bordered frame: it punches the gap for ICON */}
+        <span className="mad-end-badge abs" style={{ left: 1006.3, top: S.end + 1635.5, width: 474.9, height: 143.2 }} />
         <img src={mad.endIcons} className="abs img-cover" style={{ left: 444, top: S.end + 2031, width: 1600, height: 379 }} />
-        <MadTitle x={1080} y={S.end + 1675} w={350} align="center">ICON</MadTitle>
+        {/* Figma trims this text to its cap box (cap top at 1675.1); `top` here is the 160px line box, 31.7px higher */}
+        <MadTitle x={1080} y={S.end + 1643.4} w={350} align="center" tracking={9.54}>ICON</MadTitle>
 
       </FigmaScaleStage>
     </div>
@@ -1138,17 +1611,17 @@ const hsTrial = {
 };
 
 const hsGang = {
-  eventIpSceneBg01: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-scene-bg.png'),
-  eventIpCrewDetailShow02: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-character.png'),
-  panel23441: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-main-panel.png'),
-  stateImg0: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-locked.png'),
-  stateImg1: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-claimable.png'),
-  stateImg2: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-claimed.png'),
-  stateImg3: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-maxed.png'),
-  panel34651: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-task-panel.png'),
-  sec7HeroDetailImg: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-detail.png'),
-  sec7HeroPortraitImg: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-portrait.png'),
-  collage: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-outcome-collage.png'),
+  eventIpSceneBg01: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-scene-bg.webp'),
+  eventIpCrewDetailShow02: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-character.webp'),
+  panel23441: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-main-panel.webp'),
+  stateImg0: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-locked.webp'),
+  stateImg1: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-claimable.webp'),
+  stateImg2: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-claimed.webp'),
+  stateImg3: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-state-maxed.webp'),
+  panel34651: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-task-panel.webp'),
+  sec7HeroDetailImg: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-detail.webp'),
+  sec7HeroPortraitImg: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-hero-portrait.webp'),
+  collage: publicUrl('/figma/xingji-aodaisai/assets/cleanup-gang-outcome-collage.webp'),
 };
 
 type HSAbsProps = {

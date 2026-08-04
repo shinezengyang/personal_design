@@ -528,10 +528,13 @@
   font-size: 16px; color: #8fa3b8; margin: 0;
 }
 
+/* Figma 9817:18463/18468/18473/18478 参考1-4 are 508x325 at x=96/632, y=225/558 —
+   508-wide columns with a 28px gutter, not two 532px halves of a 1088px block, which
+   was stretching each 508x216 reference shot to a wider box. */
 .tp-ref-grid {
   position: absolute;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 24px; width: 1088px;
+  display: grid; grid-template-columns: 508px 508px;
+  gap: 8px 28px; width: 1044px;
 }
 .tp-ref-item {
   background: rgba(255,255,255,.025);

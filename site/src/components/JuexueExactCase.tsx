@@ -1,13 +1,17 @@
 import './JuexueExactCase.css';
 
+/* Local copies of the Figma exports. These used to point at
+   https://www.figma.com/api/mcp/asset/... URLs, which Figma expires after ~7 days —
+   every image on this page had gone dead. Node ids are noted so they can be re-pulled. */
+const JX = '/images/qingyu/juexue';
 const jxAssets = {
-  loadout: 'https://www.figma.com/api/mcp/asset/04eb8dcb-e281-4d8e-aeec-0eb07042e8cd',
-  bag: 'https://www.figma.com/api/mcp/asset/87d58600-8e0c-4fe7-8f77-fee6e6148b50',
-  upgrade: 'https://www.figma.com/api/mcp/asset/6bb53464-189b-440d-bffa-a5a1006859bf',
-  context: 'https://www.figma.com/api/mcp/asset/f1c6c6b1-585a-4f59-aca9-03917f961970',
-  contextPopup: 'https://www.figma.com/api/mcp/asset/fc2cdde5-7ec1-44fa-96d7-0354d9116b15',
-  finalA: 'https://www.figma.com/api/mcp/asset/867f4cd3-40d8-4257-a8bc-7d8b21ccff90',
-  finalB: 'https://www.figma.com/api/mcp/asset/05d8aef8-3adb-4794-88ad-ba4fcdb5c830',
+  loadout: `${JX}/loadout.webp`,             // Figma 9817:12471 IMG_loadout
+  bag: `${JX}/bag.webp`,                     // Figma 9817:12528 IMG_bag
+  upgrade: `${JX}/upgrade.webp`,             // Figma 9817:12587 IMG_upg
+  context: `${JX}/context.webp`,             // Figma 9817:12666 IMG_ctx
+  contextPopup: `${JX}/context-popup.webp`,  // Figma 9817:12692 Step6关卡信息12
+  finalA: `${JX}/final-a.webp`,              // Figma 9817:12719
+  finalB: `${JX}/final-b.webp`,              // Figma 9817:12720
 };
 
 type Tone = 'red' | 'gold' | 'amber' | 'brown' | 'muted';
@@ -94,15 +98,20 @@ function Notes({ title, items, dark = false }: { title: string; items: string[];
 }
 
 function LoadoutDiagram() {
+  /* Centres from Figma 9817:12365-12368, rebased onto the card at (80, 290):
+     乾 341,361 · 坤 441,459 · 离 341,557 · 坎 241,459 (each +11 for its 22px radius).
+     The card origin was previously not subtracted, so the diagram ran 212px past
+     the bottom of its 380px box. */
   const nodes = [
-    ['乾', 352, 372], ['坤', 452, 470], ['离', 352, 568], ['坎', 252, 470],
+    ['乾', 272, 82], ['坤', 372, 180], ['离', 272, 278], ['坎', 172, 180],
   ] as const;
   return (
     <div className="jx-loadout-diagram">
-      <svg viewBox="0 0 260 260">
-        <path d="M130 25 L230 130 L130 235 L30 130 Z" />
-        <path d="M130 25 L130 235" />
-        <path d="M30 130 L230 130" />
+      {/* viewBox matches the Figma vector's 200x196 bounds (9817:12364) */}
+      <svg viewBox="0 0 200 196">
+        <path d="M100 0 L200 98 L100 196 L0 98 Z" />
+        <path d="M100 0 L100 196" />
+        <path d="M0 98 L200 98" />
       </svg>
       {nodes.map(([label, x, y]) => <span key={label} style={{ left: x, top: y }}>{label}</span>)}
       <b>主</b>

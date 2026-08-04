@@ -3,13 +3,13 @@ import { publicUrl } from '../lib/publicUrl';
 import './JinlanExactCase.css';
 
 const assets = {
-  hub: '/assets/qingyu-jinlan/IMG_hub_uploaded.png',
-  hubBig: '/assets/qingyu-jinlan/IMG_hub_uploaded.png',
+  hub: '/assets/qingyu-jinlan/IMG_hub_uploaded.webp',
+  hubBig: '/assets/qingyu-jinlan/IMG_hub_uploaded.webp',
   sMain: '/assets/qingyu-jinlan/IMG_s_main.webp',
-  sCond: '/assets/qingyu-jinlan/create-condition-review.png',
-  sFill: '/assets/qingyu-jinlan/create-fill-info.png',
-  sFill1: '/assets/qingyu-jinlan/create-member-naming.png',
-  sFill2: '/assets/qingyu-jinlan/create-final-confirm.png',
+  sCond: '/assets/qingyu-jinlan/create-condition-review.webp',
+  sFill: '/assets/qingyu-jinlan/create-fill-info.webp',
+  sFill1: '/assets/qingyu-jinlan/create-member-naming.webp',
+  sFill2: '/assets/qingyu-jinlan/create-final-confirm.webp',
   recruit: '/assets/qingyu-jinlan/IMG_recruit.webp',
   mPanel: '/assets/qingyu-jinlan/IMG_m_panel.webp',
   mList: '/assets/qingyu-jinlan/IMG_m_list.webp',

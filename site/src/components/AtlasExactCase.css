@@ -8,7 +8,7 @@
 .atlas-canvas {
   position: relative;
   width: 1280px;
-  height: 14540px;
+  height: 14320px;
   margin: 0 auto;
   background: #0d1411;
   color: #f4efe3;
@@ -65,7 +65,6 @@
   scale: 1;
 }
 
-.atlas-motion-ready .atlas-sec .al-shot.atlas-reveal-item,
 .atlas-motion-ready .atlas-sec .al-card-dark.atlas-reveal-item,
 .atlas-motion-ready .atlas-sec .al-card-light.atlas-reveal-item,
 .atlas-motion-ready .atlas-sec .al-deliv.atlas-reveal-item {
@@ -74,11 +73,22 @@
   transition-duration: 680ms, 860ms, 860ms;
 }
 
-.atlas-motion-ready .atlas-sec .al-badge.atlas-reveal-item,
-.atlas-motion-ready .atlas-sec .al-dot.atlas-reveal-item,
+.atlas-motion-ready .atlas-sec .al-shot.atlas-reveal-item {
+  translate: 0 0;
+  scale: 1;
+  transition-duration: 680ms, 860ms, 860ms;
+}
+
 .atlas-motion-ready .atlas-sec .al-diamond.atlas-reveal-item {
   translate: 0 10px;
   scale: 0.72;
+  transition-duration: 420ms, 520ms, 520ms;
+}
+
+.atlas-motion-ready .atlas-sec .al-badge.atlas-reveal-item,
+.atlas-motion-ready .atlas-sec .al-dot.atlas-reveal-item {
+  translate: 0 0;
+  scale: 1;
   transition-duration: 420ms, 520ms, 520ms;
 }
 
@@ -190,6 +200,7 @@
   height: 10px;
   border-radius: 50%;
   background: #e2b54b;
+  transform: translate(-50%, -50%);
 }
 .al-dot-teal { background: #4fa08b; }
 .al-line {
@@ -220,6 +231,7 @@
 .al-badge-gold { background: #c89b3a; }
 .al-badge-green { background: #5fa052; }
 .al-badge-teal { background: #4fa08b; }
+.al-badge-red { background: #d94c3d; }
 
 /* cards */
 .al-card-dark {
