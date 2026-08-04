@@ -226,7 +226,7 @@ const About = () => {
                 <img
                   src={publicUrl('about-portrait.webp')}
                   alt={about.portraitAlt}
-                  className="about-portrait-cyber-img h-full w-full object-cover object-[center_15%] scale-[1.06]"
+                  className="about-portrait-cyber-img h-full w-full object-cover object-[center_15%] scale-[1.06]" loading="lazy" decoding="async"
                 />
                 {/* 青 / 品红双霓虹染色 */}
                 <div

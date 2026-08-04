@@ -368,7 +368,7 @@ export function QingquanBathExactCase() {
           <span className="qq-axis-x">单场进程 15:00 →</span>
           <span className="qq-axis-line-y" />
           <span className="qq-axis-line-x" />
-          {/* Figma 9817:16661 s9_curve. Inlined rather than loaded as an <img>: Figma's SVG
+          {/* Figma 9817:16661 s9_curve. Inlined rather than loaded as an <img loading="lazy" decoding="async">: Figma's SVG
               export wraps the path in two opaque background rects that would paint over
               the panel. viewBox is 773x308 (770x305 path + 1.25 stroke bleed each side). */}
           <svg className="qq-curve-img" viewBox="0 0 773 308" fill="none" role="img" aria-label="清泉沐浴心流曲线">
@@ -404,8 +404,8 @@ export function QingquanBathExactCase() {
 
       <section className="qq-page qq-reference">
         <SectionHeader no="10" eyebrow="DESIGN REFERENCES" title="设计参考 · 选美即直播间" desc="温泉之星的互动语言，借自玩家早已熟练的两套体系 —— MMO 温泉社交与直播间打赏文化。" accent="cyan" />
-        <article className="qq-ref-card hot"><img src={qqAssets.refHotSpring} alt="剑网3挂机温泉参考" /><h3>《剑网3》挂机温泉</h3><h4>MMO HOT-SPRING SOCIAL</h4><p>夜色汤池 + 暖光水面的松弛场景，验证了「低操作高陪伴」社交的长线生命力。</p></article>
-        <article className="qq-ref-card live"><img src={qqAssets.refLive} alt="直播间打赏参考" /><h3>直播间打赏文化</h3><h4>LIVE-STREAMING CULTURE</h4><p>礼物、弹幕、点赞是玩家肌肉记忆级的互动语言 —— 平移进温泉，无需教学就会用。</p></article>
+        <article className="qq-ref-card hot"><img src={qqAssets.refHotSpring} alt="剑网3挂机温泉参考" loading="lazy" decoding="async" /><h3>《剑网3》挂机温泉</h3><h4>MMO HOT-SPRING SOCIAL</h4><p>夜色汤池 + 暖光水面的松弛场景，验证了「低操作高陪伴」社交的长线生命力。</p></article>
+        <article className="qq-ref-card live"><img src={qqAssets.refLive} alt="直播间打赏参考" loading="lazy" decoding="async" /><h3>直播间打赏文化</h3><h4>LIVE-STREAMING CULTURE</h4><p>礼物、弹幕、点赞是玩家肌肉记忆级的互动语言 —— 平移进温泉，无需教学就会用。</p></article>
         <div className="qq-map-panel">
           <h3 className="left">直播间</h3><h3 className="right">温泉之星</h3>
           {[['礼物打赏','花瓣 · 红包','pink'],['弹幕刷屏','弹幕开关','cyan'],['连麦才艺','语音口号','pink'],['点赞人气','心形票数','gold']].map((row, i) => (

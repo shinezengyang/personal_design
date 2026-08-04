@@ -42,7 +42,7 @@ function Marker({ n, x, y, gold = false }: { n: number; x: number; y: number; go
 function Shot({ src, label, className = '' }: { src: string; label?: string; className?: string }) {
   return (
     <figure className={`jx-shot ${className}`}>
-      <img src={src} alt={label ?? ''} />
+      <img src={src} alt={label ?? ''} loading="lazy" decoding="async" />
       {label ? <figcaption>{label}</figcaption> : null}
     </figure>
   );
@@ -337,7 +337,7 @@ export function JuexueExactCase() {
           <Notes dark title="同一套框架，分层各司其职" items={[
             '绝学|当前“大无相”槽位装配的绝学技能图标和等级，点击后可显示详情弹窗',
           ]} />
-          <img src={jxAssets.contextPopup} alt="绝学详情弹窗" />
+          <img src={jxAssets.contextPopup} alt="绝学详情弹窗" loading="lazy" decoding="async" />
         </div>
         <Rationale title="用统一框架，承载分层的深度" subtitle="为什么这样设计 · WHY IT WORKS" principles={[
           { title: '体系一致', text: '绝学与招式共用「招式」框架，认知统一。', tone: 'red' },
@@ -363,8 +363,8 @@ export function JuexueExactCase() {
         <div className="final-line" />
         <p className="final-calligraphy">绝 学</p>
         <p className="final-gallery-title">视觉稿展示</p>
-        <img className="final-img a" src={jxAssets.finalA} alt="绝学视觉稿 1" />
-        <img className="final-img b" src={jxAssets.finalB} alt="绝学视觉稿 2" />
+        <img className="final-img a" src={jxAssets.finalA} alt="绝学视觉稿 1" loading="lazy" decoding="async" />
+        <img className="final-img b" src={jxAssets.finalB} alt="绝学视觉稿 2" loading="lazy" decoding="async" />
       </section>
     </div>
   );

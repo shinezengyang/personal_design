@@ -253,7 +253,7 @@ function CdstCase() {
               height: slab.height,
               transform: slab.flip ? 'scaleX(-1)' : undefined,
             }}
-            alt=""
+            alt="" loading="lazy" decoding="async"
           />
         ))}
         <div
@@ -267,7 +267,7 @@ function CdstCase() {
             src={publicUrl('/images/xingji/cdst/cdst-hero-cover.webp')}
             className="abs cdst-hero-cover-img"
             style={{ left: 0, top: -2, width: 2480, height: 1473 }}
-            alt=""
+            alt="" loading="lazy" decoding="async"
           />
         </div>
 
@@ -281,11 +281,11 @@ function CdstCase() {
 
         {/* ── 痛点分析 (base 3695.5, h1373) ── */}
         <CdstTitle y={SEC.pain} title="痛点分析" en="User Pain Points’Analysis" w={488} />
-        <img src={cdst.pain1} className="abs img-cover" style={{ left: 813.5, top: SEC.pain + 625.5, width: 359, height: 359 }} />
-        <img src={cdst.pain2} className="abs img-cover" style={{ left: 1358.5, top: SEC.pain + 669.5, width: 319, height: 319 }} />
-        <img src={cdst.pain4} className="abs img-cover" style={{ left: 1688.5, top: SEC.pain + 735.5, width: 230, height: 230 }} />
-        <img src={cdst.pain3} className="abs img-cover" style={{ left: 1112.5, top: SEC.pain + 863.5, width: 293, height: 293 }} />
-        <img src={cdst.pain5} className="abs img-cover" style={{ left: 617.5, top: SEC.pain + 850.5, width: 230, height: 230 }} />
+        <img src={cdst.pain1} className="abs img-cover" style={{ left: 813.5, top: SEC.pain + 625.5, width: 359, height: 359 }} loading="lazy" decoding="async" />
+        <img src={cdst.pain2} className="abs img-cover" style={{ left: 1358.5, top: SEC.pain + 669.5, width: 319, height: 319 }} loading="lazy" decoding="async" />
+        <img src={cdst.pain4} className="abs img-cover" style={{ left: 1688.5, top: SEC.pain + 735.5, width: 230, height: 230 }} loading="lazy" decoding="async" />
+        <img src={cdst.pain3} className="abs img-cover" style={{ left: 1112.5, top: SEC.pain + 863.5, width: 293, height: 293 }} loading="lazy" decoding="async" />
+        <img src={cdst.pain5} className="abs img-cover" style={{ left: 617.5, top: SEC.pain + 850.5, width: 230, height: 230 }} loading="lazy" decoding="async" />
         <div className="pain-text" style={{ left: 975.5, top: SEC.pain + 309.5 }}><b>产业教育分离：</b><br />产教分离导致高校教育和企业需求<br />之间产生的信息差，是大部分大学<br />生职业选择困惑的源头。</div>
         <div className="pain-text black" style={{ left: 198.5, top: SEC.pain + 1061.5 }}><b>就业压力巨大：</b><br />宏观经济下行压力加大和结构性改<br />革产生的行业变化，在一定程度上<br />影响就业形势，就业仍然是社会各<br />方都关注的话题。</div>
         <div className="pain-text black" style={{ left: 1579.5, top: SEC.pain + 1009.5 }}><b>职业规划缺失：</b><br />老师基本都是院党委书记或学工教<br />师，老师们本身就缺少社会上相关<br />职业的经验，当然也就无法给出实<br />际中行业发展、企业概况、岗位要<br />求，只能照本宣科。</div>
@@ -300,7 +300,7 @@ function CdstCase() {
           body={['通过在线职场教育的方式切入职前教', '育 ，联合学校以及企业，打造属于大', '学生以及在职精英的职场生态圈']} bodyTop={25} />
         <Comp base={SEC.comp} top={1441.5} image={cdst.competitorD} name="职梦" nameX={73}
           body={['依托来自全球顶尖投资银行、咨询公', '司、四大会计师事务所和世界五百强', '企业的精英导师人才库，为留学生职', '业咨询的平台']} bodyTop={0} />
-        <img src={cdst.compDivider} className="abs" style={{ left: 1374.5, top: SEC.comp + 386.5, width: 7, height: 1131 }} />
+        <img src={cdst.compDivider} className="abs" style={{ left: 1374.5, top: SEC.comp + 386.5, width: 7, height: 1131 }} loading="lazy" decoding="async" />
         <div className="competitor-summary" style={{ left: 1481.5, top: SEC.comp + 345.5, width: 760 }}>
           <span className="cs-title">总结</span>
           <p>四款都是非常成熟的职前教育型产品</p>
@@ -331,7 +331,7 @@ function CdstCase() {
         {/* ── 产品结构 (base 10653.5, h1755) ── */}
         <CdstTitle y={SEC.struct} title="产品结构" en="Product Structure" w={350} />
         <div className="cdst-paragraph white cdst-structure-copy" style={{ left: 201.5, top: SEC.struct + 249.5, width: 1300 }}>说明：<br />　　该项目共分为小程序-用户端、运营后台系统两部分；<br />　　本次设计主要针对小程序-用户端展开。</div>
-        <img src={cdst.struct} className="abs img-cover" style={{ left: 198.5, top: SEC.struct + 703.5, width: 2082, height: 1052 }} />
+        <img src={cdst.struct} className="abs img-cover" style={{ left: 198.5, top: SEC.struct + 703.5, width: 2082, height: 1052 }} loading="lazy" decoding="async" />
 
         {/* ── 产品流程 (base 12691.5, h819) ── */}
         <CdstTitle y={SEC.flow} title="产品流程" en="Product Flow" w={268} />
@@ -354,19 +354,19 @@ function CdstCase() {
         <div className="visual-note" style={{ left: 1527.5, top: SEC.visual + 2498.5, width: 700 }}>统一视觉风格，设计语言营造品牌基调，加强用户对品牌的认知<br /><br />使用层级化的卡片设计，轻量级的设计让用户长时间翻阅不易引起视觉疲劳</div>
 
         {/* 主页形象 (组7 base 24878) */}
-        <img src={cdst.uiVisionHomeExact} className="abs cdst-exact-subsection" style={{ left: 148, top: V.home, width: 2229, height: 1566 }} alt="" />
+        <img src={cdst.uiVisionHomeExact} className="abs cdst-exact-subsection" style={{ left: 148, top: V.home, width: 2229, height: 1566 }} alt="" loading="lazy" decoding="async" />
 
         {/* 层级页面 (组6 base 26459) */}
-        <img src={cdst.uiVisionLevelExact} className="abs cdst-exact-subsection" style={{ left: 270, top: V.level, width: 1898, height: 2910 }} alt="" />
+        <img src={cdst.uiVisionLevelExact} className="abs cdst-exact-subsection" style={{ left: 270, top: V.level, width: 1898, height: 2910 }} alt="" loading="lazy" decoding="async" />
 
         {/* 其他界面 (Figma 9817:19322) */}
-        <img src={cdst.uiVisionOtherExact} className="abs cdst-exact-subsection" style={{ left: 170, top: V.other, width: 2311, height: 1346 }} alt="" />
+        <img src={cdst.uiVisionOtherExact} className="abs cdst-exact-subsection" style={{ left: 170, top: V.other, width: 2311, height: 1346 }} alt="" loading="lazy" decoding="async" />
 
         {/* ICON & 配色 (组10 base 30919) */}
         <div className="visual-label" style={{ left: 197.5 + 902, top: V.icon }}>ICONH&amp;配色</div>
         {cdstColorSwatches.map(([asset, label, x, y, w, h, textX, textY, color]) => (
           <span key={asset} className="abs cdst-color-swatch" style={{ left: 197.5 + x, top: V.icon + y, width: w, height: h }}>
-            <img src={cdstIconAsset(asset)} className="abs img-fill" alt="" />
+            <img src={cdstIconAsset(asset)} className="abs img-fill" alt="" loading="lazy" decoding="async" />
             <span className="abs cdst-color-label" style={{ left: textX, top: textY, color }}>{label}</span>
           </span>
         ))}
@@ -376,7 +376,7 @@ function CdstCase() {
             src={cdstIconAsset(asset)}
             className="abs cdst-ui-icon-asset"
             style={{ left: 197.5 + 333 + ix, top: V.icon + 771 + iy, width: iw, height: ih }}
-            alt=""
+            alt="" loading="lazy" decoding="async"
           />
         ))}
       </FigmaScaleStage>
@@ -529,7 +529,7 @@ function CdstSalaryPrototype({ top }: { top: number }) {
         <span>概的工资水平，从而对自身能够有基本的判断，并且了解当地的五险一金情况。</span>
       </div>
       <CdstSalaryPhoneFlow left={292.5} top={248.5} />
-      <img src={cdst.interactionSalaryArrowCity} className="abs cdst-interaction-asset" style={{ left: 1250.5, top: 420.5, width: 46, height: 201 }} alt="" />
+      <img src={cdst.interactionSalaryArrowCity} className="abs cdst-interaction-asset" style={{ left: 1250.5, top: 420.5, width: 46, height: 201 }} alt="" loading="lazy" decoding="async" />
       {/* Figma 9817:19275 — the text node's own frame, not the 9817:19273 group box */}
       <div className="cdst-interaction-note vertical" style={{ left: 1263, top: 437 }}>
         <span>计算该城市的开支</span>
@@ -537,7 +537,7 @@ function CdstSalaryPrototype({ top }: { top: number }) {
       <div className="cdst-interaction-note vertical" style={{ left: 244, top: 2257 }}>
         <span>当地五险一金明细参考</span>
       </div>
-      <img src={cdst.interactionSalaryArrowDrag} className="abs cdst-interaction-asset" style={{ left: 573.5, top: 2366.5, width: 30, height: 100 }} alt="" />
+      <img src={cdst.interactionSalaryArrowDrag} className="abs cdst-interaction-asset" style={{ left: 573.5, top: 2366.5, width: 30, height: 100 }} alt="" loading="lazy" decoding="async" />
       {/* Figma 9817:19279 */}
       <div className="cdst-interaction-note vertical" style={{ left: 577, top: 2374 }}>
         <span>向下拖动</span>
@@ -547,7 +547,7 @@ function CdstSalaryPrototype({ top }: { top: number }) {
       <div className="cdst-interaction-note dark-label" style={{ left: 864.5, top: 2099.5, width: 256, height: 41 }}>
         计算出最低的薪资水平
       </div>
-      <img src={cdst.interactionSalaryLabelEnter} className="abs cdst-interaction-asset" style={{ left: 814.5, top: 2700.5, width: 228, height: 44 }} alt="" />
+      <img src={cdst.interactionSalaryLabelEnter} className="abs cdst-interaction-asset" style={{ left: 814.5, top: 2700.5, width: 228, height: 44 }} alt="" loading="lazy" decoding="async" />
       <div className="cdst-interaction-note" style={{ left: 829.5, top: 2709.5 }}>
         进入职力测评小程序
       </div>
@@ -582,15 +582,15 @@ function CdstAssessmentPrototype({ top }: { top: number }) {
       <CdstAssessmentPhoneFlow left={199.5} top={238.5} />
       {/* Figma 9817:19260 renders this 37x96 and *then* rotates -90deg, landing on 96x37.
           The pre-rotation box goes here; centred rotation shifts it by ±29.5 to sit at 531,328. */}
-      <img src={cdst.interactionAssessmentArrowSwipe} className="abs cdst-interaction-asset rotate-neg-90" style={{ left: 560.5, top: 298.5, width: 37, height: 96 }} alt="" />
+      <img src={cdst.interactionAssessmentArrowSwipe} className="abs cdst-interaction-asset rotate-neg-90" style={{ left: 560.5, top: 298.5, width: 37, height: 96 }} alt="" loading="lazy" decoding="async" />
       {/* Notes below sit at their own Figma text-node frames (9817:19261 / 19264 / 19269 / 10312:1998),
           not at the enclosing group boxes the arrows use. */}
       <div className="cdst-interaction-note" style={{ left: 534, top: 336 }}>左右滑动</div>
-      <img src={cdst.interactionAssessmentArrowDownA} className="abs cdst-interaction-asset" style={{ left: 900.5, top: 419.5, width: 37, height: 98 }} alt="" />
+      <img src={cdst.interactionAssessmentArrowDownA} className="abs cdst-interaction-asset" style={{ left: 900.5, top: 419.5, width: 37, height: 98 }} alt="" loading="lazy" decoding="async" />
       <div className="cdst-interaction-note vertical" style={{ left: 907, top: 429 }}><span>向下滑动</span></div>
-      <img src={cdst.interactionAssessmentArrowDownB} className="abs cdst-interaction-asset" style={{ left: 1239.5, top: 421.5, width: 37, height: 98 }} alt="" />
+      <img src={cdst.interactionAssessmentArrowDownB} className="abs cdst-interaction-asset" style={{ left: 1239.5, top: 421.5, width: 37, height: 98 }} alt="" loading="lazy" decoding="async" />
       <div className="cdst-interaction-note vertical" style={{ left: 1247, top: 429 }}><span>向下滑动</span></div>
-      <img src={cdst.interactionAssessmentArrowDownB} className="abs cdst-interaction-asset" style={{ left: 1239.5, top: 1078.5, width: 37, height: 98 }} alt="" />
+      <img src={cdst.interactionAssessmentArrowDownB} className="abs cdst-interaction-asset" style={{ left: 1239.5, top: 1078.5, width: 37, height: 98 }} alt="" loading="lazy" decoding="async" />
       <div className="cdst-interaction-note vertical" style={{ left: 1247, top: 1086 }}><span>向下滑动</span></div>
       {/* Figma 10312:1999 — plate is 166×39, not the 256×41 default the class assumes */}
       <div className="cdst-interaction-note dark-label" style={{ left: 1172.5, top: 742.5, width: 166, height: 39 }}>进入测试页面</div>
@@ -641,7 +641,7 @@ function CdstStatusConsultPrototype({ top }: { top: number }) {
         <span>选择职业状态</span>
       </div>
       <CdstStatusConsultFlow left={235.5} top={169.5} />
-      <img src={cdst.interactionStatusConsultVerticalBg} className="abs cdst-interaction-asset" style={{ left: 218.5, top: 1108.5, width: 38, height: 273 }} alt="" />
+      <img src={cdst.interactionStatusConsultVerticalBg} className="abs cdst-interaction-asset" style={{ left: 218.5, top: 1108.5, width: 38, height: 273 }} alt="" loading="lazy" decoding="async" />
       {/* Figma 9817:19243 — text node, inset from the 9817:19241 backing bar the image above draws.
           Bar recoloured white -> #141414 so this reads white-on-dark like every other line label. */}
       <div className="cdst-interaction-note vertical" style={{ left: 226, top: 1130 }}>
@@ -664,7 +664,7 @@ function CdstStatusConsultPrototype({ top }: { top: number }) {
 function CdstProfilePrototype({ left, top }: { left: number; top: number }) {
   return (
     <div className="abs cdst-profile-prototype proto" style={{ left, top }}>
-      <img src={cdst.interactionProfileFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1999, height: 2476 }} alt="" />
+      <img src={cdst.interactionProfileFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1999, height: 2476 }} alt="" loading="lazy" decoding="async" />
     </div>
   );
 }
@@ -672,9 +672,9 @@ function CdstProfilePrototype({ left, top }: { left: number; top: number }) {
 function CdstAssessmentPhoneFlow({ left, top }: { left: number; top: number }) {
   return (
     <div className="abs cdst-assessment-phone-flow proto" style={{ left, top }}>
-      <img src={cdst.interactionAssessmentFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1696, height: 1844 }} alt="" />
-      <img src={cdst.interactionAssessmentTopStrip} className="abs cdst-interaction-asset" style={{ left: 592, top: 337, width: 1020, height: 190 }} alt="" />
-      <img src={cdst.interactionAssessmentSidePhone} className="abs cdst-interaction-asset" style={{ left: 1454, top: 0, width: 240, height: 486 }} alt="" />
+      <img src={cdst.interactionAssessmentFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1696, height: 1844 }} alt="" loading="lazy" decoding="async" />
+      <img src={cdst.interactionAssessmentTopStrip} className="abs cdst-interaction-asset" style={{ left: 592, top: 337, width: 1020, height: 190 }} alt="" loading="lazy" decoding="async" />
+      <img src={cdst.interactionAssessmentSidePhone} className="abs cdst-interaction-asset" style={{ left: 1454, top: 0, width: 240, height: 486 }} alt="" loading="lazy" decoding="async" />
     </div>
   );
 }
@@ -682,9 +682,9 @@ function CdstAssessmentPhoneFlow({ left, top }: { left: number; top: number }) {
 function CdstSalaryPhoneFlow({ left, top }: { left: number; top: number }) {
   return (
     <div className="abs cdst-salary-phone-flow proto" style={{ left, top }}>
-      <img src={cdst.interactionSalaryFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1311, height: 2422 }} alt="" />
-      <img src={cdst.interactionSalaryExtraPhone} className="abs cdst-interaction-asset" style={{ left: 683, top: 1935, width: 240, height: 486 }} alt="" />
-      <img src={cdst.interactionSalaryBottomStrip} className="abs cdst-interaction-asset" style={{ left: 463, top: 2389, width: 349, height: 82 }} alt="" />
+      <img src={cdst.interactionSalaryFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1311, height: 2422 }} alt="" loading="lazy" decoding="async" />
+      <img src={cdst.interactionSalaryExtraPhone} className="abs cdst-interaction-asset" style={{ left: 683, top: 1935, width: 240, height: 486 }} alt="" loading="lazy" decoding="async" />
+      <img src={cdst.interactionSalaryBottomStrip} className="abs cdst-interaction-asset" style={{ left: 463, top: 2389, width: 349, height: 82 }} alt="" loading="lazy" decoding="async" />
     </div>
   );
 }
@@ -692,7 +692,7 @@ function CdstSalaryPhoneFlow({ left, top }: { left: number; top: number }) {
 function CdstStatusConsultFlow({ left, top }: { left: number; top: number }) {
   return (
     <div className="abs cdst-status-consult-flow proto" style={{ left, top }}>
-      <img src={cdst.interactionStatusConsultFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1727, height: 1817 }} alt="" />
+      <img src={cdst.interactionStatusConsultFlow} className="abs cdst-interaction-asset" style={{ left: 0, top: 0, width: 1727, height: 1817 }} alt="" loading="lazy" decoding="async" />
     </div>
   );
 }
@@ -1103,7 +1103,7 @@ function Comp({ base, top, image, name, nameX, body, bodyTop }: {
   return (
     <>
       <div className="comp-plate abs" style={{ left: 234.5, top: base + top }}>
-        <img className="comp-bg" src={image} alt="" />
+        <img className="comp-bg" src={image} alt="" loading="lazy" decoding="async" />
         <span className="comp-name" style={{ left: nameX }}>{name}</span>
       </div>
       <div className="comp-body abs" style={{ left: 234.5 + 280, top: base + top + bodyTop }}>
@@ -1120,7 +1120,7 @@ function Persona({ base, top, portrait, lines, textTop }: {
   return (
     <div className="persona-card abs" style={{ left: 252, top: base + top }}>
       <div className="persona-body" />
-      <div className="avatar-ring"><img className="portrait" src={portrait} alt="" /></div>
+      <div className="avatar-ring"><img className="portrait" src={portrait} alt="" loading="lazy" decoding="async" /></div>
       <div className="persona-text" style={{ top: textTop }}>
         {lines.map((l, i) => <p key={i}>{l}</p>)}
       </div>
@@ -1236,8 +1236,8 @@ function MadGuideCard({ x, y, card, shot, shotStyle, num, numPos, label, labelPo
 }) {
   return (
     <div className="mad-guide-card abs" style={{ left: x, top: y }}>
-      <img src={card} className="abs" style={{ left: 0, top: 0, width: 626, height: 1432 }} />
-      <img src={shot} className="abs mad-guide-shot" style={shotStyle} />
+      <img src={card} className="abs" style={{ left: 0, top: 0, width: 626, height: 1432 }} loading="lazy" decoding="async" />
+      <img src={shot} className="abs mad-guide-shot" style={shotStyle} loading="lazy" decoding="async" />
       <span className="mad-guide-num abs" style={numPos}>{num}</span>
       <span className="mad-guide-label abs" style={{ left: labelPos.left, top: labelPos.top, width: labelPos.w }}>{label}</span>
       <span className="mad-guide-sign in abs" style={{ left: sign.inX, top: sign.inY }}>SIGN IN</span>
@@ -1441,41 +1441,41 @@ function MadCase() {
       <FigmaScaleStage width={2480} height={34946} className="mad-stage" fitToViewport viewportInset={0}>
 
         {/* ── 组 10 cover (y0 h2318) ── */}
-        <img src={mad.coverBg} className="abs mad-exact-img" style={{ left: 0, top: S.cover, width: 2480, height: 1655 }} />
-        <img src={mad.coverBadgeClean} className="abs mad-exact-img" style={{ left: 1994, top: S.cover + 1187, width: 286, height: 351 }} />
+        <img src={mad.coverBg} className="abs mad-exact-img" style={{ left: 0, top: S.cover, width: 2480, height: 1655 }} loading="lazy" decoding="async" />
+        <img src={mad.coverBadgeClean} className="abs mad-exact-img" style={{ left: 1994, top: S.cover + 1187, width: 286, height: 351 }} loading="lazy" decoding="async" />
         <div className="mad-cover-frame mad-cover-badge abs" style={{ left: 60, top: S.cover + 49, width: 596, height: 207 }}>My Production<br />我的作品</div>
         <div className="mad-cover-intro abs" style={{ left: 219, top: S.cover + 1763, width: 2043 }}>通过调查了解，许多球友对于比赛结果推断不准，导致足球博彩逢赌必输，即使他们能询问一些看球经验很丰富的老球迷，甚至向专业的分析师请教，但是由于不同的比赛有不同的体制，所以很多情况下是凭借运气来购买足球彩票，运气不好就预测不准，造成了很大的经济损失以及浪费了大量的时间精力，所以，对于一些没有太多时间来分析球赛的球友来说，特别是经验水平不足的新人，这款应用是为了广大球友设计的。</div>
 
         {/* ── 组 13 analyst (y2555 h1312) ── */}
-        <img src={mad.analyst} className="abs img-cover" style={{ left: 498, top: S.analyst + 196, width: 1489, height: 1116 }} />
+        <img src={mad.analyst} className="abs img-cover" style={{ left: 498, top: S.analyst + 196, width: 1489, height: 1116 }} loading="lazy" decoding="async" />
         <MadTitle x={497} y={S.analyst + 106} w={1501} align="center">Your Personal Analyst<br />你的私人分析师</MadTitle>
 
         {/* ── 组 12 icon design (y3788 h2200) ── */}
-        <img src={mad.iconBg} className="abs img-cover mad-icon-bg" style={{ left: 0, top: S.icon, width: 2480, height: 2200 }} />
-        <img src={mad.iconBig} className="abs img-cover" style={{ left: 384, top: S.icon + 953, width: 678, height: 829 }} />
-        <img src={mad.iconMark} className="abs img-cover" style={{ left: 1470, top: S.icon + 957, width: 833, height: 833 }} />
+        <img src={mad.iconBg} className="abs img-cover mad-icon-bg" style={{ left: 0, top: S.icon, width: 2480, height: 2200 }} loading="lazy" decoding="async" />
+        <img src={mad.iconBig} className="abs img-cover" style={{ left: 384, top: S.icon + 953, width: 678, height: 829 }} loading="lazy" decoding="async" />
+        <img src={mad.iconMark} className="abs img-cover" style={{ left: 1470, top: S.icon + 957, width: 833, height: 833 }} loading="lazy" decoding="async" />
         <MadTitle x={252} y={S.icon + 409} w={833}>Icon Design<br />图标设计</MadTitle>
 
         {/* ── 组 5 concise guide — 4 perspective cards (y6004 h2146) ── */}
-        <img src={mad.guideCard1} className="abs img-cover mad-guide-export" style={{ left: -5, top: S.guide + 716, width: 623, height: 1430 }} />
-        <img src={mad.guideCard2} className="abs img-cover mad-guide-export" style={{ left: 616, top: S.guide + 750, width: 623, height: 1381 }} />
-        <img src={mad.guideCard3} className="abs img-cover mad-guide-export" style={{ left: 1236, top: S.guide + 750, width: 627, height: 1384 }} />
-        <img src={mad.guideCard4} className="abs img-cover mad-guide-export" style={{ left: 1861, top: S.guide + 750, width: 619, height: 1391 }} />
+        <img src={mad.guideCard1} className="abs img-cover mad-guide-export" style={{ left: -5, top: S.guide + 716, width: 623, height: 1430 }} loading="lazy" decoding="async" />
+        <img src={mad.guideCard2} className="abs img-cover mad-guide-export" style={{ left: 616, top: S.guide + 750, width: 623, height: 1381 }} loading="lazy" decoding="async" />
+        <img src={mad.guideCard3} className="abs img-cover mad-guide-export" style={{ left: 1236, top: S.guide + 750, width: 627, height: 1384 }} loading="lazy" decoding="async" />
+        <img src={mad.guideCard4} className="abs img-cover mad-guide-export" style={{ left: 1861, top: S.guide + 750, width: 619, height: 1391 }} loading="lazy" decoding="async" />
         <MadTitle x={290} y={S.guide} w={1026}>Concise Guide<br />简介引导</MadTitle>
 
         {/* ── 组 14 product detail (y8605 h1662) ── */}
-        <img src={mad.productBg} className="abs mad-exact-img" style={{ left: 0, top: S.product + 426, width: 2480, height: 1237 }} />
-        <img src={mad.productPhoneClean} className="abs mad-exact-img mad-phone" style={{ left: 1119, top: S.product + 611, width: 592, height: 916 }} />
+        <img src={mad.productBg} className="abs mad-exact-img" style={{ left: 0, top: S.product + 426, width: 2480, height: 1237 }} loading="lazy" decoding="async" />
+        <img src={mad.productPhoneClean} className="abs mad-exact-img mad-phone" style={{ left: 1119, top: S.product + 611, width: 592, height: 916 }} loading="lazy" decoding="async" />
         <MadTitle x={32} y={S.product + 2} w={2480} align="center">Product Detail<br />产品细节</MadTitle>
 
         {/* ── 组 15 recommend (y10583 h3487) ── */}
-        <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1379, height: 3060 }} />
+        <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1379, height: 3060 }} loading="lazy" decoding="async" />
         {/* Figma 10333:3853 "Group 2359" — three stacked layers. The screen sits behind a
             device frame whose screen area is a cut-out; only the frame was here before,
             sized to the screen's box, so the phone rendered as a solid black slab. */}
-        <img src={mad.recommendScreen} className="abs mad-exact-img" style={{ left: 1327, top: S.recommend + 1106, width: 772.6, height: 2331.9 }} />
-        <img src={mad.recommendStatusBar} className="abs mad-exact-img" style={{ left: 1300.3, top: S.recommend + 1123.5, width: 768.9, height: 135.7 }} />
-        <img src={mad.recommendPhone} className="abs mad-exact-img mad-phone" style={{ left: 1300.3, top: S.recommend + 1044.4, width: 904.6, height: 2442.3 }} />
+        <img src={mad.recommendScreen} className="abs mad-exact-img" style={{ left: 1327, top: S.recommend + 1106, width: 772.6, height: 2331.9 }} loading="lazy" decoding="async" />
+        <img src={mad.recommendStatusBar} className="abs mad-exact-img" style={{ left: 1300.3, top: S.recommend + 1123.5, width: 768.9, height: 135.7 }} loading="lazy" decoding="async" />
+        <img src={mad.recommendPhone} className="abs mad-exact-img mad-phone" style={{ left: 1300.3, top: S.recommend + 1044.4, width: 904.6, height: 2442.3 }} loading="lazy" decoding="async" />
         <MadDivider
           x={573}
           y={S.recommend + 178}
@@ -1491,7 +1491,7 @@ function MadCase() {
         <MadLabel x={207} y={S.recommend + 1444} w={421}>Live<br />实时比赛</MadLabel>
 
         {/* ── 组 16 me (y14467 h2345) ── */}
-        <img src={mad.mePhones} className="abs mad-me-phones" style={{ left: 633, top: S.me + 413, width: 1670, height: 1768 }} />
+        <img src={mad.mePhones} className="abs mad-me-phones" style={{ left: 633, top: S.me + 413, width: 1670, height: 1768 }} loading="lazy" decoding="async" />
         <MadDivider
           x={574}
           y={S.me + 157}
@@ -1518,8 +1518,8 @@ function MadCase() {
         <MadLabel x={1616} y={S.me + 1988} w={638} align="right">Unlock<br />已解锁的比赛</MadLabel>
 
         {/* ── 组 18 recharge (y17286 h2147) ── */}
-        <img src={mad.rechargeBg} className="abs img-cover" style={{ left: 45, top: S.recharge + 421, width: 2420, height: 1726 }} />
-        <img src={mad.rechargePhone} className="abs img-cover mad-phone" style={{ left: 298, top: S.recharge + 519, width: 1952, height: 1391 }} />
+        <img src={mad.rechargeBg} className="abs img-cover" style={{ left: 45, top: S.recharge + 421, width: 2420, height: 1726 }} loading="lazy" decoding="async" />
+        <img src={mad.rechargePhone} className="abs img-cover mad-phone" style={{ left: 298, top: S.recharge + 519, width: 1952, height: 1391 }} loading="lazy" decoding="async" />
         <MadDivider
           x={573}
           y={S.recharge + 154}
@@ -1533,26 +1533,26 @@ function MadCase() {
         <MadTitle x={151} y={S.recharge} w={660}>Recharge<br />充值</MadTitle>
 
         {/* ── 组 20 dialog (y20051 h3065) ── */}
-        <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 633, top: S.dialog + 565, width: 1209, height: 2500 }} />
+        <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 633, top: S.dialog + 565, width: 1209, height: 2500 }} loading="lazy" decoding="async" />
         <MadSplitDivider y={S.dialog + 68} segments={[{ x: 0, w: 520 }, { x: 1958, w: 522 }]} />
         <MadTitle x={0} y={S.dialog + 20} w={2480} align="center">Dialog Box Pops Up<br />弹出对话框</MadTitle>
 
         {/* ── 组 21 charts (y23696 h7579) ── */}
         <MadTitle x={151} y={S.charts - 2} w={1111}>Structure Chart<br />结构图</MadTitle>
-        <img src={mad.structChart} className="abs img-cover" style={{ left: 2, top: S.charts + 482, width: 2480, height: 1402 }} />
+        <img src={mad.structChart} className="abs img-cover" style={{ left: 2, top: S.charts + 482, width: 2480, height: 1402 }} loading="lazy" decoding="async" />
         <MadTitle x={155} y={S.charts + 2314} w={770}>Flow Chart<br />流程图</MadTitle>
-        <img src={mad.flowChart} className="abs img-cover" style={{ left: 0, top: S.charts + 2730, width: 2480, height: 400 }} />
+        <img src={mad.flowChart} className="abs img-cover" style={{ left: 0, top: S.charts + 2730, width: 2480, height: 400 }} loading="lazy" decoding="async" />
         <MadTitle x={155} y={S.charts + 3618} w={1172}>Wireframe Chart<br />线框图</MadTitle>
-        <img src={mad.wireframe} className="abs img-cover" style={{ left: 25, top: S.charts + 4119, width: 2433, height: 3460 }} />
+        <img src={mad.wireframe} className="abs img-cover" style={{ left: 25, top: S.charts + 4119, width: 2433, height: 3460 }} loading="lazy" decoding="async" />
 
         {/* ── 组 22 end (y31852 h3094) ── */}
-        <img src={mad.endBg} className="abs img-cover" style={{ left: 0, top: S.end, width: 2480, height: 1504 }} />
-        <img src={mad.endLaptopClean} className="abs img-cover" style={{ left: 957, top: S.end + 539, width: 765, height: 512 }} />
+        <img src={mad.endBg} className="abs img-cover" style={{ left: 0, top: S.end, width: 2480, height: 1504 }} loading="lazy" decoding="async" />
+        <img src={mad.endLaptopClean} className="abs img-cover" style={{ left: 957, top: S.end + 539, width: 765, height: 512 }} loading="lazy" decoding="async" />
         {/* Figma 9817:19385 — one unbroken rule, masked in the middle by the plate below */}
         <div className="mad-divider-line abs" style={{ left: 3.7, top: S.end + 1699.6, width: 2480.1 }} />
         {/* Figma 9817:19389 — a solid #131313 plate, not a bordered frame: it punches the gap for ICON */}
         <span className="mad-end-badge abs" style={{ left: 1006.3, top: S.end + 1635.5, width: 474.9, height: 143.2 }} />
-        <img src={mad.endIcons} className="abs img-cover" style={{ left: 444, top: S.end + 2031, width: 1600, height: 379 }} />
+        <img src={mad.endIcons} className="abs img-cover" style={{ left: 444, top: S.end + 2031, width: 1600, height: 379 }} loading="lazy" decoding="async" />
         {/* Figma trims this text to its cap box (cap top at 1675.1); `top` here is the 160px line box, 31.7px higher */}
         <MadTitle x={1080} y={S.end + 1643.4} w={350} align="center" tracking={9.54}>ICON</MadTitle>
 
@@ -1972,7 +1972,7 @@ export function HighSeasNavyTrialExactCase() {
           <HSAbs className="hs-prototype-preview" style={{ left: 86, top: 180 }}>
             <div className="hs-prototype-device">
               <div className="hs-prototype-live" aria-label={currentPrototype.title}>
-                <img src={currentPrototype.src} alt="" />
+                <img src={currentPrototype.src} alt="" loading="lazy" decoding="async" />
                 {currentPrototype.actions.map((action) => (
                   <button
                     key={`${currentPrototype.id}-${action.label}`}
@@ -2040,12 +2040,12 @@ export function HighSeasNavyTrialExactCase() {
           </HSAbs>
           {diffCards.map(([, , type], i) => (
             <HSAbs key={type} className={`hs-diff-card ${type}`} style={{ left: 710 + i * 104, top: 3051 }}>
-              <img className="hs-diff-card-top" src={hsTrial.difficultyCardTop} alt="" />
-              {type === 'green' ? <img className="hs-diff-card-check" src={hsTrial.difficultyCardCheck} alt="" /> : null}
-              <img className="hs-diff-card-emblem" src={hsTrial.difficultyCard} alt="" />
-              {type === 'gray' ? <img className="hs-diff-card-locked" src={hsTrial.difficultyCardLocked} alt="" /> : null}
+              <img className="hs-diff-card-top" src={hsTrial.difficultyCardTop} alt="" loading="lazy" decoding="async" />
+              {type === 'green' ? <img className="hs-diff-card-check" src={hsTrial.difficultyCardCheck} alt="" loading="lazy" decoding="async" /> : null}
+              <img className="hs-diff-card-emblem" src={hsTrial.difficultyCard} alt="" loading="lazy" decoding="async" />
+              {type === 'gray' ? <img className="hs-diff-card-locked" src={hsTrial.difficultyCardLocked} alt="" loading="lazy" decoding="async" /> : null}
               <b>难度</b>
-              <span><img src={hsTrial.difficultyCardStar} alt="" />X5</span>
+              <span><img src={hsTrial.difficultyCardStar} alt="" loading="lazy" decoding="async" />X5</span>
             </HSAbs>
           ))}
           <HSAbs className="hs-panel-title light" style={{ left: 710, top: 3291 }}>设计要点</HSAbs>
@@ -2070,7 +2070,7 @@ export function HighSeasNavyTrialExactCase() {
             { title: '信息前置', icon: hsTrial.iconSafetyInfo, lines: ['弹窗内展示已选难度与预期挑', '战内容，帮助玩家做最终确认'] },
           ].map((item, i) => (
             <HSAbs key={item.title} className="hs-safety-card" style={{ left: 490, top: 4740 + i * 130 }}>
-              <img src={item.icon} alt="" />
+              <img src={item.icon} alt="" loading="lazy" decoding="async" />
               <b>{item.title}</b>
               <span>{item.lines[0]}<br />{item.lines[1]}</span>
             </HSAbs>
@@ -2115,7 +2115,7 @@ export function HighSeasNavyTrialExactCase() {
             [hsTrial.iconAllianceRank, '联盟排名', '联盟维度统计挑战成绩，', '激发组织荣誉感'],
           ].map(([icon, title, line1, line2], i) => (
             <HSAbs key={title} className={`hs-light-list-card hs-alliance-feature ${i % 2 ? 'orange' : 'blue'}`} style={{ left: 700, top: 8375 + i * 105 }}>
-              <img className="hs-alliance-icon" src={icon} alt="" />
+              <img className="hs-alliance-icon" src={icon} alt="" loading="lazy" decoding="async" />
               <b>{title}</b><span>{line1}<br />{line2}</span>
             </HSAbs>
           ))}
@@ -2193,7 +2193,7 @@ export function HighSeasNavyTrialExactCase() {
             [hsTrial.iconRecordBattle, '战场回顾', <>公会战场数据记录，<br />展示联盟协作战果</>],
           ] as [string, string, React.ReactNode][]).map(([icon, title, body], i) => (
             <HSAbs key={title} className={`hs-record-card ${i % 2 ? 'orange' : 'blue'}`} style={{ left: 813, top: 10188 + i * 105 }}>
-              <img className="hs-record-card-icon" src={icon} alt="" />
+              <img className="hs-record-card-icon" src={icon} alt="" loading="lazy" decoding="async" />
               <div className="hs-record-card-copy"><b>{title}</b><span>{body}</span></div>
             </HSAbs>
           ))}
@@ -2317,7 +2317,7 @@ export function HighSeasCleanupGangExactCase() {
             <div className="gang-hero-glow" />
             <HSImg src={hsGang.eventIpSceneBg01} className="gang-hero-bg" style={{ left: 30, top: 46, width: 340, height: 737 }} />
             <div className="gang-hero-person-frame abs" style={{ left: 1, top: 103, width: 400, height: 670 }}>
-              <img src={hsGang.eventIpCrewDetailShow02} className="gang-hero-person" alt="IP联动角色立绘" />
+              <img src={hsGang.eventIpCrewDetailShow02} className="gang-hero-person" alt="IP联动角色立绘" loading="lazy" decoding="async" />
             </div>
           </HSAbs>
           <HSAbs className="gang-cover-divider" style={{ left: 80, top: 879 }} />
@@ -2458,7 +2458,7 @@ export function HighSeasCleanupGangExactCase() {
               <img
                 alt=""
                 src={hsGang.collage}
-                style={{ position:'absolute', height:'102.83%', width:'664.35%', maxWidth:'none', left:resultOffsets[i], top:'-2.81%' }}
+                style={{ position:'absolute', height:'102.83%', width:'664.35%', maxWidth:'none', left:resultOffsets[i], top:'-2.81%' }} loading="lazy" decoding="async"
               />
             </HSAbs>
           ))}

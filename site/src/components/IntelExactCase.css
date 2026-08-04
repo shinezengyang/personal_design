@@ -1,3 +1,6 @@
+/* Fonts are self-hosted — see src/styles/fonts.css, imported once from
+   main.tsx. This file used to @import them from fonts.googleapis.com, which
+   blocked rendering and is unreachable from mainland China. */
 /* ===================================================================
    IntelExactCase — 1:1 Figma rebuild (absolute positioning)
    Figma node 8721:7614 · 玩法-《庆余年》情报簿
@@ -7,7 +10,6 @@
 /* Web fonts the Figma design relies on (heavy condensed grotesque +
    serif/sans CJK). Without these the headings fall back to a generic
    sans and render lowercase / too light. */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@400;700;900&display=swap');
 
 .intel-canvas {
   position: relative;

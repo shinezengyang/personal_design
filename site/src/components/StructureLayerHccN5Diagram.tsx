@@ -12,7 +12,7 @@ export function StructureLayerHccN5Diagram() {
           src={publicUrl('pencil/xingji-aodaisai/coord-fav-flow.webp')}
           alt="HcCn5 source collage"
           className="block h-auto w-full select-none"
-          draggable={false}
+          draggable={false} loading="lazy" decoding="async"
         />
       </div>
     </div>

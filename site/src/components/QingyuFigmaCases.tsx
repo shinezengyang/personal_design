@@ -65,7 +65,7 @@ const tianmaiAssets = {
   resourceLine196: '/assets/qingyu-tianmai/line-196.svg',
   resourceLine194: '/assets/qingyu-tianmai/line-194.svg',
   resourceLine195: '/assets/qingyu-tianmai/line-195.svg',
-  final: '/assets/qingyu-tianmai/final.png',
+  final: '/assets/qingyu-tianmai/final.webp',
 };
 
 function Img({ src, className, alt = '' }: { src: string; className?: string; alt?: string }) {

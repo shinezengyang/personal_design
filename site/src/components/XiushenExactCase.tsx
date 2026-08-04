@@ -92,7 +92,7 @@ function Rationale({ title, subtitle, principles, dark = true }: { title: string
 function Shot({ src, label, className = '' }: { src: string; label?: string; className?: string }) {
   return (
     <figure className={`xs-shot ${className}`}>
-      <img src={src} alt={label ?? ''} />
+      <img src={src} alt={label ?? ''} loading="lazy" decoding="async" />
       {label ? <figcaption>{label}</figcaption> : null}
     </figure>
   );
@@ -394,7 +394,7 @@ export function XiushenExactCase() {
             [xsAssets.ref3, '《天涯明月刀》· 心法', '国风纹样 + 流光，养成界面也讲究氛围。'],
           ].map(([src, title, text]) => (
             <article key={title}>
-              <img src={src} alt="" />
+              <img src={src} alt="" loading="lazy" decoding="async" />
               <h3>{title}</h3>
               <span>{text}</span>
             </article>
@@ -431,9 +431,9 @@ export function XiushenExactCase() {
         </div>
         <h3 className="gallery-title">视觉稿展示</h3>
         <div className="final-gallery">
-          <img className="main" src={xsAssets.finalA} alt="绣身主界面视觉稿" />
-          <img src={xsAssets.finalB} alt="绣身提示视觉稿" />
-          <img src={xsAssets.finalC} alt="绣身升级视觉稿" />
+          <img className="main" src={xsAssets.finalA} alt="绣身主界面视觉稿" loading="lazy" decoding="async" />
+          <img src={xsAssets.finalB} alt="绣身提示视觉稿" loading="lazy" decoding="async" />
+          <img src={xsAssets.finalC} alt="绣身升级视觉稿" loading="lazy" decoding="async" />
         </div>
       </section>
     </div>

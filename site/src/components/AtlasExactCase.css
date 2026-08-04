@@ -1,9 +1,11 @@
+/* Fonts are self-hosted — see src/styles/fonts.css, imported once from
+   main.tsx. This file used to @import them from fonts.googleapis.com, which
+   blocked rendering and is unreachable from mainland China. */
 /* ===================================================================
    AtlasExactCase — 1:1 Figma rebuild (absolute positioning)
    Canvas 1280 x 14540. All coords match Figma metadata exactly.
    Theme: 《庆余年》图鉴手册 — dark study + golden codex, color-as-value
    =================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
 
 .atlas-canvas {
   position: relative;

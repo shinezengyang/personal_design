@@ -10,28 +10,28 @@ const guildAssets = {
   coverDotTeal: '/assets/qingyu-guild-cover/dot-teal.svg',
   coverDotRed: '/assets/qingyu-guild-cover/dot-red.svg',
   coverStar: '/assets/qingyu-guild-cover/star.svg',
-  oldInfo: '/assets/qingyu-guild-portfolio/before-01.jpg',
-  oldCreate: '/assets/qingyu-guild-portfolio/before-02.jpg',
+  oldInfo: '/assets/qingyu-guild-portfolio/before-01.webp',
+  oldCreate: '/assets/qingyu-guild-portfolio/before-02.webp',
   oldMain: '/assets/qingyu-guild-portfolio/before-03.webp',
-  oldMember: '/assets/qingyu-guild-portfolio/before-04.jpg',
-  oldActivity: '/assets/qingyu-guild-portfolio/before-05.jpg',
-  oldHome: '/assets/qingyu-guild-portfolio/before-06.jpg',
-  oldDonate: '/assets/qingyu-guild-portfolio/before-07.jpg',
-  oldPractice: '/assets/qingyu-guild-portfolio/before-08.jpg',
+  oldMember: '/assets/qingyu-guild-portfolio/before-04.webp',
+  oldActivity: '/assets/qingyu-guild-portfolio/before-05.webp',
+  oldHome: '/assets/qingyu-guild-portfolio/before-06.webp',
+  oldDonate: '/assets/qingyu-guild-portfolio/before-07.webp',
+  oldPractice: '/assets/qingyu-guild-portfolio/before-08.webp',
   /* These 13 were byte-identical copies of the qingyu-guild-figma exports below
      (several also carried a .jpg extension on PNG data), so they now point at
      the single canonical file instead of a second copy. */
-  styleA: '/assets/qingyu-guild-figma/art-competitor-activity.png',
-  styleB: '/assets/qingyu-guild-figma/art-competitor-level.png',
-  styleC: '/assets/qingyu-guild-figma/art-competitor-league.png',
-  finalList: '/assets/qingyu-guild-figma/final-list-exact.png',
+  styleA: '/assets/qingyu-guild-figma/art-competitor-activity.webp',
+  styleB: '/assets/qingyu-guild-figma/art-competitor-level.webp',
+  styleC: '/assets/qingyu-guild-figma/art-competitor-league.webp',
+  finalList: '/assets/qingyu-guild-figma/final-list-exact.webp',
   finalMain: '/assets/qingyu-guild-figma/final-feature-02.webp',
-  finalMember: '/assets/qingyu-guild-figma/final-member-rank-exact.png',
+  finalMember: '/assets/qingyu-guild-figma/final-member-rank-exact.webp',
   finalActivity: '/assets/qingyu-guild-figma/final-activity-exact.webp',
-  finalHome: '/assets/qingyu-guild-figma/final-base-exact.png',
+  finalHome: '/assets/qingyu-guild-figma/final-base-exact.webp',
   finalDonate: '/assets/qingyu-guild-figma/final-donate-exact.webp',
   finalWelfare: '/assets/qingyu-guild-figma/final-welfare-exact.webp',
-  finalPractice: '/assets/qingyu-guild-figma/final-practice-exact.png',
+  finalPractice: '/assets/qingyu-guild-figma/final-practice-exact.webp',
   finalAlly: '/assets/qingyu-guild-figma/final-ally-exact.webp',
   finalEnemy: '/assets/qingyu-guild-figma/final-enemy-exact.webp',
   joinUi: '/assets/qingyu-guild-figma/join-panel.webp',
@@ -46,20 +46,20 @@ const guildAssets = {
   practiceUi: '/assets/qingyu-guild-figma/practice-panel.webp',
   diplomacyAllyUi: '/assets/qingyu-guild-figma/ally-panel.webp',
   diplomacyEnemyUi: '/assets/qingyu-guild-figma/enemy-panel.webp',
-  artCompetitorActivity: '/assets/qingyu-guild-figma/art-competitor-activity.png',
-  artCompetitorLevel: '/assets/qingyu-guild-figma/art-competitor-level.png',
-  artCompetitorLeague: '/assets/qingyu-guild-figma/art-competitor-league.png',
-  artQingyuMain: '/assets/qingyu-guild-figma/art-qingyu-main.png',
+  artCompetitorActivity: '/assets/qingyu-guild-figma/art-competitor-activity.webp',
+  artCompetitorLevel: '/assets/qingyu-guild-figma/art-competitor-level.webp',
+  artCompetitorLeague: '/assets/qingyu-guild-figma/art-competitor-league.webp',
+  artQingyuMain: '/assets/qingyu-guild-figma/art-qingyu-main.webp',
   artQingyuDiplomacy: '/assets/qingyu-guild-figma/art-qingyu-diplomacy.webp',
-  finalFeatureA: '/assets/qingyu-guild-figma/final-feature-01.png',
+  finalFeatureA: '/assets/qingyu-guild-figma/final-feature-01.webp',
   finalFeatureB: '/assets/qingyu-guild-figma/final-feature-02.webp',
-  finalListExact: '/assets/qingyu-guild-figma/final-list-exact.png',
-  finalMemberInfoExact: '/assets/qingyu-guild-figma/final-member-info-exact.png',
-  finalMemberRankExact: '/assets/qingyu-guild-figma/final-member-rank-exact.png',
+  finalListExact: '/assets/qingyu-guild-figma/final-list-exact.webp',
+  finalMemberInfoExact: '/assets/qingyu-guild-figma/final-member-info-exact.webp',
+  finalMemberRankExact: '/assets/qingyu-guild-figma/final-member-rank-exact.webp',
   finalActivityExact: '/assets/qingyu-guild-figma/final-activity-exact.webp',
-  finalBaseExact: '/assets/qingyu-guild-figma/final-base-exact.png',
+  finalBaseExact: '/assets/qingyu-guild-figma/final-base-exact.webp',
   finalDonateExact: '/assets/qingyu-guild-figma/final-donate-exact.webp',
-  finalPracticeExact: '/assets/qingyu-guild-figma/final-practice-exact.png',
+  finalPracticeExact: '/assets/qingyu-guild-figma/final-practice-exact.webp',
   finalWelfareExact: '/assets/qingyu-guild-figma/final-welfare-exact.webp',
   finalAllyExact: '/assets/qingyu-guild-figma/final-ally-exact.webp',
   finalEnemyExact: '/assets/qingyu-guild-figma/final-enemy-exact.webp',
@@ -252,7 +252,9 @@ function Header({ no, eyebrow, title, desc }: { no: string; eyebrow: string; tit
 }
 
 function Shot({ src, alt = '' }: { src: string; alt?: string }) {
-  return <img src={publicUrl(src)} alt={alt} loading="eager" decoding="async" />;
+  /* was loading="eager": this page carries the heaviest screenshots on the site, and
+     forcing them all up front meant ~21 MB downloaded before anything could settle. */
+  return <img src={publicUrl(src)} alt={alt} loading="lazy" decoding="async" />;
 }
 
 function GuildSeal() {
@@ -798,15 +800,15 @@ export function GuildSystemExactCase() {
       <section className="guild-cover">
         <div className="guild-cover-stars" aria-hidden="true">
           {['a', 'b', 'c', 'd', 'e'].map((dot) => (
-            <img key={dot} className={`star-${dot}`} src={publicUrl(guildAssets.coverStar)} alt="" />
+            <img key={dot} className={`star-${dot}`} src={publicUrl(guildAssets.coverStar)} alt="" loading="lazy" decoding="async" />
           ))}
         </div>
-        <img className="guild-cover-orbit orbit-left" src={publicUrl(guildAssets.coverOrbitLeft)} alt="" aria-hidden="true" />
-        <img className="guild-cover-orbit orbit-outer" src={publicUrl(guildAssets.coverOrbitOuter)} alt="" aria-hidden="true" />
-        <img className="guild-cover-orbit orbit-middle" src={publicUrl(guildAssets.coverOrbitMiddle)} alt="" aria-hidden="true" />
-        <img className="guild-cover-orbit orbit-inner" src={publicUrl(guildAssets.coverOrbitInner)} alt="" aria-hidden="true" />
-        <img className="guild-cover-dot dot-teal" src={publicUrl(guildAssets.coverDotTeal)} alt="" aria-hidden="true" />
-        <img className="guild-cover-dot dot-red" src={publicUrl(guildAssets.coverDotRed)} alt="" aria-hidden="true" />
+        <img className="guild-cover-orbit orbit-left" src={publicUrl(guildAssets.coverOrbitLeft)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <img className="guild-cover-orbit orbit-outer" src={publicUrl(guildAssets.coverOrbitOuter)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <img className="guild-cover-orbit orbit-middle" src={publicUrl(guildAssets.coverOrbitMiddle)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <img className="guild-cover-orbit orbit-inner" src={publicUrl(guildAssets.coverOrbitInner)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <img className="guild-cover-dot dot-teal" src={publicUrl(guildAssets.coverDotTeal)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <img className="guild-cover-dot dot-red" src={publicUrl(guildAssets.coverDotRed)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <p className="guild-cover-kicker">多人社交系统</p>
         <h1>帮派</h1>
         <div className="guild-cover-badge">优化</div>

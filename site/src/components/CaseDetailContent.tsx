@@ -483,18 +483,18 @@ function ProblemOneSection() {
       />
 
       <div className="absolute left-[97px] top-[482px] flex items-center gap-[20px]">
-        <img src={caseOneAssets.problemOneBase} alt="" className="h-[350px] w-[197px] object-cover" />
+        <img src={caseOneAssets.problemOneBase} alt="" className="h-[350px] w-[197px] object-cover" loading="lazy" decoding="async" />
         <div className="h-0 w-0 border-b-[19px] border-l-[30px] border-t-[19px] border-b-transparent border-l-[#4d6eeb] border-t-transparent" />
         <WireframeDiagram variant="base" />
       </div>
 
       <div className="absolute left-[723px] top-[482px] flex items-center gap-[20px]">
         <div className="relative h-[350px] w-[196px]">
-          <img src={caseOneAssets.problemOneMap} alt="" className="absolute inset-0 h-full w-full object-cover" />
+          <img src={caseOneAssets.problemOneMap} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
           <div className="absolute left-[8.56px] top-[53.67px] h-[11.67px] w-[11.67px] bg-[#0f3644]" />
-          <img src={caseOneAssets.problemOneMapMarker} alt="" className="absolute left-[7px] top-[52.11px] h-[15.56px] w-[15.56px]" />
+          <img src={caseOneAssets.problemOneMapMarker} alt="" className="absolute left-[7px] top-[52.11px] h-[15.56px] w-[15.56px]" loading="lazy" decoding="async" />
           <div className="absolute left-[7px] top-[90.22px] h-[14px] w-[14.78px] rounded-[2px] bg-[#0f3644]" />
-          <img src={caseOneAssets.problemOneMapMarker} alt="" className="absolute left-[7px] top-[89.44px] h-[15.56px] w-[15.56px]" />
+          <img src={caseOneAssets.problemOneMapMarker} alt="" className="absolute left-[7px] top-[89.44px] h-[15.56px] w-[15.56px]" loading="lazy" decoding="async" />
         </div>
         <div className="h-0 w-0 border-b-[19px] border-l-[30px] border-t-[19px] border-b-transparent border-l-[#4d6eeb] border-t-transparent" />
         <WireframeDiagram variant="map" />
@@ -508,7 +508,7 @@ function ProblemTwoSection() {
     <SectionFrame bg="#edeffe">
       <div className="absolute left-0 top-0 flex h-[480px] w-[1280px] items-center justify-center">
         <div className="h-[480px] w-[1280px] rotate-180">
-          <img src={caseOneAssets.problemTwoDiagonal} alt="" className="h-full w-full" />
+          <img src={caseOneAssets.problemTwoDiagonal} alt="" className="h-full w-full" loading="lazy" decoding="async" />
         </div>
       </div>
       <ProblemHeaderSide
@@ -534,7 +534,7 @@ function ProblemThreeSection() {
     <SectionFrame bg="#edeffe">
       <div className="absolute left-0 top-0 flex h-[480px] w-[1280px] items-center justify-center">
         <div className="h-[480px] w-[1280px] -scale-y-100">
-          <img src={caseOneAssets.problemThreeDiagonal} alt="" className="h-full w-full" />
+          <img src={caseOneAssets.problemThreeDiagonal} alt="" className="h-full w-full" loading="lazy" decoding="async" />
         </div>
       </div>
       <ProblemHeaderSide
@@ -554,9 +554,9 @@ function ProblemThreeSection() {
           decoding="async"
         />
         <div className="absolute left-[14px] top-[92px] h-[20px] w-[20px] bg-[#0f3644]" />
-        <img src={caseOneAssets.problemThreeMarker} alt="" className="absolute left-[11px] top-[89px] h-[27px] w-[27px]" />
+        <img src={caseOneAssets.problemThreeMarker} alt="" className="absolute left-[11px] top-[89px] h-[27px] w-[27px]" loading="lazy" decoding="async" />
         <div className="absolute left-[15px] top-[155px] h-[24px] w-[24px] rounded-[2px] bg-[#0f3644]" />
-        <img src={caseOneAssets.problemThreeMarker} alt="" className="absolute left-[11px] top-[167px] h-[27px] w-[27px]" />
+        <img src={caseOneAssets.problemThreeMarker} alt="" className="absolute left-[11px] top-[167px] h-[27px] w-[27px]" loading="lazy" decoding="async" />
       </div>
     </SectionFrame>
   );
@@ -567,7 +567,7 @@ function ProblemFourSection() {
     <SectionFrame bg="#edeffe">
       <div className="absolute left-0 top-0 flex h-[480px] w-[1280px] items-center justify-center">
         <div className="h-[480px] w-[1280px] rotate-180">
-          <img src={caseOneAssets.problemFourDiagonal} alt="" className="h-full w-full" />
+          <img src={caseOneAssets.problemFourDiagonal} alt="" className="h-full w-full" loading="lazy" decoding="async" />
         </div>
       </div>
       <ProblemHeaderSide
@@ -629,7 +629,7 @@ function ProblemFiveSection() {
     <SectionFrame bg="#edeffe">
       <div className="absolute left-0 top-0 flex h-[480px] w-[1280px] items-center justify-center">
         <div className="h-[480px] w-[1280px] rotate-180">
-          <img src={caseOneAssets.problemFiveDiagonal} alt="" className="h-full w-full" />
+          <img src={caseOneAssets.problemFiveDiagonal} alt="" className="h-full w-full" loading="lazy" decoding="async" />
         </div>
       </div>
       <ProblemHeaderWide
@@ -646,9 +646,9 @@ function ProblemFiveSection() {
             {index === 2 ? (
               <>
                 <div className="absolute left-[8.56px] top-[53.67px] h-[11.667px] w-[11.667px] bg-[#0f3644]" />
-                <img src={caseOneAssets.problemFiveMarker} alt="" className="absolute left-[7px] top-[52.11px] h-[15.556px] w-[15.556px]" />
+                <img src={caseOneAssets.problemFiveMarker} alt="" className="absolute left-[7px] top-[52.11px] h-[15.556px] w-[15.556px]" loading="lazy" decoding="async" />
                 <div className="absolute left-[7px] top-[90.22px] h-[14px] w-[14.778px] rounded-[2px] bg-[#0f3644]" />
-                <img src={caseOneAssets.problemFiveMarker} alt="" className="absolute left-[7px] top-[89.44px] h-[15.556px] w-[15.556px]" />
+                <img src={caseOneAssets.problemFiveMarker} alt="" className="absolute left-[7px] top-[89.44px] h-[15.556px] w-[15.556px]" loading="lazy" decoding="async" />
               </>
             ) : null}
           </div>
@@ -723,7 +723,7 @@ function PathOptimizationSection() {
       <div className="absolute left-[627px] top-[314px] h-[244px] w-[342px] bg-gradient-to-r from-[rgba(89,121,247,0.5)] to-[rgba(89,121,247,0)]" />
       {steps.map((step) => (
         <div key={step.step}>
-          <img src={caseOneAssets.pathBlueStepCircle} alt="" className="absolute top-[314px] h-[244px] w-[244px]" style={{ left: step.left }} />
+          <img src={caseOneAssets.pathBlueStepCircle} alt="" className="absolute top-[314px] h-[244px] w-[244px]" style={{ left: step.left }} loading="lazy" decoding="async" />
           <p
             className="absolute top-[378px] w-[114px] -translate-x-1/2 text-center text-[24px] font-bold leading-[28px] tracking-[3px] text-white"
             style={{ left: step.center }}
@@ -738,21 +738,21 @@ function PathOptimizationSection() {
           </p>
         </div>
       ))}
-      <img src={caseOneAssets.pathArrowA} alt="" className="absolute left-[408px] top-[366px] h-[30px] w-[93px]" />
-      <img src={caseOneAssets.pathArrowB} alt="" className="absolute left-[750px] top-[366px] h-[30px] w-[92px]" />
+      <img src={caseOneAssets.pathArrowA} alt="" className="absolute left-[408px] top-[366px] h-[30px] w-[93px]" loading="lazy" decoding="async" />
+      <img src={caseOneAssets.pathArrowB} alt="" className="absolute left-[750px] top-[366px] h-[30px] w-[92px]" loading="lazy" decoding="async" />
 
-      <img src={caseOneAssets.pathDivider} alt="" className="absolute left-[55px] top-[615px] h-[4px] w-[1160px]" />
+      <img src={caseOneAssets.pathDivider} alt="" className="absolute left-[55px] top-[615px] h-[4px] w-[1160px]" loading="lazy" decoding="async" />
       <p className="absolute left-[626px] top-[569px] w-[120px] -translate-x-1/2 text-center text-[25px] font-bold leading-[30px] tracking-[2px] text-[#5576e7]">优化后</p>
 
       <div className="absolute left-[380px] top-[653px] h-[200px] w-[200px]">
-        <img src={caseOneAssets.pathBeforeCircle} alt="" className="absolute inset-0 h-full w-full" />
+        <img src={caseOneAssets.pathBeforeCircle} alt="" className="absolute inset-0 h-full w-full" loading="lazy" decoding="async" />
         <p className="absolute left-1/2 top-[84px] w-[115px] -translate-x-1/2 text-center text-[28px] font-bold leading-[33px] tracking-[1px] text-[#8e9296]">入口分散</p>
       </div>
       <div className="absolute left-[670px] top-[653px] h-[200px] w-[200px]">
-        <img src={caseOneAssets.pathBeforeCircle} alt="" className="absolute inset-0 h-full w-full" />
+        <img src={caseOneAssets.pathBeforeCircle} alt="" className="absolute inset-0 h-full w-full" loading="lazy" decoding="async" />
         <p className="absolute left-1/2 top-[84px] -translate-x-1/2 whitespace-nowrap text-center text-[27px] font-bold leading-[33px] tracking-[1px] text-[#8e9296]">全屏寻找</p>
       </div>
-      <img src={caseOneAssets.pathBeforeArrow} alt="" className="absolute left-[580px] top-[805px] h-[24px] w-[90px]" />
+      <img src={caseOneAssets.pathBeforeArrow} alt="" className="absolute left-[580px] top-[805px] h-[24px] w-[90px]" loading="lazy" decoding="async" />
       <p className="absolute left-[626px] top-[853px] w-[120px] -translate-x-1/2 text-center text-[25px] font-bold leading-[30px] tracking-[2px] text-[#858991]">优化前</p>
     </SectionFrame>
   );
@@ -825,8 +825,8 @@ function InfoLayeringSection() {
   ];
   return (
     <SectionFrame bg="#fbfcff">
-      <img src={caseOneAssets.layeringPaperLeft} alt="" className="absolute left-0 top-0 h-[900px] w-[737.5px]" />
-      <img src={caseOneAssets.layeringPaperRight} alt="" className="absolute left-[426px] top-0 h-[900px] w-[854px]" />
+      <img src={caseOneAssets.layeringPaperLeft} alt="" className="absolute left-0 top-0 h-[900px] w-[737.5px]" loading="lazy" decoding="async" />
+      <img src={caseOneAssets.layeringPaperRight} alt="" className="absolute left-[426px] top-0 h-[900px] w-[854px]" loading="lazy" decoding="async" />
       <InfoPanelText subtitle="HUD 信息层级重构" title="“信息分层”" copy="按照使用频率和功能属性重新归类层级，高频核心功能保留在固定位置，低频功能统一收纳，降低玩家全屏寻找功能的成本。" />
       <p className="absolute left-[849px] top-[83px] w-[245px] -translate-x-1/2 text-center text-[24px] leading-[36px] text-[#8c9097]">界面层级拆分</p>
       {layers.map((layer, index) => (
@@ -891,7 +891,7 @@ function EmphasisSection() {
         <p className="absolute right-[44px] bottom-[17px] text-center text-[16px] font-extrabold text-white">挂机玩法操作区域</p>
       </div>
 
-      <img src={caseOneAssets.emphasisOverlay} alt="" className="absolute left-[482px] top-[198px] h-[519px] w-[334px]" />
+      <img src={caseOneAssets.emphasisOverlay} alt="" className="absolute left-[482px] top-[198px] h-[519px] w-[334px]" loading="lazy" decoding="async" />
     </SectionFrame>
   );
 }
@@ -1012,7 +1012,7 @@ function AreaUnificationSection() {
           src={caseOneAssets.areaDiagonalWhite}
           alt=""
           className="h-[970.62px] w-[412.548px] max-w-none"
-          style={{ transform: 'rotate(-12deg)' }}
+          style={{ transform: 'rotate(-12deg)' }} loading="lazy" decoding="async"
         />
       </div>
       <div className="absolute left-[967px] top-[-236px] flex h-[669.311px] w-[687.641px] items-center justify-center">
@@ -1020,7 +1020,7 @@ function AreaUnificationSection() {
           src={caseOneAssets.areaDiagonalWhiteTop}
           alt=""
           className="h-[437.689px] w-[531.177px] max-w-none"
-          style={{ transform: 'rotate(-37.03deg)' }}
+          style={{ transform: 'rotate(-37.03deg)' }} loading="lazy" decoding="async"
         />
       </div>
       <div className="absolute left-[-338px] top-[373px] flex h-[1054.642px] w-[755.674px] items-center justify-center">
@@ -1028,7 +1028,7 @@ function AreaUnificationSection() {
           src={caseOneAssets.areaDiagonalWhiteBottom}
           alt=""
           className="h-[970.62px] w-[412.548px] max-w-none"
-          style={{ transform: 'rotate(-22.74deg) scaleY(-1)' }}
+          style={{ transform: 'rotate(-22.74deg) scaleY(-1)' }} loading="lazy" decoding="async"
         />
       </div>
 
@@ -1060,7 +1060,7 @@ function FunctionZoneHudMap() {
   return (
     <div className="absolute left-[277px] top-[412px] h-[450px] w-[253px] bg-[#707070]">
       <div className="absolute left-1/2 top-0 aspect-[253/214] w-[253px] -translate-x-1/2 overflow-hidden opacity-40 mix-blend-luminosity">
-        <img src={caseOneAssets.functionZoneHudBg} alt="" className="absolute left-[-2.64%] top-[-174.97%] h-[368.1%] w-[208.13%] max-w-none" />
+        <img src={caseOneAssets.functionZoneHudBg} alt="" className="absolute left-[-2.64%] top-[-174.97%] h-[368.1%] w-[208.13%] max-w-none" loading="lazy" decoding="async" />
       </div>
 
       <div className={`${darkZone} left-[39.86%] top-0 h-[3.12%] w-[60.14%]`}>货币栏</div>

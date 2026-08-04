@@ -139,7 +139,7 @@ const ProjectCard = ({
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
             decoding="async"
-            style={project.imageObjectPosition ? { objectPosition: project.imageObjectPosition } : undefined}
+            style={project.imageObjectPosition ? { objectPosition: project.imageObjectPosition } : undefined} fetchPriority="high"
           />
 
           {/* Scanline overlay */}
