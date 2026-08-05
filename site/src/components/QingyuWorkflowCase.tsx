@@ -712,6 +712,15 @@ export function QingyuWorkflowCase() {
             animation-delay: var(--workflow-delay, 0ms);
           }
 
+          /* Hand the compositing layer back on reveal. will-change pins an element
+             to its own layer for as long as it is declared, and this page sits in a
+             scaled stage — a pinned layer is rasterised once and then stretched
+             instead of being redrawn at the size it appears, which leaves text soft.
+             Same specificity as the rules above, so it has to stay after them. */
+          .workflow-no-paper .is-visible {
+            will-change: auto;
+          }
+
           .workflow-no-paper .workflow-diagram.is-visible {
             animation: workflow-soft-reveal 680ms ease-out both;
             animation-delay: var(--workflow-delay, 0ms);
@@ -864,7 +873,7 @@ export function QingyuWorkflowCase() {
           }
         `}
       </style>
-      <ResponsiveScaleFrame minDesignWidth={1280} maxScale={1}>
+      <ResponsiveScaleFrame minDesignWidth={1280}>
         <section className="workflow-no-paper w-[1280px] bg-transparent px-[30px] py-[26px] font-['Microsoft_YaHei',sans-serif] text-[#00F5FF]">
           <h1 className="workflow-entrance mb-[42px] text-[46px] font-bold leading-none tracking-[5px] text-[#00F5FF]">工作流程</h1>
 

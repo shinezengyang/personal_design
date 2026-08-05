@@ -1111,6 +1111,21 @@
   will-change: opacity, transform, filter;
 }
 
+/* Hand the compositing layer back the moment a section reveals.
+   `will-change` is a pre-warm hint: it belongs on an element while it waits, not
+   after it has arrived. Left declared for good it pins the element to its own
+   composited layer, and these pages sit inside a `transform: scale()` stage — a
+   pinned layer is rasterised once at its own scale and then stretched rather than
+   redrawn at the size it actually appears, which left body text soft on any display
+   where the stage is not at 1:1. (A 1080p screen at Windows' recommended 150%
+   scaling reports a 1280px viewport, squeezing the 1280px design to ~0.87.)
+   Nothing used to clear it, so every revealed element stayed promoted for the life
+   of the page. */
+.qingyu-figma-case-shell .qy-reveal-section.is-visible,
+.qingyu-figma-case-shell .qy-reveal-section.is-visible .qy-reveal-item {
+  will-change: auto;
+}
+
 .qingyu-figma-case-shell .qy-reveal-section.is-visible .qy-reveal-text {
   animation: qy-text-enter 640ms cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: var(--qy-delay, 0ms);
@@ -1244,5 +1259,6 @@
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
+    will-change: auto !important;
   }
 }

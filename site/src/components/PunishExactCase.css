@@ -21,7 +21,6 @@
   line-height: 1.4;
   overflow: hidden;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
 }
 
 .punish-canvas * { box-sizing: border-box; }

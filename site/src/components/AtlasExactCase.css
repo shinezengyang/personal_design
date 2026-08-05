@@ -19,7 +19,6 @@
   line-height: 1.4;
   overflow: hidden;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
 }
 
 .atlas-canvas * { box-sizing: border-box; }
@@ -65,6 +64,14 @@
   opacity: 1;
   translate: 0 0;
   scale: 1;
+}
+
+/* Hand the compositing layer back on reveal — this stage is scaled, and an element
+   pinned by `will-change` is rasterised once and then stretched instead of being
+   redrawn at the size it appears, which leaves text soft. */
+.atlas-motion-ready .atlas-sec.atlas-reveal-in,
+.atlas-motion-ready .atlas-sec.atlas-reveal-in .atlas-reveal-item {
+  will-change: auto;
 }
 
 .atlas-motion-ready .atlas-sec .al-card-dark.atlas-reveal-item,
