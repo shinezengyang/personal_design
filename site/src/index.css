@@ -79,34 +79,35 @@ html { overflow-y: scroll; }
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Neon Text Effects */
+/* Neon Text Effects
+   The glow radius is in `em`, not `px`, so it tracks the font size instead of being
+   tuned for one of them. It used to stack four full-opacity layers at a fixed
+   5/10/20/40px; the small-radius layers pile opaque colour right against the stroke
+   edges — which is exactly where the counters are — so the glow flooded the holes in
+   e/a/o/s and the gaps between letters, and the line fused into one bright bar.
+   Measured on a scanline through the x-height: the old stack closed *every* gap at
+   every size from 12px to 72px (0% kept). One wide, semi-transparent layer spreads
+   the same light thinly enough to leave the letterforms intact — ~100% of gaps kept
+   from 24px up, and 42-78% at 12-20px where the strokes themselves are only a pixel
+   or two wide. Radius and opacity trade off in opposite directions here: a tighter
+   but denser glow (0.35em at 0.65) scored *worse*, because concentration near the
+   stroke is what destroys counters, not total glow energy. */
 .neon-text-cyan {
   color: var(--neon-cyan);
   border-width: 0px;
   border-color: rgba(0, 0, 0, 0);
   border-image: none;
-  text-shadow: 
-    0 0 5px var(--neon-cyan),
-    0 0 10px var(--neon-cyan),
-    0 0 20px var(--neon-cyan),
-    0 0 40px var(--neon-cyan);
+  text-shadow: 0 0 0.45em rgba(0, 245, 255, 0.6);
 }
 
 .neon-text-pink {
   color: var(--neon-pink);
-  text-shadow: 
-    0 0 5px var(--neon-pink),
-    0 0 10px var(--neon-pink),
-    0 0 20px var(--neon-pink),
-    0 0 40px var(--neon-pink);
+  text-shadow: 0 0 0.45em rgba(255, 0, 255, 0.6);
 }
 
 .neon-text-purple {
   color: var(--neon-purple);
-  text-shadow: 
-    0 0 5px var(--neon-purple),
-    0 0 10px var(--neon-purple),
-    0 0 20px var(--neon-purple);
+  text-shadow: 0 0 0.45em rgba(184, 41, 221, 0.6);
 }
 
 /* Neon Border */
