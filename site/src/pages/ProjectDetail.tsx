@@ -807,27 +807,22 @@ function QingyuRuleFlowDiagram() {
   );
 }
 
-function QingyuMainScreenDiagram() {
+type HudCallout = { n: string; label: string; side: 'left' | 'right'; y: number; targetX: number };
+
+/* One annotated HUD board: subtitle, the screenshot with numbered leader lines, and the
+   note list below it. The mobile and PC/console boards share this so their callout
+   geometry and type scale stay identical. */
+function QingyuHudBoard({ subtitle, img, alt, callouts: calloutData, summary, notes }: {
+  subtitle: string;
+  img: string;
+  alt: string;
+  callouts: HudCallout[];
+  summary: string;
+  notes: readonly (readonly [string, string, string])[];
+}) {
   const IMG_LEFT = 272;
   const IMG_RIGHT = 1328;
   const TEXT_MARGIN = 35;
-
-  const calloutData = [
-    { n: '1', label: '玩家信息区', side: 'left' as const, y: 56, targetX: 293 },
-    { n: '2', label: '任务追踪、队友信息区', side: 'left' as const, y: 188, targetX: 276 },
-    { n: '3', label: '虚拟摇杆区', side: 'left' as const, y: 474, targetX: 381 },
-    { n: '4', label: '动作/自动战斗/拍照按钮区', side: 'left' as const, y: 546, targetX: 275 },
-    { n: '5', label: '社交区域', side: 'left' as const, y: 574, targetX: 492 },
-    { n: '6', label: '网络、电量等信息区', side: 'left' as const, y: 598, targetX: 319 },
-    { n: '7', label: '跑马灯', side: 'right' as const, y: 22, targetX: 1196 },
-    { n: '8', label: '地图信息区', side: 'right' as const, y: 93, targetX: 1262 },
-    { n: '9', label: '商业公告区', side: 'right' as const, y: 132, targetX: 1081 },
-    { n: '10', label: '功能菜单栏区域', side: 'right' as const, y: 190, targetX: 1277 },
-    { n: '11', label: '交互读条区', side: 'right' as const, y: 339, targetX: 1032 },
-    { n: '12', label: '战斗技能栏区域', side: 'right' as const, y: 429, targetX: 1199 },
-    { n: '13', label: '聊天栏区域', side: 'right' as const, y: 536, targetX: 832 },
-    { n: '14', label: '经验条区域', side: 'right' as const, y: 603, targetX: 967 },
-  ];
 
   const measureText = (text: string) => {
     let w = 0;
@@ -851,7 +846,140 @@ function QingyuMainScreenDiagram() {
     }
   });
 
-  const notes = [
+  return (
+    <div className="space-y-5">
+      <div className="flex items-center justify-center gap-3 pt-1">
+        <span className="h-px w-10 bg-[#87C8BC]/40" />
+        <span className="text-[22px] font-bold leading-none text-[#bfe6dc]">{subtitle}</span>
+        <span className="h-px w-10 bg-[#87C8BC]/40" />
+      </div>
+
+      <ResponsiveScaleFrame minDesignWidth={1600} maxScale={1.02}>
+        <div className="w-[1600px] space-y-8">
+          <div className="relative h-[620px] overflow-hidden">
+            <img
+              src={publicUrl(img)}
+              alt={alt}
+              className="absolute left-[272px] top-[10px] h-auto w-[1056px] rounded-[8px] opacity-95"
+              loading="lazy"
+              decoding="async"
+            />
+
+            {callouts.map((item) => {
+              const lineGap = 10;
+              const lineFrom = item.side === 'left'
+                ? item.labelStart + item.labelW + lineGap
+                : item.labelStart - lineGap;
+              const lineLeft = Math.min(lineFrom, item.targetX);
+              const lineWidth = Math.abs(item.targetX - lineFrom);
+
+              return (
+                <div key={item.n}>
+                  <div
+                    className="absolute inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-[12px] font-bold leading-none text-[#0b1320]"
+                    style={{ left: item.badgeX, top: item.y - 14 }}
+                  >
+                    {item.n}
+                  </div>
+                  <div
+                    className="absolute text-[15px] font-semibold leading-none text-[#d6f0e8] whitespace-nowrap"
+                    style={{ left: item.labelStart, top: item.y - 9 }}
+                  >
+                    {item.label}
+                  </div>
+                  <div
+                    className="absolute h-[1.5px] bg-[#87C8BC]/70"
+                    style={{ left: lineLeft, top: item.y, width: lineWidth }}
+                  />
+                  <div
+                    className="absolute h-[6px] w-[6px] rounded-full bg-[#87C8BC]"
+                    style={{ left: item.targetX - 3, top: item.y - 3 }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </ResponsiveScaleFrame>
+
+      <div className="rounded-xl border border-[#87C8BC]/25 bg-[#122338]/55 px-4 py-4 space-y-4 sm:px-6 sm:py-5 md:px-8 md:py-6 md:space-y-5">
+        <p className="text-center text-base font-medium leading-relaxed text-[#ddefe8] sm:text-lg md:text-[24px]">
+          {summary}
+        </p>
+        <div className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-3 md:gap-x-8">
+          {notes.map(([n, title, desc]) => (
+            <div key={n} className="flex items-baseline gap-2 sm:gap-3">
+              <span className="inline-flex h-6 min-w-6 shrink-0 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-xs font-bold leading-none text-[#1a2e2b] sm:h-[28px] sm:min-w-[28px] sm:text-[13px] md:h-[30px] md:min-w-[30px] md:text-[14px]">
+                {n}
+              </span>
+              <p className="text-sm leading-[1.6] sm:text-base md:text-[21px]">
+                <span className="font-semibold text-[#d6f0e8]">{title}：</span>
+                <span className="text-[#a8c0ba]">{desc}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function QingyuMainScreenDiagram() {
+  const mobileCallouts: HudCallout[] = [
+    { n: '1', label: '玩家信息区', side: 'left' as const, y: 56, targetX: 293 },
+    { n: '2', label: '任务追踪、队友信息区', side: 'left' as const, y: 188, targetX: 276 },
+    { n: '3', label: '虚拟摇杆区', side: 'left' as const, y: 474, targetX: 381 },
+    { n: '4', label: '动作/自动战斗/拍照按钮区', side: 'left' as const, y: 546, targetX: 275 },
+    { n: '5', label: '社交区域', side: 'left' as const, y: 574, targetX: 492 },
+    { n: '6', label: '网络、电量等信息区', side: 'left' as const, y: 598, targetX: 319 },
+    { n: '7', label: '跑马灯', side: 'right' as const, y: 22, targetX: 1196 },
+    { n: '8', label: '地图信息区', side: 'right' as const, y: 93, targetX: 1262 },
+    { n: '9', label: '商业公告区', side: 'right' as const, y: 132, targetX: 1081 },
+    { n: '10', label: '功能菜单栏区域', side: 'right' as const, y: 190, targetX: 1277 },
+    { n: '11', label: '交互读条区', side: 'right' as const, y: 339, targetX: 1032 },
+    { n: '12', label: '战斗技能栏区域', side: 'right' as const, y: 429, targetX: 1199 },
+    { n: '13', label: '聊天栏区域', side: 'right' as const, y: 536, targetX: 832 },
+    { n: '14', label: '经验条区域', side: 'right' as const, y: 603, targetX: 967 },
+  ];
+
+  /* PC/主机端。Anchors were measured off the 1920x1080 render (Figma 10413:2234) and
+     converted with the same placement the board uses: the shot sits at left 272 / top 10
+     scaled to 1056px wide, so design = offset + image * (1056 / 1920). */
+  const pcCallouts: HudCallout[] = [
+    { n: '1', label: '网络、电量等信息区', side: 'left' as const, y: 21, targetX: 332 },
+    { n: '2', label: '玩家信息区', side: 'left' as const, y: 68, targetX: 294 },
+    { n: '3', label: '任务追踪、队友信息区', side: 'left' as const, y: 148, targetX: 278 },
+    { n: '4', label: '系统提示区', side: 'left' as const, y: 487, targetX: 297 },
+    { n: '5', label: '战斗资源区', side: 'left' as const, y: 518, targetX: 649 },
+    { n: '6', label: '聊天栏区域', side: 'left' as const, y: 555, targetX: 305 },
+    { n: '7', label: '跑马灯', side: 'right' as const, y: 21, targetX: 1152 },
+    { n: '8', label: '地图信息区', side: 'right' as const, y: 105, targetX: 1317 },
+    { n: '9', label: '商业公告区', side: 'right' as const, y: 140, targetX: 1076 },
+    { n: '10', label: '功能菜单栏区域', side: 'right' as const, y: 195, targetX: 1292 },
+    { n: '11', label: '挂机、体力资源区', side: 'right' as const, y: 465, targetX: 1012 },
+    { n: '12', label: '战斗技能栏区域', side: 'right' as const, y: 516, targetX: 982 },
+    { n: '13', label: '普攻按钮区', side: 'right' as const, y: 546, targetX: 1057 },
+    { n: '14', label: '镜头、拍照、社交按钮区', side: 'right' as const, y: 579, targetX: 1298 },
+  ];
+
+  const pcNotes = [
+    ['1', '网络、电量等信息区', '显示网络延迟、时间、电量等系统级状态信息。'],
+    ['2', '玩家信息区', '显示主角头像、等级、血条与战斗 buff 等核心状态信息。'],
+    ['3', '任务追踪、队友信息区', '显示任务追踪与队友信息，可切换任务、探秘、游历页签并整体收起。'],
+    ['4', '系统提示区', '承载系统提示与异常状态入口，贴左侧边缘放置，不干扰主视野。'],
+    ['5', '战斗资源区', '显示战斗资源图标与当前值上限，紧邻技能栏便于连续读取。'],
+    ['6', '聊天栏区域', '常驻显示帮会、队伍等频道消息，支持展开浏览与快捷输入。'],
+    ['7', '跑马灯', '用于滚动展示系统公告、活动信息等需要持续曝光的内容。'],
+    ['8', '地图信息区', '默认显示小地图、地点坐标、天气与线路等环境信息。'],
+    ['9', '商业公告区', '用于展示商业化相关活动、礼包或付费引导等公告内容。'],
+    ['10', '功能菜单栏区域', '集合角色养成相关快捷按钮，承载养成玩法的高频操作入口。'],
+    ['11', '挂机、体力资源区', '放置挂机开关与体力等资源的快捷查看入口。'],
+    ['12', '战斗技能栏区域', '横向排布可绑定键位的技能槽，与键盘快捷键、手柄按键一一对应。'],
+    ['13', '普攻按钮区', '承载普攻操作，外圈同时反馈技能冷却读条。'],
+    ['14', '镜头、拍照、社交按钮区', '集中放置重置镜头、拍照、社交与设置等低频操作按钮。'],
+  ] as const;
+
+  const mobileNotes = [
     ['1', '玩家信息区', '显示主角当前常规状态信息、主角战斗 buff 等核心信息。'],
     ['2', '任务追踪、队友信息区', '显示任务追踪、队友简要信息，可收起并切换任务与队伍页签。'],
     ['3', '虚拟摇杆区', '操控角色移动，可在左下角放置不与行走冲突的功能按键。'],
@@ -878,73 +1006,23 @@ function QingyuMainScreenDiagram() {
           <div className="text-[32px] font-bold leading-none text-[#8FD3C7]">游戏主要界面</div>
         </div>
 
-        <ResponsiveScaleFrame minDesignWidth={1600} maxScale={1.02}>
-          <div className="w-[1600px] space-y-8">
-            <div className="relative h-[620px] overflow-hidden">
-              <img
-                src={publicUrl('figma/qingyu-nian/qingyu-main-ui-screen.webp')}
-                alt="庆余年主要游戏画面"
-                className="absolute left-[272px] top-[10px] h-auto w-[1056px] rounded-[8px] opacity-95"
-                loading="lazy"
-                decoding="async"
-              />
+        <QingyuHudBoard
+          subtitle="移动端 HUD 主界面"
+          img="figma/qingyu-nian/qingyu-main-ui-screen.webp"
+          alt="庆余年移动端 HUD 主界面"
+          callouts={mobileCallouts}
+          summary="战斗中需要玩家反复注意的元素放在同一区域，具有整体性，可以使玩家的注意力集中"
+          notes={mobileNotes}
+        />
 
-              {callouts.map((item) => {
-                const lineGap = 10;
-                const lineFrom = item.side === 'left'
-                  ? item.labelStart + item.labelW + lineGap
-                  : item.labelStart - lineGap;
-                const lineLeft = Math.min(lineFrom, item.targetX);
-                const lineWidth = Math.abs(item.targetX - lineFrom);
-
-                return (
-                  <div key={item.n}>
-                    <div
-                      className="absolute inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-[12px] font-bold leading-none text-[#0b1320]"
-                      style={{ left: item.badgeX, top: item.y - 14 }}
-                    >
-                      {item.n}
-                    </div>
-                    <div
-                      className="absolute text-[15px] font-semibold leading-none text-[#d6f0e8] whitespace-nowrap"
-                      style={{ left: item.labelStart, top: item.y - 9 }}
-                    >
-                      {item.label}
-                    </div>
-                    <div
-                      className="absolute h-[1.5px] bg-[#87C8BC]/70"
-                      style={{ left: lineLeft, top: item.y, width: lineWidth }}
-                    />
-                    <div
-                      className="absolute h-[6px] w-[6px] rounded-full bg-[#87C8BC]"
-                      style={{ left: item.targetX - 3, top: item.y - 3 }}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-
-          </div>
-        </ResponsiveScaleFrame>
-
-        <div className="rounded-xl border border-[#87C8BC]/25 bg-[#122338]/55 px-4 py-4 space-y-4 sm:px-6 sm:py-5 md:px-8 md:py-6 md:space-y-5">
-          <p className="text-center text-base font-medium leading-relaxed text-[#ddefe8] sm:text-lg md:text-[24px]">
-            战斗中需要玩家反复注意的元素放在同一区域，具有整体性，可以使玩家的注意力集中
-          </p>
-          <div className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-3 md:gap-x-8">
-            {notes.map(([n, title, desc]) => (
-              <div key={n} className="flex items-baseline gap-2 sm:gap-3">
-                <span className="inline-flex h-6 min-w-6 shrink-0 items-center justify-center rounded-full bg-[#87C8BC] px-1 text-xs font-bold leading-none text-[#1a2e2b] sm:h-[28px] sm:min-w-[28px] sm:text-[13px] md:h-[30px] md:min-w-[30px] md:text-[14px]">
-                  {n}
-                </span>
-                <p className="text-sm leading-[1.6] sm:text-base md:text-[21px]">
-                  <span className="font-semibold text-[#d6f0e8]">{title}：</span>
-                  <span className="text-[#a8c0ba]">{desc}</span>
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <QingyuHudBoard
+          subtitle="PC 端 / 主机端 HUD 主界面"
+          img="figma/qingyu-nian/qingyu-main-ui-screen-pc.webp"
+          alt="庆余年 PC 端／主机端 HUD 主界面"
+          callouts={pcCallouts}
+          summary="改为键鼠与手柄操作后取消虚拟摇杆，让出的屏幕下方空间用于把技能与资源沿底部一字排开，便于与快捷键逐一对应"
+          notes={pcNotes}
+        />
       </div>
     </div>
   );
