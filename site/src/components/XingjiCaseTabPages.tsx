@@ -282,7 +282,7 @@ function PhoneFrame({
       <img
         src={resolveAsset(src)}
         alt={alt}
-        className={`absolute max-w-none ${imageClassName}`}
+        className={`absolute max-w-none ${imageClassName}`} loading="lazy" decoding="async"
       />
     </div>
   );
@@ -307,7 +307,7 @@ function TitleHero({
         <img
           src={publicUrl(ellipse)}
           alt=""
-          className="absolute left-[180px] top-[320px] h-[200px] w-[200px]"
+          className="absolute left-[180px] top-[320px] h-[200px] w-[200px]" loading="lazy" decoding="async"
         />
       ) : null}
       <p className="absolute left-[380px] top-[320px] text-[72px] font-black leading-none text-white">{title}</p>
@@ -579,7 +579,7 @@ function CaseOneBackground() {
             src={resolveAsset(src)}
             alt=""
             className="object-cover"
-            style={{ width: index === 1 ? 195 : index === 2 ? 196 : 197, height: 350 }}
+            style={{ width: index === 1 ? 195 : index === 2 ? 196 : 197, height: 350 }} loading="lazy" decoding="async"
           />
         ))}
       </div>
@@ -691,7 +691,7 @@ function CaseOneCompetitorAnalysis() {
                 src={resolveAsset(src)}
                 alt=""
                 className="h-[140px] object-cover"
-                style={{ width: item.width > 100 ? 79 : item.width, flexBasis: item.width > 100 ? 79 : item.width }}
+                style={{ width: item.width > 100 ? 79 : item.width, flexBasis: item.width > 100 ? 79 : item.width }} loading="lazy" decoding="async"
               />
             ))}
           </div>
@@ -756,7 +756,7 @@ function CaseOneDefinition({
   if (blockImage) {
     return (
       <LongPageSection height={900} bg="#edeffe">
-        <img src={resolveAsset(blockImage)} alt="" className="absolute left-[128px] top-[90px] h-[720px] w-[1024px]" />
+        <img src={resolveAsset(blockImage)} alt="" className="absolute left-[128px] top-[90px] h-[720px] w-[1024px]" loading="lazy" decoding="async" />
       </LongPageSection>
     );
   }
@@ -775,12 +775,12 @@ function CaseOneDefinition({
 
       {afterImage ? (
         <div className="absolute left-[97px] top-[482px] flex items-center gap-[20px]">
-          <img src={beforeImage} alt="" className="h-[350px] w-[197px]" />
+          <img src={beforeImage} alt="" className="h-[350px] w-[197px]" loading="lazy" decoding="async" />
           <div className="flex h-[38px] w-[30px] items-center justify-center">
             <div className="rotate-90 text-[38px] leading-none text-[#6180fa]">▶</div>
           </div>
           <div className="relative h-[350px] w-[197px] overflow-hidden bg-[#707070]">
-            <img src={afterImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
+            <img src={afterImage} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             {showAfterAnnotation ? (
               <>
                 {[
@@ -812,7 +812,7 @@ function CaseOneDefinition({
       ) : (
         <div className="absolute left-[206px] top-[482px] flex items-center gap-[140px]">
           {caseOneAssets.definitionFive.map((src) => (
-            <img key={src} src={src} alt="" className="h-[350px] w-[196px]" />
+            <img key={src} src={src} alt="" className="h-[350px] w-[196px]" loading="lazy" decoding="async" />
           ))}
         </div>
       )}
@@ -1100,7 +1100,7 @@ function OfficialRecommendationCase() {
               <img
                 src={publicUrl(`figma/xingji-aodaisai/assets/${name}`)}
                 alt=""
-                className="absolute inset-0 h-full w-full object-contain object-top"
+                className="absolute inset-0 h-full w-full object-contain object-top" loading="lazy" decoding="async"
               />
             </div>
           ))}
@@ -1645,7 +1645,7 @@ function CoordBookmarkCase() {
               src={publicUrl('figma/xingji-aodaisai/assets/coord-show-strip.webp')}
               alt=""
               className="absolute top-0 max-w-none"
-              style={{ left: -shot.offset, height: shot.height }}
+              style={{ left: -shot.offset, height: shot.height }} loading="lazy" decoding="async"
             />
           </div>
         ))}
@@ -2209,10 +2209,10 @@ function CaseFivePhoneShot({
             style={{
               top: imageTop ?? 0,
               height: imageHeight ?? '100%',
-            }}
+            }} loading="lazy" decoding="async"
           />
         ) : (
-          <img src={src} alt="" className="h-full w-full object-cover" />
+          <img src={src} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         )}
       </div>
       {caption ? (
@@ -2267,7 +2267,7 @@ function CaseFiveInfoCard({
       style={{ left, top, width, height }}
     >
       <div className="absolute left-0 top-0 h-full w-[4px]" style={{ backgroundColor: accent }} />
-      {icon ? <img src={icon} alt="" className="absolute left-[20px] top-[14px] h-[24px] w-[24px]" /> : <div className="absolute left-[20px] top-[18px] h-[12px] w-[12px] rounded-full" style={{ backgroundColor: accent }} />}
+      {icon ? <img src={icon} alt="" className="absolute left-[20px] top-[14px] h-[24px] w-[24px]" loading="lazy" decoding="async" /> : <div className="absolute left-[20px] top-[18px] h-[12px] w-[12px] rounded-full" style={{ backgroundColor: accent }} />}
       <p
         className={`absolute left-[60px] top-[14px] whitespace-normal break-words text-[15px] font-bold leading-[18px] ${dark ? 'text-white' : 'text-[#212126]'}`}
         style={{ width: contentWidth }}
@@ -2326,17 +2326,17 @@ function CaseFiveDifficultySelection() {
               backgroundColor: card.locked ? '#a8bbc3' : '#d5eef4',
             }}
           >
-            <img src={caseFiveAssets.difficultyCardTop} alt="" className="absolute left-0 top-0 h-[80px] w-full" />
-            {card.check ? <img src={caseFiveAssets.difficultyCardCheck} alt="" className="absolute left-[5px] top-[5px] h-[20px] w-[27px]" /> : null}
+            <img src={caseFiveAssets.difficultyCardTop} alt="" className="absolute left-0 top-0 h-[80px] w-full" loading="lazy" decoding="async" />
+            {card.check ? <img src={caseFiveAssets.difficultyCardCheck} alt="" className="absolute left-[5px] top-[5px] h-[20px] w-[27px]" loading="lazy" decoding="async" /> : null}
             <img
               src={caseFiveAssets.difficultyCardImage}
               alt=""
-              className={`absolute left-[15.4px] top-[19.2px] h-[52px] w-[74.9px] object-cover ${card.imageClassName}`}
+              className={`absolute left-[15.4px] top-[19.2px] h-[52px] w-[74.9px] object-cover ${card.imageClassName}`} loading="lazy" decoding="async"
             />
-            {card.locked ? <img src={caseFiveAssets.difficultyCardLocked} alt="" className="absolute left-0 top-0 h-[124.8px] w-[100px]" /> : null}
+            {card.locked ? <img src={caseFiveAssets.difficultyCardLocked} alt="" className="absolute left-0 top-0 h-[124.8px] w-[100px]" loading="lazy" decoding="async" /> : null}
             <p className={`absolute left-0 top-[80px] flex h-[20px] w-full items-center justify-center text-[12px] font-semibold ${card.locked ? 'text-[#445765]' : 'text-[#263b4d]'}`}>难度</p>
             <div className="absolute left-[32px] top-[95.5px] h-[25px] w-[38px]">
-              <img src={caseFiveAssets.difficultyCardStar} alt="" className={`absolute left-0 top-[2px] h-[21px] w-[21px] ${card.locked ? 'opacity-70 saturate-[0.85]' : ''}`} />
+              <img src={caseFiveAssets.difficultyCardStar} alt="" className={`absolute left-0 top-[2px] h-[21px] w-[21px] ${card.locked ? 'opacity-70 saturate-[0.85]' : ''}`} loading="lazy" decoding="async" />
               <p className="absolute left-[19px] top-[5.2px] text-[12px] font-semibold" style={{ color: card.valueColor }}>
                 X5
               </p>
@@ -2932,12 +2932,12 @@ function EmbermineEntryDiscovery() {
         <p>这种非侵入式曝光降低了玩家的决策疲劳，让他们在预览活动概况后再自主决定是否参与，而非一进入游戏就被强制弹窗打断。</p>
       </div>
       <div className="absolute left-[764px] top-[310px] h-[545px] w-[240px] overflow-hidden rounded-[16px] border border-[#f47820] bg-[#161c2a] shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
-        <img src={resolveAsset(caseNineAssets.entryIdle)} alt="" className="absolute left-0 top-[-0.05%] h-[100.06%] w-full max-w-none" />
+        <img src={resolveAsset(caseNineAssets.entryIdle)} alt="" className="absolute left-0 top-[-0.05%] h-[100.06%] w-full max-w-none" loading="lazy" decoding="async" />
         <img
           src={resolveAsset(caseNineAssets.entryBubble)}
           alt=""
           className="absolute left-[149px] top-[35px] h-[28px] w-[65px] max-w-none"
-          decoding="async"
+          decoding="async" loading="lazy"
         />
       </div>
       <div className="absolute left-[80px] top-[495px] h-[360px] w-[600px] rounded-[6px] bg-[linear-gradient(180deg,rgba(38,46,71,0.6)_0%,rgba(26,31,46,0)_100%)]" />
@@ -2985,7 +2985,7 @@ function EmbermineMainPanel() {
         <img
           src={resolveAsset(caseNineAssets.mainPanel)}
           alt="活动主界面截图"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async"
         />
       </div>
       <p className="absolute left-[496px] top-[305px] text-[22px] font-bold text-white">信息分层策略</p>
@@ -3057,10 +3057,10 @@ function EmbermineTimeSelection() {
       </p>
 
       <div className="absolute left-[80px] top-[295px] h-[650px] w-[300px] overflow-hidden rounded-[16px] border border-[#45c4e9] bg-[#0c0a12] shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
-        <img src={resolveAsset(caseNineAssets.timeSelectA)} alt="时段选择弹窗 — 选择前" className="absolute left-0 top-[-4.8%] h-[104.82%] w-full max-w-none" />
+        <img src={resolveAsset(caseNineAssets.timeSelectA)} alt="时段选择弹窗 — 选择前" className="absolute left-0 top-[-4.8%] h-[104.82%] w-full max-w-none" loading="lazy" decoding="async" />
       </div>
       <div className="absolute left-[460px] top-[294px] h-[650px] w-[300px] overflow-hidden rounded-[16px] border border-[#45c4e9]">
-        <img src={resolveAsset(caseNineAssets.timeSelectB)} alt="时段选择弹窗 — 确认后" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={resolveAsset(caseNineAssets.timeSelectB)} alt="时段选择弹窗 — 确认后" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
       </div>
       <p className="absolute left-[80px] top-[955px] text-[17px] font-medium text-[#45c4e9]">时段选择弹窗 — 选择前</p>
       <p className="absolute left-[460px] top-[955px] text-[17px] font-medium text-[#45c4e9]">时段选择弹窗 — 确认后</p>
@@ -3123,7 +3123,7 @@ function EmbermineBattleField() {
       </p>
 
       <div className="absolute left-[80px] top-[282px] h-[651px] w-[300px] overflow-hidden rounded-[16px] border border-[#38ad85] shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
-        <img src={resolveAsset(caseNineAssets.trialPanel)} alt="历史战绩面板" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={resolveAsset(caseNineAssets.trialPanel)} alt="历史战绩面板" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
       </div>
       <p className="absolute left-[80px] top-[943px] text-[17px] font-medium text-[#38ad85]">历史战绩面板</p>
 
@@ -3146,12 +3146,12 @@ function EmbermineBattleField() {
       </div>
 
       <div className="absolute left-[501px] top-[621px] h-[227px] w-[300px] overflow-hidden">
-        <img src={resolveAsset(caseNineAssets.preBattleReminder)} alt="开战提醒弹窗" className="absolute left-0 top-[-36.63%] h-[285.71%] w-full max-w-none" />
+        <img src={resolveAsset(caseNineAssets.preBattleReminder)} alt="开战提醒弹窗" className="absolute left-0 top-[-36.63%] h-[285.71%] w-full max-w-none" loading="lazy" decoding="async" />
       </div>
       <p className="absolute left-[596px] top-[943px] text-[17px] font-medium text-[#38ad85]">开战提醒弹窗</p>
 
       <div className="absolute left-[841px] top-[621px] h-[379px] w-[300px] overflow-hidden">
-        <img src={resolveAsset(caseNineAssets.preBattleCountdown)} alt="开战战斗倒计时弹窗" className="absolute left-0 top-[-7.95%] h-[108.51%] w-full max-w-none" />
+        <img src={resolveAsset(caseNineAssets.preBattleCountdown)} alt="开战战斗倒计时弹窗" className="absolute left-0 top-[-7.95%] h-[108.51%] w-full max-w-none" loading="lazy" decoding="async" />
       </div>
       <p className="absolute left-[896px] top-[943px] text-[17px] font-medium text-[#38ad85]">开战战斗倒计时弹窗</p>
     </LongPageSection>
@@ -3183,7 +3183,7 @@ function EmbermineMapOps() {
             <img
               src={resolveAsset(src as string)}
               alt={label as string}
-              className={index < 2 ? 'absolute left-[-0.01%] top-[-4.61%] h-[104.61%] w-[100.02%] max-w-none' : 'absolute inset-0 h-full w-full rounded-[8px] object-cover'}
+              className={index < 2 ? 'absolute left-[-0.01%] top-[-4.61%] h-[104.61%] w-[100.02%] max-w-none' : 'absolute inset-0 h-full w-full rounded-[8px] object-cover'} loading="lazy" decoding="async"
             />
           </div>
           <p className="absolute top-[927px] text-[16px] font-medium text-[#8b5cf6]" style={{ left: left as number }}>
@@ -3243,14 +3243,14 @@ function EmbermineBuildingsSkills() {
         <img
           src={resolveAsset(caseNineAssets.mapSystemDetail)}
           alt="据点信息地图详情"
-          className="absolute left-0 top-[-4.94%] h-[104.95%] w-full max-w-none"
+          className="absolute left-0 top-[-4.94%] h-[104.95%] w-full max-w-none" loading="lazy" decoding="async"
         />
       </div>
       <div className="absolute left-[587px] top-[284px] h-[650px] w-[301px] overflow-hidden rounded-[16px] border border-[#8b5cf6] shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
         <img
           src={resolveAsset(caseNineAssets.mapSystemField)}
           alt="矿脉详情面板"
-          className="absolute left-0 top-[-4.95%] h-[104.96%] w-full max-w-none"
+          className="absolute left-0 top-[-4.95%] h-[104.96%] w-full max-w-none" loading="lazy" decoding="async"
         />
       </div>
 
@@ -3321,7 +3321,7 @@ function EmbermineEndgame() {
             <img
               src={resolveAsset(src as string)}
               alt={label as string}
-              className="absolute left-[-0.03%] top-[-4.81%] h-[104.81%] w-[100.06%] max-w-none"
+              className="absolute left-[-0.03%] top-[-4.81%] h-[104.81%] w-[100.06%] max-w-none" loading="lazy" decoding="async"
             />
           </div>
           <p className="absolute top-[839px] text-[16px] font-medium text-[#9999a3]" style={{ left: left as number }}>
@@ -3355,7 +3355,7 @@ function EmbermineGameplayFlow() {
         <img
           src={resolveAsset(caseNineAssets.skillTreeOverview)}
           alt="技能树总览"
-          className="absolute left-0 top-[-4.73%] h-[104.74%] w-full max-w-none"
+          className="absolute left-0 top-[-4.73%] h-[104.74%] w-full max-w-none" loading="lazy" decoding="async"
         />
       </div>
 
@@ -3389,7 +3389,7 @@ function EmbermineGameplayFlow() {
         <img
           src={resolveAsset(caseNineAssets.skillTreeAdvanced)}
           alt="技能进阶状态"
-          className="absolute left-0 top-[-4.63%] h-[104.64%] w-full max-w-none"
+          className="absolute left-0 top-[-4.63%] h-[104.64%] w-full max-w-none" loading="lazy" decoding="async"
         />
       </div>
 
@@ -3415,11 +3415,11 @@ function EmbermineSummary() {
         <img
           src={resolveAsset(caseNineAssets.miningHudA)}
           alt="Ⅰ级/Ⅱ级/Ⅲ级矿脉采集HUD"
-          className="absolute left-0 top-[-4.62%] h-[104.63%] w-full max-w-none"
+          className="absolute left-0 top-[-4.62%] h-[104.63%] w-full max-w-none" loading="lazy" decoding="async"
         />
       </div>
       <div className="absolute left-[412px] top-[295px] h-[651px] w-[300px] overflow-hidden rounded-[16px] border border-[#f44444] shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
-        <img src={resolveAsset(caseNineAssets.miningHudB)} alt="迸发矿脉采集HUD" className="absolute inset-0 h-full w-full rounded-[16px] object-cover" />
+        <img src={resolveAsset(caseNineAssets.miningHudB)} alt="迸发矿脉采集HUD" className="absolute inset-0 h-full w-full rounded-[16px] object-cover" loading="lazy" decoding="async" />
       </div>
 
       <div
@@ -3488,7 +3488,7 @@ function EmbermineSmeltingSystem() {
         <img
           src={resolveAsset(caseNineAssets.smeltingPanel)}
           alt="熔炉熔炼界面"
-          className="absolute left-0 top-[-4.62%] h-[104.63%] w-full max-w-none"
+          className="absolute left-0 top-[-4.62%] h-[104.63%] w-full max-w-none" loading="lazy" decoding="async"
         />
       </div>
       <p className="absolute left-[819px] top-[888px] text-[17px] font-medium text-[#f44444]">熔炉熔炼界面</p>
@@ -3551,7 +3551,7 @@ function EmbermineRankingSystem() {
             className="absolute top-[334px] h-[521px] w-[240px] overflow-hidden rounded-[16px] border border-[#f59e26] shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
             style={{ left: left as number }}
           >
-            <img src={resolveAsset(src as string)} alt={label as string} className="absolute inset-0 h-full w-full rounded-[16px] object-cover" />
+            <img src={resolveAsset(src as string)} alt={label as string} className="absolute inset-0 h-full w-full rounded-[16px] object-cover" loading="lazy" decoding="async" />
           </div>
           <p className="absolute top-[865px] text-[17px] font-medium text-[#f59e26]" style={{ left: left as number }}>
             {label as string}
@@ -3673,7 +3673,7 @@ function EmbermineRewardsSettlement() {
             <img
               src={resolveAsset(src)}
               alt={title}
-              className={imageClass}
+              className={imageClass} loading="lazy" decoding="async"
             />
           </div>
           <p className="absolute text-[17px] font-bold text-[#f59e26]" style={{ left, top: top + 661 }}>
@@ -3726,7 +3726,7 @@ function EmbermineQuickEntry() {
         <img
           src={resolveAsset(caseNineAssets.quickEntry)}
           alt="燃海矿区快捷入口"
-          className="absolute inset-0 h-full w-full rounded-[18px] object-cover"
+          className="absolute inset-0 h-full w-full rounded-[18px] object-cover" loading="lazy" decoding="async"
         />
       </div>
       <div className="absolute left-[158px] top-[371px] -translate-x-full text-right text-[13px] font-bold leading-[26px] text-[#75e1ff]">
@@ -3911,7 +3911,7 @@ function EmbermineGallery() {
       <div className="absolute left-[80px] top-[262px] flex w-[1140px] flex-wrap content-start items-start justify-center gap-[50px]">
         {caseNineAssets.gallery.map((src, index) => (
           <div key={src} className={`relative w-[240px] shrink-0 overflow-hidden ${index === 19 ? 'h-[525px]' : 'h-[520px]'}`}>
-            <img src={resolveAsset(src)} alt={`视觉稿 ${index + 1}`} className="pointer-events-none absolute inset-0 h-full w-full max-w-none object-cover" />
+            <img src={resolveAsset(src)} alt={`视觉稿 ${index + 1}`} className="pointer-events-none absolute inset-0 h-full w-full max-w-none object-cover" loading="lazy" decoding="async" />
           </div>
         ))}
       </div>
@@ -4064,7 +4064,7 @@ function WishTreeMainPanel() {
       </p>
 
       <div className="absolute left-[500px] top-[220px] h-[650px] w-[300px] overflow-hidden rounded-[8px]">
-        <img src={caseEightAssets.mainPanel} alt="许愿树主界面" className="absolute inset-0 h-full w-full object-contain" />
+        <img src={caseEightAssets.mainPanel} alt="许愿树主界面" className="absolute inset-0 h-full w-full object-contain" loading="lazy" decoding="async" />
       </div>
 
       {callouts.map((item) => (
@@ -4099,10 +4099,10 @@ function WishTreeCountState() {
       </p>
 
       <div className="absolute left-[190px] top-[210px] h-[563px] w-[260px] overflow-hidden rounded-[8px]">
-        <img src={caseEightAssets.countOne} alt="次数为1状态" className="absolute inset-0 h-full w-full object-contain" />
+        <img src={caseEightAssets.countOne} alt="次数为1状态" className="absolute inset-0 h-full w-full object-contain" loading="lazy" decoding="async" />
       </div>
       <div className="absolute left-[795px] top-[210px] h-[563px] w-[260px] overflow-hidden rounded-[8px]">
-        <img src={caseEightAssets.countZero} alt="次数为0状态" className="absolute inset-0 h-full w-full object-contain" />
+        <img src={caseEightAssets.countZero} alt="次数为0状态" className="absolute inset-0 h-full w-full object-contain" loading="lazy" decoding="async" />
       </div>
 
       <p className="absolute left-[577px] top-[450px] whitespace-nowrap text-[18px] font-bold leading-[23px] text-[#d65f2a]">
@@ -4152,7 +4152,7 @@ function WishTreeRewardPreview() {
       </p>
 
       <div className="absolute left-[170px] top-[200px] h-[649px] w-[300px] overflow-hidden rounded-[8px]">
-        <img src={caseEightAssets.rewardPreview} alt="奖励预览弹窗" className="absolute left-0 top-[-4.75%] h-[104.72%] w-full max-w-none" />
+        <img src={caseEightAssets.rewardPreview} alt="奖励预览弹窗" className="absolute left-0 top-[-4.75%] h-[104.72%] w-full max-w-none" loading="lazy" decoding="async" />
       </div>
 
       {notes.map((note) => (
@@ -4198,7 +4198,7 @@ function WishTreeResultFeedback() {
       </p>
 
       <div className="absolute left-[168px] top-[204px] h-[650px] w-[300px] overflow-hidden rounded-[8px]">
-        <img src={caseEightAssets.resultFeedback} alt="许愿结果反馈" className="absolute inset-0 h-full w-full rounded-[8px] object-cover" />
+        <img src={caseEightAssets.resultFeedback} alt="许愿结果反馈" className="absolute inset-0 h-full w-full rounded-[8px] object-cover" loading="lazy" decoding="async" />
       </div>
 
       {notes.map((note) => (
@@ -4260,13 +4260,13 @@ function WishTreeClosedLoop() {
       ))}
 
       <div className="absolute left-[88px] top-[384px] h-[433px] w-[200px] overflow-hidden rounded-[8px]">
-        <img src={caseEightAssets.coreLoopHome} alt="活动首页流程图" className="absolute inset-0 h-full w-full object-contain" />
+        <img src={caseEightAssets.coreLoopHome} alt="活动首页流程图" className="absolute inset-0 h-full w-full object-contain" loading="lazy" decoding="async" />
       </div>
       <div className="absolute left-[308px] top-[385px] h-[432px] w-[200px] overflow-hidden rounded-[8px]">
-        <img src={caseEightAssets.coreLoopPreview} alt="奖励预览流程图" className="absolute left-0 top-[-4.87%] h-[104.88%] w-full max-w-none" />
+        <img src={caseEightAssets.coreLoopPreview} alt="奖励预览流程图" className="absolute left-0 top-[-4.87%] h-[104.88%] w-full max-w-none" loading="lazy" decoding="async" />
       </div>
       <div className="absolute left-[528px] top-[384px] h-[433px] w-[200px] overflow-hidden rounded-[8px]">
-        <img src={caseEightAssets.coreLoopResult} alt="结果反馈流程图" className="absolute left-0 top-[-4.77%] h-[104.71%] w-full max-w-none" />
+        <img src={caseEightAssets.coreLoopResult} alt="结果反馈流程图" className="absolute left-0 top-[-4.77%] h-[104.71%] w-full max-w-none" loading="lazy" decoding="async" />
       </div>
 
       <div className="absolute left-[792px] top-[385px] w-[280px] text-[16px] font-bold leading-[32px] text-[#151515]">
@@ -4354,7 +4354,7 @@ function WishTreeGallery() {
             src={caseEightAssets.finalGallery}
             alt={`效果图 ${index + 1}`}
             className="absolute left-0 top-0 h-full max-w-none"
-            style={{ width: '557.78%', left: frame.cropLeft }}
+            style={{ width: '557.78%', left: frame.cropLeft }} loading="lazy" decoding="async"
           />
         </div>
       ))}
@@ -4981,7 +4981,7 @@ function CrossServerTransition() {
         <img
           src={resolveAsset(crossServerAssets.loadingScreen)}
           alt="转场界面"
-          className="absolute left-0 top-[-5.54%] h-[105.58%] w-full max-w-none"
+          className="absolute left-0 top-[-5.54%] h-[105.58%] w-full max-w-none" loading="lazy" decoding="async"
         />
       </div>
       <p className="absolute left-[208px] top-[842px] text-[11px] text-[#bfc4d9]">转场界面</p>
@@ -4990,7 +4990,7 @@ function CrossServerTransition() {
         <img
           src={resolveAsset(crossServerAssets.moveMask)}
           alt="迁城待机界面"
-          className="absolute left-0 top-[-4.84%] h-[104.89%] w-full max-w-none"
+          className="absolute left-0 top-[-4.84%] h-[104.89%] w-full max-w-none" loading="lazy" decoding="async"
         />
       </div>
       <p className="absolute left-[459px] top-[842px] text-[11px] text-[#bfc4d9]">迁城待机界面</p>
@@ -5056,7 +5056,7 @@ function CrossServerMoveFlow() {
             <img
               src={resolveAsset(src)}
               alt={label}
-              className="absolute left-0 top-[-4.88%] h-[104.92%] w-full max-w-none"
+              className="absolute left-0 top-[-4.88%] h-[104.92%] w-full max-w-none" loading="lazy" decoding="async"
             />
           </div>
           <p className="absolute top-[829px] text-[11px] text-[#737380]" style={{ left: left + 87 }}>
@@ -5109,7 +5109,7 @@ function CrossServerConfirmCooldown() {
         <img
           src={resolveAsset(crossServerAssets.confirmPopup)}
           alt="迁城确认弹窗"
-          className="absolute left-[0.12%] top-[-4.8%] h-[104.8%] w-[99.77%] max-w-none"
+          className="absolute left-[0.12%] top-[-4.8%] h-[104.8%] w-[99.77%] max-w-none" loading="lazy" decoding="async"
         />
       </div>
 
@@ -5638,7 +5638,7 @@ function IPCollabCover() {
           <img
             src={publicUrl('/images/xingji/ip-collab/scene-bg.webp')}
             alt="IP联动背景场景"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover" loading="lazy" decoding="async"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(43,77,139,0.12)_0%,rgba(18,25,43,0)_22%,rgba(12,18,32,0.08)_100%)]" />
         </div>
@@ -5647,7 +5647,7 @@ function IPCollabCover() {
           <img
             src={publicUrl('/images/xingji/ip-collab/hero-character.webp')}
             alt="IP联动角色立绘"
-            className="absolute left-[-50px] top-0 h-full w-[450px] max-w-none object-contain"
+            className="absolute left-[-50px] top-0 h-full w-[450px] max-w-none object-contain" loading="lazy" decoding="async"
           />
         </div>
       </div>
@@ -5772,7 +5772,7 @@ function IPCollabMainInterface() {
         <img
           src={publicUrl('/images/xingji/ip-collab/main-screenshot.webp')}
           alt="活动主界面截图"
-          className="absolute left-0 top-[-4.8%] h-[104.9%] w-full max-w-none"
+          className="absolute left-0 top-[-4.8%] h-[104.9%] w-full max-w-none" loading="lazy" decoding="async"
         />
       </div>
       {annotations.map(({ top, label, desc }) => (
@@ -5959,7 +5959,7 @@ function IPCollabRewardStateMachine() {
                 <img
                   src={publicUrl(img)}
                   alt={label}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover" loading="lazy" decoding="async"
                 />
               </div>
               <div className="mt-[18px] text-[12px] leading-[26px] text-[#a5afcc]">
@@ -6059,7 +6059,7 @@ function IPCollabTaskSystem() {
           <img
             src={publicUrl('/images/xingji/ip-collab/task-panel.webp')}
             alt="目标任务系统截图"
-            className="absolute left-[-7%] top-[-28%] h-[158%] w-[114%] max-w-none"
+            className="absolute left-[-7%] top-[-28%] h-[158%] w-[114%] max-w-none" loading="lazy" decoding="async"
           />
         </div>
       </div>
@@ -6154,7 +6154,7 @@ function IPCollabHeroSystem() {
         <img
           src={publicUrl('/images/xingji/ip-collab/hero-detail.webp')}
           alt="英雄详情面板"
-          className="absolute left-0 top-[-5.2%] h-[105.2%] w-full max-w-none"
+          className="absolute left-0 top-[-5.2%] h-[105.2%] w-full max-w-none" loading="lazy" decoding="async"
         />
       </div>
       {/* Toggle indicator */}
@@ -6167,7 +6167,7 @@ function IPCollabHeroSystem() {
         <img
           src={publicUrl('/images/xingji/ip-collab/hero-portrait.webp')}
           alt="联动英雄立绘"
-          className="absolute left-0 top-[-4.8%] h-[104.9%] w-full max-w-none"
+          className="absolute left-0 top-[-4.8%] h-[104.9%] w-full max-w-none" loading="lazy" decoding="async"
         />
       </div>
       {/* Captions */}
@@ -6250,7 +6250,7 @@ function IPCollabDesignOutcomes() {
                 width: '664.35%',
                 top: '-2.8%',
                 left: `${-i * 113.87}%`,
-              }}
+              }} loading="lazy" decoding="async"
             />
           </div>
         ))}

@@ -157,8 +157,8 @@ export function WeddingExactCase() {
   return (
     <div className="we-canvas" data-node-id="8328:17020">
       <section className="we-cover">
-        <div className="we-glow a" />
-        <div className="we-glow b" />
+        <div className="we-glow a" data-qy-static />
+        <div className="we-glow b" data-qy-static />
         <div className="we-cover-copy">
           <i />
           <h1>结缘 · 吉宴</h1>

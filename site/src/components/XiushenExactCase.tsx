@@ -13,9 +13,11 @@ const xsAssets = {
   ref3: `${XS}/ref-moonlight.webp`,     // Figma 9817:12206 《天涯明月刀》心法
   /* The 视觉稿展示 gallery has no separate frames in Figma — it re-shows the three
      UI states above, matching its own 主界面 / 提示 / 升级 captions. */
-  finalA: `${XS}/star-map.webp`,
-  finalB: `${XS}/equip.webp`,
-  finalC: `${XS}/upgrade.webp`,
+  /* The epilogue gallery shows three 招式_武心 boards, not the interface screenshots
+     reused from the sections above. Figma 9817:12307 / 12308 / 12309. */
+  finalA: `${XS}/final-main.webp`,
+  finalB: `${XS}/final-b.webp`,
+  finalC: `${XS}/final-c.webp`,
 };
 
 type Theme = 'human' | 'earth' | 'heaven' | 'blue' | 'gold' | 'gray';
@@ -61,10 +63,41 @@ function Pill({ children, tone = 'blue' }: { children: string; tone?: Theme }) {
   return <span className={`xs-pill ${tone}`}>{children}</span>;
 }
 
-function FeatureCard({ tone, icon, title, children }: { tone: Theme; icon: string; title: string; children: string }) {
+/* Figma 9817:11802 / 11810 / 11820 — the three purpose cards carry line icons, not the
+   Chinese characters this used to print. Stroke is currentColor so each one picks up
+   its card's tone from `.xs-feature-card i`. */
+const featureIcons = {
+  layers: (
+    <>
+      <path d="M12 3L21 8L12 13L3 8L12 3Z" strokeLinejoin="round" />
+      <path d="M3 13L12 18L21 13" strokeLinejoin="round" />
+    </>
+  ),
+  network: (
+    <>
+      <path d="M12 7.4C13.3255 7.4 14.4 6.32548 14.4 5C14.4 3.67452 13.3255 2.6 12 2.6C10.6745 2.6 9.6 3.67452 9.6 5C9.6 6.32548 10.6745 7.4 12 7.4Z" />
+      <path d="M5 20.4C6.32548 20.4 7.4 19.3255 7.4 18C7.4 16.6745 6.32548 15.6 5 15.6C3.67452 15.6 2.6 16.6745 2.6 18C2.6 19.3255 3.67452 20.4 5 20.4Z" />
+      <path d="M19 20.4C20.3255 20.4 21.4 19.3255 21.4 18C21.4 16.6745 20.3255 15.6 19 15.6C17.6745 15.6 16.6 16.6745 16.6 18C16.6 19.3255 17.6745 20.4 19 20.4Z" />
+      <path d="M11 7L6.4 15.8M13 7L17.6 15.8M7.4 18H16.6" />
+    </>
+  ),
+  sliders: (
+    <>
+      <path d="M4 7H12M16 7H20M4 17H8M12 17H20" strokeLinecap="round" />
+      <path d="M14 9.2C15.215 9.2 16.2 8.21503 16.2 7C16.2 5.78497 15.215 4.8 14 4.8C12.785 4.8 11.8 5.78497 11.8 7C11.8 8.21503 12.785 9.2 14 9.2Z" />
+      <path d="M10 19.2C11.215 19.2 12.2 18.215 12.2 17C12.2 15.785 11.215 14.8 10 14.8C8.78497 14.8 7.8 15.785 7.8 17C7.8 18.215 8.78497 19.2 10 19.2Z" />
+    </>
+  ),
+} as const;
+
+function FeatureCard({ tone, icon, title, children }: { tone: Theme; icon: keyof typeof featureIcons; title: string; children: string }) {
   return (
     <article className={`xs-feature-card ${tone}`}>
-      <i>{icon}</i>
+      <i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+          {featureIcons[icon]}
+        </svg>
+      </i>
       <h3>{title}</h3>
       <p>{children}</p>
     </article>
@@ -89,11 +122,16 @@ function Rationale({ title, subtitle, principles, dark = true }: { title: string
   );
 }
 
-function Shot({ src, label, className = '' }: { src: string; label?: string; className?: string }) {
+/* Figma 9817:12000 / 12058 / 12117 — the screenshot frame is (80,300,740,416) in all
+   three interface sections, and none of them carries a caption below the image. The
+   label survives only as alt text. */
+const SHOT_X = 80;
+const SHOT_Y = 300;
+
+function Shot({ src, alt, className = '' }: { src: string; alt?: string; className?: string }) {
   return (
     <figure className={`xs-shot ${className}`}>
-      <img src={src} alt={label ?? ''} />
-      {label ? <figcaption>{label}</figcaption> : null}
+      <img src={src} alt={alt ?? ''} loading="lazy" decoding="async" />
     </figure>
   );
 }
@@ -135,7 +173,10 @@ function ProcessTimeline() {
         return (
           <article key={id} className={right ? 'right' : 'left'} style={{ top: index * 174 }}>
             <span>{id}</span>
-            <div className="line" />
+            {/* Figma 9817:11831 draws a connector only in the gap between two badges —
+                five lines for six steps. The sixth used to render one too, trailing off
+                below the last step into empty space. */}
+            {index < flowSteps.length - 1 ? <div className="line" /> : null}
             <h3>{title}</h3>
             <p>{text}</p>
           </article>
@@ -155,11 +196,21 @@ function Constellation() {
       <div className="halo h1" />
       <div className="halo h2" />
       <div className="halo h3" />
+      {/* Figma 9817:11955 is one vector of straight segments in a single colour — a node
+          graph, not the three tinted bezier arcs this used to draw. Every endpoint lands
+          exactly on a node centre. */}
       <svg viewBox="0 0 1280 900" preserveAspectRatio="none">
-        <path d="M420 660 C500 560 540 475 680 330 C820 475 880 560 990 655" className="line heaven" />
-        <path d="M420 660 C500 650 550 560 540 475 C590 520 630 535 680 505 C720 530 775 520 820 475 C820 560 900 650 990 655" className="line earth" />
-        <path d="M420 660 C525 690 600 650 680 505 C760 650 850 690 990 655" className="line human" />
-        <path d="M530 675 L640 665 L760 665 L880 675" className="line human soft" />
+        <path
+          className="line"
+          d={[
+            'M680 330V505',                              // 天纹 → 中地纹
+            'M420 660L540 475L680 330L820 475L990 655',  // 人纹 → 地纹 → 天纹 → 地纹 → 人纹
+            'M680 505L640 665',
+            'M680 505L760 665',
+            'M880 675L820 475',
+            'M530 675L540 475',
+          ].join('')}
+        />
       </svg>
       {heaven.map(([x, y]) => <b key={`${x}-${y}`} className="node heaven" style={{ left: x - 46, top: y - 46 }}><em /></b>)}
       {earth.map(([x, y]) => <b key={`${x}-${y}`} className="node earth" style={{ left: x - 26, top: y - 26 }}><em /></b>)}
@@ -216,8 +267,11 @@ function InterfaceSection({
     <section className={`xs-section xs-interface xs-${type}`}> 
       <Header eyebrow={eyebrow} title={title} desc={desc} />
       <div className="xs-interface-stage">
-        <Shot src={src} label={shotLabel} />
-        {markers.map(([n, x, y]) => <Marker key={n} n={n} x={x} y={y} />)}
+        <Shot src={src} alt={shotLabel} />
+        {/* Figma lists marker coordinates in section space while the stage starts at the
+            screenshot's own origin (80,300) — unrebased, every marker landed below the
+            image, off the screenshot entirely. */}
+        {markers.map(([n, x, y]) => <Marker key={n} n={n} x={x - SHOT_X} y={y - SHOT_Y} />)}
       </div>
       <Notes title={noteTitle} items={notes} />
       <Rationale title={rationaleTitle} subtitle="为什么这样设计 · WHY IT WORKS" principles={principles} />
@@ -225,30 +279,47 @@ function InterfaceSection({
   );
 }
 
+/* Figma 9817:12216. The card is (70,280,1140,520), so everything here is card-space —
+   Figma's section coordinates minus (70,280). The SVG uses the same units.
+   AXIS_Y 352 = Figma 632. */
+const AXIS_Y = 352;
+
+/* Both curve vectors trace the same line; 9817:12225 closes it down to the axis as a
+   filled area, 9817:12226 strokes it. The area used to be faked with a 95px-wide
+   round-capped stroke, which is what produced the fat lozenge instead of a chart. */
+const CURVE = 'M82 260C114.5 253.3 212 231.7 277 220C342 208.3 407 199.7 472 190'
+  + 'C537 180.3 602 171.2 667 162C732 152.8 797 145.7 862 135C927 124.3 1024.5 104.2 1057 98';
+
 function JourneyChart() {
+  // dot x, dot y, emotion, step name, step caption
   const points = [
-    [152, 540, '好奇', '进入星图', '打开绣身界面'],
-    [347, 500, '期待', '解锁槽位', '达成境界解锁'],
-    [542, 470, '满足', '装配绣身', '背包装配属性'],
-    [737, 442, '成就', '点亮花纹', '激活下层点亮'],
-    [932, 415, '渐入', '升级强化', '升到下一等级'],
-    [1127, 375, '✦ 登顶巅峰', '套装 · 天纹', '集齐效果拉满'],
+    [82, 260, '好奇', '进入星图', '打开绣身界面'],
+    [277, 220, '期待', '解锁槽位', '达成境界解锁'],
+    [472, 190, '满足', '装配绣身', '背包装配属性'],
+    [667, 162, '成就', '点亮花纹', '激活下层点亮'],
+    [862, 135, '渐入', '升级强化', '升到下一等级'],
+    [1057, 98, '✦ 登顶巅峰', '套装 · 天纹', '集齐效果拉满'],
   ] as const;
   return (
     <div className="xs-journey-card">
+      {/* 9817:12220 — the pale band standing behind the final column */}
+      <span className="peak-band" />
       <p className="y-label">情绪强度</p>
       <svg viewBox="0 0 1140 520" preserveAspectRatio="none">
-        <line x1="82" y1="352" x2="1057" y2="352" className="axis" />
-        <path d="M82 260 C240 225 340 210 472 188 C610 164 718 145 862 126 C950 115 1010 98 1057 90" className="glow-area" />
-        <path d="M82 260 C240 225 340 210 472 188 C610 164 718 145 862 126 C950 115 1010 98 1057 90" className="curve" />
+        <line x1="82" y1={AXIS_Y} x2="1057" y2={AXIS_Y} className="axis" />
+        <path d={`${CURVE}V${AXIS_Y}H82Z`} className="curve-area" />
+        <path d={CURVE} className="curve" />
+        {points.map(([x, y], i) => (
+          <circle key={x} cx={x} cy={y} r={i === 5 ? 9 : 6} className={i === 5 ? 'dot peak' : 'dot'} />
+        ))}
       </svg>
       {points.map(([x, y, mood, name, desc], i) => (
         <article key={name} className={i === 5 ? 'peak' : ''} style={{ left: x - 90, top: 0 }}>
-          <i style={{ height: 632 - y }} />
-          <h4 style={{ top: y - 62 }}>{mood}</h4>
+          <i style={{ top: y + 12, height: AXIS_Y - y - 12 }} />
+          <h4 style={{ top: y - 34 }}>{mood}</h4>
           <b style={{ top: 371 }}>{i + 1}</b>
-          <strong style={{ top: 408 }}>{name}</strong>
-          <p style={{ top: 438 }}>{desc}</p>
+          <strong style={{ top: 406 }}>{name}</strong>
+          <p style={{ top: 436 }}>{desc}</p>
         </article>
       ))}
     </div>
@@ -259,7 +330,7 @@ export function XiushenExactCase() {
   return (
     <div className="xiushen-exact-canvas">
       <section className="xs-hero">
-        <div className="glow g1" /><div className="glow g2" /><div className="glow g3" />
+        <div className="glow g1" data-qy-static /><div className="glow g2" data-qy-static /><div className="glow g3" data-qy-static />
         <div className="hero-bar" />
         <p className="hero-cn">绣 身</p>
         <h1>绣身系统成长线设计</h1>
@@ -270,9 +341,9 @@ export function XiushenExactCase() {
       <section className="xs-section xs-purpose">
         <Header eyebrow="BACKGROUND · 系统目的" title="为什么要做绣身系统" desc="为了增加「角色成长线」的深度，解决的是养成后期「没目标可追」的问题。" />
         <div className="xs-feature-row">
-          <FeatureCard tone="human" icon="线" title="成长线趋于单一">角色养成到后期会缺少持续、可探索的新目标。</FeatureCard>
-          <FeatureCard tone="earth" icon="图" title="星图式深度">用「天·地·人」三纹网络，模拟成可点亮的星图，把养成线具象化。</FeatureCard>
-          <FeatureCard tone="gold" icon="构" title="自定义构筑">装配 + 升级 + 套装，让玩家按流派定制成长路线，提高强度。</FeatureCard>
+          <FeatureCard tone="human" icon="layers" title="成长线趋于单一">角色养成到后期会缺少持续、可探索的新目标。</FeatureCard>
+          <FeatureCard tone="earth" icon="network" title="星图式深度">用「天·地·人」三纹网络，模拟成可点亮的星图，把养成线具象化。</FeatureCard>
+          <FeatureCard tone="gold" icon="sliders" title="自定义构筑">装配 + 升级 + 套装，让玩家按流派定制成长路线，提高强度。</FeatureCard>
         </div>
         <div className="xs-objective">
           <p>设计目标 · OBJECTIVE</p>
@@ -394,7 +465,7 @@ export function XiushenExactCase() {
             [xsAssets.ref3, '《天涯明月刀》· 心法', '国风纹样 + 流光，养成界面也讲究氛围。'],
           ].map(([src, title, text]) => (
             <article key={title}>
-              <img src={src} alt="" />
+              <img src={src} alt="" loading="lazy" decoding="async" />
               <h3>{title}</h3>
               <span>{text}</span>
             </article>
@@ -419,7 +490,8 @@ export function XiushenExactCase() {
 
       <section className="xs-section xs-final">
         <div className="final-glow" />
-        <p className="final-kicker">EPILOGUE · 结语</p>
+        {/* Figma 9817:12285 marks the "EPILOGUE · 结语" eyebrow hidden — dropping it also
+            pulls the title back up to its real position at y=72. */}
         <h2>一张越点越亮的星图</h2>
         <p className="final-desc">从解锁第一个人纹，到点亮整张天纹 —— 绣身用「天·地·人」三层结构，三组纹路套装，把养成的深度、收集的乐趣与自我表达，拧成同一条越走越亮的成长线。</p>
         <div className="final-cards">
@@ -431,9 +503,9 @@ export function XiushenExactCase() {
         </div>
         <h3 className="gallery-title">视觉稿展示</h3>
         <div className="final-gallery">
-          <img className="main" src={xsAssets.finalA} alt="绣身主界面视觉稿" />
-          <img src={xsAssets.finalB} alt="绣身提示视觉稿" />
-          <img src={xsAssets.finalC} alt="绣身升级视觉稿" />
+          <img className="main" src={xsAssets.finalA} alt="绣身主界面视觉稿" loading="lazy" decoding="async" />
+          <img src={xsAssets.finalB} alt="绣身提示视觉稿" loading="lazy" decoding="async" />
+          <img src={xsAssets.finalC} alt="绣身升级视觉稿" loading="lazy" decoding="async" />
         </div>
       </section>
     </div>

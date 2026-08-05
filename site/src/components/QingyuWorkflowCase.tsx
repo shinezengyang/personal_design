@@ -339,7 +339,7 @@ function DirectionBlock() {
         </div>
         <div className="grid grid-cols-3 gap-[30px] px-[28px] pt-[24px]">
           {[figmaAssets.directionA, figmaAssets.directionB, figmaAssets.directionC].map((src, idx) => (
-            <img key={src} className="workflow-media h-[206px] w-full object-cover" src={src} alt={`确认设计方向截图 ${idx + 1}`} />
+            <img key={src} className="workflow-media h-[206px] w-full object-cover" src={src} alt={`确认设计方向截图 ${idx + 1}`} loading="lazy" decoding="async" />
           ))}
         </div>
         <div className="workflow-copy h-[150px] px-[28px] pt-[18px] text-[18px] leading-[1.55] tracking-[1px] text-black">
@@ -384,7 +384,7 @@ function VisualReferenceSection() {
         {cards.map((card) => (
           <article key={card.title} className="workflow-card flex h-[770px] flex-col overflow-hidden border border-black bg-white">
             <div className="h-[448px] bg-[#ececec]">
-              <img src={card.image} alt={card.title} className="workflow-media h-full w-full object-contain" />
+              <img src={card.image} alt={card.title} className="workflow-media h-full w-full object-contain" loading="lazy" decoding="async" />
             </div>
             <div className="flex-1 border-t border-black bg-white px-[22px] py-[18px] text-center">
               <h3 className="text-[26px] font-bold leading-none">{card.title}</h3>
@@ -518,7 +518,7 @@ function ImageShowcase({
         src={src}
         alt=""
         className={`workflow-media w-full ${objectFit === 'cover' ? 'object-cover' : 'object-contain'}`}
-        style={{ height }}
+        style={{ height }} loading="lazy" decoding="async"
       />
     </div>
   );
@@ -572,7 +572,7 @@ function TestOptimizationSection() {
               {row.detail}
             </div>
             <div className={`flex h-[165px] items-center justify-center border-r border-black ${idx === 0 ? 'border-b' : ''}`}>
-              <img src={row.image} alt="" className={row.imageClassName} />
+              <img src={row.image} alt="" className={row.imageClassName} loading="lazy" decoding="async" />
             </div>
             <div className={`flex h-[165px] items-center justify-center whitespace-pre-line border-r border-black px-[14px] ${idx === 0 ? 'border-b' : ''}`}>
               {row.solution}

@@ -33,16 +33,23 @@ function Header({ eyebrow, title, desc, dark = false }: { eyebrow: string; title
   );
 }
 
+/* Every screenshot on this page sits at (80,300,740,416) — Figma 9817:12471 / 12530 /
+   12589 / 12666. Marker coordinates come out of Figma in section space, so they have to
+   be rebased onto the shot or they land 80px right and 300px below where they belong,
+   which on these sections put them off the image entirely. */
+const JX_SHOT_X = 80;
+const JX_SHOT_Y = 300;
+
 function Marker({ n, x, y, gold = false }: { n: number; x: number; y: number; gold?: boolean }) {
   return (
-    <span className={`jx-marker ${gold ? 'gold' : ''}`} style={{ left: x, top: y }}>{n}</span>
+    <span className={`jx-marker ${gold ? 'gold' : ''}`} style={{ left: x - JX_SHOT_X, top: y - JX_SHOT_Y }}>{n}</span>
   );
 }
 
 function Shot({ src, label, className = '' }: { src: string; label?: string; className?: string }) {
   return (
     <figure className={`jx-shot ${className}`}>
-      <img src={src} alt={label ?? ''} />
+      <img src={src} alt={label ?? ''} loading="lazy" decoding="async" />
       {label ? <figcaption>{label}</figcaption> : null}
     </figure>
   );
@@ -63,7 +70,12 @@ function Rationale({ title, subtitle, principles, tall = false }: { title: strin
     <div className={`jx-rationale ${tall ? 'tall' : ''}`}>
       <p className="jx-rationale-eyebrow">{subtitle}</p>
       <h3>{title}</h3>
-      <div className="jx-rationale-grid" style={{ gridTemplateColumns: `repeat(${principles.length}, 1fr)` }}>
+      {/* Figma puts the four columns at x=120/392/664/936 — a 272px pitch, which `1fr`
+          tracks do not reproduce inside the 1040px content box. */}
+      <div
+        className="jx-rationale-grid"
+        style={{ gridTemplateColumns: principles.length === 4 ? 'repeat(4, 236px)' : `repeat(${principles.length}, 1fr)` }}
+      >
         {principles.map((item) => (
           <article key={item.title} className={item.tone ?? 'gold'}>
             <i />
@@ -133,6 +145,11 @@ function LayerBars() {
   );
 }
 
+/* Figma 9817:12409, translated from the vector's own space into the card's
+   (the card is at section (70,280), the vector at (152,375)). */
+const JX_CURVE = 'M82 260C114.5 254.2 212 236.7 277 225C342 213.3 407 200.5 472 190'
+  + 'C537 179.5 602 172 667 162C732 152 797 141.2 862 130C927 118.8 1024.5 100.8 1057 95';
+
 function JourneyCurve() {
   const steps = [
     ['1', '期待', '解锁槽位', '达成境界 · 修为', 152, 534],
@@ -145,15 +162,19 @@ function JourneyCurve() {
   return (
     <div className="jx-journey-card">
       <p className="axis">情绪强度</p>
+      {/* Figma 9817:12408 (area, filled down to the axis) and 12409 (stroke) trace the
+          same monotonic rise. The old hand-drawn path dipped to y=66 and climbed back to
+          96, putting a hump just before the summit that the design does not have. */}
       <svg viewBox="0 0 1140 520" preserveAspectRatio="none">
         <line x1="82" y1="352" x2="1057" y2="352" className="base" />
-        <path d="M82 255 C240 235 320 215 472 184 C610 155 738 138 862 112 C963 91 1008 66 1057 96" className="area" />
-        <path d="M82 255 C240 235 320 215 472 184 C610 155 738 138 862 112 C963 91 1008 66 1057 96" className="curve" />
+        <path d={`${JX_CURVE}V352H82Z`} className="area" />
+        <path d={JX_CURVE} className="curve" />
       </svg>
       <div className="summit" />
       {steps.map(([n, mood, title, desc, x, y], idx) => (
         <article key={n} className={`s${idx + 1}`} style={{ left: Number(x) }}>
-          <i style={{ top: Number(y) - 292 }} />
+          {/* Figma gives the dot's ellipse top in section space; the card starts at 280 */}
+          <i style={{ top: Number(y) - 280 }} />
           <p className="mood">{mood}</p>
           <span>{n}</span>
           <h4>{title}</h4>
@@ -190,9 +211,9 @@ export function JuexueExactCase() {
   return (
     <div className="juexue-exact-canvas" data-node-id="8626:8140">
       <section className="jx-hero">
-        <div className="glow g1" />
-        <div className="glow g2" />
-        <div className="glow g3" />
+        <div className="glow g1" data-qy-static />
+        <div className="glow g2" data-qy-static />
+        <div className="glow g3" data-qy-static />
         <div className="hero-bar" />
         <p className="hero-calligraphy">绝 学</p>
         <h1>绝学系统 · 成长线设计</h1>
@@ -337,7 +358,7 @@ export function JuexueExactCase() {
           <Notes dark title="同一套框架，分层各司其职" items={[
             '绝学|当前“大无相”槽位装配的绝学技能图标和等级，点击后可显示详情弹窗',
           ]} />
-          <img src={jxAssets.contextPopup} alt="绝学详情弹窗" />
+          <img src={jxAssets.contextPopup} alt="绝学详情弹窗" loading="lazy" decoding="async" />
         </div>
         <Rationale title="用统一框架，承载分层的深度" subtitle="为什么这样设计 · WHY IT WORKS" principles={[
           { title: '体系一致', text: '绝学与招式共用「招式」框架，认知统一。', tone: 'red' },
@@ -349,7 +370,8 @@ export function JuexueExactCase() {
 
       <section className="jx-final">
         <div className="final-glow" />
-        <p className="final-eyebrow">EPILOGUE · 结语</p>
+        {/* Figma 9817:12693 has no eyebrow node — removing it also lets the title sit at
+            its real y=72 instead of 60px lower. */}
         <h2>把养成，做成一道道重数关卡</h2>
         <p className="final-desc">从解锁第一个槽位，到把绝学练满十重 —— 绝学用「五相装配 × 重数突破」的双层结构，给顶尖玩家留出一条够长、够深、够个性的终极养成线。</p>
         <div className="jx-final-cards">
@@ -361,10 +383,11 @@ export function JuexueExactCase() {
         </div>
         <p className="final-loop">—— 深度 · 收集 · 表达，一重重练成自己的绝学 ——</p>
         <div className="final-line" />
-        <p className="final-calligraphy">绝 学</p>
+        {/* 「绝 学」 was drawn here too, but the frame has no such node — 视觉稿展示
+            below is itself the calligraphic title. */}
         <p className="final-gallery-title">视觉稿展示</p>
-        <img className="final-img a" src={jxAssets.finalA} alt="绝学视觉稿 1" />
-        <img className="final-img b" src={jxAssets.finalB} alt="绝学视觉稿 2" />
+        <img className="final-img a" src={jxAssets.finalA} alt="绝学视觉稿 1" loading="lazy" decoding="async" />
+        <img className="final-img b" src={jxAssets.finalB} alt="绝学视觉稿 2" loading="lazy" decoding="async" />
       </section>
     </div>
   );

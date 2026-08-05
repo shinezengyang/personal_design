@@ -1559,7 +1559,7 @@ export default function ProjectDetail({
                   project.imageObjectPosition
                     ? { objectPosition: project.imageObjectPosition }
                     : undefined
-                }
+                } fetchPriority="high"
               />
             </div>
 
@@ -1857,7 +1857,7 @@ export default function ProjectDetail({
                         key={item.src}
                         className="project-detail-inner-card overflow-hidden rounded-lg aspect-[157/180]"
                       >
-                        <img src={item.src} alt={item.alt} className="h-full w-full object-cover" />
+                        <img src={item.src} alt={item.alt} className="h-full w-full object-cover" loading="lazy" decoding="async" />
                       </div>
                     ))}
                   </div>

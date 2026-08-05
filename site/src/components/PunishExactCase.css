@@ -1,3 +1,6 @@
+/* Fonts are self-hosted — see src/styles/fonts.css, imported once from
+   main.tsx. This file used to @import them from fonts.googleapis.com, which
+   blocked rendering and is unreachable from mainland China. */
 /* ===================================================================
    PunishExactCase — 1:1 Figma rebuild (absolute positioning)
    Figma frame 8721:7612 — 玩法-惩凶除恶·玩法优化 作品集
@@ -5,7 +8,6 @@
    STAGE coord = slide.y + child.y. All coords match Figma metadata.
    Palette: ink #15121b · gold #c99b45 · vermilion #c8322b
    =================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Inter:wght@600;900&display=swap');
 
 .punish-canvas {
   position: relative;
