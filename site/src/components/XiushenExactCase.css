@@ -22,16 +22,22 @@
   background: #0c1519;
 }
 
+/* Figma 9817:11774/11775/11776. Each is an ellipse with a 170px layer blur
+   (stdDeviation 85) — a soft wash, not the hard-edged disc this used to draw at
+   blur(90px). The extra `opacity` is gone too: the alpha belongs in the fill, and
+   stacking both darkened every glow. */
 .xs-hero .glow {
   position: absolute;
   border-radius: 999px;
-  filter: blur(90px);
-  opacity: .68;
+  filter: blur(170px);
 }
 
-.xs-hero .g1 { width: 720px; height: 720px; left: 975px; top: -490px; background: rgba(79, 216, 230, .23); }
-.xs-hero .g2 { width: 600px; height: 620px; left: 535px; top: 500px; background: rgba(18, 67, 78, .52); }
-.xs-hero .g3 { width: 480px; height: 480px; left: -40px; top: -30px; background: rgba(79, 216, 230, .16); }
+/* 9817:11774 — #1C6E7A @ 10% */
+.xs-hero .g1 { width: 720px; height: 720px; left: 975px; top: -490px; background: rgba(28, 110, 122, .1); }
+/* 9817:11775 — #155A66 @ 35% */
+.xs-hero .g2 { width: 600px; height: 620px; left: 535px; top: 500px; background: rgba(21, 90, 102, .35); }
+/* 9817:11776 — #6B5A2A @ 35%, a warm olive that had been drawn as cyan */
+.xs-hero .g3 { width: 480px; height: 480px; left: -40px; top: -30px; background: rgba(107, 90, 42, .35); }
 .xs-hero .hero-bar { position: absolute; left: 80px; top: 272px; width: 4px; height: 150px; border-radius: 2px; background: #4fd8e6; }
 .xs-hero .hero-cn { position: absolute; left: 104px; top: 250px; margin: 0; color: #cfeaee; font-family: 'Ma Shan Zheng', 'STKaiti', serif; font-size: 96px; line-height: 150px; letter-spacing: 18px; }
 .xs-hero h1 { position: absolute; left: 108px; top: 436px; margin: 0; color: white; font-size: 38px; font-weight: 900; letter-spacing: 1px; }
@@ -81,6 +87,8 @@
 .xs-feature-card.human::before { background: #3fa37e; }
 .xs-feature-card.gold::before { background: #c8a052; }
 .xs-feature-card i { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; font-style: normal; color: #2e97a8; font-weight: 800; background: #ddf1f4; }
+/* Figma 9817:11802 etc — a 24px icon centred in the 46px tinted tile */
+.xs-feature-card i svg { width: 24px; height: 24px; display: block; }
 .xs-feature-card.human i { background: #e0f2ea; color: #3fa37e; }
 .xs-feature-card.gold i { background: #f6ecd2; color: #c8a052; }
 .xs-feature-card h3 { margin: 16px 0 0; color: #16242a; font-size: 20px; font-weight: 700; }
@@ -107,11 +115,8 @@
 .xs-constellation .h2 { left: 320px; top: 420px; width: 480px; height: 480px; background: rgba(111, 203, 160, .18); }
 .xs-constellation .h3 { left: 540px; top: 180px; width: 300px; height: 300px; background: rgba(232, 199, 122, .18); }
 .xs-constellation svg { position: absolute; inset: 0; }
-.xs-constellation .line { fill: none; stroke-width: 2.2px; filter: drop-shadow(0 0 8px rgba(79, 216, 230, .65)); }
-.xs-constellation .line.heaven { stroke: rgba(232, 199, 122, .88); }
-.xs-constellation .line.earth { stroke: rgba(91, 200, 214, .72); }
-.xs-constellation .line.human { stroke: rgba(111, 203, 160, .68); }
-.xs-constellation .line.soft { opacity: .5; }
+/* Figma 9817:11955 — one stroke colour for the whole graph, 1.5px, no glow */
+.xs-constellation .line { fill: none; stroke: #5fc8d6; stroke-opacity: .4; stroke-width: 1.5px; stroke-linecap: round; stroke-linejoin: round; }
 .xs-constellation .node { position: absolute; display: grid; place-items: center; border-radius: 50%; }
 .xs-constellation .node.heaven { width: 92px; height: 92px; background: rgba(232,199,122,.16); box-shadow: 0 0 40px rgba(232,199,122,.42); }
 .xs-constellation .node.heaven em { width: 44px; height: 44px; border-radius: 50%; background: #e8c77a; box-shadow: 0 0 25px rgba(232,199,122,.9); }
@@ -131,12 +136,14 @@
 .xs-map-legend .human h3 { color: #6fcba0; }
 .xs-map-legend p { margin: 12px 0 8px; color: #a7c4ca; font-size: 16px; line-height: 20px; width: 240px; }
 .xs-tier-diagram { position: absolute; left: 148px; top: 823px; width: 984px; height: 189px; }
-.xs-tier-diagram article { position: absolute; top: 0; width: 188px; height: 188px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle, rgba(21, 58, 64, .96), rgba(8, 20, 25, .9)); border: 1px solid rgba(111, 203, 160, .34); box-shadow: 0 0 25px rgba(79, 216, 230, .15) inset, 0 0 18px rgba(79, 216, 230, .12); }
+.xs-tier-diagram article { position: absolute; top: 0; width: 188px; height: 188px; border-radius: 50%; background: radial-gradient(circle, rgba(21, 58, 64, .96), rgba(8, 20, 25, .9)); border: 1px solid rgba(111, 203, 160, .34); box-shadow: 0 0 25px rgba(79, 216, 230, .15) inset, 0 0 18px rgba(79, 216, 230, .12); }
 .xs-tier-diagram .human { left: 0; }
 .xs-tier-diagram .earth { left: 398px; }
 .xs-tier-diagram .heaven { left: 796px; }
-.xs-tier-diagram strong { display: block; color: #f6eede; font-size: 30px; line-height: 36px; font-weight: 900; text-align: center; }
-.xs-tier-diagram span { display: block; margin-top: 34px; color: #b5aa98; font-size: 16px; line-height: 19px; font-weight: 700; text-align: center; }
+/* Figma 9817:11939/11940 — the label sits on the circle's centre line (top 76) and the
+   caption at top 142. Centring the pair as one block put both too high. */
+.xs-tier-diagram strong { position: absolute; left: 0; top: 76px; width: 188px; color: #f6eede; font-size: 30px; line-height: 36px; font-weight: 900; text-align: center; }
+.xs-tier-diagram span { position: absolute; left: 0; top: 142px; width: 188px; color: #b5aa98; font-size: 16px; line-height: 19px; font-weight: 700; text-align: center; }
 .xs-tier-diagram .line { position: absolute; top: 93px; width: 210px; height: 2px; }
 .xs-tier-diagram .line.a { left: 188px; background: rgba(209, 162, 88, .95); }
 .xs-tier-diagram .line.b { left: 586px; background: rgba(103, 185, 154, .95); }
@@ -161,8 +168,9 @@
 
 .xs-interface-stage { position: absolute; left: 80px; top: 300px; width: 740px; height: 452px; }
 .xs-shot { position: absolute; left: 0; top: 0; margin: 0; }
-.xs-shot img { display: block; width: 740px; height: 416px; object-fit: cover; border-radius: 10px; border: 1px solid #2e5a64; box-shadow: 0 14px 34px rgba(26, 51, 56, .18); }
-.xs-shot figcaption { position: absolute; left: 0; top: 430px; min-width: 180px; height: 30px; padding: 5px 18px; border-radius: 15px; background: #eaeef6; color: #5a6680; font-size: 16px; line-height: 20px; font-weight: 700; }
+/* No border: the dark teal hairline read as a hard frame on these light sections, and
+   Figma has none — the screenshot sits flush with just its shadow. */
+.xs-shot img { display: block; width: 740px; height: 416px; object-fit: cover; border-radius: 10px; box-shadow: 0 14px 34px rgba(26, 51, 56, .18); }
 .xs-marker { position: absolute; z-index: 3; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(180deg, #4fb7c8, #2e97a8); color: white; font: 700 14px/1 Inter, sans-serif; box-shadow: 0 3px 0 rgba(0,0,0,.18), 0 0 0 4px rgba(79, 183, 200, .22); }
 .xs-marker.gold { background: linear-gradient(180deg, #e8c77a, #c8a052); color: #16242a; }
 .xs-notes { position: absolute; left: 856px; top: 316px; width: 344px; }
@@ -174,18 +182,28 @@
 .xs-notes p { margin: 0; color: #5a6e73; font-size: 16px; line-height: 19px; max-width: 320px; }
 
 .xs-art-choice { position: absolute; left: 80px; top: 280px; width: 560px; height: 440px; padding: 34px 36px; border-radius: 16px; background: #fff; border-left: 5px solid #2e97a8; box-shadow: 0 10px 28px rgba(26, 51, 56, .1); }
-.xs-art-choice > p, .xs-art-ref > p { margin: 0 0 28px; color: #2e97a8; font: 500 12px/1.4 Inter, sans-serif; letter-spacing: 1px; }
-.xs-art-choice article { position: relative; padding-left: 24px; margin-bottom: 56px; }
+.xs-art-choice > p, .xs-art-ref > p { margin: 0; color: #2e97a8; font: 500 12px/1.4 Inter, sans-serif; letter-spacing: 1px; }
+/* Figma 9817:12179-12189 — swatch rows at card y 84 / 202 / 320, a 118px pitch. */
+.xs-art-choice article { position: absolute; left: 36px; width: 490px; }
+.xs-art-choice article:nth-of-type(1) { top: 78px; }
+.xs-art-choice article:nth-of-type(2) { top: 196px; }
+.xs-art-choice article:nth-of-type(3) { top: 314px; }
 .xs-art-choice i { position: absolute; left: 0; top: 6px; width: 12px; height: 12px; border-radius: 3px; background: #2e97a8; }
 .xs-art-choice i.ink { background: #16242a; }
 .xs-art-choice i.gold { background: #e8c77a; }
 .xs-art-choice i.cyan { left: 16px; background: #5bc8d6; }
 .xs-art-choice i.green { left: 32px; background: #6fcba0; }
-.xs-art-choice h3 { margin: 0; color: #16242a; font-size: 17px; font-weight: 700; }
-.xs-art-choice span { display: block; margin: 14px 0 0 -24px; color: #5a6e73; font-size: 16px; line-height: 21px; }
-.xs-art-ref { position: absolute; left: 664px; top: 280px; width: 536px; height: 440px; padding: 34px 36px; border-radius: 16px; background: #101e24; border-left: 5px solid #c8a052; box-shadow: 0 10px 28px rgba(26, 51, 56, .1); }
-.xs-art-ref > small { position: absolute; right: 24px; top: 4px; color: #5e7b82; font-size: 14px; }
+.xs-art-choice h3 { margin: 0 0 0 24px; color: #16242a; font-size: 17px; font-weight: 700; }
+/* The three-colour row carries swatches out to x=160, so its title starts at 58px —
+   at the single-swatch indent it sat on top of the second and third chips. */
+.xs-art-choice article:nth-of-type(2) h3 { margin-left: 58px; }
+.xs-art-choice span { display: block; margin: 14px 0 0; color: #5a6e73; font-size: 16px; line-height: 21px; }
+.xs-art-ref { position: absolute; left: 664px; top: 280px; width: 536px; height: 440px; padding: 4px 36px; border-radius: 16px; background: #101e24; border-left: 5px solid #c8a052; box-shadow: 0 10px 28px rgba(26, 51, 56, .1); }
+.xs-art-ref > small { position: absolute; right: 24px; top: 3px; color: #5e7b82; font-size: 14px; }
+/* Figma 9817:12193/12199/12205 — rows at card y 34 / 170 / 306. The eyebrow used to
+   claim 28px of margin below it, which pushed the third thumbnail out of the card. */
 .xs-art-ref article { position: relative; height: 120px; margin-bottom: 16px; padding-left: 214px; }
+.xs-art-ref article:first-of-type { margin-top: 15px; }
 .xs-art-ref img { position: absolute; left: 0; top: 0; width: 192px; height: 120px; object-fit: cover; border-radius: 8px; border: 1px solid #2e5a64; }
 .xs-art-ref h3 { margin: 15px 0 0; color: #eaf2f4; font-size: 15.5px; font-weight: 700; }
 .xs-art-ref span { display: block; margin-top: 8px; color: #8faab0; font-size: 16px; line-height: 19px; }
@@ -197,10 +215,16 @@
 .xs-journey-card .y-label { position: absolute; left: 26px; top: 88px; width: 65px; margin: 0; color: #9fb2b6; font: 500 16px/1.4 Inter, sans-serif; }
 .xs-journey-card svg { position: absolute; inset: 0; }
 .xs-journey-card .axis { stroke: #e0e8ea; stroke-width: 1; }
-.xs-journey-card .curve { fill: none; stroke: #2e97a8; stroke-width: 3; filter: drop-shadow(0 0 8px rgba(46,151,168,.35)); }
-.xs-journey-card .glow-area { fill: none; stroke: rgba(79, 183, 200, .18); stroke-width: 95; stroke-linecap: round; }
+/* Figma 9817:12226 — 3px stroke, no glow */
+.xs-journey-card .curve { fill: none; stroke: #2e97a8; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+/* Figma 9817:12225 — the area under the curve, filled at 10%, not a fat stroke */
+.xs-journey-card .curve-area { fill: #2e97a8; fill-opacity: .1; stroke: none; }
+.xs-journey-card .dot { fill: #2e97a8; }
+.xs-journey-card .dot.peak { fill: #c8a052; }
+/* Figma 9817:12220 */
+.xs-journey-card .peak-band { position: absolute; left: 1008px; top: 20px; width: 134px; height: 332px; border-radius: 12px; background: rgba(200, 160, 82, .07); }
 .xs-journey-card article { position: absolute; width: 180px; height: 520px; text-align: center; }
-.xs-journey-card article i { position: absolute; left: 90px; top: auto; bottom: 168px; width: 1px; background: #d6e2e5; }
+.xs-journey-card article i { position: absolute; left: 90px; width: 1px; background: #d6e2e5; }
 .xs-journey-card article h4 { position: absolute; left: 10px; width: 160px; margin: 0; color: #2e97a8; font-size: 16px; font-weight: 700; }
 .xs-journey-card article.peak h4 { color: #c8a052; }
 .xs-journey-card article b { position: absolute; left: 77px; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #2e97a8; color: #fff; font: 700 12px/1 Inter, sans-serif; }
@@ -210,16 +234,21 @@
 .xs-journey-note { position: absolute; left: 80px; top: 832px; width: 1120px; height: 200px; padding: 32px 40px; border-radius: 16px; background: #fff; border: 1px solid #e2e9eb; border-left: 5px solid #2e97a8; }
 .xs-journey-note p { margin: 0; color: #2e97a8; font: 500 12px/1.4 Inter, sans-serif; letter-spacing: 1.2px; }
 .xs-journey-note h3 { margin: 14px 0 16px; color: #16242a; font-size: 22px; font-weight: 900; }
-.xs-journey-note span { display: block; color: #5a6e73; font-size: 16px; line-height: 23px; }
-.xs-journey-note div { margin-top: 18px; display: flex; gap: 16px; }
-.xs-journey-note .xs-pill { height: 30px; background: rgba(46,151,168,.12); border: 0; color: #2e97a8; font-size: 16px; }
+/* Figma 9817:12273 is a single 1010px line — it used to wrap into a block */
+.xs-journey-note span { display: block; width: 1010px; color: #5a6e73; font-size: 16px; line-height: 23px; white-space: nowrap; }
+/* Figma 9817:12274/12277/12280 — fixed 200x30 chips at x=120 / 336 / 552, so a 16px gap,
+   each with its label centred. They used to be content-sized and bunched together. */
+.xs-journey-note div { margin-top: 23px; display: flex; gap: 16px; }
+.xs-journey-note .xs-pill { width: 200px; min-width: 0; height: 30px; padding: 0; border-radius: 15px; background: rgba(46,151,168,.12); border: 0; color: #2e97a8; font-size: 16px; }
 .xs-journey-note .xs-pill.gold { background: rgba(200,160,82,.12); color: #c8a052; }
 
 .xs-final .final-glow { position: absolute; left: 460px; top: -150px; width: 360px; height: 360px; border-radius: 50%; background: rgba(79, 216, 230, .22); filter: blur(90px); }
-.xs-final .final-kicker { position: absolute; left: 0; top: 96px; width: 1280px; margin: 0; text-align: center; color: #6fd6e2; font: 500 13px/1.4 Inter, sans-serif; letter-spacing: 3px; }
-.xs-final h2 { position: absolute; left: 0; top: 134px; width: 1280px; margin: 0; text-align: center; color: #fff; font-size: 44px; font-weight: 900; }
-.xs-final .final-desc { position: absolute; left: 240px; top: 216px; width: 800px; margin: 0; text-align: center; color: #a7c4ca; font-size: 16px; line-height: 28px; }
-.xs-final .final-cards { position: absolute; left: 100px; top: 322px; display: grid; grid-template-columns: 340px 30px 340px 30px 340px; gap: 0; align-items: center; }
+/* Figma 9817:12286/12287/12288 — title at 72, copy at 154, cards at 266. Everything
+   used to sit ~50px lower because the section made room for an eyebrow that Figma
+   marks hidden (9817:12285). */
+.xs-final h2 { position: absolute; left: 0; top: 72px; width: 1280px; margin: 0; text-align: center; color: #fff; font-size: 44px; font-weight: 900; }
+.xs-final .final-desc { position: absolute; left: 240px; top: 154px; width: 800px; margin: 0; text-align: center; color: #a7c4ca; font-size: 16px; line-height: 28px; }
+.xs-final .final-cards { position: absolute; left: 100px; top: 266px; display: grid; grid-template-columns: 340px 30px 340px 30px 340px; gap: 0; align-items: center; }
 .xs-final .final-cards article { height: 200px; padding: 34px 28px; border-radius: 16px; background: #13242b; border: 1px solid #23414a; border-top: 4px solid #6fcba0; }
 .xs-final .final-cards article.earth { border-top-color: #5bc8d6; }
 .xs-final .final-cards article.heaven { border-top-color: #e8c77a; }
@@ -229,9 +258,10 @@
 .xs-final .final-cards .heaven b { color: #e8c77a; }
 .xs-final .final-cards h3 { margin: 24px 0 20px; color: white; font-size: 22px; font-weight: 900; }
 .xs-final .final-cards p { margin: 0; color: #a7c4ca; font-size: 16px; line-height: 22px; }
-.xs-final .gallery-title { position: absolute; left: 0; top: 606px; width: 1280px; margin: 0; text-align: center; color: #7fa0a6; font-size: 32px; font-weight: 900; }
+/* Figma 9817:12305 title at 578, rule at 626, images at 672 / 1014 */
+.xs-final .gallery-title { position: absolute; left: 0; top: 578px; width: 1280px; margin: 0; text-align: center; color: #7fa0a6; font-size: 32px; font-weight: 900; }
 .xs-final .gallery-title::after { content: ''; position: absolute; left: 540px; top: 48px; width: 200px; height: 1px; background: #2e5a64; }
-.final-gallery img { position: absolute; object-fit: cover; }
-.final-gallery .main { left: 378px; top: 700px; width: 524px; height: 300px; object-position: center; }
-.final-gallery img:nth-child(2) { left: 103px; top: 1042px; width: 522px; height: 300px; }
-.final-gallery img:nth-child(3) { left: 655px; top: 1042px; width: 522px; height: 300px; }
+.final-gallery img { position: absolute; object-fit: cover; border-radius: 10px; }
+.final-gallery .main { left: 378px; top: 672px; width: 524px; height: 300px; }
+.final-gallery img:nth-child(2) { left: 103px; top: 1014px; width: 522px; height: 300px; }
+.final-gallery img:nth-child(3) { left: 655px; top: 1014px; width: 522px; height: 300px; }

@@ -28,11 +28,14 @@
 .bj-dot.green { background:#66bf80; box-shadow:0 0 14px rgba(102,191,128,.5); }
 .bj-dot.purple { background:#a666d9; box-shadow:0 0 14px rgba(166,102,217,.5); }
 .bj-dot.gray { background:#666673; box-shadow:none; }
-.red { color:#d95940 !important; }
-.gold { color:#f2b24d !important; }
-.blue { color:#598ce5 !important; }
-.green { color:#66bf80 !important; }
-.purple { color:#a666d9 !important; }
+/* Scoped to .bj-canvas: unscoped these leaked into every other case page through the
+   shared CSS bundle — they were overriding the 绣身 hero pills, which carry the same
+   tone words as class names. */
+.bj-canvas .red { color:#d95940 !important; }
+.bj-canvas .gold { color:#f2b24d !important; }
+.bj-canvas .blue { color:#598ce5 !important; }
+.bj-canvas .green { color:#66bf80 !important; }
+.bj-canvas .purple { color:#a666d9 !important; }
 
 .bj-cover-bg { position:absolute; inset:0; background:linear-gradient(152deg,#0d0a14 0%,#170f1f 43%,#121217 71%); }
 .bj-cover-lines { position:absolute; left:80px; top:55px; }

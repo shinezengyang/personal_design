@@ -182,8 +182,8 @@ export function QingquanBathExactCase() {
   return (
     <div className="qingquan-exact-canvas">
       <section className="qq-hero">
-        <span className="qq-hero-glow mist" />
-        <span className="qq-hero-glow sakura" />
+        <span className="qq-hero-glow mist" data-qy-static />
+        <span className="qq-hero-glow sakura" data-qy-static />
         <span className="qq-hero-ring r1" />
         <span className="qq-hero-ring r2" />
         <span className="qq-petal p1" /><span className="qq-petal p2" /><span className="qq-petal p3" /><span className="qq-petal p4" /><span className="qq-petal p5" /><span className="qq-petal p8" />

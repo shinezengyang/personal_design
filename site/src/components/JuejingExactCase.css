@@ -91,10 +91,12 @@
 .jj-branch-note i { position:absolute; left:0; top:0; width:2px; height:60px; background:rgba(229,191,102,.4); }
 .jj-branch-note p { position:absolute; left:12px; top:0; margin:0; font-size:16px; line-height:31px; white-space:nowrap; }
 .jj-branch-note span { display:block; }
-.ok { color:#80cc80 !important; }
-.bad { color:#e58066 !important; }
-.blue { color:#66a6ff !important; }
-.gold { color:#e5bf66 !important; }
+/* Scoped to .jj-canvas: unscoped these leaked through the shared CSS bundle into every
+   other case page that uses the same tone words as class names. */
+.jj-canvas .ok { color:#80cc80 !important; }
+.jj-canvas .bad { color:#e58066 !important; }
+.jj-canvas .blue { color:#66a6ff !important; }
+.jj-canvas .gold { color:#e5bf66 !important; }
 .jj-insight-grid { position:absolute; left:80px; top:464px; display:grid; grid-template-columns:repeat(3, 353px); gap:30px; }
 .jj-insight-card { position:relative; width:353px; height:160px; background:#212129; border:1px solid #33333d; border-radius:8px; padding:19px 19px 0; overflow:hidden; }
 .jj-insight-card i { position:absolute; left:-1px; top:-1px; width:3px; height:50px; background:#66a6ff; }

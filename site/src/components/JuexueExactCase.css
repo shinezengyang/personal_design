@@ -100,20 +100,32 @@
 .jx-rationale-grid article.brown > i { background: #b07a3a; }
 .jx-rationale-grid h4 { margin: 0 0 12px; color: #f0e6da; font-size: 16px; line-height: 1.2; font-weight: 800; white-space: nowrap; }
 .jx-rationale-grid p { margin: 0; color: #b0a088; font-size: 16px; line-height: 19px; }
+/* Figma 9817:12507 / 12564 / 12676 — (80,762,1120,236) in a 1080-tall section. bottom 82
+   was already right; the 200px default height left every one of these 36px short. */
 .jx-interface .jx-rationale,
-.jx-bag .jx-rationale { bottom: 82px; }
-.jx-context .jx-rationale { bottom: 82px; }
+.jx-bag .jx-rationale,
+.jx-context .jx-rationale { bottom: 82px; height: 236px; }
+/* Figma 9817:12386 — (80,712,1120,236) in a 1000-tall section, so bottom 52 and the
+   full 236 height. It was rendering at the 200px default, 36px short. */
+.jx-system .jx-rationale { bottom: 52px; height: 236px; }
+/* Figma 9817:12390/12393/12396 — columns start at x=120 / 500 / 880, i.e. 330 wide
+   with a 50px gutter. */
+.jx-system .jx-rationale-grid { gap: 50px; }
 
 .jx-journey { height: 1080px; background: #f4f0ea; }
 .jx-journey-card { position: absolute; left: 70px; top: 280px; width: 1140px; height: 520px; border-radius: 20px; border: 1px solid #e6ddcd; background: white; box-shadow: 0 10px 30px rgba(51,31,20,.1); }
 .jx-journey-card .axis { position: absolute; left: 26px; top: 92px; margin: 0; color: #b0a088; font: 500 16px/1.2 Inter, sans-serif; }
 .jx-journey-card svg { position: absolute; left: 0; top: 0; width: 1140px; height: 520px; overflow: visible; }
 .jx-journey-card .base { stroke: #e6dccc; stroke-width: 1; }
-.jx-journey-card .area { fill: rgba(210,58,82,.10); stroke: none; }
-.jx-journey-card .curve { fill: none; stroke: #d23a52; stroke-width: 2; }
-.jx-journey-card .summit { position: absolute; left: 1060px; top: 20px; width: 134px; height: 332px; border-radius: 12px; background: rgba(224,178,90,.08); }
+.jx-journey-card .area { fill: #d23a52; fill-opacity: .09; stroke: none; }
+.jx-journey-card .curve { fill: none; stroke: #d23a52; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+/* Figma 9817:12403 is (1060,300) in section space — inside the card that is (990,20).
+   Using the section value pushed the band 70px off the right edge. */
+.jx-journey-card .summit { position: absolute; left: 990px; top: 20px; width: 134px; height: 332px; border-radius: 12px; background: rgba(224,178,90,.08); }
 .jx-journey-card article { position: absolute; top: 0; width: 170px; transform: translateX(-50%); text-align: center; }
 .jx-journey-card article i { position: absolute; left: 50%; width: 12px; height: 12px; margin-left: -6px; border-radius: 999px; background: #d23a52; box-shadow: 0 0 10px rgba(210,58,82,.45); }
+/* Figma 9817:12415 — the summit dot is 18px, not 12 */
+.jx-journey-card article.s6 i { width: 18px; height: 18px; margin-left: -9px; background: #e0b25a; box-shadow: 0 0 12px rgba(224,178,90,.5); }
 .jx-journey-card article .mood { position: absolute; left: 0; top: var(--mood-top, 100px); width: 170px; margin: 0; color: #c8554a; font-size: 16px; font-weight: 800; }
 .jx-journey-card article::before { content: ''; position: absolute; left: 50%; top: 272px; width: 1px; height: 80px; background: #eae0d0; }
 .jx-journey-card article.s1 { --mood-top: 226px; }
@@ -130,12 +142,15 @@
 .jx-journey-card article span { position: absolute; top: 371px; left: 50%; transform: translateX(-50%); width: 26px; height: 26px; border-radius: 999px; background: #d23a52; color: white; display: flex; align-items: center; justify-content: center; font: 700 16px/1 Inter, sans-serif; }
 .jx-journey-card article.s6 span { background: #e0b25a; }
 .jx-journey-card article h4 { position: absolute; top: 406px; left: 0; width: 170px; margin: 0; font-size: 20px; color: #221a14; line-height: 1.2; }
-.jx-journey-card article small { position: absolute; top: 448px; left: -5px; width: 180px; color: #6a5a48; font-size: 16px; line-height: 17px; }
-.jx-journey-note { position: absolute; left: 80px; top: 832px; width: 1120px; height: 200px; background: white; border: 1px solid #e6ddcd; border-left: 5px solid #d23a52; border-radius: 16px; padding: 30px 40px 0; }
-.jx-journey-note p { margin: 0; color: #c0354a; font: 500 16px/1.2 Inter, sans-serif; letter-spacing: 1.2px; }
-.jx-journey-note h3 { margin: 14px 0 0; color: #221a14; font-size: 28px; line-height: 1.15; font-weight: 900; }
-.jx-journey-note span { display: block; margin-top: 24px; color: #6a5a48; font-size: 16px; line-height: 23px; white-space: nowrap; }
-.jx-journey-note div { display: flex; gap: 16px; margin-top: 18px; }
+/* Figma 9817:12421 — caption at card y 436, not 448 */
+.jx-journey-card article small { position: absolute; top: 436px; left: -5px; width: 180px; color: #6a5a48; font-size: 16px; line-height: 17px; }
+/* Figma 9817:12452 — eyebrow 32, headline 58, body 100, chips 146 (card-relative).
+   Stacking these on margins drifted every line a few px low. */
+.jx-journey-note { position: absolute; left: 80px; top: 832px; width: 1120px; height: 200px; background: white; border: 1px solid #e6ddcd; border-left: 5px solid #d23a52; border-radius: 16px; padding: 0; }
+.jx-journey-note p { position: absolute; left: 40px; top: 32px; margin: 0; color: #c0354a; font: 500 16px/1.2 Inter, sans-serif; letter-spacing: 1.2px; }
+.jx-journey-note h3 { position: absolute; left: 40px; top: 58px; margin: 0; color: #221a14; font-size: 28px; line-height: 34px; font-weight: 900; }
+.jx-journey-note span { position: absolute; left: 40px; top: 100px; width: 1074px; margin: 0; color: #6a5a48; font-size: 16px; line-height: 23px; white-space: nowrap; }
+.jx-journey-note div { position: absolute; left: 40px; top: 146px; display: flex; gap: 16px; margin: 0; }
 .jx-journey-note b { display: flex; width: 200px; height: 30px; border-radius: 15px; background: rgba(210,58,82,.12); color: #c8554a; align-items: center; justify-content: center; font-size: 16px; white-space: nowrap; }
 
 .jx-interface,
@@ -165,12 +180,17 @@
 .jx-ladder-panel h3 { margin: 16px 0 0; color: white; font-size: 30px; line-height: 1.15; font-weight: 900; }
 .jx-ladder-panel > span { display: block; margin-top: 18px; color: #c9b49a; font-size: 16px; line-height: 22px; }
 .jx-ladder-panel small { position: absolute; left: 40px; bottom: 66px; color: #8a7458; font-size: 16px; letter-spacing: 1px; }
-.jx-ladder { position: absolute; left: 200px; top: 172px; width: 820px; height: 155px; }
+/* Figma 9817:12629/12630 — track at section x=200, node tops at 934. `left: 200` was
+   measured from the panel's padding box (which starts at 85), landing the whole ladder
+   85px right of where it belongs. */
+.jx-ladder { position: absolute; left: 115px; top: 172px; width: 820px; height: 155px; }
 .jx-ladder .track { position: absolute; left: 0; top: 26px; width: 820px; height: 3px; border-radius: 2px; background: linear-gradient(90deg,#b07a3a,#d23a52); }
+/* Stacking label → node → caption on margins put the node 23px above Figma's 934, so
+   each piece is placed against the ladder's own top edge instead. */
 .jx-ladder article { position: absolute; top: 0; width: 160px; transform: translateX(-50%); text-align: center; }
-.jx-ladder article h4 { margin: -58px 0 16px; font-size: 16px; line-height: 1.2; color: #b07a3a; }
+.jx-ladder article h4 { position: absolute; left: 0; top: -32px; width: 160px; margin: 0; font-size: 16px; line-height: 19px; color: #b07a3a; }
 .jx-ladder article b { display: flex; align-items: center; justify-content: center; margin: 0 auto; width: 54px; height: 54px; border-radius: 999px; font-size: 30px; font-weight: 900; border: 1px solid currentColor; box-shadow: 0 0 18px currentColor; background: #1a130d; }
-.jx-ladder article p { margin: 20px 0 0; color: #d8c8b0; font-size: 16px; line-height: 18px; }
+.jx-ladder article p { position: absolute; left: 0; top: 76px; width: 160px; margin: 0; color: #d8c8b0; font-size: 16px; line-height: 18px; }
 .jx-ladder .gold h4, .jx-ladder .gold b { color: #c8923a; }
 .jx-ladder .amber h4, .jx-ladder .amber b { color: #e0b25a; }
 .jx-ladder .brown h4, .jx-ladder .brown b { color: #e0934a; }
@@ -188,12 +208,21 @@
 .jx-context-notes .jx-notes { position: relative; left: 0; top: 0; }
 .jx-context-notes > img { position: absolute; left: 32px; top: 144px; width: 183px; height: 260px; object-fit: cover; border-radius: 8px; box-shadow: 0 12px 30px rgba(0,0,0,.35); }
 
-.jx-final { height: 1200px; background: linear-gradient(100deg,#2a1410 0%,#120c08 100%); }
+/* Figma 9817:12693 is 1100 tall on a warm maroon wash that pools at the top centre and
+   falls away to near-black at both edges — the 100deg left-to-right gradient it used to
+   carry read as a flat diagonal instead. */
+.jx-final {
+  height: 1100px;
+  background:
+    radial-gradient(760px 460px at 50% -60px, #591d22 0%, rgba(89,29,34,0) 72%),
+    linear-gradient(180deg, #29130f 0%, #1d0f0b 55%, #120c08 100%);
+}
 .jx-final .final-glow { left: 460px; top: -150px; width: 360px; height: 360px; background: rgba(224,178,90,.25); }
-.jx-final .final-eyebrow { position: absolute; left: 0; top: 96px; width: 1280px; text-align: center; margin: 0; color: #e0b25a; font: 500 16px/1.2 Inter, sans-serif; letter-spacing: 3px; }
-.jx-final h2 { position: absolute; left: 0; top: 134px; width: 1280px; margin: 0; color: #fff; text-align: center; font-size: 55px; line-height: 1.2; font-weight: 900; }
-.jx-final .final-desc { position: absolute; left: 240px; top: 216px; width: 800px; margin: 0; color: #c9b49a; text-align: center; font-size: 20px; line-height: 28px; }
-.jx-final-cards { position: absolute; left: 100px; top: 350px; display: grid; grid-template-columns: 340px 30px 340px 30px 340px; gap: 0; align-items: center; }
+/* Figma 9817:12696 — title at 72, copy at 154, cards at 279. Everything used to sit
+   ~60px lower to clear an "EPILOGUE · 结语" eyebrow that this frame does not have. */
+.jx-final h2 { position: absolute; left: 0; top: 72px; width: 1280px; margin: 0; color: #fff; text-align: center; font-size: 55px; line-height: 66px; font-weight: 900; }
+.jx-final .final-desc { position: absolute; left: 240px; top: 154px; width: 800px; margin: 0; color: #c9b49a; text-align: center; font-size: 20px; line-height: 28px; }
+.jx-final-cards { position: absolute; left: 100px; top: 279px; display: grid; grid-template-columns: 340px 30px 340px 30px 340px; gap: 0; align-items: center; }
 .jx-final-cards article { height: 200px; border-radius: 16px; background: #1f160f; border: 1px solid #3a2a1a; padding: 34px 28px 0; position: relative; overflow: hidden; }
 .jx-final-cards article::before { content: ''; position: absolute; left: 0; top: 0; height: 4px; width: 100%; background: #d23a52; }
 .jx-final-cards article.gold::before { background: #e0b25a; }
@@ -204,10 +233,13 @@
 .jx-final-cards h3 { margin: 28px 0 0; color: white; font-size: 28px; line-height: 1.2; }
 .jx-final-cards p { margin: 22px 0 0; width: 284px; color: #c9b49a; font-size: 16px; line-height: 22px; }
 .jx-final-cards > i { color: #6a5226; font-style: normal; font-size: 30px; font-weight: 900; text-align: center; }
-.jx-final .final-loop { position: absolute; left: 0; top: 592px; width: 1280px; margin: 0; color: #a89478; font-size: 16px; font-weight: 500; text-align: center; }
-.jx-final .final-line { position: absolute; left: 540px; top: 682px; width: 200px; height: 1px; background: #5a4426; }
-.jx-final .final-calligraphy { position: absolute; left: 0; top: 718px; width: 1280px; margin: 0; color: #eac98c; text-align: center; font-family: 'Ma Shan Zheng', 'STKaiti', 'KaiTi', serif; font-size: 50px; }
-.jx-final .final-gallery-title { position: absolute; left: 0; top: 792px; width: 1280px; margin: 0; color: #9a8466; text-align: center; font: 400 16px/1 Inter, sans-serif; letter-spacing: .5px; }
-.jx-final .final-img { position: absolute; top: 835px; width: 606px; height: 280px; border-radius: 8px; object-fit: cover; }
+/* Figma 9817:12715 / 12717 / 12716 / 12719 — loop line 521, gallery title 643,
+   rule 705, images 748. */
+.jx-final .final-loop { position: absolute; left: 0; top: 521px; width: 1280px; margin: 0; color: #a89478; font-size: 16px; font-weight: 500; text-align: center; }
+/* 视觉稿展示 IS the calligraphic gold title in Figma; the page also drew a separate
+   「绝 学」 above it, which the frame has no node for. */
+.jx-final .final-gallery-title { position: absolute; left: 0; top: 643px; width: 1280px; height: 50px; margin: 0; color: #eac98c; text-align: center; font-family: 'Ma Shan Zheng', 'STKaiti', 'KaiTi', serif; font-size: 40px; line-height: 50px; letter-spacing: 2px; }
+.jx-final .final-line { position: absolute; left: 540px; top: 705px; width: 200px; height: 1px; background: #5a4426; }
+.jx-final .final-img { position: absolute; top: 748px; width: 606px; height: 280px; border-radius: 8px; object-fit: cover; }
 .jx-final .final-img.a { left: 26px; }
 .jx-final .final-img.b { left: 648px; }

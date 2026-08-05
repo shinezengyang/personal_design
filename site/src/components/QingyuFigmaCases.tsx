@@ -927,6 +927,11 @@ export function QingyuFigmaCase({ caseKey }: { caseKey: QingyuCaseKey }) {
       section.classList.add('qy-reveal-section');
       Array.from(section.children).forEach((child, childIndex) => {
         const el = child as HTMLElement;
+        /* Opt-out for decorative layers. An empty div is classified as a "line" below,
+           and qy-line-enter finishes on `filter: blur(0)` — an animation's final frame
+           beats a normal declaration, so a background glow styled `filter: blur(170px)`
+           rendered as a hard-edged disc. Anything marked static keeps its own styling. */
+        if (el.dataset.qyStatic !== undefined) return;
         const hasMedia = Boolean(el.querySelector('img, video, svg'));
         const hasText = Boolean(el.textContent?.trim());
         const cappedIndex = Math.min(childIndex, 18);
