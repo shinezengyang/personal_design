@@ -162,12 +162,21 @@ const ProjectCard = ({
         <div ref={contentRef} className={`relative w-full lg:w-[45%] space-y-5 ${isEven ? 'lg:text-left' : 'lg:text-right'}`}>
           {/* Category + Tags */}
           <div data-reveal className={`flex items-center gap-3 flex-wrap ${isEven ? '' : 'lg:justify-end'}`}>
-            <span className="font-mono text-xs tracking-[3px] text-[#ff00ff] uppercase">{project.category}</span>
+            {/* 20px, up from the 10-12px this tier started at. The whole small-text ramp
+                was calibrated on Latin, but these labels carry Chinese, and a CJK glyph
+                packs far more strokes into the same em box. 「战」is 16 strokes — at 10px on
+                a 1x display it gets a 10x10 px cell, fewer scanlines than it has strokes,
+                so it collapsed into a smudge. It looked fine on displays running OS
+                scaling, which hand the same 10 CSS px 15+ device px — that is why it only
+                showed up on 1080p. Contrast was never the problem (measured 5.5:1, passes
+                AA); the pixel budget was. Note this now sits *above* the 18px body copy,
+                which is deliberate — set by eye against the real page, not by the ramp. */}
+            <span className="font-mono text-[20px] tracking-[3px] text-[#ff00ff] uppercase">{project.category}</span>
             <span className="w-px h-4 bg-[#ff00ff]/30" />
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 text-[10px] font-mono tracking-wider border border-[#00f5ff]/20 rounded-full text-[#00f5ff]/60 bg-[#00f5ff]/5 hover:bg-[#00f5ff]/10 hover:border-[#00f5ff]/40 transition-colors duration-300"
+                className="px-3 py-1 text-[20px] font-mono tracking-wider border border-[#00f5ff]/20 rounded-full text-[#00f5ff]/60 bg-[#00f5ff]/5 hover:bg-[#00f5ff]/10 hover:border-[#00f5ff]/40 transition-colors duration-300"
               >
                 {tag}
               </span>
@@ -181,7 +190,7 @@ const ProjectCard = ({
 
           {/* Publisher */}
           {project.publisher && (
-            <p data-reveal className="text-sm font-mono text-[#a0a0b0] tracking-wider">{project.publisher}</p>
+            <p data-reveal className="text-[20px] font-mono text-[#a0a0b0] tracking-wider">{project.publisher}</p>
           )}
 
           {/* Description */}
@@ -203,7 +212,7 @@ const ProjectCard = ({
               <span className="absolute inset-0 bg-gradient-to-r from-[#00f5ff] to-[#b829dd] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
               <span className="absolute inset-0 border border-[#00f5ff] group-hover/btn:border-transparent transition-colors duration-500" />
               <Eye className="relative z-10 w-4 h-4 text-[#00f5ff] group-hover/btn:text-[#0a0a0f] transition-colors duration-500" />
-              <span className="relative z-10 font-['Orbitron',sans-serif] text-xs tracking-[2px] uppercase text-[#00f5ff] group-hover/btn:text-[#0a0a0f] transition-colors duration-500">
+              <span className="relative z-10 font-['Orbitron',sans-serif] text-[20px] tracking-[2px] uppercase text-[#00f5ff] group-hover/btn:text-[#0a0a0f] transition-colors duration-500">
                 查看详情
               </span>
             </Link>
@@ -269,7 +278,7 @@ const Projects = () => {
         <h2 data-header-reveal className="text-4xl sm:text-5xl lg:text-6xl font-['Orbitron',sans-serif] font-black neon-text-pink">
           精选作品
         </h2>
-        <p data-header-reveal className="mx-auto mt-4 max-w-2xl text-center text-base font-mono tracking-wider text-[#a0a0b0]">
+        <p data-header-reveal className="mx-auto mt-4 max-w-2xl text-center text-[18px] font-mono tracking-wider text-[#a0a0b0]">
           游戏交互设计实战案例，从需求分析到体验落地
         </p>
       </div>

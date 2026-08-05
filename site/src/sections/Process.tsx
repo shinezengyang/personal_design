@@ -145,7 +145,7 @@ const Process = () => {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold neon-text-purple mb-4">
             设计流程
           </h2>
-          <p className="text-cyber-gray max-w-xl mx-auto">
+          <p className="text-cyber-gray max-w-xl mx-auto text-[18px]">
             系统化的设计方法论，确保每个项目都能交付高质量的成果
           </p>
         </div>
@@ -202,7 +202,7 @@ const Process = () => {
                       <h3 className="text-xl sm:text-2xl font-display font-bold mb-3 text-white">
                         {step.title}
                       </h3>
-                      <p className="text-cyber-gray text-sm sm:text-base mb-4">
+                      <p className="text-cyber-gray text-[16px] sm:text-[18px] mb-4">
                         {step.description}
                       </p>
 
@@ -215,7 +215,7 @@ const Process = () => {
                         {step.details.map((detail) => (
                           <span
                             key={detail}
-                            className="px-3 py-1 text-xs font-mono bg-white/5 border border-white/10 rounded-full text-gray-400"
+                            className="px-3 py-1 text-[20px] font-mono bg-white/5 border border-white/10 rounded-full text-gray-400"
                           >
                             {detail}
                           </span>

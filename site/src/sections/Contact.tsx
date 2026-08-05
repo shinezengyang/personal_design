@@ -164,7 +164,7 @@ const Contact = () => {
           <div className="relative z-10">
             <div className="grid gap-5 sm:grid-cols-2">
               <label data-contact-field className="block">
-                <span className="mb-2 block text-sm font-bold tracking-[0.12em] text-white/70">称呼</span>
+                <span className="mb-2 block text-[20px] font-bold tracking-[0.12em] text-white/70">称呼</span>
                 <input
                   value={name}
                   onChange={(event) => {
@@ -184,7 +184,7 @@ const Contact = () => {
               </label>
 
               <label data-contact-field className="block">
-                <span className="mb-2 block text-sm font-bold tracking-[0.12em] text-white/70">联系方式</span>
+                <span className="mb-2 block text-[20px] font-bold tracking-[0.12em] text-white/70">联系方式</span>
                 <input
                   value={contact}
                   onChange={(event) => {
@@ -205,7 +205,7 @@ const Contact = () => {
             </div>
 
             <label data-contact-field className="mt-5 block">
-              <span className="mb-2 block text-sm font-bold tracking-[0.12em] text-white/70">意见内容</span>
+              <span className="mb-2 block text-[20px] font-bold tracking-[0.12em] text-white/70">意见内容</span>
               <textarea
                 value={message}
                 onChange={(event) => {
@@ -229,7 +229,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSending}
-                className="group inline-flex h-12 items-center justify-center gap-3 rounded-xl border border-neon-cyan bg-neon-cyan/8 px-7 font-display text-sm font-bold tracking-[0.18em] text-neon-cyan transition-all duration-300 hover:bg-neon-cyan hover:text-[#060913] hover:shadow-[0_0_30px_rgba(0,245,255,0.4)] disabled:cursor-not-allowed disabled:border-white/12 disabled:text-white/28 disabled:hover:bg-transparent disabled:hover:shadow-none"
+                className="group inline-flex h-12 items-center justify-center gap-3 rounded-xl border border-neon-cyan bg-neon-cyan/8 px-7 font-display text-[20px] font-bold tracking-[0.18em] text-neon-cyan transition-all duration-300 hover:bg-neon-cyan hover:text-[#060913] hover:shadow-[0_0_30px_rgba(0,245,255,0.4)] disabled:cursor-not-allowed disabled:border-white/12 disabled:text-white/28 disabled:hover:bg-transparent disabled:hover:shadow-none"
               >
                 {isSending ? '发送中' : '发送意见'}
                 {isSending ? (
