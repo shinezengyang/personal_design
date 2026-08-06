@@ -241,7 +241,11 @@
   padding: 5px 13px;
   color: #00f5ff;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  /* 16px, not 12px: this label carries Chinese, and JetBrains Mono has no CJK
+     coverage, so the characters fall back to the system monospace face at whatever
+     size is set here. 12px leaves a dense glyph like 「统」a 12x12 px cell on a 1x
+     display, which is right at the point where the strokes stop resolving. */
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.16em;
   line-height: 1;
@@ -253,7 +257,7 @@
   margin-top: 12px;
   min-height: 72px;
   color: #a0a0b0;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.7;
 }
 

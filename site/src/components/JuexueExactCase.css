@@ -123,24 +123,27 @@
    Using the section value pushed the band 70px off the right edge. */
 .jx-journey-card .summit { position: absolute; left: 990px; top: 20px; width: 134px; height: 332px; border-radius: 12px; background: rgba(224,178,90,.08); }
 .jx-journey-card article { position: absolute; top: 0; width: 170px; transform: translateX(-50%); text-align: center; }
-.jx-journey-card article i { position: absolute; left: 50%; width: 12px; height: 12px; margin-left: -6px; border-radius: 999px; background: #d23a52; box-shadow: 0 0 10px rgba(210,58,82,.45); }
-/* Figma 9817:12415 — the summit dot is 18px, not 12 */
-.jx-journey-card article.s6 i { width: 18px; height: 18px; margin-left: -9px; background: #e0b25a; box-shadow: 0 0 12px rgba(224,178,90,.5); }
-.jx-journey-card article .mood { position: absolute; left: 0; top: var(--mood-top, 100px); width: 170px; margin: 0; color: #c8554a; font-size: 16px; font-weight: 800; }
+/* Figma draws the curve dots as rings — white centre, crimson edge — not solid discs. */
+.jx-journey-card article i { position: absolute; left: 50%; width: 12px; height: 12px; margin-left: -6px; box-sizing: border-box; border-radius: 999px; background: #fff; border: 3px solid #d23a52; }
+/* Figma 9817:12415 — the summit dot is 18px and solid gold */
+.jx-journey-card article.s6 i { width: 18px; height: 18px; margin-left: -9px; background: #e0b25a; border-color: #e0b25a; }
+/* Badge and mood label run a ramp from tan through crimson to gold across the six
+   steps; the page painted every one of them the same #c8554a / #d23a52. */
+.jx-journey-card article { --step: #d23a52; }
+.jx-journey-card article .mood { position: absolute; left: 0; top: var(--mood-top, 100px); width: 170px; margin: 0; color: var(--step); font-size: 16px; font-weight: 800; }
 .jx-journey-card article::before { content: ''; position: absolute; left: 50%; top: 272px; width: 1px; height: 80px; background: #eae0d0; }
-.jx-journey-card article.s1 { --mood-top: 226px; }
-.jx-journey-card article.s2 { --mood-top: 191px; }
-.jx-journey-card article.s3 { --mood-top: 156px; }
-.jx-journey-card article.s4 { --mood-top: 128px; }
-.jx-journey-card article.s5 { --mood-top: 96px; }
-.jx-journey-card article.s6 { --mood-top: 61px; }
+.jx-journey-card article.s1 { --mood-top: 226px; --step: #b58060; }
+.jx-journey-card article.s2 { --mood-top: 191px; --step: #c06a54; }
+.jx-journey-card article.s3 { --mood-top: 156px; --step: #c8554a; }
+.jx-journey-card article.s4 { --mood-top: 128px; --step: #d23a52; }
+.jx-journey-card article.s5 { --mood-top: 96px;  --step: #d23a52; }
+.jx-journey-card article.s6 { --mood-top: 61px;  --step: #e0b25a; }
 .jx-journey-card article.s2::before { height: 115px; top: 237px; }
 .jx-journey-card article.s3::before { height: 150px; top: 202px; }
 .jx-journey-card article.s4::before { height: 178px; top: 174px; }
 .jx-journey-card article.s5::before { height: 210px; top: 142px; }
 .jx-journey-card article.s6::before { height: 245px; top: 107px; }
-.jx-journey-card article span { position: absolute; top: 371px; left: 50%; transform: translateX(-50%); width: 26px; height: 26px; border-radius: 999px; background: #d23a52; color: white; display: flex; align-items: center; justify-content: center; font: 700 16px/1 Inter, sans-serif; }
-.jx-journey-card article.s6 span { background: #e0b25a; }
+.jx-journey-card article span { position: absolute; top: 371px; left: 50%; transform: translateX(-50%); width: 26px; height: 26px; border-radius: 999px; background: var(--step); color: white; display: flex; align-items: center; justify-content: center; font: 700 16px/1 Inter, sans-serif; }
 .jx-journey-card article h4 { position: absolute; top: 406px; left: 0; width: 170px; margin: 0; font-size: 20px; color: #221a14; line-height: 1.2; }
 /* Figma 9817:12421 — caption at card y 436, not 448 */
 .jx-journey-card article small { position: absolute; top: 436px; left: -5px; width: 180px; color: #6a5a48; font-size: 16px; line-height: 17px; }
@@ -164,8 +167,16 @@
 
 .jx-notes { position: absolute; left: 856px; top: 316px; width: 344px; }
 .jx-notes-over { margin: 0; color: #c0354a; font: 500 16px/1.3 Inter, sans-serif; letter-spacing: 1.5px; }
-.jx-notes h3 { margin: 18px 0 36px; color: #221a14; font-size: 24px; line-height: 1.25; font-weight: 800; }
-.jx-notes article { position: relative; display: grid; grid-template-columns: 22px 1fr; gap: 10px; margin-bottom: 17px; }
+/* Figma puts the eyebrow at 316, the headline at 342 and the note rings at
+   396/460/524/588/652 — a flat 64px pitch. Stacking these on margins pushed every row
+   ~23px low, which on 招式联动 ran the first note straight into the popup at y=460. */
+.jx-notes h3 { position: absolute; left: 0; top: 26px; margin: 0; color: #221a14; font-size: 24px; line-height: 29px; font-weight: 800; }
+.jx-notes article { position: absolute; left: 0; width: 344px; display: grid; grid-template-columns: 22px 1fr; gap: 10px; margin: 0; }
+.jx-notes article:nth-of-type(1) { top: 78px; }
+.jx-notes article:nth-of-type(2) { top: 142px; }
+.jx-notes article:nth-of-type(3) { top: 206px; }
+.jx-notes article:nth-of-type(4) { top: 270px; }
+.jx-notes article:nth-of-type(5) { top: 334px; }
 .jx-notes article b { width: 22px; height: 22px; border-radius: 999px; background: #d23a52; color: white; display: flex; align-items: center; justify-content: center; font: 700 16px/1 Inter, sans-serif; }
 .jx-notes h4 { margin: -2px 0 8px; color: #33271c; font-size: 16px; line-height: 1.2; white-space: nowrap; }
 .jx-notes p { margin: 0; color: #6a5a48; font-size: 16px; line-height: 19px; width: 312px; }
@@ -175,11 +186,14 @@
 .jx-notes.dark p { color: #a89478; }
 .jx-notes.dark article b { background: #d23a52; }
 
-.jx-ladder-panel { position: absolute; left: 80px; top: 762px; width: 1120px; height: 380px; border-radius: 16px; background: #1a130d; border-left: 5px solid #d23a52; padding: 32px 40px 0; }
-.jx-ladder-panel > p { margin: 0; color: #e0b25a; font: 500 16px/1.2 Inter, sans-serif; letter-spacing: 1.2px; }
-.jx-ladder-panel h3 { margin: 16px 0 0; color: white; font-size: 30px; line-height: 1.15; font-weight: 900; }
-.jx-ladder-panel > span { display: block; margin-top: 18px; color: #c9b49a; font-size: 16px; line-height: 22px; }
-.jx-ladder-panel small { position: absolute; left: 40px; bottom: 66px; color: #8a7458; font-size: 16px; letter-spacing: 1px; }
+/* Figma 9817:12626-12628 / 12650 — eyebrow 796, headline 822, body 864, 升重方向 1060
+   (panel-relative 34 / 60 / 102 / 298). Stacking these on margins let the body drift
+   18px low, leaving it only 20px clear of the ladder labels instead of 38. */
+.jx-ladder-panel { position: absolute; left: 80px; top: 762px; width: 1120px; height: 380px; border-radius: 16px; background: #1a130d; border-left: 5px solid #d23a52; padding: 0; }
+.jx-ladder-panel > p { position: absolute; left: 40px; top: 34px; margin: 0; color: #e0b25a; font: 500 16px/1.2 Inter, sans-serif; letter-spacing: 1.2px; }
+.jx-ladder-panel h3 { position: absolute; left: 40px; top: 60px; margin: 0; color: white; font-size: 30px; line-height: 36px; font-weight: 900; }
+.jx-ladder-panel > span { position: absolute; left: 40px; top: 102px; width: 1000px; margin: 0; color: #c9b49a; font-size: 16px; line-height: 22px; }
+.jx-ladder-panel small { position: absolute; left: 40px; top: 298px; color: #8a7458; font-size: 16px; letter-spacing: 1px; }
 /* Figma 9817:12629/12630 — track at section x=200, node tops at 934. `left: 200` was
    measured from the panel's padding box (which starts at 85), landing the whole ladder
    85px right of where it belongs. */
@@ -196,7 +210,8 @@
 .jx-ladder .brown h4, .jx-ladder .brown b { color: #e0934a; }
 .jx-ladder .hot h4, .jx-ladder .hot b { color: #d23a52; }
 .jx-ladder .red h4, .jx-ladder .red b { color: #b07a3a; }
-.ladder-tags { position: absolute; left: 40px; bottom: 20px; display: flex; gap: 16px; }
+/* Figma 9817:12651 — (120,1091), i.e. panel-relative 40,329 */
+.ladder-tags { position: absolute; left: 40px; top: 329px; display: flex; gap: 16px; }
 .ladder-tags b { display: flex; width: 200px; height: 30px; border-radius: 15px; align-items: center; justify-content: center; background: rgba(210,58,82,.14); color: #c8554a; font-size: 16px; }
 .ladder-tags b:nth-child(2) { color: #d23a52; }
 .ladder-tags b:nth-child(3) { color: #c8923a; }
@@ -205,7 +220,10 @@
 .jx-context .glow.ctx { left: 540px; top: 200px; width: 480px; height: 480px; background: rgba(210,58,82,.16); }
 .jx-shot-wrap.dark .jx-shot { box-shadow: 0 16px 40px rgba(0,0,0,.5); }
 .jx-context-notes { position: absolute; left: 856px; top: 316px; width: 344px; }
-.jx-context-notes .jx-notes { position: relative; left: 0; top: 0; }
+/* This one lives inside .jx-context-notes, which already carries the (856,316) origin */
+.jx-context-notes .jx-notes { position: absolute; left: 0; top: 0; }
+/* Figma 9817:12675 gives this note 352px, wider than the 312 the others use */
+.jx-context-notes .jx-notes article p { width: 352px; }
 .jx-context-notes > img { position: absolute; left: 32px; top: 144px; width: 183px; height: 260px; object-fit: cover; border-radius: 8px; box-shadow: 0 12px 30px rgba(0,0,0,.35); }
 
 /* Figma 9817:12693 is 1100 tall on a warm maroon wash that pools at the top centre and

@@ -148,7 +148,7 @@ const caseOneAssets = {
 function SectionFrame({ children, bg = paper, height = 900 }: { children: React.ReactNode; bg?: string; height?: number }) {
   return (
     <div className="xingji-motion-section overflow-hidden rounded-2xl bg-transparent">
-      <ResponsiveScaleFrame minDesignWidth={1280} maxScale={1}>
+      <ResponsiveScaleFrame minDesignWidth={1280}>
         <section className="relative w-[1280px] overflow-hidden" style={{ backgroundColor: bg, height }}>
           {children}
         </section>
@@ -160,7 +160,7 @@ function SectionFrame({ children, bg = paper, height = 900 }: { children: React.
 function FigmaBlock({ src, alt, height = 720 }: { src: string; alt: string; height?: number }) {
   return (
     <div className="overflow-hidden">
-      <ResponsiveScaleFrame minDesignWidth={1024} maxScale={1}>
+      <ResponsiveScaleFrame minDesignWidth={1024}>
         <section className="relative w-[1024px] overflow-hidden" style={{ backgroundColor: '#edeffe', height }}>
         <img
           src={publicUrl(`pencil/xingji-aodaisai/${src}`)}
@@ -301,7 +301,7 @@ function BackgroundSection() {
 
   return (
     <div className="overflow-hidden">
-      <ResponsiveScaleFrame minDesignWidth={1024} maxScale={1}>
+      <ResponsiveScaleFrame minDesignWidth={1024}>
         <section className="relative h-[720px] w-[1024px] overflow-hidden bg-[#eef1ff]">
         <div className="absolute left-[804px] top-[-92px] h-[292px] w-[292px] rounded-full bg-[radial-gradient(circle,rgba(97,128,250,0.14)_0%,rgba(97,128,250,0.08)_42%,rgba(97,128,250,0)_74%)]" />
         <div className="absolute left-[-82px] top-[548px] h-[214px] w-[214px] rounded-full bg-[radial-gradient(circle,rgba(244,162,125,0.12)_0%,rgba(244,162,125,0.06)_48%,rgba(244,162,125,0)_74%)]" />

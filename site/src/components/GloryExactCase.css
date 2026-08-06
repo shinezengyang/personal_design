@@ -16,7 +16,6 @@
   line-height: 1.4;
   overflow: hidden;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
 }
 
 .glory-canvas * { box-sizing: border-box; }

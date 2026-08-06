@@ -175,7 +175,7 @@ function LongPageSection({
 }) {
   return (
     <div className="xingji-motion-section overflow-hidden rounded-2xl bg-transparent">
-      <ResponsiveScaleFrame minDesignWidth={1280} maxScale={1}>
+      <ResponsiveScaleFrame minDesignWidth={1280}>
         <section className="relative w-[1280px] overflow-hidden" style={{ height, background: bg }}>
           {children}
         </section>

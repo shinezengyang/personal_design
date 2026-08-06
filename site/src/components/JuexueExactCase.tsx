@@ -171,9 +171,11 @@ function JourneyCurve() {
         <path d={JX_CURVE} className="curve" />
       </svg>
       <div className="summit" />
+      {/* Figma lists these in section space and the card starts at (70,280), so both axes
+          need rebasing. Unrebased, the six columns sat 70px right of the curve they
+          annotate and the last one ran 72px past the card's right edge. */}
       {steps.map(([n, mood, title, desc, x, y], idx) => (
-        <article key={n} className={`s${idx + 1}`} style={{ left: Number(x) }}>
-          {/* Figma gives the dot's ellipse top in section space; the card starts at 280 */}
+        <article key={n} className={`s${idx + 1}`} style={{ left: Number(x) - 70 }}>
           <i style={{ top: Number(y) - 280 }} />
           <p className="mood">{mood}</p>
           <span>{n}</span>

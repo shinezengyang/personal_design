@@ -976,7 +976,7 @@ export function QingyuFigmaCase({ caseKey }: { caseKey: QingyuCaseKey }) {
 
   return (
     <div ref={shellRef} className={`qingyu-figma-case-shell${caseKey === '19' ? ' guild-case-shell' : ''}${caseKey === '20' ? ' partner-case-shell' : ''}`}>
-      <ResponsiveScaleFrame minDesignWidth={caseKey === '19' || caseKey === '20' ? 1440 : 1280} maxScale={1}>
+      <ResponsiveScaleFrame minDesignWidth={caseKey === '19' || caseKey === '20' ? 1440 : 1280}>
         <QingyuFigmaCaseBody caseKey={caseKey} />
       </ResponsiveScaleFrame>
     </div>
