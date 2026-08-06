@@ -161,7 +161,18 @@ const ProjectCard = ({
         {/* Content */}
         <div ref={contentRef} className={`relative w-full lg:w-[45%] space-y-5 ${isEven ? 'lg:text-left' : 'lg:text-right'}`}>
           {/* Category + Tags */}
-          <div data-reveal className={`flex items-center gap-3 flex-wrap ${isEven ? '' : 'lg:justify-end'}`}>
+          {/* Spacing is tightened from gap-3 / px-3 / tracking-[3px] / tracking-wider
+              because the type here went from 10-12px to 20px. At the original spacing the
+              row needed 533px inside a 513px column, so two of the four cards wrapped their
+              last tag onto a second line. Measured slack after: 29px at >=1440 and 15px at
+              1280. Letter-spacing was tuned for 12px text and cost the most width per
+              character, so it gives way before the gaps do.
+
+              Below the lg breakpoint the two-column layout still wraps and spacing cannot
+              save it — at 1030px the 45% column is ~390px and the row needs ~500px. Fixing
+              that means either moving the split to xl or letting the tags shrink under xl,
+              both of which change the layout rather than the spacing. */}
+          <div data-reveal className={`flex items-center gap-2.5 flex-wrap ${isEven ? '' : 'lg:justify-end'}`}>
             {/* 20px, up from the 10-12px this tier started at. The whole small-text ramp
                 was calibrated on Latin, but these labels carry Chinese, and a CJK glyph
                 packs far more strokes into the same em box. 「战」is 16 strokes — at 10px on
@@ -171,12 +182,12 @@ const ProjectCard = ({
                 showed up on 1080p. Contrast was never the problem (measured 5.5:1, passes
                 AA); the pixel budget was. Note this now sits *above* the 18px body copy,
                 which is deliberate — set by eye against the real page, not by the ramp. */}
-            <span className="font-mono text-[20px] tracking-[3px] text-[#ff00ff] uppercase">{project.category}</span>
+            <span className="font-mono text-[20px] tracking-[1px] text-[#ff00ff] uppercase">{project.category}</span>
             <span className="w-px h-4 bg-[#ff00ff]/30" />
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 text-[20px] font-mono tracking-wider border border-[#00f5ff]/20 rounded-full text-[#00f5ff]/60 bg-[#00f5ff]/5 hover:bg-[#00f5ff]/10 hover:border-[#00f5ff]/40 transition-colors duration-300"
+                className="px-2.5 py-1 text-[20px] font-mono border border-[#00f5ff]/20 rounded-full text-[#00f5ff]/60 bg-[#00f5ff]/5 hover:bg-[#00f5ff]/10 hover:border-[#00f5ff]/40 transition-colors duration-300"
               >
                 {tag}
               </span>
