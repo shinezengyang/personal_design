@@ -119,32 +119,47 @@
 }
 
 /* Cover badge title — Inter Regular 64px, white @ 80% */
+/* Cover type — sizes are Figma 9817:19771's, not rounded. They were 64px here, which
+   is ~28% over: that alone made the whole cover read wrong. */
 .mad-cover-badge {
   font-family: Inter, 'Noto Sans SC', 'Microsoft YaHei', Arial, sans-serif;
   font-weight: 400;
-  font-size: 64px;
-  line-height: 1.1;
-  letter-spacing: 4.7px;
+  font-size: 49.896px;
+  line-height: 49.791px;
+  letter-spacing: 4.7401px;
   color: rgba(255, 255, 255, .8);
   text-align: center;
   white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
+.mad-cover-badge span { display: block; }
+.mad-cover-badge span + span { margin-top: 10.373px; }
+
 .mad-cover-frame {
   border: 3px solid rgba(255, 255, 255, .35);
   border-radius: 6px;
   box-sizing: border-box;
+  opacity: .8;
 }
 
-/* Cover intro paragraph — Inter Regular 64px, white @ 80% */
+/* Right-hand kicker on the cover — Figma 10450:2232, right-aligned to x=2279. */
+.mad-cover-kicker {
+  font-family: Inter, 'Noto Sans SC', 'Microsoft YaHei', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 41.667px;
+  line-height: 1;
+  letter-spacing: 3.9583px;
+  color: #fff;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Cover intro paragraph — Figma 9817:19772, Inter Regular 50px, white @ 80% */
 .mad-cover-intro {
   font-family: Inter, 'Noto Sans SC', 'Microsoft YaHei', Arial, sans-serif;
   font-weight: 400;
-  font-size: 64px;
-  line-height: 84.8px;
-  letter-spacing: 5.54px;
+  font-size: 50px;
+  line-height: 84.802px;
+  letter-spacing: 5.5404px;
   color: rgba(255, 255, 255, .8);
 }
 /* Figma strokes every rule and dot as a flat fill — #F59A23 gold, #E5E0D9 cream.

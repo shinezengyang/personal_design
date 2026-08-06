@@ -1440,11 +1440,22 @@ function MadCase() {
     <div ref={rootRef} className="star-case-page mad-page">
       <FigmaScaleStage width={2480} height={34946} className="mad-stage" fitToViewport viewportInset={0}>
 
-        {/* ── 组 10 cover (y0 h2318) ── */}
-        <img src={mad.coverBg} className="abs mad-exact-img" style={{ left: 0, top: S.cover, width: 2480, height: 1655 }} loading="lazy" decoding="async" />
-        <img src={mad.coverBadgeClean} className="abs mad-exact-img" style={{ left: 1994, top: S.cover + 1187, width: 286, height: 351 }} loading="lazy" decoding="async" />
-        <div className="mad-cover-frame mad-cover-badge abs" style={{ left: 60, top: S.cover + 49, width: 596, height: 207 }}>My Production<br />我的作品</div>
-        <div className="mad-cover-intro abs" style={{ left: 219, top: S.cover + 1763, width: 2043 }}>通过调查了解，许多球友对于比赛结果推断不准，导致足球博彩逢赌必输，即使他们能询问一些看球经验很丰富的老球迷，甚至向专业的分析师请教，但是由于不同的比赛有不同的体制，所以很多情况下是凭借运气来购买足球彩票，运气不好就预测不准，造成了很大的经济损失以及浪费了大量的时间精力，所以，对于一些没有太多时间来分析球赛的球友来说，特别是经验水平不足的新人，这款应用是为了广大球友设计的。</div>
+        {/* ── 组 10 cover · Figma 9817:19771 (y0 h2238) ──
+            Coordinates come from the node tree resolved to stage space. Figma reports
+            each child relative to its parent frame, so the chain has to be accumulated
+            and the root's own canvas position (91684,933) subtracted — skipping that is
+            what displaced this page's text and rules. */}
+        <img src={mad.coverBg} className="abs mad-exact-img" style={{ left: 0, top: S.cover, width: 2480, height: 1654.59 }} loading="lazy" decoding="async" />
+        <img src={mad.coverBadgeClean} className="abs mad-exact-img" style={{ left: 1993.8, top: S.cover + 1187.23, width: 286.444, height: 350.517 }} loading="lazy" decoding="async" />
+        {/* 圆角矩形 4 (10448:2187) — inset 8.19%/3.8% of the 2480x2238 section = 203,85 */}
+        <div className="mad-cover-frame abs" style={{ left: 203, top: S.cover + 85, width: 456, height: 142 }} />
+        {/* 10448:2186 — centred on x=431, i.e. the middle of the frame above */}
+        <div className="mad-cover-badge abs" style={{ left: 203, top: S.cover + 107, width: 456 }}>
+          <span>My Production</span><span>我的作品</span>
+        </div>
+        {/* 10450:2232 — right-aligned, its right edge sits at x=2279 */}
+        <div className="mad-cover-kicker abs" style={{ left: 1779, top: S.cover + 100, width: 500 }}>体育预测平台</div>
+        <div className="mad-cover-intro abs" style={{ left: 219, top: S.cover + 1729, width: 2042.8 }}>通过调查了解，许多球友对于比赛结果推断不准，导致足球博彩逢赌必输，即使他们能询问一些看球经验很丰富的老球迷，甚至向专业的分析师请教，但是由于不同的比赛有不同的体制，所以很多情况下是凭借运气来购买足球彩票，运气不好就预测不准，造成了很大的经济损失以及浪费了大量的时间精力，所以，对于一些没有太多时间来分析球赛的球友来说，特别是经验水平不足的新人，这款应用是为了广大球友设计的。</div>
 
         {/* ── 组 13 analyst (y2555 h1312) ── */}
         <img src={mad.analyst} className="abs img-cover" style={{ left: 498, top: S.analyst + 196, width: 1489, height: 1116 }} loading="lazy" decoding="async" />
