@@ -26,6 +26,8 @@ const A = {
   s5_archive:  `${IL}/s5-archive.webp`,  // Figma 9817:16169
   // S7 — reference image
   s7_ref: `${IL}/s7-ref.webp`,           // Figma 9817:16254
+  s7_show_a: `${IL}/s7-showcase-a.webp`, // Figma 10444:2200
+  s7_show_b: `${IL}/s7-showcase-b.webp`, // Figma 10403:2224
 };
 
 const px = (n: number) => `${n}px`;
@@ -621,7 +623,7 @@ function S7() {
     { x: 1039, c: '#e0574b', zh: '警示红', sub: '红点 · 召回' },
   ];
   return (
-    <div className="intel-sec" style={{ height: px(1000) }}>
+    <div className="intel-sec" style={{ height: px(1600) }}>
       <Header num="07" eyebrow="ART DIRECTION" title="界面美术风格推导" />
       {principles.map((p) => (
         <div key={p.num}>
@@ -652,6 +654,17 @@ function S7() {
           <div className="il-swatch" style={{ left: px(p.x), top: px(803), background: p.c }} />
           <p className="il-abs il-sans il-nowrap" style={{ left: px(p.x), top: px(871), fontSize: px(17), fontWeight: 500, color: '#f4efe3' }}>{p.zh}</p>
           <p className="il-abs il-sans il-nowrap" style={{ left: px(p.x), top: px(897), fontSize: px(15), color: '#8b93a0' }}>{p.sub}</p>
+        </div>
+      ))}
+
+      {/* 效果图欣赏 — Figma 10444:2187 (heading) and the two 540x304 shots at
+          10444:2200 / 10403:2224. The section was built to 1000px tall while the
+          Figma frame is 1600px, so this whole block was missing off the bottom. */}
+      <p className="il-abs il-serif il-nowrap" style={{ left: px(490), top: px(1054), fontSize: px(64), fontWeight: 900, color: '#e2b54b', lineHeight: 'normal' }}>效果图欣赏</p>
+      {[{ x: 94, src: A.s7_show_a, alt: '情报簿章节目录界面' },
+        { x: 665, src: A.s7_show_b, alt: '情报簿条目详情界面' }].map((s) => (
+        <div key={s.x} className="il-abs" style={{ left: px(s.x), top: px(1185), width: px(540), height: px(304), borderRadius: px(8), overflow: 'hidden' }}>
+          <img src={s.src} alt={s.alt} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
         </div>
       ))}
     </div>
