@@ -55,18 +55,34 @@ function Header({
 function S0() {
   return (
     <div className="intel-sec" style={{ height: px(900) }}>
-      {/* decorative gold orbit rings + node dot (top-right) — Figma nodes
-          9703:2148 / 9703:2152 (two concentric circles), 9711:2990 (tilted
-          orbit ellipse), 9711:2991 (20px gold node dot) */}
+      {/* Decorative gold orbit — Figma 9817:15733 / 15734 (rings), 15735 (sweep),
+          15736 (node dot). Geometry and strokes are taken from the exported vectors
+          rather than eyeballed: every stroke is 3px, and the rings are far fainter
+          (0.1 / 0.2) than they look — the previous 1px-at-0.45 read as a hard thin
+          line instead of a wide soft one.
+
+          The sweep is an *open* arc, not a closed ellipse: it starts near the top,
+          curves down the left, runs along the bottom and exits the right edge. Drawn
+          as the exported path so the asymmetry survives.
+
+          Placement note: get_metadata reports the sweep at y=558, but that is a
+          section coordinate — frame-local is top=128 (get_design_context). Using 558
+          puts the centre at y≈914, below the 900px frame. */}
       <svg className="il-abs" style={{ left: 0, top: 0, width: px(1280), height: px(900), pointerEvents: 'none' }} viewBox="0 0 1280 900" fill="none">
-        {/* concentric rings — centres at (1170,402) / (1170,402), radii 340 / 326 */}
-        <circle cx="1170" cy="402" r="340" stroke="rgba(226,181,75,0.45)" strokeWidth="1" />
-        <circle cx="1170" cy="402" r="326" stroke="rgba(226,181,75,0.30)" strokeWidth="1" />
-        {/* large tilted orbit ellipse: bbox 419,266 → 1279,593 (860×327),
-            major axis 430, minor 163.5, centre (849,429.5), rotated ~-22° */}
-        <ellipse cx="849" cy="429.5" rx="430" ry="163.5" transform="rotate(-22 849 429.5)" stroke="rgba(226,181,75,0.45)" strokeWidth="1" />
-        {/* node dot on the orbit */}
-        <circle cx="1170" cy="593" r="10" fill="#e2b54b" />
+        {/* rings: 830,62 + 680² and 844,76 + 652² -> both centred (1170,402) */}
+        <circle cx="1170" cy="402" r="338.5" stroke="#e2b54b" strokeOpacity="0.1" strokeWidth="3" />
+        <circle cx="1170" cy="402" r="324.5" stroke="#e2b54b" strokeOpacity="0.2" strokeWidth="3" />
+        {/* sweep: 860×327 box centred (911.141,484.595), rotated -30°. The inner
+            translate lifts the path's own 1.5px stroke inset off the box origin. */}
+        <path
+          d="M442 1.5C323 1.5 1.5 67.7162 1.5 160.5C1.5 253.284 337.734 328.5 752.5 328.5C789.52 328.5 825.914 327.901 861.5 326.743"
+          transform="translate(911.141 484.595) rotate(-30) translate(-431.5 -165)"
+          stroke="#e2b54b"
+          strokeOpacity="0.35"
+          strokeWidth="3"
+        />
+        {/* node dot: 1140,516 + 30² -> centre (1155,531) */}
+        <circle cx="1155" cy="531" r="15" fill="#e2b54b" />
       </svg>
 
       <p className="il-abs il-bebas il-nowrap" style={{ left: px(104), top: px(117), fontSize: px(210), letterSpacing: '2px', color: 'transparent', WebkitTextStroke: '1px rgba(244,239,227,0.85)', lineHeight: 'normal' }}>DESIGN</p>
@@ -642,18 +658,6 @@ function S7() {
   );
 }
 
-/* =================== S8 · 封底 =================== */
-function S8() {
-  return (
-    <div className="intel-sec" style={{ height: px(400) }}>
-      <div className="il-abs" style={{ left: px(110), top: px(80), width: px(1060), height: px(1), background: 'rgba(226,181,75,0.5)' }} />
-      <p className="il-abs il-bebas il-nowrap" style={{ left: px(110), top: px(140), fontSize: px(100), letterSpacing: '3px', color: '#f4efe3', lineHeight: 'normal' }}>THANKS FOR WATCHING</p>
-      <p className="il-abs il-sans il-nowrap" style={{ left: px(110), top: px(296), fontSize: px(16), color: '#8b93a0' }}>盛趣游戏 ·《庆余年》手游 · 情报簿玩法· 交互设计</p>
-      <div className="il-abs il-d12" style={{ left: px(110), top: px(318), width: px(1060) }} />
-    </div>
-  );
-}
-
 export function IntelExactCase() {
   return (
     <div className="intel-canvas">
@@ -665,7 +669,6 @@ export function IntelExactCase() {
       <S5A />
       <S6 />
       <S7 />
-      <S8 />
     </div>
   );
 }
