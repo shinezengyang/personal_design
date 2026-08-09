@@ -376,7 +376,9 @@ export function WeddingExactCase() {
       </section>
 
       <section className="we-final">
-        <div className="we-glow c" />
+        {/* data-qy-static like its siblings above — otherwise qy-line-enter's final
+            blur(0) wipes the 80px blur and this reads as a hard-edged disc. */}
+        <div className="we-glow c" data-qy-static />
         <em>EPILOGUE · 结语</em>
         <h2>把婚礼，做成一座社交舞台</h2>
         <p>从三生石的一句缘签，到吉宴现场的祝福刷屏，再到频道里的一次转发 —— 吉宴系统把一次性的私密仪式，重做成「发现 · 参与 · 传播」的社交主线。</p>

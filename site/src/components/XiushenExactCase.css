@@ -70,7 +70,10 @@
 .xs-interface { height: 1080px; }
 .xs-art { height: 920px; }
 .xs-journey { height: 1080px; }
-.xs-final { height: 1400px; background: linear-gradient(100deg, #0e2730 0%, #0a1318 100%); }
+/* Horizontal, not 100deg: sampling Figma's render of 9817:12283 gives the same colour
+   at the top-left and bottom-left corners (#0d262f) and the same at both right corners
+   (#0a1318), so the ramp has no vertical component. */
+.xs-final { height: 1400px; background: linear-gradient(90deg, #0d262f 0%, #0a1318 100%); }
 
 .xs-header { position: absolute; left: 80px; top: 94px; width: 1120px; }
 .xs-header > i { position: absolute; left: 0; top: 0; width: 4px; height: 26px; border-radius: 2px; background: #4fb7c8; }
@@ -242,7 +245,11 @@
 .xs-journey-note .xs-pill { width: 200px; min-width: 0; height: 30px; padding: 0; border-radius: 15px; background: rgba(46,151,168,.12); border: 0; color: #2e97a8; font-size: 16px; }
 .xs-journey-note .xs-pill.gold { background: rgba(200,160,82,.12); color: #c8a052; }
 
-.xs-final .final-glow { position: absolute; left: 460px; top: -150px; width: 360px; height: 360px; border-radius: 50%; background: rgba(79, 216, 230, .22); filter: blur(90px); }
+/* Figma 9817:12284 is a 360px circle filled #2E97A8 at 0.4 with a 90 stdDeviation
+   Gaussian — CSS blur() takes the standard deviation directly, so the radius carries
+   over. The colour here was a brighter cyan at half the opacity, which read as a thin
+   wash: at the centre it composites to rgb(24,64,72) against Figma's rgb(25,76,87). */
+.xs-final .final-glow { position: absolute; left: 460px; top: -150px; width: 360px; height: 360px; border-radius: 50%; background: rgba(46, 151, 168, .4); filter: blur(90px); }
 /* Figma 9817:12286/12287/12288 — title at 72, copy at 154, cards at 266. Everything
    used to sit ~50px lower because the section made room for an eyebrow that Figma
    marks hidden (9817:12285). */

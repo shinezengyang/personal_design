@@ -489,7 +489,11 @@ export function XiushenExactCase() {
       </section>
 
       <section className="xs-section xs-final">
-        <div className="final-glow" />
+        {/* data-qy-static: an empty div gets classified as a "line" by the reveal pass,
+            and qy-line-enter ends on filter: blur(0). An animation's final frame beats a
+            normal declaration, so the 90px blur was being wiped and this rendered as a
+            hard-edged disc. The cover glows above already opt out the same way. */}
+        <div className="final-glow" data-qy-static />
         {/* Figma 9817:12285 marks the "EPILOGUE · 结语" eyebrow hidden — dropping it also
             pulls the title back up to its real position at y=72. */}
         <h2>一张越点越亮的星图</h2>
