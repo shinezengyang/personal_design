@@ -1562,7 +1562,7 @@ function MadCase() {
             segments that were here. It was also 1017px low on the old base. */}
         <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 640.5, top: 19377, width: 1209, height: 2500 }} loading="lazy" decoding="async" />
         <div className="mad-divider-line abs" style={{ left: 7.5, top: 19102.3, width: 2480.1 }} />
-        <span className="mad-dialog-titleplate abs" style={{ left: 530.5, top: 19042, width: 1434, height: 140 }} />
+        <span className="mad-dialog-titleplate abs" style={{ left: 672.5, top: 19038, width: 1146, height: 147 }} />
         <MadTitle x={714} y={19036} w={1053} align="center">Dialog Box Pops Up<br />弹出对话框</MadTitle>
 
         {/* ── 组 21 charts (y23696 h7579) ── */}
@@ -1581,8 +1581,11 @@ function MadCase() {
             old S.end base, which put them at y~33500 — past the 31884 frame, so neither
             was visible at all. */}
         <div className="mad-divider-line abs" style={{ left: -0.3, top: 30947.3, width: 2480.1 }} />
-        {/* Figma 9817:19389 — a solid #131313 plate, not a bordered frame: it punches the gap for ICON */}
-        <span className="mad-end-badge abs" style={{ left: 1006.1, top: 30887, width: 471.1, height: 139.4 }} />
+        {/* Figma 9817:19389 — a solid #131313 plate that punches the gap for ICON. The
+            masking box is the node's *inner* frame (380 wide), not its outer stroke
+            vector (471): measuring where the orange rule actually stops in Figma's render
+            gives 1047.1..1428.8, which is the inner frame's 1050..1430. */}
+        <span className="mad-end-badge abs" style={{ left: 1050, top: 30883.7, width: 380, height: 143 }} />
         <img src={mad.endIcons} className="abs img-cover" style={{ left: 440, top: 31221, width: 1600, height: 379 }} loading="lazy" decoding="async" />
         {/* Figma trims this text to its cap box (cap top at 1675.1); `top` here is the 160px line box, 31.7px higher */}
         <MadTitle x={1105} y={30923} w={270} align="center" tracking={9.54}>ICON</MadTitle>
