@@ -350,11 +350,15 @@ export function JuexueExactCase() {
       </section>
 
       <section className="jx-context dark-section">
-        <div className="glow ctx" />
+        {/* data-qy-static like the hero glows above — the reveal pass treats an empty div
+            as a "line" and qy-line-enter ends on filter: blur(0), which beats the 85px. */}
+        <div className="glow ctx" data-qy-static />
         <Header dark eyebrow="CONTEXT · 招式联动" title="绝学，长在招式体系的最顶层" desc="与 内功 / 心法 / 绣身 并列，绝学是这套「招式」框架里最硬核的一层。" />
         <div className="jx-shot-wrap dark">
           <Shot src={jxAssets.context} />
-          <Marker n={1} x={623} y={432} gold />
+          {/* Not gold: Figma 9817:12668 and 9817:12672 are both #d23a52, so the marker on
+              the shot matches the one beside its note. Sampled from the frame's render. */}
+          <Marker n={1} x={623} y={432} />
         </div>
         <div className="jx-context-notes">
           <Notes dark title="同一套框架，分层各司其职" items={[
@@ -371,7 +375,7 @@ export function JuexueExactCase() {
       </section>
 
       <section className="jx-final">
-        <div className="final-glow" />
+        <div className="final-glow" data-qy-static />
         {/* Figma 9817:12693 has no eyebrow node — removing it also lets the title sit at
             its real y=72 instead of 60px lower. */}
         <h2>把养成，做成一道道重数关卡</h2>
