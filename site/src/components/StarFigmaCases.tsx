@@ -1459,7 +1459,7 @@ function MadCase() {
 
         {/* ── 组 13 analyst (y2555 h1312) ── */}
         <img src={mad.analyst} className="abs img-cover" style={{ left: 498, top: 2582, width: 1489, height: 1116 }} loading="lazy" decoding="async" />
-        <MadTitle x={646} y={2582} w={1188}>Your Personal Analyst<br />你的私人分析师</MadTitle>
+        <MadTitle x={646} y={2582} w={1188} align="center">Your Personal Analyst<br />你的私人分析师</MadTitle>
 
         {/* ── 组 12 icon design (y3788 h2200) ── */}
         <img src={mad.iconBg} className="abs img-cover mad-icon-bg" style={{ left: 0, top: 3708, width: 2480, height: 2200 }} loading="lazy" decoding="async" />
@@ -1477,7 +1477,7 @@ function MadCase() {
         {/* ── 组 14 product detail (y8605 h1662) ── */}
         <img src={mad.productBg} className="abs mad-exact-img" style={{ left: 0, top: 8672, width: 2480, height: 1236 }} loading="lazy" decoding="async" />
         <img src={mad.productPhoneClean} className="abs mad-exact-img mad-phone" style={{ left: 1119, top: 8857, width: 592, height: 916 }} loading="lazy" decoding="async" />
-        <MadTitle x={854} y={8366} w={772}>Product Detail<br />产品细节</MadTitle>
+        <MadTitle x={854} y={8366} w={772} align="center">Product Detail<br />产品细节</MadTitle>
 
         {/* ── 组 15 recommend (y10583 h3487) ── */}
         <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1100, top: 10514, width: 1379, height: 3060 }} loading="lazy" decoding="async" />
@@ -1523,10 +1523,10 @@ function MadCase() {
         <span className="mad-leader-sq abs" style={{ left: 1474, top: S.me + 2056, width: 30, height: 30 }} />
         <span className="mad-leader-ln abs" style={{ left: 1500, top: S.me + 2071, width: 275 }} />
         <MadTitle x={203} y={13953} w={205}>Me<br />我的</MadTitle>
-        <MadLabel x={1760} y={14312} w={325}>Classify<br />分类</MadLabel>
+        <MadLabel x={1760} y={14312} w={325} align="right">Classify<br />分类</MadLabel>
         <MadLabel x={348} y={14742} w={293}>Record<br />充值记录</MadLabel>
         <MadLabel x={257} y={15462} w={389}>Invitation<br />邀请码</MadLabel>
-        <MadLabel x={1747} y={15862} w={446}>Unlock<br />已解锁的比赛</MadLabel>
+        <MadLabel x={1747} y={15862} w={446} align="right">Unlock<br />已解锁的比赛</MadLabel>
 
         {/* ── 组 18 recharge (y17286 h2147) ── */}
         <img src={mad.rechargeBg} className="abs img-cover" style={{ left: 51, top: 16926, width: 2420, height: 1726 }} loading="lazy" decoding="async" />
@@ -1546,7 +1546,7 @@ function MadCase() {
         {/* ── 组 20 dialog (y20051 h3065) ── */}
         <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 640, top: 19377, width: 1209, height: 2500 }} loading="lazy" decoding="async" />
         <MadSplitDivider y={S.dialog + 68} segments={[{ x: 0, w: 520 }, { x: 1958, w: 522 }]} />
-        <MadTitle x={714} y={19036} w={1053}>Dialog Box Pops Up<br />弹出对话框</MadTitle>
+        <MadTitle x={714} y={19036} w={1053} align="center">Dialog Box Pops Up<br />弹出对话框</MadTitle>
 
         {/* ── 组 21 charts (y23696 h7579) ── */}
         <MadTitle x={201} y={22242} w={876}>Structure Chart<br />结构图</MadTitle>
@@ -1565,7 +1565,7 @@ function MadCase() {
         <span className="mad-end-badge abs" style={{ left: 1006.3, top: S.end + 1635.5, width: 474.9, height: 143.2 }} />
         <img src={mad.endIcons} className="abs img-cover" style={{ left: 440, top: 31221, width: 1600, height: 379 }} loading="lazy" decoding="async" />
         {/* Figma trims this text to its cap box (cap top at 1675.1); `top` here is the 160px line box, 31.7px higher */}
-        <MadTitle x={1105} y={30923} w={270} tracking={9.54}>ICON</MadTitle>
+        <MadTitle x={1105} y={30923} w={270} align="center" tracking={9.54}>ICON</MadTitle>
 
       </FigmaScaleStage>
     </div>
