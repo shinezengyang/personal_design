@@ -1292,7 +1292,7 @@ function MadCase() {
       groups.get(group)!.push(item);
     });
 
-    const textSelector = '.mad-sec-title, .mad-sec-label, .mad-cover-badge, .mad-cover-intro';
+    const textSelector = '.mad-sec-title, .mad-sec-label, .mad-cover-badge, .mad-cover-intro, .mad-cover-kicker';
     const lineSelector = '.mad-divider-line, .mad-leader-ln';
     const pointSelector = '.mad-divider-dot, .mad-leader-sq';
     const frameSelector = '.mad-cover-frame, .mad-dialog-titleplate, .mad-end-badge';
@@ -1331,80 +1331,44 @@ function MadCase() {
         return Number(a.dataset.madMotionDomIndex || 0) - Number(b.dataset.madMotionDomIndex || 0);
       });
 
-      const images = ordered.filter((item) => item.tagName === 'IMG');
-      const texts = ordered.filter((item) => item.matches(textSelector));
-      const frames = ordered.filter((item) => item.matches(frameSelector));
-      const lines = ordered.filter((item) => item.matches(lineSelector));
-      const points = ordered.filter((item) => item.matches(pointSelector));
-      const handled = new Set<HTMLElement>([...images, ...texts, ...frames, ...lines, ...points]);
-      const rest = ordered.filter((item) => !handled.has(item));
       const targetOpacity = (item: HTMLElement) => Number(item.dataset.madMotionOpacity || 1);
-      const clear = (targets: HTMLElement[]) => {
-        const liveTargets = targets.filter((target) => target.isConnected);
-        if (liveTargets.length) gsap.set(liveTargets, { clearProps: 'opacity,transform,filter,transformOrigin' });
+      const clear = (target: HTMLElement) => {
+        if (target.isConnected) gsap.set(target, { clearProps: 'opacity,transform,filter,transformOrigin' });
       };
 
+      /* Position drives the timing, type only drives the character.
+
+         This used to run type by type — every image in the section together, then every
+         text, then the rules, then the dots. In a section 2000-3000px tall that means a
+         screenshot near the bottom finishes animating before a heading above it starts,
+         so the reveal reads out of order as you scroll past. Ordering by y (already done
+         above) and spacing the starts evenly makes things arrive in the order the eye
+         reaches them, while each kind keeps its own motion. */
+      const STEP = 0.05;      // gap between neighbours
+      const MAX_LEAD = 0.9;   // ceiling, so a tall section does not crawl
+      const DOT_LAG = 0.14;   // dots sit *on* a rule; let it draw under them first
+
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      if (images.length) {
-        tl.to(images, {
-          opacity: (index, target) => targetOpacity(target as HTMLElement),
-          y: 0,
-          scale: 1,
-          filter: 'blur(0px)',
-          duration: 0.72,
-          stagger: 0.055,
-          onComplete: () => clear(images),
-        }, 0);
-      }
-      if (frames.length) {
-        tl.to(frames, {
-          opacity: (index, target) => targetOpacity(target as HTMLElement),
-          scaleX: 1,
-          duration: 0.5,
-          stagger: 0.045,
-          onComplete: () => clear(frames),
-        }, 0.1);
-      }
-      if (texts.length) {
-        tl.to(texts, {
-          opacity: (index, target) => targetOpacity(target as HTMLElement),
-          y: 0,
-          filter: 'blur(0px)',
-          duration: 0.55,
-          stagger: 0.045,
-          onComplete: () => clear(texts),
-        }, 0.18);
-      }
-      if (rest.length) {
-        tl.to(rest, {
-          opacity: (index, target) => targetOpacity(target as HTMLElement),
-          y: 0,
-          filter: 'blur(0px)',
-          duration: 0.5,
-          stagger: 0.04,
-          onComplete: () => clear(rest),
-        }, 0.26);
-      }
-      if (lines.length) {
-        tl.to(lines, {
-          opacity: (index, target) => targetOpacity(target as HTMLElement),
-          scaleX: 1,
-          duration: 0.62,
-          stagger: 0.055,
-          ease: 'power2.out',
-          onComplete: () => clear(lines),
-        }, 0.36);
-      }
-      if (points.length) {
-        tl.to(points, {
-          opacity: (index, target) => targetOpacity(target as HTMLElement),
-          scale: 1,
-          duration: 0.38,
-          stagger: 0.055,
-          ease: 'back.out(2.2)',
-          onComplete: () => clear(points),
-        }, 0.52);
-      }
+
+      ordered.forEach((item, index) => {
+        const at = Math.min(index * STEP, MAX_LEAD);
+        const opacity = targetOpacity(item);
+        const done = { onComplete: () => clear(item) };
+
+        if (item.tagName === 'IMG') {
+          tl.to(item, { opacity, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.72, ...done }, at);
+        } else if (item.matches(pointSelector)) {
+          tl.to(item, { opacity, scale: 1, duration: 0.38, ease: 'back.out(2.2)', ...done }, at + DOT_LAG);
+        } else if (item.matches(lineSelector)) {
+          tl.to(item, { opacity, scaleX: 1, duration: 0.62, ease: 'power2.out', ...done }, at);
+        } else if (item.matches(frameSelector)) {
+          tl.to(item, { opacity, scaleX: 1, duration: 0.5, ...done }, at);
+        } else if (item.matches(textSelector)) {
+          tl.to(item, { opacity, y: 0, filter: 'blur(0px)', duration: 0.55, ...done }, at);
+        } else {
+          tl.to(item, { opacity, y: 0, filter: 'blur(0px)', duration: 0.5, ...done }, at);
+        }
+      });
     };
 
     const observer = new IntersectionObserver(
