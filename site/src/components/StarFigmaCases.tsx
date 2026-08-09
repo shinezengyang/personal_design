@@ -1438,7 +1438,7 @@ function MadCase() {
 
   return (
     <div ref={rootRef} className="star-case-page mad-page">
-      <FigmaScaleStage width={2480} height={34946} className="mad-stage" fitToViewport viewportInset={0}>
+      <FigmaScaleStage width={2480} height={31884} className="mad-stage" fitToViewport viewportInset={0}>
 
         {/* ── 组 10 cover · Figma 9817:19771 (y0 h2238) ──
             Coordinates come from the node tree resolved to stage space. Figma reports
@@ -1459,25 +1459,25 @@ function MadCase() {
 
         {/* ── 组 13 analyst (y2555 h1312) ── */}
         <img src={mad.analyst} className="abs img-cover" style={{ left: 498, top: S.analyst + 196, width: 1489, height: 1116 }} loading="lazy" decoding="async" />
-        <MadTitle x={497} y={S.analyst + 106} w={1501} align="center">Your Personal Analyst<br />你的私人分析师</MadTitle>
+        <MadTitle x={646} y={2582} w={1188}>Your Personal Analyst<br />你的私人分析师</MadTitle>
 
         {/* ── 组 12 icon design (y3788 h2200) ── */}
         <img src={mad.iconBg} className="abs img-cover mad-icon-bg" style={{ left: 0, top: S.icon, width: 2480, height: 2200 }} loading="lazy" decoding="async" />
         <img src={mad.iconBig} className="abs img-cover" style={{ left: 384, top: S.icon + 953, width: 678, height: 829 }} loading="lazy" decoding="async" />
         <img src={mad.iconMark} className="abs img-cover" style={{ left: 1470, top: S.icon + 957, width: 833, height: 833 }} loading="lazy" decoding="async" />
-        <MadTitle x={252} y={S.icon + 409} w={833}>Icon Design<br />图标设计</MadTitle>
+        <MadTitle x={203} y={4117} w={656}>Icon Design<br />图标设计</MadTitle>
 
         {/* ── 组 5 concise guide — 4 perspective cards (y6004 h2146) ── */}
         <img src={mad.guideCard1} className="abs img-cover mad-guide-export" style={{ left: -5, top: S.guide + 716, width: 623, height: 1430 }} loading="lazy" decoding="async" />
         <img src={mad.guideCard2} className="abs img-cover mad-guide-export" style={{ left: 616, top: S.guide + 750, width: 623, height: 1381 }} loading="lazy" decoding="async" />
         <img src={mad.guideCard3} className="abs img-cover mad-guide-export" style={{ left: 1236, top: S.guide + 750, width: 627, height: 1384 }} loading="lazy" decoding="async" />
         <img src={mad.guideCard4} className="abs img-cover mad-guide-export" style={{ left: 1861, top: S.guide + 750, width: 619, height: 1391 }} loading="lazy" decoding="async" />
-        <MadTitle x={290} y={S.guide} w={1026}>Concise Guide<br />简介引导</MadTitle>
+        <MadTitle x={203} y={6237} w={806}>Concise Guide<br />简介引导</MadTitle>
 
         {/* ── 组 14 product detail (y8605 h1662) ── */}
         <img src={mad.productBg} className="abs mad-exact-img" style={{ left: 0, top: S.product + 426, width: 2480, height: 1237 }} loading="lazy" decoding="async" />
         <img src={mad.productPhoneClean} className="abs mad-exact-img mad-phone" style={{ left: 1119, top: S.product + 611, width: 592, height: 916 }} loading="lazy" decoding="async" />
-        <MadTitle x={32} y={S.product + 2} w={2480} align="center">Product Detail<br />产品细节</MadTitle>
+        <MadTitle x={854} y={8366} w={772}>Product Detail<br />产品细节</MadTitle>
 
         {/* ── 组 15 recommend (y10583 h3487) ── */}
         <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1379, height: 3060 }} loading="lazy" decoding="async" />
@@ -1497,9 +1497,9 @@ function MadCase() {
             { x: 2258, y: S.recommend + 155, tone: 'light' },
           ]}
         />
-        <MadTitle x={200} y={S.recommend + 39} w={854}>Recommend<br />推荐</MadTitle>
-        <MadLabel x={207} y={S.recommend + 786} w={558}>Forecast<br />预测赛果</MadLabel>
-        <MadLabel x={207} y={S.recommend + 1444} w={421}>Live<br />实时比赛</MadLabel>
+        <MadTitle x={203} y={10248} w={665}>Recommend<br />推荐</MadTitle>
+        <MadLabel x={599} y={11290} w={409}>Forecast<br />预测赛果</MadLabel>
+        <MadLabel x={599} y={11948} w={293}>Live<br />实时比赛</MadLabel>
 
         {/* ── 组 16 me (y14467 h2345) ── */}
         <img src={mad.mePhones} className="abs mad-me-phones" style={{ left: 633, top: S.me + 413, width: 1670, height: 1768 }} loading="lazy" decoding="async" />
@@ -1522,11 +1522,11 @@ function MadCase() {
         <span className="mad-leader-ln abs" style={{ left: 645, top: S.me + 1698, width: 328 }} />
         <span className="mad-leader-sq abs" style={{ left: 1474, top: S.me + 2056, width: 30, height: 30 }} />
         <span className="mad-leader-ln abs" style={{ left: 1500, top: S.me + 2071, width: 275 }} />
-        <MadTitle x={204} y={S.me} w={269}>Me<br />我的</MadTitle>
-        <MadLabel x={1616} y={S.me + 437} w={638} align="right">Classify<br />分类</MadLabel>
-        <MadLabel x={204} y={S.me + 867} w={421}>Record<br />充值记录</MadLabel>
-        <MadLabel x={209} y={S.me + 1587} w={527}>Invitation<br />邀请码</MadLabel>
-        <MadLabel x={1616} y={S.me + 1988} w={638} align="right">Unlock<br />已解锁的比赛</MadLabel>
+        <MadTitle x={203} y={13953} w={205}>Me<br />我的</MadTitle>
+        <MadLabel x={1760} y={14312} w={325}>Classify<br />分类</MadLabel>
+        <MadLabel x={348} y={14742} w={293}>Record<br />充值记录</MadLabel>
+        <MadLabel x={257} y={15462} w={389}>Invitation<br />邀请码</MadLabel>
+        <MadLabel x={1747} y={15862} w={446}>Unlock<br />已解锁的比赛</MadLabel>
 
         {/* ── 组 18 recharge (y17286 h2147) ── */}
         <img src={mad.rechargeBg} className="abs img-cover" style={{ left: 45, top: S.recharge + 421, width: 2420, height: 1726 }} loading="lazy" decoding="async" />
@@ -1541,19 +1541,19 @@ function MadCase() {
             { x: 2258, y: S.recharge + 131, tone: 'gold' },
           ]}
         />
-        <MadTitle x={151} y={S.recharge} w={660}>Recharge<br />充值</MadTitle>
+        <MadTitle x={202} y={16608} w={516}>Recharge<br />充值</MadTitle>
 
         {/* ── 组 20 dialog (y20051 h3065) ── */}
         <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 633, top: S.dialog + 565, width: 1209, height: 2500 }} loading="lazy" decoding="async" />
         <MadSplitDivider y={S.dialog + 68} segments={[{ x: 0, w: 520 }, { x: 1958, w: 522 }]} />
-        <MadTitle x={0} y={S.dialog + 20} w={2480} align="center">Dialog Box Pops Up<br />弹出对话框</MadTitle>
+        <MadTitle x={714} y={19036} w={1053}>Dialog Box Pops Up<br />弹出对话框</MadTitle>
 
         {/* ── 组 21 charts (y23696 h7579) ── */}
-        <MadTitle x={151} y={S.charts - 2} w={1111}>Structure Chart<br />结构图</MadTitle>
+        <MadTitle x={201} y={22242} w={876}>Structure Chart<br />结构图</MadTitle>
         <img src={mad.structChart} className="abs img-cover" style={{ left: 2, top: S.charts + 482, width: 2480, height: 1402 }} loading="lazy" decoding="async" />
-        <MadTitle x={155} y={S.charts + 2314} w={770}>Flow Chart<br />流程图</MadTitle>
+        <MadTitle x={203} y={24281} w={606}>Flow Chart<br />流程图</MadTitle>
         <img src={mad.flowChart} className="abs img-cover" style={{ left: 0, top: S.charts + 2730, width: 2480, height: 400 }} loading="lazy" decoding="async" />
-        <MadTitle x={155} y={S.charts + 3618} w={1172}>Wireframe Chart<br />线框图</MadTitle>
+        <MadTitle x={203} y={25266} w={922}>Wireframe Chart<br />线框图</MadTitle>
         <img src={mad.wireframe} className="abs img-cover" style={{ left: 25, top: S.charts + 4119, width: 2433, height: 3460 }} loading="lazy" decoding="async" />
 
         {/* ── 组 22 end (y31852 h3094) ── */}
@@ -1565,7 +1565,7 @@ function MadCase() {
         <span className="mad-end-badge abs" style={{ left: 1006.3, top: S.end + 1635.5, width: 474.9, height: 143.2 }} />
         <img src={mad.endIcons} className="abs img-cover" style={{ left: 444, top: S.end + 2031, width: 1600, height: 379 }} loading="lazy" decoding="async" />
         {/* Figma trims this text to its cap box (cap top at 1675.1); `top` here is the 160px line box, 31.7px higher */}
-        <MadTitle x={1080} y={S.end + 1643.4} w={350} align="center" tracking={9.54}>ICON</MadTitle>
+        <MadTitle x={1105} y={30923} w={270} tracking={9.54}>ICON</MadTitle>
 
       </FigmaScaleStage>
     </div>

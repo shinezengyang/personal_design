@@ -97,23 +97,25 @@
 .mad-stage { background: #131313; color: #f9f7f2; }
 
 /* Section titles — Inter Regular 128px, #F9F7F2 @ 50% */
+/* Section headings — Figma 9817:19767 et al: Inter Regular 96px / 130px line, not the
+   128px / 160px that was here. A third too large, applied to all twelve sections. */
 .mad-sec-title {
   font-family: Inter, 'Noto Sans SC', 'Microsoft YaHei', Arial, sans-serif;
   font-weight: 400;
-  font-size: 128px;
-  line-height: 160px;
-  letter-spacing: 12.3px;
+  font-size: 96px;
+  line-height: 130px;
+  letter-spacing: 12.3173px;
   color: rgba(249, 247, 242, 0.5);
   white-space: nowrap;
 }
 
-/* Section sub-labels — Inter Regular 96px, #F9F7F2 @ 50% */
+/* Section sub-labels — Figma 9817:19545 et al: 64px / 100px line, was 96px / 160px */
 .mad-sec-label {
   font-family: Inter, 'Noto Sans SC', 'Microsoft YaHei', Arial, sans-serif;
   font-weight: 400;
-  font-size: 96px;
-  line-height: 160px;
-  letter-spacing: 12.3px;
+  font-size: 64px;
+  line-height: 100px;
+  letter-spacing: 12.3173px;
   color: rgba(249, 247, 242, 0.5);
   white-space: nowrap;
 }
