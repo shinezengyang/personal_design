@@ -1458,35 +1458,35 @@ function MadCase() {
         <div className="mad-cover-intro abs" style={{ left: 219, top: S.cover + 1729, width: 2042.8 }}>通过调查了解，许多球友对于比赛结果推断不准，导致足球博彩逢赌必输，即使他们能询问一些看球经验很丰富的老球迷，甚至向专业的分析师请教，但是由于不同的比赛有不同的体制，所以很多情况下是凭借运气来购买足球彩票，运气不好就预测不准，造成了很大的经济损失以及浪费了大量的时间精力，所以，对于一些没有太多时间来分析球赛的球友来说，特别是经验水平不足的新人，这款应用是为了广大球友设计的。</div>
 
         {/* ── 组 13 analyst (y2555 h1312) ── */}
-        <img src={mad.analyst} className="abs img-cover" style={{ left: 498, top: S.analyst + 196, width: 1489, height: 1116 }} loading="lazy" decoding="async" />
+        <img src={mad.analyst} className="abs img-cover" style={{ left: 498, top: 2582, width: 1489, height: 1116 }} loading="lazy" decoding="async" />
         <MadTitle x={646} y={2582} w={1188}>Your Personal Analyst<br />你的私人分析师</MadTitle>
 
         {/* ── 组 12 icon design (y3788 h2200) ── */}
-        <img src={mad.iconBg} className="abs img-cover mad-icon-bg" style={{ left: 0, top: S.icon, width: 2480, height: 2200 }} loading="lazy" decoding="async" />
-        <img src={mad.iconBig} className="abs img-cover" style={{ left: 384, top: S.icon + 953, width: 678, height: 829 }} loading="lazy" decoding="async" />
-        <img src={mad.iconMark} className="abs img-cover" style={{ left: 1470, top: S.icon + 957, width: 833, height: 833 }} loading="lazy" decoding="async" />
+        <img src={mad.iconBg} className="abs img-cover mad-icon-bg" style={{ left: 0, top: 3708, width: 2480, height: 2200 }} loading="lazy" decoding="async" />
+        <img src={mad.iconBig} className="abs img-cover" style={{ left: 384, top: 4661, width: 678, height: 829 }} loading="lazy" decoding="async" />
+        <img src={mad.iconMark} className="abs img-cover" style={{ left: 1470, top: 4665, width: 833, height: 833 }} loading="lazy" decoding="async" />
         <MadTitle x={203} y={4117} w={656}>Icon Design<br />图标设计</MadTitle>
 
         {/* ── 组 5 concise guide — 4 perspective cards (y6004 h2146) ── */}
-        <img src={mad.guideCard1} className="abs img-cover mad-guide-export" style={{ left: -5, top: S.guide + 716, width: 623, height: 1430 }} loading="lazy" decoding="async" />
-        <img src={mad.guideCard2} className="abs img-cover mad-guide-export" style={{ left: 616, top: S.guide + 750, width: 623, height: 1381 }} loading="lazy" decoding="async" />
-        <img src={mad.guideCard3} className="abs img-cover mad-guide-export" style={{ left: 1236, top: S.guide + 750, width: 627, height: 1384 }} loading="lazy" decoding="async" />
-        <img src={mad.guideCard4} className="abs img-cover mad-guide-export" style={{ left: 1861, top: S.guide + 750, width: 619, height: 1391 }} loading="lazy" decoding="async" />
+        <img src={mad.guideCard1} className="abs img-cover mad-guide-export" style={{ left: -5, top: 6608, width: 623, height: 1430 }} loading="lazy" decoding="async" />
+        <img src={mad.guideCard2} className="abs img-cover mad-guide-export" style={{ left: 616, top: 6642, width: 623, height: 1381 }} loading="lazy" decoding="async" />
+        <img src={mad.guideCard3} className="abs img-cover mad-guide-export" style={{ left: 1236, top: 6642, width: 627, height: 1384 }} loading="lazy" decoding="async" />
+        <img src={mad.guideCard4} className="abs img-cover mad-guide-export" style={{ left: 1861, top: 6642, width: 619, height: 1391 }} loading="lazy" decoding="async" />
         <MadTitle x={203} y={6237} w={806}>Concise Guide<br />简介引导</MadTitle>
 
         {/* ── 组 14 product detail (y8605 h1662) ── */}
-        <img src={mad.productBg} className="abs mad-exact-img" style={{ left: 0, top: S.product + 426, width: 2480, height: 1237 }} loading="lazy" decoding="async" />
-        <img src={mad.productPhoneClean} className="abs mad-exact-img mad-phone" style={{ left: 1119, top: S.product + 611, width: 592, height: 916 }} loading="lazy" decoding="async" />
+        <img src={mad.productBg} className="abs mad-exact-img" style={{ left: 0, top: 8672, width: 2480, height: 1236 }} loading="lazy" decoding="async" />
+        <img src={mad.productPhoneClean} className="abs mad-exact-img mad-phone" style={{ left: 1119, top: 8857, width: 592, height: 916 }} loading="lazy" decoding="async" />
         <MadTitle x={854} y={8366} w={772}>Product Detail<br />产品细节</MadTitle>
 
         {/* ── 组 15 recommend (y10583 h3487) ── */}
-        <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1379, height: 3060 }} loading="lazy" decoding="async" />
+        <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1100, top: 10514, width: 1379, height: 3060 }} loading="lazy" decoding="async" />
         {/* Figma 10333:3853 "Group 2359" — three stacked layers. The screen sits behind a
             device frame whose screen area is a cut-out; only the frame was here before,
             sized to the screen's box, so the phone rendered as a solid black slab. */}
-        <img src={mad.recommendScreen} className="abs mad-exact-img" style={{ left: 1327, top: S.recommend + 1106, width: 772.6, height: 2331.9 }} loading="lazy" decoding="async" />
-        <img src={mad.recommendStatusBar} className="abs mad-exact-img" style={{ left: 1300.3, top: S.recommend + 1123.5, width: 768.9, height: 135.7 }} loading="lazy" decoding="async" />
-        <img src={mad.recommendPhone} className="abs mad-exact-img mad-phone" style={{ left: 1300.3, top: S.recommend + 1044.4, width: 904.6, height: 2442.3 }} loading="lazy" decoding="async" />
+        <img src={mad.recommendScreen} className="abs mad-exact-img" style={{ left: 1327, top: 10885, width: 772.6, height: 2331.9 }} loading="lazy" decoding="async" />
+        <img src={mad.recommendStatusBar} className="abs mad-exact-img" style={{ left: 1300.3, top: 10902, width: 768.9, height: 135.7 }} loading="lazy" decoding="async" />
+        <img src={mad.recommendPhone} className="abs mad-exact-img mad-phone" style={{ left: 1300, top: 10823, width: 904.6, height: 2442.3 }} loading="lazy" decoding="async" />
         <MadDivider
           x={573}
           y={S.recommend + 178}
@@ -1502,7 +1502,7 @@ function MadCase() {
         <MadLabel x={599} y={11948} w={293}>Live<br />实时比赛</MadLabel>
 
         {/* ── 组 16 me (y14467 h2345) ── */}
-        <img src={mad.mePhones} className="abs mad-me-phones" style={{ left: 633, top: S.me + 413, width: 1670, height: 1768 }} loading="lazy" decoding="async" />
+        <img src={mad.mePhones} className="abs mad-me-phones" style={{ left: 641, top: 14264, width: 1670, height: 1768 }} loading="lazy" decoding="async" />
         <MadDivider
           x={574}
           y={S.me + 157}
@@ -1529,8 +1529,8 @@ function MadCase() {
         <MadLabel x={1747} y={15862} w={446}>Unlock<br />已解锁的比赛</MadLabel>
 
         {/* ── 组 18 recharge (y17286 h2147) ── */}
-        <img src={mad.rechargeBg} className="abs img-cover" style={{ left: 45, top: S.recharge + 421, width: 2420, height: 1726 }} loading="lazy" decoding="async" />
-        <img src={mad.rechargePhone} className="abs img-cover mad-phone" style={{ left: 298, top: S.recharge + 519, width: 1952, height: 1391 }} loading="lazy" decoding="async" />
+        <img src={mad.rechargeBg} className="abs img-cover" style={{ left: 51, top: 16926, width: 2420, height: 1726 }} loading="lazy" decoding="async" />
+        <img src={mad.rechargePhone} className="abs img-cover mad-phone" style={{ left: 347, top: 17373, width: 1952, height: 1391 }} loading="lazy" decoding="async" />
         <MadDivider
           x={573}
           y={S.recharge + 154}
@@ -1544,26 +1544,26 @@ function MadCase() {
         <MadTitle x={202} y={16608} w={516}>Recharge<br />充值</MadTitle>
 
         {/* ── 组 20 dialog (y20051 h3065) ── */}
-        <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 633, top: S.dialog + 565, width: 1209, height: 2500 }} loading="lazy" decoding="async" />
+        <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 640, top: 19377, width: 1209, height: 2500 }} loading="lazy" decoding="async" />
         <MadSplitDivider y={S.dialog + 68} segments={[{ x: 0, w: 520 }, { x: 1958, w: 522 }]} />
         <MadTitle x={714} y={19036} w={1053}>Dialog Box Pops Up<br />弹出对话框</MadTitle>
 
         {/* ── 组 21 charts (y23696 h7579) ── */}
         <MadTitle x={201} y={22242} w={876}>Structure Chart<br />结构图</MadTitle>
-        <img src={mad.structChart} className="abs img-cover" style={{ left: 2, top: S.charts + 482, width: 2480, height: 1402 }} loading="lazy" decoding="async" />
+        <img src={mad.structChart} className="abs img-cover" style={{ left: 0, top: 22548, width: 2480, height: 1402 }} loading="lazy" decoding="async" />
         <MadTitle x={203} y={24281} w={606}>Flow Chart<br />流程图</MadTitle>
-        <img src={mad.flowChart} className="abs img-cover" style={{ left: 0, top: S.charts + 2730, width: 2480, height: 400 }} loading="lazy" decoding="async" />
+        <img src={mad.flowChart} className="abs img-cover" style={{ left: 0, top: 24540, width: 2480, height: 400 }} loading="lazy" decoding="async" />
         <MadTitle x={203} y={25266} w={922}>Wireframe Chart<br />线框图</MadTitle>
-        <img src={mad.wireframe} className="abs img-cover" style={{ left: 25, top: S.charts + 4119, width: 2433, height: 3460 }} loading="lazy" decoding="async" />
+        <img src={mad.wireframe} className="abs img-cover" style={{ left: 24, top: 25593, width: 2433, height: 3460 }} loading="lazy" decoding="async" />
 
         {/* ── 组 22 end (y31852 h3094) ── */}
-        <img src={mad.endBg} className="abs img-cover" style={{ left: 0, top: S.end, width: 2480, height: 1504 }} loading="lazy" decoding="async" />
-        <img src={mad.endLaptopClean} className="abs img-cover" style={{ left: 957, top: S.end + 539, width: 765, height: 512 }} loading="lazy" decoding="async" />
+        <img src={mad.endBg} className="abs img-cover" style={{ left: 0, top: 29379, width: 2480, height: 1504 }} loading="lazy" decoding="async" />
+        <img src={mad.endLaptopClean} className="abs img-cover" style={{ left: 957, top: 29918, width: 765, height: 512 }} loading="lazy" decoding="async" />
         {/* Figma 9817:19385 — one unbroken rule, masked in the middle by the plate below */}
         <div className="mad-divider-line abs" style={{ left: 3.7, top: S.end + 1699.6, width: 2480.1 }} />
         {/* Figma 9817:19389 — a solid #131313 plate, not a bordered frame: it punches the gap for ICON */}
         <span className="mad-end-badge abs" style={{ left: 1006.3, top: S.end + 1635.5, width: 474.9, height: 143.2 }} />
-        <img src={mad.endIcons} className="abs img-cover" style={{ left: 444, top: S.end + 2031, width: 1600, height: 379 }} loading="lazy" decoding="async" />
+        <img src={mad.endIcons} className="abs img-cover" style={{ left: 440, top: 31221, width: 1600, height: 379 }} loading="lazy" decoding="async" />
         {/* Figma trims this text to its cap box (cap top at 1675.1); `top` here is the 160px line box, 31.7px higher */}
         <MadTitle x={1105} y={30923} w={270} tracking={9.54}>ICON</MadTitle>
 
