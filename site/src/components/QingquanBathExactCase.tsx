@@ -418,7 +418,9 @@ export function QingquanBathExactCase() {
       </section>
 
       <section className="qq-closing">
-        <span className="qq-final-glow g1" /><span className="qq-final-glow g2" />
+        {/* data-qy-static: empty spans are classified as "lines" by the reveal pass, and
+            qy-line-enter ends on filter: blur(0), wiping the blur these depend on. */}
+        <span className="qq-final-glow g1" data-qy-static /><span className="qq-final-glow g2" data-qy-static />
         <span className="qq-final-ring r1" /><span className="qq-final-ring r2" />
         <span className="qq-final-petal fp1" /><span className="qq-final-petal fp2" /><span className="qq-final-petal fp3" /><span className="qq-final-petal fp4" /><span className="qq-final-petal fp5" /><span className="qq-final-petal fp6" />
         <p className="qq-closing-over">结语 · IN CLOSING</p>

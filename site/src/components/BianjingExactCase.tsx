@@ -246,9 +246,11 @@ export function BianjingExactCase() {
       </section>
 
       <section className="bj-section bj-conclusion">
-        <span className="bj-cc-glow g1" />
-        <span className="bj-cc-glow g2" />
-        <span className="bj-cc-glow g3" />
+        {/* data-qy-static: empty spans get classified as "lines" by the reveal pass, and
+            qy-line-enter ends on filter: blur(0), which beats the 80px blur these rely on. */}
+        <span className="bj-cc-glow g1" data-qy-static />
+        <span className="bj-cc-glow g2" data-qy-static />
+        <span className="bj-cc-glow g3" data-qy-static />
 
         <p className="bj-cc-eyebrow">CONCLUSION</p>
         <div className="bj-cc-topline" />

@@ -1198,9 +1198,11 @@ function SalaryChoice({ icon, label, value }: { icon: 'city' | 'industry' | 'sch
 
 type MadDividerDot = number | [number, number] | { x: number; y?: number; tone?: 'gold' | 'light' };
 
-/* The rule and its dots sit 12px below their Figma y. Kept as one constant so the
-   call sites can stay on the raw Figma coordinates. */
-const MAD_DIVIDER_NUDGE_Y = 12;
+/* Was 12: a fudge from when these coordinates came off the previous Figma frame. Call
+   sites rebased onto 9817:19381 pass the drawn geometry directly, so there is nothing
+   left to nudge. The 组16 call still carries the old numbers and absorbs the 12 itself
+   until that section is rebased too. */
+const MAD_DIVIDER_NUDGE_Y = 0;
 
 function MadDivider({ x, y, w, dots }: { x: number; y: number; w: number; dots: MadDividerDot[] }) {
   return (
@@ -1212,16 +1214,6 @@ function MadDivider({ x, y, w, dots }: { x: number; y: number; w: number; dots: 
         const tone = typeof dot === 'object' && !Array.isArray(dot) ? dot.tone : undefined;
         return <span key={`${left}-${top}-${index}`} className={`mad-divider-dot abs${tone === 'light' ? ' is-light' : ''}`} style={{ left, top }} />;
       })}
-    </>
-  );
-}
-
-function MadSplitDivider({ y, segments }: { y: number; segments: Array<{ x: number; w: number }> }) {
-  return (
-    <>
-      {segments.map(({ x, w }, index) => (
-        <span key={`${x}-${w}-${index}`} className="mad-divider-line abs" style={{ left: x, top: y, width: w }} />
-      ))}
     </>
   );
 }
@@ -1247,19 +1239,23 @@ function MadGuideCard({ x, y, card, shot, shotStyle, num, numPos, label, labelPo
 }
 
 function MadCase() {
-  /* stage Y base per Figma section (frame 9434:2339) */
+  /* Section starts in stage space, read off Figma 9817:19381 rather than derived by
+     hand. Elements are placed at absolute coordinates now; this is only used to bucket
+     them into entrance-animation groups, which is why the buckets used to straddle
+     section boundaries. */
   const S = {
     cover: 0,
-    analyst: 2555,
-    icon: 3788,
-    guide: 6004,
-    product: 8605,
-    recommend: 10583,
-    me: 14467,
-    recharge: 17286,
-    dialog: 20051,
-    charts: 23696,
-    end: 31852,
+    analystIcon: 2558,
+    guide: 6228,
+    product: 8358,
+    recommend: 10228,
+    me: 13907,
+    recharge: 16577,
+    dialog: 19003,
+    structure: 22230,
+    flow: 24270,
+    wireframe: 25260,
+    end: 29379,
   };
   const rootRef = useRef<HTMLDivElement | null>(null);
 
@@ -1296,7 +1292,7 @@ function MadCase() {
       groups.get(group)!.push(item);
     });
 
-    const textSelector = '.mad-sec-title, .mad-sec-label, .mad-cover-badge, .mad-cover-intro';
+    const textSelector = '.mad-sec-title, .mad-sec-label, .mad-cover-badge, .mad-cover-intro, .mad-cover-kicker';
     const lineSelector = '.mad-divider-line, .mad-leader-ln';
     const pointSelector = '.mad-divider-dot, .mad-leader-sq';
     const frameSelector = '.mad-cover-frame, .mad-dialog-titleplate, .mad-end-badge';
@@ -1335,80 +1331,44 @@ function MadCase() {
         return Number(a.dataset.madMotionDomIndex || 0) - Number(b.dataset.madMotionDomIndex || 0);
       });
 
-      const images = ordered.filter((item) => item.tagName === 'IMG');
-      const texts = ordered.filter((item) => item.matches(textSelector));
-      const frames = ordered.filter((item) => item.matches(frameSelector));
-      const lines = ordered.filter((item) => item.matches(lineSelector));
-      const points = ordered.filter((item) => item.matches(pointSelector));
-      const handled = new Set<HTMLElement>([...images, ...texts, ...frames, ...lines, ...points]);
-      const rest = ordered.filter((item) => !handled.has(item));
       const targetOpacity = (item: HTMLElement) => Number(item.dataset.madMotionOpacity || 1);
-      const clear = (targets: HTMLElement[]) => {
-        const liveTargets = targets.filter((target) => target.isConnected);
-        if (liveTargets.length) gsap.set(liveTargets, { clearProps: 'opacity,transform,filter,transformOrigin' });
+      const clear = (target: HTMLElement) => {
+        if (target.isConnected) gsap.set(target, { clearProps: 'opacity,transform,filter,transformOrigin' });
       };
 
+      /* Position drives the timing, type only drives the character.
+
+         This used to run type by type — every image in the section together, then every
+         text, then the rules, then the dots. In a section 2000-3000px tall that means a
+         screenshot near the bottom finishes animating before a heading above it starts,
+         so the reveal reads out of order as you scroll past. Ordering by y (already done
+         above) and spacing the starts evenly makes things arrive in the order the eye
+         reaches them, while each kind keeps its own motion. */
+      const STEP = 0.05;      // gap between neighbours
+      const MAX_LEAD = 0.9;   // ceiling, so a tall section does not crawl
+      const DOT_LAG = 0.14;   // dots sit *on* a rule; let it draw under them first
+
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      if (images.length) {
-        tl.to(images, {
-          opacity: (index, target) => targetOpacity(target as HTMLElement),
-          y: 0,
-          scale: 1,
-          filter: 'blur(0px)',
-          duration: 0.72,
-          stagger: 0.055,
-          onComplete: () => clear(images),
-        }, 0);
-      }
-      if (frames.length) {
-        tl.to(frames, {
-          opacity: (index, target) => targetOpacity(target as HTMLElement),
-          scaleX: 1,
-          duration: 0.5,
-          stagger: 0.045,
-          onComplete: () => clear(frames),
-        }, 0.1);
-      }
-      if (texts.length) {
-        tl.to(texts, {
-          opacity: (index, target) => targetOpacity(target as HTMLElement),
-          y: 0,
-          filter: 'blur(0px)',
-          duration: 0.55,
-          stagger: 0.045,
-          onComplete: () => clear(texts),
-        }, 0.18);
-      }
-      if (rest.length) {
-        tl.to(rest, {
-          opacity: (index, target) => targetOpacity(target as HTMLElement),
-          y: 0,
-          filter: 'blur(0px)',
-          duration: 0.5,
-          stagger: 0.04,
-          onComplete: () => clear(rest),
-        }, 0.26);
-      }
-      if (lines.length) {
-        tl.to(lines, {
-          opacity: (index, target) => targetOpacity(target as HTMLElement),
-          scaleX: 1,
-          duration: 0.62,
-          stagger: 0.055,
-          ease: 'power2.out',
-          onComplete: () => clear(lines),
-        }, 0.36);
-      }
-      if (points.length) {
-        tl.to(points, {
-          opacity: (index, target) => targetOpacity(target as HTMLElement),
-          scale: 1,
-          duration: 0.38,
-          stagger: 0.055,
-          ease: 'back.out(2.2)',
-          onComplete: () => clear(points),
-        }, 0.52);
-      }
+
+      ordered.forEach((item, index) => {
+        const at = Math.min(index * STEP, MAX_LEAD);
+        const opacity = targetOpacity(item);
+        const done = { onComplete: () => clear(item) };
+
+        if (item.tagName === 'IMG') {
+          tl.to(item, { opacity, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.72, ...done }, at);
+        } else if (item.matches(pointSelector)) {
+          tl.to(item, { opacity, scale: 1, duration: 0.38, ease: 'back.out(2.2)', ...done }, at + DOT_LAG);
+        } else if (item.matches(lineSelector)) {
+          tl.to(item, { opacity, scaleX: 1, duration: 0.62, ease: 'power2.out', ...done }, at);
+        } else if (item.matches(frameSelector)) {
+          tl.to(item, { opacity, scaleX: 1, duration: 0.5, ...done }, at);
+        } else if (item.matches(textSelector)) {
+          tl.to(item, { opacity, y: 0, filter: 'blur(0px)', duration: 0.55, ...done }, at);
+        } else {
+          tl.to(item, { opacity, y: 0, filter: 'blur(0px)', duration: 0.5, ...done }, at);
+        }
+      });
     };
 
     const observer = new IntersectionObserver(
@@ -1438,123 +1398,161 @@ function MadCase() {
 
   return (
     <div ref={rootRef} className="star-case-page mad-page">
-      <FigmaScaleStage width={2480} height={34946} className="mad-stage" fitToViewport viewportInset={0}>
+      <FigmaScaleStage width={2480} height={31884} className="mad-stage" fitToViewport viewportInset={0}>
 
-        {/* ── 组 10 cover (y0 h2318) ── */}
-        <img src={mad.coverBg} className="abs mad-exact-img" style={{ left: 0, top: S.cover, width: 2480, height: 1655 }} loading="lazy" decoding="async" />
-        <img src={mad.coverBadgeClean} className="abs mad-exact-img" style={{ left: 1994, top: S.cover + 1187, width: 286, height: 351 }} loading="lazy" decoding="async" />
-        <div className="mad-cover-frame mad-cover-badge abs" style={{ left: 60, top: S.cover + 49, width: 596, height: 207 }}>My Production<br />我的作品</div>
-        <div className="mad-cover-intro abs" style={{ left: 219, top: S.cover + 1763, width: 2043 }}>通过调查了解，许多球友对于比赛结果推断不准，导致足球博彩逢赌必输，即使他们能询问一些看球经验很丰富的老球迷，甚至向专业的分析师请教，但是由于不同的比赛有不同的体制，所以很多情况下是凭借运气来购买足球彩票，运气不好就预测不准，造成了很大的经济损失以及浪费了大量的时间精力，所以，对于一些没有太多时间来分析球赛的球友来说，特别是经验水平不足的新人，这款应用是为了广大球友设计的。</div>
+        {/* ── 组 10 cover · Figma 9817:19771 (y0 h2238) ──
+            Coordinates come from the node tree resolved to stage space. Figma reports
+            each child relative to its parent frame, so the chain has to be accumulated
+            and the root's own canvas position (91684,933) subtracted — skipping that is
+            what displaced this page's text and rules. */}
+        <img src={mad.coverBg} className="abs mad-exact-img" style={{ left: 0, top: S.cover, width: 2480, height: 1654.59 }} loading="lazy" decoding="async" />
+        <img src={mad.coverBadgeClean} className="abs mad-exact-img" style={{ left: 1993.8, top: 1187.23, width: 286.444, height: 350.517 }} loading="lazy" decoding="async" />
+        {/* 圆角矩形 4 (10448:2187) — inset 8.19%/3.8% of the 2480x2238 section = 203,85 */}
+        <div className="mad-cover-frame abs" style={{ left: 203, top: 85, width: 456, height: 142 }} />
+        {/* 10448:2186 — centred on x=431, i.e. the middle of the frame above */}
+        <div className="mad-cover-badge abs" style={{ left: 203, top: 107, width: 456 }}>
+          <span>My Production</span><span>我的作品</span>
+        </div>
+        {/* 10450:2232 — right-aligned, its right edge sits at x=2279 */}
+        <div className="mad-cover-kicker abs" style={{ left: 1779, top: 100, width: 500 }}>体育预测平台</div>
+        <div className="mad-cover-intro abs" style={{ left: 219, top: 1729, width: 2042.8 }}>通过调查了解，许多球友对于比赛结果推断不准，导致足球博彩逢赌必输，即使他们能询问一些看球经验很丰富的老球迷，甚至向专业的分析师请教，但是由于不同的比赛有不同的体制，所以很多情况下是凭借运气来购买足球彩票，运气不好就预测不准，造成了很大的经济损失以及浪费了大量的时间精力，所以，对于一些没有太多时间来分析球赛的球友来说，特别是经验水平不足的新人，这款应用是为了广大球友设计的。</div>
 
         {/* ── 组 13 analyst (y2555 h1312) ── */}
-        <img src={mad.analyst} className="abs img-cover" style={{ left: 498, top: S.analyst + 196, width: 1489, height: 1116 }} loading="lazy" decoding="async" />
-        <MadTitle x={497} y={S.analyst + 106} w={1501} align="center">Your Personal Analyst<br />你的私人分析师</MadTitle>
+        <img src={mad.analyst} className="abs img-cover" style={{ left: 498, top: 2582, width: 1489, height: 1116 }} loading="lazy" decoding="async" />
+        <MadTitle x={646} y={2582} w={1188} align="center">Your Personal Analyst<br />你的私人分析师</MadTitle>
 
         {/* ── 组 12 icon design (y3788 h2200) ── */}
-        <img src={mad.iconBg} className="abs img-cover mad-icon-bg" style={{ left: 0, top: S.icon, width: 2480, height: 2200 }} loading="lazy" decoding="async" />
-        <img src={mad.iconBig} className="abs img-cover" style={{ left: 384, top: S.icon + 953, width: 678, height: 829 }} loading="lazy" decoding="async" />
-        <img src={mad.iconMark} className="abs img-cover" style={{ left: 1470, top: S.icon + 957, width: 833, height: 833 }} loading="lazy" decoding="async" />
-        <MadTitle x={252} y={S.icon + 409} w={833}>Icon Design<br />图标设计</MadTitle>
+        <img src={mad.iconBg} className="abs img-cover mad-icon-bg" style={{ left: 0, top: 3708, width: 2480, height: 2200 }} loading="lazy" decoding="async" />
+        <img src={mad.iconBig} className="abs img-cover" style={{ left: 384, top: 4661, width: 678, height: 829 }} loading="lazy" decoding="async" />
+        <img src={mad.iconMark} className="abs img-cover" style={{ left: 1470, top: 4665, width: 833, height: 833 }} loading="lazy" decoding="async" />
+        <MadTitle x={203} y={4117} w={656}>Icon Design<br />图标设计</MadTitle>
 
         {/* ── 组 5 concise guide — 4 perspective cards (y6004 h2146) ── */}
-        <img src={mad.guideCard1} className="abs img-cover mad-guide-export" style={{ left: -5, top: S.guide + 716, width: 623, height: 1430 }} loading="lazy" decoding="async" />
-        <img src={mad.guideCard2} className="abs img-cover mad-guide-export" style={{ left: 616, top: S.guide + 750, width: 623, height: 1381 }} loading="lazy" decoding="async" />
-        <img src={mad.guideCard3} className="abs img-cover mad-guide-export" style={{ left: 1236, top: S.guide + 750, width: 627, height: 1384 }} loading="lazy" decoding="async" />
-        <img src={mad.guideCard4} className="abs img-cover mad-guide-export" style={{ left: 1861, top: S.guide + 750, width: 619, height: 1391 }} loading="lazy" decoding="async" />
-        <MadTitle x={290} y={S.guide} w={1026}>Concise Guide<br />简介引导</MadTitle>
+        <img src={mad.guideCard1} className="abs img-cover mad-guide-export" style={{ left: -5, top: 6608, width: 623, height: 1430 }} loading="lazy" decoding="async" />
+        <img src={mad.guideCard2} className="abs img-cover mad-guide-export" style={{ left: 616, top: 6642, width: 623, height: 1381 }} loading="lazy" decoding="async" />
+        <img src={mad.guideCard3} className="abs img-cover mad-guide-export" style={{ left: 1236, top: 6642, width: 627, height: 1384 }} loading="lazy" decoding="async" />
+        <img src={mad.guideCard4} className="abs img-cover mad-guide-export" style={{ left: 1861, top: 6642, width: 619, height: 1391 }} loading="lazy" decoding="async" />
+        <MadTitle x={203} y={6237} w={806}>Concise Guide<br />简介引导</MadTitle>
 
         {/* ── 组 14 product detail (y8605 h1662) ── */}
-        <img src={mad.productBg} className="abs mad-exact-img" style={{ left: 0, top: S.product + 426, width: 2480, height: 1237 }} loading="lazy" decoding="async" />
-        <img src={mad.productPhoneClean} className="abs mad-exact-img mad-phone" style={{ left: 1119, top: S.product + 611, width: 592, height: 916 }} loading="lazy" decoding="async" />
-        <MadTitle x={32} y={S.product + 2} w={2480} align="center">Product Detail<br />产品细节</MadTitle>
+        <img src={mad.productBg} className="abs mad-exact-img" style={{ left: 0, top: 8672, width: 2480, height: 1236 }} loading="lazy" decoding="async" />
+        <img src={mad.productPhoneClean} className="abs mad-exact-img mad-phone" style={{ left: 1119, top: 8857, width: 592, height: 916 }} loading="lazy" decoding="async" />
+        <MadTitle x={854} y={8366} w={772} align="center">Product Detail<br />产品细节</MadTitle>
 
         {/* ── 组 15 recommend (y10583 h3487) ── */}
-        <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1101, top: S.recommend + 313, width: 1379, height: 3060 }} loading="lazy" decoding="async" />
+        <img src={mad.recommendGlow} className="abs mad-exact-img mad-rec-glow" style={{ left: 1100, top: 10514, width: 1379, height: 3060 }} loading="lazy" decoding="async" />
         {/* Figma 10333:3853 "Group 2359" — three stacked layers. The screen sits behind a
             device frame whose screen area is a cut-out; only the frame was here before,
             sized to the screen's box, so the phone rendered as a solid black slab. */}
-        <img src={mad.recommendScreen} className="abs mad-exact-img" style={{ left: 1327, top: S.recommend + 1106, width: 772.6, height: 2331.9 }} loading="lazy" decoding="async" />
-        <img src={mad.recommendStatusBar} className="abs mad-exact-img" style={{ left: 1300.3, top: S.recommend + 1123.5, width: 768.9, height: 135.7 }} loading="lazy" decoding="async" />
-        <img src={mad.recommendPhone} className="abs mad-exact-img mad-phone" style={{ left: 1300.3, top: S.recommend + 1044.4, width: 904.6, height: 2442.3 }} loading="lazy" decoding="async" />
+        <img src={mad.recommendScreen} className="abs mad-exact-img" style={{ left: 1327, top: 10885, width: 772.6, height: 2331.9 }} loading="lazy" decoding="async" />
+        <img src={mad.recommendStatusBar} className="abs mad-exact-img" style={{ left: 1300.3, top: 10902, width: 768.9, height: 135.7 }} loading="lazy" decoding="async" />
+        <img src={mad.recommendPhone} className="abs mad-exact-img mad-phone" style={{ left: 1300, top: 10823, width: 904.6, height: 2442.3 }} loading="lazy" decoding="async" />
+        {/* Rule and dots from Figma 9817:19525 (形状 2) and 19529/19537/19533 (椭圆 2).
+            Those frames are 18.8 / 52.8 boxes whose visible stroke sits 7.54 inside, so
+            the drawn geometry is the box origin plus that inset. */}
         <MadDivider
-          x={573}
-          y={S.recommend + 178}
-          w={1707}
+          x={572.9}
+          y={10374.7}
+          w={1707.4}
           dots={[
-            { x: 554, y: S.recommend + 155, tone: 'gold' },
-            { x: 1406, y: S.recommend + 155, tone: 'light' },
-            { x: 2258, y: S.recommend + 155, tone: 'light' },
+            { x: 554.1, y: 10355.9, tone: 'gold' },
+            { x: 1405.8, y: 10355.9, tone: 'light' },
+            { x: 2257.6, y: 10355.9, tone: 'light' },
           ]}
         />
-        <MadTitle x={200} y={S.recommend + 39} w={854}>Recommend<br />推荐</MadTitle>
-        <MadLabel x={207} y={S.recommend + 786} w={558}>Forecast<br />预测赛果</MadLabel>
-        <MadLabel x={207} y={S.recommend + 1444} w={421}>Live<br />实时比赛</MadLabel>
+        <MadTitle x={203} y={10248} w={665}>Recommend<br />推荐</MadTitle>
+        <MadLabel x={599} y={11290} w={409}>Forecast<br />预测赛果</MadLabel>
+        <MadLabel x={599} y={11948} w={293}>Live<br />实时比赛</MadLabel>
+        {/* Two leader bars that were missing entirely — Figma Group 2362 / 2363, one
+            under each label. Note their children's x/y are relative to 组15, not to the
+            group: 矩形 2 reads x=1267.9 inside a group that is only 358 wide. */}
+        <span className="mad-leader-ln abs" style={{ left: 947.5, top: 11371.1, width: 327.9, height: 3.8 }} />
+        <span className="mad-leader-sq abs" style={{ left: 1275.4, top: 11363.5, width: 18.8, height: 18.8 }} />
+        <span className="mad-leader-ln abs" style={{ left: 947.5, top: 12029.1, width: 327.9, height: 3.8 }} />
+        <span className="mad-leader-sq abs" style={{ left: 1275.4, top: 12021.5, width: 18.8, height: 18.8 }} />
 
         {/* ── 组 16 me (y14467 h2345) ── */}
-        <img src={mad.mePhones} className="abs mad-me-phones" style={{ left: 633, top: S.me + 413, width: 1670, height: 1768 }} loading="lazy" decoding="async" />
+        <img src={mad.mePhones} className="abs mad-me-phones" style={{ left: 641, top: 14264, width: 1670, height: 1768 }} loading="lazy" decoding="async" />
+        {/* Rule 9817:19470 and dots 19474/19482/19478, drawn geometry (frame box plus
+            the stroke's own inset), rebased onto 9817:19381. */}
         <MadDivider
-          x={574}
-          y={S.me + 157}
-          w={1706}
+          x={582.2}
+          y={14064.7}
+          w={1706.2}
           dots={[
-            { x: 555, y: S.me + 134, tone: 'light' },
-            { x: 1406, y: S.me + 134, tone: 'gold' },
-            { x: 2258, y: S.me + 134, tone: 'light' },
+            { x: 563.4, y: 14045.9, tone: 'light' },
+            { x: 1414.0, y: 14045.9, tone: 'gold' },
+            { x: 2265.8, y: 14045.9, tone: 'light' },
           ]}
         />
-        {/* leader-line connectors: gold square node + thin line per label */}
-        <span className="mad-leader-sq abs" style={{ left: 1398, top: S.me + 519, width: 30, height: 30 }} />
-        <span className="mad-leader-ln abs" style={{ left: 1424, top: S.me + 534, width: 347 }} />
-        <span className="mad-leader-sq abs" style={{ left: 935, top: S.me + 952, width: 30, height: 30 }} />
-        <span className="mad-leader-ln abs" style={{ left: 641, top: S.me + 967, width: 302 }} />
-        <span className="mad-leader-sq abs" style={{ left: 965, top: S.me + 1683, width: 30, height: 30 }} />
-        <span className="mad-leader-ln abs" style={{ left: 645, top: S.me + 1698, width: 328 }} />
-        <span className="mad-leader-sq abs" style={{ left: 1474, top: S.me + 2056, width: 30, height: 30 }} />
-        <span className="mad-leader-ln abs" style={{ left: 1500, top: S.me + 2071, width: 275 }} />
-        <MadTitle x={204} y={S.me} w={269}>Me<br />我的</MadTitle>
-        <MadLabel x={1616} y={S.me + 437} w={638} align="right">Classify<br />分类</MadLabel>
-        <MadLabel x={204} y={S.me + 867} w={421}>Record<br />充值记录</MadLabel>
-        <MadLabel x={209} y={S.me + 1587} w={527}>Invitation<br />邀请码</MadLabel>
-        <MadLabel x={1616} y={S.me + 1988} w={638} align="right">Unlock<br />已解锁的比赛</MadLabel>
+        {/* Leader connectors — Figma Group 2364 / 2361 / 2362 / 2363, one per label.
+            Their children are positioned relative to 组16, not to the group. */}
+        <span className="mad-leader-sq abs" style={{ left: 1413.5, top: 14377.1, width: 18.8, height: 18.8 }} />
+        <span className="mad-leader-ln abs" style={{ left: 1432.4, top: 14384.6, width: 346.7, height: 3.8 }} />
+        <span className="mad-leader-sq abs" style={{ left: 950.2, top: 14810.5, width: 18.8, height: 18.8 }} />
+        <span className="mad-leader-ln abs" style={{ left: 648.7, top: 14818.0, width: 301.5, height: 3.8 }} />
+        <span className="mad-leader-sq abs" style={{ left: 980.4, top: 15541.7, width: 18.8, height: 18.8 }} />
+        <span className="mad-leader-ln abs" style={{ left: 652.5, top: 15549.2, width: 327.9, height: 3.8 }} />
+        <span className="mad-leader-sq abs" style={{ left: 1489.2, top: 15914.8, width: 18.8, height: 18.8 }} />
+        <span className="mad-leader-ln abs" style={{ left: 1508.1, top: 15922.4, width: 275.1, height: 3.8 }} />
+        <MadTitle x={203} y={13953} w={205}>Me<br />我的</MadTitle>
+        <MadLabel x={1760} y={14312} w={325} align="right">Classify<br />分类</MadLabel>
+        <MadLabel x={348} y={14742} w={293}>Record<br />充值记录</MadLabel>
+        <MadLabel x={257} y={15462} w={389}>Invitation<br />邀请码</MadLabel>
+        <MadLabel x={1747} y={15862} w={446} align="right">Unlock<br />已解锁的比赛</MadLabel>
 
-        {/* ── 组 18 recharge (y17286 h2147) ── */}
-        <img src={mad.rechargeBg} className="abs img-cover" style={{ left: 45, top: S.recharge + 421, width: 2420, height: 1726 }} loading="lazy" decoding="async" />
-        <img src={mad.rechargePhone} className="abs img-cover mad-phone" style={{ left: 298, top: S.recharge + 519, width: 1952, height: 1391 }} loading="lazy" decoding="async" />
+        {/* ── 组 18 recharge · Figma 9817:19415 (y16577 h2106) ──
+            This section's own origin is x=7.5, not 0, and the two coordinate
+            conventions collide inside it: Group 2365's children are positioned
+            relative to 组18, while 组19's are relative to 组19. The phone was placed
+            with the wrong one and landed 43x349 out. */}
+        <img src={mad.rechargeBg} className="abs img-cover" style={{ left: 50.7, top: 16926, width: 2419.7, height: 1726.2 }} loading="lazy" decoding="async" />
+        <img src={mad.rechargePhone} className="abs img-cover mad-phone" style={{ left: 303.5, top: 17024.3, width: 1952.3, height: 1390.5 }} loading="lazy" decoding="async" />
         <MadDivider
-          x={573}
-          y={S.recharge + 154}
-          w={1707}
+          x={578.4}
+          y={16734.3}
+          w={1707.3}
           dots={[
-            { x: 554, y: S.recharge + 131, tone: 'light' },
-            { x: 1405, y: S.recharge + 131, tone: 'light' },
-            { x: 2258, y: S.recharge + 131, tone: 'gold' },
+            { x: 559.5, y: 16715.5, tone: 'light' },
+            { x: 1410.7, y: 16715.5, tone: 'light' },
+            { x: 2263.1, y: 16715.5, tone: 'gold' },
           ]}
         />
-        <MadTitle x={151} y={S.recharge} w={660}>Recharge<br />充值</MadTitle>
+        <MadTitle x={202} y={16608} w={516}>Recharge<br />充值</MadTitle>
 
-        {/* ── 组 20 dialog (y20051 h3065) ── */}
-        <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 633, top: S.dialog + 565, width: 1209, height: 2500 }} loading="lazy" decoding="async" />
-        <MadSplitDivider y={S.dialog + 68} segments={[{ x: 0, w: 520 }, { x: 1958, w: 522 }]} />
-        <MadTitle x={0} y={S.dialog + 20} w={2480} align="center">Dialog Box Pops Up<br />弹出对话框</MadTitle>
+        {/* ── 组 20 dialog · Figma 9817:19405 (y19003 h2907) ──
+            Figma 9817:19407 is one unbroken 2480 rule with the title plate (19411)
+            covering its middle, the same construction as 组22 — not the two hand-cut
+            segments that were here. It was also 1017px low on the old base. */}
+        <img src={mad.dialogPhone} className="abs img-cover mad-dialog-phone" style={{ left: 640.5, top: 19377, width: 1209, height: 2500 }} loading="lazy" decoding="async" />
+        <div className="mad-divider-line abs" style={{ left: 7.5, top: 19102.3, width: 2480.1 }} />
+        <span className="mad-dialog-titleplate abs" style={{ left: 672.5, top: 19038, width: 1146, height: 147 }} />
+        <MadTitle x={714} y={19036} w={1053} align="center">Dialog Box Pops Up<br />弹出对话框</MadTitle>
 
         {/* ── 组 21 charts (y23696 h7579) ── */}
-        <MadTitle x={151} y={S.charts - 2} w={1111}>Structure Chart<br />结构图</MadTitle>
-        <img src={mad.structChart} className="abs img-cover" style={{ left: 2, top: S.charts + 482, width: 2480, height: 1402 }} loading="lazy" decoding="async" />
-        <MadTitle x={155} y={S.charts + 2314} w={770}>Flow Chart<br />流程图</MadTitle>
-        <img src={mad.flowChart} className="abs img-cover" style={{ left: 0, top: S.charts + 2730, width: 2480, height: 400 }} loading="lazy" decoding="async" />
-        <MadTitle x={155} y={S.charts + 3618} w={1172}>Wireframe Chart<br />线框图</MadTitle>
-        <img src={mad.wireframe} className="abs img-cover" style={{ left: 25, top: S.charts + 4119, width: 2433, height: 3460 }} loading="lazy" decoding="async" />
+        <MadTitle x={201} y={22242} w={876}>Structure Chart<br />结构图</MadTitle>
+        <img src={mad.structChart} className="abs img-cover" style={{ left: 0, top: 22548, width: 2480, height: 1402 }} loading="lazy" decoding="async" />
+        <MadTitle x={203} y={24281} w={606}>Flow Chart<br />流程图</MadTitle>
+        <img src={mad.flowChart} className="abs img-cover" style={{ left: 0, top: 24540, width: 2480, height: 400 }} loading="lazy" decoding="async" />
+        <MadTitle x={203} y={25266} w={922}>Wireframe Chart<br />线框图</MadTitle>
+        <img src={mad.wireframe} className="abs img-cover" style={{ left: 24, top: 25593, width: 2433, height: 3460 }} loading="lazy" decoding="async" />
 
         {/* ── 组 22 end (y31852 h3094) ── */}
-        <img src={mad.endBg} className="abs img-cover" style={{ left: 0, top: S.end, width: 2480, height: 1504 }} loading="lazy" decoding="async" />
-        <img src={mad.endLaptopClean} className="abs img-cover" style={{ left: 957, top: S.end + 539, width: 765, height: 512 }} loading="lazy" decoding="async" />
-        {/* Figma 9817:19385 — one unbroken rule, masked in the middle by the plate below */}
-        <div className="mad-divider-line abs" style={{ left: 3.7, top: S.end + 1699.6, width: 2480.1 }} />
-        {/* Figma 9817:19389 — a solid #131313 plate, not a bordered frame: it punches the gap for ICON */}
-        <span className="mad-end-badge abs" style={{ left: 1006.3, top: S.end + 1635.5, width: 474.9, height: 143.2 }} />
-        <img src={mad.endIcons} className="abs img-cover" style={{ left: 444, top: S.end + 2031, width: 1600, height: 379 }} loading="lazy" decoding="async" />
+        <img src={mad.endBg} className="abs img-cover" style={{ left: 0, top: 29379, width: 2480, height: 1504 }} loading="lazy" decoding="async" />
+        <img src={mad.endLaptopClean} className="abs img-cover" style={{ left: 957, top: 29918, width: 765, height: 512 }} loading="lazy" decoding="async" />
+        {/* Figma 9817:19385 — one unbroken rule, masked in the middle by the plate below,
+            which is what reads as "two lines either side of ICON". Both were still on the
+            old S.end base, which put them at y~33500 — past the 31884 frame, so neither
+            was visible at all. */}
+        <div className="mad-divider-line abs" style={{ left: -0.3, top: 30947.3, width: 2480.1 }} />
+        {/* Figma 9817:19389 — a solid #131313 plate that punches the gap for ICON. The
+            masking box is the node's *inner* frame (380 wide), not its outer stroke
+            vector (471): measuring where the orange rule actually stops in Figma's render
+            gives 1047.1..1428.8, which is the inner frame's 1050..1430. */}
+        <span className="mad-end-badge abs" style={{ left: 1050, top: 30883.7, width: 380, height: 143 }} />
+        <img src={mad.endIcons} className="abs img-cover" style={{ left: 440, top: 31221, width: 1600, height: 379 }} loading="lazy" decoding="async" />
         {/* Figma trims this text to its cap box (cap top at 1675.1); `top` here is the 160px line box, 31.7px higher */}
-        <MadTitle x={1080} y={S.end + 1643.4} w={350} align="center" tracking={9.54}>ICON</MadTitle>
+        <MadTitle x={1105} y={30923} w={270} align="center" tracking={9.54}>ICON</MadTitle>
 
       </FigmaScaleStage>
     </div>

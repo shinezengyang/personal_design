@@ -217,7 +217,11 @@
 .ladder-tags b:nth-child(3) { color: #c8923a; }
 
 .jx-context { height: 1080px; background: #16100c; }
-.jx-context .glow.ctx { left: 540px; top: 200px; width: 480px; height: 480px; background: rgba(210,58,82,.16); }
+/* Figma 9817:12661 — a 480px circle filled #6B2A22 at 0.5 with an 85 stdDeviation
+   Gaussian. It was a bright pink-red at 16%, which read as a distinct disc floating on
+   the section rather than the deep brick plume the frame has. blur is overridden here
+   because the shared rule above carries 90. */
+.jx-context .glow.ctx { left: 540px; top: 200px; width: 480px; height: 480px; background: rgba(107,42,34,.5); filter: blur(85px); }
 .jx-shot-wrap.dark .jx-shot { box-shadow: 0 16px 40px rgba(0,0,0,.5); }
 .jx-context-notes { position: absolute; left: 856px; top: 316px; width: 344px; }
 /* This one lives inside .jx-context-notes, which already carries the (856,316) origin */
@@ -229,13 +233,18 @@
 /* Figma 9817:12693 is 1100 tall on a warm maroon wash that pools at the top centre and
    falls away to near-black at both edges — the 100deg left-to-right gradient it used to
    carry read as a flat diagonal instead. */
+/* Figma 9817:12693. The ramp runs horizontally, not down the page: sampling the render
+   gives the same colour at both left corners (#29130f) and both right corners (#120c08).
+   The radial that used to sit on top of it was a second, invented glow — the frame has
+   exactly one, the ellipse below. */
 .jx-final {
   height: 1100px;
-  background:
-    radial-gradient(760px 460px at 50% -60px, #591d22 0%, rgba(89,29,34,0) 72%),
-    linear-gradient(180deg, #29130f 0%, #1d0f0b 55%, #120c08 100%);
+  background: linear-gradient(90deg, #29130f 0%, #120c08 100%);
 }
-.jx-final .final-glow { left: 460px; top: -150px; width: 360px; height: 360px; background: rgba(224,178,90,.25); }
+/* Figma 9817:12694 — 360px circle, #D23A52 at 0.35, 90 stdDeviation blur. It was gold
+   at 0.25 here; crimson is what makes the section read as the 绝学 red rather than a
+   warm amber wash. */
+.jx-final .final-glow { left: 460px; top: -150px; width: 360px; height: 360px; background: rgba(210,58,82,.35); }
 /* Figma 9817:12696 — title at 72, copy at 154, cards at 279. Everything used to sit
    ~60px lower to clear an "EPILOGUE · 结语" eyebrow that this frame does not have. */
 .jx-final h2 { position: absolute; left: 0; top: 72px; width: 1280px; margin: 0; color: #fff; text-align: center; font-size: 55px; line-height: 66px; font-weight: 900; }
