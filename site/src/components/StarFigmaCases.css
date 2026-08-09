@@ -195,7 +195,11 @@
 .mad-leader-sq { background: #f9f7f2; border-radius: 2px; }
 .mad-leader-ln { height: 2px; background: #f9f7f2; }
 
-.mad-icon-bg { opacity: .1; }
+/* No CSS dimming on the section backdrops. These exports are already dark photographs
+   (icon-bg averages rgb 23), so an extra 10% opacity applied the darkness twice and
+   the picture vanished into the stage. Measured against Figma's own render of 组12:
+   that block averages rgb 35, which the asset at full opacity predicts within 9,
+   while 10% predicts 2. */
 .mad-rec-glow { opacity: .2; }
 .star-figma-stage img.mad-exact-img { object-fit: fill; }
 .star-figma-stage img.mad-phone { object-fit: contain; filter: drop-shadow(0 24px 40px rgba(0,0,0,.4)); }
