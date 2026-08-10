@@ -1563,7 +1563,7 @@ function MadCase() {
 
 /* ─── High Seas Hero exact detail cases from Figma 9817:4765 / 9817:6955 ─── */
 const hsTrial = {
-  prototypeFrames: Array.from({ length: 28 }, (_, index) =>
+  prototypeFrames: Array.from({ length: 25 }, (_, index) =>
     publicUrl(`/images/xingji/naval-trial/prototype-${String(index + 1).padStart(2, '0')}.webp`),
   ),
   phoneDifficultyPre: publicUrl('/images/xingji/naval-trial/phone-difficulty-pre.webp'),
@@ -1750,203 +1750,186 @@ export function HighSeasNavyTrialExactCase() {
       hotspot: { left: number; top: number };
     }>;
   };
-  const figmaHotspot = (x: number, y: number, width: number, height: number, frameHeight = 1634) => ({
+  // 每张原型图都是 Figma 画板去掉顶部 74px 标题条后的 720 × panelH 区域，
+  // 所以热区按画板坐标换算时要同步减掉那 74px。
+  const figmaHotspot = (x: number, y: number, width: number, height: number, panelHeight = 1560) => ({
     left: ((x + width / 2) / 720) * 100,
-    top: ((y + height / 2) / frameHeight) * 100,
+    top: ((y - 74 + height / 2) / panelHeight) * 100,
   });
-  const figmaPoint = (x: number, y: number, frameHeight = 1634) => ({
-    left: (x / 720) * 100,
-    top: (y / frameHeight) * 100,
-  });
+  // 跳转关系与热区坐标逐条对齐 Figma 原型（Section 1 · node 48158-5999）的实际连线，
+  // target 为 'back' 表示该热区在 Figma 里配置的是 Back 动作。
   const prototypePreview: PrototypePreviewItem[] = [
     {
       id: 'idle', step: '01', group: '入口', title: '挂机界面',
-      caption: '活动提示出现后进入将军的试炼。', src: hsTrial.prototypeFrames[0],
-      actions: [{ label: '进入活动', target: 'personalPre', hotspot: figmaPoint(570, 208, 1644) }],
+      caption: '挂机场景出现“将军的试炼已开启”提示，点击进入活动。', src: hsTrial.prototypeFrames[0],
+      actions: [{ label: '进入活动', target: 'personalPre', hotspot: figmaHotspot(475, 172, 185, 72, 1570) }],
     },
     {
       id: 'personalPre', step: '02', group: '个人线', title: '个人挑战-选择难度前',
-      caption: '默认展示个人挑战、难度、奖励入口与模式切换。', src: hsTrial.prototypeFrames[1],
+      caption: '默认展示个人挑战、难度列表、奖励入口与双轨切换。', src: hsTrial.prototypeFrames[1],
       actions: [
-        { label: '选择任意难度', target: 'confirm', hotspot: figmaHotspot(20, 470, 680, 620) },
-        { label: '奖励预览', target: 'rewardIncomplete', hotspot: figmaHotspot(595, 320, 128, 100) },
-        { label: '切换同盟挑战', target: 'allianceGate', hotspot: figmaHotspot(360, 1240, 340, 120) },
+        { label: '选择任意难度', target: 'difficultyTip', hotspot: figmaHotspot(500, 1117, 200, 247) },
+        { label: '奖励预览', target: 'rewardLocked', hotspot: figmaHotspot(601, 282, 119, 114) },
+        { label: '切换同盟挑战', target: 'allianceGate', hotspot: figmaHotspot(361, 1366, 340, 105) },
       ],
     },
     {
-      id: 'personalPreB', step: '03', group: '个人线', title: '个人挑战-难度列表下段',
-      caption: '难度列表滚动后的补充状态。', src: hsTrial.prototypeFrames[2],
+      id: 'difficultyTip', step: '03', group: '个人线', title: '个人挑战-难度说明',
+      caption: '选中难度后浮出难度说明，点击空白收起，点击挑战进入确认。', src: hsTrial.prototypeFrames[2],
       actions: [
-        { label: '选择任意难度', target: 'confirm', hotspot: figmaHotspot(20, 470, 680, 620) },
-        { label: '奖励预览', target: 'rewardIncomplete', hotspot: figmaHotspot(595, 320, 128, 100) },
-        { label: '切换同盟挑战', target: 'allianceGate', hotspot: figmaHotspot(360, 1240, 340, 120) },
+        { label: '收起说明', target: 'personalPre', hotspot: figmaHotspot(0, 74, 720, 1559) },
+        { label: '挑战该难度', target: 'confirm', hotspot: figmaHotspot(374, 1024, 190, 76) },
       ],
     },
     {
       id: 'confirm', step: '04', group: '个人线', title: '二次确认弹窗',
-      caption: '确认难度后进入个人挑战，取消或关闭返回难度选择。', src: hsTrial.prototypeFrames[3],
+      caption: '难度不可更改，确认后锁定，取消返回难度选择。', src: hsTrial.prototypeFrames[3],
       actions: [
-        { label: '取消', target: 'personalPre', hotspot: figmaHotspot(82, 848.5, 276, 146) },
-        { label: '确定', target: 'personalChallenge', hotspot: figmaHotspot(362, 848.5, 276, 146) },
-        { label: '关闭', target: 'personalPre', hotspot: figmaHotspot(620, 80, 80, 80) },
+        { label: '取消', target: 'personalPre', hotspot: figmaHotspot(82, 849, 276, 146) },
+        { label: '确定', target: 'personalChallenge', hotspot: figmaHotspot(362, 849, 276, 146) },
       ],
     },
     {
       id: 'personalChallenge', step: '05', group: '个人线', title: '个人挑战',
-      caption: '难度锁定后可查看奖励或打开挑战详情。', src: hsTrial.prototypeFrames[4],
+      caption: '难度锁定后可查看奖励，或打开先锋教官信息。', src: hsTrial.prototypeFrames[4],
       actions: [
-        { label: '奖励预览', target: 'rewardIncomplete', hotspot: figmaHotspot(595, 320, 128, 100) },
-        { label: '挑战详情', target: 'personalDetail', hotspot: figmaHotspot(352, 1219, 256, 131) },
-        { label: '任务卡片', target: 'personalDetail', hotspot: figmaHotspot(20, 420, 680, 640) },
+        { label: '奖励预览', target: 'rewardReady', hotspot: figmaHotspot(595, 282, 125, 117) },
+        { label: '挑战详情', target: 'instructorInfo', hotspot: figmaHotspot(352, 1219, 256, 131) },
       ],
     },
     {
-      id: 'personalDetail', step: '06', group: '个人线', title: '个人挑战详情弹窗',
-      caption: '查看教官、奖励和推荐战力后进入野外。', src: hsTrial.prototypeFrames[5],
+      id: 'instructorInfo', step: '06', group: '个人线', title: '先锋教官信息弹窗',
+      caption: '查看教官等级与掉落后，选择攻击或集结出征。', src: hsTrial.prototypeFrames[5],
       actions: [
-        { label: '进入野外', target: 'personalWorldComplete', hotspot: figmaPoint(286, 1288) },
-        { label: '关闭详情', target: 'personalChallenge', hotspot: figmaHotspot(620, 80, 80, 80, 1643) },
+        { label: '攻击', target: 'marchAttack', hotspot: figmaHotspot(222, 1217, 130, 145, 1569) },
+        { label: '集结', target: 'marchRally', hotspot: figmaHotspot(368, 1217, 130, 145, 1569) },
       ],
     },
     {
-      id: 'personalWorldComplete', step: '07', group: '个人线', title: '野外主界面-个人完成',
-      caption: '个人挑战完成后显示奖励气泡。', src: hsTrial.prototypeFrames[6],
-      actions: [{ label: '完成后状态', target: 'personalWorldReward', hotspot: figmaPoint(300, 1060, 1643) }],
+      id: 'marchAttack', step: '07', group: '个人线', title: '出征界面-攻击',
+      caption: '选择舰队直接出征攻击教官。', src: hsTrial.prototypeFrames[6],
+      actions: [{ label: '出征', target: 'worldReward', hotspot: figmaHotspot(380, 1204, 311, 125, 1569) }],
     },
     {
-      id: 'personalWorldReward', step: '08', group: '个人线', title: '野外主界面-可领奖',
-      caption: '点击领奖提示进入可领取奖励页。', src: hsTrial.prototypeFrames[7],
-      actions: [{ label: '去奖励预览', target: 'rewardAvailable', hotspot: figmaPoint(292, 1265, 1643) }],
+      id: 'marchRally', step: '08', group: '个人线', title: '出征界面-集结',
+      caption: '设置集结时长后发起集结。', src: hsTrial.prototypeFrames[7],
+      actions: [{ label: '发起集结', target: 'rallyPanel', hotspot: figmaHotspot(384, 1194, 295, 143, 1569) }],
     },
     {
-      id: 'rewardIncomplete', step: '09', group: '奖励线', title: '奖励预览-未完成',
-      caption: '挑战未完成时仅展示奖励进度。', src: hsTrial.prototypeFrames[8], actions: [],
+      id: 'rallyPanel', step: '09', group: '个人线', title: '集结界面',
+      caption: '查看集结队伍，结束集结回到野外。', src: hsTrial.prototypeFrames[8],
+      actions: [{ label: '结束集结', target: 'worldPersonal', hotspot: figmaHotspot(0, 1521, 131, 102, 1569) }],
     },
     {
-      id: 'rewardAvailable', step: '10', group: '奖励线', title: '奖励预览-可领取',
-      caption: '完成挑战后解锁领取按钮。', src: hsTrial.prototypeFrames[9],
+      id: 'worldPersonal', step: '10', group: '个人线', title: '野外主界面',
+      caption: '回到野外，点击教官据点查看结算。', src: hsTrial.prototypeFrames[9],
+      actions: [{ label: '点击教官据点', target: 'worldReward', hotspot: figmaHotspot(168, 790, 375, 383, 1569) }],
+    },
+    {
+      id: 'worldReward', step: '11', group: '个人线', title: '野外主界面-可领奖',
+      caption: '击败教官后出现领奖提示。', src: hsTrial.prototypeFrames[10],
+      actions: [{ label: '去奖励预览', target: 'rewardReady', hotspot: figmaHotspot(98, 1170, 308, 152, 1569) }],
+    },
+    {
+      id: 'rewardReady', step: '12', group: '奖励线', title: '奖励预览-可领取',
+      caption: '达成进度后解锁领取按钮。', src: hsTrial.prototypeFrames[11],
       actions: [
-        { label: '领取奖励', target: 'rewardClaimed', hotspot: figmaHotspot(513, 641.5, 108, 83) },
-        { label: '关闭奖励', target: 'personalWorldReward', hotspot: figmaHotspot(620, 80, 80, 80) },
+        { label: '领取', target: 'rewardClaimed', hotspot: figmaHotspot(513, 642, 108, 83) },
+        { label: '关闭', target: 'back', hotspot: figmaHotspot(621, 375, 80, 80) },
       ],
     },
     {
-      id: 'rewardClaimed', step: '11', group: '奖励线', title: '奖励预览-已领取',
-      caption: '奖励领取后更新完成状态。', src: hsTrial.prototypeFrames[10],
-      actions: [{ label: '领取后继续', target: 'personalLater', hotspot: figmaPoint(660, 414) }],
+      id: 'rewardClaimed', step: '13', group: '奖励线', title: '奖励预览-已领取',
+      caption: '领取后状态更新，关闭回到个人挑战。', src: hsTrial.prototypeFrames[12],
+      actions: [{ label: '关闭', target: 'personalPre', hotspot: figmaHotspot(620, 375, 80, 80) }],
     },
     {
-      id: 'personalLater', step: '12', group: '个人线', title: '个人挑战-后续阶段',
-      caption: '进入更高难度的后续个人挑战。', src: hsTrial.prototypeFrames[11],
-      actions: [{ label: '后续挑战', target: 'personalLaterWorld', hotspot: figmaHotspot(352, 1219, 256, 131) }],
+      id: 'rewardLocked', step: '14', group: '奖励线', title: '奖励预览-未完成',
+      caption: '挑战未完成时仅展示奖励进度。', src: hsTrial.prototypeFrames[13],
+      actions: [{ label: '关闭', target: 'back', hotspot: figmaHotspot(620, 375, 80, 80) }],
     },
     {
-      id: 'personalLaterWorld', step: '13', group: '个人线', title: '野外主界面-后续阶段',
-      caption: '后续个人任务回到野外推进。', src: hsTrial.prototypeFrames[12], actions: [],
-    },
-    {
-      id: 'allianceGate', step: '14', group: '同盟线', title: '同盟挑战-未加入联盟',
-      caption: '未加入联盟时显示加入引导。', src: hsTrial.prototypeFrames[13],
+      id: 'allianceGate', step: '15', group: '同盟线', title: '同盟挑战-未加入联盟',
+      caption: '未加入联盟时先引导加入。', src: hsTrial.prototypeFrames[14],
       actions: [
         { label: '立即加入', target: 'allianceChallenge', hotspot: figmaHotspot(232, 1230, 256, 131) },
-        { label: '已加入联盟', target: 'allianceChallenge', hotspot: figmaPoint(530, 1420) },
+        { label: '切换个人挑战', target: 'personalPre', hotspot: figmaHotspot(6, 1371, 354, 97) },
       ],
     },
     {
-      id: 'allianceChallenge', step: '15', group: '同盟线', title: '同盟挑战',
-      caption: '已加入联盟后可查看记录或选择联盟难度。', src: hsTrial.prototypeFrames[14],
+      id: 'allianceChallenge', step: '16', group: '同盟线', title: '同盟挑战',
+      caption: '已加入联盟后可查看记录或发起同盟挑战。', src: hsTrial.prototypeFrames[15],
       actions: [
-        { label: '打开记录', target: 'allianceRecordEmpty', hotspot: figmaHotspot(595, 333, 128, 74) },
-        { label: '挑战', target: 'allianceUnplaced', hotspot: figmaHotspot(50, 1110, 620, 78) },
-        { label: '个人挑战', target: 'personalPre', hotspot: figmaHotspot(0, 1240, 340, 120) },
+        { label: '打开记录', target: 'allianceRecordEmpty', hotspot: figmaHotspot(612, 280, 92, 103) },
+        { label: '挑战', target: 'allianceUnplaced', hotspot: figmaHotspot(29, 1272, 663, 84) },
+        { label: '切换个人挑战', target: 'personalPre', hotspot: figmaHotspot(6, 1371, 354, 97) },
       ],
     },
     {
-      id: 'allianceUnplaced', step: '16', group: '同盟线', title: '同盟挑战-未放置野怪',
-      caption: '选定难度后进入野怪放置流程。', src: hsTrial.prototypeFrames[15],
+      id: 'allianceUnplaced', step: '17', group: '同盟线', title: '同盟挑战-未放置野怪',
+      caption: '选定同盟难度后进入野怪放置流程。', src: hsTrial.prototypeFrames[16],
       actions: [
-        { label: '打开记录', target: 'allianceRecordList', hotspot: figmaHotspot(595, 333, 128, 74) },
-        { label: '去放置野怪', target: 'placeMonster', hotspot: figmaHotspot(220, 1230, 280, 120) },
+        { label: '打开记录', target: 'allianceRecordList', hotspot: figmaHotspot(595, 276, 125, 115) },
+        { label: '去放置野怪', target: 'placeMonster', hotspot: figmaHotspot(232, 1230, 256, 125) },
       ],
     },
     {
-      id: 'allianceRecordEmpty', step: '17', group: '记录线', title: '同盟记录-空',
-      caption: '尚无同盟挑战记录。', src: hsTrial.prototypeFrames[16],
-      actions: [{ label: '关闭记录', target: 'allianceChallenge', hotspot: figmaHotspot(620, 80, 80, 80) }],
+      id: 'allianceRecordEmpty', step: '18', group: '记录线', title: '同盟记录-空',
+      caption: '尚无同盟挑战记录。', src: hsTrial.prototypeFrames[17],
+      actions: [{ label: '关闭记录', target: 'back', hotspot: figmaHotspot(623, 377, 80, 80) }],
     },
     {
-      id: 'allianceRecordList', step: '18', group: '记录线', title: '同盟记录-有记录',
-      caption: '展示已有同盟挑战记录。', src: hsTrial.prototypeFrames[17],
-      actions: [{ label: '关闭记录', target: 'allianceUnplaced', hotspot: figmaHotspot(620, 80, 80, 80) }],
+      id: 'allianceRecordList', step: '19', group: '记录线', title: '同盟记录-有记录',
+      caption: '展示已有同盟挑战记录。', src: hsTrial.prototypeFrames[18],
+      actions: [{ label: '关闭记录', target: 'back', hotspot: figmaHotspot(623, 370, 80, 80) }],
     },
     {
-      id: 'placeMonster', step: '19', group: '同盟线', title: '放置野怪',
-      caption: '在世界地图确认或取消怪物放置。', src: hsTrial.prototypeFrames[18],
+      id: 'placeMonster', step: '20', group: '同盟线', title: '放置野怪',
+      caption: '在世界地图确认或取消野怪放置。', src: hsTrial.prototypeFrames[19],
       actions: [
-        { label: '确认放置', target: 'allianceWorldEntry', hotspot: figmaPoint(490, 1120) },
-        { label: '取消放置', target: 'allianceUnplaced', hotspot: figmaPoint(278, 1120) },
-        { label: '关闭放置', target: 'allianceUnplaced', hotspot: figmaHotspot(620, 80, 80, 80) },
+        { label: '确认放置', target: 'worldPreparing', hotspot: figmaHotspot(403, 1034, 127, 116) },
+        { label: '取消放置', target: 'back', hotspot: figmaHotspot(192, 1034, 125, 116) },
       ],
     },
     {
-      id: 'allianceWorldEntry', step: '20', group: '战斗线', title: '野外大世界-入口',
-      caption: '怪物落地后点击地图要塞。', src: hsTrial.prototypeFrames[19],
-      actions: [{ label: '点击地图要塞', target: 'alliancePreparing', hotspot: figmaHotspot(370, 760, 290, 360) }],
+      id: 'worldPreparing', step: '21', group: '战斗线', title: '野外大世界-准备中',
+      caption: '野怪落地进入准备期，点击气泡查看信息。', src: hsTrial.prototypeFrames[20],
+      actions: [{ label: '点击气泡查看', target: 'guildMonster', hotspot: figmaHotspot(160, 790, 397, 455) }],
     },
     {
-      id: 'alliancePreparing', step: '21', group: '战斗线', title: '野外大世界-准备中',
-      caption: '准备阶段点击怪物气泡查看详情。', src: hsTrial.prototypeFrames[20],
-      actions: [{ label: '点击气泡查看', target: 'monsterPreparing', hotspot: figmaHotspot(370, 790, 270, 360) }],
+      id: 'guildMonster', step: '22', group: '战斗线', title: '公会怪物信息-战斗中',
+      caption: '战斗期查看野怪信息并发起集结。', src: hsTrial.prototypeFrames[21],
+      actions: [{ label: '集结', target: 'allianceMarchRally', hotspot: figmaHotspot(293, 1245, 140, 147) }],
     },
     {
-      id: 'monsterPreparing', step: '22', group: '战斗线', title: '公会怪物信息-准备中',
-      caption: '查看准备信息并推进到战斗中。', src: hsTrial.prototypeFrames[21],
-      actions: [
-        { label: '进入战斗中', target: 'allianceWorldBattle', hotspot: figmaPoint(360, 1290) },
-        { label: '关闭信息', target: 'alliancePreparing', hotspot: figmaHotspot(620, 80, 80, 80) },
-      ],
+      id: 'allianceMarchRally', step: '23', group: '战斗线', title: '出征界面-集结',
+      caption: '设置集结时长后出征。', src: hsTrial.prototypeFrames[22],
+      actions: [{ label: '出征', target: 'allianceRally', hotspot: figmaHotspot(380, 1204, 311, 125, 1569) }],
     },
     {
-      id: 'allianceWorldBattle', step: '23', group: '战斗线', title: '野外大世界-战斗中',
-      caption: '战斗中再次点击怪物气泡。', src: hsTrial.prototypeFrames[22],
-      actions: [{ label: '点击战斗气泡', target: 'monsterBattle', hotspot: figmaHotspot(370, 790, 270, 360) }],
+      id: 'allianceRally', step: '24', group: '战斗线', title: '集结界面',
+      caption: '集结队伍集合完毕后结束集结。', src: hsTrial.prototypeFrames[23],
+      actions: [{ label: '结束集结', target: 'worldAfterBattle', hotspot: figmaHotspot(0, 1521, 131, 102, 1569) }],
     },
     {
-      id: 'monsterBattle', step: '24', group: '战斗线', title: '公会怪物信息-战斗中',
-      caption: '在战斗信息中选择攻击或集结。', src: hsTrial.prototypeFrames[23],
-      actions: [
-        { label: '攻击', target: 'marchAttack', hotspot: figmaHotspot(0, 1040, 360, 220) },
-        { label: '集结', target: 'marchRally', hotspot: figmaHotspot(360, 1040, 360, 220) },
-        { label: '关闭信息', target: 'allianceWorldBattle', hotspot: figmaHotspot(620, 80, 80, 80) },
-      ],
-    },
-    {
-      id: 'marchAttack', step: '25', group: '战斗线', title: '出征界面-攻击',
-      caption: '选择舰队并直接出征攻击。', src: hsTrial.prototypeFrames[24],
-      actions: [{ label: '出征', target: 'worldAfterBattle', hotspot: figmaPoint(550, 1260, 1643) }],
-    },
-    {
-      id: 'marchRally', step: '26', group: '战斗线', title: '出征界面-集结',
-      caption: '设置集结时间后出征。', src: hsTrial.prototypeFrames[25],
-      actions: [{ label: '发起集结', target: 'rally', hotspot: figmaPoint(550, 1260, 1643) }],
-    },
-    {
-      id: 'rally', step: '27', group: '战斗线', title: '集结界面',
-      caption: '查看集结队伍并结束集结流程。', src: hsTrial.prototypeFrames[26],
-      actions: [{ label: '结束集结', target: 'worldAfterBattle', hotspot: figmaPoint(65, 1550, 1643) }],
-    },
-    {
-      id: 'worldAfterBattle', step: '28', group: '收束', title: '野外主界面-战斗后',
-      caption: '战斗结束后返回野外主界面。', src: hsTrial.prototypeFrames[27], actions: [],
+      id: 'worldAfterBattle', step: '25', group: '收束', title: '野外主界面-战斗后',
+      caption: '战斗结束回到野外，可再次进入同盟挑战。', src: hsTrial.prototypeFrames[24],
+      actions: [{ label: '再次进入同盟挑战', target: 'allianceChallenge', hotspot: figmaHotspot(157, 674, 407, 540) }],
     },
   ];
-  const [prototypeStep, setPrototypeStep] = useState(0);
-  const currentPrototype = prototypePreview[prototypeStep];
   const prototypeIndexById = new Map<string, number>(prototypePreview.map((item, i) => [item.id, i]));
-  const getPrototypeTitle = (id: string) => prototypePreview[prototypeIndexById.get(id) ?? 0].title;
+  // 用栈记录浏览路径，Figma 里配置为 Back 的热区才能真正回到上一屏。
+  const [prototypeStack, setPrototypeStack] = useState<number[]>([0]);
+  const currentPrototype = prototypePreview[prototypeStack[prototypeStack.length - 1]];
+  const getPrototypeTitle = (id: string) =>
+    id === 'back' ? '上一步' : prototypePreview[prototypeIndexById.get(id) ?? 0].title;
   const goPrototype = (id: string) => {
-    const nextIndex = prototypeIndexById.get(id);
-    if (nextIndex !== undefined) setPrototypeStep(nextIndex);
+    setPrototypeStack((stack) => {
+      if (id === 'back') return stack.length > 1 ? stack.slice(0, -1) : stack;
+      const nextIndex = prototypeIndexById.get(id);
+      if (nextIndex === undefined || nextIndex === stack[stack.length - 1]) return stack;
+      return [...stack, nextIndex].slice(-40);
+    });
   };
   const configItems = [
     ['portrait', '教官立绘', '后台配置不同难度对应的教官形象'],
@@ -1961,7 +1944,6 @@ export function HighSeasNavyTrialExactCase() {
         <HSSection className="hs-sec hs-dark hs-cover-sec" top={0} height={1120}>
           <HSAbs className="hs-cover-panel" style={{ left: 0, top: 0 }} />
           <div className="hs-hero-orb one" /><div className="hs-hero-orb two" />
-          <div className="hs-dot-matrix" style={{ left: 80, top: 80 }} />
           <HSAbs className="hs-cover-line" style={{ left: 120, top: 508, width: 120 }} />
           <HSAbs className="hs-cover-en" style={{ left: 120, top: 533 }}>GENERAL'S TRIAL</HSAbs>
           <HSAbs className="hs-cover-title" style={{ left: 120, top: 573 }}>海军试炼</HSAbs>
@@ -1990,7 +1972,6 @@ export function HighSeasNavyTrialExactCase() {
               </div>
             </div>
           </HSAbs>
-          <div className="hs-cover-diag" />
         </HSSection>
 
         <div className="hs-trial-rest-offset">

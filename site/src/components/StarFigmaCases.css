@@ -1666,7 +1666,7 @@
   position: relative;
   display: block;
   width: 318px;
-  height: 678px;
+  height: 689px;
   padding: 0;
   overflow: hidden;
   border: 1px solid rgba(242,153,51,.52);
@@ -1681,10 +1681,9 @@
 }
 .hs-prototype-live img {
   width: 100%;
-  height: 104.75%;
+  height: 100%;
   object-fit: fill;
   filter: saturate(.96) brightness(.9);
-  transform: translateY(-4.53%);
 }
 .hs-prototype-hotspot {
   position: absolute;
