@@ -140,22 +140,34 @@ function DashedLine({ l, t, w, h, color = '#e55959' }: { l: number; t: number; w
     />
   );
 }
-function CalloutLine({ l, t, w, color = '#5b7bf5', dot = 'end' }: { l: number; t: number; w: number; color?: string; dot?: 'start' | 'end' }) {
+function CalloutLine({ l, t, w, color = '#5b7bf5', dot = 'end', size = 8 }: { l: number; t: number; w: number; color?: string; dot?: 'start' | 'end'; size?: number }) {
+  const r = size / 2;
   return (
-    <A l={l} t={t - 4} w={w + 8} h={8} style={{ pointerEvents: 'none' }}>
-      {dot === 'start' ? <span style={{ position: 'absolute', left: 0, top: 0, width: 8, height: 8, borderRadius: '50%', background: color }} /> : null}
-      <span style={{ position: 'absolute', left: dot === 'start' ? 8 : 0, top: 3, width: w, height: 2, background: color, borderRadius: 2 }} />
-      {dot === 'end' ? <span style={{ position: 'absolute', left: w, top: 0, width: 8, height: 8, borderRadius: '50%', background: color }} /> : null}
+    <A l={l} t={t - r} w={w + size} h={size} style={{ pointerEvents: 'none' }}>
+      {dot === 'start' ? <span style={{ position: 'absolute', left: 0, top: 0, width: size, height: size, borderRadius: '50%', background: color }} /> : null}
+      <span style={{ position: 'absolute', left: dot === 'start' ? size : 0, top: r - 1, width: w, height: 2, background: color, borderRadius: 2 }} />
+      {dot === 'end' ? <span style={{ position: 'absolute', left: w, top: 0, width: size, height: size, borderRadius: '50%', background: color }} /> : null}
     </A>
   );
 }
 function HouseHead({ title, en, sub, subStyle }: { title: string; en: string; sub?: string; subStyle?: CSS }) {
   return (
     <>
-      <A l={80} t={60} style={{ fontSize: 36, fontWeight: 800, color: '#333340', whiteSpace: 'nowrap' }}>{title}</A>
-      <A l={80} t={108} style={{ fontSize: 16, fontWeight: 600, color: '#5b7bf5', whiteSpace: 'pre' }}>{en}</A>
-      {sub ? <A l={80} t={178} style={{ fontSize: 24, fontWeight: 700, color: '#262633', ...subStyle }}>{sub}</A> : null}
+      <A l={80} t={58} style={{ fontSize: 36, lineHeight: '44px', fontWeight: 800, color: '#333340', whiteSpace: 'nowrap' }}>{title}</A>
+      <A l={80} t={106} style={{ fontSize: 16, lineHeight: '19px', fontWeight: 600, color: '#5b7bf5', whiteSpace: 'pre' }}>{en}</A>
+      {sub ? <A l={80} t={178} style={{ fontSize: 24, lineHeight: '34px', fontWeight: 700, color: '#262633', ...subStyle }}>{sub}</A> : null}
     </>
+  );
+}
+
+/** Orange dot → dashed line → triangle, the connector between the 玩家目标 cards. */
+function DashConnector({ l, t, w = 77, color = '#fa8c59' }: { l: number; t: number; w?: number; color?: string }) {
+  return (
+    <A l={l} t={t} w={w} h={16} style={{ pointerEvents: 'none' }}>
+      <span style={{ position: 'absolute', left: 0, top: 3, width: 10, height: 10, borderRadius: '50%', background: color }} />
+      <span style={{ position: 'absolute', left: 9, top: 7, width: w - 25, height: 2, backgroundImage: `repeating-linear-gradient(90deg, ${color} 0 5px, transparent 5px 10px)` }} />
+      <span style={{ position: 'absolute', right: 0, top: 0, width: 0, height: 0, borderTop: '8px solid transparent', borderBottom: '8px solid transparent', borderLeft: `16px solid ${color}` }} />
+    </A>
   );
 }
 
@@ -170,95 +182,87 @@ function HousePetCase() {
     <div className="fg-canvas house-canvas" data-node-id="8328:11273">
       {/* 1 · 封面 */}
       <section className="hp-sec hp-cover" style={{ height: 900, color: '#fff' }}>
-        <A l={0} t={0} w={1280} h={900} className="hp-cover-gradient" />
-        <A l={-124} t={284} w={438} h={438} className="hp-cover-orbit hp-cover-orbit-a" />
-        <A l={-51} t={356} w={286} h={286} className="hp-cover-orbit hp-cover-orbit-b" />
-        <A l={139} t={282} className="hp-cover-letter">F</A>
-        <A l={156} t={315} w={222} h={312} className="hp-cover-letter-mask" />
-        <A l={278} t={473} w={913} h={2} className="hp-cover-rule" />
-        <A l={880} t={248} w={465} h={3} className="hp-cover-speed hp-cover-speed-a" />
-        <A l={958} t={343} w={410} h={3} className="hp-cover-speed hp-cover-speed-b" />
-        <A l={1032} t={443} w={315} h={3} className="hp-cover-speed hp-cover-speed-c" />
-        <A l={1261} t={470} w={6} h={6} className="hp-cover-pin" />
-        <A l={320} t={342} className="hp-cover-copy">
-          <h1>房屋家具+宠物搜集</h1>
-          <p className="hp-cover-subtitle">交互设计</p>
-          <p className="hp-cover-desc">通过在大世界捕捉宠物，可将宠物摆放在房屋<br />丰富房屋玩法，提升玩家沉浸感与风雅值</p>
+        <A l={0} t={0} w={1280} h={1000} className="hp-cover-plate" />
+        <A l={-100} t={250} w={400} h={400} className="hp-cover-blob hp-cover-blob-a" />
+        <A l={1086} t={-61} w={280} h={280} className="hp-cover-blob hp-cover-blob-b" />
+        <A l={140} t={336} className="hp-cover-copy"><h1 className="hp-cover-title">家园</h1></A>
+        <A l={158} t={518} className="hp-cover-copy"><p className="hp-cover-subtitle">房屋家具/宠物搜集交互设计</p></A>
+        <A l={158} t={626} className="hp-cover-copy"><p className="hp-cover-desc">通过在大世界捕捉宠物，可将宠物摆放在房屋丰富房屋玩法，提升玩家沉浸感与风雅值</p></A>
+        <A l={117} t={817} w={1101} h={6} className="hp-cover-dots">
+          {Array.from({ length: 21 }).map((_, i) => <i key={i} style={{ left: i * 55 }} />)}
         </A>
-        <A l={104} t={810} w={1030} h={10} className="hp-cover-dots">
-          {Array.from({ length: 20 }).map((_, i) => <i key={i} style={{ left: i * 55 }} />)}
-        </A>
-        <A l={0} t={0} w={1280} h={900} className="hp-cover-vignette" />
       </section>
 
       {/* 2 · 设计背景 */}
       <section className="hp-sec" style={{ height: 800, background: '#f7f2eb' }}>
-        <HouseHead title="设计背景" en="THE  BACKGROUND" sub="为什么要做房屋家具+宠物搜集？" subStyle={{ fontSize: 28, whiteSpace: 'nowrap' }} />
-        <A l={80} t={248} w={530} h={200} style={card} />
-        <A l={80} t={248} w={120} h={40} style={{ background: '#5b7bf5', borderRadius: '16px 0 12px 0' }} />
-        <A l={95} t={255} style={{ ...semi(16, '#fff'), whiteSpace: 'nowrap' }}>系统目的</A>
-        <A l={105} t={308} w={480} style={reg(16, '#595966')}>通过在大世界捕捉宠物，可将宠物摆放在房屋。<br />增加房屋系统的可玩性和内容深度，<br />提升玩家对房屋的归属感与情感连接。</A>
-        <A l={670} t={248} w={530} h={200} style={card} />
-        <A l={670} t={248} w={120} h={40} style={{ background: '#fa8c59', borderRadius: '16px 0 12px 0' }} />
-        <A l={685} t={255} style={{ ...semi(16, '#fff'), whiteSpace: 'nowrap' }}>界面需求</A>
-        <A l={695} t={308} w={480} style={reg(16, '#595966')}>房屋布置界面-物品列表<br />新增宠物Tab与宠物详情面板<br />新增摆放/回收/移动/旋转交互</A>
+        <HouseHead title="设计背景" en="THE  BACKGROUND" sub="为什么要做家园？" subStyle={{ fontSize: 28, lineHeight: '34px', whiteSpace: 'nowrap' }} />
+        <A l={80} t={248} w={530} h={200} style={{ ...card, borderRadius: 16 }} />
+        <A l={80} t={248} w={170} h={50} style={{ background: '#5b7bf5', borderRadius: '16px 0 12px 0' }} />
+        <A l={101} t={254} style={{ ...semi(32, '#fff'), lineHeight: '39px', whiteSpace: 'nowrap' }}>系统目的</A>
+        <A l={105} t={331} w={504} style={{ ...reg(24, '#595966'), lineHeight: '29px' }}>通过在大世界捕捉宠物，可将宠物摆放在房屋。<br />增加房屋系统的可玩性和内容深度，<br />提升玩家对房屋的归属感与情感连接。</A>
+        <A l={670} t={248} w={530} h={200} style={{ ...card, borderRadius: 16 }} />
+        <A l={670} t={248} w={170} h={50} style={{ background: '#fa8c59', borderRadius: '16px 0 12px 0' }} />
+        <A l={691} t={253} style={{ ...semi(32, '#fff'), lineHeight: '39px', whiteSpace: 'nowrap' }}>界面需求</A>
+        <A l={695} t={331} w={480} style={{ ...reg(24, '#595966'), lineHeight: '29px' }}>房屋布置界面-物品列表<br />新增宠物Tab与宠物详情面板<br />新增摆放/回收/移动/旋转交互</A>
         {[
-          { l: 90, tag: '玩家', tagBg: '#fa7373', tagL: 150, c1: '更丰富的', c2: '房屋装饰体验' },
-          { l: 385, tag: '策划', tagBg: '#5b7bf5', tagL: 445, c1: '增加养成深度', c2: '提升留存' },
-          { l: 680, tag: '美术', tagBg: '#fa7373', tagL: 740, c1: '宠物模型', c2: '展示场景' },
-          { l: 975, tag: '实现', tagBg: '#5b7bf5', tagL: 1035, c1: '复用现有', c2: '布置框架' },
+          { l: 90, tag: '玩家', tagBg: '#fa7373', tagL: 140, c1: '更丰富的', c2: '房屋装饰体验' },
+          { l: 385, tag: '策划', tagBg: '#5b7bf5', tagL: 435, c1: '增加养成深度', c2: '提升留存' },
+          { l: 680, tag: '美术', tagBg: '#fa7373', tagL: 730, c1: '宠物模型', c2: '展示场景' },
+          { l: 975, tag: '实现', tagBg: '#5b7bf5', tagL: 1025, c1: '复用现有', c2: '布置框架' },
         ].map((s) => (
           <div key={s.tag}>
             <A l={s.l} t={558} w={220} h={160} style={card} />
-            <A l={s.tagL} t={538} w={100} h={36} style={{ background: s.tagBg, borderRadius: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(16, '#fff') }}>{s.tag}</A>
-            <A l={s.l + 40} t={608} w={140} style={{ ...reg(16, '#595966'), textAlign: 'center' }}>{s.c1}<br />{s.c2}</A>
+            <A l={s.tagL} t={538} w={120} h={40} style={{ background: s.tagBg, borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(32, '#fff'), lineHeight: '39px' }}>{s.tag}</A>
+            <A l={s.l} t={596} w={220} style={{ ...reg(26, '#595966'), lineHeight: '31px', textAlign: 'center' }}>{s.c1}<br />{s.c2}</A>
           </div>
         ))}
-        <A l={1257} t={445} w={6} h={6} style={{ borderRadius: '50%', background: '#5b7bf5' }} />
+        <A l={1257} t={445} w={6} h={6} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.25)' }} />
       </section>
 
       {/* 3 · 玩家目标 */}
       <section className="hp-sec" style={{ height: 800, background: '#e8ebf0' }}>
         <A l={0} t={431} w={1280} h={369} style={{ background: '#5b7bf5' }} />
-        <A l={80} t={73} style={{ ...bold(36, '#333340'), whiteSpace: 'nowrap' }}>玩家目标</A>
-        <A l={80} t={121} style={{ ...semi(16, '#5b7bf5'), whiteSpace: 'pre' }}>THE  GOALS</A>
+        <A l={80} t={73} style={{ ...bold(36, '#333340'), lineHeight: '44px', whiteSpace: 'nowrap' }}>玩家目标</A>
+        <A l={80} t={121} style={{ ...semi(16, '#5b7bf5'), lineHeight: '19px', whiteSpace: 'pre' }}>THE  GOALS</A>
         {[
-          { l: 130, cl: 245, nl: 271, mt: 260, tl: 232, n: '1', meta: '搜集', title: '抓捕', c1: '在大世界发现并抓捕', c2: '限时出没的宠物', cx: 280 },
-          { l: 490, cl: 605, nl: 628, mt: 620, tl: 592, n: '2', meta: '布置', title: '摆放', c1: '将宠物和家具', c2: '摆放在自己的房屋中', cx: 640 },
-          { l: 850, cl: 965, nl: 988, mt: 980, tl: 952, n: '3', meta: '成长', title: '风雅', c1: '通过布置提升风雅值', c2: '解锁更多房屋功能', cx: 1000 },
+          { l: 130, cl: 245, nl: 271, mt: 256, tl: 232, n: '1', meta: '搜集', title: '抓捕', c1: '在大世界发现并抓捕', c2: '限时出没的宠物', dx: 163 },
+          { l: 490, cl: 605, nl: 628, mt: 616, tl: 592, n: '2', meta: '布置', title: '摆放', c1: '将宠物和家具', c2: '摆放在自己的房屋中', dx: 523 },
+          { l: 850, cl: 965, nl: 988, mt: 976, tl: 952, n: '3', meta: '成长', title: '风雅', c1: '通过布置提升风雅值', c2: '解锁更多房屋功能', dx: 883 },
         ].map((s) => (
           <div key={s.n}>
             <A l={s.l} t={314} w={300} h={340} style={{ ...card, borderRadius: 16, boxShadow: '0 4px 8px rgba(0,0,0,0.25)' }} />
-            <A l={s.cl} t={259} w={70} h={70} style={{ borderRadius: '50%', background: '#fa7359' }} />
-            <A l={s.nl} t={274} style={{ ...bold(36, '#fff'), whiteSpace: 'nowrap' }}>{s.n}</A>
-            <A l={s.mt} t={354} style={{ ...semi(20, '#fa7359'), whiteSpace: 'nowrap' }}>{s.meta}</A>
-            <A l={s.tl} t={394} style={{ ...bold(48, '#333359'), whiteSpace: 'nowrap' }}>{s.title}</A>
-            <A l={s.cx - 100} t={474} w={200} style={{ ...reg(20, '#737380'), textAlign: 'center' }}>{s.c1}<br />{s.c2}</A>
+            <A l={s.cl} t={259} w={70} h={70} style={{ borderRadius: '50%', background: '#fab880' }} />
+            <A l={s.nl} t={274} style={{ ...bold(36, '#fff'), lineHeight: '44px', whiteSpace: 'nowrap' }}>{s.n}</A>
+            <A l={s.mt} t={354} style={{ ...semi(24, '#fa7359'), lineHeight: '29px', whiteSpace: 'nowrap' }}>{s.meta}</A>
+            <A l={s.tl} t={394} style={{ ...bold(48, '#333359'), lineHeight: '58px', whiteSpace: 'nowrap' }}>{s.title}</A>
+            <A l={s.dx} t={474} w={234} style={{ ...reg(26, '#737380'), lineHeight: '31px', textAlign: 'center' }}>{s.c1}<br />{s.c2}</A>
           </div>
         ))}
+        <DashConnector l={425} t={489} />
+        <DashConnector l={785} t={496} />
       </section>
 
       {/* 4 · 系统架构 */}
       <section className="hp-sec" style={{ height: 700, background: '#f7f2eb' }}>
-        <A l={80} t={60} style={{ ...bold(36, '#333340'), whiteSpace: 'nowrap' }}>系统架构</A>
-        <A l={80} t={108} style={{ ...semi(16, '#5b7bf5'), whiteSpace: 'pre' }}>SYSTEM  ARCHITECTURE</A>
-        <A l={80} t={180} w={800} style={bold(22, '#33334d')}>从入口到核心玩法，构建完整的宠物搜集与房屋布置体验闭环</A>
+        <A l={80} t={60} style={{ ...bold(36, '#333340'), lineHeight: '44px', whiteSpace: 'nowrap' }}>系统架构</A>
+        <A l={80} t={108} style={{ ...semi(16, '#5b7bf5'), lineHeight: '19px', whiteSpace: 'pre' }}>SYSTEM  ARCHITECTURE</A>
+        <A l={80} t={180} w={800} style={{ ...bold(26, '#33334d'), lineHeight: '31px' }}>从入口到核心玩法，构建完整的宠物搜集与房屋布置体验闭环</A>
         {[
-          { l: 100, nl: 147, name: '大世界', bg: '#fa8c59', dl: 130, d1: '宠物出没', d2: '系统广播' },
-          { l: 330, nl: 377, name: '三生石', bg: '#5b7bf5', dl: 360, d1: '房屋入口', d2: '房屋信息' },
-          { l: 560, nl: 596, name: '房屋布置', bg: '#5b7bf5', dl: 590, d1: '物品列表', d2: '宠物/家具' },
-          { l: 790, nl: 826, name: '摆放交互', bg: '#fa7373', dl: 820, d1: '移动/旋转', d2: '回收/确认' },
-          { l: 1020, nl: 1056, name: '宠物抓捕', bg: '#fa7373', dl: 1050, d1: '追逐玩法', d2: '成功/失败' },
+          { l: 100, name: '大世界', bg: '#5b7bf5', d1: '宠物出没', d2: '系统广播' },
+          { l: 330, name: '三生石', bg: '#5b7bf5', d1: '房屋入口', d2: '房屋信息' },
+          { l: 560, name: '房屋布置', bg: '#5b7bf5', d1: '物品列表', d2: '宠物/家具' },
+          { l: 790, name: '摆放交互', bg: '#fa8c59', d1: '移动/旋转', d2: '回收/确认' },
+          { l: 1020, name: '宠物抓捕', bg: '#fa8c59', d1: '追逐玩法', d2: '成功/失败' },
         ].map((s, i) => (
           <div key={s.name}>
-            <A l={s.l} t={283} w={160} h={160} style={{ borderRadius: '50%', background: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(22, '#fff') }}>{s.name}</A>
-            <A l={s.dl} t={456} w={100} style={{ ...reg(16, '#666673'), textAlign: 'center' }}>{s.d1}<br />{s.d2}</A>
-            {i < 4 ? <HArrow l={265 + i * 230} t={356} w={62} color="#8fa4f8" thickness={3} /> : null}
+            <A l={s.l} t={283} w={160} h={160} style={{ borderRadius: '50%', background: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(32, '#fff'), lineHeight: '39px' }}>{s.name}</A>
+            <A l={s.l} t={456} w={160} style={{ ...reg(24, '#666673'), lineHeight: '29px', textAlign: 'center' }}>{s.d1}<br />{s.d2}</A>
+            {i < 4 ? <HArrow l={[265, 494, 724, 954][i]} t={356} w={62} color="#80808c" thickness={2} /> : null}
           </div>
         ))}
-        <A l={381} t={576} w={518} h={2} style={{ background: '#5b7bf5' }} />
-        <A l={390} t={586} w={500} style={{ ...semi(20, '#5b7bf5'), textAlign: 'center' }}>抓捕成功后，宠物进入物品列表，可在房屋中摆放</A>
-        <A l={1257} t={410} w={6} h={6} style={{ borderRadius: '50%', background: '#5b7bf5' }} />
+        <A l={381} t={576} w={518} h={2} style={{ backgroundImage: 'repeating-linear-gradient(90deg, #5b7bf5 0 6px, transparent 6px 12px)' }} />
+        <A l={354} t={583} w={572} style={{ ...semi(26, '#5b7bf5'), lineHeight: '31px', textAlign: 'center' }}>抓捕成功后，宠物进入物品列表，可在房屋中摆放</A>
+        <A l={1257} t={410} w={6} h={6} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.25)' }} />
       </section>
 
       {/* 5 · 房屋入口 */}
@@ -291,12 +295,12 @@ function HousePetCase() {
         <A l={550} t={699} style={{ ...bold(20, '#262633'), whiteSpace: 'nowrap' }}>物品列表 · 家具详情</A>
         <A l={290} t={215} w={700} h={393} style={{ borderRadius: 12, overflow: 'hidden' }}><Img src={houseAssets.layoutPet} alt="宠物详情" className="hp-cover-img" /></A>
         <A l={286} t={734} w={700} h={393} style={{ borderRadius: 12, overflow: 'hidden' }}><Img src={houseAssets.layoutFurniture} alt="家具详情" className="hp-cover-img" /></A>
-        <CalloutLine l={990} t={332} w={45} color="#5b7bf5" dot="end" />
-        <CalloutLine l={990} t={485} w={45} color="#5b7bf5" dot="end" />
-        <CalloutLine l={986} t={851} w={45} color="#5b7bf5" dot="end" />
-        <CalloutLine l={986} t={1004} w={45} color="#5b7bf5" dot="end" />
-        <CalloutLine l={237} t={564} w={53} color="#5b7bf5" dot="start" />
-        <CalloutLine l={233} t={1083} w={53} color="#5b7bf5" dot="start" />
+        <CalloutLine l={990} t={332} w={45} color="#5b7bf5" dot="end" size={16} />
+        <CalloutLine l={990} t={485} w={45} color="#5b7bf5" dot="end" size={16} />
+        <CalloutLine l={986} t={851} w={45} color="#5b7bf5" dot="end" size={16} />
+        <CalloutLine l={986} t={1004} w={45} color="#5b7bf5" dot="end" size={16} />
+        <CalloutLine l={237} t={564} w={45} color="#5b7bf5" dot="start" size={16} />
+        <CalloutLine l={233} t={1083} w={45} color="#5b7bf5" dot="start" size={16} />
         {/* right callouts */}
         <A l={1050} t={323} style={{ ...semi(15, '#33334d'), whiteSpace: 'nowrap' }}>宠物详情面板</A>
         <A l={1050} t={345} style={{ ...reg(16, '#737380'), whiteSpace: 'nowrap' }}>展示宠物名称、<br />风雅值加成、模型预览、<br />出没时间、描述文本</A>
@@ -315,9 +319,9 @@ function HousePetCase() {
         {/* 设计方法 */}
         <A l={100} t={1252} w={1080} h={1} style={{ background: '#d9d9d9' }} />
         <A l={80} t={1274} style={{ ...bold(32, '#262633'), whiteSpace: 'nowrap' }}>设计方法</A>
-        <A l={80} t={1340} w={250} style={bold(72, '#5b7bf5')}>7±2</A>
-        <A l={80} t={1425} w={200} style={bold(20, '#262626')}>Miller定律</A>
-        <A l={80} t={1455} w={250} style={reg(16, '#737373')}>人类工作记忆的容量上限</A>
+        <A l={80} t={1340} w={250} style={{ ...bold(72, '#5b7bf5'), lineHeight: '87px' }}>7±2</A>
+        <A l={80} t={1425} w={200} style={{ ...bold(20, '#262626'), lineHeight: '24px' }}>Miller定律</A>
+        <A l={80} t={1455} w={250} style={{ ...reg(20, '#737373'), lineHeight: '24px' }}>人类工作记忆的容量上限</A>
         <A l={320} t={1350} w={1} h={249} style={{ background: '#d9d9d9' }} />
         {[
           { t0: 1350, tag: 'Tab分类', d: '将家具/宠物拆为独立认知空间，避免一次面对全部物品', s: '分块(Chunking)' },
@@ -325,14 +329,14 @@ function HousePetCase() {
           { t0: 1550, tag: '点击展开', d: '默认只显示缩略图，详情按需展开，逐层释放信息', s: '渐进披露' },
         ].map((r, i) => (
           <div key={r.tag}>
-            <A l={360} t={r.t0} w={100} h={30} style={{ background: 'rgba(91,123,245,0.1)', borderRadius: 15, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(16, '#5b7bf5') }}>{r.tag}</A>
-            <A l={480} t={r.t0 + 5} w={480} style={reg(16, '#333')}>{r.d}</A>
-            <A l={480} t={r.t0 + 30} w={200} style={reg(16, '#999')}>{r.s}</A>
+            <A l={360} t={r.t0} w={100} h={30} style={{ background: 'rgba(91,123,245,0.1)', borderRadius: 15, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(20, '#5b7bf5'), lineHeight: '24px' }}>{r.tag}</A>
+            <A l={480} t={r.t0 + 5} w={488} style={{ ...reg(20, '#333333'), lineHeight: '24px' }}>{r.d}</A>
+            <A l={480} t={r.t0 + 30} w={220} style={{ ...reg(24, '#999999'), lineHeight: '29px' }}>{r.s}</A>
             {i < 2 ? <A l={360} t={r.t0 + 65} w={600} h={1} style={{ background: '#e5e5e5' }} /> : null}
           </div>
         ))}
         {/* 决策链 */}
-        <A l={80} t={1675} w={200} style={bold(20, '#262626')}>布局设计决策链</A>
+        <A l={80} t={1675} w={200} style={{ ...bold(20, '#262626'), lineHeight: '24px' }}>布局设计决策链</A>
         {[
           { l: 80, q: '物品太多怎么办？', a: 'Tab分类拆分认知空间' },
           { l: 370, q: '单类还是太多？', a: '4列网格每屏8-12个' },
@@ -341,54 +345,56 @@ function HousePetCase() {
         ].map((c) => (
           <div key={c.q}>
             <A l={c.l} t={1707} w={265} h={110} style={{ background: 'rgba(255,255,255,0.7)', borderRadius: 8 }} />
-            <A l={c.l + 12} t={1717} w={240} style={semi(16, '#d98026')}>{c.q}</A>
-            <A l={c.l + 12} t={1739} w={20} style={reg(14, '#999')}>↓</A>
-            <A l={c.l + 12} t={1759} w={240} style={bold(16, '#404040')}>{c.a}</A>
+            <A l={c.l + 12} t={1717} w={240} style={{ ...semi(20, '#d98026'), lineHeight: '24px' }}>{c.q}</A>
+            <A l={c.l + 12} t={1745} w={20} style={{ fontSize: 20, lineHeight: '24px', fontWeight: 900, color: '#999999' }}>↓</A>
+            <A l={c.l + 12} t={1773} w={240} style={{ ...bold(20, '#404040'), lineHeight: '24px' }}>{c.a}</A>
           </div>
         ))}
         <A l={80} t={1857} w={1135} h={80} style={{ background: 'rgba(91,123,245,0.05)', borderRadius: 8 }} />
-        <A l={100} t={1887} w={1014} style={semi(16, '#66738c')}>格式塔接近性: 同类物品间距小于不同类间距，自动形成视觉分组，无需额外标签</A>
+        <A l={100} t={1887} w={1014} style={{ ...semi(20, '#66738c'), lineHeight: '24px' }}>格式塔接近性: 同类物品间距小于不同类间距，自动形成视觉分组，无需额外标签</A>
       </section>
 
       {/* 7 · 摆放交互 */}
       <section className="hp-sec" style={{ height: 1900, background: '#ebf0fa' }}>
         <A l={80} t={60} style={{ ...bold(36, '#333340'), whiteSpace: 'nowrap' }}>摆放交互</A>
         <A l={80} t={108} style={{ ...semi(16, '#5b7bf5'), whiteSpace: 'pre' }}>PLACEMENT  INTERACTION</A>
-        <A l={80} t={180} w={800} style={bold(26, '#33334d')}>网格化布置系统，精准控制物品位置</A>
-        <A l={80} t={230} w={800} style={reg(16, '#666673')}>进入摆放模式后，房屋场景切换为俯视网格视角。<br />绿色区域为可摆放范围，物品需在此范围内放置。</A>
+        <A l={80} t={180} w={800} style={{ ...bold(26, '#33334d'), lineHeight: '31px' }}>网格化布置系统，精准控制物品位置</A>
+        <A l={80} t={215} w={560} style={{ ...reg(24, '#666673'), lineHeight: '29px' }}>进入摆放模式后，房屋场景切换为俯视网格视角。<br />绿色区域为可摆放范围，物品需在此范围内放置。</A>
         <A l={80} t={310} w={560} h={314} style={{ borderRadius: 12, overflow: 'hidden' }}><Img src={houseAssets.placementA} alt="摆放网格" className="hp-cover-img" /></A>
         <A l={80} t={677} w={560} h={314} style={{ borderRadius: 12, overflow: 'hidden' }}><Img src={houseAssets.placementB} alt="摆放限制" className="hp-cover-img" /></A>
-        <A l={705} t={310} style={{ ...bold(20, '#33334d'), whiteSpace: 'nowrap' }}>物品操作</A>
+        <A l={705} t={310} style={{ ...bold(20, '#33334d'), lineHeight: '24px', whiteSpace: 'nowrap' }}>物品操作</A>
         {[
-          { t0: 360, k: 'R', title: '旋转', d: '点击使物品沿Y轴顺时针旋转45°', kl: 739 },
-          { t0: 470, k: 'M', title: '移动', d: '拇指长按并滑动可使物品位移', kl: 736 },
-          { t0: 580, k: 'C', title: '回收', d: '将物品放进临时收纳处', kl: 738 },
-          { t0: 690, k: 'P', title: '摆放', d: '将物品确定/取消摆放选择的位置', kl: 739 },
-          { t0: 800, k: 'S', title: '禁止', d: '超出可摆放区域时物品禁止摆放', kl: 739 },
+          { t0: 360, k: 'R', title: '旋转', d: '点击使物品沿Y轴顺时针旋转45°', kl: 737 },
+          { t0: 470, k: 'M', title: '移动', d: '拇指长按并滑动可使物品位移', kl: 734 },
+          { t0: 580, k: 'C', title: '回收', d: '将物品放进临时收纳处', kl: 736 },
+          { t0: 690, k: 'P', title: '摆放', d: '将物品确定/取消摆放选择的位置', kl: 737 },
+          { t0: 800, k: 'S', title: '禁止', d: '超出可摆放区域时物品禁止摆放', kl: 737 },
         ].map((o) => (
           <div key={o.k}>
             <A l={705} t={o.t0} w={500} h={96} style={card} />
-            <A l={723} t={o.t0 + 26} w={44} h={44} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.1)' }} />
-            <A l={o.kl} t={o.t0 + 37} style={{ ...bold(18, '#5b7bf5'), whiteSpace: 'nowrap' }}>{o.k}</A>
-            <A l={780} t={o.t0 + 25} style={{ ...bold(17, '#33334d'), whiteSpace: 'nowrap' }}>{o.title}</A>
-            <A l={780} t={o.t0 + 51} w={400} style={reg(16, '#737380')}>{o.d}</A>
+            <A l={723} t={o.t0 + 26} w={44} h={44} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.15)' }} />
+            <A l={o.kl} t={o.t0 + 34} style={{ ...bold(24, '#5b7bf5'), lineHeight: '29px', whiteSpace: 'nowrap' }}>{o.k}</A>
+            <A l={780} t={o.t0 + 19} style={{ ...bold(24, '#33334d'), lineHeight: '29px', whiteSpace: 'nowrap' }}>{o.title}</A>
+            <A l={780} t={o.t0 + 58} w={400} style={{ ...reg(20, '#737380'), lineHeight: '24px' }}>{o.d}</A>
           </div>
         ))}
-        <A l={1269} t={321} w={6} h={6} style={{ borderRadius: '50%', background: '#5b7bf5' }} />
+        <A l={1269} t={321} w={6} h={6} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.25)' }} />
         {/* 设计方法 */}
         <A l={100} t={1115} w={1080} h={1} style={{ background: '#d4ddf0' }} />
-        <A l={80} t={1149} style={{ ...bold(32, '#262633'), whiteSpace: 'nowrap' }}>设计方法</A>
-        <A l={80} t={1215} w={350} style={{ ...bold(42, '#262626'), letterSpacing: -1 }}>T = a + b</A>
-        <A l={80} t={1264} w={430} style={{ ...bold(42, '#5b7bf5'), letterSpacing: -1 }}>log<span style={{ fontSize: 22, verticalAlign: 'sub' }}>2</span>(D/W+1)</A>
-        <A l={80} t={1320} w={300} style={reg(16, '#808080')}>费茨定律 Fitts's Law</A>
-        <A l={80} t={1360} w={550} h={150} style={{ background: '#f5f7fc', borderRadius: 10 }} />
-        <A l={110} t={1375} w={400} style={bold(20, '#262626')}>W↑ 目标越大 → T↓ 操作越快</A>
-        <A l={110} t={1412} w={450} style={{ ...reg(16, '#666'), lineHeight: '24px' }}>底部操作栏按钮采用全宽设计，高度&gt;=48pt<br />物品网格卡片保证最小触控面积<br />拇指热区覆盖所有高频操作按钮</A>
-        <A l={650} t={1360} w={550} h={150} style={{ background: '#f5f7fc', borderRadius: 10 }} />
-        <A l={680} t={1375} w={400} style={bold(20, '#262626')}>D↓ 距离越近 → T↓ 操作越快</A>
-        <A l={680} t={1412} w={450} style={{ ...reg(16, '#666'), lineHeight: '24px' }}>确认/取消/旋转按钮置于屏幕底部拇指舒适区<br />操作面板紧贴选中物品，缩短视觉-操作距离<br />网格吸附减少微调需求</A>
-        <A l={80} t={1488} w={800} style={semi(20, '#5b7bf5')}>大目标 + 近距离 + 直接操纵 = 高效率、低出错的摆放体验</A>
-        <A l={80} t={1565} w={200} style={bold(20, '#262626')}>触控热区规范</A>
+        <A l={80} t={1149} style={{ ...bold(32, '#262633'), lineHeight: '39px', whiteSpace: 'nowrap' }}>设计方法</A>
+        <A l={80} t={1222} style={{ ...bold(36, '#262626'), lineHeight: '44px', whiteSpace: 'nowrap' }}>T = a + b</A>
+        <A l={310} t={1222} style={{ ...bold(36, '#5b7bf5'), lineHeight: '44px', whiteSpace: 'nowrap' }}>log</A>
+        <A l={395} t={1236} style={{ ...bold(20, '#5b7bf5'), lineHeight: '24px', whiteSpace: 'nowrap' }}>2</A>
+        <A l={415} t={1222} style={{ ...bold(36, '#5b7bf5'), lineHeight: '44px', whiteSpace: 'nowrap' }}>(D/W+1)</A>
+        <A l={80} t={1272} w={300} style={{ ...reg(16, '#808080'), lineHeight: '19px' }}>费茨定律 Fitts's Law</A>
+        <A l={80} t={1303} w={550} h={150} style={{ background: '#f5f7fc', borderRadius: 10 }} />
+        <A l={110} t={1318} w={400} style={{ ...bold(20, '#262626'), lineHeight: '24px' }}>W↑ 目标越大 → T↓ 操作越快</A>
+        <A l={110} t={1355} w={450} style={{ ...reg(20, '#666666'), lineHeight: '24px' }}>底部操作栏按钮采用全宽设计，高度&gt;=48pt<br />物品网格卡片保证最小触控面积<br />拇指热区覆盖所有高频操作按钮</A>
+        <A l={650} t={1303} w={550} h={150} style={{ background: '#f5f7fc', borderRadius: 10 }} />
+        <A l={680} t={1318} w={400} style={{ ...bold(20, '#262626'), lineHeight: '24px' }}>D↓ 距离越近 → T↓ 操作越快</A>
+        <A l={680} t={1355} w={450} style={{ ...reg(20, '#666666'), lineHeight: '24px' }}>确认/取消/旋转按钮置于屏幕底部拇指舒适区<br />操作面板紧贴选中物品，缩短视觉-操作距离<br />网格吸附减少微调需求</A>
+        <A l={80} t={1469} w={800} style={{ ...semi(20, '#5b7bf5'), lineHeight: '24px' }}>大目标 + 近距离 + 直接操纵 = 高效率、低出错的摆放体验</A>
+        <A l={80} t={1530} w={200} style={{ ...bold(20, '#262626'), lineHeight: '24px' }}>触控热区规范</A>
         {[
           { l: 80, h: '底部操作栏', a: '按钮高度>=48pt，全宽均分', b: '拇指舒适区，最大化命中率' },
           { l: 363, h: '物品网格', a: '卡片>=80pt，间距>=8pt', b: '防止误触相邻物品' },
@@ -396,16 +402,16 @@ function HousePetCase() {
           { l: 929, h: '确认/取消', a: '主按钮面积>次按钮', b: '高频操作拥有更大热区' },
         ].map((c) => (
           <div key={c.h}>
-            <A l={c.l} t={1598} w={270} h={115} style={{ background: 'rgba(255,255,255,0.7)', borderRadius: 8 }} />
-            <A l={c.l + 12} t={1608} w={250} style={bold(20, '#5b7bf5')}>{c.h}</A>
-            <A l={c.l + 12} t={1648} w={250} style={semi(16, '#333')}>{c.a}</A>
-            <A l={c.l + 12} t={1673} w={250} style={reg(16, '#808080')}>{c.b}</A>
+            <A l={c.l} t={1563} w={270} h={130} style={{ background: 'rgba(255,255,255,0.7)', borderRadius: 8 }} />
+            <A l={c.l + 12} t={1574} w={250} style={{ ...bold(24, '#5b7bf5'), lineHeight: '33px' }}>{c.h}</A>
+            <A l={c.l + 12} t={1620} w={254} style={{ ...semi(20, '#333333'), lineHeight: '27px' }}>{c.a}</A>
+            <A l={c.l + 12} t={1647} w={250} style={{ ...reg(20, '#808080'), lineHeight: '27px' }}>{c.b}</A>
           </div>
         ))}
         <A l={80} t={1746} w={1120} h={100} style={{ background: 'rgba(245,158,66,0.08)', borderRadius: 8 }} />
-        <A l={110} t={1775} w={150} style={bold(16, '#d98026')}>直接操纵原则</A>
-        <A l={260} t={1772} w={700} style={reg(20, '#80664d')}>拖拽移动+手势旋转+实时预览 = 所见即所得，零学习成本</A>
-        <A l={260} t={1802} w={700} style={reg(16, '#998c80')}>用户直接对物品执行操作，而非通过间接菜单，操作结果即时可见</A>
+        <A l={110} t={1775} w={120} style={{ ...bold(20, '#d98026'), lineHeight: '24px' }}>直接操纵原则</A>
+        <A l={260} t={1775} w={700} style={{ ...bold(20, '#80664d'), lineHeight: '24px' }}>拖拽移动+手势旋转+实时预览 = 所见即所得，零学习成本</A>
+        <A l={260} t={1802} w={700} style={{ ...reg(20, '#998c80'), lineHeight: '24px' }}>用户直接对物品执行操作，而非通过间接菜单，操作结果即时可见</A>
       </section>
 
       {/* 8 · 宠物抓捕 */}
@@ -437,14 +443,14 @@ function HousePetCase() {
         ))}
         {/* 双通道 */}
         <A l={80} t={703} w={1120} h={150} style={{ background: 'rgba(255,255,255,0.9)', borderRadius: 8 }} />
-        <A l={110} t={718} w={200} style={bold(24, '#f59e42')}>为什么双通道？</A>
-        <A l={110} t={764} style={reg(16, '#9999a6')}>单通道在高噪音环境下检出率不足40%。视觉跑马灯利用前注意加工中的运动检测自动捕获注意力；系统频道提供持久化文字记录，弥补瞬时遗漏。<br />两条独立通道确保信息触达率接近100%。</A>
-        <A l={110} t={811} w={800} style={semi(20, '#5b7bf5')}>原理映射: 冗余编码 → 跑马灯+频道双通道 → 零遗漏通知</A>
+        <A l={110} t={718} w={200} style={{ ...bold(24, '#f59e42'), lineHeight: '29px' }}>为什么双通道？</A>
+        <A l={110} t={764} w={1064} style={{ ...reg(20, '#9999a6'), lineHeight: '24px' }}>单通道在高噪音环境下检出率不足40%。视觉跑马灯利用前注意加工中的运动检测自动捕获注意力；系统频道提供持久化文字记录，弥补瞬时遗漏。两条独立通道确保信息触达率接近100%。</A>
+        <A l={110} t={819} w={800} style={{ ...semi(20, '#5b7bf5'), lineHeight: '24px' }}>原理映射: 冗余编码 → 跑马灯+频道双通道 → 零遗漏通知</A>
         {/* 抓捕判定流程 */}
         <A l={80} t={921} style={{ ...bold(32, '#333340'), whiteSpace: 'nowrap' }}>抓捕判定流程</A>
         <A l={192} t={999} style={{ ...bold(20, '#262633'), whiteSpace: 'nowrap' }}>多条件判定，覆盖各种抓捕结果</A>
-        <A l={130} t={1178} w={70} h={70} style={{ borderRadius: '50%', background: '#5b7bf5', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', ...semi(16, '#fff') }}>执行<br />抓捕</A>
-        <HArrow l={200} t={1206} w={90} color="#5b7bf5" />
+        <A l={130} t={1178} w={70} h={70} style={{ borderRadius: '50%', background: '#5b7bf5', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', ...semi(16, '#fff'), lineHeight: '19px' }}>执行<br />抓捕</A>
+        <HArrow l={200} t={1207} w={90} color="#5b7bf5" />
         <A l={290} t={1178} w={80} h={70} style={{ background: '#fab880', display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(20, '#fff') }}>判定</A>
         <A l={442} t={1198} w={100} h={30} style={{ background: '#5b7bf5', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', ...semi(16, '#fff') }}>玩家追逐中</A>
         <HArrow l={370} t={1206} w={72} color="#5b7bf5" />
@@ -470,37 +476,38 @@ function HousePetCase() {
             <A l={c.l} t={1436} w={160} h={40} style={{ background: '#fff', borderRadius: 8, display: 'flex', alignItems: 'center', paddingLeft: 14, ...semi(16, '#e55959') }}>{c.txt}</A>
           </div>
         ))}
-        <A l={183} t={1498} style={{ ...reg(16, '#666673'), whiteSpace: 'nowrap' }}>所有结果均通过通用Toast组件反馈给玩家</A>
+        <A l={143} t={1496} style={{ ...reg(20, '#666673'), lineHeight: '24px', whiteSpace: 'nowrap' }}>所有结果均通过通用Toast组件反馈给玩家</A>
         {/* 行为强化循环 */}
-        <A l={908} t={1253} style={{ ...bold(20, '#262626'), whiteSpace: 'nowrap' }}>行为强化循环</A>
+        <A l={908} t={1253} w={120} style={{ ...bold(20, '#262626'), lineHeight: '24px', textAlign: 'center' }}>行为强化循环</A>
         {[
-          { l: 772, t0: 1057, txt: '随机出没', ring: '#fde4bf', fill: '#fff3df' },
-          { l: 1052, t0: 1057, txt: '限时追逐', ring: '#f3d1cb', fill: '#fff0ed', size: 14 },
-          { l: 1052, t0: 1367, txt: '即时反馈', ring: '#d6efd5', fill: '#eef9ec', size: 14 },
-          { l: 772, t0: 1367, txt: '情感绑定', ring: '#e8d7f0', fill: '#f6edf9' },
+          { l: 772, t0: 1057, txt: '随机出没', tone: '245,158,66', size: 16 },
+          { l: 1052, t0: 1057, txt: '限时追逐', tone: '217,89,89', size: 14 },
+          { l: 1052, t0: 1367, txt: '即时反馈', tone: '102,191,115', size: 14 },
+          { l: 772, t0: 1367, txt: '情感绑定', tone: '153,102,204', size: 16 },
         ].map((c) => (
           <div key={c.txt}>
-            <A l={c.l} t={c.t0} w={110} h={110} style={{ borderRadius: '50%', background: c.fill, border: `12px solid ${c.ring}` }} />
-            <A l={c.l + 55 - 35} t={c.t0 + 45} w={70} style={{ ...bold(c.size ?? 16, '#262626'), textAlign: 'center' }}>{c.txt}</A>
+            <A l={c.l} t={c.t0} w={110} h={110} style={{ borderRadius: '50%', background: `rgba(${c.tone},0.12)` }} />
+            <A l={c.l + 15} t={c.t0 + 15} w={80} h={80} style={{ borderRadius: '50%', background: `rgba(${c.tone},0.20)` }} />
+            <A l={c.l + 20} t={c.t0 + 45} w={70} style={{ ...bold(c.size, '#262626'), lineHeight: c.size === 16 ? '19px' : '17px', textAlign: 'center' }}>{c.txt}</A>
           </div>
         ))}
         <HArrow l={882} t={1106} w={170} color="#8f939a" thickness={2} head={10} />
         <HArrow l={882} t={1416} w={170} color="#8f939a" thickness={2} head={10} />
         <VArrow l={1100} t={1167} h={200} color="#8f939a" thickness={2} head={10} />
         <VArrow l={821} t={1167} h={200} color="#8f939a" thickness={2} head={10} />
-        <A l={1257} t={447} w={6} h={6} style={{ borderRadius: '50%', background: '#5b7bf5' }} />
+        <A l={1257} t={447} w={6} h={6} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.25)' }} />
         {/* 体验设计要点 */}
-        <A l={77} t={1600} w={200} style={bold(20, '#262626')}>抓捕体验设计要点</A>
+        <A l={77} t={1600} w={260} style={{ ...bold(24, '#262626'), lineHeight: '29px' }}>抓捕体验设计要点</A>
         {[
-          { l: 77, h: '稀缺性控制', d: '每日出没次数有限，错过即消失，制造FOMO效应驱动即时行动' },
-          { l: 369, h: '难度曲线', d: '普通宠物高成功率建立信心，稀有宠物低概率制造挑战和惊喜' },
-          { l: 661, h: '收集进度', d: '图鉴系统可视化收集进度，利用目标趋近效应激励完成度' },
-          { l: 953, h: '社交展示', d: '稀有宠物在房屋中展示形成社交货币，满足反思层表达需求' },
+          { l: 62, h: '稀缺性控制', d: '每日出没次数有限，错过即消失，制造FOMO效应驱动即时行动' },
+          { l: 354, h: '难度曲线', d: '普通宠物高成功率建立信心，稀有宠物低概率制造挑战和惊喜' },
+          { l: 646, h: '收集进度', d: '图鉴系统可视化收集进度，利用目标趋近效应激励完成度' },
+          { l: 938, h: '社交展示', d: '稀有宠物在房屋中展示形成社交货币，满足反思层表达需求' },
         ].map((c) => (
           <div key={c.h}>
-            <A l={c.l} t={1633} w={240} h={110} style={{ background: 'rgba(255,255,255,0.7)', borderRadius: 8 }} />
-            <A l={c.l + 14} t={1643} w={140} style={bold(20, '#f59e42')}>{c.h}</A>
-            <A l={c.l + 14} t={1677} w={210} style={reg(16, '#595959')}>{c.d}</A>
+            <A l={c.l} t={1633} w={280} h={130} style={{ background: 'rgba(255,255,255,0.7)', borderRadius: 8 }} />
+            <A l={c.l + 16} t={1643} w={150} style={{ ...bold(20, '#f59e42'), lineHeight: '24px' }}>{c.h}</A>
+            <A l={c.l + 16} t={1677} w={248} style={{ ...reg(20, '#595959'), lineHeight: '24px' }}>{c.d}</A>
           </div>
         ))}
       </section>
@@ -520,7 +527,7 @@ function HousePetCase() {
           <div key={s.n}>
             <A l={80} t={s.t0} w={44} style={{ ...bold(30, '#ccdbff'), lineHeight: '30px' }}>{s.n}</A>
             <A l={130} t={s.t0 + 2} w={150} style={{ ...bold(17, '#292e40'), lineHeight: '19px' }}>{s.h}</A>
-            <A l={130} t={s.t0 + 26} w={185} style={{ ...reg(14, '#57617a'), lineHeight: '18px' }}>{s.d}</A>
+            <A l={130} t={s.t0 + 26} w={215} style={{ ...reg(20, '#57617a'), lineHeight: '24px', whiteSpace: 'nowrap' }}>{s.d}</A>
             {i < 3 ? <VArrow l={97} t={s.t0 + 42} h={35} color="#597aeb" thickness={1} head={8} /> : null}
           </div>
         ))}
@@ -535,26 +542,29 @@ function HousePetCase() {
         <A l={638} t={383} w={74} h={2} style={{ background: '#25a8ff', borderRadius: 2 }} />
         <A l={710} t={379} w={8} h={8} style={{ borderRadius: '50%', background: '#25a8ff' }} />
         <VArrow l={630} t={384} h={181} color="#25a8ff" thickness={2} head={10} />
-        <A l={654} t={522} style={{ ...reg(18, '#57617a'), lineHeight: '26px', whiteSpace: 'nowrap' }}>退到大世界，自动寻路到“家具”处</A>
+        <A l={654} t={514} style={{ ...reg(18, '#57617a'), lineHeight: '26px', whiteSpace: 'nowrap' }}>退到大世界，自动寻路到“家具”处</A>
         <A l={738} t={752} w={8} h={8} style={{ borderRadius: '50%', background: '#25a8ff' }} />
         <HArrow l={742} t={751} w={232} color="#25a8ff" thickness={2} head={9} />
-        <A l={990} t={720} style={{ ...reg(18, '#57617a'), lineHeight: '26px', whiteSpace: 'nowrap' }}>绘制完成后弹出，弹出通用Toast</A>
+        <A l={947} t={783} w={311} h={30} style={{ borderRadius: 4, background: 'linear-gradient(90deg, rgba(38,46,64,0) 0%, rgba(38,46,64,0.78) 16%, rgba(38,46,64,0.78) 84%, rgba(38,46,64,0) 100%)' }} />
+        <A l={947} t={789} w={311} style={{ ...reg(16, '#cccccc'), lineHeight: '18px', textAlign: 'center' }}>家具绘制成功，请前往房屋制作</A>
+        <A l={980} t={743} style={{ ...reg(18, '#57617a'), lineHeight: '26px', whiteSpace: 'nowrap' }}>绘制完成后弹出，弹出通用Toast</A>
         <A l={636} t={876} w={8} h={8} style={{ borderRadius: '50%', background: '#25a8ff' }} />
         <VArrow l={633} t={884} h={76} color="#25a8ff" thickness={2} head={10} />
-        <A l={655} t={916} style={{ ...reg(18, '#57617a'), lineHeight: '26px', whiteSpace: 'nowrap' }}>前往房屋制造家具</A>
+        <A l={655} t={909} style={{ ...reg(18, '#57617a'), lineHeight: '26px', whiteSpace: 'nowrap' }}>前往房屋制造家具</A>
         <A l={636} t={1174} w={8} h={8} style={{ borderRadius: '50%', background: '#25a8ff' }} />
         <VArrow l={633} t={1178} h={177} color="#25a8ff" thickness={2} head={10} />
-        <A l={0} t={1684} w={1280} style={{ ...reg(18, '#57617a'), lineHeight: '26px', textAlign: 'center' }}>制造弹窗将“做什么、做几个、缺什么、花多少”压缩在同一屏，<br />减少背包、图纸、材料之间的反复确认。</A>
+        {/* 只在手写的 <br> 处换行：首行按 18px 中文测量约 522px，会被 500px 容器挤成三行 */}
+        <A l={390} t={1684} w={500} style={{ ...reg(18, '#57617a'), lineHeight: '26px', textAlign: 'center', whiteSpace: 'nowrap' }}>制造弹窗将“做什么、做几个、缺什么、花多少”压缩在同一屏，<br />减少背包、图纸、材料之间的反复确认。</A>
         {/* 制造判定流程 */}
-        <A l={80} t={1816} w={260} style={{ ...bold(32, '#292e40'), lineHeight: '25px' }}>制造判定流程</A>
-        <A l={80} t={1873} style={{ ...bold(20, '#262633'), whiteSpace: 'nowrap' }}>多条件判定覆盖可制造、材料不足、数量超限、背包不足等状态。</A>
-        <A l={118} t={2015} w={70} h={70} style={{ borderRadius: '50%', background: '#597aeb', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', ...bold(16, '#fff') }}>点击<br />制造</A>
+        <A l={80} t={1822} w={260} style={{ ...bold(26, '#292e40'), lineHeight: '31px' }}>制造判定流程</A>
+        <A l={80} t={1858} style={{ ...bold(20, '#262633'), lineHeight: '24px', whiteSpace: 'nowrap' }}>多条件判定覆盖可制造、材料不足、数量超限、背包不足等状态。</A>
+        <A l={118} t={2015} w={70} h={70} style={{ borderRadius: '50%', background: 'rgba(89,122,235,0.14)', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', ...bold(16, '#292e40'), lineHeight: '20px' }}>点击<br />制造</A>
         <HArrow l={188} t={2044} w={92} color="#597aeb" thickness={1} head={10} />
         <A l={280} t={2031} w={80} h={38} style={{ background: '#fff', border: '1px solid rgba(89,122,235,0.7)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(16, '#292e40') }}>判定</A>
         <A l={320} t={1951} w={1} h={80} style={{ background: '#597aeb' }} />
         <A l={260} t={1913} w={120} h={38} style={{ background: '#fff', border: '1px solid rgba(31,158,122,0.7)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(16, '#292e40') }}>材料充足</A>
         <HArrow l={380} t={1926} w={104} color="#1f9e7a" thickness={1} head={10} />
-        <A l={484} t={1913} w={210} style={{ ...reg(16, '#57617a'), lineHeight: '19px' }}>扣除材料<br />生成家具并提示成功</A>
+        <A l={484} t={1913} w={230} style={{ ...reg(20, '#57617a'), lineHeight: '24px' }}>扣除材料<br />生成家具并提示成功</A>
         <A l={320} t={2069} w={1} h={75} style={{ background: '#597aeb' }} />
         <A l={260} t={2144} w={120} h={38} style={{ background: '#fff', border: '1px solid rgba(242,148,31,0.7)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(16, '#292e40') }}>材料不足</A>
         <A l={155} t={2163} w={105} h={1} style={{ background: '#f2941f' }} />
@@ -569,19 +579,19 @@ function HousePetCase() {
         ].map((c) => (
           <A key={c.txt} l={c.l} t={2233} w={145} h={38} style={{ background: '#fff', border: '1px solid rgba(242,148,31,0.7)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(16, '#292e40') }}>{c.txt}</A>
         ))}
-        <A l={156} t={2284} w={330} style={{ ...reg(16, '#57617a'), lineHeight: '18px', textAlign: 'center' }}>异常用轻提示反馈，不中断玩家当前操作。</A>
+        <A l={131} t={2284} w={380} style={{ ...reg(20, '#57617a'), lineHeight: '24px', textAlign: 'center' }}>异常用轻提示反馈，不中断玩家当前操作。</A>
         {/* 制作决策循环 */}
-        <A l={908} t={2095} w={120} style={{ ...bold(20, '#262633'), textAlign: 'center' }}>制作决策循环</A>
+        <A l={908} t={2095} w={120} style={{ ...bold(20, '#262633'), lineHeight: '24px', textAlign: 'center' }}>制作决策循环</A>
         {[
-          { l: 773, t0: 1903, txt: '图纸目标', ring: '#c6d3f7', fill: '#eef2fc' },
-          { l: 1047, t0: 1903, txt: '材料收集', ring: '#c6d3f7', fill: '#eef2fc' },
-          { l: 1047, t0: 2207, txt: '制造反馈', ring: '#f0d4b4', fill: '#fff4e6' },
-          { l: 773, t0: 2207, txt: '空间摆放', ring: '#c6d3f7', fill: '#eef2fc' },
+          { l: 773, t0: 1903, txt: '图纸目标', ring: 'rgba(89,122,235,0.13)' },
+          { l: 1047, t0: 1903, txt: '材料收集', ring: 'rgba(89,122,235,0.13)' },
+          { l: 1047, t0: 2207, txt: '制造反馈', ring: 'rgba(242,148,31,0.13)' },
+          { l: 773, t0: 2207, txt: '空间摆放', ring: 'rgba(89,122,235,0.13)' },
         ].map((c) => (
           <div key={c.txt}>
-            <A l={c.l} t={c.t0} w={104} h={104} style={{ borderRadius: '50%', background: '#fff', border: `2px solid ${c.ring}` }} />
-            <A l={c.l + 14} t={c.t0 + 14} w={76} h={76} style={{ borderRadius: '50%', background: c.fill }} />
-            <A l={c.l + 18} t={c.t0 + 43} w={70} style={bold(16, '#292e40')}>{c.txt}</A>
+            <A l={c.l} t={c.t0} w={104} h={104} style={{ borderRadius: '50%', background: c.ring }} />
+            <A l={c.l + 14} t={c.t0 + 14} w={76} h={76} style={{ borderRadius: '50%', background: '#fff' }} />
+            <A l={c.l + 18} t={c.t0 + 43} w={70} style={{ ...bold(16, '#292e40'), lineHeight: '18px' }}>{c.txt}</A>
           </div>
         ))}
         <HArrow l={877} t={1949} w={170} color="#597aeb" thickness={1} head={10} />
@@ -589,100 +599,105 @@ function HousePetCase() {
         <VArrow l={1093} t={2007} h={200} color="#597aeb" thickness={1} head={10} />
         <VArrowUp l={819} t={2007} h={200} color="#597aeb" thickness={1} head={10} />
         {/* 体验设计要点 */}
-        <A l={82} t={2387} w={220} style={bold(18, '#262626')}>家具制造体验设计要点</A>
+        <A l={82} t={2381} w={280} style={{ ...bold(26, '#262626'), lineHeight: '31px' }}>家具制造体验设计要点</A>
         {[
-          { l: 80, bar: '#597aeb', h: '成本透明', d: '材料、数量、消耗在确认前完整展示，减少不确定感。' },
-          { l: 372, bar: '#1f9e7a', h: '操作可控', d: '步进器适合小批量调整，避免输入错误和误触。' },
-          { l: 664, bar: '#f2941f', h: '结果归因', d: '成功、材料不足、空间不足分别反馈，让玩家知道下一步。' },
-          { l: 956, bar: '#597aeb', h: '长期目标', d: '家具产出连接家园摆放，制造行为转化为空间经营动机。' },
+          { l: 28, bar: '#597aeb', h: '成本透明', d: '材料、数量、消耗在确认前完整展示，减少不确定感。' },
+          { l: 336, bar: '#1f9e7a', h: '操作可控', d: '步进器适合小批量调整，避免输入错误和误触。' },
+          { l: 644, bar: '#f2941f', h: '结果归因', d: '成功、材料不足、空间不足分别反馈，让玩家知道下一步。' },
+          { l: 952, bar: '#597aeb', h: '长期目标', d: '家具产出连接家园摆放，制造行为转化为空间经营动机。' },
         ].map((c) => (
           <div key={c.h}>
-            <A l={c.l} t={2427} w={240} h={110} style={{ background: '#f6f9ff', border: '1px solid #d1def5', borderRadius: 8 }} />
-            <A l={c.l} t={2427} w={240} h={4} style={{ background: c.bar }} />
-            <A l={c.l + 19} t={2443} style={{ ...bold(18, '#292e40'), lineHeight: '21px' }}>{c.h}</A>
-            <A l={c.l + 19} t={2473} w={200} style={{ ...reg(14, '#57617a'), lineHeight: '19px' }}>{c.d}</A>
+            <A l={c.l} t={2427} w={300} h={130} style={{ background: '#f6f9ff', border: '1px solid #d1def5', borderRadius: 8 }} />
+            <A l={c.l} t={2427} w={300} h={4} style={{ background: c.bar }} />
+            <A l={c.l + 24} t={2443} style={{ ...bold(20, '#292e40'), lineHeight: '24px' }}>{c.h}</A>
+            <A l={c.l + 24} t={2476} w={260} style={{ ...reg(20, '#57617a'), lineHeight: '24px' }}>{c.d}</A>
           </div>
         ))}
-        <A l={1269} t={314} w={6} h={6} style={{ borderRadius: '50%', background: '#597aeb' }} />
+        <A l={1269} t={314} w={6} h={6} style={{ borderRadius: '50%', background: '#ccdbff' }} />
       </section>
 
       {/* 10 · 物品管理 */}
       <section className="hp-sec" style={{ height: 1300, background: '#f7f2eb' }}>
         <A l={80} t={60} style={{ ...bold(36, '#333340'), whiteSpace: 'nowrap' }}>物品管理</A>
         <A l={80} t={108} style={{ ...semi(16, '#5b7bf5'), whiteSpace: 'pre' }}>ITEM  MANAGEMENT</A>
-        <A l={80} t={180} style={{ ...bold(24, '#262633'), whiteSpace: 'nowrap' }}>临时收纳与物品回收机制</A>
-        <A l={80} t={230} w={700} style={reg(18, '#666673')}>布置过程中，玩家可将不满意的物品临时收纳。<br />点击“确定布置”后，临时收纳中的物品全部回收至物品列表。</A>
+        <A l={80} t={180} style={{ ...bold(24, '#262633'), lineHeight: '29px', whiteSpace: 'nowrap' }}>临时收纳与物品回收机制</A>
+        <A l={80} t={213} w={700} style={{ ...reg(20, '#666673'), lineHeight: '24px' }}>布置过程中，玩家可将不满意的物品临时收纳。<br />点击“确定布置”后，临时收纳中的物品全部回收至物品列表。</A>
         <A l={80} t={299} w={540} h={303} style={{ borderRadius: 12, overflow: 'hidden' }}><Img src={houseAssets.emptyPlace} alt="无临时收纳" className="hp-cover-img" /></A>
         <A l={660} t={299} w={540} h={303} style={{ borderRadius: 12, overflow: 'hidden' }}><Img src={houseAssets.tempStorage} alt="临时收纳" className="hp-cover-img" /></A>
-        <A l={882} t={276} style={{ ...semi(16, '#5b7bf5'), whiteSpace: 'nowrap' }}>临时收纳界面</A>
-        <HArrow l={620} t={450} w={40} color="#d7e2f6" thickness={2} head={9} />
+        <A l={882} t={276} style={{ ...semi(16, '#5b7bf5'), lineHeight: '19px', whiteSpace: 'nowrap' }}>临时收纳界面</A>
+        <HArrow l={620} t={446} w={40} color="#d7e2f6" thickness={2} head={9} />
         {/* 设计意图 */}
-        <A l={80} t={620} w={1120} h={80} style={{ background: 'rgba(91,123,245,0.06)', borderRadius: 8 }} />
-        <A l={110} t={636} w={100} style={bold(20, '#5b7bf5')}>设计意图</A>
-        <A l={110} t={665} w={1000} style={reg(16, '#4d5973')}>临时收纳的本质不是“回收功能”，而是“安全感设计”——让玩家相信探索是无代价的，从而释放创造力。</A>
+        <A l={80} t={650} w={1120} h={80} style={{ background: 'rgba(91,123,245,0.06)', borderRadius: 8 }} />
+        <A l={110} t={666} w={100} style={{ ...bold(20, '#5b7bf5'), lineHeight: '24px' }}>设计意图</A>
+        <A l={110} t={695} w={1000} style={{ ...reg(20, '#4d5973'), lineHeight: '24px' }}>临时收纳的本质不是“回收功能”，而是“安全感设计”——让玩家相信探索是无代价的，从而释放创造力。</A>
         {/* VS 对比 */}
-        <A l={80} t={709} w={500} h={250} style={{ background: '#fff', borderRadius: '0 0 10px 10px' }} />
-        <A l={80} t={709} w={500} h={5} style={{ background: '#d95959' }} />
-        <A l={110} t={729} w={200} style={bold(20, '#d95959')}>没有临时收纳</A>
-        <A l={110} t={764} w={300} style={semi(16, '#4d4d4d')}>回收 = 永久删除</A>
-        <A l={110} t={794} w={400} style={{ ...reg(20, '#808080'), lineHeight: '32px' }}>玩家不敢轻易尝试新布局<br />每次操作都担心不可逆<br />探索意愿被恐惧抑制<br />布置频次和创意空间大幅受限</A>
-        <A l={700} t={709} w={500} h={250} style={{ background: '#fff', borderRadius: '0 0 10px 10px' }} />
-        <A l={700} t={709} w={500} h={5} style={{ background: '#66bf73' }} />
-        <A l={730} t={729} w={200} style={bold(20, '#66bf73')}>有临时收纳</A>
-        <A l={730} t={764} w={300} style={semi(16, '#4d4d4d')}>回收 = 暂存，随时可恢复</A>
-        <A l={730} t={794} w={400} style={{ ...reg(20, '#808080'), lineHeight: '32px' }}>安全感鼓励大胆实验<br />操作完全可逆，零焦虑<br />探索意愿显著提升<br />形成“尝试→回收→再试”的正向循环</A>
-        <A l={615} t={809} w={50} h={50} style={{ borderRadius: '50%', background: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(14, '#5b7bf5') }}>VS</A>
+        <A l={80} t={751} w={500} h={250} style={{ background: '#fff', borderRadius: '0 0 10px 10px' }} />
+        <A l={80} t={751} w={500} h={5} style={{ background: '#d95959' }} />
+        <A l={110} t={771} w={200} style={{ ...bold(24, '#d95959'), lineHeight: '29px' }}>没有临时收纳</A>
+        <A l={557} t={776} w={10} h={10} style={{ borderRadius: '50%', background: '#d95959' }} />
+        <A l={110} t={806} w={300} style={{ ...semi(24, '#4d4d4d'), lineHeight: '29px' }}>回收 = 永久删除</A>
+        <A l={110} t={851} w={400} style={{ ...reg(24, '#808080'), lineHeight: '32px' }}>玩家不敢轻易尝试新布局<br />每次操作都担心不可逆<br />探索意愿被恐惧抑制<br />布置频次和创意空间大幅受限</A>
+        <A l={700} t={751} w={500} h={250} style={{ background: '#fff', borderRadius: '0 0 10px 10px' }} />
+        <A l={700} t={751} w={500} h={5} style={{ background: '#66bf73' }} />
+        <A l={730} t={771} w={200} style={{ ...bold(24, '#66bf73'), lineHeight: '29px' }}>有临时收纳</A>
+        <A l={1176} t={776} w={10} h={10} style={{ borderRadius: '50%', background: '#66bf73' }} />
+        <A l={730} t={806} w={320} style={{ ...semi(24, '#4d4d4d'), lineHeight: '29px' }}>回收 = 暂存，随时可恢复</A>
+        <A l={730} t={851} w={400} style={{ ...reg(24, '#808080'), lineHeight: '32px' }}>安全感鼓励大胆实验<br />操作完全可逆，零焦虑<br />探索意愿显著提升<br />形成“尝试→回收→再试”的正向循环</A>
+        <A l={610} t={851} w={60} h={60} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(32, '#5b7bf5'), lineHeight: '39px' }}>VS</A>
         {/* 交互细节 */}
-        <A l={80} t={1018} w={200} style={bold(20, '#262626')}>临时收纳交互细节</A>
+        <A l={80} t={1068} w={200} style={{ ...bold(20, '#262626'), lineHeight: '24px' }}>临时收纳交互细节</A>
         {[
-          { l: 80, n: '1', h: '长按物品', d: '触发回收选项浮层', arrow: 358 },
-          { l: 370, n: '2', h: '确认回收', d: '物品飞入收纳栏动效', arrow: 648 },
-          { l: 660, n: '3', h: '查看收纳', d: '侧滑展开收纳面板', arrow: 938 },
+          { l: 80, n: '1', h: '长按物品', d: '触发回收选项浮层', arrow: 348 },
+          { l: 370, n: '2', h: '确认回收', d: '物品飞入收纳栏动效', arrow: 638 },
+          { l: 660, n: '3', h: '查看收纳', d: '侧滑展开收纳面板', arrow: 928 },
           { l: 950, n: '4', h: '重新摆放', d: '从收纳拖回场景即可', arrow: null },
         ].map((c) => (
           <div key={c.n}>
-            <A l={c.l} t={1052} w={265} h={95} style={{ background: 'rgba(255,255,255,0.7)', borderRadius: 8 }} />
-            <A l={c.l + 8} t={1060} w={28} h={28} style={{ borderRadius: '50%', background: '#dbe3fb', display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(12, '#5b7bf5') }}>{c.n}</A>
-            <A l={c.l + 45} t={1065} w={200} style={bold(16, '#262626')}>{c.h}</A>
-            <A l={c.l + 45} t={1095} w={200} style={reg(16, '#737373')}>{c.d}</A>
-            {c.arrow !== null ? <HArrow l={c.l + 265} t={1094} w={25} color="#d7e2f6" thickness={2} head={8} /> : null}
+            <A l={c.l} t={1102} w={265} h={95} style={{ background: 'rgba(255,255,255,0.7)', borderRadius: 8 }} />
+            <A l={c.l + 8} t={1121} w={28} h={28} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(20, '#5b7bf5'), lineHeight: '24px' }}>{c.n}</A>
+            <A l={c.l + 45} t={1123} w={200} style={{ ...bold(20, '#262626'), lineHeight: '24px' }}>{c.h}</A>
+            <A l={c.l + 45} t={1153} w={200} style={{ ...reg(20, '#737373'), lineHeight: '24px' }}>{c.d}</A>
+            {c.arrow !== null ? <A l={c.arrow} t={1140} w={20} style={{ ...bold(16, '#9999a6'), lineHeight: '19px', textAlign: 'center' }}>→</A> : null}
           </div>
         ))}
-        <A l={80} t={1167} w={800} style={semi(20, '#5b7bf5')}>全程操作可逆，物品可在“场景”和“收纳”之间自由流转</A>
-        <A l={1257} t={447} w={6} h={6} style={{ borderRadius: '50%', background: '#5b7bf5' }} />
+        <A l={80} t={1207} w={800} style={{ ...semi(20, '#5b7bf5'), lineHeight: '24px' }}>全程操作可逆，物品可在“场景”和“收纳”之间自由流转</A>
+        <A l={1257} t={447} w={6} h={6} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.25)' }} />
       </section>
 
       {/* 11 · 退出与保存 */}
       <section className="hp-sec" style={{ height: 1230, background: '#e8ebf0' }}>
         <A l={80} t={60} style={{ ...bold(36, '#333340'), whiteSpace: 'nowrap' }}>退出与保存</A>
         <A l={80} t={108} style={{ ...semi(16, '#5b7bf5'), whiteSpace: 'pre' }}>EXIT  &  SAVE</A>
-        <A l={80} t={180} style={{ ...bold(24, '#262633'), whiteSpace: 'nowrap' }}>布置修改保护机制</A>
-        <A l={80} t={230} w={700} style={reg(18, '#666673')}>当物品有摆放修改时，关闭界面会弹出确认弹窗，<br />防止玩家误操作丢失布置进度。</A>
+        <A l={80} t={197} style={{ ...bold(24, '#262633'), lineHeight: '29px', whiteSpace: 'nowrap' }}>布置修改保护机制</A>
+        <A l={80} t={230} w={700} style={{ ...reg(20, '#666673'), lineHeight: '24px' }}>当物品有摆放修改时，关闭界面会弹出确认弹窗，<br />防止玩家误操作丢失布置进度。</A>
         {[
-          { l: 50, n: '1', h: '关闭布置界面', d: '点击关闭按钮' },
-          { l: 290, n: '2', h: '检测修改', d: '系统判断是否有\n未保存的摆放变动' },
-          { l: 530, n: '3', h: '弹窗确认', d: '有修改时弹出\n“是否保存”弹窗' },
-          { l: 770, n: '4', h: '执行操作', d: '保存布置/放弃修改\n返回房屋场景' },
-          { l: 1010, n: '5', h: '退出房屋副本', d: '确认布置后回到房屋场景。\n再次点击退出可离开房屋副本，返回大世界。' },
+          { l: 50, nl: 240, nt: 333, n: '1', h: '关闭布置界面', d: '点击关闭按钮' },
+          { l: 290, nl: 481, nt: 333, n: '2', h: '检测修改', d: '系统判断是否有\n未保存的摆放变动' },
+          { l: 530, nl: 721, nt: 335, n: '3', h: '弹窗确认', d: '有修改时弹出\n“是否保存”弹窗' },
+          { l: 770, nl: 961, nt: 335, n: '4', h: '执行操作', d: '保存布置/放弃修改\n返回房屋场景' },
+          { l: 1010, nl: 1201, nt: 335, n: '5', h: '退出房屋副本', d: '确认布置后回到房屋\n场景。再次点击退出\n可离开房屋副本，\n返回大世界。' },
         ].map((c, i) => (
           <div key={c.n}>
-            <A l={c.l} t={317} w={220} h={130} style={card} />
-            <A l={c.l + 4} t={296} w={32} h={32} style={{ borderRadius: '50%', background: '#5b7bf5', display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(14, '#fff') }}>{c.n}</A>
-            <A l={c.l + 20} t={337} style={{ ...bold(16, '#33334d'), whiteSpace: 'nowrap' }}>{c.h}</A>
-            <A l={c.l + 20} t={365} w={c.n === '5' ? 200 : 180} style={{ ...reg(16, '#737380'), whiteSpace: 'pre-line' }}>{c.d}</A>
-            {i < 4 ? <HArrow l={c.l + 220} t={382} w={20} color="#d7e2f6" thickness={2} head={8} /> : null}
+            <A l={c.l} t={335} w={220} h={160} style={card} />
+            <A l={c.nl} t={c.nt} w={32} h={32} style={{ borderRadius: '50%', background: '#5b7bf5', display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(24, '#fff'), lineHeight: '29px' }}>{c.n}</A>
+            <A l={c.l + 20} t={355} style={{ ...bold(20, '#33334d'), lineHeight: '24px', whiteSpace: 'nowrap' }}>{c.h}</A>
+            <A l={c.l + 20} t={389} w={185} style={{ ...reg(20, '#737380'), lineHeight: '24px', whiteSpace: 'pre-line' }}>{c.d}</A>
+            {i < 4 ? (
+              <A l={c.l + 220} t={407} w={16} h={16} style={{ width: 0, height: 0, borderTop: '8px solid transparent', borderBottom: '8px solid transparent', borderLeft: '16px solid #b2b2bf' }} />
+            ) : null}
           </div>
         ))}
-        <A l={1257} t={447} w={6} h={6} style={{ borderRadius: '50%', background: '#5b7bf5' }} />
+        <A l={1257} t={465} w={6} h={6} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.25)' }} />
         {/* 错误预防 */}
-        <A l={80} t={534} w={400} style={bold(24, '#262626')}>错误预防</A>
-        <A l={80} t={576} w={500} style={reg(18, '#737373')}>比起好的报错信息，更好的设计是预防错误发生</A>
-        <A l={480} t={622} w={320} h={45} style={{ background: 'rgba(91,123,245,0.12)', borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(18, '#5b7bf5') }}>玩家点击退出按钮</A>
+        <A l={80} t={542} w={400} style={{ ...bold(24, '#262626'), lineHeight: '29px' }}>错误预防</A>
+        <A l={80} t={580} w={500} style={{ ...reg(20, '#737373'), lineHeight: '24px' }}>比起好的报错信息，更好的设计是预防错误发生</A>
+        <A l={480} t={622} w={320} h={45} style={{ background: 'rgba(91,123,245,0.12)', borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(20, '#5b7bf5'), lineHeight: '24px' }}>玩家点击退出按钮</A>
         <A l={640} t={667} w={1} h={35} style={{ background: '#9eadcc' }} />
-        <A l={430} t={702} w={420} h={40} style={{ background: 'rgba(245,158,66,0.1)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(18, '#d98026') }}>弹出确认弹窗: 你要保存修改吗？</A>
-        <A l={260} t={722} w={1} h={75} style={{ background: '#9eadcc' }} />
-        <A l={1020} t={722} w={1} h={75} style={{ background: '#9eadcc' }} />
-        <A l={640} t={742} w={1} h={55} style={{ background: '#9eadcc' }} />
+        <A l={430} t={702} w={420} h={40} style={{ background: 'rgba(245,158,66,0.1)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(20, '#d98026'), lineHeight: '24px' }}>弹出确认弹窗: 你要保存修改吗？</A>
+        {/* 三根竖线都止于选项卡顶边 y=785 */}
+        <A l={260} t={722} w={1} h={63} style={{ background: '#9eadcc' }} />
+        <A l={1020} t={722} w={1} h={63} style={{ background: '#9eadcc' }} />
+        <A l={640} t={739} w={1} h={46} style={{ background: '#9eadcc' }} />
         <A l={260} t={722} w={170} h={1} style={{ background: '#9eadcc' }} />
         <A l={850} t={722} w={170} h={1} style={{ background: '#9eadcc' }} />
         {[
@@ -691,15 +706,15 @@ function HousePetCase() {
           { l: 920, bg: 'rgba(91,123,245,0.08)', h: '取消', d: '返回继续编辑\n什么都不变', tag: '误触出口', tc: '#5b7bf5' },
         ].map((c) => (
           <div key={c.h}>
-            <A l={c.l} t={797} w={200} h={120} style={{ background: c.bg, borderRadius: 10 }} />
-            <A l={c.l + 15} t={807} w={170} style={bold(16, '#262626')}>{c.h}</A>
-            <A l={c.l + 15} t={835} w={170} style={{ ...reg(20, '#666'), whiteSpace: 'pre-line' }}>{c.d}</A>
-            <A l={c.l + 15} t={892} w={170} style={semi(16, c.tc)}>{c.tag}</A>
+            <A l={c.l} t={785} w={200} h={130} style={{ background: c.bg, borderRadius: 10 }} />
+            <A l={c.l + 15} t={795} w={170} style={{ ...bold(20, '#262626'), lineHeight: '24px' }}>{c.h}</A>
+            <A l={c.l + 15} t={823} w={170} style={{ ...reg(20, '#666666'), lineHeight: '24px', whiteSpace: 'pre-line' }}>{c.d}</A>
+            <A l={c.l + 15} t={880} w={170} style={{ ...semi(20, c.tc), lineHeight: '24px' }}>{c.tag}</A>
           </div>
         ))}
-        <A l={160} t={935} w={960} h={55} style={{ background: '#26262e', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ ...reg(16, '#bfbfcc'), textAlign: 'center' }}>三选项覆盖所有退出意图——想保存、想放弃、以及误触。默认“保存”确保即使随手点击也不丢数据。</span></A>
+        <A l={160} t={931} w={960} h={55} style={{ background: '#26262e', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ ...reg(20, '#bfbfcc'), lineHeight: '24px', textAlign: 'center' }}>三选项覆盖所有退出意图——想保存、想放弃、以及误触。默认“保存”确保即使随手点击也不丢数据。</span></A>
         {/* 退出场景全覆盖 */}
-        <A l={80} t={1029} w={200} style={bold(18, '#262626')}>退出场景全覆盖</A>
+        <A l={80} t={1026} w={220} style={{ ...bold(24, '#262626'), lineHeight: '29px' }}>退出场景全覆盖</A>
         {[
           { l: 80, h: '正常退出', d1: '点击退出按钮', d2: '弹出三选项确认弹窗', tag: '默认“保存”', tc: '#66bf73' },
           { l: 370, h: '误触返回', d1: '手势返回/物理键', d2: '同样弹出确认弹窗', tag: '拦截意外退出', tc: '#66bf73' },
@@ -707,20 +722,20 @@ function HousePetCase() {
           { l: 950, h: '强制退出', d1: '杀进程/崩溃', d2: '下次登录恢复草稿', tag: '定时自动存档', tc: '#66bf73' },
         ].map((c) => (
           <div key={c.h}>
-            <A l={c.l} t={1060} w={270} h={120} style={{ background: 'rgba(255,255,255,0.7)', borderRadius: 8 }} />
-            <A l={c.l + 12} t={1070} w={120} style={bold(16, '#d98026')}>{c.h}</A>
-            <A l={c.l + 12} t={1100} w={250} style={reg(16, '#808080')}>{c.d1}</A>
-            <A l={c.l + 12} t={1120} w={250} style={semi(16, '#404040')}>{c.d2}</A>
-            <A l={c.l + 12} t={1154} w={250} style={semi(16, c.tc)}>{c.tag}</A>
+            <A l={c.l} t={1060} w={270} h={140} style={{ background: 'rgba(255,255,255,0.7)', borderRadius: 8 }} />
+            <A l={c.l + 12} t={1070} w={150} style={{ ...bold(24, '#d98026'), lineHeight: '29px' }}>{c.h}</A>
+            <A l={c.l + 12} t={1118} w={250} style={{ ...reg(20, '#808080'), lineHeight: '24px' }}>{c.d1}</A>
+            <A l={c.l + 12} t={1142} w={250} style={{ ...semi(20, '#404040'), lineHeight: '24px' }}>{c.d2}</A>
+            <A l={c.l + 12} t={1166} w={250} style={{ ...semi(20, c.tc), lineHeight: '24px' }}>{c.tag}</A>
           </div>
         ))}
       </section>
 
       {/* 12 · 总览 */}
       <section className="hp-sec" style={{ height: 883, background: '#f7f2eb' }}>
-        <A l={80} t={60} style={{ ...bold(36, '#333340'), whiteSpace: 'nowrap' }}>总览</A>
-        <A l={80} t={108} style={{ ...semi(16, '#5b7bf5'), whiteSpace: 'nowrap' }}>OVERVIEW</A>
-        <A l={80} t={180} w={800} style={bold(22, '#33334d')}>从发现宠物到完成房屋布置的完整体验链路</A>
+        <A l={80} t={60} style={{ ...bold(36, '#333340'), lineHeight: '44px', whiteSpace: 'nowrap' }}>总览</A>
+        <A l={80} t={108} style={{ ...semi(16, '#5b7bf5'), lineHeight: '19px', whiteSpace: 'nowrap' }}>OVERVIEW</A>
+        <A l={80} t={180} w={800} style={{ ...bold(24, '#33334d'), lineHeight: '29px' }}>从发现宠物到完成房屋布置的完整体验链路</A>
         {[
           { l: 70, n: '1', d1: '宠物出没', d2: '广播通知', color: '#5b7bf5' },
           { l: 240, n: '2', d1: '大世界', d2: '前往抓捕', color: '#5b7bf5' },
@@ -731,23 +746,23 @@ function HousePetCase() {
           { l: 1090, n: '7', d1: '确定布置', d2: '保存退出', color: '#59bf73' },
         ].map((s, i) => (
           <div key={s.n}>
-            <A l={s.l} t={238} w={110} h={110} style={{ borderRadius: '50%', background: s.color, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', ...semi(16, '#fff') }}>{s.d1}<br />{s.d2}</A>
-            <A l={s.l + 55 - 6} t={358} style={{ ...bold(20, '#9eadcc'), whiteSpace: 'nowrap' }}>{s.n}</A>
-            {i < 6 ? <HArrow l={s.l + 110} t={291} w={50} color="#9eadcc" thickness={2} head={8} /> : null}
+            <A l={s.l} t={238} w={110} h={110} style={{ borderRadius: '50%', background: s.color, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', ...semi(20, '#fff'), lineHeight: '24px' }}>{s.d1}<br />{s.d2}</A>
+            <A l={s.l} t={358} w={110} style={{ ...bold(32, '#9eadcc'), lineHeight: '39px', textAlign: 'center' }}>{s.n}</A>
+            {i < 6 ? <HArrow l={s.l + 110} t={286} w={62} color="#a6a6b2" thickness={2} head={12} /> : null}
           </div>
         ))}
-        <A l={1257} t={360} w={6} h={6} style={{ borderRadius: '50%', background: '#5b7bf5' }} />
-        <A l={80} t={498} w={800} style={bold(20, '#33334d')}>通过房屋家具+宠物搜集系统的交互设计，实现以下价值：</A>
+        <A l={1257} t={360} w={6} h={6} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.25)' }} />
+        <A l={80} t={498} w={800} style={{ ...bold(24, '#33334d'), lineHeight: '29px' }}>通过房屋家具+宠物搜集系统的交互设计，实现以下价值：</A>
         {[
-          { l: 80, ic: '★', h: '玩家体验', d: '丰富房屋系统玩法，宠物搜集+布置装饰双重满足感，提升玩家对游戏世界的沉浸感和对房屋空间的归属感。' },
-          { l: 460, ic: '◆', h: '系统拓展', d: '基于现有房屋布置框架扩展，新增宠物Tab与抓捕玩法，为后续更多物品类型预留扩展空间。' },
-          { l: 840, ic: '●', h: '开发效率', d: '复用已有布置交互逻辑，关键参数支持后台配置，降低开发与维护成本。' },
+          { l: 80, ic: '★', h: '玩家体验', d: <>丰富房屋系统玩法，宠物搜集+布置装饰双重满足感，提升玩家对游戏世界的沉浸感和对房屋空间的归属感。</> },
+          { l: 460, ic: '◆', h: '系统拓展', d: <>基于现有房屋布置框架扩展，<br />新增宠物Tab与抓捕玩法，<br />为后续更多物品类型预留扩展空间。</> },
+          { l: 840, ic: '●', h: '开发效率', d: <>复用已有布置交互逻辑，<br />关键参数支持后台配置，<br />降低开发与维护成本。</> },
         ].map((c) => (
           <div key={c.h}>
             <A l={c.l} t={554} w={360} h={260} style={{ ...card, borderRadius: 16 }} />
             <A l={c.l} t={554} w={360} h={6} style={{ background: '#5b7bf5', borderRadius: '16px 16px 0 0' }} />
-            <A l={c.l + 18} t={582} w={43} h={44} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(20, '#5b7bf5') }}>{c.ic}</A>
-            <A l={c.l + 73} t={592} style={{ ...bold(20, '#33334d'), whiteSpace: 'nowrap' }}>{c.h}</A>
+            <A l={c.l + 18} t={582} w={43} h={44} style={{ borderRadius: '50%', background: 'rgba(91,123,245,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', ...bold(20, '#5b7bf5'), lineHeight: '24px' }}>{c.ic}</A>
+            <A l={c.l + 73} t={584} style={{ ...bold(32, '#33334d'), lineHeight: '39px', whiteSpace: 'nowrap' }}>{c.h}</A>
             <A l={c.l + 24} t={644} w={312} style={{ ...reg(24, '#737380'), lineHeight: '32px' }}>{c.d}</A>
           </div>
         ))}

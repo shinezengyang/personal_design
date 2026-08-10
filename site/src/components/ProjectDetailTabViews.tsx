@@ -46,7 +46,7 @@ export const PROJECT_DETAIL_TABS: ReadonlyArray<ProjectDetailTab> = [
 
 export const QINGYU_PROJECT_DETAIL_TABS: ReadonlyArray<ProjectDetailTab> = [
   { key: 'framework', label: '框架' },
-  { key: '2', label: '系统-房屋' },
+  { key: '2', label: '系统-家园' },
   { key: '4', label: '系统-金兰结义' },
   { key: '20', label: '系统-伙伴' },
   { key: '17', label: '系统-图鉴收集' },

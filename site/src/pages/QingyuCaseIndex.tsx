@@ -22,7 +22,7 @@ const QINGYU_CASES: QingyuCaseCard[] = [
   },
   {
     key: '2',
-    title: '系统-房屋',
+    title: '系统-家园',
     desc: '围绕房屋布置、家具摆放、宠物抓捕与制造管理建立完整家园链路。',
   },
   {
@@ -203,7 +203,7 @@ export default function QingyuCaseIndex() {
             >
               <div className="high-seas-case-card__media high-seas-case-card__media--flat">
                 {item.key === '2' ? (
-                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src={publicUrl('qingyu-house-card.webp')} alt="系统-房屋案例卡片图" />
+                  <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src={publicUrl('qingyu-house-card.webp')} alt="系统-家园案例卡片图" />
                 ) : item.key === '4' ? (
                   <img className="qingyu-case-card__cover-image" loading="lazy" decoding="async" src={publicUrl('qingyu-jinlan-card.webp')} alt="系统-金兰结义案例卡片图" />
                 ) : item.key === '20' ? (
