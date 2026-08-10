@@ -153,7 +153,7 @@ function CalloutLine({ l, t, w, color = '#5b7bf5', dot = 'end', size = 8 }: { l:
 function HouseHead({ title, en, sub, subStyle }: { title: string; en: string; sub?: string; subStyle?: CSS }) {
   return (
     <>
-      <A l={80} t={58} style={{ fontSize: 36, lineHeight: '44px', fontWeight: 800, color: '#333340', whiteSpace: 'nowrap' }}>{title}</A>
+      <A l={80} t={58} style={{ fontSize: 36, lineHeight: '44px', fontWeight: 700, color: '#333340', whiteSpace: 'nowrap' }}>{title}</A>
       <A l={80} t={106} style={{ fontSize: 16, lineHeight: '19px', fontWeight: 600, color: '#5b7bf5', whiteSpace: 'pre' }}>{en}</A>
       {sub ? <A l={80} t={178} style={{ fontSize: 24, lineHeight: '34px', fontWeight: 700, color: '#262633', ...subStyle }}>{sub}</A> : null}
     </>
