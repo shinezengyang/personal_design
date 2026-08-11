@@ -216,7 +216,7 @@ export function SancaiExactCase() {
       </section>
 
       <section className="sc-section sc-journey">
-        <SectionHeader no="07" eyebrow="THE FLOW JOURNEY" title="心流历程 · 从好奇到精通" desc="沿游戏进程铺展的情绪曲线 —— 挑战与技能同步攀升，玩家始终行进在心流通道之中。" />
+        <SectionHeader no="05" eyebrow="THE FLOW JOURNEY" title="心流历程 · 从好奇到精通" desc="沿游戏进程铺展的情绪曲线 —— 挑战与技能同步攀升，玩家始终行进在心流通道之中。" />
         <div className="sc-flow-panel">
           <svg className="flow-channel" viewBox="0 0 780 362" preserveAspectRatio="none"><path d="M0 252 L780 0 L780 110 L0 362 Z" /></svg>
           <i className="axis y" /><i className="axis x" />
