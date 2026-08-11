@@ -189,6 +189,8 @@ export function SancaiExactCase() {
         <Annot side="right" x={1124} y={1260} w={190} title="分解后获得" text="碎片产出实时预览" line={[1007, 1269, 113]} dot={[1004, 1277]} />
         <p className="sc-caption decomp">▲ 三才分解界面 · 全色阶背包批量回收</p>
         <div className="sc-token"><em>碎</em><div><b>碎片 · 系统通用结算货币</b><span>FRAGMENT · THE UNIVERSAL CURRENCY</span></div><i className="topline" /><i className="botline" /></div>
+        <span className="sc-token-flow in">分解 产出 ↓</span>
+        <span className="sc-token-flow out">↓ 兑换 消耗</span>
         <div className="sc-step-heading bottom"><em>2</em><span>兑换 · 定向消耗碎片，获取目标装备</span></div>
         <div className="sc-interface exch"><Img src={A.exchange} alt="三才兑换界面" /></div>
         <Annot side="left" x={16} y={1722} w={180} title="标签页筛选" text="天 / 地 / 人 分类" line={[203, 1731, 124]} dot={[323, 1742]} />

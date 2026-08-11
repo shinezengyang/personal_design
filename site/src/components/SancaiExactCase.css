@@ -31,3 +31,8 @@
 .sancai-case .sc-loop-diagram .la0{left:477px;top:266px}
 .sancai-case .sc-loop-diagram .la1{left:625px;top:406px}
 .sancai-case .sc-loop-diagram .la2{left:772px;top:266px}
+
+/* s4 token flow labels (461,1456 / 461,1528 on the board) — never built. */
+.sancai-case .sc-loop .sc-token-flow{position:absolute;left:461px;width:120px;text-align:right;color:rgba(158,168,194,.85);font-size:16px;font-weight:700;line-height:14px}
+.sancai-case .sc-loop .sc-token-flow.in{top:1456px}
+.sancai-case .sc-loop .sc-token-flow.out{top:1528px}
