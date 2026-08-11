@@ -179,6 +179,7 @@ export function SancaiExactCase() {
           <article className="exchange"><em>兑</em><h3>兑换</h3><b>EXCHANGE</b><p>消耗碎片，换取目标道具</p></article>
           <div className="hub">资源<br />自循环</div>
           <i className="edge e1" /><i className="edge e2" /><i className="edge e3" />
+          <span className="loop-arrow la0">↙</span><span className="loop-arrow la1">→</span><span className="loop-arrow la2">↖</span>
           <span className="loop-label l1">冗余道具</span><span className="loop-label l2">三才碎片</span><span className="loop-label l3">新道具</span>
         </div>
         <div className="sc-step-heading top"><em>1</em><span>分解 · 回收冗余装备，产出通用碎片</span></div>
