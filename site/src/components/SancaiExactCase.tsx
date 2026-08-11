@@ -60,7 +60,7 @@ function PrincipleCard({ title, en, children }: { title: string; en: string; chi
    coordinate (section-relative). The line lengths run 35–349px in the board, so a
    single fixed-length rule can't stand in for them. */
 function Annot({
-  side, x, y, w, tone, title, text, line, dot, ring = false,
+  side, x, y, w, tone, title, text, line, dot, ring = false, marker = true,
 }: {
   side: 'left' | 'right';
   x: number; y: number; w: number; tone?: string;
@@ -68,6 +68,7 @@ function Annot({
   line: [number, number, number];
   dot: [number, number];
   ring?: boolean;
+  marker?: boolean;
 }) {
   return (
     <>
@@ -79,7 +80,7 @@ function Annot({
         <span>{text}</span>
       </div>
       <i className="sc-annline" style={{ left: line[0], top: line[1], width: line[2] }} />
-      <i className={`sc-anndot${ring ? ' ring' : ''}`} style={{ left: dot[0], top: dot[1] }} />
+      {marker ? <i className={`sc-anndot${ring ? ' ring' : ''}`} style={{ left: dot[0], top: dot[1] }} /> : null}
     </>
   );
 }
@@ -154,15 +155,14 @@ export function SancaiExactCase() {
         <h3 className="sc-shot-title">参考天穹镶嵌结构设计</h3>
         <div className="sc-main-shot-wrap">
           <Img src={A.main} className="sc-main-shot" alt="三才主界面" />
-          <div className="corner tl" /><div className="corner tr" /><div className="corner bl" /><div className="corner br" />
         </div>
-        <Annot side="left" x={0} y={822} w={180} title="三才页签" text="天·地·人 三类切换" line={[181, 847, 62]} dot={[242, 841]} ring />
-        <Annot side="left" x={0} y={960} w={180} title="天穹 · 日月星辰四曜" text="四曜即四个镶嵌凹槽" line={[180, 971, 349]} dot={[528, 964]} ring />
-        <Annot side="left" x={0} y={1057} w={180} title="已镶嵌道具" text="凹槽亮起对应品阶色" line={[180, 1068, 198]} dot={[377, 1061]} ring />
-        <Annot side="left" x={0} y={1197} w={180} tone="#8cd9e0" title="选中凹槽" text="蓝环高亮当前操作位" line={[178, 1208, 334]} dot={[511, 1201]} ring />
-        <Annot side="right" x={1100} y={897} w={190} title="道具详情" text="名称·品阶·属性一览" line={[1065, 909, 35]} dot={[1052, 903]} ring />
-        <Annot side="right" x={1100} y={1074} w={190} title="智能背包" text="仅列该凹槽可装配道具" line={[1021, 1085, 79]} dot={[1008, 1078]} ring />
-        <Annot side="right" x={1100} y={1241} w={190} tone="#8cd9e0" title="情境化按钮" text={'装配·卸下·替换 \n随态变化'} line={[1056, 1252, 44]} dot={[1043, 1246]} ring />
+        <Annot side="left" x={0} y={822} w={180} title="三才页签" text="天·地·人 三类切换" line={[181, 847, 62]} dot={[242, 841]} ring marker={false} />
+        <Annot side="left" x={0} y={960} w={180} title="天穹 · 日月星辰四曜" text="四曜即四个镶嵌凹槽" line={[180, 971, 349]} dot={[528, 964]} ring marker={false} />
+        <Annot side="left" x={0} y={1057} w={180} title="已镶嵌道具" text="凹槽亮起对应品阶色" line={[180, 1068, 198]} dot={[377, 1061]} ring marker={false} />
+        <Annot side="left" x={0} y={1197} w={180} tone="#8cd9e0" title="选中凹槽" text="蓝环高亮当前操作位" line={[178, 1208, 334]} dot={[511, 1201]} ring marker={false} />
+        <Annot side="right" x={1100} y={897} w={190} title="道具详情" text="名称·品阶·属性一览" line={[1065, 909, 35]} dot={[1052, 903]} ring marker={false} />
+        <Annot side="right" x={1100} y={1074} w={190} title="智能背包" text="仅列该凹槽可装配道具" line={[1021, 1085, 79]} dot={[1008, 1078]} ring marker={false} />
+        <Annot side="right" x={1100} y={1241} w={190} tone="#8cd9e0" title="情境化按钮" text={'装配·卸下·替换 \n随态变化'} line={[1056, 1252, 44]} dot={[1043, 1246]} ring marker={false} />
         <p className="sc-shot-caption">▲ 三才界面</p>
         <div className="sc-principles three">
           <PrincipleCard title="交互原则 · 匹配心智模型" en="MATCH BETWEEN SYSTEM & THE REAL WORLD">借用真实世界已有的概念模型，系统语言贴合用户既有认知，学习成本趋近于零。</PrincipleCard>
