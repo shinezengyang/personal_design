@@ -218,9 +218,9 @@ export function SancaiExactCase() {
       <section className="sc-section sc-journey">
         <SectionHeader no="07" eyebrow="THE FLOW JOURNEY" title="心流历程 · 从好奇到精通" desc="沿游戏进程铺展的情绪曲线 —— 挑战与技能同步攀升，玩家始终行进在心流通道之中。" />
         <div className="sc-flow-panel">
-          <div className="flow-channel" />
+          <svg className="flow-channel" viewBox="0 0 780 362" preserveAspectRatio="none"><path d="M0 252 L780 0 L780 110 L0 362 Z" /></svg>
           <i className="axis y" /><i className="axis x" />
-          <svg className="flow-curve" viewBox="0 0 760 252" preserveAspectRatio="none"><path d="M0,235 C120,210 140,170 190,180 C260,190 270,100 320,110 C390,120 410,185 470,150 C550,105 570,90 620,62 C680,28 720,15 760,0" /></svg>
+          <svg className="flow-curve" viewBox="0 0 760 252" preserveAspectRatio="none"><path d="M0,252 C60.8,252 91.2,192 152,192 C212.8,192 243.2,117 304,117 C364.8,117 395.2,160 456,160 C516.8,160 547.2,74 608,74 C668.8,74 698.2,0 760,0" /></svg>
           {journey.map(([title, text, cls], i) => <div className={`flow-point ${cls}`} key={title}><i /><b>{title}</b><span>{text}</span></div>)}
           <p className="flow-label anx">焦虑区 · 挑战 &gt; 技能</p>
           <p className="flow-label bore">无聊区 · 挑战 &lt; 技能</p>
@@ -228,11 +228,13 @@ export function SancaiExactCase() {
           <p className="flow-label ytext">↑ 投入 / 情绪强度</p>
           <p className="flow-label xtext">游戏进程 →</p>
         </div>
-        <div className="sc-flow-note"><h3>交互原则 · 心流理论</h3><b>FLOW THEORY · CHALLENGE–SKILL BALANCE</b><p>三才系统让「挑战」与「技能」同步攀升 —— 每解锁一层品阶难度，玩家恰好也积累起应对的碎片资源与系统认知，使体验稳定落在心流通道。</p></div>
+        <div className="sc-flow-note"><h3>交互原则 · 心流理论</h3><b>FLOW THEORY · CHALLENGE–SKILL BALANCE</b><p>三才系统让「挑战」与「技能」同步攀升 —— 每解锁一层品阶难度，玩家恰好也积累起应对的碎片资源与系统认知，使体验稳定落在心流通道，既不因过难而焦虑，也不因重复而厌倦。</p></div>
       </section>
 
       <section className="sc-section sc-final">
-        <div className="final-orbits" />
+        <div className="final-orbits" /><div className="final-orbits2" />
+        <div className="final-orbnodes"><i /><i /><i /></div>
+        <div className="final-stars"><i /><i /><i /><i /><i /><i /></div>
         <p className="final-eyebrow">结语 · IN CLOSING</p>
         <h2>把复杂的养成系统<br />收束成一眼就懂的宇宙</h2>
         <p className="final-copy">三才系统 —— 以天地人的秩序，让每一次镶嵌都成为可理解、可预期、可回味的体验。</p>
