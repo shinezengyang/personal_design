@@ -165,9 +165,9 @@ export function SancaiExactCase() {
         <Annot side="right" x={1100} y={1241} w={190} tone="#8cd9e0" title="情境化按钮" text={'装配·卸下·替换 \n随态变化'} line={[1056, 1252, 44]} dot={[1043, 1246]} ring marker={false} />
         <p className="sc-shot-caption">▲ 三才界面</p>
         <div className="sc-principles three">
-          <PrincipleCard title="交互原则 · 匹配心智模型" en="MATCH BETWEEN SYSTEM & THE REAL WORLD">借用真实世界已有的概念模型，系统语言贴合用户既有认知，学习成本趋近于零。</PrincipleCard>
-          <PrincipleCard title="交互原则 · 情境化操作" en="CONTEXTUAL ACTION">同一按钮依凹槽状态自动切换「装配/卸下/替换」，操作选项永远匹配当前情境。</PrincipleCard>
-          <PrincipleCard title="交互原则 · 识别优于回忆" en="RECOGNITION OVER RECALL">背包只显示当前凹槽「装得上」的道具，玩家无需记忆复杂规则，看见即可选。</PrincipleCard>
+          <PrincipleCard title="交互原则 · 匹配心智模型" en="MATCH BETWEEN SYSTEM & THE REAL WORLD">借用真实世界已有的概念模型，系统语言贴合用户既有认知，学习成本趋近于零 —— 文化符号在此既是美术，也是最高效的「免说明书」交互。</PrincipleCard>
+          <PrincipleCard title="交互原则 · 情境化操作" en="CONTEXTUAL ACTION">同一按钮依凹槽状态自动切换「装配/卸下/替换」，操作选项永远匹配当前情境，杜绝无效点击与误操作。</PrincipleCard>
+          <PrincipleCard title="交互原则 · 识别优于回忆" en="RECOGNITION OVER RECALL">背包只显示当前凹槽「装得上」的道具，玩家无需记忆复杂规则，看见即可选，决策被压缩到一眼之间。</PrincipleCard>
         </div>
       </section>
 
@@ -199,9 +199,9 @@ export function SancaiExactCase() {
         <Annot side="right" x={1124} y={1904} w={190} tone="#f26b6b" title="绿足红缺" text="颜色即兑换决策" line={[970, 1916, 149]} dot={[967, 1913]} />
         <p className="sc-caption exch">▲ 三才兑换界面 · 定向兑换目标道具</p>
         <div className="sc-principles loopp">
-          <PrincipleCard title="交互原则 · 闭环反馈与心流维系" en="CLOSED-LOOP FEEDBACK">每完成一环都立即获得「可继续行动」的反馈，玩家的目标永不落空。</PrincipleCard>
-          <PrincipleCard title="交互原则 · 即时反馈" en="IMMEDIATE FEEDBACK">分解后获得的碎片数实时结算，兑换成本随拥有量动态转换。</PrincipleCard>
-          <PrincipleCard title="交互原则 · 防错设计" en="ERROR PREVENTION">碎片不足时成本即转红预警，从源头阻断无效点击。</PrincipleCard>
+          <PrincipleCard title="交互原则 · 闭环反馈与心流维系" en="CLOSED-LOOP FEEDBACK · SUSTAINED FLOW">每完成一环都立即获得「可继续行动」的反馈，玩家的目标永不落空 —— 这正是维持心流体验的关键，让养成动机自我驱动、持续运转。</PrincipleCard>
+          <PrincipleCard title="交互原则 · 即时反馈" en="IMMEDIATE FEEDBACK">分解后获得的碎片数实时结算，兑换成本随拥有量动态转换 —— 每步操作都有及时回响。</PrincipleCard>
+          <PrincipleCard title="交互原则 · 防错设计" en="ERROR PREVENTION">碎片不足时成本即转红预警，从源头阻断无效点击，错误在发生之前就被规避。</PrincipleCard>
         </div>
       </section>
 
