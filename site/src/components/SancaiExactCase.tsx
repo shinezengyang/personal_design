@@ -206,13 +206,13 @@ export function SancaiExactCase() {
       </section>
 
       <section className="sc-section sc-tier">
-        <SectionHeader no="04" eyebrow="QUALITY TIERS" title="品阶系统 · 五色识阶" desc="同一颜色始终代表同一稀有度，从背包、兑换到分解贯穿全系统。" />
+        <SectionHeader no="04" eyebrow="QUALITY TIERS" title="品阶系统 · 五色识阶" desc="三才道具分为五个品阶，以一套固定色阶贯穿全系统 —— 从背包、兑换到分解，同一颜色始终代表同一稀有度。" />
         <div className="sc-tier-bars">
           {tiers.map(([roman, name, en, color], i) => <article key={name} className={`tier-${color}`} style={{ '--h': `${100 + i * 35}px` } as CSSProperties}><i /><em>{roman}</em><h3>{name}</h3><b>{en}</b></article>)}
         </div>
         <div className="sc-set-shot"><Img src={A.set} alt="套装属性总览" /></div>
         <p className="sc-set-caption">▲ 套装属性总览界面 — 同一色阶在全系统保持一致</p>
-        <div className="sc-tier-copy"><h3>交互原则 · 预注意处理</h3><b>PRE-ATTENTIVE PROCESSING</b><p>颜色是人眼在「聚焦注意」之前就能并行处理的视觉通道。用色阶编码稀有度，玩家无需逐字阅读，扫一眼即可在上百件道具中锁定高价值目标，大幅降低决策负荷。</p><div><strong>行业参照</strong><p>「稀有度色阶」是 RPG 的通用语言。沿用这一行业惯例，老玩家零学习成本，新玩家也能在跨游戏经验中快速建立认知。</p><span /><span /><span /><span /><span /></div></div>
+        <div className="sc-tier-copy"><h3>交互原则 · 预注意处理</h3><b>PRE-ATTENTIVE PROCESSING</b><p>颜色是人眼在「聚焦注意」之前就能并行处理的视觉通道。用色阶编码稀有度，玩家无需逐字阅读，扫一眼即可在上百件道具中锁定高价值目标，大幅降低决策负荷。</p><div><strong>行业参照</strong><p>「稀有度色阶」是 RPG 的通用语言 —— 暗黑破坏神、魔兽世界皆以白绿蓝紫橙区分品质。沿用这一行业惯例，老玩家零学习成本，新玩家也能在跨游戏经验中快速建立认知。</p><span /><span /><span /><span /><span /></div></div>
       </section>
 
       <section className="sc-section sc-journey">
