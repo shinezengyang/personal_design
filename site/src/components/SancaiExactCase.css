@@ -9,11 +9,11 @@
 .sancai-case .sc-loop .sc-annot b{line-height:18px}
 .sancai-case .sc-annline{position:absolute;height:1px;z-index:2;pointer-events:none}
 .sancai-case .sc-anndot{position:absolute;box-sizing:border-box;width:6px;height:6px;border-radius:50%;z-index:3;pointer-events:none}
-.sc-theme .sancai-case .sc-annline{background:rgba(209,173,97,.5)}
-.sc-theme .sancai-case .sc-anndot{background:#d1ad61}
+.sancai-case .sc-theme .sc-annline{background:rgba(209,173,97,.5)}
+.sancai-case .sc-theme .sc-anndot{background:#d1ad61}
 .sancai-case .sc-theme .sc-anndot.ring{width:14px;height:14px;border:1px solid rgba(209,173,97,.6);background:radial-gradient(circle,#d1ad61 0 3.5px,transparent 3.5px)}
-.sc-loop .sancai-case .sc-annline{background:rgba(140,217,224,.55)}
-.sc-loop .sancai-case .sc-anndot{background:#8cd9e0}
+.sancai-case .sc-loop .sc-annline{background:rgba(140,217,224,.55)}
+.sancai-case .sc-loop .sc-anndot{background:#8cd9e0}
 
 /* Starfield colours and the bottom trio, from Figma 9817:10739. */
 .sancai-case .sc-stars.left span:nth-child(2),
