@@ -111,6 +111,7 @@ export function SancaiExactCase() {
         <Img src={A.heroOrbit3} className="sc-hero-orbit orbit3" />
         <div className="sc-stars left"><span /><span /><span /><span /><span /></div>
         <div className="sc-stars right"><span /><span /><span /><span /></div>
+        <div className="sc-stars bottom"><span /><span /><span /></div>
         <div className="sc-constellation left"><i /><i /><i /></div>
         <div className="sc-constellation right"><i /><i /></div>
         <p className="sc-hero-en">SANCAI · CELESTIAL GEAR SYSTEM</p>
