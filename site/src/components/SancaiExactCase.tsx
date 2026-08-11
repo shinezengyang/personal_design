@@ -56,13 +56,31 @@ function PrincipleCard({ title, en, children }: { title: string; en: string; chi
   );
 }
 
-function Annot({ className, title, text, side = 'left' }: { className: string; title: string; text: string; side?: 'left' | 'right' }) {
+/* Callout: text block + leader line + marker dot, each placed at its own Figma
+   coordinate (section-relative). The line lengths run 35–349px in the board, so a
+   single fixed-length rule can't stand in for them. */
+function Annot({
+  side, x, y, w, tone, title, text, line, dot, ring = false,
+}: {
+  side: 'left' | 'right';
+  x: number; y: number; w: number; tone?: string;
+  title: string; text: string;
+  line: [number, number, number];
+  dot: [number, number];
+  ring?: boolean;
+}) {
   return (
-    <div className={`sc-annot ${side} ${className}`}>
-      <b>{title}</b>
-      <span>{text}</span>
-      <i />
-    </div>
+    <>
+      <div
+        className={`sc-annot ${side}`}
+        style={{ left: x, top: y, width: w, ...(tone ? ({ '--tone': tone } as CSSProperties) : null) }}
+      >
+        <b>{title}</b>
+        <span>{text}</span>
+      </div>
+      <i className="sc-annline" style={{ left: line[0], top: line[1], width: line[2] }} />
+      <i className={`sc-anndot${ring ? ' ring' : ''}`} style={{ left: dot[0], top: dot[1] }} />
+    </>
   );
 }
 
@@ -95,13 +113,11 @@ export function SancaiExactCase() {
         <div className="sc-stars right"><span /><span /><span /><span /></div>
         <div className="sc-constellation left"><i /><i /><i /></div>
         <div className="sc-constellation right"><i /><i /></div>
-        <div className="sc-overline"><i />装备养成系统交互设计</div>
         <p className="sc-hero-en">SANCAI · CELESTIAL GEAR SYSTEM</p>
         <h1>三才系统</h1>
         <div className="sc-title-rule" />
         <h3>天 · 地 · 人&nbsp;&nbsp; × &nbsp;&nbsp;日 · 月 · 星 · 辰</h3>
         <p className="sc-hero-copy">以中华「三才」宇宙观为内核的装备养成系统：将天地人三象与日月星辰四曜融入装配、兑换、分解的资源闭环，构建一套既有文化质感、又自循环驱动的养成体验。</p>
-        <div className="sc-tags">{['天地人三象', '品阶系统', '资源闭环', '情境化操作', '套装养成'].map((x) => <span key={x}>{x}</span>)}</div>
       </section>
 
       <section className="sc-section sc-overview">
@@ -138,14 +154,14 @@ export function SancaiExactCase() {
         <div className="sc-main-shot-wrap">
           <Img src={A.main} className="sc-main-shot" alt="三才主界面" />
           <div className="corner tl" /><div className="corner tr" /><div className="corner bl" /><div className="corner br" />
-          <Annot className="a1" title="三才页签" text="天·地·人 三类切换" side="left" />
-          <Annot className="a2" title="天穹 · 日月星辰四曜" text="四曜即四个镶嵌凹槽" side="left" />
-          <Annot className="a3" title="已镶嵌道具" text="凹槽亮起对应品阶色" side="left" />
-          <Annot className="a4" title="选中凹槽" text="蓝环高亮当前操作位" side="left" />
-          <Annot className="a5" title="道具详情" text="名称·品阶·属性一览" side="right" />
-          <Annot className="a6" title="智能背包" text="仅列该凹槽可装配道具" side="right" />
-          <Annot className="a7" title="情境化按钮" text="装配·卸下·替换 随态变化" side="right" />
         </div>
+        <Annot side="left" x={0} y={822} w={180} title="三才页签" text="天·地·人 三类切换" line={[181, 847, 62]} dot={[242, 841]} ring />
+        <Annot side="left" x={0} y={960} w={180} title="天穹 · 日月星辰四曜" text="四曜即四个镶嵌凹槽" line={[180, 971, 349]} dot={[528, 964]} ring />
+        <Annot side="left" x={0} y={1057} w={180} title="已镶嵌道具" text="凹槽亮起对应品阶色" line={[180, 1068, 198]} dot={[377, 1061]} ring />
+        <Annot side="left" x={0} y={1197} w={180} tone="#8cd9e0" title="选中凹槽" text="蓝环高亮当前操作位" line={[178, 1208, 334]} dot={[511, 1201]} ring />
+        <Annot side="right" x={1100} y={897} w={190} title="道具详情" text="名称·品阶·属性一览" line={[1065, 909, 35]} dot={[1052, 903]} ring />
+        <Annot side="right" x={1100} y={1074} w={190} title="智能背包" text="仅列该凹槽可装配道具" line={[1021, 1085, 79]} dot={[1008, 1078]} ring />
+        <Annot side="right" x={1100} y={1241} w={190} tone="#8cd9e0" title="情境化按钮" text={'装配·卸下·替换 \n随态变化'} line={[1056, 1252, 44]} dot={[1043, 1246]} ring />
         <p className="sc-shot-caption">▲ 三才界面</p>
         <div className="sc-principles three">
           <PrincipleCard title="交互原则 · 匹配心智模型" en="MATCH BETWEEN SYSTEM & THE REAL WORLD">借用真实世界已有的概念模型，系统语言贴合用户既有认知，学习成本趋近于零。</PrincipleCard>
@@ -166,17 +182,17 @@ export function SancaiExactCase() {
         </div>
         <div className="sc-step-heading top"><em>1</em><span>分解 · 回收冗余装备，产出通用碎片</span></div>
         <div className="sc-interface decomp"><Img src={A.decompose} alt="三才分解界面" /></div>
-        <Annot className="d1" title="全色阶背包" text="五色阶一览 · 批量多选" side="left" />
-        <Annot className="d2" title="三才 × 品级" text="双维度组合筛选" side="left" />
-        <Annot className="d3" title="分解后获得" text="碎片产出实时预览" side="right" />
+        <Annot side="left" x={16} y={988} w={180} title="全色阶背包" text="五色阶一览 · 批量多选" line={[203, 997, 85]} dot={[284, 1009]} />
+        <Annot side="left" x={16} y={1266} w={180} title="三才 × 品级" text="双维度组合筛选" line={[203, 1275, 220]} dot={[419, 1295]} />
+        <Annot side="right" x={1124} y={1260} w={190} title="分解后获得" text="碎片产出实时预览" line={[1007, 1269, 113]} dot={[1004, 1277]} />
         <p className="sc-caption decomp">▲ 三才分解界面 · 全色阶背包批量回收</p>
         <div className="sc-token"><em>碎</em><div><b>碎片 · 系统通用结算货币</b><span>FRAGMENT · THE UNIVERSAL CURRENCY</span></div><i className="topline" /><i className="botline" /></div>
         <div className="sc-step-heading bottom"><em>2</em><span>兑换 · 定向消耗碎片，获取目标装备</span></div>
         <div className="sc-interface exch"><Img src={A.exchange} alt="三才兑换界面" /></div>
-        <Annot className="e1" title="标签页筛选" text="天 / 地 / 人 分类" side="left" />
-        <Annot className="e2" title="拥有 / 需求" text="双数值标注成本" side="left" />
-        <Annot className="e3" title="全品阶下拉" text="按品阶快速定位" side="right" />
-        <Annot className="e4" title="绿足红缺" text="颜色即兑换决策" side="right" />
+        <Annot side="left" x={16} y={1722} w={180} title="标签页筛选" text="天 / 地 / 人 分类" line={[203, 1731, 124]} dot={[323, 1742]} />
+        <Annot side="left" x={16} y={1904} w={180} tone="#73d98c" title="拥有 / 需求" text="双数值标注成本" line={[203, 1913, 163]} dot={[363, 1913]} />
+        <Annot side="right" x={1124} y={1722} w={190} title="全品阶下拉" text="按品阶快速定位" line={[994, 1731, 126]} dot={[991, 1742]} />
+        <Annot side="right" x={1124} y={1904} w={190} tone="#f26b6b" title="绿足红缺" text="颜色即兑换决策" line={[970, 1913, 149]} dot={[967, 1913]} />
         <p className="sc-caption exch">▲ 三才兑换界面 · 定向兑换目标道具</p>
         <div className="sc-principles loopp">
           <PrincipleCard title="交互原则 · 闭环反馈与心流维系" en="CLOSED-LOOP FEEDBACK">每完成一环都立即获得「可继续行动」的反馈，玩家的目标永不落空。</PrincipleCard>
