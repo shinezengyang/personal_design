@@ -142,7 +142,7 @@ export function SancaiExactCase() {
         <div className="sc-orbit-panel">
           <Img src={A.s2Orbit1} className="sc-o-ring ring1" />
           <Img src={A.s2Orbit2} className="sc-o-ring ring2" />
-          <div className="sc-o-diamond d0" /><div className="sc-o-diamond d1" /><div className="sc-o-diamond d2" /><div className="sc-o-diamond d3" />
+          <div className="sc-o-diamond" />
           <div className="sc-o-spoke h" /><div className="sc-o-spoke v" />
           <div className="sc-o-node sun"><Img src={A.s2NodeGold} /><b>日</b></div>
           <div className="sc-o-node moon"><Img src={A.s2NodeBlue} /><b>月</b></div>
