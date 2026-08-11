@@ -184,19 +184,19 @@ export function SancaiExactCase() {
         </div>
         <div className="sc-step-heading top"><em>1</em><span>分解 · 回收冗余装备，产出通用碎片</span></div>
         <div className="sc-interface decomp"><Img src={A.decompose} alt="三才分解界面" /></div>
-        <Annot side="left" x={16} y={988} w={180} title="全色阶背包" text="五色阶一览 · 批量多选" line={[203, 997, 85]} dot={[284, 1009]} />
-        <Annot side="left" x={16} y={1266} w={180} title="三才 × 品级" text="双维度组合筛选" line={[203, 1275, 220]} dot={[419, 1295]} />
-        <Annot side="right" x={1124} y={1260} w={190} title="分解后获得" text="碎片产出实时预览" line={[1007, 1269, 113]} dot={[1004, 1277]} />
+        <Annot side="left" x={16} y={988} w={180} title="全色阶背包" text="五色阶一览 · 批量多选" line={[202.3, 1012, 85.3]} dot={[284, 1009]} />
+        <Annot side="left" x={16} y={1266} w={180} title="三才 × 品级" text="双维度组合筛选" line={[202.4, 1298, 220.2]} dot={[419, 1295]} />
+        <Annot side="right" x={1124} y={1260} w={190} title="分解后获得" text="碎片产出实时预览" line={[1006.7, 1280, 112.5]} dot={[1004, 1277]} />
         <p className="sc-caption decomp">▲ 三才分解界面 · 全色阶背包批量回收</p>
         <div className="sc-token"><em>碎</em><div><b>碎片 · 系统通用结算货币</b><span>FRAGMENT · THE UNIVERSAL CURRENCY</span></div><i className="topline" /><i className="botline" /></div>
         <span className="sc-token-flow in">分解 产出 ↓</span>
         <span className="sc-token-flow out">↓ 兑换 消耗</span>
         <div className="sc-step-heading bottom"><em>2</em><span>兑换 · 定向消耗碎片，获取目标装备</span></div>
         <div className="sc-interface exch"><Img src={A.exchange} alt="三才兑换界面" /></div>
-        <Annot side="left" x={16} y={1722} w={180} title="标签页筛选" text="天 / 地 / 人 分类" line={[203, 1731, 124]} dot={[323, 1742]} />
-        <Annot side="left" x={16} y={1904} w={180} tone="#73d98c" title="拥有 / 需求" text="双数值标注成本" line={[203, 1913, 163]} dot={[363, 1913]} />
-        <Annot side="right" x={1124} y={1722} w={190} title="全品阶下拉" text="按品阶快速定位" line={[994, 1731, 126]} dot={[991, 1742]} />
-        <Annot side="right" x={1124} y={1904} w={190} tone="#f26b6b" title="绿足红缺" text="颜色即兑换决策" line={[970, 1913, 149]} dot={[967, 1913]} />
+        <Annot side="left" x={16} y={1722} w={180} title="标签页筛选" text="天 / 地 / 人 分类" line={[202.6, 1745, 123.8]} dot={[323, 1742]} />
+        <Annot side="left" x={16} y={1904} w={180} tone="#73d98c" title="拥有 / 需求" text="双数值标注成本" line={[203, 1916, 163]} dot={[363, 1913]} />
+        <Annot side="right" x={1124} y={1722} w={190} title="全品阶下拉" text="按品阶快速定位" line={[993.6, 1745, 125.8]} dot={[991, 1742]} />
+        <Annot side="right" x={1124} y={1904} w={190} tone="#f26b6b" title="绿足红缺" text="颜色即兑换决策" line={[970, 1916, 149]} dot={[967, 1913]} />
         <p className="sc-caption exch">▲ 三才兑换界面 · 定向兑换目标道具</p>
         <div className="sc-principles loopp">
           <PrincipleCard title="交互原则 · 闭环反馈与心流维系" en="CLOSED-LOOP FEEDBACK">每完成一环都立即获得「可继续行动」的反馈，玩家的目标永不落空。</PrincipleCard>
