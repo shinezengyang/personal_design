@@ -147,13 +147,17 @@ export function BianjingExactCase() {
         <div className="bj-shot bj-entry-shot a"><Img src={assets.entryWorld} /></div>
         <div className="bj-shot bj-entry-shot b"><Img src={assets.entryActivity} /></div>
         <div className="bj-shot bj-entry-shot c"><Img src={assets.entryHub} /></div>
-        <div className="bj-entry-arrow left" /><div className="bj-entry-arrow right" />
+        <svg className="bj-entry-links" viewBox="0 0 1280 940" fill="none" aria-hidden>
+          <path d="M310.5 272H448.5V335H463" stroke="#00a0e9" strokeWidth="1" />
+          <path d="M710 379H831.5V335H847" stroke="#00a0e9" strokeWidth="1" />
+        </svg>
         <div className="bj-anno-grid four">
           <SmallAnno tone="blue" title="活动入口" body="日常商业区域点击活动入口进入边疆战场界面。入口位置符合玩家已有心智模型。" />
           <SmallAnno tone="gold" title="增益Tips" body="点击弹出当前增益tips，展示已装配增益状态、增益图标/名称/效果。" />
           <SmallAnno tone="red" title="奖励预览" body="点击弹出奖励预览tips。红点逻辑：当有可领取奖励时显示，引导玩家及时领取。" />
           <SmallAnno tone="green" title="关卡总览" body="所有副本关卡名称一目了然。5个个人关卡+公共关卡入口清晰排列。" />
         </div>
+        <div className="bj-route-label">入口交互流</div>
         <div className="bj-route"><b>大世界</b><span>活动入口</span><span>边境战场</span><span>选择关卡</span><span>进入副本</span></div>
         <div className="bj-callout entry-theory blue"><b>Information Scent & Wayfinding</b><p>信息气味理论——活动入口、增益tips、奖励预览、红点逻辑层层引导，让玩家在复杂系统中始终知道「去哪」和「为什么」。</p></div>
       </section>
