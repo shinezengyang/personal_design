@@ -333,7 +333,8 @@
 .bj-cc-card.blue em { color:rgba(89,140,229,.06); }
 .bj-cc-card .bj-dot { position:absolute; left:27px; top:23px; width:10px; height:10px; }
 .bj-cc-card h3 { position:absolute; left:49px; top:17px; margin:0; color:#fff; font-size:18px; font-weight:700; }
-.bj-cc-card p { position:absolute; left:27px; top:55px; width:286px; margin:0; color:#8c8c99; font-size:16px; line-height:19px; }
+.bj-cc-card p { position:absolute; left:27px; top:55px; width:280px; margin:0; color:#8c8c99; font-size:16px; line-height:19px; }
+.bj-cc-card.gold p { width:290px; }
 
 .bj-cc-summary { left:0; right:0; top:849px; margin:0; text-align:center; color:#8c8c99; font-size:16px; line-height:19px; }
 
