@@ -51,6 +51,17 @@ function Dot({ tone = 'red' }: { tone?: Tone }) {
   return <i className={`bj-dot ${tone}`} />;
 }
 
+// Figma's ARROW_EQUILATERAL cap on the connector polylines: side 6, apex on the vertex.
+function ArrowHead({ id }: { id: string }) {
+  return (
+    <defs>
+      <marker id={id} markerWidth="5.2" markerHeight="6" refX="5.196" refY="3" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+        <path d="M0 0 5.196 3 0 6Z" fill="#00a0e9" />
+      </marker>
+    </defs>
+  );
+}
+
 function InfoRow({ label, value, tone = 'red' }: { label: string; value: string; tone?: Tone }) {
   return (
     <article className="bj-info-row">
@@ -148,8 +159,9 @@ export function BianjingExactCase() {
         <div className="bj-shot bj-entry-shot b"><Img src={assets.entryActivity} /></div>
         <div className="bj-shot bj-entry-shot c"><Img src={assets.entryHub} /></div>
         <svg className="bj-entry-links" viewBox="0 0 1280 940" fill="none" aria-hidden>
-          <path d="M310.5 272H448.5V335H463" stroke="#00a0e9" strokeWidth="1" />
-          <path d="M710 379H831.5V335H847" stroke="#00a0e9" strokeWidth="1" />
+          <ArrowHead id="bjArrowEntry" />
+          <path d="M310.5 272H448.5V335H463" stroke="#00a0e9" strokeWidth="1" markerStart="url(#bjArrowEntry)" />
+          <path d="M710 379H831.5V335H847" stroke="#00a0e9" strokeWidth="1" markerStart="url(#bjArrowEntry)" />
         </svg>
         <div className="bj-anno-grid four">
           <SmallAnno tone="blue" title="活动入口" body="日常商业区域点击活动入口进入边疆战场界面。入口位置符合玩家已有心智模型。" />
@@ -221,7 +233,11 @@ export function BianjingExactCase() {
         </div>
         <div className="bj-public-gallery">
           {[assets.public1,assets.public2,assets.public4,assets.public3,assets.public5].map((src,i)=><div className={`bj-shot p${i}`} key={src}><Img src={src}/></div>)}
-          <div className="bj-public-arrow a" /><div className="bj-public-arrow b" />
+          <svg className="bj-public-links" viewBox="0 0 1280 1840" fill="none" aria-hidden>
+            <ArrowHead id="bjArrowPublic" />
+            <path d="M640 1138V1043H686" stroke="#00a0e9" strokeWidth="1" markerStart="url(#bjArrowPublic)" />
+            <path d="M640 1345V1250H725" stroke="#00a0e9" strokeWidth="1" markerStart="url(#bjArrowPublic)" />
+          </svg>
         </div>
         <div className="bj-callout public-team blue"><p>组队机制：进入组队界面弹出便捷组队窗口。支持单人进入副本(部分关卡)。关闭组队界面回到公共关卡详情界面，操作路径清晰。</p></div>
         <div className="bj-callout public-theory gold"><b>Social Facilitation & Meaningful Choices</b><p>社会助长效应——组队环境提升个体表现。三类事件提供差异化选择，每种选择对应不同策略，实现有意义的决策空间。</p></div>

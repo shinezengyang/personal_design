@@ -249,9 +249,7 @@
 .bj-public-gallery .p2 { left:846px; top:931px; }
 .bj-public-gallery .p3 { left:465px; top:1138px; }
 .bj-public-gallery .p4 { left:458px; top:1345px; }
-.bj-public-arrow { position:absolute; width:88px; height:88px; border-right:2px solid rgba(242,178,77,.35); border-bottom:2px solid rgba(242,178,77,.35); transform:rotate(24deg); }
-.bj-public-arrow.a { left:615px; top:1038px; }
-.bj-public-arrow.b { left:625px; top:1235px; width:105px; }
+.bj-public-links { position:absolute; left:0; top:0; width:1280px; height:1840px; pointer-events:none; overflow:visible; }
 .public-team { left:80px; top:1624px; width:1120px; height:55px; padding-top:16px; }
 .public-theory { left:80px; top:1704px; width:1120px; height:75px; }
 
