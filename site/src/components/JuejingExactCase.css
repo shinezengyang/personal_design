@@ -52,8 +52,8 @@
 .jj-image-caption { position:absolute; margin:0; color:#737380; font-size:16px; }
 .overview-caption { left:674px; top:93px; }
 .jj-shot { position:absolute; border-radius:10px; overflow:hidden; background:#101016; }
-.jj-overview-shot { left:442px; top:119px; width:758px; height:427px; border:1px solid #333340; }
-.jj-overview-shot img { width:99.84%; height:107.73%; transform:translate(.08%, -7.96%); }
+.jj-overview-shot { left:442px; top:119px; width:758px; height:427px; border:1px solid #333340; border-radius:12px; }
+.jj-overview-shot img { width:100%; height:100%; }
 .jj-callout { position:absolute; border-radius:8px; border:1px solid rgba(102,166,255,.15); background:rgba(102,166,255,.06); padding:18px 25px; }
 .jj-callout b { display:block; color:#66a6ff; font-size:13px; font-weight:800; margin-bottom:8px; }
 .jj-callout p { margin:0; color:#8c8c94; font-size:16px; line-height:20px; }
@@ -113,7 +113,7 @@
 .jj-entry-shot.right, .jj-combat-shot.right { left:660px; }
 .jj-entry-shot.left { border:1px solid rgba(229,128,102,.3); }
 .jj-entry-shot.right { border:1px solid rgba(128,204,128,.3); }
-.jj-entry-shot img, .jj-combat-shot img { width:100.54%; height:108.2%; transform:translate(-.27%, -8.2%); }
+.jj-entry-shot img, .jj-combat-shot img { width:100%; height:100%; }
 .jj-entry-anno-grid { position:absolute; left:80px; top:590px; display:grid; grid-template-columns:repeat(3, 350px); gap:35px; }
 .jj-entry-anno-grid.combat { grid-template-columns:repeat(3, 353px); gap:30px; }
 .jj-anno-card { position:relative; width:350px; height:130px; border:1px solid #33333d; border-radius:8px; background:#212129; padding:12px 15px; overflow:hidden; }
@@ -166,7 +166,7 @@
 
 .map-caption { left:332px; top:208px; }
 .jj-map-shot { left:80px; top:233px; width:724px; height:407px; border:1px solid rgba(128,204,128,.2); border-radius:12px; }
-.jj-map-shot img { width:99.99%; height:108.11%; transform:translate(.01%, -8.11%); }
+.jj-map-shot img { width:100%; height:100%; }
 .jj-monster-list { position:absolute; left:842px; top:200px; width:358px; }
 .jj-monster-list > h3 { margin:0 0 20px; color:#fff; font-size:20px; }
 .jj-monster-state { position:relative; width:358px; height:120px; margin-bottom:20px; border:1px solid rgba(128,204,128,.2); border-radius:8px; background:#212129; padding:15px 19px; overflow:hidden; }
@@ -228,7 +228,7 @@
 .jj-final-band .jj-dot { box-sizing:border-box; position:absolute; right:40px; top:40px; width:40px; height:40px; box-shadow:none; background:rgba(102,166,255,.08); border:1px solid rgba(102,166,255,.15); }
 .jj-visual-title { position:absolute; left:560px; top:680px; margin:0; width:160px; height:40px; color:#e5c772; font-size:32px; line-height:40px; text-align:center; font-weight:900; }
 .jj-final-shot { position:absolute; left:195px; top:734px; width:890px; height:500px; overflow:hidden; }
-.jj-final-shot img { width:127%; height:104.35%; transform:translate(-13.5%, -2.26%); }
+.jj-final-shot img { width:100%; height:100%; }
 
 /* bottom_line, 0,899 1280x1 on the board */
 .jj-cover::after { content:''; position:absolute; left:0; top:899px; width:1280px; height:1px; background:#333340; }
