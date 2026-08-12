@@ -268,21 +268,19 @@ export function BianjingExactCase() {
         <span className="bj-cc-glow g2" data-qy-static />
         <span className="bj-cc-glow g3" data-qy-static />
 
-        <p className="bj-cc-eyebrow">CONCLUSION</p>
-        <div className="bj-cc-topline" />
         <h2 className="bj-cc-title">让每一层玩法都有清晰的</h2>
         <h2 className="bj-cc-title gold">「来这里的理由」和「留下来的动力」</h2>
         <p className="bj-cc-sub">个人关卡靠数值成长，公共关卡靠社交归属，限时BOSS靠稀缺竞争 —— 三种动力交替接棒。</p>
 
-        <svg className="bj-cc-lines" viewBox="0 0 1280 1100" width="1280" height="1100" aria-hidden>
-          <line x1="640" y1="470" x2="200" y2="390" stroke="rgba(242,178,77,.28)" strokeWidth="1" />
-          <line x1="640" y1="470" x2="200" y2="550" stroke="rgba(102,191,128,.28)" strokeWidth="1" />
-          <line x1="640" y1="470" x2="1080" y2="390" stroke="rgba(89,140,229,.28)" strokeWidth="1" />
-          <line x1="640" y1="470" x2="1080" y2="550" stroke="rgba(166,102,217,.28)" strokeWidth="1" />
-          <circle cx="380" cy="425" r="2" fill="#f2b24d" /><circle cx="460" cy="438" r="2" fill="#f2b24d" />
-          <circle cx="380" cy="515" r="2" fill="#66bf80" /><circle cx="460" cy="502" r="2" fill="#66bf80" />
-          <circle cx="900" cy="425" r="2" fill="#598ce5" /><circle cx="820" cy="438" r="2" fill="#598ce5" />
-          <circle cx="900" cy="515" r="2" fill="#a666d9" /><circle cx="820" cy="502" r="2" fill="#a666d9" />
+        <svg className="bj-cc-lines" viewBox="0 0 1280 1000" width="1280" height="1000" aria-hidden>
+          <line x1="640" y1="470" x2="200" y2="390" stroke="rgba(242,178,77,.25)" strokeWidth="1" strokeDasharray="6 4" />
+          <line x1="640" y1="470" x2="200" y2="550" stroke="rgba(102,191,128,.25)" strokeWidth="1" strokeDasharray="6 4" />
+          <line x1="640" y1="470" x2="1080" y2="390" stroke="rgba(89,140,229,.25)" strokeWidth="1" strokeDasharray="6 4" />
+          <line x1="640" y1="470" x2="1080" y2="550" stroke="rgba(166,102,217,.25)" strokeWidth="1" strokeDasharray="6 4" />
+          <circle cx="382" cy="427" r="2" fill="#f2b24d" fillOpacity=".5" /><circle cx="462" cy="440" r="2" fill="#f2b24d" fillOpacity=".5" />
+          <circle cx="382" cy="517" r="2" fill="#66bf80" fillOpacity=".5" /><circle cx="462" cy="504" r="2" fill="#66bf80" fillOpacity=".5" />
+          <circle cx="902" cy="427" r="2" fill="#598ce5" fillOpacity=".5" /><circle cx="822" cy="440" r="2" fill="#598ce5" fillOpacity=".5" />
+          <circle cx="902" cy="517" r="2" fill="#a666d9" fillOpacity=".5" /><circle cx="822" cy="504" r="2" fill="#a666d9" fillOpacity=".5" />
         </svg>
 
         <div className="bj-cc-hub"><b>后台配置</b><em>CONFIG HUB</em></div>
@@ -298,10 +296,6 @@ export function BianjingExactCase() {
 
         <p className="bj-cc-summary">→&nbsp;&nbsp;从 0 到 1 搭建完整 PvE 系统，覆盖信息架构、交互流程、状态反馈全链路&nbsp;←</p>
 
-        <div className="bj-cc-thanks-line" />
-        <p className="bj-cc-thanks">感谢阅读</p>
-        <p className="bj-cc-thanks-en">THANKS FOR READING</p>
-        <span className="bj-cc-thanks-dot" />
       </section>
     </div>
   );
