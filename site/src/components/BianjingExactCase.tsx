@@ -258,7 +258,7 @@ export function BianjingExactCase() {
         <div className="bj-boss-mechs">{[['限时开启','固定时段刷新\n全服广播通知','gold'],['实时伤害排行','伤害贡献实时排名\n激励竞争参与','blue'],['尾刀奖励','最后一击额外奖励\n策略性保留技能','red'],['参与/排名奖励','参与即有奖励\n排名越高越丰厚','green']].map(([a,b,tone])=><SmallAnno key={a} title={a} body={b} tone={tone as Tone}/>)}</div>
         <h3 className="bj-mini-title boss-time">BOSS事件时间线</h3>
         <div className="bj-timeline">{['全服广播','玩家集结','战斗开始','伤害排行','BOSS击杀','奖励结算'].map((t,i)=><span key={t} className={`n${i}`}>{t}</span>)}</div>
-        <div className="bj-callout boss-theory purple"><b>Social Facilitation</b><p>限时BOSS通过全服可见的伤害排行和尾刀奖励，激发玩家竞争意识与社交动力。实时排名创造被观察感，参与奖励保证所有人的正向反馈。</p></div>
+        <div className="bj-callout boss-theory purple"><b>Social Facilitation</b><p>社会促进效应——他人在场时个体表现会受到影响。限时BOSS通过全服可见的伤害排行和尾刀奖励，激发玩家竞争意识与社交动力。实时排名创造被观察感，促使玩家发挥更高水平，参与奖励保证所有人的正向反馈。</p></div>
       </section>
 
       <section className="bj-section bj-conclusion">
