@@ -283,7 +283,7 @@
 .bj-boss-mechs .bj-small-anno p { position:absolute; left:20px; top:60px; margin:0; width:240px; font-size:16px; line-height:20px; }
 .boss-time { left:90px; top:844px; color:#f2b24d; font-weight:700; line-height:19px; }
 .bj-timeline { position:absolute; left:101px; top:893px; width:1077px; height:0; border-top:2px dashed #26262e; }
-.bj-timeline span { position:absolute; top:13px; color:#d9d9e0; font-size:14px; line-height:17px; white-space:nowrap; }
+.bj-timeline span { position:absolute; top:13px; width:max-content; color:#d9d9e0; font-size:14px; line-height:17px; white-space:nowrap; }
 .bj-timeline span::before { content:''; position:absolute; left:50%; top:-24px; margin-left:-7.5px; width:15px; height:16px; border-radius:50%; background:#f2b24d; }
 .bj-timeline .n0 { left:-28px; }
 .bj-timeline .n1 { left:186px; }
