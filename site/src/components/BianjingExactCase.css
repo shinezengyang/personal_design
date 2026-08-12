@@ -59,9 +59,9 @@
 .bj-header i { display:block; margin-top:7px; width:40px; height:3px; border-radius:2px; background:#d95940; }
 .bj-header i.gold { background:#f2b24d; }
 .bj-header span { display:block; margin-top:15px; color:#858591; font-size:16px; line-height:20px; white-space:nowrap; }
-.bj-callout { position:absolute; border-radius:8px; border:1px solid rgba(217,89,64,.12); background:rgba(217,89,64,.06); padding:16px 25px; }
-.bj-callout b { display:block; margin-bottom:8px; color:#d95940; font-size:13px; font-weight:800; }
-.bj-callout p { margin:0; color:#8c8c99; font-size:16px; line-height:22px; }
+.bj-callout { position:absolute; border-radius:8px; border:1px solid rgba(217,89,64,.12); background:rgba(217,89,64,.06); padding:17px 24px; }
+.bj-callout b { display:block; margin-bottom:6px; color:#d95940; font-size:13px; font-weight:800; line-height:16px; }
+.bj-callout p { margin:0; color:#8c8c99; font-size:16px; line-height:19px; }
 .bj-callout.gold { border-color:rgba(242,178,77,.12); background:rgba(242,178,77,.06); }
 .bj-callout.gold b { color:#f2b24d; }
 .bj-callout.blue { border-color:rgba(89,140,229,.12); background:rgba(89,140,229,.06); }
@@ -162,7 +162,7 @@
 .bj-stage-progress em { position:absolute; left:13px; top:15px; color:rgba(89,140,229,.15); font-size:28px; font-weight:800; font-style:normal; }
 .bj-stage-progress b { display:block; margin-top:19px; color:#fff; font-size:13px; }
 .bj-stage-progress span { color:#858591; font-size:11px; }
-.personal-reset { left:80px; top:781px; width:1120px; height:60px; padding-top:12px; }
+.personal-reset { left:80px; top:781px; width:1120px; height:60px; padding-top:11px; }
 .personal-theory { left:80px; top:881px; width:1120px; height:75px; }
 
 .bj-combat .bj-state-title { position:absolute; left:80px; top:200px; margin:0; font-size:16px; font-weight:800; }
