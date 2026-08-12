@@ -81,8 +81,8 @@
 .jj-flow-row { position:absolute; left:80px; top:230px; display:flex; gap:34px; }
 .jj-flow-node { position:relative; width:110px; height:110px; background:#212129; border:1px solid #383842; border-radius:8px; text-align:center; padding-top:11px; }
 .jj-flow-node:not(:last-child)::after { content:""; position:absolute; right:-31px; top:52px; width:26px; height:8px; background:linear-gradient(90deg, #555665, #66a6ff); clip-path:polygon(0 37%, 72% 37%, 72% 0, 100% 50%, 72% 100%, 72% 63%, 0 63%); opacity:.75; }
-.jj-flow-node .jj-dot { width:28px; height:28px; }
-.jj-flow-node b { position:absolute; left:50px; top:17px; color:#66a6ff; font-size:12px; }
+.jj-flow-node .jj-dot { box-sizing:border-box; margin-top:1px; width:28px; height:28px; box-shadow:none; }
+.jj-flow-node b { position:absolute; left:0; top:12px; width:110px; text-align:center; line-height:28px; color:#66a6ff; font:600 12px/28px Inter, system-ui; }
 .jj-flow-node:nth-child(3) b { color:#e5bf66; }
 .jj-flow-node:nth-child(6) b { color:#80cc80; }
 .jj-flow-node strong { display:block; margin-top:9px; color:#fff; font-size:16px; line-height:18px; }
@@ -132,11 +132,11 @@
 .jj-stage-row { position:absolute; left:80px; top:180px; display:grid; grid-template-columns:repeat(9, 110px); gap:16px; }
 .jj-stage-card { position:relative; width:110px; height:64px; border:1px solid rgba(102,166,255,.5); border-radius:8px; background:#262e47; overflow:hidden; padding:7px; }
 .jj-stage-card.locked { border-color:#383842; background:#212129; }
-.jj-stage-card .jj-dot { width:24px; height:24px; }
-.jj-stage-card b { position:absolute; left:15px; top:12px; color:#66a6ff; font-size:11px; }
+.jj-stage-card .jj-dot { box-sizing:border-box; position:absolute; left:8px; top:8px; width:24px; height:24px; box-shadow:none; background:rgba(102,166,255,.2); }
+.jj-stage-card b { position:absolute; left:8px; top:8px; width:24px; text-align:center; line-height:24px; color:#66a6ff; font-size:11px; }
 .jj-stage-card.locked b, .jj-stage-card.locked strong { color:#666673; }
-.jj-stage-card strong { position:absolute; left:7px; top:35px; color:#fff; font-size:16px; line-height:20px; }
-.jj-stage-card i { position:absolute; right:9px; top:9px; width:6px; height:6px; border-radius:50%; background:#44444f; }
+.jj-stage-card strong { position:absolute; left:8px; top:36px; color:#fff; font-size:16px; line-height:19px; }
+.jj-stage-card i { position:absolute; right:8px; top:10px; width:6px; height:6px; border-radius:50%; background:rgba(229,128,102,.6); }
 .jj-stage-caption { position:absolute; left:501px; top:260px; margin:0; color:#737380; font-size:16px; }
 .jj-condition-wrap { position:absolute; left:80px; top:310px; display:grid; grid-template-columns:540px 540px; gap:40px; }
 .jj-condition h3 { margin:0 0 14px; font-size:18px; }
@@ -156,12 +156,12 @@
 
 .jj-combat-shot { top:229px; width:540px; height:305px; border:1px solid rgba(102,166,255,.2); }
 .jj-combat-shot.right { border-color:rgba(229,191,102,.2); }
-.jj-combat-loop { position:absolute; left:80px; top:760px; width:1120px; height:80px; border:1px solid #33333d; border-radius:12px; background:#212129; display:flex; justify-content:center; gap:76px; padding-top:10px; }
-.jj-combat-loop article { position:relative; width:120px; text-align:center; }
-.jj-combat-loop article:not(:last-child)::after { content:""; position:absolute; right:-54px; top:17px; width:32px; height:2px; background:rgba(102,166,255,.25); }
-.jj-combat-loop .jj-dot { width:36px; height:36px; }
-.jj-combat-loop b { position:absolute; left:55px; top:10px; color:#66a6ff; font-size:14px; }
-.jj-combat-loop span { display:block; margin-top:4px; color:#b2b2bf; font-size:16px; }
+.jj-combat-loop { position:absolute; left:80px; top:760px; width:1120px; height:80px; border:1px solid #33333d; border-radius:12px; background:#212129; display:flex; justify-content:center; gap:40px; padding-top:10px; }
+.jj-combat-loop article { position:relative; width:160px; text-align:center; }
+.jj-combat-loop article:not(:last-child)::after { content:""; position:absolute; right:-36px; top:17px; width:32px; height:2px; background:rgba(102,166,255,.25); }
+.jj-combat-loop .jj-dot { box-sizing:border-box; width:36px; height:36px; box-shadow:none; background:rgba(102,166,255,.12); border:1px solid rgba(102,166,255,.3); }
+.jj-combat-loop b { position:absolute; left:0; top:0; width:160px; text-align:center; line-height:36px; color:#66a6ff; font-size:14px; }
+.jj-combat-loop span { display:block; margin-top:6px; color:#b2b2bf; font-size:16px; line-height:18px; }
 .combat-callout { left:80px; top:880px; width:1120px; height:80px; }
 
 .map-caption { left:332px; top:208px; }
@@ -223,12 +223,19 @@
 .jj-summary-card.purple { border-color:rgba(204,128,229,.15); }
 .jj-summary-card.purple em { color:rgba(204,128,229,.2); }
 .jj-final-band { position:absolute; left:80px; top:460px; width:1120px; height:120px; border:1px solid rgba(102,166,255,.15); border-radius:12px; background:linear-gradient(90deg,#262e47,#212129); padding:25px 40px; }
-.jj-final-band h3 { margin:0; color:#fff; font-size:24px; }
-.jj-final-band p { margin:14px 0 0; color:#a6a6b2; font-size:16px; line-height:24px; }
-.jj-final-band .jj-dot { position:absolute; right:40px; top:40px; width:40px; height:40px; }
+.jj-final-band h3 { margin:0; color:#fff; font:700 24px/29px 'Noto Sans SC'; }
+.jj-final-band p { margin:6px 0 0; width:950px; color:#a6a6b2; font-size:16px; line-height:24px; }
+.jj-final-band .jj-dot { box-sizing:border-box; position:absolute; right:40px; top:40px; width:40px; height:40px; box-shadow:none; background:rgba(102,166,255,.08); border:1px solid rgba(102,166,255,.15); }
 .jj-visual-title { position:absolute; left:560px; top:680px; margin:0; width:160px; height:40px; color:#e5c772; font-size:32px; line-height:40px; text-align:center; font-weight:900; }
 .jj-final-shot { position:absolute; left:195px; top:734px; width:890px; height:500px; overflow:hidden; }
 .jj-final-shot img { width:127%; height:104.35%; transform:translate(-13.5%, -2.26%); }
 
 /* bottom_line, 0,899 1280x1 on the board */
 .jj-cover::after { content:''; position:absolute; left:0; top:899px; width:1280px; height:1px; background:#333340; }
+
+/* Flow / loop step rings: tinted fill behind a 40%-alpha edge, per the board. */
+.jj-canvas .jj-flow-node .jj-dot-blue { background:rgba(102,166,255,.15); border:1px solid rgba(102,166,255,.4); }
+.jj-canvas .jj-flow-node .jj-dot-gold { background:rgba(229,191,102,.15); border:1px solid rgba(229,191,102,.4); }
+.jj-canvas .jj-flow-node .jj-dot-green{ background:rgba(128,204,128,.15); border:1px solid rgba(128,204,128,.4); }
+.jj-canvas .jj-stage-card.locked .jj-dot { background:#40404d; }
+.jj-canvas .jj-stage-card.locked b { color:#666673; }
