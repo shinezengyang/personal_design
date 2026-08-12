@@ -106,15 +106,12 @@ export function BianjingExactCase() {
     <div className="bj-canvas" data-node-id="8328:14223">
       <section className="bj-section bj-cover">
         <div className="bj-cover-bg" />
-        <div className="bj-cover-lines"><i /><i /></div>
-        <Dot />
         <div className="bj-cover-label">INTERACTION DESIGN</div>
         <h1>边境战场</h1>
         <div className="bj-cover-divider" />
         <p className="bj-cover-copy">以「个人关卡+公共关卡+限时BOSS」三层递进架构为核心，<br />融合增益成长系统与组队社交机制，构建高复杂度、<br />强策略性的大型PVP/PVE混合活动玩法。</p>
-        <div className="bj-cover-tags">{['个人关卡','公共关卡','限时BOSS','增益系统','组队社交'].map((t) => <span key={t}>{t}</span>)}</div>
+        <div className="bj-cover-mark">BW</div>
         <div className="bj-cover-orb" />
-        <div className="bj-side-dashes">{Array.from({ length: 5 }).map((_, i) => <i key={i} />)}</div>
       </section>
 
       <section className="bj-section bj-overview">

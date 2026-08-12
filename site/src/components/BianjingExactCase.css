@@ -38,19 +38,20 @@
 .bj-canvas .purple { color:#a666d9 !important; }
 
 .bj-cover-bg { position:absolute; inset:0; background:linear-gradient(152deg,#0d0a14 0%,#170f1f 43%,#121217 71%); }
-.bj-cover-lines { position:absolute; left:80px; top:55px; }
-.bj-cover-lines i:first-child { display:block; width:240px; height:1px; background:rgba(217,89,64,.4); }
-.bj-cover-lines i:last-child { display:block; width:160px; height:1px; margin-top:7px; background:rgba(217,89,64,.2); }
+
+
+
 .bj-cover > .bj-dot { position:absolute; left:80px; top:74px; }
-.bj-cover-label { position:absolute; left:80px; top:310px; width:210px; height:32px; border:1px solid rgba(217,89,64,.3); border-radius:4px; background:rgba(217,89,64,.12); color:#d95940; font-size:12px; letter-spacing:3px; font-weight:800; display:flex; align-items:center; justify-content:center; }
-.bj-cover h1 { position:absolute; left:80px; top:365px; margin:0; font-size:64px; line-height:1.15; letter-spacing:4px; font-weight:800; }
-.bj-cover-divider { position:absolute; left:80px; top:500px; width:60px; height:3px; border-radius:2px; background:#f2b24d; }
-.bj-cover-copy { position:absolute; left:80px; top:525px; margin:0; color:#80808c; font-size:20px; line-height:26px; }
-.bj-cover-tags { position:absolute; left:80px; top:625px; display:flex; gap:16px; }
-.bj-cover-tags span { width:80px; height:30px; border-radius:30px; background:#1f1f26; color:#6b6b78; display:flex; align-items:center; justify-content:center; font-size:16px; white-space:nowrap; }
-.bj-cover-orb { position:absolute; left:850px; top:290px; width:320px; height:320px; border-radius:50%; background:radial-gradient(circle, rgba(217,89,64,.15), rgba(217,89,64,.04) 48%, transparent 72%); border:1px solid rgba(217,89,64,.08); }
-.bj-side-dashes { position:absolute; left:56px; top:757px; display:flex; flex-direction:column; gap:29px; }
-.bj-side-dashes i { width:16px; height:1px; background:rgba(217,89,64,.4); }
+.bj-cover-label { position:absolute; left:95px; top:318px; color:#d95940; font:600 12px/15px Inter, system-ui; letter-spacing:3px; }
+.bj-cover h1 { position:absolute; left:80px; top:365px; margin:0; color:#fff; font-size:64px; line-height:77px; letter-spacing:4px; font-weight:700; }
+.bj-cover-divider { position:absolute; left:80px; top:452px; width:60px; height:3px; border-radius:2px; background:#f2b24d; }
+.bj-cover-copy { position:absolute; left:80px; top:465px; width:534px; margin:0; color:#80808c; font-size:20px; line-height:26px; }
+
+
+.bj-cover-orb { position:absolute; left:850px; top:290px; width:320px; height:320px; }
+.bj-cover-orb::before { content:""; position:absolute; inset:0; box-sizing:border-box; border-radius:50%; background:rgba(217,89,64,.04); border:1px solid rgba(217,89,64,.08); filter:blur(100px); }
+
+
 
 .bj-header { position:absolute; left:80px; top:60px; }
 .bj-header p { margin:0; color:rgba(217,89,64,.5); font-size:14px; font-weight:800; }
@@ -314,3 +315,7 @@
 .bj-cc-thanks { left:0; right:0; top:908px; margin:0; text-align:center; color:#fff; font-size:18px; font-weight:700; }
 .bj-cc-thanks-en { left:0; right:0; top:942px; margin:0; text-align:center; color:#595966; font-size:11px; font-weight:600; letter-spacing:4px; }
 .bj-cc-thanks-dot { left:637px; top:976px; width:6px; height:6px; border-radius:50%; background:#f2b24d; box-shadow:0 0 12px rgba(242,178,77,.6); }
+
+/* BW watermark and the closing hairline, both on the board. */
+.bj-canvas .bj-cover-mark { position:absolute; left:750px; top:200px; width:466px; color:rgba(255,255,255,.02); font:600 280px/339px Inter, system-ui; }
+.bj-canvas .bj-cover::after { content:""; position:absolute; left:0; top:899px; width:1280px; height:1px; background:#2e2e38; }
