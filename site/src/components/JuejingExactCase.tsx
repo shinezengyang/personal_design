@@ -170,16 +170,11 @@ export function JuejingExactCase() {
     <div className="jj-canvas" data-node-id="8328:13706" data-name="玩法-庆余年·绝境试炼 交互设计作品集 精修版">
       <section className="jj-section jj-cover" data-node-id="8328:13707">
         <div className="jj-cover-bg" />
-        <div className="jj-cover-lines"><i /><i /></div>
         <div className="jj-cover-label">INTERACTION DESIGN</div>
         <h1>绝境试炼</h1>
         <i className="jj-cover-divider" />
         <p className="jj-cover-copy">以「日常活跃度驱动」为核心设计目标，通过渐进式关卡体系、<br />自动战斗寻路机制和条件门控系统，打造低操作成本高回报的<br />PVE副本玩法，提升玩家长线留存与活跃参与度。</p>
-        <div className="jj-tags">
-          {['PVE副本', '渐进关卡', '自动战斗', '条件门控'].map((tag) => <span key={tag}>{tag}</span>)}
-        </div>
         <div className="jj-cover-circle" />
-        <div className="jj-side-dashes"><i /><i /><i /><i /></div>
       </section>
 
       <section className="jj-section jj-overview">
