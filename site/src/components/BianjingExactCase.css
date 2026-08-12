@@ -335,7 +335,7 @@
 .bj-cc-card h3 { position:absolute; left:49px; top:17px; margin:0; color:#fff; font-size:18px; font-weight:700; }
 .bj-cc-card p { position:absolute; left:27px; top:55px; width:286px; margin:0; color:#8c8c99; font-size:16px; line-height:19px; }
 
-.bj-cc-summary { left:0; right:0; top:849px; margin:0; text-align:center; color:#8c8c99; font-size:16px; }
+.bj-cc-summary { left:0; right:0; top:849px; margin:0; text-align:center; color:#8c8c99; font-size:16px; line-height:19px; }
 
 /* Closing hairline, per the board. */
 .bj-canvas .bj-cover::after { content:""; position:absolute; left:0; top:899px; width:1280px; height:1px; background:#2e2e38; }
