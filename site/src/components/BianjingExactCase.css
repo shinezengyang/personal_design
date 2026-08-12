@@ -82,7 +82,7 @@
 .bj-info-row b { display:block; margin-top:4px; color:#fff; font-size:15px; line-height:18px; }
 .main-hub { left:771px; top:254px; }
 .bj-main-hub { left:620px; top:282px; width:580px; height:333px; border:1px solid #33333d; border-radius:12px; }
-.bj-main-hub img { width:102.03%; height:108.11%; transform:translate(-1.02%, -8.11%); }
+.bj-main-hub img { width:100%; height:100%; }
 .overview-note { left:80px; top:660px; width:1120px; height:150px; }
 .overview-note b { font-size:14px; }
 .overview-note p { line-height:22px; }
@@ -120,8 +120,8 @@
 .bj-entry-shot.a { left:80px; border-color:rgba(102,191,128,.2); }
 .bj-entry-shot.b { left:463px; border-color:rgba(89,140,229,.2); }
 .bj-entry-shot.c { left:847px; border-color:rgba(217,89,64,.2); }
-.bj-entry-shot img { height:107.84%; transform:translateY(-7.84%); }
-.bj-entry-shot.c img { height:108.2%; transform:translate(-.23%, -8.2%); }
+.bj-entry-shot img { width:100%; height:100%; }
+.bj-entry-shot.c img { width:100%; height:100%; }
 .bj-entry-arrow { position:absolute; height:44px; border-left:2px solid rgba(217,89,64,.45); border-bottom:2px solid rgba(217,89,64,.45); transform:rotate(-22deg); opacity:.75; }
 .bj-entry-arrow.left { left:402px; top:288px; width:105px; }
 .bj-entry-arrow.right { left:732px; top:335px; width:130px; height:28px; }
@@ -177,8 +177,8 @@
 .bj-victory { top:804px; width:540px; height:306px; border:1px solid rgba(102,191,128,.2); }
 .bj-victory.a { left:80px; }
 .bj-victory.b { left:659px; }
-.bj-victory img { width:100.87%; height:107.84%; transform:translate(-.44%, -7.84%); }
-.bj-victory.b img { height:100%; transform:translateX(-.44%); }
+.bj-victory img { width:100%; height:100%; }
+.bj-victory.b img { width:100%; height:100%; }
 .victory-a { left:278px; top:1115px; }
 .victory-b { left:857px; top:1115px; }
 .bj-anno-grid.three { grid-template-columns:repeat(3,353px); gap:30px; left:80px; }
@@ -247,7 +247,7 @@
 
 .boss { left:330px; top:201px; }
 .bj-boss-shot { left:80px; top:229px; width:580px; height:326px; border-radius:12px; }
-.bj-boss-shot img { height:107.95%; transform:translateY(-7.96%); }
+.bj-boss-shot img { width:100%; height:100%; }
 .bj-boss-list { position:absolute; left:690px; top:229px; display:grid; gap:28px; }
 .bj-boss-list article { position:relative; width:510px; height:90px; border-radius:10px; background:#1c1c24; padding:16px 0 0 88px; overflow:hidden; }
 .bj-boss-list article::before { content:''; position:absolute; left:0; top:0; width:4px; height:90px; background:#d95940; }
