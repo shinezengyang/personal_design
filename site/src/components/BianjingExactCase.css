@@ -192,13 +192,18 @@
 .combat-anno .bj-small-anno h3 { margin-left:0; }
 .combat-anno .bj-small-anno .bj-dot { display:none; }
 .combat-anno .bj-small-anno p { width:313px; }
-.bj-settle-flow { position:absolute; left:80px; top:1385px; width:1120px; height:80px; border-radius:10px; background:#1f1f26; display:flex; align-items:flex-start; justify-content:space-around; padding-top:8px; }
-.bj-settle-flow article { position:relative; width:130px; text-align:center; }
-.bj-settle-flow article:not(:last-child)::after { content:''; position:absolute; right:-73px; top:14px; width:161px; height:2px; background:rgba(102,191,128,.2); z-index:0; }
-.bj-settle-flow .bj-dot { width:28px; height:28px; position:relative; z-index:1; }
-.bj-settle-flow b { position:absolute; top:7px; left:61px; color:#66bf80; font-size:12px; }
-.bj-settle-flow strong { display:block; color:#fff; font-size:13px; margin-top:4px; }
-.bj-settle-flow span { display:block; color:#858591; font-size:11px; }
+.bj-settle-flow { position:absolute; left:80px; top:1385px; width:1120px; height:80px; border-radius:10px; background:#1f1f26; }
+.bj-settle-flow article { position:absolute; top:0; width:140px; height:80px; }
+.bj-settle-flow article:nth-child(1) { left:8px; }
+.bj-settle-flow article:nth-child(2) { left:246px; }
+.bj-settle-flow article:nth-child(3) { left:484px; }
+.bj-settle-flow article:nth-child(4) { left:722px; }
+.bj-settle-flow article:nth-child(5) { left:962px; }
+.bj-settle-flow article:not(:last-child)::after { content:''; position:absolute; left:108px; top:22px; width:161px; height:2px; background:rgba(102,191,128,.2); }
+.bj-settle-flow .bj-dot { position:absolute; left:54px; top:8px; width:32px; height:28px; border-radius:50%; border:1px solid rgba(102,191,128,.3); background:rgba(102,191,128,.12); box-shadow:none; z-index:1; }
+.bj-settle-flow b { position:absolute; left:0; top:15px; width:140px; text-align:center; color:#66bf80; font-size:12px; font-weight:600; line-height:15px; z-index:2; }
+.bj-settle-flow strong { position:absolute; left:0; top:42px; width:140px; text-align:center; color:#fff; font-size:13px; font-weight:700; line-height:16px; }
+.bj-settle-flow span { position:absolute; left:0; top:62px; width:140px; text-align:center; color:#858591; font-size:11px; line-height:13px; }
 .combat-fail { left:80px; top:1495px; width:1120px; height:55px; padding-top:16px; }
 .combat-theory { left:80px; top:1585px; width:1120px; height:75px; }
 
