@@ -151,7 +151,12 @@
 .we-caption-row { position: absolute; left: 80px; top: 758px; display: grid; grid-template-columns: 700px 360px; gap: 40px; }
 .we-caption-row p { margin: 0; color: #c2a69e; font-size: 16px; line-height: 21px; white-space: pre-line; }
 .we-caption-row b { display: block; color: #e0a98c; font-size: 12px; line-height: 18px; margin-bottom: 4px; }
-.we-venue .we-why { bottom: 84px; }
+/* 07 runs a taller WHY block on its own plate colour, and its rows sit 2px lower. */
+.we-venue .we-why { top: 884px; height: 272px; background: #2a1620; box-shadow: inset 0 0 0 1px #432935; }
+.we-venue .we-why > em { top: 36px; }
+.we-venue .we-why > h3 { top: 62px; }
+.we-venue .we-why-grid { top: 122px; }
+.we-venue .we-why .we-reason p { color: #c2a69e; }
 .we-art { height: 920px; }
 .we-art-card { position: absolute; top: 280px; height: 440px; border-radius: 16px; box-shadow: 0 10px 28px rgba(128,89,89,.1); overflow: hidden; }
 .we-art-card::before, .we-art-takeaway::before { content: ''; position: absolute; left: 0; top: 0; width: 5px; height: 100%; background: #c8607a; }

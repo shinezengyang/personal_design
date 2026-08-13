@@ -66,11 +66,11 @@ function PointList({ title, items, dark = false }: { title: string; items: strin
   );
 }
 
-function WhyBlock({ title, points, box, dark = true }: { title: string; points: Array<[string, string, Accent]>; box?: [number, number]; dark?: boolean }) {
+function WhyBlock({ title, points, box, eyebrow = '为什么这样设计 · WHY IT WORKS', dark = true }: { title: string; points: Array<[string, string, Accent]>; box?: [number, number]; eyebrow?: string; dark?: boolean }) {
   return (
     <div className={`we-why ${dark ? 'dark' : 'light'}`} style={box ? { top: box[0], height: box[1] } : undefined}>
       <i />
-      <em>为什么这样设计 · WHY IT WORKS</em>
+      <em>{eyebrow}</em>
       <h3>{title}</h3>
       <div className="we-why-grid">
         {points.map(([name, body, tone]) => (
@@ -324,6 +324,7 @@ export function WeddingExactCase() {
           <p><b>吉宴祝福 · BLESSING WALL</b><br />③ 评论·点赞·分享 999+<br />④ 祝福墙<br />⑤ 一句祝福即参与</p>
         </div>
         <WhyBlock
+          eyebrow="为什么把高潮放在这里 · WHY THE PEAK"
           title="让现场成为「被看见、被回应」的情绪放大器"
           points={[
             ['峰终定律', '把最强情绪压在现场与祝福，决定玩家对整段体验的记忆。', 'gold'],
