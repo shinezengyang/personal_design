@@ -39,27 +39,12 @@ function Img({ src, alt = '', className = '' }: { src: string; alt?: string; cla
 /* ===== Section Header ===== */
 type Tone = 'teal' | 'gold' | 'red';
 
-function SectionHeader({
-  no, eng, title, tone = 'teal', left = 96, top = 80,
-}: {
-  no: string; eng: string; title: string;
-  tone?: Tone; left?: number; top?: number;
-}) {
-  const numColor: Record<Tone, string> = {
-    teal: 'rgba(111,216,224,.10)',
-    gold: 'rgba(217,164,65,.10)',
-    red:  'rgba(225,88,79,.10)',
-  };
-  const engColor: Record<Tone, string> = {
-    teal: '#6fd8e0',
-    gold: '#d9a441',
-    red:  '#e1584f',
-  };
+function SectionHeader({ no, eng, title }: { no: string; eng: string; title: string }) {
   return (
-    <div className="tp-sec-hdr" style={{ left, top }}>
-      <span className="tp-num" style={{ color: numColor[tone] }}>{no}</span>
-      <span className="tp-eng" style={{ color: engColor[tone] }}>{eng}</span>
+    <div className="tp-hdr">
+      <span className="tp-hdr-tile">{no}</span>
       <h2>{title}</h2>
+      <span className="tp-hdr-eng">{eng}</span>
     </div>
   );
 }
@@ -124,6 +109,14 @@ function FlowBar({ steps }: { steps: string[] }) {
   );
 }
 
+/* P03 modules: [title, eng, three rows, tone] — columns step 296px from x=96. */
+const templeModules = [
+  ['遗迹探索', 'SERVER ENERGY', ['全服能量进度条', '里程碑宝箱奖励', '服务器进度排行'], 'teal'],
+  ['个人探索', 'PERSONAL EVENTS', ['周探索事件清单', '特殊奇遇事件', '副本地图 · 自动寻路'], 'teal'],
+  ['遗迹首领', 'WEEKLY BOSS', ['探索值1000激活', '周六限时决战', '伤害 / 奖励排行'], 'red'],
+  ['遗迹使者', 'ROAMING ENVOY', ['多实例 1-4号', '刷新倒计时', '参与·尾刀次数上限'], 'gold'],
+] as const;
+
 /* [x, y, diameter, opacity] — board coordinates of the cover star field. */
 const coverStars = [
   [90, 120, 6, 0.5], [230, 80, 4, 0.3], [420, 150, 5, 0.4], [640, 60, 4, 0.35],
@@ -164,129 +157,69 @@ export function TempleExactCase() {
 
       {/* ===== P02 · Overview ===== */}
       <section className="tp-sec tp-overview">
-        <SectionHeader no="01" eng="OVERVIEW · THREE-LAYER GOAL NESTING" title="玩法总览" tone="teal" />
-        <p className="tp-quote" style={{ left: 96, top: 224 }}>
-          " 让个人的每一次日常，都成为跨服之门的一次充能 "
-        </p>
-        <p className="tp-body" style={{ left: 96, top: 286, width: 1080 }}>
-          神庙遗迹是一套三层嵌套目标设计：个人探索事件推动全服能量积累，全服能量达标解锁秘境入口，秘境内触发限时跨服首领决战。三个目标首尾咬合，形成一周完整的玩法循环。
-        </p>
+        <SectionHeader no="01" title="玩法总览" eng="OVERVIEW · THREE-LAYER GOAL NESTING" />
+        <p className="tp-quote">“ 让个人的每一次日常，都成为跨服之门的一次充能 ”</p>
+        <p className="tp-lead">神庙遗迹是一套以「全服能量」为钥匙的跨服探索玩法：全服玩家完成日常活动共同充能，能量满后开启跨服秘境；秘境内以个人探索值激活每周六的遗迹首领决战，并以遗迹使者作为全周补充目标。</p>
 
-        {/* Three stat cards */}
-        <div className="tp-stat-row" style={{ left: 96, top: 420 }}>
-          <div className="tp-stat-card gold">
-            <div className="tp-stat-val gold">6000 / 10000</div>
-            <div className="tp-stat-sub">全服能量 · 达 100% 解锁「进入秘境」</div>
-          </div>
-          <div className="tp-stat-card teal">
-            <div className="tp-stat-val teal">1000 点</div>
-            <div className="tp-stat-sub">周探索值 · 达成后激活遗迹首领</div>
-          </div>
-          <div className="tp-stat-card red">
-            <div className="tp-stat-val red">周六 20:00-20:30</div>
-            <div className="tp-stat-sub">遗迹首领限时刷新 · 全服同屏决战</div>
-          </div>
-        </div>
+        <svg className="tp-venn" viewBox="0 0 1280 900" width="1280" height="900" aria-hidden>
+          <circle cx="370" cy="649" r="219" fill="rgba(200,50,43,.07)" stroke="rgba(200,50,43,.9)" strokeWidth="2" />
+          <circle cx="370" cy="649" r="149" fill="rgba(217,164,65,.07)" stroke="rgba(217,164,65,.95)" strokeWidth="2" />
+          <circle cx="370" cy="649" r="79" fill="rgba(111,216,224,.07)" stroke="rgba(111,216,224,1)" strokeWidth="2" />
+          <line x1="426" y1="593" x2="582" y2="528" stroke="rgba(111,216,224,.6)" strokeWidth="1.5" />
+          <line x1="476" y1="755" x2="566" y2="781" stroke="rgba(217,164,65,.6)" strokeWidth="1.5" />
+          <line x1="370" y1="429" x2="251" y2="409" stroke="rgba(225,88,79,.6)" strokeWidth="1.5" />
+          <circle cx="370" cy="649" r="7" fill="#edf4f7" />
+          <circle cx="426" cy="593" r="5" fill="#6fd8e0" />
+          <circle cx="476" cy="755" r="5" fill="#d9a441" />
+          <circle cx="370" cy="430" r="5" fill="#e1584f" />
+        </svg>
+        <h3 className="tp-venn-t teal">个人日常</h3>
+        <p className="tp-venn-p teal">完成探索事件<br />获得能量与探索值</p>
+        <h3 className="tp-venn-t gold">全服能量</h3>
+        <p className="tp-venn-p gold">全服共享进度 6000 / 10000</p>
+        <h3 className="tp-venn-t red">跨服秘境</h3>
+        <p className="tp-venn-p red">能量 100% 后<br />与他服共探新世界</p>
 
-        {/* Three-layer node diagram */}
-        <div className="tp-node-diagram" style={{ left: 96, top: 620 }}>
-          <div className="tp-node-col">
-            <div className="tp-node red">
-              <span className="tp-node-label">跨服秘境</span>
-              <span className="tp-node-eng">CROSS-SERVER SANCTUM</span>
-            </div>
-            <div className="tp-node-line v" />
-          </div>
-          <div className="tp-node-col mid">
-            <div className="tp-node-line h" />
-            <div className="tp-node gold">
-              <span className="tp-node-label">全服能量</span>
-              <span className="tp-node-eng">SERVER ENERGY</span>
-            </div>
-            <div className="tp-node-line h right" />
-          </div>
-          <div className="tp-node-col">
-            <div className="tp-node-line v" />
-            <div className="tp-node teal">
-              <span className="tp-node-label">个人日常</span>
-              <span className="tp-node-eng">PERSONAL DAILY</span>
-            </div>
-          </div>
-        </div>
+        <article className="tp-kpi gold"><b>6000 / 10000</b><span>全服能量 · 达 100% 解锁「进入秘境」</span></article>
+        <article className="tp-kpi teal"><b>1000 点</b><span>周探索值 · 达成后激活遗迹首领</span></article>
+        <article className="tp-kpi red"><b>周六 20:00-20:30</b><span>遗迹首领限时刷新 · 全服同屏决战</span></article>
       </section>
 
       {/* ===== P03 · System Breakdown ===== */}
       <section className="tp-sec tp-breakdown">
-        <SectionHeader no="02" eng="SYSTEM BREAKDOWN · FOUR MODULES" title="系统解构" tone="teal" />
-        <p className="tp-breakdown-center" style={{ left: 0, top: 220 }}>神庙遗迹</p>
-
-        <div className="tp-module-row" style={{ left: 80, top: 280 }}>
-          {/* Module 1 */}
-          <div className="tp-module teal">
-            <div className="tp-module-hdr teal">
-              <h3>遗迹探索</h3>
-              <span>SERVER ENERGY</span>
+        <SectionHeader no="02" title="系统解构" eng="SYSTEM BREAKDOWN · FOUR MODULES" />
+        <div className="tp-bd-root">神庙遗迹</div>
+        <svg className="tp-bd-tree" viewBox="0 0 1280 900" width="1280" height="900" aria-hidden>
+          <rect x="639" y="285" width="2" height="72" fill="rgba(217,164,65,.7)" />
+          <rect x="196" y="357" width="888" height="2" fill="rgba(143,163,184,.45)" />
+          {([[195, '111,216,224'], [491, '111,216,224'], [787, '225,88,79'], [1083, '217,164,65']] as const).map(([x, c]) => (
+            <g key={x}>
+              <rect x={x} y="357" width="2" height="70" fill={`rgba(${c},.8)`} />
+              <circle cx={x + 1} cy="358" r="4" fill={`rgb(${c})`} />
+            </g>
+          ))}
+        </svg>
+        {templeModules.map(([title, eng, rows, tone], i) => (
+          <div className="tp-mod" key={title} style={{ left: 96 + i * 296 }}>
+            <div className={`tp-mod-hd ${tone}`}>
+              <h3>{title}</h3>
+              <span>{eng}</span>
             </div>
-            <ul>
-              <li>全服能量进度条</li>
-              <li>里程碑宝箱奖励</li>
-              <li>服务器进度排行</li>
-            </ul>
+            {rows.map((r, k) => <p key={r} style={{ top: 98 + k * 56 }}>{r}</p>)}
           </div>
-          {/* Module 2 */}
-          <div className="tp-module teal">
-            <div className="tp-module-hdr teal">
-              <h3>个人探索</h3>
-              <span>PERSONAL EVENTS</span>
-            </div>
-            <ul>
-              <li>周探索事件清单</li>
-              <li>特殊奇遇事件</li>
-              <li>副本地图·自动寻路</li>
-            </ul>
-          </div>
-          {/* Module 3 */}
-          <div className="tp-module red">
-            <div className="tp-module-hdr red">
-              <h3>遗迹首领</h3>
-              <span>WEEKLY BOSS</span>
-            </div>
-            <ul>
-              <li>探索值1000激活</li>
-              <li>周六限时决战</li>
-              <li>伤害/奖励排行</li>
-            </ul>
-          </div>
-          {/* Module 4 */}
-          <div className="tp-module gold">
-            <div className="tp-module-hdr gold">
-              <h3>遗迹使者</h3>
-              <span>ROAMING ENVOY</span>
-            </div>
-            <ul>
-              <li>多实例1-4号</li>
-              <li>刷新倒计时</li>
-              <li>参与·尾刀次数上限</li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Support bar */}
-        <div className="tp-support-bar" style={{ left: 80, top: 680 }}>
-          <span className="tp-support-label">通用支撑</span>
-          {['排行榜', '邮件发放', '红点提示', '系统播报Toast', '二次确认弹窗', '奖励预览'].map((t) => (
-            <span key={t} className="tp-support-tag">{t}</span>
+        ))}
+        <p className="tp-bd-note">四大模块共用一套支撑系统，保证反馈与奖励链路在任何模块下行为一致，降低学习成本</p>
+        <div className="tp-support">
+          <b>通用支撑</b>
+          {([['排行榜', 317, 84], ['邮件发放', 417, 100], ['红点提示', 533, 100], ['系统播报 Toast', 649, 144], ['二次确认弹窗', 809, 132], ['奖励预览', 957, 100]] as const).map(([t, x, w]) => (
+            <span key={t} style={{ left: x - 193, width: w }}>{t}</span>
           ))}
         </div>
-
-        <p className="tp-caption" style={{ left: 0, top: 800 }}>
-          四大模块通过共享能量值与周期节奏形成一套完整的跨服玩法闭环
-        </p>
       </section>
 
       {/* ===== P04 · Weekly Loop ===== */}
       <section className="tp-sec tp-weekly">
-        <SectionHeader no="03" eng="WEEKLY LOOP & SCREEN FLOW" title="一周玩法循环" tone="teal" />
+        <SectionHeader no="03" eng="WEEKLY LOOP & SCREEN FLOW" title="一周玩法循环" />
 
         {/* Day labels */}
         <div className="tp-days" style={{ left: 80, top: 230 }}>
@@ -345,7 +278,7 @@ export function TempleExactCase() {
 
       {/* ===== P05 · Flow Curve ===== */}
       <section className="tp-sec tp-flowcurve">
-        <SectionHeader no="04" eng="FLOW CURVE · ONE WEEK" title="玩家心流历程" tone="teal" />
+        <SectionHeader no="04" eng="FLOW CURVE · ONE WEEK" title="玩家心流历程" />
 
         <div className="tp-curve-chart" style={{ left: 80, top: 230 }}>
           {/* Axis labels */}
@@ -413,7 +346,7 @@ export function TempleExactCase() {
 
       {/* ===== P06 · Entry HUD ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="05" eng="SCREEN ANALYSIS 01 — WORLD HUD ENTRY" title="入口 · 玩法第一触点" tone="teal" />
+        <SectionHeader no="05" eng="SCREEN ANALYSIS 01 — WORLD HUD ENTRY" title="入口 · 玩法第一触点" />
         <div className="tp-badge-label teal" style={{ left: 96, top: 210 }}>界面分析 ①②</div>
 
         <Shot src={A.p06} style={{ left: 424, top: 232, width: 760, height: 428 }} />
@@ -430,7 +363,7 @@ export function TempleExactCase() {
 
       {/* ===== P07 · Server Energy Hub ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="06" eng="SCREEN ANALYSIS 02 — SERVER ENERGY HUB" title="主界面 · 全服能量 · 共同的目标" tone="teal" />
+        <SectionHeader no="06" eng="SCREEN ANALYSIS 02 — SERVER ENERGY HUB" title="主界面 · 全服能量 · 共同的目标" />
         <div className="tp-badge-label teal" style={{ left: 96, top: 185 }}>界面分析 ①②③④⑤</div>
 
         <Shot src={A.p07a} style={{ left: 96, top: 210, width: 760, height: 428 }} />
@@ -456,7 +389,7 @@ export function TempleExactCase() {
 
       {/* ===== P08 · Server Ranking ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="07" eng="SCREEN ANALYSIS 03 — SERVER RANKING" title="进度排行 · 服务器的较量" tone="teal" />
+        <SectionHeader no="07" eng="SCREEN ANALYSIS 03 — SERVER RANKING" title="进度排行 · 服务器的较量" />
         <div className="tp-badge-label teal" style={{ left: 96, top: 200 }}>界面分析 ①②③</div>
 
         <Shot src={A.p08} style={{ left: 96, top: 225, width: 740, height: 416 }} />
@@ -476,7 +409,7 @@ export function TempleExactCase() {
 
       {/* ===== P09 · Sanctum Hub Layout ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="08" eng="SCREEN ANALYSIS 04 — SANCTUM HUB LAYOUT" title="秘境主界面 · 三区动线" tone="teal" />
+        <SectionHeader no="08" eng="SCREEN ANALYSIS 04 — SANCTUM HUB LAYOUT" title="秘境主界面 · 三区动线" />
         <div className="tp-badge-label teal" style={{ left: 96, top: 162 }}>界面分析 A · B · C</div>
 
         <Shot src={A.p09} style={{ left: 150, top: 187, width: 980, height: 551 }} />
@@ -507,7 +440,7 @@ export function TempleExactCase() {
 
       {/* ===== P10 · Exploration Pipeline ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="09" eng="SCREEN ANALYSIS 05 — EXPLORATION PIPELINE" title="探索事件 · 从战场→地图→战场" tone="teal" />
+        <SectionHeader no="09" eng="SCREEN ANALYSIS 05 — EXPLORATION PIPELINE" title="探索事件 · 从战场→地图→战场" />
         <div className="tp-badge-label teal" style={{ left: 96, top: 215 }}>界面分析 ①②③④⑤⑥</div>
 
         <Shot src={A.p10c} style={{ left: 96, top: 271, width: 182, height: 263 }} />
@@ -538,7 +471,7 @@ export function TempleExactCase() {
 
       {/* ===== P11 · Surprise Events ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="10" eng="SCREEN ANALYSIS 06 — SURPRISE EVENTS" title="奇遇事件 · 惊喜的设计" tone="gold" />
+        <SectionHeader no="10" eng="SCREEN ANALYSIS 06 — SURPRISE EVENTS" title="奇遇事件 · 惊喜的设计" />
         <div className="tp-badge-label gold" style={{ left: 96, top: 215 }}>界面分析 ①②③④⑤⑥</div>
 
         <Shot src={A.p11a} style={{ left: 96, top: 265, width: 498, height: 280 }} />
@@ -569,7 +502,7 @@ export function TempleExactCase() {
 
       {/* ===== P12 · Weekly Boss ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="11" eng="SCREEN ANALYSIS 07 — WEEKLY BOSS" title="遗迹首领 · 激活" tone="red" />
+        <SectionHeader no="11" eng="SCREEN ANALYSIS 07 — WEEKLY BOSS" title="遗迹首领 · 激活" />
         <div className="tp-badge-label red" style={{ left: 96, top: 170 }}>界面分析 ①②③④⑤⑥⑦</div>
 
         <Shot src={A.p12a} style={{ left: 96, top: 198, width: 560, height: 315 }} />
@@ -602,7 +535,7 @@ export function TempleExactCase() {
 
       {/* ===== P13 · Reward & Settlement ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="12" eng="SCREEN ANALYSIS 08 — REWARD & SETTLEMENT" title="奖励与结算 · 期望管理" tone="gold" />
+        <SectionHeader no="12" eng="SCREEN ANALYSIS 08 — REWARD & SETTLEMENT" title="奖励与结算 · 期望管理" />
         <div className="tp-badge-label gold" style={{ left: 96, top: 190 }}>界面分析 ①②③④</div>
 
         <div className="tp-screen-label gold" style={{ left: 96, top: 195 }}>击败后状态</div>
@@ -627,7 +560,7 @@ export function TempleExactCase() {
 
       {/* ===== P14 · Roaming Envoy ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="13" eng="SCREEN ANALYSIS 09 — ROAMING ENVOY" title="遗迹使者 · 稀缺与公平" tone="gold" />
+        <SectionHeader no="13" eng="SCREEN ANALYSIS 09 — ROAMING ENVOY" title="遗迹使者 · 稀缺与公平" />
         <div className="tp-badge-label gold" style={{ left: 96, top: 162 }}>界面分析 ①②③④⑤⑥</div>
 
         <Shot src={A.p14a} style={{ left: 96, top: 187, width: 711, height: 400 }} />
@@ -655,7 +588,7 @@ export function TempleExactCase() {
 
       {/* ===== P15 · Fault Tolerance ===== */}
       <section className="tp-sec tp-fault">
-        <SectionHeader no="14" eng="FAULT TOLERANCE & LIVE-OPS FLEXIBILITY" title="容错与运营弹性" tone="gold" />
+        <SectionHeader no="14" eng="FAULT TOLERANCE & LIVE-OPS FLEXIBILITY" title="容错与运营弹性" />
 
         <Shot src={A.p15} style={{ left: 96, top: 200, width: 620, height: 349 }} />
 
@@ -707,7 +640,7 @@ export function TempleExactCase() {
 
       {/* ===== P16 · Art Reference ===== */}
       <section className="tp-sec tp-artref">
-        <SectionHeader no="15" eng="ART DIRECTION & MARKET REFERENCES" title="界面美术 · 风格溯源" tone="teal" />
+        <SectionHeader no="15" eng="ART DIRECTION & MARKET REFERENCES" title="界面美术 · 风格溯源" />
         <p className="tp-artref-sub" style={{ left: 96, top: 210 }}>
           为什么是黑白雪山？—— 交互稿的美术基调与玩法原型，皆有出处
         </p>

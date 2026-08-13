@@ -21,77 +21,29 @@
 }
 
 /* ---------- Section header ---------- */
-.tp-sec-hdr { position: absolute; }
-.tp-num {
-  position: absolute; left: -22px; top: -30px;
-  font-size: 130px; font-weight: 800; line-height: 1;
-  pointer-events: none; user-select: none;
+.tp-hdr { position: absolute; left: 0; top: 0; }
+.tp-hdr-tile {
+  position: absolute; left: 96px; top: 84px; width: 64px; height: 64px;
+  border-radius: 8px; background: #d9a441; color: #0c1626;
+  font-size: 30px; font-weight: 600; line-height: 64px; text-align: center;
 }
-.tp-eng {
-  display: block; font-size: 14px; font-weight: 600;
-  letter-spacing: 1.5px; margin-bottom: 6px;
+.tp-hdr h2 {
+  position: absolute; left: 184px; top: 84px; margin: 0;
+  color: #edf4f7; font-family: "Noto Serif SC", serif;
+  font-size: 44px; font-weight: 900; line-height: 63px; letter-spacing: 4px; white-space: nowrap;
 }
-.tp-sec-hdr h2 {
-  margin: 0; font-size: 48px; font-weight: 900; color: #edf4f7;
-  line-height: 1.2;
+.tp-hdr-eng {
+  position: absolute; left: 186px; top: 152px;
+  color: rgba(111,216,224,.85); font-size: 16px; font-weight: 600; line-height: 19px; letter-spacing: 4px;
 }
-
-/* ---------- Colors ---------- */
-.tp-teal  { color: #6fd8e0; }
-.tp-gold  { color: #d9a441; }
-.tp-red   { color: #e1584f; }
-.tp-muted { color: #8fa3b8; }
-
-/* ---------- P01 Cover ---------- */
-.tp-cover { background: #0c1626; }
-
-.tp-cover-sky { position: absolute; left: 0; top: 0; pointer-events: none; }
-/* The gold marker on the outer ring; its 24px shadow is the only glow on the cover. */
-.tp-cover-spark {
-  position: absolute; left: 871px; top: 141px; width: 18px; height: 18px;
-  border-radius: 50%; background: #d9a441;
-  box-shadow: 0 0 24px rgba(217,164,65,.9);
-}
-.tp-cover-badge {
-  position: absolute; left: 96px; top: 96px; width: 72px; height: 72px;
-  border-radius: 10px; background: #d9a441;
-}
-.tp-cover-badge span {
-  position: absolute; left: 12px; top: 8px; width: 48px; height: 48px;
-  color: #0c1626; font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
-  font-size: 48px; font-weight: 400; line-height: 48px; text-align: center;
-}
-.tp-cover-subtitle {
-  position: absolute; left: 192px; top: 122px; margin: 0;
-  color: #8fa3b8; font-size: 20px; font-weight: 500; line-height: 24px; letter-spacing: 2px;
-}
-.tp-cover-eng {
-  position: absolute; left: 96px; top: 304px; margin: 0;
-  color: rgba(111,216,224,.85); font-size: 16px; font-weight: 600; line-height: 19px; letter-spacing: 5px;
-}
-.tp-cover-title {
-  position: absolute; left: 90px; top: 333px; margin: 0;
-  color: #edf4f7; font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
-  font-size: 176px; font-weight: 400; line-height: 176px; letter-spacing: 8px;
-  text-shadow: 0 0 40px rgba(12,22,38,.9);
-}
-.tp-cover-tagline {
-  position: absolute; left: 96px; top: 536px; margin: 0;
-  color: #d9a441; font-family: "Noto Serif SC", "Noto Sans SC", serif;
-  font-size: 42px; font-weight: 900; line-height: 60px; letter-spacing: 6px;
-}
-
-/* ---------- Typography helpers ---------- */
 .tp-quote {
-  position: absolute;
-  font-size: 30px; font-weight: 600; color: #d9a441;
-  margin: 0; line-height: 1.5;
+  position: absolute; left: 96px; top: 224px; margin: 0;
+  color: #d9a441; font-family: "Noto Serif SC", serif;
+  font-size: 30px; font-weight: 900; line-height: 36px; letter-spacing: 2px; white-space: nowrap;
 }
-
-.tp-body {
-  position: absolute;
-  font-size: 20px; color: #8fa3b8; margin: 0;
-  line-height: 175%;
+.tp-lead {
+  position: absolute; left: 96px; top: 286px; width: 1088px; margin: 0;
+  color: #8fa3b8; font-size: 20px; line-height: 34px;
 }
 
 .tp-caption {
@@ -569,3 +521,43 @@
   text-align: center;
   font-size: 17px; color: #8fa3b8; margin: 0; letter-spacing: 1px;
 }
+
+
+/* ---------- P02 Overview ---------- */
+.tp-venn { position: absolute; left: 0; top: 0; pointer-events: none; }
+.tp-venn-t { position: absolute; margin: 0; font-family: "Noto Serif SC", serif; font-size: 24px; font-weight: 900; line-height: 29px; }
+.tp-venn-p { position: absolute; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 19px; }
+.tp-venn-t.teal { left: 590px; top: 499px; color: #6fd8e0; }
+.tp-venn-p.teal { left: 590px; top: 535px; width: 128px; }
+.tp-venn-t.gold { left: 576px; top: 767px; color: #d9a441; }
+.tp-venn-p.gold { left: 576px; top: 803px; white-space: nowrap; }
+.tp-venn-t.red  { left: 143px; top: 380px; width: 96px; color: #e1584f; }
+.tp-venn-p.red  { left: 111px; top: 416px; width: 128px; text-align: right; }
+.tp-kpi { position: absolute; left: 812px; width: 372px; height: 113px; border-radius: 14px; background: #122236; }
+.tp-kpi.gold { top: 462px; box-shadow: inset 0 0 0 1px rgba(217,164,65,.45); }
+.tp-kpi.teal { top: 599px; box-shadow: inset 0 0 0 1px rgba(111,216,224,.45); }
+.tp-kpi.red  { top: 736px; box-shadow: inset 0 0 0 1px rgba(225,88,79,.45); }
+.tp-kpi b { position: absolute; left: 28px; top: 22px; font-family: "Noto Serif SC", serif; font-size: 34px; font-weight: 900; line-height: 41px; }
+.tp-kpi.gold b { color: #d9a441; } .tp-kpi.teal b { color: #6fd8e0; } .tp-kpi.red b { color: #e1584f; }
+.tp-kpi span { position: absolute; left: 28px; top: 71px; color: #8fa3b8; font-size: 17px; line-height: 20px; }
+
+/* ---------- P03 System breakdown ---------- */
+.tp-bd-root {
+  position: absolute; left: 536px; top: 217px; width: 208px; height: 72px;
+  border-radius: 30px; background: #d9a441; color: #0c1626;
+  font-family: "Noto Serif SC", serif; font-size: 30px; font-weight: 900; line-height: 72px; text-align: center;
+}
+.tp-bd-tree { position: absolute; left: 0; top: 0; pointer-events: none; }
+.tp-mod { position: absolute; top: 427px; width: 200px; height: 254px; }
+.tp-mod-hd { position: absolute; left: 0; top: 0; width: 200px; height: 86px; border-radius: 12px; }
+.tp-mod-hd.teal { background: rgba(111,216,224,.14); box-shadow: inset 0 0 0 1.5px rgba(111,216,224,.9); }
+.tp-mod-hd.red  { background: rgba(225,88,79,.14);  box-shadow: inset 0 0 0 1.5px rgba(225,88,79,.9); }
+.tp-mod-hd.gold { background: rgba(217,164,65,.14); box-shadow: inset 0 0 0 1.5px rgba(217,164,65,.9); }
+.tp-mod-hd h3 { position: absolute; left: 22px; top: 14px; margin: 0; font-family: "Noto Serif SC", serif; font-size: 26px; font-weight: 900; line-height: 37px; }
+.tp-mod-hd.teal h3 { color: #6fd8e0; } .tp-mod-hd.red h3 { color: #e1584f; } .tp-mod-hd.gold h3 { color: #d9a441; }
+.tp-mod-hd span { position: absolute; left: 22px; top: 53px; color: #8fa3b8; font-size: 16px; font-weight: 600; line-height: 19px; letter-spacing: 1.5px; }
+.tp-mod p { position: absolute; left: 0; width: 200px; height: 44px; margin: 0; border-radius: 10px; background: #122236; color: rgba(237,244,247,.9); font-size: 17px; line-height: 44px; padding-left: 20px; }
+.tp-bd-note { position: absolute; left: 327px; top: 733px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 19px; }
+.tp-support { position: absolute; left: 193px; top: 772px; width: 892px; height: 90px; border-radius: 16px; background: #122236; box-shadow: inset 0 0 0 1px rgba(111,216,224,.3); }
+.tp-support b { position: absolute; left: 28px; top: 33px; color: #6fd8e0; font-size: 20px; font-weight: 700; line-height: 24px; }
+.tp-support span { position: absolute; top: 28px; height: 35px; border-radius: 999px; background: rgba(111,216,224,.1); box-shadow: inset 0 0 0 1px rgba(111,216,224,.5); color: rgba(237,244,247,.9); font-size: 16px; line-height: 35px; text-align: center; }
