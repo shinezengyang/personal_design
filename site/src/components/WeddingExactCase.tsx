@@ -132,8 +132,6 @@ function ScreenSection({
   desc,
   image,
   box,
-  /** Figma paints the frame's 1px stroke INSIDE, so it overlays the shot rather than insetting it. */
-  edge,
   caption,
   pins,
   pointsTitle,
@@ -148,7 +146,6 @@ function ScreenSection({
   image: string;
   /** Figma frame box of the screenshot [x, y, w, h] — pins are given relative to it. */
   box: [number, number, number, number];
-  edge?: string;
   caption?: string;
   pins: Array<[number, number, number]>;
   pointsTitle: string;
@@ -160,7 +157,7 @@ function ScreenSection({
   return (
     <section className={`we-section we-screen-section ${dark ? 'dark' : ''}`}>
       <SectionHead eyebrow={eyebrow} title={title} desc={desc} dark={dark} />
-      <div className="we-shot-wrap" style={{ left: box[0], top: box[1], width: box[2], height: box[3], ...(edge ? { ['--we-shot-edge' as string]: edge } : null) }}>
+      <div className="we-shot-wrap" style={{ left: box[0], top: box[1], width: box[2], height: box[3] }}>
         <Img src={image} className="we-shot" />
         {pins.map(([n, x, y]) => <NumberPin key={n} n={n} x={x} y={y} dark={dark} />)}
       </div>
@@ -271,7 +268,6 @@ export function WeddingExactCase() {
         desc="像一张婚礼日历：按日期分页陈列吉宴，预约即承诺，把「围观婚礼」变成可计划的事。"
         image={assets.schedule}
         box={[83, 300, 747, 420]}
-        edge="#000000"
         caption="吉宴排期界面"
         pins={[[1,45,46],[2,31,107],[3,565,145],[4,241,183],[5,676,81]]}
         pointsTitle="一张可计划的「婚礼日历」"
@@ -297,7 +293,6 @@ export function WeddingExactCase() {
         desc="新人亲自发来的定向邀请 —— 比公共围观更进一步，也给足「我可以不去」的体面。"
         image={assets.invite}
         box={[76, 300, 748, 421]}
-        edge="#000000"
         caption="吉宴受邀界面"
         pins={[[1,257,89],[2,47,117],[3,480,117],[4,260,372],[5,676,126]]}
         pointsTitle="被新人「点名」的定向邀请"
