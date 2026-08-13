@@ -171,10 +171,10 @@
 .we-art-card h3:nth-of-type(3) { top: 314px; }
 .we-art-card h3 i { position: absolute; left: -24px; top: 6px; width: 12px; height: 12px; border-radius: 3px; background: #c8607a; }
 .we-art-card h3 i.gold { left: -40px; background: #c8a86b; }
-.we-art-card p { position: absolute; left: 36px; width: 490px; margin: 0; color: #6e5a52; font-size: 16px; line-height: 21px; }
-.we-art-card p:nth-of-type(1) { top: 112px; }
-.we-art-card p:nth-of-type(2) { top: 230px; }
-.we-art-card p:nth-of-type(3) { top: 348px; }
+.we-art-card > p { position: absolute; left: 36px; width: 490px; margin: 0; color: #6e5a52; font-size: 16px; line-height: 21px; }
+.we-art-card > p:nth-of-type(1) { top: 112px; }
+.we-art-card > p:nth-of-type(2) { top: 230px; }
+.we-art-card > p:nth-of-type(3) { top: 348px; }
 .we-ref { position: absolute; left: 36px; width: 484px; }
 .we-ref:nth-of-type(1) { top: 72px; }
 .we-ref:nth-of-type(2) { top: 188px; }
@@ -187,7 +187,7 @@
 .we-art-takeaway > em { position: absolute; left: 40px; top: 26px; font-size: 11px; line-height: 13px; }
 .we-art-takeaway p { position: absolute; left: 40px; top: 48px; width: 1040px; margin: 0; color: #d2b5ae; font-size: 16px; line-height: 23px; }
 .we-final { position: relative; height: 900px; background: linear-gradient(90deg,#2a0f1a,#150a12); text-align: center; overflow: hidden; }
-.we-final > em { position: absolute; left: 0; right: 0; top: 96px; color: #e0a98c; font-size: 13px; letter-spacing: 3px; }
+.we-final > em { position: absolute; left: 0; right: 0; top: 96px; color: #e0a98c; font-size: 13px; line-height: 16px; letter-spacing: 3px; }
 .we-final h2 { position: absolute; left: 0; right: 0; top: 195px; margin: 0; color: #fff; font-size: 46px; line-height: 55px; font-weight: 900; }
 .we-final > p { position: absolute; left: 240px; top: 281px; width: 800px; margin: 0; color: #d2b5ae; font-size: 16px; line-height: 28px; }
 .we-final-cards { position: absolute; left: 100px; top: 440px; display: grid; grid-template-columns: 340px 30px 340px 30px 340px; gap: 0; align-items: center; text-align: left; }
