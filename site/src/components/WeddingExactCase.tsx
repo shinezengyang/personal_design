@@ -320,8 +320,8 @@ export function WeddingExactCase() {
         <NumberPin n={4} x={1040} y={578} dark />
         <NumberPin n={5} x={942} y={698} dark />
         <div className="we-caption-row dark">
-          <p><b>婚礼现场 · WEDDING VENUE</b><br />① 吉宴分享(0/8) 一键转发现场<br />② 互动 / 单人 切换参与方式</p>
-          <p><b>吉宴祝福 · BLESSING WALL</b><br />③ 评论·点赞·分享 999+<br />④ 祝福墙<br />⑤ 一句祝福即参与</p>
+          <p><b>婚礼现场 · WEDDING VENUE</b>① 吉宴分享(0/8) 一键转发现场<br />② 互动 / 单人 切换参与方式</p>
+          <p><b>吉宴祝福 · BLESSING WALL</b>③ 评论·点赞·分享 999+<br />④ 祝福墙<br />⑤ 一句祝福即参与</p>
         </div>
         <WhyBlock
           eyebrow="为什么把高潮放在这里 · WHY THE PEAK"
