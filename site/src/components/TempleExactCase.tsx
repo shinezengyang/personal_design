@@ -73,9 +73,9 @@ function Pin({ n, x, y }: { n: number; x: number; y: number }) {
 }
 
 /** Numbered legend row: 26px disc, title, body. `sm` is the 19px/24px variant. */
-function Legend({ n, x, y, title, body, w, sm = false }: { n: number; x: number; y: number; title: string; body: string; w: number; sm?: boolean }) {
+function Legend({ n, x, y, title, body, w, sm = false, md = false }: { n: number; x: number; y: number; title: string; body: string; w: number; sm?: boolean; md?: boolean }) {
   return (
-    <div className={`tp-lg${sm ? ' sm' : ''}`} style={{ left: x, top: y }}>
+    <div className={`tp-lg${sm ? ' sm' : ''}${md ? ' md' : ''}`} style={{ left: x, top: y }}>
       <b>{n}</b>
       <h4>{title}</h4>
       <p style={{ width: w }}>{body}</p>
@@ -104,9 +104,9 @@ function Anno({ num, title, desc, style }: { num: string; title: string; desc: s
   );
 }
 
-function IntentBar({ text }: { text: string }) {
+function IntentBar({ text, tall = false }: { text: string; tall?: boolean }) {
   return (
-    <div className="tp-intent">
+    <div className={`tp-intent${tall ? ' tall' : ''}`}>
       <span>设计意图</span>
       <p>{text}</p>
     </div>
@@ -376,53 +376,43 @@ export function TempleExactCase() {
 
       {/* ===== P08 · Server Ranking ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="07" eng="SCREEN ANALYSIS 03 — SERVER RANKING" title="进度排行 · 服务器的较量" />
-        <div className="tp-badge-label teal" style={{ left: 96, top: 200 }}>界面分析 ①②③</div>
-
-        <Shot src={A.p08} style={{ left: 96, top: 225, width: 740, height: 416 }} />
-
-        <Anno num="①" title="服务器维度·集体较量" tone="teal"
-          desc="排行以服务器为单位，将个人行动升华为集体荣誉竞争，激活社会认同驱动力。"
-          style={{ left: 870, top: 260 }} />
-        <Anno num="②" title="永远看得见自己" tone="gold"
-          desc="用户所在服务器始终固定显示在列表可视区域，无论排名高低都能感知自己的位置。"
-          style={{ left: 870, top: 390 }} />
-        <Anno num="③" title="更新频率前置说明" tone="teal"
-          desc="「每小时更新」的说明前置，管理玩家对实时性的预期，避免因数据延迟产生误解。"
-          style={{ left: 870, top: 520 }} />
-
-        <IntentBar text="排行榜的核心是让每个参与者都能「看见自己在哪里」—— 永久置顶自身服务器，确保个人感知与集体竞争同步在场。" />
+        <SectionHeader no="07" title="进度排行 · 服务器的较量" eng="SCREEN ANALYSIS 03 — SERVER RANKING" />
+        <Tag n="③" />
+        <Shot src={A.p08} x={96} y={225} w={740} h={416.3} />
+        <Cap x={96} y={649}>进度排行榜 · 每半小时更新</Cap>
+        <Pin n={1} x={494} y={275} />
+        <Pin n={2} x={306} y={571} />
+        <Pin n={3} x={479} y={602} />
+        <Legend md n={1} x={900} y={241} w={246} title="服务器维度 · 集体较量"
+          body="把个人行为聚合成服务器荣誉，社会比较从个人内卷转向集体协作，强化归属感" />
+        <Legend md n={2} x={900} y={372} w={246} title="永远看得见自己"
+          body="本服高亮显示；未进当前页时固定置底，免去「翻页找自己」的挫败，保证比较的参照系永远在场" />
+        <Legend md n={3} x={900} y={503} w={246} title="更新频率前置说明"
+          body="「每半小时更新一次」写进界面，预先管理数据延迟的预期，避免被误读为故障" />
+        <IntentBar tall text="排行榜不是头名的炫耀板，而是每个服务器的进度镜子 —— 落后可见、追赶有方向，全服能量才有持续增长的动力" />
       </section>
 
-      {/* ===== P09 · Sanctum Hub Layout ===== */}
+      {/* ===== P09 · Sanctum hub layout ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="08" eng="SCREEN ANALYSIS 04 — SANCTUM HUB LAYOUT" title="秘境主界面 · 三区动线" />
-        <div className="tp-badge-label teal" style={{ left: 96, top: 162 }}>界面分析 A · B · C</div>
-
-        <Shot src={A.p09} style={{ left: 150, top: 187, width: 980, height: 551 }} />
-
-        {/* Zone annotations */}
-        <div className="tp-zone-anno teal" style={{ left: 96, top: 300 }}>
-          <span className="tp-zone-badge teal">A</span>
-          <div>
-            <h4>个人区·视线起点</h4>
-            <p>探索值进度居左置顶，玩家打开界面第一眼先看到「自己做了多少」。</p>
-          </div>
-        </div>
-        <div className="tp-zone-anno gold" style={{ left: 430, top: 760 }}>
-          <span className="tp-zone-badge gold">B</span>
-          <div>
-            <h4>目标区·情感锚点</h4>
-            <p>首领立绘+解锁进度居中，高对比度设计强化本周终极目标的存在感。</p>
-          </div>
-        </div>
-        <div className="tp-zone-anno red" style={{ left: 960, top: 300 }}>
-          <span className="tp-zone-badge red">C</span>
-          <div>
-            <h4>导航区·低频右置</h4>
-            <p>排行榜/规则等低频功能入口靠右，不抢占主视区注意力。</p>
-          </div>
-        </div>
+        <SectionHeader no="08" title="秘境主界面 · 三区动线" eng="SCREEN ANALYSIS 04 — SANCTUM HUB LAYOUT" />
+        <Tag n="④" />
+        <Shot src={A.p09} x={150} y={187} w={980} h={551.3} />
+        <div className="tp-zone teal" style={{ left: 154, top: 232, width: 313, height: 501 }}><span style={{ width: 89.1 }}>A 个人区</span></div>
+        <div className="tp-zone gold" style={{ left: 470, top: 232, width: 536, height: 501 }}><span style={{ width: 86.5 }}>B 目标区</span></div>
+        <div className="tp-zone red" style={{ left: 1012, top: 232, width: 115, height: 168 }}><span style={{ width: 87, top: 139 }}>C 导航区</span></div>
+        <Cap x={150} y={746}>神庙遗迹主界面 · 遗迹探索页签</Cap>
+        <article className="tp-zonecard teal" style={{ left: 96 }}>
+          <h4>A 个人区 · 视线起点</h4>
+          <p>F 型阅读起点放高频内容：我的进度、我的任务，打开即知「现在该做什么」</p>
+        </article>
+        <article className="tp-zonecard gold" style={{ left: 460 }}>
+          <h4>B 目标区 · 情感锚点</h4>
+          <p>首领剪影占据最大画幅，锁定状态制造悬念——看得见的目标才有驱动力</p>
+        </article>
+        <article className="tp-zonecard red" style={{ left: 824 }}>
+          <h4>C 导航区 · 低频右置</h4>
+          <p>页签贴右缘拇指热区，不与主内容争夺视线，切换成本最低</p>
+        </article>
       </section>
 
       {/* ===== P10 · Exploration Pipeline ===== */}

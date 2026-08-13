@@ -476,9 +476,9 @@
 .tp-lg b { position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: #d9a441; color: #0c1626; font-size: 15px; font-weight: 600; line-height: 26px; text-align: center; }
 .tp-lg h4 { position: absolute; left: 40px; top: 0; margin: 0; color: #6fd8e0; font-size: 21px; font-weight: 700; line-height: 25px; white-space: nowrap; }
 .tp-lg p { position: absolute; left: 40px; top: 33px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 26px; }
-.tp-lg.sm h4 { font-size: 19px; line-height: 23px; }
-.tp-lg.sm p { top: 28px; line-height: 24px; }
-.tp-lg.wide p { top: 28px; color: rgba(237,244,247,.92); font-size: 17px; line-height: 20px; }
+.tp-lg.sm h4 { left: 38px; font-size: 19px; line-height: 23px; }
+.tp-lg.sm p { left: 38px; top: 28px; line-height: 24px; }
+.tp-lg.wide p { top: 28px; color: rgba(237,244,247,.92); font-size: 17px; line-height: 20px; white-space: nowrap; }
 .tp-goldtag { position: absolute; width: 199px; height: 31px; border-radius: 8px; background: #d9a441; color: #0c1626; font-size: 16px; font-weight: 700; line-height: 31px; text-align: center; }
 .tp-intent {
   position: absolute; left: 96px; top: 748px; width: 1088px; height: 80px;
@@ -486,3 +486,24 @@
 }
 .tp-intent > span { position: absolute; left: 24px; top: 29px; color: #d9a441; font-size: 18px; font-weight: 700; line-height: 22px; }
 .tp-intent p { position: absolute; left: 110px; top: 30px; margin: 0; color: rgba(237,244,247,.92); font-size: 17px; line-height: 20px; }
+
+.tp-lg.md h4 { left: 38px; font-size: 20px; line-height: 24px; }
+.tp-lg.md p { left: 38px; top: 30px; line-height: 25px; }
+.tp-intent.tall { top: 730px; height: 90px; }
+.tp-intent.tall > span { top: 34px; }
+.tp-intent.tall p { top: 35px; }
+
+/* ---------- P09 zone overlays ---------- */
+.tp-zone { position: absolute; border-radius: 8px; z-index: 2; }
+.tp-zone.teal { background: rgba(111,216,224,.10); box-shadow: inset 0 0 0 2px rgba(111,216,224,.95); }
+.tp-zone.gold { background: rgba(217,164,65,.08); box-shadow: inset 0 0 0 2px rgba(217,164,65,.95); }
+.tp-zone.red  { background: rgba(225,88,79,.10); box-shadow: inset 0 0 0 2px rgba(225,88,79,.95); }
+.tp-zone span { position: absolute; left: 0; top: 0; height: 29px; border-radius: 6px; color: #0c1626; font-size: 16px; font-weight: 700; line-height: 29px; text-align: center; }
+.tp-zone.teal span { background: #6fd8e0; } .tp-zone.gold span { background: #d9a441; } .tp-zone.red span { background: #e1584f; }
+.tp-zonecard { position: absolute; top: 790px; width: 340px; height: 100px; border-radius: 12px; background: #122236; }
+.tp-zonecard.teal { box-shadow: inset 0 0 0 1px rgba(111,216,224,.5); }
+.tp-zonecard.gold { box-shadow: inset 0 0 0 1px rgba(217,164,65,.5); }
+.tp-zonecard.red  { box-shadow: inset 0 0 0 1px rgba(225,88,79,.5); }
+.tp-zonecard h4 { position: absolute; left: 20px; top: 14px; margin: 0; font-size: 19px; font-weight: 700; line-height: 23px; white-space: nowrap; }
+.tp-zonecard.teal h4 { color: #6fd8e0; } .tp-zonecard.gold h4 { color: #d9a441; } .tp-zonecard.red h4 { color: #e1584f; }
+.tp-zonecard p { position: absolute; left: 20px; top: 43px; width: 300px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 25px; }
