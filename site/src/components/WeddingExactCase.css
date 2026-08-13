@@ -28,7 +28,7 @@
 .we-cover-copy h2 { margin: 10px 0 0 28px; color: #fff; font-size: 40px; font-weight: 900; letter-spacing: 1px; }
 .we-cover-copy p { margin: 56px 0 0 30px; color: #c7aea4; font-size: 18px; line-height: 30px; }
 .we-cover-copy span { display: inline-flex; align-items: center; height: 34px; margin: 46px 0 0 30px; padding: 0 16px; color: #e7c9a6; border: 1px solid #8a6a52; border-radius: 17px; font-size: 13px; font-weight: 600; }
-.we-cover-img { position: absolute; left: 688px; top: 200px; width: 512px; height: 470px; border: 1px solid #7a5a44; border-radius: 16px; overflow: hidden; background: #2a1820; box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+.we-cover-img { position: absolute; left: 688px; top: 200px; width: 512px; height: 470px; --we-shot-edge: #7a5a44; border-radius: 16px; overflow: hidden; background: #2a1820; box-shadow: 0 20px 50px rgba(0,0,0,.5); }
 .we-cover-img img { width: 100%; height: 100%; object-fit: cover; }
 .we-bg { height: 820px; }
 .we-feature-row { position: absolute; top: 300px; left: 80px; display: grid; grid-template-columns: repeat(3, 360px); gap: 20px; }
@@ -102,7 +102,10 @@
 .we-peak-note div { display: flex; gap: 16px; }
 .we-peak-note span { display: inline-flex; align-items: center; justify-content: center; width: 200px; height: 30px; border-radius: 15px; background: rgba(200,96,122,.12); color: #c8607a; font-size: 16px; font-weight: 800; }
 /* left/top/width/height come from each section's Figma frame box (inline style) */
-.we-screen-section .we-shot-wrap { position: absolute; border: 1px solid #e0d2cc; border-radius: 10px; box-shadow: 0 14px 34px rgba(102,77,77,.18); overflow: hidden; background: #1a1012; }
+.we-screen-section .we-shot-wrap { position: absolute; --we-shot-edge: #e0d2cc; border-radius: 10px; box-shadow: 0 14px 34px rgba(102,77,77,.18); overflow: hidden; background: #1a1012; }
+/* Figma paints these 1px strokes with strokeAlign INSIDE — they sit on top of the shot
+   rather than reserving a track, so a real CSS border would shrink and re-crop the image. */
+.we-cover-img::after, .we-screen-section .we-shot-wrap::after, .we-venue-img::after { content: ""; position: absolute; inset: 0; border: 1px solid var(--we-shot-edge); border-radius: inherit; pointer-events: none; }
 .we-shot { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
 .we-caption { position: absolute; left: 80px; top: 726px; width: 740px; text-align: center; color: #9a8078; font-size: 13px; }
 .we-pin { position: absolute; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #c8607a; color: #fff; font-size: 14px; font-weight: 800; box-shadow: 0 6px 0 rgba(90,35,50,.28); z-index: 5; }
@@ -122,7 +125,7 @@
 .we-why .we-reason h3 { color: #fff; font-size: 16px; margin: 0 0 14px; }
 .we-why .we-reason p { color: #b6a39b; font-size: 16px; line-height: 19px; }
 .we-venue { height: 1240px; }
-.we-venue-img { position: absolute; border: 1px solid #5a3a44; border-radius: 10px; box-shadow: 0 16px 40px rgba(0,0,0,.5); overflow: hidden; }
+.we-venue-img { position: absolute; --we-shot-edge: #5a3a44; border-radius: 10px; box-shadow: 0 16px 40px rgba(0,0,0,.5); overflow: hidden; }
 .we-venue-img img { width: 100%; height: 100%; object-fit: cover; }
 .we-venue-img.scene { left: 80px; top: 346px; width: 700px; height: 396px; }
 .we-venue-img.bless { left: 820px; top: 290px; width: 360px; height: 452px; }
