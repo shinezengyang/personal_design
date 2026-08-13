@@ -109,6 +109,24 @@ function FlowBar({ steps }: { steps: string[] }) {
   );
 }
 
+/* P04 timeline days: [dot x, label, colour]. */
+const templeDays = [
+  [169, '周一', '#6fd8e0'], [324, '周二', '#6fd8e0'], [480, '周三', '#6fd8e0'],
+  [635, '周四', '#6fd8e0'], [790, '周五', '#6fd8e0'], [946, '周六', '#e1584f'], [1101, '周日', '#d9a441'],
+] as const;
+
+/* P04 steps snake across two rows: [no, title, sub, x, y, tone]. */
+const templeSteps = [
+  ['1', '大世界入口', '活动矩阵 · 红点提示', 96, 487, 'teal'],
+  ['2', '神庙主界面', '日常活动攒全服能量', 372, 487, 'teal'],
+  ['3', '能量 100%', '「进入秘境」点亮', 648, 487, 'gold'],
+  ['4', '副本地图', '选区域目标 · 前往', 924, 487, 'teal'],
+  ['5', '探索副本', '自动寻路 · 完成事件', 924, 661, 'teal'],
+  ['6', '激活首领', '周探索值达 1000', 648, 661, 'gold'],
+  ['7', '周六决战', '限时挑战 · 实时排名', 372, 661, 'red'],
+  ['8', '邮件结算', '奖励发放 · 进入下一周', 96, 661, 'gold'],
+] as const;
+
 /* P03 modules: [title, eng, three rows, tone] — columns step 296px from x=96. */
 const templeModules = [
   ['遗迹探索', 'SERVER ENERGY', ['全服能量进度条', '里程碑宝箱奖励', '服务器进度排行'], 'teal'],
@@ -219,129 +237,97 @@ export function TempleExactCase() {
 
       {/* ===== P04 · Weekly Loop ===== */}
       <section className="tp-sec tp-weekly">
-        <SectionHeader no="03" eng="WEEKLY LOOP & SCREEN FLOW" title="一周玩法循环" />
+        <SectionHeader no="03" title="一周玩法循环" eng="WEEKLY LOOP & SCREEN FLOW" />
 
-        {/* Day labels */}
-        <div className="tp-days" style={{ left: 80, top: 230 }}>
-          {['周一', '周二', '周三', '周四', '周五', '周六', '周日'].map((d, i) => (
-            <span key={d} className={`tp-day ${i === 5 ? 'red' : i === 6 ? 'gold' : 'teal'}`}>{d}</span>
+        <svg className="tp-wk-svg" viewBox="0 0 1280 900" width="1280" height="900" aria-hidden>
+          <rect x="174" y="287" width="932.6" height="1.5" fill="rgba(143,163,184,.4)" />
+          {templeDays.map(([x, , c]) => <circle key={x} cx={x + 5} cy="287" r="5" fill={c} />)}
+          {[340, 616, 892].map((x) => (
+            <path key={x} d={`M${x} 535h18M${x + 12} 529l7 6-7 6`} fill="none" stroke="#d9a441" strokeWidth="2.5" />
           ))}
-        </div>
-
-        {/* Phase labels */}
-        <div className="tp-phase teal" style={{ left: 80, top: 292 }}>
-          <span className="tp-phase-title">探索期 · 周一至周五</span>
-          <span className="tp-phase-desc">个人探索事件 · 积累全服能量</span>
-        </div>
-        <div className="tp-phase red" style={{ left: 873, top: 292 }}>
-          <span className="tp-phase-title">决战 · 周六</span>
-        </div>
-        <div className="tp-phase gold" style={{ left: 1033, top: 292 }}>
-          <span className="tp-phase-title">结算 · 周日</span>
-        </div>
-
-        {/* 8 flow steps */}
-        <div className="tp-steps-row" style={{ left: 80, top: 380 }}>
-          {[
-            { no: '1', t: '大世界入口', d: '活动矩阵触达' },
-            { no: '2', t: '神庙主界面', d: '全服能量+任务' },
-            { no: '3', t: '能量100%', d: '解锁秘境入口' },
-            { no: '4', t: '副本地图', d: '选择探索目标' },
-          ].map((s) => (
-            <div key={s.no} className="tp-step-card teal">
-              <span className="tp-step-no teal">{s.no}</span>
-              <h4>{s.t}</h4>
-              <p>{s.d}</p>
-            </div>
+          {[340, 616, 892].map((x) => (
+            <path key={`b${x}`} d={`M${x + 24} 709h-18M${x + 12} 703l-7 6 7 6`} fill="none" stroke="#d9a441" strokeWidth="2.5" />
           ))}
-        </div>
-        <div className="tp-steps-row" style={{ left: 80, top: 580 }}>
-          {[
-            { no: '5', t: '探索副本', d: '事件/奇遇战斗', c: 'teal' },
-            { no: '6', t: '激活首领', d: '探索值达1000', c: 'teal' },
-            { no: '7', t: '周六决战', d: '遗迹首领限时战', c: 'red' },
-            { no: '8', t: '邮件结算', d: '排行奖励发放', c: 'gold' },
-          ].map((s) => (
-            <div key={s.no} className={`tp-step-card ${s.c}`}>
-              <span className={`tp-step-no ${s.c}`}>{s.no}</span>
-              <h4>{s.t}</h4>
-              <p>{s.d}</p>
-            </div>
-          ))}
-        </div>
+          <path d="M1042 613v12M1036 621l6 6 6-6" fill="none" stroke="#d9a441" strokeWidth="2.5" />
+          <path d="M82 715H48c-8 0-12-4-12-12V547c0-8 4-12 12-12h34" fill="none" stroke="#6fd8e0" strokeWidth="2" strokeDasharray="5 7" />
+        </svg>
+        <span className="tp-wk-loop">周循环</span>
 
-        <div className="tp-loop-label" style={{ left: 0, top: 800 }}>
-          <span className="tp-loop-badge">周循环</span>
-          <span className="tp-loop-desc">每周重置 · 下一轮能量积累从零开始</span>
-        </div>
+        {templeDays.map(([x, label]) => <span className="tp-wk-day" key={label} style={{ left: x - 11 }}>{label}</span>)}
+
+        <div className="tp-wk-phase teal" />
+        <div className="tp-wk-phase red" />
+        <div className="tp-wk-phase gold" />
+        <h4 className="tp-wk-pt teal">探索期 · 周一至周五</h4>
+        <p className="tp-wk-pd teal">个人探索事件 · 特殊奇遇 · 积攒探索值与全服能量（周一 05:00 刷新，跨服共享进度）</p>
+        <h4 className="tp-wk-pt red">决战 · 周六</h4>
+        <p className="tp-wk-pd red">20:00-20:30 首领限时</p>
+        <h4 className="tp-wk-pt gold">结算 · 周日</h4>
+        <p className="tp-wk-pd gold">奖励邮件发放</p>
+
+        {templeSteps.map(([no, title, sub, x, y, tone]) => (
+          <article className={`tp-step ${tone}`} key={no} style={{ left: x, top: y }}>
+            <b>{no}</b>
+            <h4>{title}</h4>
+            <span>{sub}</span>
+          </article>
+        ))}
       </section>
 
-      {/* ===== P05 · Flow Curve ===== */}
+      {/* ===== P05 · Flow curve ===== */}
       <section className="tp-sec tp-flowcurve">
-        <SectionHeader no="04" eng="FLOW CURVE · ONE WEEK" title="玩家心流历程" />
+        <SectionHeader no="04" title="玩家心流历程" eng="FLOW CURVE · ONE WEEK" />
 
-        <div className="tp-curve-chart" style={{ left: 80, top: 230 }}>
-          {/* Axis labels */}
-          <span className="tp-curve-y-label">FLOW</span>
-          <span className="tp-curve-x-label">T · 一周</span>
-          <span className="tp-curve-hi">高心流区</span>
-          <span className="tp-curve-lo">低心流区</span>
+        <div className="tp-fc-band hi" />
+        <div className="tp-fc-band lo" />
+        <span className="tp-fc-zone hi">高心流区</span>
+        <span className="tp-fc-zone lo">低心流区</span>
+        <span className="tp-fc-axis-y">FLOW</span>
+        <span className="tp-fc-axis-x">T · 一周</span>
 
-          {/* Curve SVG */}
-          <svg className="tp-curve-svg" viewBox="0 0 1100 300" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="curveGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#6fd8e0" stopOpacity="0.3" />
-                <stop offset="60%" stopColor="#d9a441" stopOpacity="0.5" />
-                <stop offset="100%" stopColor="#e1584f" stopOpacity="0.8" />
-              </linearGradient>
-            </defs>
-            {/* Fill area */}
-            <path
-              d="M0,260 C60,250 100,230 180,220 C260,210 280,180 340,185 C400,190 420,170 500,155 C580,140 620,110 700,95 C760,82 820,60 900,40 C950,28 1000,35 1100,280 Z"
-              fill="url(#curveGrad)" opacity="0.15"
-            />
-            {/* Curve line */}
-            <path
-              d="M0,260 C60,250 100,230 180,220 C260,210 280,180 340,185 C400,190 420,170 500,155 C580,140 620,110 700,95 C760,82 820,60 900,40 C950,28 1000,35 1100,280"
-              fill="none" stroke="url(#curveGrad)" strokeWidth="3"
-            />
-            {/* Peak marker */}
-            <circle cx="900" cy="40" r="6" fill="#e1584f" />
-            {/* Small bump marker */}
-            <circle cx="340" cy="182" r="5" fill="#d9a441" />
+        <svg className="tp-fc-svg" viewBox="0 0 1280 900" width="1280" height="900" aria-hidden>
+          <rect x="140" y="450" width="1010" height="1.5" fill="rgba(237,244,247,.35)" />
+          <path d="M138 258v380h1020M132 266l6-10 6 10M1150 632l10 6-10 6" fill="none" stroke="#8fa3b8" strokeWidth="2" />
+          <path d="M510 455v175M900 440v190M1020 298v332M1090 410v220" stroke="#d9a441" strokeWidth="1.5" strokeDasharray="4 8" />
+          <path
+            d="M140 580C190 565 230 590 280 575C330 560 370 585 420 570C460 560 480 520 510 455C530 410 550 470 570 515C610 550 660 570 700 560C780 540 840 500 900 440C950 380 980 310 1020 298C1050 290 1070 330 1090 410C1110 490 1130 550 1150 570"
+            fill="none" stroke="#ffe8d3" strokeWidth="4" />
+          {[[510, 455], [900, 440], [1020, 298], [1090, 410]].map(([x, y]) => (
+            <path key={x} d={`M${x} ${y - 12}l3 8.5h9l-7.2 5.5 2.7 9L${x} ${y + 5.6}l-7.5 5.4 2.7-9-7.2-5.5h9Z`} fill="#d9a441" />
+          ))}
+        </svg>
+
+        <h4 className="tp-fc-t" style={{ left: 290, top: 366 }}>奇遇触发 · 小高峰</h4>
+        <p className="tp-fc-p" style={{ left: 290, top: 394 }}>特殊探索事件 打破重复感</p>
+        <h4 className="tp-fc-t" style={{ left: 700, top: 366 }}>首领激活 · 期待爬升</h4>
+        <p className="tp-fc-p" style={{ left: 700, top: 394 }}>周探索值达成 目标在望</p>
+        <h4 className="tp-fc-t" style={{ left: 810, top: 258 }}>周六决战 · 体验巅峰</h4>
+        <p className="tp-fc-p" style={{ left: 843, top: 286 }}>全服同屏 限时 30 分钟</p>
+        <h4 className="tp-fc-t" style={{ left: 1007, top: 460 }}>邮件结算 · 回落蓄力</h4>
+        <p className="tp-fc-p" style={{ left: 1049, top: 488 }}>奖励落袋 等待下一周</p>
+
+        <article className="tp-scene teal">
+          <svg viewBox="0 0 34 34" fill="none" stroke="#6fd8e0" strokeWidth="2.5" aria-hidden>
+            <circle cx="17" cy="17" r="14" /><path d="M17 9v8l6 4" />
           </svg>
-
-          {/* Annotations on curve */}
-          <div className="tp-curve-anno" style={{ left: 260, top: 60 }}>
-            <span className="tp-curve-tag gold">奇遇触发 · 小高峰</span>
-          </div>
-          <div className="tp-curve-anno" style={{ left: 580, top: 20 }}>
-            <span className="tp-curve-tag teal">首领激活 · 期待爬升</span>
-          </div>
-          <div className="tp-curve-anno" style={{ left: 830, top: 0 }}>
-            <span className="tp-curve-tag red">周六决战 · 体验巅峰</span>
-          </div>
-          <div className="tp-curve-anno" style={{ left: 980, top: 140 }}>
-            <span className="tp-curve-tag gold">邮件结算 · 回落蓄力</span>
-          </div>
-        </div>
-
-        {/* Three info cards */}
-        <div className="tp-flow-cards" style={{ left: 80, top: 610 }}>
-          <div className="tp-flow-card teal">
-            <h4>碎片日常 · 周一至周五</h4>
-            <p>每日探索事件低摩擦可完成，积累感知通过能量条可视化，化整为零、聚沙成塔。</p>
-          </div>
-          <div className="tp-flow-card gold">
-            <h4>奇遇时刻 · 随机触发</h4>
-            <p>随机触发的特殊奇遇事件打破日常节奏，制造意外惊喜感，拉高单日情绪峰值。</p>
-          </div>
-          <div className="tp-flow-card red">
-            <h4>周六之夜 · 全服赴约</h4>
-            <p>固定时间窗口的全服同屏决战，将一周积累的期待在30分钟内集中释放为高峰体验。</p>
-          </div>
-        </div>
+          <h4>碎片日常 · 周一至周五</h4>
+          <p>通勤十分钟：自动寻路+自动战斗，顺手完成 1-2 个探索事件，无压力积累</p>
+        </article>
+        <article className="tp-scene gold">
+          <svg viewBox="0 0 34 34" aria-hidden>
+            <path d="M17 2l3 11 11 4-11 4-3 11-3-11-11-4 11-4 3-11Z" fill="#d9a441" />
+          </svg>
+          <h4>奇遇时刻 · 随机触发</h4>
+          <p>特殊探索事件以专属 Toast 开场，可变奖励制造惊喜，重新点燃探索欲</p>
+        </article>
+        <article className="tp-scene red">
+          <svg viewBox="0 0 34 34" fill="none" aria-hidden>
+            <path d="M17 3c3 7 10 9 9 17-1 7-6 11-9 11s-8-4-9-11c-1-8 6-10 9-17Z" stroke="#e15850" strokeWidth="2.5" />
+            <path d="M17 14c2 4 4 5 3 9-1 3-2 4-3 4s-2-1-3-4c-1-4 1-5 3-9Z" fill="#e15850" />
+          </svg>
+          <h4>周六之夜 · 全服赴约</h4>
+          <p>20:00 黄金时段全服同屏决战，实时排名点燃竞争，构成一周的社交记忆点</p>
+        </article>
       </section>
 
       {/* ===== P06 · Entry HUD ===== */}
