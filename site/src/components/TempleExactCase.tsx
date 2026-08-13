@@ -50,64 +50,59 @@ function SectionHeader({ no, eng, title }: { no: string; eng: string; title: str
 }
 
 /* ===== Number circle annotation ===== */
-function Num({ n, tone = 'teal' }: { n: string; tone?: Tone }) {
-  return <span className={`tp-num-circle ${tone}`}>{n}</span>;
+/* Board primitives shared by the nine screen-analysis pages. */
+function Tag({ n }: { n: string }) {
+  return <span className="tp-tag">界面分析 {n}</span>;
 }
 
-/* ===== Annotation card ===== */
-function Anno({
-  num, title, desc, tone = 'teal', style,
-}: {
-  num: string; title: string; desc: string; tone?: Tone;
-  style?: React.CSSProperties;
-}) {
+function Shot({ src, x, y, w, h, gold = false, style }: { src: string; x?: number; y?: number; w?: number; h?: number; gold?: boolean; style?: React.CSSProperties }) {
   return (
-    <div className={`tp-anno ${tone}`} style={style}>
-      <div className="tp-anno-head">
-        <Num n={num} tone={tone} />
-        <h4>{title}</h4>
-      </div>
-      <p>{desc}</p>
-    </div>
-  );
-}
-
-/* ===== Design Intent bar ===== */
-function IntentBar({ text }: { text: string }) {
-  return (
-    <div className="tp-intent">
-      <span className="tp-intent-label">设计意图</span>
-      <p>{text}</p>
-    </div>
-  );
-}
-
-/* ===== Screenshot box ===== */
-function Shot({
-  src, style,
-}: {
-  src: string; style?: React.CSSProperties;
-}) {
-  return (
-    <div className="tp-shot" style={style}>
+    <div className={`tp-shot${gold ? ' gold' : ''}`} style={style ?? { left: x, top: y, width: w, height: h }}>
       <Img src={src} />
     </div>
   );
 }
 
-/* ===== Flow bar ===== */
-function FlowBar({ steps }: { steps: string[] }) {
+function Cap({ x, y, children }: { x: number; y: number; children: React.ReactNode }) {
+  return <p className="tp-cap" style={{ left: x, top: y }}>{children}</p>;
+}
+
+/** 30px marker sitting on a screenshot, in board coordinates. */
+function Pin({ n, x, y }: { n: number; x: number; y: number }) {
+  return <b className="tp-pin" style={{ left: x, top: y }}>{n}</b>;
+}
+
+/** Numbered legend row: 26px disc, title, body. `sm` is the 19px/24px variant. */
+function Legend({ n, x, y, title, body, w, sm = false }: { n: number; x: number; y: number; title: string; body: string; w: number; sm?: boolean }) {
   return (
-    <div className="tp-flow-bar">
-      {steps.map((s, i) => (
-        <span key={i} className="tp-flow-step">
-          {s}
-          {i < steps.length - 1 && <span className="tp-flow-arrow">→</span>}
-        </span>
-      ))}
+    <div className={`tp-lg${sm ? ' sm' : ''}`} style={{ left: x, top: y }}>
+      <b>{n}</b>
+      <h4>{title}</h4>
+      <p style={{ width: w }}>{body}</p>
     </div>
   );
 }
+
+/* TEMPORARY: P08-P17 still use the pre-rebuild API. Removed once they are converted. */
+function Anno({ num, title, desc, style }: { num: string; title: string; desc: string; tone?: Tone; style?: React.CSSProperties }) {
+  return (
+    <div className="tp-lg" style={style}>
+      <b>{num}</b>
+      <h4>{title}</h4>
+      <p style={{ width: 248 }}>{desc}</p>
+    </div>
+  );
+}
+
+function IntentBar({ text }: { text: string }) {
+  return (
+    <div className="tp-intent">
+      <span>设计意图</span>
+      <p>{text}</p>
+    </div>
+  );
+}
+
 
 /* P04 timeline days: [dot x, label, colour]. */
 const templeDays = [
@@ -332,45 +327,41 @@ export function TempleExactCase() {
 
       {/* ===== P06 · Entry HUD ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="05" eng="SCREEN ANALYSIS 01 — WORLD HUD ENTRY" title="入口 · 玩法第一触点" />
-        <div className="tp-badge-label teal" style={{ left: 96, top: 210 }}>界面分析 ①②</div>
-
-        <Shot src={A.p06} style={{ left: 424, top: 232, width: 760, height: 428 }} />
-
-        <Anno num="①" title="活动矩阵·同类聚合" tone="teal"
-          desc="同类活动归组展示，降低用户在信息矩阵中的搜寻成本，一眼定位神庙遗迹入口。"
-          style={{ left: 96, top: 280 }} />
-        <Anno num="②" title="红点提示·外部触发" tone="teal"
-          desc="红点信号在大世界 HUD 层就触达玩家，无需进入活动大厅即可感知状态更新。"
-          style={{ left: 96, top: 430 }} />
-
-        <IntentBar text="第一触点的核心任务是「让玩家知道今天有事做」—— 红点+矩阵聚合把感知成本压到最低，确保日常进入率。" />
+        <SectionHeader no="05" title="入口 · 玩法第一触点" eng="SCREEN ANALYSIS 01 — WORLD HUD ENTRY" />
+        <Tag n="①" />
+        <Shot src={A.p06} x={424} y={232} w={760} h={427.5} />
+        <Cap x={424} y={668}>常规大世界主界面 · 1920×1080</Cap>
+        <Pin n={1} x={1003} y={242} />
+        <Pin n={2} x={750} y={312} />
+        <Legend n={1} x={96} y={250} w={248} title="活动矩阵 · 同类聚合"
+          body="玩法与运营入口统一收纳于右上矩阵，依格式塔邻近原则分组排列，玩家按位置肌肉记忆即可定位，无需逐个辨认" />
+        <Legend n={2} x={96} y={415} w={248} title="红点提示 · 外部触发"
+          body="新玩法上线以红点打破注意盲区，作为外部触发器引导首次点击，零成本完成新玩法曝光（Fogg 行为模型：触发先行）" />
+        <IntentBar text="不改动主线 HUD 结构、不打断战斗操作，仅凭「位置惯例 + 红点」让新玩法获得自然流量" />
       </section>
 
       {/* ===== P07 · Server Energy Hub ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="06" eng="SCREEN ANALYSIS 02 — SERVER ENERGY HUB" title="主界面 · 全服能量 · 共同的目标" />
-        <div className="tp-badge-label teal" style={{ left: 96, top: 185 }}>界面分析 ①②③④⑤</div>
-
-        <Shot src={A.p07a} style={{ left: 96, top: 210, width: 760, height: 428 }} />
-        <div className="tp-screen-label teal" style={{ left: 757, top: 600 }}>能量 100% · 解锁时刻</div>
-        <Shot src={A.p07b} style={{ left: 757, top: 629, width: 427, height: 240 }} />
-
-        <Anno num="①" title="全服进度+里程碑" tone="teal"
-          desc="进度条+里程碑节点可视化全服共同目标，化抽象数字为具体进展感。"
-          style={{ left: 870, top: 215 }} />
-        <Anno num="②" title="能量气泡·数据场景化" tone="gold"
-          desc="浮动气泡将各服贡献量具象展示，让「自己的探索在影响全局」的感知清晰可见。"
-          style={{ left: 870, top: 330 }} />
-        <Anno num="③" title="任务清单·行动闭环" tone="teal"
-          desc="任务列表就地展示在主界面，减少跳转层级，降低从「知道该做」到「开始做」的摩擦。"
-          style={{ left: 870, top: 445 }} />
-        <Anno num="④" title="未达条件·防错置灰" tone="gold"
-          desc="秘境入口在能量未满时保持置灰状态，明确告知条件而非让玩家碰壁试错。"
-          style={{ left: 96, top: 680 }} />
-        <Anno num="⑤" title="解锁状态可见性" tone="teal"
-          desc="能量达标瞬间入口亮起、弹出提示，解锁时刻有明确的系统反馈。"
-          style={{ left: 96, top: 790 }} />
+        <SectionHeader no="06" title="主界面 · 全服能量 · 共同的目标" eng="SCREEN ANALYSIS 02 — SERVER ENERGY HUB" />
+        <Tag n="②" />
+        <Shot src={A.p07a} x={96} y={210} w={760} h={427.5} />
+        <Cap x={96} y={646}>神庙遗迹主界面 · 能量积攒中</Cap>
+        <Pin n={1} x={572} y={296} />
+        <Pin n={2} x={271} y={334} />
+        <Pin n={3} x={619} y={379} />
+        <Pin n={4} x={393} y={560} />
+        <span className="tp-goldtag" style={{ left: 757, top: 598 }}>能量 100% · 解锁时刻</span>
+        <Shot src={A.p07b} x={757} y={629} w={427} h={240} gold />
+        <Pin n={5} x={923} y={814} />
+        <Legend sm n={1} x={900} y={210} w={244} title="全服进度 + 里程碑" body="目标梯度效应：越近终点动机越强；里程碑把长目标切成短反馈" />
+        <Legend sm n={2} x={900} y={298} w={244} title="能量气泡 · 数据场景化" body="各服能量化作雪山灯环，抽象数值变成可感知的世界状态" />
+        <Legend sm n={3} x={900} y={386} w={244} title="任务清单 · 行动闭环" body="「前往」一键直达，「已完成」即时置灰，行为与反馈一一对应" />
+        <Legend sm n={4} x={900} y={474} w={244} title="未达条件 · 防错置灰" body="条件未达时按钮置灰，预先消除无效点击" />
+        <div className="tp-lg sm wide" style={{ left: 98, top: 801 }}>
+          <b>5</b>
+          <h4>未达条件 · 防错置灰</h4>
+          <p style={{ width: 560 }}>能量 100%：「进入秘境」由置灰点亮为鎏金 —— 用状态可见性宣告解锁，<br />让全服共同努力的结果落在一颗按钮的仪式感上</p>
+        </div>
       </section>
 
       {/* ===== P08 · Server Ranking ===== */}

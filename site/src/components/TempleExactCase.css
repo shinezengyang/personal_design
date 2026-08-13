@@ -46,11 +46,6 @@
   color: #8fa3b8; font-size: 20px; line-height: 34px;
 }
 
-.tp-caption {
-  position: absolute; left: 0; right: 0;
-  font-size: 14px; color: #4a6278; text-align: center;
-  margin: 0;
-}
 
 /* ---------- P02 Overview — stat cards ---------- */
 .tp-stat-row {
@@ -229,72 +224,16 @@
 /* ---------- Screen sections (P06-P14) ---------- */
 .tp-screen { height: 900px; }
 
-.tp-badge-label {
-  position: absolute;
-  padding: 4px 14px; border-radius: 4px;
-  font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
-}
-.tp-badge-label.teal { background: rgba(111,216,224,.15); color: #6fd8e0; }
-.tp-badge-label.gold { background: rgba(217,164,65,.15);  color: #d9a441; }
-.tp-badge-label.red  { background: rgba(225,88,79,.15);   color: #e1584f; }
 
 /* Screenshot box */
-.tp-shot {
-  position: absolute; border-radius: 8px; overflow: hidden;
-  background: #0a1220; border: 1px solid rgba(255,255,255,.08);
-}
 
 /* Screen label */
-.tp-screen-label {
-  position: absolute;
-  font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
-  padding: 3px 10px; border-radius: 4px;
-}
-.tp-screen-label.teal { color: #6fd8e0; background: rgba(111,216,224,.08); }
-.tp-screen-label.gold { color: #d9a441; background: rgba(217,164,65,.08); }
-.tp-screen-label.red  { color: #e1584f; background: rgba(225,88,79,.08); }
 
 /* ---------- Annotation cards ---------- */
-.tp-anno {
-  position: absolute; max-width: 220px;
-}
-.tp-anno-head {
-  display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
-}
-.tp-anno h4 {
-  margin: 0; font-size: 14px; font-weight: 700; color: #edf4f7;
-}
-.tp-anno p {
-  margin: 0; font-size: 13px; color: #8fa3b8; line-height: 155%;
-}
 
 /* Number circles */
-.tp-num-circle {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 22px; height: 22px; border-radius: 50%;
-  font-size: 12px; font-weight: 800; color: #0c1626;
-  flex-shrink: 0;
-}
-.tp-num-circle.teal { background: #6fd8e0; }
-.tp-num-circle.gold { background: #d9a441; }
-.tp-num-circle.red  { background: #e1584f; }
 
 /* ---------- Design Intent bar ---------- */
-.tp-intent {
-  position: absolute; left: 80px; bottom: 40px;
-  width: 1120px; padding: 16px 24px 16px 32px;
-  border-radius: 8px;
-  background: rgba(217,164,65,.04);
-  border: 1px solid rgba(217,164,65,.15);
-  display: flex; align-items: flex-start; gap: 16px;
-}
-.tp-intent-label {
-  font-size: 13px; font-weight: 700; color: #d9a441;
-  white-space: nowrap; padding-top: 1px;
-}
-.tp-intent p {
-  margin: 0; font-size: 14px; color: #8fa3b8; line-height: 160%;
-}
 
 /* ---------- Flow bar ---------- */
 
@@ -518,3 +457,32 @@
 .tp-scene h4 { position: absolute; left: 70px; top: 25px; margin: 0; font-size: 20px; font-weight: 700; line-height: 24px; white-space: nowrap; }
 .tp-scene.teal h4 { color: #6fd8e0; } .tp-scene.gold h4 { color: #d9a441; } .tp-scene.red h4 { color: #e1584f; }
 .tp-scene p { position: absolute; left: 24px; top: 64px; width: 296px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 26px; }
+
+/* ---------- Shared screen-analysis primitives ---------- */
+.tp-tag {
+  position: absolute; left: 1055px; top: 100px; width: 129px; height: 36px;
+  border-radius: 999px; background: rgba(111,216,224,.12); box-shadow: inset 0 0 0 1px rgba(111,216,224,.5);
+  color: #6fd8e0; font-size: 17px; font-weight: 700; line-height: 36px; text-align: center;
+}
+.tp-shot { position: absolute; border-radius: 12px; overflow: hidden; background: #0c1626; box-shadow: inset 0 0 0 1.5px rgba(111,216,224,.25); }
+.tp-shot.gold { box-shadow: inset 0 0 0 2px rgba(217,164,65,.7); }
+.tp-cap { position: absolute; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 19px; white-space: nowrap; }
+.tp-pin {
+  position: absolute; width: 30px; height: 30px; border-radius: 50%;
+  background: #d9a441; box-shadow: 0 0 0 2px rgba(12,22,38,.9);
+  color: #0c1626; font-size: 17px; font-weight: 600; line-height: 30px; text-align: center; z-index: 3;
+}
+.tp-lg { position: absolute; }
+.tp-lg b { position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: #d9a441; color: #0c1626; font-size: 15px; font-weight: 600; line-height: 26px; text-align: center; }
+.tp-lg h4 { position: absolute; left: 40px; top: 0; margin: 0; color: #6fd8e0; font-size: 21px; font-weight: 700; line-height: 25px; white-space: nowrap; }
+.tp-lg p { position: absolute; left: 40px; top: 33px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 26px; }
+.tp-lg.sm h4 { font-size: 19px; line-height: 23px; }
+.tp-lg.sm p { top: 28px; line-height: 24px; }
+.tp-lg.wide p { top: 28px; color: rgba(237,244,247,.92); font-size: 17px; line-height: 20px; }
+.tp-goldtag { position: absolute; width: 199px; height: 31px; border-radius: 8px; background: #d9a441; color: #0c1626; font-size: 16px; font-weight: 700; line-height: 31px; text-align: center; }
+.tp-intent {
+  position: absolute; left: 96px; top: 748px; width: 1088px; height: 80px;
+  border-radius: 12px; background: rgba(217,164,65,.1); box-shadow: inset 0 0 0 1px rgba(217,164,65,.5);
+}
+.tp-intent > span { position: absolute; left: 24px; top: 29px; color: #d9a441; font-size: 18px; font-weight: 700; line-height: 22px; }
+.tp-intent p { position: absolute; left: 110px; top: 30px; margin: 0; color: rgba(237,244,247,.92); font-size: 17px; line-height: 20px; }
