@@ -122,7 +122,10 @@
 /* Figma paints these 1px strokes with strokeAlign INSIDE, so they overlay the shot; a real
    CSS border would reserve a track and re-crop the image through object-fit. */
 .we-cover-img::after, .we-screen-section .we-shot-wrap::after, .we-venue-img::after { content: ""; position: absolute; inset: 0; border: 1px solid var(--we-shot-edge); border-radius: inherit; pointer-events: none; }
-.we-shot { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+/* The four flow screenshots were captured with a strip of page background under the UI.
+   Cropped out of the assets; the image now top-aligns and the frame's own dark ground
+   fills the last ~15px, which keeps every board coordinate (frame and pins) untouched. */
+.we-shot { display: block; width: 100%; height: auto; border-radius: 10px; }
 .we-pin { position: absolute; display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid #fff; border-radius: 50%; background: #c8607a; color: #fff; font-size: 14px; font-weight: 600; line-height: 1; z-index: 5; }
 .we-pin.dark { background: #d9607a; }
 .we-point-list { position: absolute; left: 856px; top: 300px; width: 344px; }
