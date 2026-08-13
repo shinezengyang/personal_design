@@ -66,9 +66,9 @@ function PointList({ title, items, dark = false }: { title: string; items: strin
   );
 }
 
-function WhyBlock({ title, points, dark = true }: { title: string; points: Array<[string, string, Accent]>; dark?: boolean }) {
+function WhyBlock({ title, points, box, dark = true }: { title: string; points: Array<[string, string, Accent]>; box?: [number, number]; dark?: boolean }) {
   return (
-    <div className={`we-why ${dark ? 'dark' : 'light'}`}>
+    <div className={`we-why ${dark ? 'dark' : 'light'}`} style={box ? { top: box[0], height: box[1] } : undefined}>
       <i />
       <em>为什么这样设计 · WHY IT WORKS</em>
       <h3>{title}</h3>
@@ -132,12 +132,12 @@ function ScreenSection({
   desc,
   image,
   box,
-  caption,
   pins,
   pointsTitle,
   points,
   whyTitle,
   whyPoints,
+  whyBox,
   dark = false,
 }: {
   eyebrow: string;
@@ -146,8 +146,9 @@ function ScreenSection({
   image: string;
   /** Figma frame box of the screenshot [x, y, w, h] — pins are given relative to it. */
   box: [number, number, number, number];
-  caption?: string;
   pins: Array<[number, number, number]>;
+  /** WHY block frame [top, height] — the board runs 772/236 on 05-06 and 760/250 on 08-09. */
+  whyBox?: [number, number];
   pointsTitle: string;
   points: string[];
   whyTitle: string;
@@ -161,9 +162,8 @@ function ScreenSection({
         <Img src={image} className="we-shot" />
         {pins.map(([n, x, y]) => <NumberPin key={n} n={n} x={x} y={y} dark={dark} />)}
       </div>
-      {caption ? <p className="we-caption">{caption}</p> : null}
       <PointList title={pointsTitle} items={points} dark={dark} />
-      <WhyBlock title={whyTitle} points={whyPoints} />
+      <WhyBlock title={whyTitle} points={whyPoints} box={whyBox} />
     </section>
   );
 }
@@ -268,7 +268,6 @@ export function WeddingExactCase() {
         desc="像一张婚礼日历：按日期分页陈列吉宴，预约即承诺，把「围观婚礼」变成可计划的事。"
         image={assets.schedule}
         box={[83, 300, 747, 420]}
-        caption="吉宴排期界面"
         pins={[[1,45,46],[2,31,107],[3,565,145],[4,241,183],[5,676,81]]}
         pointsTitle="一张可计划的「婚礼日历」"
         points={[
@@ -293,7 +292,6 @@ export function WeddingExactCase() {
         desc="新人亲自发来的定向邀请 —— 比公共围观更进一步，也给足「我可以不去」的体面。"
         image={assets.invite}
         box={[76, 300, 748, 421]}
-        caption="吉宴受邀界面"
         pins={[[1,257,89],[2,47,117],[3,480,117],[4,260,372],[5,676,126]]}
         pointsTitle="被新人「点名」的定向邀请"
         points={[
@@ -341,8 +339,8 @@ export function WeddingExactCase() {
         title="分享传播 · 让喜事自己扩散"
         desc="把现场喜悦做成一张贺图，一键转发到频道 —— 一次婚礼，触达世界、好友与帮会。"
         image={assets.share}
+        whyBox={[760, 250]}
         box={[80, 300, 740, 416]}
-        caption="吉宴分享贺图"
         pins={[[1,305,54],[2,462,162],[3,560,233],[4,336,257],[5,482,337]]}
         pointsTitle="一张可转发的「喜事贺图」"
         points={[
@@ -366,8 +364,8 @@ export function WeddingExactCase() {
         title="三生石 · 婚恋的情缘入口"
         desc="大世界里的情缘广场：发缘签、找有缘人 —— 一段婚礼的前奏，往往从这里开始。"
         image={assets.stone}
+        whyBox={[760, 250]}
         box={[80, 300, 740, 416]}
-        caption="三生石界面"
         pins={[[1,55,140],[2,351,104],[3,356,371],[4,703,76],[5,180,298]]}
         pointsTitle="大世界里的「情缘广场」"
         points={[

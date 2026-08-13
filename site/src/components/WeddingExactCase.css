@@ -120,23 +120,29 @@
 /* left/top/width/height come from each section's Figma frame box (inline style) */
 .we-screen-section .we-shot-wrap { position: absolute; border-radius: 10px; box-shadow: 0 6px 24px rgba(102,77,77,.18); overflow: hidden; background: #1a1012; }
 .we-shot { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
-.we-caption { position: absolute; left: 80px; top: 726px; width: 740px; text-align: center; color: #9a8078; font-size: 13px; }
-.we-pin { position: absolute; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #c8607a; color: #fff; font-size: 14px; font-weight: 800; box-shadow: 0 6px 0 rgba(90,35,50,.28); z-index: 5; }
+.we-pin { position: absolute; display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid #fff; border-radius: 50%; background: #c8607a; color: #fff; font-size: 14px; font-weight: 600; line-height: 1; z-index: 5; }
 .we-pin.dark { background: #d9607a; }
-.we-point-list { position: absolute; left: 856px; top: 342px; width: 344px; }
-.we-point-list h3 { margin: 0 0 36px; color: #2a1a20; font-size: 19px; font-weight: 800; }
-.we-point { position: relative; min-height: 66px; padding-left: 32px; }
-.we-point b { position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #c8607a; color: #fff; font-size: 12px; }
-.we-point span { display: block; color: #3a2a2e; font-size: 15px; font-weight: 800; margin-bottom: 6px; }
-.we-point p { margin: 0; color: #6e5a52; font-size: 16px; line-height: 19px; }
+.we-point-list { position: absolute; left: 856px; top: 300px; width: 344px; }
+.we-point-list > h3 { position: absolute; left: 0; top: 0; margin: 0; color: #2a1a20; font-size: 19px; line-height: 23px; font-weight: 700; }
+.we-point { position: absolute; left: 0; width: 344px; }
+.we-point:nth-of-type(1) { top: 55px; }
+.we-point:nth-of-type(2) { top: 131px; }
+.we-point:nth-of-type(3) { top: 207px; }
+.we-point:nth-of-type(4) { top: 283px; }
+.we-point:nth-of-type(5) { top: 359px; }
+.we-point b { position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #c8607a; color: #fff; font-size: 12px; font-weight: 600; line-height: 1; }
+.we-point span { position: absolute; left: 32px; top: 2px; color: #3a2a2e; font-size: 15px; line-height: 18px; font-weight: 700; }
+.we-point p { position: absolute; left: 32px; top: 22px; width: 300px; margin: 0; color: #6e5a52; font-size: 16px; line-height: 19px; }
 .we-point-list.dark h3, .we-point-list.dark .we-point span { color: #f6e9e4; }
 .we-point-list.dark .we-point p { color: #c2a69e; }
-.we-why { position: absolute; left: 80px; bottom: 72px; width: 1120px; min-height: 236px; padding: 34px 40px; background: #241019; border-radius: 16px; overflow: hidden; }
+.we-why { position: absolute; left: 80px; top: 772px; width: 1120px; height: 236px; background: #241019; border-radius: 16px; overflow: hidden; }
 .we-why::before { content: ''; position: absolute; left: 0; top: 0; width: 5px; height: 100%; background: #c8607a; }
-.we-why h3 { margin: 14px 0 38px; color: #fff; font-size: 23px; font-weight: 900; }
-.we-why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px; }
-.we-why .we-reason h3 { color: #fff; font-size: 16px; margin: 0 0 14px; }
-.we-why .we-reason p { color: #b6a39b; font-size: 16px; line-height: 19px; }
+.we-why > em { position: absolute; left: 40px; top: 34px; line-height: 15px; }
+.we-why > h3 { position: absolute; left: 40px; top: 60px; margin: 0; color: #fff; font-size: 23px; line-height: 28px; font-weight: 900; }
+.we-why-grid { position: absolute; left: 40px; top: 120px; display: grid; grid-template-columns: repeat(4, 236px); gap: 36px; }
+.we-why .we-reason > i { margin: 0; }
+.we-why .we-reason h3 { position: absolute; left: 0; top: 14px; width: 236px; margin: 0; color: #fff; font-size: 16px; line-height: 19px; font-weight: 700; }
+.we-why .we-reason p { position: absolute; left: 0; top: 46px; width: 236px; margin: 0; color: #b6a39b; font-size: 16px; line-height: 19px; }
 .we-venue { height: 1240px; }
 .we-venue-img { position: absolute; border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,.5); overflow: hidden; }
 .we-venue-img img { width: 100%; height: 100%; object-fit: cover; }
