@@ -167,7 +167,6 @@ export function WeddingExactCase() {
           <h1>结缘 · 吉宴</h1>
           <h2>玩家婚礼系统设计</h2>
           <p>把一场私密的婚礼，做成一座会自己传播的社交舞台。</p>
-          <span>吉宴 · 受邀 · 现场 · 分享</span>
         </div>
         <div className="we-cover-img">
           <Img src={assets.cover} />
