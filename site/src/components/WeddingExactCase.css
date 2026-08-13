@@ -47,7 +47,7 @@
 .we-opportunity { position: absolute; left: 80px; top: 610px; width: 1120px; height: 150px; background: #2a1a20; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(77,38,46,.2); }
 .we-opportunity em { position: absolute; left: 40px; top: 36px; line-height: 15px; }
 .we-opportunity::before { content: ''; position: absolute; left: 0; top: 0; width: 5px; height: 100%; background: #c8607a; }
-.we-opportunity em, .we-platform-note em, .we-why em, .we-peak-note em, .we-art-card em, .we-art-takeaway em, .we-final em { color: #e0a98c; font-style: normal; font-size: 12px; font-weight: 600; letter-spacing: 1.2px; }
+.we-opportunity em, .we-platform-note em, .we-why em, .we-peak-note em, .we-art-card em, .we-art-takeaway em { color: #e0a98c; font-style: normal; font-size: 12px; font-weight: 600; letter-spacing: 1.2px; }
 .we-opportunity h3 { position: absolute; left: 40px; top: 66px; margin: 0; color: #fff; font-size: 24px; line-height: 29px; font-weight: 900; }
 .we-opportunity p { position: absolute; left: 40px; top: 106px; width: 1040px; margin: 0; color: #c7aea4; font-size: 16px; line-height: 24px; }
 .we-system { height: 920px; }
@@ -190,7 +190,6 @@
 .we-art-takeaway > em { position: absolute; left: 40px; top: 26px; font-size: 11px; line-height: 13px; }
 .we-art-takeaway p { position: absolute; left: 40px; top: 48px; width: 1040px; margin: 0; color: #d2b5ae; font-size: 16px; line-height: 23px; }
 .we-final { position: relative; height: 900px; background: linear-gradient(90deg,#2a0f1a,#150a12); text-align: center; overflow: hidden; }
-.we-final > em { position: absolute; left: 0; right: 0; top: 96px; color: #e0a98c; font-size: 13px; line-height: 16px; letter-spacing: 3px; }
 .we-final h2 { position: absolute; left: 0; right: 0; top: 195px; margin: 0; color: #fff; font-size: 46px; line-height: 55px; font-weight: 900; }
 .we-final > p { position: absolute; left: 240px; top: 281px; width: 800px; margin: 0; color: #d2b5ae; font-size: 16px; line-height: 28px; }
 .we-final-cards { position: absolute; left: 100px; top: 440px; display: grid; grid-template-columns: 340px 30px 340px 30px 340px; gap: 0; align-items: center; text-align: left; }
@@ -206,4 +205,3 @@
 .we-final-cards span { position: absolute; left: 28px; top: 116px; width: 284px; color: #c2a69e; font-size: 20px; line-height: 22px; }
 .we-final-cards > b { color: #7a5563; font-size: 24px; text-align: center; }
 .we-final > strong { position: absolute; left: 0; right: 0; top: 680px; color: #a98a93; font-size: 20px; line-height: 24px; font-weight: 500; letter-spacing: .5px; }
-.we-final small { position: absolute; left: 0; right: 0; top: 792px; color: #9a8466; font-size: 16px; line-height: 19px; letter-spacing: .5px; }

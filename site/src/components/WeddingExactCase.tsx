@@ -415,7 +415,6 @@ export function WeddingExactCase() {
         {/* data-qy-static like its siblings above — otherwise qy-line-enter's final
             blur(0) wipes the 80px blur and this reads as a hard-edged disc. */}
         <div className="we-glow c" data-qy-static />
-        <em>EPILOGUE · 结语</em>
         <h2>把婚礼，做成一座社交舞台</h2>
         <p>从三生石的一句缘签，到吉宴现场的祝福刷屏，再到频道里的一次转发 —— 吉宴系统把一次性的私密仪式，重做成「发现 · 参与 · 传播」的社交主线。</p>
         <div className="we-final-cards">
@@ -426,7 +425,6 @@ export function WeddingExactCase() {
           <article><i /><h3>长期留存</h3><span>婚恋漏斗持续产出新的吉宴。</span></article>
         </div>
         <strong>—— 发现 · 参与 · 传播 · 回流，构成自我增强的社交增长闭环 ——</strong>
-        <small>交互设计案例 · 感谢观看</small>
       </section>
     </div>
   );
