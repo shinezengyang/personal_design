@@ -21,7 +21,7 @@
 }
 
 /* ---------- Section header ---------- */
-.tp-hdr { position: absolute; left: 0; top: 0; }
+.tp-hdr { position: absolute; left: 0; top: 0; width: 1280px; height: 0; }
 .tp-hdr-tile {
   position: absolute; left: 96px; top: 84px; width: 64px; height: 64px;
   border-radius: 8px; background: #d9a441; color: #0c1626;
@@ -34,7 +34,7 @@
 }
 .tp-hdr-eng {
   position: absolute; left: 186px; top: 152px;
-  color: rgba(111,216,224,.85); font-size: 16px; font-weight: 600; line-height: 19px; letter-spacing: 4px;
+  color: rgba(111,216,224,.85); font-size: 16px; font-weight: 600; line-height: 19px; letter-spacing: 4px; white-space: nowrap;
 }
 .tp-quote {
   position: absolute; left: 96px; top: 224px; margin: 0;
