@@ -11,9 +11,9 @@
 .we-section.dark { background: #1b0d12; color: #f6e9e4; }
 .we-head { position: absolute; left: 80px; top: 92px; width: 1120px; z-index: 2; }
 .we-head > i { position: absolute; left: 0; top: 2px; width: 4px; height: 26px; border-radius: 2px; background: #c8607a; }
-.we-head > p { margin: 0 0 24px 18px; color: #c8607a; font-size: 13px; font-weight: 600; letter-spacing: 1.5px; }
-.we-head > h2 { margin: 0 0 36px -2px; color: #2a1a20; font-size: 34px; line-height: 1.15; font-weight: 900; }
-.we-head > span { display: block; width: 1000px; margin-top: -2px; color: #6e5a52; font-size: 16px; line-height: 24px; }
+.we-head > p { position: absolute; left: 18px; top: 0; margin: 0; color: #c8607a; font-size: 13px; font-weight: 500; line-height: 16px; letter-spacing: 1.5px; }
+.we-head > h2 { position: absolute; left: -2px; top: 38px; margin: 0; color: #2a1a20; font-size: 36px; line-height: 43px; font-weight: 900; white-space: nowrap; }
+.we-head > span { position: absolute; left: 0; top: 108px; width: 1000px; margin: 0; color: #6e5a52; font-size: 16px; line-height: 26px; }
 .we-head.dark > p { color: #e0a98c; }
 .we-head.dark > h2 { color: #f6e9e4; }
 .we-head.dark > span { color: #b79a92; }
@@ -31,20 +31,22 @@
 .we-cover-img img { width: 100%; height: 100%; object-fit: cover; }
 .we-bg { height: 820px; }
 .we-feature-row { position: absolute; top: 300px; left: 80px; display: grid; grid-template-columns: repeat(3, 360px); gap: 20px; }
-.we-feature { position: relative; height: 250px; padding: 48px 32px 28px; background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 28px rgba(128,89,89,.12); }
+.we-feature { position: relative; height: 250px; background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 28px rgba(128,89,89,.12); }
 .we-feature::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 5px; background: #c8607a; }
 .we-feature.orange::before { background: #e07a5f; }
 .we-feature.gold::before { background: #d9a441; }
-.we-feature > i { display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 14px; border-radius: 12px; background: #f7dce5; color: #c8607a; font-style: normal; font-size: 24px; }
+.we-feature > i { position: absolute; left: 32px; top: 48px; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: #f7dce5; color: #c8607a; font-style: normal; }
+.we-feature > i svg { width: 24px; height: 24px; }
 .we-feature.orange > i { background: #fbe3da; color: #e07a5f; }
 .we-feature.gold > i { background: #f8ecce; color: #d9a441; }
-.we-feature h3 { margin: 0 0 18px; font-size: 20px; font-weight: 800; }
-.we-feature p { margin: 0; color: #6e5a52; font-size: 16px; line-height: 23px; }
-.we-opportunity { position: absolute; left: 80px; top: 610px; width: 1120px; height: 150px; padding: 34px 40px 0; background: #2a1a20; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(77,38,46,.2); }
+.we-feature h3 { position: absolute; left: 32px; top: 108px; margin: 0; font-size: 20px; line-height: 24px; font-weight: 700; }
+.we-feature p { position: absolute; left: 32px; top: 152px; width: 296px; margin: 0; color: #6e5a52; font-size: 16px; line-height: 23px; }
+.we-opportunity { position: absolute; left: 80px; top: 610px; width: 1120px; height: 150px; background: #2a1a20; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(77,38,46,.2); }
+.we-opportunity em { position: absolute; left: 40px; top: 36px; line-height: 15px; }
 .we-opportunity::before { content: ''; position: absolute; left: 0; top: 0; width: 5px; height: 100%; background: #c8607a; }
 .we-opportunity em, .we-platform-note em, .we-why em, .we-peak-note em, .we-art-card em, .we-art-takeaway em, .we-final em { color: #e0a98c; font-style: normal; font-size: 12px; font-weight: 600; letter-spacing: 1.2px; }
-.we-opportunity h3 { margin: 16px 0 14px; color: #fff; font-size: 24px; font-weight: 900; }
-.we-opportunity p { margin: 0; color: #c7aea4; font-size: 16px; line-height: 24px; }
+.we-opportunity h3 { position: absolute; left: 40px; top: 66px; margin: 0; color: #fff; font-size: 24px; line-height: 29px; font-weight: 900; }
+.we-opportunity p { position: absolute; left: 40px; top: 106px; width: 1040px; margin: 0; color: #c7aea4; font-size: 16px; line-height: 24px; }
 .we-system { height: 920px; }
 .we-system-flow { position: absolute; left: 80px; top: 320px; display: grid; grid-template-columns: repeat(5, 200px); gap: 30px; }
 .we-system-node { position: relative; height: 230px; padding: 30px 24px 0; background: #271520; border: 1px solid #3a2230; border-radius: 16px; }

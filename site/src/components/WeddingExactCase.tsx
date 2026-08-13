@@ -81,10 +81,21 @@ function WhyBlock({ title, points, dark = true }: { title: string; points: Array
   );
 }
 
-function FeatureCard({ title, body, tone, icon }: { title: string; body: string; tone: Accent; icon: string }) {
+/* The board draws these as 24px stroked line icons, not glyphs. */
+const featureIcons: Record<string, string> = {
+  clock: 'M21 12A9 9 0 1 1 3 12 9 9 0 0 1 21 12ZM12 7v5l3 2',
+  megaphone: 'M4 9v6h4l6 4V5L8 9H4ZM18 8c1.5 1.5 1.5 6.5 0 8',
+  people: 'M11 9a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM19 9a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM3 19c0-2.5 2.2-4 5-4s5 1.5 5 4M13 16c1-1 2.4-1.5 3.5-1.5 2.2 0 4.5 1.3 4.5 3.5',
+};
+
+function FeatureCard({ title, body, tone, icon }: { title: string; body: string; tone: Accent; icon: keyof typeof featureIcons }) {
   return (
     <article className={`we-feature ${tone}`}>
-      <i>{icon}</i>
+      <i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d={featureIcons[icon]} />
+        </svg>
+      </i>
       <h3>{title}</h3>
       <p>{body}</p>
     </article>
@@ -176,9 +187,9 @@ export function WeddingExactCase() {
       <section className="we-section we-bg">
         <SectionHead eyebrow="BACKGROUND · 背景" title="婚礼，不该只是两个人的事" desc="庆余年手游《玩家婚礼优化》—— 把一次性的私密仪式，重做成可被发现、参与和传播的社交事件。" />
         <div className="we-feature-row">
-          <FeatureCard tone="orange" icon="✦" title="仪式感强但短暂" body="婚礼是玩家的高光时刻，却办完即散 —— 情绪与社交价值没有沉淀下来。" />
-          <FeatureCard tone="gold" icon="◎" title="天然的社交素材" body="婚礼自带情感与话题，是最适合「被围观」的内容，具备放大传播的潜力。" />
-          <FeatureCard tone="rose" icon="♥" title="从两个人到一群人" body="用受邀、围观、祝福、分享，把私密仪式变成一座公共的社交舞台。" />
+          <FeatureCard tone="orange" icon="clock" title="仪式感强但短暂" body="婚礼是玩家的高光时刻，却办完即散 —— 情绪与社交价值没有沉淀下来。" />
+          <FeatureCard tone="gold" icon="megaphone" title="天然的社交素材" body="婚礼自带情感与话题，是最适合「被围观」的内容，具备放大传播的潜力。" />
+          <FeatureCard tone="rose" icon="people" title="从两个人到一群人" body="用受邀、围观、祝福、分享，把私密仪式变成一座公共的社交舞台。" />
         </div>
         <div className="we-opportunity">
           <em>设计目标 · OPPORTUNITY</em>
