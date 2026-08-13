@@ -12,11 +12,14 @@
 .we-head { position: absolute; left: 80px; top: 92px; width: 1120px; z-index: 2; }
 .we-head > i { position: absolute; left: 0; top: 2px; width: 4px; height: 26px; border-radius: 2px; background: #c8607a; }
 .we-head > p { position: absolute; left: 18px; top: 0; margin: 0; color: #c8607a; font-size: 13px; font-weight: 500; line-height: 16px; letter-spacing: 1.5px; }
-.we-head > h2 { position: absolute; left: -2px; top: 38px; margin: 0; color: #2a1a20; font-size: 36px; line-height: 43px; font-weight: 900; white-space: nowrap; }
-.we-head > span { position: absolute; left: 0; top: 108px; width: 1000px; margin: 0; color: #6e5a52; font-size: 16px; line-height: 26px; }
+.we-head > h2 { position: absolute; left: -2px; top: 38px; margin: 0; color: #2a1a20; font-size: 34px; line-height: 41px; font-weight: 900; white-space: nowrap; }
+.we-head > span { position: absolute; left: 0; top: 104px; width: 1000px; margin: 0; color: #6e5a52; font-size: 16px; line-height: 24px; }
+/* 02 is the only section the board sets larger. */
+.we-bg .we-head > h2 { font-size: 36px; line-height: 43px; }
+.we-bg .we-head > span { top: 108px; line-height: 26px; }
 .we-head.dark > p { color: #e0a98c; }
-.we-head.dark > h2 { color: #f6e9e4; font-size: 34px; line-height: 41px; }
-.we-head.dark > span { top: 104px; color: #b79a92; line-height: 24px; }
+.we-head.dark > h2 { color: #f6e9e4; }
+.we-head.dark > span { color: #b79a92; }
 .we-cover { position: relative; height: 900px; background: #1b0d12; overflow: hidden; }
 .we-glow { position: absolute; border-radius: 999px; pointer-events: none; filter: blur(160px); }
 .we-glow.a { left: 720px; top: -230px; width: 720px; height: 720px; background: rgba(122,42,58,.55); }
@@ -84,29 +87,36 @@
 .we-reason h3 { margin: 0 0 16px; color: inherit; font-size: 16px; font-weight: 800; }
 .we-reason p { margin: 0; color: #a88e97; font-size: 16px; line-height: 20px; white-space: pre-line; }
 .we-journey { height: 1080px; }
-.we-chart { position: absolute; left: 70px; top: 280px; width: 1140px; height: 520px; background: #fff; border: 1px solid #efe3dd; border-radius: 20px; box-shadow: 0 10px 30px rgba(128,89,89,.1); }
-.we-chart > span { position: absolute; left: 26px; top: 90px; color: #b09a92; font-size: 11px; font-weight: 600; }
-.we-chart::after { content: ''; position: absolute; left: 82px; right: 82px; top: 352px; height: 1px; background: #e7d8d1; }
-.we-chart svg { position: absolute; left: 110px; top: 90px; width: 975px; height: 270px; overflow: visible; }
-.we-chart path:first-child { fill: none; stroke: #e7d8d1; stroke-width: 2; }
-.we-chart path:nth-child(2) { fill: none; stroke: #d9607a; stroke-width: 3; }
-.we-journey-node { position: absolute; width: 180px; transform: translate(-50%, -50%); text-align: center; }
-.we-journey-node::before { content: ''; position: absolute; left: 50%; top: 34px; width: 1px; height: 120px; background: #e7c9d2; z-index: 0; }
-.we-journey-node em { display: block; margin-bottom: 136px; color: #c8607a; font-size: 16px; font-style: normal; font-weight: 800; }
-.we-journey-node b { position: absolute; left: 50%; top: 167px; transform: translateX(-50%); display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #c8607a; color: white; font-size: 12px; z-index: 1; }
-.we-journey-node h3 { margin: 0 0 12px; color: #2a1a20; font-size: 16px; }
-.we-journey-node p { margin: 0; color: #6e5a52; font-size: 16px; line-height: 17px; }
-.we-journey-node.gold em, .we-journey-node.gold b { color: #e0a05a; background: #e0a05a; }
-.we-journey-node.orange em, .we-journey-node.orange b { color: #e0816a; background: #e0816a; }
-.we-journey-node.rose em, .we-journey-node.rose b { color: #c8607a; background: #c8607a; }
-.we-journey-node.purple em, .we-journey-node.purple b { color: #9b6fb0; background: #9b6fb0; }
-.we-journey-node b { color: #fff !important; }
-.we-peak-note { position: absolute; left: 80px; top: 832px; width: 1120px; height: 200px; padding: 30px 40px; background: #fff; border: 1px solid #efe0da; border-radius: 16px; overflow: hidden; }
+.we-chart { position: absolute; left: 70px; top: 280px; width: 1140px; height: 520px; background: #fff; box-shadow: inset 0 0 0 1px #efe3dd, 0 10px 30px rgba(128,89,89,.1); border-radius: 20px; }
+.we-chart-band { position: absolute; left: 792px; top: 20px; width: 140px; height: 332px; border-radius: 12px; background: rgba(200,96,122,.06); }
+.we-chart > span { position: absolute; left: 26px; top: 92px; color: #b09a92; font-size: 11px; font-weight: 500; line-height: 13px; }
+.we-chart::after { content: ''; position: absolute; left: 82px; right: 83px; top: 352px; height: 1px; background: #e7d8d1; }
+.we-flow { position: absolute; left: 0; top: 0; overflow: visible; }
+.we-flow .area { fill: rgba(200,96,122,.10); stroke: none; }
+.we-flow .line { fill: none; stroke: #c8607a; stroke-width: 3; }
+.we-flow circle { fill: #fff; stroke: #c8607a; stroke-width: 3; }
+.we-flow circle.peak { fill: #c8607a; }
+.we-journey-node { position: absolute; top: 0; width: 180px; height: 520px; text-align: center; --tone: #c8607a; }
+.we-journey-node::before { content: ''; position: absolute; left: 90px; top: calc(var(--top) + 46px); width: 1px; height: calc(352px - var(--top) - 46px); background: #e7c9d2; }
+.we-journey-node em { position: absolute; left: 10px; top: var(--top); width: 160px; margin: 0; color: var(--tone); font-size: 16px; font-style: normal; font-weight: 700; line-height: 19px; }
+.we-journey-node b { position: absolute; left: 77px; top: 371px; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--tone); color: #fff; font-size: 12px; font-weight: 600; }
+.we-journey-node h3 { position: absolute; left: 5px; top: 406px; width: 170px; margin: 0; color: #2a1a20; font-size: 16px; font-weight: 700; line-height: 19px; }
+.we-journey-node p { position: absolute; left: 0; top: 436px; width: 180px; margin: 0; color: #6e5a52; font-size: 16px; line-height: 17px; }
+.we-journey-node.gold { --tone: #e0a05a; }
+.we-journey-node.orange { --tone: #e0816a; }
+.we-journey-node.rose { --tone: #d96a82; }
+.we-journey-node.deep { --tone: #c85a86; }
+.we-journey-node.peak { --tone: #c8607a; }
+.we-journey-node.purple { --tone: #9b6fb0; }
+.we-peak-note { position: absolute; left: 80px; top: 832px; width: 1120px; height: 200px; background: #fff; box-shadow: inset 0 0 0 1px #efe0da; border-radius: 16px; overflow: hidden; }
+.we-peak-note em { position: absolute; left: 40px; top: 32px; color: #c8607a; line-height: 15px; }
 .we-peak-note::before { content: ''; position: absolute; left: 0; top: 0; width: 5px; height: 100%; background: #c8607a; }
-.we-peak-note h3 { margin: 12px 0 14px; font-size: 22px; font-weight: 900; }
-.we-peak-note p { margin: 0 0 18px; color: #6e5a52; font-size: 16px; line-height: 23px; }
-.we-peak-note div { display: flex; gap: 16px; }
-.we-peak-note span { display: inline-flex; align-items: center; justify-content: center; width: 200px; height: 30px; border-radius: 15px; background: rgba(200,96,122,.12); color: #c8607a; font-size: 16px; font-weight: 800; }
+.we-peak-note h3 { position: absolute; left: 40px; top: 58px; margin: 0; color: #2a1a20; font-size: 22px; line-height: 26px; font-weight: 900; }
+.we-peak-note p { position: absolute; left: 40px; top: 100px; width: 1058px; margin: 0; color: #6e5a52; font-size: 16px; line-height: 23px; }
+.we-peak-note div { position: absolute; left: 40px; top: 146px; display: flex; gap: 16px; }
+.we-peak-note span { display: inline-flex; align-items: center; justify-content: center; width: 200px; height: 30px; border-radius: 15px; background: rgba(200,96,122,.12); color: #c8607a; font-size: 16px; font-weight: 700; }
+.we-peak-note span.rose { background: rgba(217,96,122,.12); color: #d9607a; }
+.we-peak-note span.purple { background: rgba(155,111,176,.12); color: #9b6fb0; }
 /* left/top/width/height come from each section's Figma frame box (inline style) */
 .we-screen-section .we-shot-wrap { position: absolute; --we-shot-edge: #e0d2cc; border-radius: 10px; box-shadow: 0 14px 34px rgba(102,77,77,.18); overflow: hidden; background: #1a1012; }
 /* Figma paints these 1px strokes with strokeAlign INSIDE — they sit on top of the shot

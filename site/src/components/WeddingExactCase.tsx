@@ -171,14 +171,19 @@ function ScreenSection({
   );
 }
 
+/* [emotion, step, text, centre x, emotion top, tone] — in .we-chart space, i.e. the board
+   frame minus the card origin (70, 280). The curve point sits at top + 34, the drop line
+   starts at top + 46 and runs to the 352 baseline. */
 const journey = [
-  ['好奇', '发现', '排期日历里看到吉宴', 152, 528, 'gold'],
-  ['被需要', '受邀', '收到定向婚礼邀请', 347, 490, 'orange'],
-  ['期待', '预约', '确认预约 · 立下约定', 542, 460, 'rose'],
-  ['沉浸', '抵达现场', '步入婚礼场景', 737, 410, 'rose'],
-  ['✦ 情绪高潮', '祝福 · 点赞', '祝福刷屏 · 互相点赞', 932, 374, 'rose'],
-  ['回味', '分享', '分享频道 · 余韵炫耀', 1127, 440, 'purple'],
+  ['好奇', '发现', '排期日历里看到吉宴', 82, 218, 'gold'],
+  ['被需要', '受邀', '收到定向婚礼邀请', 277, 181, 'orange'],
+  ['期待', '预约', '确认预约 · 立下约定', 472, 151, 'rose'],
+  ['沉浸', '抵达现场', '步入婚礼场景', 667, 101, 'deep'],
+  ['✦ 情绪高潮', '祝福 · 点赞', '祝福刷屏 · 互相点赞', 862, 68, 'peak'],
+  ['回味', '分享', '分享频道 · 余韵炫耀', 1057, 131, 'purple'],
 ] as const;
+
+const flowCurve = 'M82 252 C114.5 245.8 212 226.2 277 215 C342 203.8 407 198.3 472 185 C537 171.7 602 148.8 667 135 C732 121.2 797 97 862 102 C927 107 1024.5 154.5 1057 165';
 
 export function WeddingExactCase() {
   return (
@@ -234,13 +239,17 @@ export function WeddingExactCase() {
       <section className="we-section we-journey">
         <SectionHead eyebrow="PLAYER JOURNEY × FLOW · 玩家旅程" title="跟着一位宾客，走完一场吉宴" desc="把玩法步骤摊平成一条时间线，再叠上情绪强度 —— 看清体验的起伏与高潮在哪里。" />
         <div className="we-chart">
+          <i className="we-chart-band" />
           <span>情绪强度</span>
-          <svg viewBox="0 0 1000 320" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M40 210 C160 190 220 170 250 170 C390 165 430 120 510 135 C640 150 675 40 800 50 C870 55 900 90 960 115" />
-            <path d="M40 260 C170 250 230 230 300 220 C420 205 490 190 600 155 C700 115 765 78 820 55 C890 65 925 110 960 135" />
+          <svg className="we-flow" viewBox="0 0 1140 520" width="1140" height="520" aria-hidden>
+            <path className="area" d={`${flowCurve} L1057 352 L82 352 Z`} />
+            <path className="line" d={flowCurve} />
+            {journey.map(([, step, , x, y]) => (
+              <circle key={step} className={y === 68 ? 'peak' : ''} cx={x} cy={y + 34} r={y === 68 ? 7.5 : 4.5} />
+            ))}
           </svg>
           {journey.map(([emotion, step, text, x, y, tone], index) => (
-            <div key={step} className={`we-journey-node ${tone}`} style={{ left: x, top: y }}>
+            <div key={step} className={`we-journey-node ${tone}`} style={{ left: x - 90, ['--top' as string]: `${y}px` }}>
               <em>{emotion}</em>
               <b>{index + 1}</b>
               <h3>{step}</h3>
@@ -252,7 +261,7 @@ export function WeddingExactCase() {
           <em>峰终定律 · PEAK–END RULE</em>
           <h3>把情绪峰值压在「婚礼现场 + 祝福刷屏」，再用「分享炫耀」收尾</h3>
           <p>玩家记住一段体验，靠的是最高点与结尾。预约埋下「开环」的期待，现场与点赞冲到峰值，分享留下余韵 —— 整条曲线为「记忆」与「传播」服务。</p>
-          <div><span>Zeigarnik · 预约开环</span><span>社会认同 · 点赞刷屏</span><span>峰终 · 高潮收尾</span></div>
+          <div><span className="rose">Zeigarnik · 预约开环</span><span>社会认同 · 点赞刷屏</span><span className="purple">峰终 · 高潮收尾</span></div>
         </div>
       </section>
 
