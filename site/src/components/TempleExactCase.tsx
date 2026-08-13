@@ -83,6 +83,16 @@ function Legend({ n, x, y, title, body, w, sm = false }: { n: number; x: number;
   );
 }
 
+function FlowBar({ steps }: { steps: string[] }) {
+  return (
+    <div className="tp-flow-bar">
+      {steps.map((t, i) => (
+        <span key={t} className="tp-flow-step">{t}{i < steps.length - 1 && <span className="tp-flow-arrow">→</span>}</span>
+      ))}
+    </div>
+  );
+}
+
 /* TEMPORARY: P08-P17 still use the pre-rebuild API. Removed once they are converted. */
 function Anno({ num, title, desc, style }: { num: string; title: string; desc: string; tone?: Tone; style?: React.CSSProperties }) {
   return (
