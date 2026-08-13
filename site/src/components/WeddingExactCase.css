@@ -112,7 +112,7 @@
 .we-peak-note em { position: absolute; left: 40px; top: 32px; color: #c8607a; line-height: 15px; }
 .we-peak-note::before { content: ''; position: absolute; left: 0; top: 0; width: 5px; height: 100%; background: #c8607a; }
 .we-peak-note h3 { position: absolute; left: 40px; top: 58px; margin: 0; color: #2a1a20; font-size: 22px; line-height: 26px; font-weight: 900; }
-.we-peak-note p { position: absolute; left: 40px; top: 100px; width: 1058px; margin: 0; color: #6e5a52; font-size: 16px; line-height: 23px; }
+.we-peak-note p { position: absolute; left: 40px; top: 100px; margin: 0; color: #6e5a52; font-size: 16px; line-height: 23px; white-space: nowrap; }
 .we-peak-note div { position: absolute; left: 40px; top: 146px; display: flex; gap: 16px; }
 .we-peak-note span { display: inline-flex; align-items: center; justify-content: center; width: 200px; height: 30px; border-radius: 15px; background: rgba(200,96,122,.12); color: #c8607a; font-size: 16px; font-weight: 700; }
 .we-peak-note span.rose { background: rgba(217,96,122,.12); color: #d9607a; }
