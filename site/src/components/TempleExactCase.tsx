@@ -124,6 +124,14 @@ function FlowBar({ steps }: { steps: string[] }) {
   );
 }
 
+/* [x, y, diameter, opacity] — board coordinates of the cover star field. */
+const coverStars = [
+  [90, 120, 6, 0.5], [230, 80, 4, 0.3], [420, 150, 5, 0.4], [640, 60, 4, 0.35],
+  [1120, 90, 6, 0.5], [1210, 260, 4, 0.3], [1190, 640, 5, 0.35], [150, 540, 4, 0.3],
+  [60, 709, 5, 0.3], [330, 640, 4, 0.25], [760, 110, 4, 0.4], [1010, 160, 5, 0.45],
+  [520, 260, 4, 0.3], [1240, 460, 4, 0.4], [200, 300, 4, 0.35],
+] as const;
+
 /* ============================================================
    MAIN COMPONENT
    ============================================================ */
@@ -133,21 +141,25 @@ export function TempleExactCase() {
 
       {/* ===== P01 · Cover ===== */}
       <section className="tp-sec tp-cover">
-        <div className="tp-cover-deco" />
-        {/* Badge */}
-        <div className="tp-cover-badge" style={{ left: 108, top: 104 }}>庆</div>
-        <p className="tp-cover-subtitle" style={{ left: 192, top: 122 }}>
-          《庆余年》手游 · 玩法交互设计案
-        </p>
-        <h1 className="tp-cover-title" style={{ left: 90, top: 270 }}>神庙遗迹</h1>
-        <p className="tp-cover-tagline" style={{ left: 96, top: 492 }}>跨服玩法 · 交互设计复盘</p>
-        <p className="tp-cover-eng" style={{ left: 96, top: 566 }}>
-          TEMPLE RUINS · CROSS-SERVER GAMEPLAY DESIGN
-        </p>
-        <p className="tp-cover-footer-l" style={{ left: 96, top: 867 }}>GAME UX PORTFOLIO</p>
-        <p className="tp-cover-footer-r" style={{ left: 940, top: 865 }}>
-          一次日常 · 一服能量 · 一界之门
-        </p>
+        {/* Concentric rings, star field and the two-layer ridge, all in board coordinates. */}
+        <svg className="tp-cover-sky" viewBox="0 0 1280 900" width="1280" height="900" aria-hidden>
+          <circle cx="880" cy="379" r="339.5" fill="none" stroke="rgba(111,216,224,.10)" strokeWidth="1" />
+          <circle cx="880" cy="430" r="279" fill="none" stroke="rgba(111,216,224,.30)" strokeWidth="2" />
+          <circle cx="880" cy="430" r="249.25" fill="none" stroke="rgba(217,164,65,.55)" strokeWidth="1.5" />
+          <circle cx="880" cy="430" r="209.25" fill="none" stroke="rgba(111,216,224,.18)" strokeWidth="1.5" />
+          <circle cx="880" cy="430" r="149.5" fill="none" stroke="rgba(111,216,224,.50)" strokeWidth="1" />
+          {coverStars.map(([x, y, d, o]) => (
+            <circle key={`${x}-${y}`} cx={x + d / 2} cy={y + d / 2} r={d / 2} fill="#edf4f7" fillOpacity={o} />
+          ))}
+          <path d="M0 900V800l170-120 130 90 130-120 130 110 80-40 120 90 140-190 140 160 120-70 120 80v110H0Z" fill="#15263c" />
+          <path d="M0 900v-40l220-100 140 80 160-100 180 110 180-140 170 130 150-60 80 60v110H0Z" fill="#101d30" />
+        </svg>
+        <span className="tp-cover-spark" />
+        <div className="tp-cover-badge"><span>庆</span></div>
+        <p className="tp-cover-subtitle">《庆余年》手游 · 玩法交互设计案</p>
+        <p className="tp-cover-eng">TEMPLE RUINS · CROSS-SERVER GAMEPLAY DESIGN</p>
+        <h1 className="tp-cover-title">神庙遗迹</h1>
+        <p className="tp-cover-tagline">跨服玩法 · 交互设计</p>
       </section>
 
       {/* ===== P02 · Overview ===== */}
