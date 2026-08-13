@@ -160,36 +160,47 @@
 .we-art { height: 920px; }
 .we-art-card { position: absolute; top: 280px; height: 440px; border-radius: 16px; box-shadow: 0 10px 28px rgba(128,89,89,.1); overflow: hidden; }
 .we-art-card::before, .we-art-takeaway::before { content: ''; position: absolute; left: 0; top: 0; width: 5px; height: 100%; background: #c8607a; }
-.we-art-card.light-card { left: 80px; width: 560px; padding: 34px 36px; background: #fff; }
-.we-art-card.dark-card { left: 664px; width: 536px; padding: 34px 36px; background: #241019; }
-.we-art-card h3 { margin: 32px 0 12px; color: #2a1a20; font-size: 17px; font-weight: 800; }
-.we-art-card h3 i { display: inline-block; width: 12px; height: 12px; margin-right: 12px; border-radius: 3px; background: #c8607a; vertical-align: -1px; }
-.we-art-card h3 i.gold { background: #c8a86b; margin-right: 4px; }
-.we-art-card p { margin: 0; color: #6e5a52; font-size: 16px; line-height: 21px; }
-.we-ref { position: relative; min-height: 88px; margin-top: 30px; padding-left: 148px; }
+.we-art-card.light-card { left: 80px; width: 560px; background: #fff; }
+.we-art-card.dark-card { left: 664px; width: 536px; background: #241019; }
+.we-art-card.dark-card::before { background: #c8a86b; }
+.we-art-card > em { position: absolute; left: 36px; top: 34px; line-height: 15px; }
+.we-art-card.light-card > em { color: #c8607a; }
+.we-art-card h3 { position: absolute; left: 60px; margin: 0; color: #2a1a20; font-size: 17px; line-height: 20px; font-weight: 700; }
+.we-art-card h3:nth-of-type(1) { top: 78px; }
+.we-art-card h3:nth-of-type(2) { top: 196px; left: 76px; }
+.we-art-card h3:nth-of-type(3) { top: 314px; }
+.we-art-card h3 i { position: absolute; left: -24px; top: 6px; width: 12px; height: 12px; border-radius: 3px; background: #c8607a; }
+.we-art-card h3 i.gold { left: -40px; background: #c8a86b; }
+.we-art-card p { position: absolute; left: 36px; width: 490px; margin: 0; color: #6e5a52; font-size: 16px; line-height: 21px; }
+.we-art-card p:nth-of-type(1) { top: 112px; }
+.we-art-card p:nth-of-type(2) { top: 230px; }
+.we-art-card p:nth-of-type(3) { top: 348px; }
+.we-ref { position: absolute; left: 36px; width: 484px; }
+.we-ref:nth-of-type(1) { top: 72px; }
+.we-ref:nth-of-type(2) { top: 188px; }
+.we-ref:nth-of-type(3) { top: 304px; }
 .we-ref img { position: absolute; left: 0; top: 0; width: 128px; height: 80px; border-radius: 8px; object-fit: cover; }
-.we-ref b { display: block; margin: 0 0 10px; color: #f6e9e4; font-size: 15.5px; }
-.we-ref p { color: #b79a92; font-size: 16px; line-height: 19px; }
-.we-art-card small { display: block; margin-top: 10px; color: #7e6168; font-size: 11px; }
-.we-art-takeaway { position: absolute; left: 80px; top: 752px; width: 1120px; height: 108px; padding: 24px 40px; background: #2a1620; border-radius: 16px; overflow: hidden; }
-.we-art-takeaway p { margin: 8px 0 0; color: #d2b5ae; font-size: 16px; line-height: 23px; }
+.we-ref b { position: absolute; left: 148px; top: 6px; width: 336px; color: #f6e9e4; font-size: 15.5px; line-height: 19px; }
+.we-ref p { position: absolute; left: 148px; top: 36px; width: 336px; margin: 0; color: #b79a92; font-size: 16px; line-height: 19px; }
+.we-art-card small { position: absolute; left: 36px; top: 414px; margin: 0; color: #7e6168; font-size: 11px; line-height: 13px; }
+.we-art-takeaway { position: absolute; left: 80px; top: 752px; width: 1120px; height: 108px; background: #2a1620; border-radius: 16px; overflow: hidden; }
+.we-art-takeaway > em { position: absolute; left: 40px; top: 26px; font-size: 11px; line-height: 13px; }
+.we-art-takeaway p { position: absolute; left: 40px; top: 48px; width: 1040px; margin: 0; color: #d2b5ae; font-size: 16px; line-height: 23px; }
 .we-final { position: relative; height: 900px; background: linear-gradient(90deg,#2a0f1a,#150a12); text-align: center; overflow: hidden; }
 .we-final > em { position: absolute; left: 0; right: 0; top: 96px; color: #e0a98c; font-size: 13px; letter-spacing: 3px; }
-.we-final h2 { position: absolute; left: 0; right: 0; top: 126px; margin: 0; color: #fff; font-size: 46px; font-weight: 900; }
-.we-final > p { position: absolute; left: 240px; top: 220px; width: 800px; margin: 0; color: #d2b5ae; font-size: 16px; line-height: 28px; }
-.we-final-cards { position: absolute; left: 100px; top: 360px; display: grid; grid-template-columns: 340px 30px 340px 30px 340px; gap: 0; align-items: center; text-align: left; }
-.we-final-cards article { position: relative; height: 200px; padding: 34px 28px; background: #2a1620; border: 1px solid #43293a; border-radius: 16px; overflow: hidden; }
+.we-final h2 { position: absolute; left: 0; right: 0; top: 195px; margin: 0; color: #fff; font-size: 46px; line-height: 55px; font-weight: 900; }
+.we-final > p { position: absolute; left: 240px; top: 281px; width: 800px; margin: 0; color: #d2b5ae; font-size: 16px; line-height: 28px; }
+.we-final-cards { position: absolute; left: 100px; top: 440px; display: grid; grid-template-columns: 340px 30px 340px 30px 340px; gap: 0; align-items: center; text-align: left; }
+.we-final-cards article { position: relative; height: 200px; background: #2a1620; box-shadow: inset 0 0 0 1px #43293a; border-radius: 16px; overflow: hidden; }
 .we-final-cards article::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: #e0816a; }
 .we-final-cards article:nth-of-type(2)::before { background: #c8607a; }
 .we-final-cards article:nth-of-type(3)::before { background: #9b6fb0; }
-.we-final-cards article i { display: block; color: #e0816a; font-style: normal; font-size: 14px; font-weight: 800; }
+.we-final-cards article i { position: absolute; left: 28px; top: 34px; color: #e0816a; font-style: normal; font-size: 14px; font-weight: 600; line-height: 17px; }
 .we-final-cards article:nth-of-type(1) i::after { content: '01'; }
 .we-final-cards article:nth-of-type(2) i::after { content: '02'; color: #c8607a; }
 .we-final-cards article:nth-of-type(3) i::after { content: '03'; color: #9b6fb0; }
-.we-final-cards h3 { margin: 28px 0 24px; color: #fff; font-size: 22px; font-weight: 900; }
-.we-final-cards span { color: #c2a69e; font-size: 14px; line-height: 22px; }
+.we-final-cards h3 { position: absolute; left: 28px; top: 70px; margin: 0; color: #fff; font-size: 22px; line-height: 26px; font-weight: 900; }
+.we-final-cards span { position: absolute; left: 28px; top: 116px; width: 284px; color: #c2a69e; font-size: 20px; line-height: 22px; }
 .we-final-cards > b { color: #7a5563; font-size: 24px; text-align: center; }
-.we-final > strong { position: absolute; left: 0; right: 0; top: 600px; color: #a98a93; font-size: 16px; font-weight: 500; letter-spacing: .5px; }
-.we-final h4 { position: absolute; left: 0; right: 0; top: 706px; margin: 0; color: #eac98c; font-family: "Ma Shan Zheng", "Noto Serif SC", serif; font-size: 50px; font-weight: 400; }
-.we-final h4::before { content: ''; position: absolute; left: 50%; top: -36px; transform: translateX(-50%); width: 200px; height: 1px; background: #5a4426; }
-.we-final small { position: absolute; left: 0; right: 0; top: 792px; color: #9a8466; font-size: 16px; letter-spacing: .5px; }
+.we-final > strong { position: absolute; left: 0; right: 0; top: 680px; color: #a98a93; font-size: 20px; line-height: 24px; font-weight: 500; letter-spacing: .5px; }
+.we-final small { position: absolute; left: 0; right: 0; top: 792px; color: #9a8466; font-size: 16px; line-height: 19px; letter-spacing: .5px; }

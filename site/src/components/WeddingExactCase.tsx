@@ -421,7 +421,6 @@ export function WeddingExactCase() {
           <article><i /><h3>长期留存</h3><span>婚恋漏斗持续产出新的吉宴。</span></article>
         </div>
         <strong>—— 发现 · 参与 · 传播 · 回流，构成自我增强的社交增长闭环 ——</strong>
-        <h4>结 缘 · 吉 宴</h4>
         <small>交互设计案例 · 感谢观看</small>
       </section>
     </div>
