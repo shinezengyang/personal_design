@@ -102,10 +102,23 @@ function FeatureCard({ title, body, tone, icon }: { title: string; body: string;
   );
 }
 
-function SystemNode({ no, title, desc, tone, icon }: { no: string; title: string; desc: string; tone: Accent; icon: string }) {
+/* Board icons for the five flow nodes — 24px strokes, same family as the background cards. */
+const systemIcons: Record<string, string[]> = {
+  entry: ['M14 4h4v16h-4M3 12h11M14 12l-4-4M14 12l-4 4'],
+  calendar: ['M6 5h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z', 'M4 9h16M8 3v4M16 3v4'],
+  mail: ['M5 6h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z', 'M4 7l8 6 8-6'],
+  rings: ['M14 14a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z', 'M20 14a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z', 'M9 4l3 3 3-3'],
+  share: ['M8.5 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z', 'M20.5 6a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z', 'M20.5 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z', 'M8.2 11l7.6-4M8.2 13l7.6 4'],
+};
+
+function SystemNode({ no, title, desc, tone, icon }: { no: string; title: string; desc: string; tone: Accent; icon: keyof typeof systemIcons }) {
   return (
     <article className={`we-system-node ${tone}`}>
-      <i>{icon}</i>
+      <i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          {systemIcons[icon].map((d) => <path key={d} d={d} />)}
+        </svg>
+      </i>
       <em>{no}</em>
       <h3>{title}</h3>
       <p>{desc}</p>
@@ -201,11 +214,11 @@ export function WeddingExactCase() {
       <section className="we-section dark we-system">
         <SectionHead dark eyebrow="SYSTEM MAP · 系统全景" title="一个吉宴平台，串起婚礼全链路" desc="分散的婚礼行为被收敛进统一的「吉宴平台」—— 从入口到传播，五个环节首尾相连。" />
         <div className="we-system-flow">
-          <SystemNode no="01" title="入口 · 三生石" desc="大世界情缘入口" tone="gold" icon="石" />
-          <SystemNode no="02" title="吉宴平台 · 发现" desc="排期日历 + 一键预约" tone="orange" icon="历" />
-          <SystemNode no="03" title="吉宴受邀 · 邀请" desc="定向邀约 + 赴约/谢绝" tone="rose" icon="邀" />
-          <SystemNode no="04" title="婚礼现场 · 参与" desc="沉浸场景 + 互动祝福" tone="purple" icon="宴" />
-          <SystemNode no="05" title="分享传播 · 裂变" desc="点赞留言 + 频道扩散" tone="cyan" icon="享" />
+          <SystemNode no="01" title="入口 · 三生石" desc="大世界情缘入口" tone="gold" icon="entry" />
+          <SystemNode no="02" title="吉宴平台 · 发现" desc="排期日历 + 一键预约" tone="orange" icon="calendar" />
+          <SystemNode no="03" title="吉宴受邀 · 邀请" desc="定向邀约 + 赴约/谢绝" tone="rose" icon="mail" />
+          <SystemNode no="04" title="婚礼现场 · 参与" desc="沉浸场景 + 互动祝福" tone="purple" icon="rings" />
+          <SystemNode no="05" title="分享传播 · 裂变" desc="点赞留言 + 频道扩散" tone="cyan" icon="share" />
         </div>
         <div className="we-platform-note">
           <em>为什么把婚礼「平台化」？· WHY A PLATFORM</em>
