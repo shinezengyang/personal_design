@@ -525,3 +525,4 @@
 .tp-scard b { position: absolute; left: 16px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #d9a441; color: #0c1626; font-size: 14px; font-weight: 600; line-height: 24px; text-align: center; }
 .tp-scard h4 { position: absolute; left: 48px; top: 9px; margin: 0; color: #6fd8e0; font-size: 18px; font-weight: 700; line-height: 22px; white-space: nowrap; }
 .tp-scard p { position: absolute; left: 16px; top: 38px; width: 236px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 24px; }
+.tp-lg p.pre { white-space: pre; }

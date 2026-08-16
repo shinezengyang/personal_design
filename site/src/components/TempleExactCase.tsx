@@ -78,7 +78,7 @@ function Legend({ n, x, y, title, body, w, sm = false, md = false }: { n: number
     <div className={`tp-lg${sm ? ' sm' : ''}${md ? ' md' : ''}`} style={{ left: x, top: y }}>
       <b>{n}</b>
       <h4>{title}</h4>
-      <p style={{ width: w }}>{body}</p>
+      <p className={body.includes(String.fromCharCode(10)) ? 'pre' : undefined} style={{ width: w }}>{body}</p>
     </div>
   );
 }
