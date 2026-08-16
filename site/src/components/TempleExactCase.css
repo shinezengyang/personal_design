@@ -475,7 +475,7 @@
 .tp-lg { position: absolute; }
 .tp-lg b { position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: #d9a441; color: #0c1626; font-size: 15px; font-weight: 600; line-height: 26px; text-align: center; }
 .tp-lg h4 { position: absolute; left: 40px; top: 0; margin: 0; color: #6fd8e0; font-size: 21px; font-weight: 700; line-height: 25px; white-space: nowrap; }
-.tp-lg p { position: absolute; left: 40px; top: 33px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 26px; }
+.tp-lg p { position: absolute; left: 40px; top: 33px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 26px; white-space: pre-line; }
 .tp-lg.sm h4 { left: 38px; font-size: 19px; line-height: 23px; }
 .tp-lg.sm p { left: 38px; top: 28px; line-height: 24px; }
 .tp-lg.wide p { top: 28px; color: rgba(237,244,247,.92); font-size: 17px; line-height: 20px; white-space: nowrap; }
@@ -523,5 +523,5 @@
 .tp-hook { position: absolute; left: 0; top: 0; pointer-events: none; }
 .tp-scard { position: absolute; width: 268px; height: 94px; border-radius: 12px; background: #122236; box-shadow: inset 0 0 0 1px rgba(217,164,65,.35); }
 .tp-scard b { position: absolute; left: 16px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #d9a441; color: #0c1626; font-size: 14px; font-weight: 600; line-height: 24px; text-align: center; }
-.tp-scard h4 { position: absolute; left: 48px; top: 5px; margin: 0; color: #6fd8e0; font-size: 18px; font-weight: 700; line-height: 22px; white-space: nowrap; }
-.tp-scard p { position: absolute; left: 16px; top: 34px; width: 236px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 24px; }
+.tp-scard h4 { position: absolute; left: 48px; top: 9px; margin: 0; color: #6fd8e0; font-size: 18px; font-weight: 700; line-height: 22px; white-space: nowrap; }
+.tp-scard p { position: absolute; left: 16px; top: 38px; width: 236px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 24px; }
