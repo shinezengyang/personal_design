@@ -83,11 +83,17 @@
   box-shadow: 0 8px 24px rgba(26, 38, 77, 0.08);
   overflow: hidden;
 }
+/* The exports used to carry a baked-in white plate (29–62px of flat white on every
+   side), which is why the art looked small inside its frame no matter which object-fit
+   was used — the frame is sized for the whole export, so the artwork only ever filled
+   the middle. The padding has been trimmed out of the files, leaving aspect ratios
+   within ~2% of the frames, so `cover` now fills edge to edge with a negligible crop. */
 .gs-img-frame {
   position: absolute;
   border: 1px solid #e4e8f1;
   border-radius: 14px;
   overflow: hidden;
+  background: #ffffff;
 }
 .gs-img-frame img {
   position: absolute;
@@ -100,71 +106,66 @@
 .gs-img-frame.gs-shadow-lg { box-shadow: 0 12px 30px rgba(26, 38, 77, 0.16); }
 
 /* =================== S01 Cover =================== */
+/* Geometry from Figma 9817:11162. */
 .gs-cover {
   background: linear-gradient(to right, #5888f6, #496fe8);
   color: #ffffff;
 }
-.gs-cover-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
+.gs-cover-ring,
 .gs-cover-soliddot {
   position: absolute;
+  overflow: visible;
+}
+.gs-cover-soliddot {
   width: 16px;
   height: 16px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.7);
-}
-.gs-cover-bar {
-  position: absolute;
-  left: 80px;
-  top: 110px;
-  width: 40px;
-  height: 3px;
-  background: #ffffff;
 }
 .gs-cover-overline {
   position: absolute;
-  left: 132px;
-  top: 100px;
+  left: 318px;
+  top: 271px;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 3px;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  letter-spacing: 1.28px;
+  color: #ffffff;
+  opacity: 0.85;
+  white-space: nowrap;
 }
-.gs-cover-uxring {
+/* The node is 260px at (91,262); its SVG overhangs by 23.08% a side, so the painted
+   box is 380px at (31,202). Reproduced as a blurred radial rather than an asset. */
+.gs-cover-uxglow {
   position: absolute;
-  left: 60px;
-  top: 300px;
-  width: 260px;
-  height: 260px;
+  left: 31px;
+  top: 202px;
+  width: 380px;
+  height: 380px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 100%);
+  opacity: 0.55;
+  filter: blur(30px);
+  pointer-events: none;
 }
 .gs-cover-ux {
   position: absolute;
-  left: 72px;
-  top: 250px;
-  width: 297px;
-  height: 220px;
+  left: 80px;
+  top: 262px;
   font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  font-size: 150px;
+  font-weight: 900;
+  font-size: 160px;
   line-height: 220px;
-  color: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
 }
 .gs-cover-t1, .gs-cover-t2 {
   position: absolute;
-  left: 381px;
-  width: 540px;
-  height: 92px;
-  font-weight: 700;
-  font-size: 64px;
+  left: 318px;
+  font-weight: 900;
+  font-size: 90px;
   line-height: 92px;
   color: #ffffff;
   margin: 0;
+  white-space: nowrap;
 }
 .gs-cover-t1 { top: 300px; }
 .gs-cover-t2 { top: 402px; }
@@ -173,30 +174,15 @@
   top: 522px;
   width: 100px;
   height: 38px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  border: 1px solid #ffffff;
   border-radius: 19px;
+  opacity: 0.5;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 400;
   font-size: 16px;
   color: #ffffff;
-}
-.gs-cover-divider {
-  position: absolute;
-  left: 80px;
-  top: 700px;
-  width: 1120px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.25);
-}
-.gs-cover-foot {
-  position: absolute;
-  top: 720px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.85);
 }
 
 /* =================== S02 =================== */
@@ -736,7 +722,7 @@
 .gs-rd-node .t { position: absolute; left: 20px; top: 15px; font-weight: 700; font-size: 18px; color: #121726; }
 .gs-rd-node .d { position: absolute; left: 20px; font-weight: 400; font-size: 16px; color: #616b80; }
 .gs-rd-node .reddot { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: #eb4646; }
-.gs-rd-node .can { position: absolute; font-weight: 700; font-size: 16px; color: #eb4646; }
+.gs-rd-node .can { position: absolute; white-space: nowrap; font-weight: 700; font-size: 16px; color: #eb4646; }
 .gs-rd-conn { position: absolute; width: 2px; background: #e4e8f1; }
 .gs-rd-rule {
   position: absolute; left: 640px; width: 560px; height: 112px;

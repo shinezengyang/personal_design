@@ -57,38 +57,71 @@ function Header({
 }
 
 /* =================== S01 Cover =================== */
+/* S01 封面 — rebuilt against Figma 9817:11162.
+   The previous version had drifted: 64px titles at x=381 (design is 90px at x=318),
+   an overline pinned to the top-left behind a white rule, and a divider plus
+   REDESIGN/UX CASE footer strip that the design does not contain at all. */
 function S01() {
   const rings = [
-    { x: 900, y: 120, d: 560 },
-    { x: 990, y: 210, d: 380 },
+    { x: 900, y: 120, d: 560, r: 279, w: 2, o: 0.18 },
+    { x: 990, y: 210, d: 380, r: 189.25, w: 1.5, o: 0.12 },
   ];
-  const dots = [
-    [1172, 112], [929.5, 252], [929.5, 532], [1172, 672], [1414.5, 532], [1414.5, 252],
+  /* One dot is the orange accent, not white — it marks where the inner ring meets
+     the headline block. */
+  const dots: { x: number; y: number; fill: string; o: number }[] = [
+    { x: 1172, y: 112, fill: '#ffffff', o: 0.4 },
+    { x: 929.51, y: 252, fill: '#F56B2E', o: 0.9 },
+    { x: 929.51, y: 532, fill: '#ffffff', o: 0.4 },
+    { x: 1172, y: 672, fill: '#ffffff', o: 0.4 },
+    { x: 1414.49, y: 532, fill: '#ffffff', o: 0.4 },
+    { x: 1414.49, y: 252, fill: '#ffffff', o: 0.4 },
   ];
   const pills = [
-    { t: '精简路径', x: 381 }, { t: '即时反馈', x: 495 }, { t: '智能引导', x: 609 },
-    { t: '路径连续', x: 723 }, { t: '配置驱动', x: 837 },
+    { t: '精简路径', x: 318 }, { t: '即时反馈', x: 432 }, { t: '智能引导', x: 546 },
+    { t: '路径连续', x: 660 }, { t: '配置驱动', x: 774 },
   ];
   return (
     <div className="gs-sec gs-cover" style={{ height: px(800) }}>
-      {rings.map((r, i) => (
-        <div key={i} className="gs-cover-ring" style={{ left: px(r.x), top: px(r.y), width: px(r.d), height: px(r.d) }} />
+      {rings.map((r) => (
+        <svg
+          key={r.d}
+          className="gs-cover-ring"
+          style={{ left: px(r.x), top: px(r.y), width: px(r.d), height: px(r.d) }}
+          viewBox={`0 0 ${r.d} ${r.d}`}
+          aria-hidden="true"
+        >
+          <circle
+            cx={r.d / 2}
+            cy={r.d / 2}
+            r={r.r}
+            fill="none"
+            stroke="#ffffff"
+            strokeOpacity={r.o}
+            strokeWidth={r.w}
+          />
+        </svg>
       ))}
-      {dots.map(([x, y], i) => (
-        <div key={`d${i}`} className="gs-cover-soliddot" style={{ left: px(x), top: px(y) }} />
+      {dots.map((d) => (
+        <svg
+          key={`${d.x}-${d.y}`}
+          className="gs-cover-soliddot"
+          style={{ left: px(d.x), top: px(d.y) }}
+          viewBox="0 0 16 16"
+          aria-hidden="true"
+        >
+          <circle cx="8" cy="8" r="8" fill={d.fill} fillOpacity={d.o} />
+        </svg>
       ))}
-      <div className="gs-cover-bar" />
-      <div className="gs-cover-overline gs-en">INTERACTION DESIGN CASE</div>
-      <div className="gs-cover-uxring" />
+      {/* Blurred white bloom behind the UX mark: r=130 at 30% white, group opacity
+          0.55, in a box that overhangs its 260px node by 23.08% on every side. */}
+      <div className="gs-cover-uxglow" />
       <div className="gs-cover-ux gs-en">UX</div>
+      <div className="gs-cover-overline gs-en">INTERACTION DESIGN CASE</div>
       <h1 className="gs-cover-t1">宝石镶嵌系统</h1>
       <h1 className="gs-cover-t2">体验优化设计</h1>
       {pills.map((p) => (
         <div key={p.t} className="gs-cover-pill" style={{ left: px(p.x) }}>{p.t}</div>
       ))}
-      <div className="gs-cover-divider" />
-      <div className="gs-cover-foot gs-en" style={{ left: px(80) }}>REDESIGN · GEM SOCKET</div>
-      <div className="gs-cover-foot gs-en" style={{ left: px(1010) }}>UX CASE</div>
     </div>
   );
 }
@@ -532,7 +565,12 @@ function S11() {
           <div className="t" style={{ left: px(18.5), top: px(13.5) }}>目标凹槽</div>
           <div className="d" style={{ left: px(18.5), top: px(49.5) }}>可镶嵌 / 可替换</div>
           <div className="reddot" style={{ left: px(308.5), top: px(14.5) }} />
-          <div className="can" style={{ left: px(322.5), top: px(49.5), transform: 'translateX(-100%)' }}>可操作</div>
+          {/* Right-aligned at x=322.5 inside a 344px node. Anchoring with `left` +
+              translateX(-100%) left the box only 21.5px of available width, so the
+              three characters wrapped one per line and rendered as a vertical stack;
+              the transform then shifted it by that 19px box, not by the text width.
+              `right` puts the alignment in layout, where the box can size to content. */}
+          <div className="can" style={{ right: px(344 - 322.5), top: px(49.5) }}>可操作</div>
         </div>
       </div>
 

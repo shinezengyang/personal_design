@@ -1,154 +1,1022 @@
-.partner-case-canvas {
+/* 伙伴系统 · 交互设计作品集 — rebuilt in code against Figma 10327:1994 (1440 wide).
+   The page used to be two flat 1440x8965 exports of a superseded design.
+
+   Every selector below is prefixed `.pt-canvas`. Vite concatenates all case
+   stylesheets into one bundle, so a bare `.card` or `.title` here would restyle
+   every other case page — that has already happened three times in this project. */
+
+.pt-canvas {
+  --pt-bg: #0e1014;
+  --pt-panel: #16191f;
+  --pt-ink: #edeff5;
+  --pt-ink-strong: #f2f4f7;
+  --pt-mute: #99a2ae;
+  --pt-mute-alt: #99a1b3;
+  --pt-gold: #e0a33e;
+  --pt-teal: #4fb6a6;
+  --pt-purple: #9a7bd6;
+
+  /* Missing glyphs fall back within the same genre, so a character absent from the
+     subset never lands in a sans face inside a serif heading. */
+  --pt-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', STSong, SimSun, serif;
+  /* The shipped Ma Shan Zheng subset is 159 glyphs and covers only 1 of the 12
+     characters on the back cover, so the chain falls through to a brush/running
+     face rather than to a sans one. See the note in the component. */
+  --pt-brush: 'Ma Shan Zheng', 'STXingkai', '华文行楷', 'STKaiti', 'KaiTi', 'Kaiti SC', cursive;
+  --pt-sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --pt-latin: Inter, 'Helvetica Neue', Arial, sans-serif;
+
   position: relative;
   width: 1440px;
-  background: #0e1014;
+  background: var(--pt-bg);
+  color: var(--pt-ink);
+  font-family: var(--pt-sans);
+  /* Figma's AUTO line-height for Noto Sans SC is ~1.12em; CSS `normal` resolves to
+     ~1.5em. That gap did two things: it inflated every hugging box (流程胶囊 52 vs 46,
+     漏斗卡 80 vs 68) and, because half-leading is split above the glyph, it pushed
+     every absolutely-positioned single-line label downward — 3px at 18px, 11px at the
+     56px chapter title, 28px at the 150px chapter number. Rules that carry an explicit
+     leading from Figma (1.5 / 1.6 / 1.7 / 28px / 22px …) still override this. */
+  line-height: 1.12;
   overflow: hidden;
 }
 
-.partner-case-section {
+.pt-canvas section {
   position: relative;
   width: 1440px;
+  background: var(--pt-bg);
+  overflow: hidden;
+}
+
+.pt-canvas p {
   margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background: #0e1014;
 }
 
-.partner-case-frame {
-  position: relative;
-  width: 1440px;
-  overflow: hidden;
-  background: #0e1014;
-  opacity: 0;
-  transform: translate3d(0, 46px, 0) scale(0.982);
-  transform-origin: 50% 16%;
-  filter: blur(9px) saturate(0.82) brightness(0.88);
-  will-change: opacity, transform, filter;
-}
-
-.partner-case-image {
-  display: block;
-  width: 1440px;
-  height: auto;
-  margin: 0;
-  object-fit: contain;
-  transform: scale(1.024);
-  transform-origin: 50% 10%;
-  will-change: transform, filter;
-}
-
-.partner-case-wash {
+/* Absolute placement mirrors the Figma frame: every child carries its own left/top. */
+.pt-canvas .pt-abs {
   position: absolute;
-  inset: 0;
-  z-index: 2;
+  white-space: nowrap;
+}
+
+/* ---------- S00 封面 ---------- */
+
+.pt-cover-orbits {
+  position: absolute;
+  left: 820px;
+  top: 120px;
+  width: 640px;
+  height: 640px;
   pointer-events: none;
-  background:
-    linear-gradient(105deg, transparent 0%, rgba(215, 181, 111, .18) 42%, rgba(103, 226, 255, .12) 50%, transparent 62%),
-    linear-gradient(180deg, rgba(255,255,255,.08), transparent 18%, transparent 72%, rgba(0,0,0,.18));
-  opacity: 0;
-  transform: translateX(-42%);
-  mix-blend-mode: screen;
 }
 
-.partner-case-shell .partner-motion-section.is-partner-visible .partner-case-frame {
-  animation: partner-frame-enter 920ms cubic-bezier(0.16, 1, 0.3, 1) both;
+/* deco_朱环. get_design_context reports this node at top:820, which would sink the
+   circle's centre to y=970 and leave only a clipped sliver above the 900px frame
+   edge. Fitting the circle to the actual Figma render puts the centre at
+   (29.5, 714.5) r=149.5 — i.e. top:564.5 — with the ring fully inside the frame.
+   The render is the ground truth here; the reported y is wrong. */
+.pt-cover-ring-deco {
+  position: absolute;
+  left: -120px;
+  top: 564.5px;
+  width: 300px;
+  height: 300px;
+  pointer-events: none;
 }
 
-.partner-case-shell .partner-motion-section.is-partner-visible .partner-case-image {
-  animation: partner-image-settle 1180ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: 120ms;
+.pt-cover-dust {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1440px;
+  height: 900px;
+  pointer-events: none;
 }
 
-.partner-case-shell .partner-motion-section.is-partner-visible .partner-case-wash {
-  animation: partner-wash-sweep 1050ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 180ms;
+.pt-cover-kicker {
+  left: 96px;
+  top: 314px;
+  font-family: var(--pt-sans);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 6px;
+  color: #d9a44a;
 }
 
-/* Hand the compositing layer back on reveal. `will-change` pins an element to its
-   own layer for as long as it is declared, and this page sits in a scaled stage —
-   a pinned layer is rasterised once and then stretched instead of being redrawn at
-   the size it appears, which leaves text soft. */
-.partner-case-shell .partner-motion-section.is-partner-visible .partner-case-frame,
-.partner-case-shell .partner-motion-section.is-partner-visible .partner-case-image {
-  will-change: auto;
+.pt-cover-title {
+  left: 96px;
+  top: 334px;
+  font-family: var(--pt-serif);
+  font-weight: 900;
+  font-size: 200px;
+  line-height: 1.05;
+  color: var(--pt-ink);
 }
 
-.partner-motion-section-2 .partner-case-frame {
-  transform: translate3d(0, 58px, 0) scale(0.986);
-  filter: blur(7px) saturate(0.86) brightness(0.9);
+.pt-cover-sub {
+  left: 96px;
+  top: 565px;
+  font-family: var(--pt-sans);
+  font-weight: 500;
+  font-size: 40px;
+  color: var(--pt-ink);
 }
 
-.partner-case-shell .partner-motion-section-2.is-partner-visible .partner-case-frame {
-  animation-duration: 1080ms;
+/* ---------- S13 效果图 ---------- */
+
+.pt-gallery-title {
+  left: 580px;
+  top: 100px;
+  font-family: var(--pt-brush);
+  font-size: 56px;
+  color: var(--pt-ink);
 }
 
-.partner-case-shell .partner-motion-section-2.is-partner-visible .partner-case-image {
-  animation-duration: 1320ms;
-  animation-delay: 160ms;
+.pt-gallery {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 32px;
 }
 
-.partner-case-shell .partner-motion-section-2.is-partner-visible .partner-case-wash {
-  animation-delay: 240ms;
+.pt-gallery-card {
+  width: 400px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
 }
 
-.partner-case-shell .qy-reveal-section,
-.partner-case-shell .qy-reveal-item:not(.partner-case-frame),
-.partner-case-shell .qy-reveal-media:not(.partner-case-frame) img {
-  opacity: 1 !important;
-  transform: none !important;
-  filter: none !important;
-  animation: none !important;
+.pt-gallery-card {
+  margin: 0;
 }
 
-@keyframes partner-frame-enter {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 46px, 0) scale(0.982);
-    filter: blur(9px) saturate(0.82) brightness(0.88);
-  }
-  58% {
-    opacity: 1;
-    filter: blur(2px) saturate(0.96) brightness(0.98);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-    filter: blur(0) saturate(1) brightness(1);
-  }
+.pt-gallery-shot {
+  width: 400px;
+  height: 200px;
+  border: 1.5px solid #475266;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-@keyframes partner-image-settle {
-  0% {
-    transform: scale(1.024);
-    filter: contrast(0.96);
-  }
-  100% {
-    transform: scale(1);
-    filter: contrast(1);
-  }
+.pt-gallery-card.is-plain .pt-gallery-shot {
+  border: none;
 }
 
-@keyframes partner-wash-sweep {
-  0% {
-    opacity: 0;
-    transform: translateX(-42%);
-  }
-  20% {
-    opacity: .72;
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(38%);
-  }
+.pt-gallery-card.is-square .pt-gallery-shot {
+  border-radius: 0;
+}
+
+.pt-gallery-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pt-gallery-card figcaption {
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 17px;
+  color: #edf0ea;
+  white-space: nowrap;
+}
+
+/* ---------- S14 封底 ---------- */
+
+.pt-back-rings {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1440px;
+  height: 820px;
+  pointer-events: none;
+}
+
+.pt-back-title {
+  left: 0;
+  top: 300px;
+  width: 1440px;
+  text-align: center;
+  font-family: var(--pt-brush);
+  font-size: 88px;
+  letter-spacing: 6px;
+  color: var(--pt-ink-strong);
+  text-shadow: 0 4px 34px rgba(224, 163, 62, 0.32);
+}
+
+.pt-back-sub {
+  left: 0;
+  top: 452px;
+  width: 1440px;
+  text-align: center;
+  font-family: var(--pt-latin);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 8px;
+  color: var(--pt-gold);
+}
+
+/* ---------- 章节封面 (12 instances, 260px tall) ---------- */
+
+.pt-chapter {
+  height: 260px;
+}
+
+.pt-chapter-rule {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1440px;
+  height: 2px;
+  background: var(--pt-accent-dim);
+}
+
+.pt-chapter-num {
+  left: 84px;
+  top: 2px;
+  font-family: var(--pt-serif);
+  font-weight: 900;
+  font-size: 150px;
+  color: var(--pt-accent-ghost);
+}
+
+.pt-chapter-label {
+  left: 270px;
+  top: 80px;
+  font-family: var(--pt-latin);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--pt-accent);
+}
+
+.pt-chapter-title {
+  left: 268px;
+  top: 95px;
+  font-family: var(--pt-serif);
+  font-weight: 900;
+  font-size: 56px;
+  color: var(--pt-ink-strong);
+}
+
+.pt-chapter-desc {
+  left: 268px;
+  top: 190px;
+  font-family: var(--pt-sans);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--pt-mute);
+}
+
+/* Figma right-aligns this at x=1344 via translateX(-100%). Transform is unusable
+   here: the element is a direct child of <section>, so the shell tags it
+   qy-reveal-item and the reveal animation's final frame (transform: none) beats a
+   normal declaration — the box stayed at left:1344 with its full 336px width and
+   ran off the 1440 canvas, leaving only 「系统目的｜对」 visible. Anchoring with
+   `right` puts it in layout instead, where no animation can reach it. */
+.pt-chapter-aim {
+  right: 96px;
+  top: 36px;
+  font-family: var(--pt-sans);
+  font-weight: 500;
+  font-size: 16px;
+  text-align: right;
+  color: var(--pt-mute-alt);
+}
+
+/* ---------- P01 系统总览 ---------- */
+
+.pt-map {
+  height: 1200px;
+}
+
+.pt-map-hub {
+  left: 610px;
+  top: 40px;
+  width: 220px;
+  height: 72px;
+  border-radius: 36px;
+  background: var(--pt-gold);
+}
+
+.pt-map-hub-text {
+  left: 610px;
+  top: 58px;
+  width: 220px;
+  text-align: center;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--pt-bg);
+}
+
+.pt-map-hub-note {
+  left: 610px;
+  top: 122px;
+  width: 220px;
+  text-align: center;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 16px;
+  color: rgba(224, 163, 62, 0.9);
+}
+
+.pt-map-stem {
+  left: 719px;
+  top: 144px;
+  width: 2px;
+  height: 40px;
+  background: rgba(153, 162, 174, 0.5);
+}
+
+.pt-map-bus {
+  left: 270px;
+  top: 184px;
+  width: 861px;
+  height: 2px;
+  background: rgba(153, 162, 174, 0.4);
+}
+
+.pt-map-drop {
+  top: 184px;
+  width: 2px;
+  height: 30px;
+  background: var(--pt-lane);
+}
+
+.pt-map-node {
+  top: 180px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pt-lane);
+}
+
+.pt-map-lane {
+  top: 216px;
+  width: 400px;
+  height: 56px;
+  border-radius: 12px;
+  border: 1.5px solid var(--pt-lane);
+  background: var(--pt-lane-wash);
+}
+
+.pt-map-lane-name {
+  top: 226px;
+  font-family: var(--pt-serif);
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--pt-lane);
+}
+
+.pt-map-lane-en {
+  top: 232px;
+  font-family: var(--pt-latin);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  color: var(--pt-mute);
+}
+
+.pt-map-card {
+  width: 400px;
+  height: 84px;
+  border-radius: 12px;
+  background: var(--pt-panel);
+  border: 1px solid var(--pt-lane-edge);
+}
+
+.pt-map-card-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--pt-lane);
+  font-family: var(--pt-latin);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--pt-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pt-map-card-title {
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--pt-ink-strong);
+}
+
+.pt-map-card-desc {
+  font-family: var(--pt-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--pt-mute);
+}
+
+/* 四条体验闭环 — flow rows built from the repeated 流程胶囊 component */
+
+.pt-loop {
+  position: absolute;
+  left: 90px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pt-loop-tag {
+  width: 120px;
+  height: 44px;
+  border-radius: 22px;
+  background: var(--pt-loop-color);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.pt-loop-tag span {
+  position: absolute;
+  left: 26px;
+  top: 12px;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 17px;
+  color: #0f1217;
+  white-space: nowrap;
+}
+
+/* Height is 46px in Figma (1px border + 12px padding + a 20px line box, twice over).
+   CSS `line-height: normal` resolves to 27px for 18px Noto Sans SC, which inflated
+   every pill to 52px and threw the vertical rhythm of all nine flow diagrams out.
+   Figma's auto leading for this face is ~1.11em, so pin it explicitly. */
+.pt-pill {
+  flex-shrink: 0;
+  padding: 12px 24px;
+  border-radius: 8px;
+  background: #1e222d;
+  border: 1px solid #3d4557;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+  color: var(--pt-ink);
+  white-space: nowrap;
+}
+
+.pt-arrow {
+  flex-shrink: 0;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--pt-mute-alt);
+}
+
+.pt-loop-back {
+  flex-shrink: 0;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--pt-loop-color);
+}
+
+.pt-map-caption {
+  left: 408px;
+  top: 1068px;
+  font-family: var(--pt-sans);
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--pt-ink);
+}
+
+/* ---------- shared content primitives ----------
+   Counted across the frame: 61 截图卡, 15 注释列表, 11 小节标题组, 83 流程胶囊,
+   7 心流曲线. Each is defined once here and driven by data at the call site. */
+
+.pt-sec-title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.pt-sec-title b {
+  font-family: var(--pt-sans);
+  font-weight: 900;
+  font-size: 34px;
+  color: var(--pt-ink);
+}
+
+.pt-sec-title i {
+  font-family: var(--pt-sans);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 6px;
+  color: var(--pt-mark, #d9a44a);
+}
+
+/* A section-level heading in the body copy, not the chapter cover's title. */
+.pt-head {
+  font-family: var(--pt-sans);
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--pt-ink);
+}
+
+.pt-shot {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.pt-shot-frame {
+  position: relative;
+  border: 1px solid #475266;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pt-shot-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.pt-shot-cap {
+  font-family: var(--pt-sans);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--pt-mute-alt);
+  white-space: nowrap;
+}
+
+/* Numbered pin sitting on a screenshot, keyed to the annotation list beside it. */
+.pt-pin {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  background: var(--pt-mark, #e0a33e);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pt-notes {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pt-note {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.pt-note-badge {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background: var(--pt-mark, #e0a33e);
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pt-note-body {
+  font-family: var(--pt-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--pt-ink);
+  white-space: nowrap;
+}
+
+.pt-card-row {
+  position: absolute;
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.pt-card {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 20px 24px;
+  border-radius: 12px;
+  background: #1e222d;
+  border: 1px solid var(--pt-card-edge, rgba(217, 164, 74, 0.4));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pt-card h4 {
+  margin: 0;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--pt-card-accent, #d9a44a);
+  white-space: nowrap;
+}
+
+.pt-card-body {
+  font-family: var(--pt-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--pt-ink);
+  white-space: nowrap;
+}
+
+.pt-scene {
+  position: absolute;
+  padding: 24px 26px;
+  border-radius: 12px;
+  background: #1e222d;
+  border: 1px solid rgba(76, 194, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  --pt-card-accent: #4cc2ff;
+}
+
+.pt-scene h4 {
+  margin: 0;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 19px;
+  color: #4cc2ff;
+  white-space: nowrap;
+}
+
+.pt-scene .pt-card-body {
+  line-height: 1.7;
+}
+
+/* Free-standing gold commentary under a screenshot pair. */
+.pt-gloss {
+  position: absolute;
+  font-family: var(--pt-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #d9a44a;
+}
+
+/* ---------- flow diagrams ---------- */
+
+.pt-flow {
+  position: absolute;
+  overflow: hidden;
+}
+
+.pt-flow .pt-pill {
+  position: absolute;
+}
+
+.pt-flow-arrow {
+  position: absolute;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--pt-mute-alt);
+  white-space: nowrap;
+}
+
+.pt-flow-note {
+  position: absolute;
+  font-family: var(--pt-sans);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--pt-mute-alt);
+  white-space: nowrap;
+}
+
+/* Decision node: a square rotated 45deg, with its label above the diamond. */
+.pt-diamond {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  background: #1e222d;
+  border: 1.2px solid #d9a44a;
+  transform: rotate(-45deg);
+}
+
+.pt-diamond-label {
+  position: absolute;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 14px;
+  color: #d9a44a;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.pt-flow-curve {
+  position: absolute;
+}
+
+/* A row of equal-width pills stating a rule set — same 流程胶囊 chrome as the flow
+   diagrams, but stretched to share the row evenly instead of hugging its label. */
+.pt-rule-row {
+  position: absolute;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.pt-rule-row .pt-pill {
+  flex: 1 0 0;
+  min-width: 0;
+  text-align: left;
+}
+
+.pt-funnel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.pt-funnel-step {
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: #1e222d;
+  border: 1px solid var(--pt-step-edge);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.pt-funnel-step b {
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--pt-step-accent);
+}
+
+.pt-funnel-step span {
+  font-family: var(--pt-sans);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--pt-mute-alt);
+}
+
+/* Free-floating decorative crop that sits directly on the page, not inside a 截图卡. */
+.pt-plate {
+  position: absolute;
+  object-fit: cover;
+}
+
+/* Hero screenshot: wider, gold-rimmed and lifted off the page, used once per chapter
+   to introduce the interface before the annotated breakdown below it. */
+.pt-hero {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.pt-hero-frame {
+  position: relative;
+  width: 100%;
+  border: 1.5px solid rgba(224, 163, 62, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 14px 40px -8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.pt-hero-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pt-hero-cap {
+  width: 100%;
+  font-family: var(--pt-sans);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--pt-mute);
+}
+
+/* Leader-line callout pointing from body copy at the page margin to a spot on the
+   hero image: a ringed dot on the target, a rule back to the text. */
+.pt-callout-dot {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(224, 163, 62, 0.9);
+  box-sizing: border-box;
+}
+
+.pt-callout-dot::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pt-gold);
+}
+
+.pt-callout-line {
+  position: absolute;
+  height: 1.5px;
+  background: rgba(224, 163, 62, 0.5);
+}
+
+.pt-callout-title {
+  position: absolute;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--pt-ink-strong);
+}
+
+.pt-callout-body {
+  position: absolute;
+  font-family: var(--pt-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--pt-mute);
+}
+
+/* 回忆's detail shots sit in a lifted, purple-rimmed plate that overlaps the entry
+   wall behind it — the visual equivalent of the detail view opening on top. */
+.pt-inset {
+  position: absolute;
+  padding: 16px;
+  border-radius: 12px;
+  border: 2px solid var(--pt-purple);
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+/* When the annotations sit under a pair of screenshots rather than beside one, the
+   list runs as a wrapping row across the content width instead of a column. */
+.pt-notes.is-wrap {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+/* 经济闭环: the loop is stacked rather than laid out left-to-right, so the whole
+   chain reads as one descending column between the two screenshot stacks. */
+.pt-stack {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.pt-stack-arrow {
+  flex-shrink: 0;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--pt-mute-alt);
+}
+
+/* 反馈链: chips whose border strengthens step by step, so the row itself reads as
+   an intensifying sequence rather than a flat list. */
+.pt-chain {
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pt-chain-step {
+  flex-shrink: 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #1e222d;
+  border: 1.2px solid var(--pt-step-edge);
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--pt-step-accent, var(--pt-ink));
+  white-space: nowrap;
+}
+
+/* 三层目标: nested bars, each wider than the last, so the goal horizon is legible
+   as length before any of the copy is read. */
+.pt-goal {
+  position: absolute;
+  height: 46px;
+  border-radius: 8px;
+  background: var(--pt-goal-wash);
+  border: 1.2px solid var(--pt-goal-edge);
+  box-sizing: border-box;
+}
+
+.pt-goal span {
+  position: absolute;
+  left: 14.8px;
+  top: 10.8px;
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--pt-goal-accent);
+  white-space: nowrap;
+}
+
+/* Vertical variant of the funnel, with a caret between steps instead of stacking. */
+.pt-vfunnel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.pt-vfunnel .pt-funnel-step {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pt-caret {
+  width: 27.7128px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* A row of equal-width state chips (助攻四态) — same idea as the funnel steps but
+   laid out horizontally and stretched to equal height. */
+.pt-state-row {
+  position: absolute;
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.pt-state {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 16px 18px;
+  border-radius: 10px;
+  background: #1e222d;
+  border: 1px solid var(--pt-step-edge);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.pt-state b {
+  font-family: var(--pt-sans);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--pt-step-accent);
+}
+
+.pt-state span {
+  font-family: var(--pt-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--pt-mute-alt);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .partner-case-frame,
-  .partner-case-image,
-  .partner-case-wash {
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
+  .pt-canvas * {
     animation: none !important;
+    transition: none !important;
   }
 }
