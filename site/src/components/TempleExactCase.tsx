@@ -55,9 +55,9 @@ function Tag({ n }: { n: string }) {
   return <span className="tp-tag">界面分析 {n}</span>;
 }
 
-function Shot({ src, x, y, w, h, gold = false, style }: { src: string; x?: number; y?: number; w?: number; h?: number; gold?: boolean; style?: React.CSSProperties }) {
+function Shot({ src, x, y, w, h, gold = false, green = false, style }: { src: string; x?: number; y?: number; w?: number; h?: number; gold?: boolean; green?: boolean; style?: React.CSSProperties }) {
   return (
-    <div className={`tp-shot${gold ? ' gold' : ''}`} style={style ?? { left: x, top: y, width: w, height: h }}>
+    <div className={`tp-shot${gold ? ' gold' : ''}${green ? ' green' : ''}`} style={style ?? { left: x, top: y, width: w, height: h }}>
       <Img src={src} />
     </div>
   );
@@ -104,6 +104,23 @@ function Anno({ num, title, desc, style }: { num: string; title: string; desc: s
   );
 }
 
+/** The chip rail heading P10 and P11: chips are [label, board x, width]. */
+function LinkBar({ label, tone, chips }: { label: string; tone: 'gold' | 'teal'; chips: ReadonlyArray<readonly [string, number, number]> }) {
+  const stroke = tone === 'gold' ? '#d9a441' : '#6fd8e0';
+  return (
+    <div className={`tp-linkbar ${tone}`}>
+      <b>{label}</b>
+      {chips.map(([t, x, w]) => <span key={t} style={{ left: x - 96, width: w }}>{t}</span>)}
+      <svg viewBox="0 0 1088 60" width="1088" height="60" aria-hidden>
+        {chips.slice(0, -1).map(([t, x, w]) => {
+          const ax = x - 96 + w + 10;
+          return <path key={t} d={`M${ax} 30h14M${ax + 9} 25l6 5-6 5`} fill="none" stroke={stroke} strokeWidth="2" />;
+        })}
+      </svg>
+    </div>
+  );
+}
+
 function IntentBar({ text, tall = false }: { text: string; tall?: boolean }) {
   return (
     <div className={`tp-intent${tall ? ' tall' : ''}`}>
@@ -113,6 +130,27 @@ function IntentBar({ text, tall = false }: { text: string; tall?: boolean }) {
   );
 }
 
+
+/* P10 / P11 chip rails: [label, board x, width]. */
+const templeP10Chips = [
+  ['选定目标', 219, 100], ['前往', 359, 68], ['自动寻路', 467, 100], ['抵达战斗', 607, 100],
+  ['小地图', 747, 84], ['任务详情', 871, 100], ['计数达成', 1011, 100],
+] as const;
+
+const templeP11Chips = [
+  ['个人探索副本完成', 219, 164], ['奇遇事件', 423, 100], ['前往', 563, 68],
+  ['自动寻路', 671, 100], ['抵达战斗', 811, 100], ['任务达成', 951, 100],
+] as const;
+
+/* P11 surprise-event legend cards: [no, x, y, title, body]. */
+const templeSurprise = [
+  ['1', 96, 594, '专属 Toast · 文字特殊化', '特殊字体+底板特效区别于普通提示，把奇遇的稀有感写在脸上'],
+  ['4', 380, 594, '场景物件交互按钮', '靠近场景物件后，HUD会显示新按钮，引导玩家可交互'],
+  ['2', 96, 696, '触发区可视化', '绿圈圈定事件范围，空间引导无需一行文字'],
+  ['5', 380, 696, '完成 Toast · 高峰收尾', '完成同样配特殊化反馈——峰终定律：结尾的情绪决定整段记忆'],
+  ['3', 96, 798, '奇遇任务 · 绿色标识', '[奇遇] 前缀独立配色挂入追踪栏，与日常任务一眼区分'],
+  ['6', 380, 798, '三通道播报 · 去向可溯', 'Toast + 系统聊天 + 邮件红点，奖励去向永远查得到'],
+] as const;
 
 /* P04 timeline days: [dot x, label, colour]. */
 const templeDays = [
@@ -415,66 +453,65 @@ export function TempleExactCase() {
         </article>
       </section>
 
-      {/* ===== P10 · Exploration Pipeline ===== */}
+      {/* ===== P10 | Exploration pipeline ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="09" eng="SCREEN ANALYSIS 05 — EXPLORATION PIPELINE" title="探索事件 · 从战场→地图→战场" />
-        <div className="tp-badge-label teal" style={{ left: 96, top: 215 }}>界面分析 ①②③④⑤⑥</div>
+        <SectionHeader no="09" title="探索事件 · 从战场→地图→战场" eng="SCREEN ANALYSIS 05 — EXPLORATION PIPELINE" />
+        <Tag n="⑤" />
+        <LinkBar label="探索事件：" tone="gold" chips={templeP10Chips} />
 
-        <Shot src={A.p10c} style={{ left: 96, top: 271, width: 182, height: 263 }} />
-        <Shot src={A.p10a} style={{ left: 338, top: 271, width: 463, height: 260 }} />
-        <Shot src={A.p10b} style={{ left: 651, top: 549, width: 533, height: 300 }} />
+        <Shot src={A.p10c} x={96} y={271} w={182} h={263} />
+        <Shot src={A.p10a} x={338} y={271} w={463} h={260} gold />
+        <Cap x={338} y={539}>个人探索副本 · 清理匪患进行中</Cap>
+        <Shot src={A.p10b} x={651} y={549} w={533} h={300} />
+        <Cap x={651} y={859}>副本地图 · 青州</Cap>
 
-        <FlowBar steps={['选定目标', '前往', '自动寻路', '抵达战斗', '小地图', '任务详情', '计数达成']} />
+        <svg className="tp-hook" viewBox="0 0 1280 900" width="1280" height="900" aria-hidden>
+          <path d="M785.2 321C834.1 345.9 861.8 415.6 868.2 530.1M858.4 518.6l9.3 14.4 8.1-15" fill="none" stroke="#d9a441" strokeWidth="3" />
+          <path d="M249 313c8.1 36.9 34.4 61.3 79 73M316.1 393.4l15.6-7.2-13.7-10.2" fill="none" stroke="#d9a441" strokeWidth="3" />
+        </svg>
 
-        <Anno num="①" title="任务列表·锁定目标" tone="teal"
-          desc="战斗中任务面板始终可见，明确当前应做什么、还差多少。"
-          style={{ left: 96, top: 580 }} />
-        <Anno num="②" title="自动寻路·零摩擦前往" tone="teal"
-          desc="一键触发自动寻路，省去手动导航步骤，降低探索门槛。"
-          style={{ left: 96, top: 700 }} />
-        <Anno num="③" title="战斗界面·计数反馈" tone="gold"
-          desc="击败目标后计数即时更新，行动→反馈闭环清晰，保持心流。"
-          style={{ left: 310, top: 570 }} />
-        <Anno num="④" title="战斗胜利·推进感" tone="teal"
-          desc="战斗结算时同步显示探索值进度，让每场战斗都与大目标直接挂钩。"
-          style={{ left: 310, top: 690 }} />
-        <Anno num="⑤" title="小地图·全局感知" tone="gold"
-          desc="小地图展示周边事件点，方便就近选择下一目标，减少空跑时间。"
-          style={{ left: 870, top: 580 }} />
-        <Anno num="⑥" title="任务详情·进度可查" tone="teal"
-          desc="随时可查看当前周任务完成情况，掌握整体进度不需要返回主界面。"
-          style={{ left: 870, top: 700 }} />
+        <Pin n={1} x={427} y={322} />
+        <Pin n={2} x={609} y={437} />
+        <Pin n={3} x={1088} y={606} />
+        <Pin n={4} x={1099} y={711} />
+        <Pin n={5} x={1063} y={749} />
+        <Pin n={6} x={665} y={793} />
+
+        <Legend sm n={1} x={880} y={275} w={206} title="追踪栏实时计数 · 即时反馈" body={'40/50 持续滚动，每一刀都被\n看见——心流的燃料是反馈'} />
+        <Legend sm n={2} x={880} y={366} w={224} title="自动战斗 · 低操作负荷" body={'容纳通勤挂机场景，挑战难度\n贴合大众水位，不破坏心流通道'} />
+        <Legend sm n={3} x={96} y={626} w={400} title="区域目标卡片 · 识别优于回忆" body="背景故事 + 任务 + 收益同卡展示，决策所需信息零检索" />
+        <Legend sm n={4} x={96} y={693} w={400} title="收益前置 · 明码标价" body="「探索值 50」写在前往之前，付出与回报先讲清楚" />
+        <Legend sm n={5} x={96} y={760} w={400} title="一键前往 · 零摩擦衔接" body="点击即关地图、进副本、自动寻路，三步并作一步" />
+        <Legend sm n={6} x={96} y={827} w={400} title="追踪开关 · 用户可控" body="日常追踪默认勾选可关闭，把控制权留给玩家" />
       </section>
 
-      {/* ===== P11 · Surprise Events ===== */}
+      {/* ===== P11 | Surprise events ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="10" eng="SCREEN ANALYSIS 06 — SURPRISE EVENTS" title="奇遇事件 · 惊喜的设计" />
-        <div className="tp-badge-label gold" style={{ left: 96, top: 215 }}>界面分析 ①②③④⑤⑥</div>
+        <SectionHeader no="10" title="奇遇事件 · 惊喜的设计" eng="SCREEN ANALYSIS 06 — SURPRISE EVENTS" />
+        <Tag n="⑥" />
+        <LinkBar label="奇遇事件：" tone="teal" chips={templeP11Chips} />
 
-        <Shot src={A.p11a} style={{ left: 96, top: 265, width: 498, height: 280 }} />
-        <Shot src={A.p11b} style={{ left: 686, top: 265, width: 498, height: 280 }} />
-        <Shot src={A.p11c} style={{ left: 686, top: 588, width: 498, height: 280 }} />
+        <Shot src={A.p11a} x={96} y={265} w={498} h={280} green />
+        <Cap x={96} y={553}>个人特殊探索事件 · 开启</Cap>
+        <Shot src={A.p11b} x={686} y={265} w={498} h={280} gold />
+        <Cap x={686} y={553}>个人特殊探索事件 · 进行</Cap>
+        <Shot src={A.p11c} x={686} y={588} w={498} h={280} gold />
+        <Cap x={688} y={876}>个人特殊探索事件 · 完成</Cap>
 
-        <FlowBar steps={['个人探索副本完成', '奇遇事件', '前往', '自动寻路', '抵达战斗', '任务达成']} />
+        <Pin n={1} x={401} y={295} />
+        <Pin n={2} x={350} y={391} />
+        <Pin n={3} x={133} y={376} />
+        <Pin n={4} x={1021} y={375} />
+        <Pin n={5} x={1015} y={648} />
+        <Pin n={6} x={849} y={795} />
 
-        <Anno num="①" title="奇遇触发·打破预期" tone="gold"
-          desc="奇遇事件随机触发于副本完成后，意外性制造情绪高点，防止探索日常化。"
-          style={{ left: 96, top: 590 }} />
-        <Anno num="②" title="时限机制·制造紧迫" tone="red"
-          desc="奇遇事件设有倒计时，敦促玩家立即响应，防止拖延导致错过。"
-          style={{ left: 96, top: 710 }} />
-        <Anno num="③" title="奖励前置·驱动行动" tone="gold"
-          desc="弹窗首屏直接展示奖励内容，明确告知「去了有什么」，降低行动门槛。"
-          style={{ left: 96, top: 800 }} />
-        <Anno num="④" title="进度可视·过程感知" tone="teal"
-          desc="奇遇进行中显示阶段进度，让玩家感知「快完成了」的临近感。"
-          style={{ left: 650, top: 590 }} />
-        <Anno num="⑤" title="完成态·仪式感收尾" tone="gold"
-          desc="完成弹窗设计独特，与普通任务结算区分，强化奇遇事件的特殊体验感。"
-          style={{ left: 650, top: 710 }} />
-        <Anno num="⑥" title="探索值联动·大目标串联" tone="teal"
-          desc="奇遇完成同步贡献探索值，让单个惊喜事件也与全周目标保持关联。"
-          style={{ left: 650, top: 800 }} />
+        {templeSurprise.map(([n, x, y, title, body]) => (
+          <article className="tp-scard" key={n} style={{ left: x, top: y }}>
+            <b>{n}</b>
+            <h4>{title}</h4>
+            <p>{body}</p>
+          </article>
+        ))}
       </section>
 
       {/* ===== P12 · Weekly Boss ===== */}

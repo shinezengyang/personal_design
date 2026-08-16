@@ -507,3 +507,21 @@
 .tp-zonecard h4 { position: absolute; left: 20px; top: 14px; margin: 0; font-size: 19px; font-weight: 700; line-height: 23px; white-space: nowrap; }
 .tp-zonecard.teal h4 { color: #6fd8e0; } .tp-zonecard.gold h4 { color: #d9a441; } .tp-zonecard.red h4 { color: #e1584f; }
 .tp-zonecard p { position: absolute; left: 20px; top: 43px; width: 300px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 25px; }
+
+/* ---------- P10 / P11 link rail, hooks and cards ---------- */
+.tp-linkbar { position: absolute; left: 96px; top: 187px; width: 1088px; height: 60px; border-radius: 12px; }
+.tp-linkbar.gold { background: rgba(217,164,65,.1); box-shadow: inset 0 0 0 1px rgba(217,164,65,.5); }
+.tp-linkbar.teal { background: rgba(111,216,224,.1); box-shadow: inset 0 0 0 1px rgba(111,216,224,.5); }
+.tp-linkbar b { position: absolute; left: 24px; top: 20px; font-size: 17px; font-weight: 700; line-height: 20px; }
+.tp-linkbar.gold b { color: #d9a441; }
+.tp-linkbar.teal b { color: #6fd8e0; }
+.tp-linkbar span { position: absolute; top: 13px; height: 35px; border-radius: 999px; font-size: 16px; font-weight: 700; line-height: 35px; text-align: center; }
+.tp-linkbar.gold span { background: #d9a441; box-shadow: inset 0 0 0 1px rgba(217,164,65,.5); color: rgba(12,22,38,.9); }
+.tp-linkbar.teal span { background: #122236; box-shadow: inset 0 0 0 1px rgba(111,216,224,.5); color: rgba(237,244,247,.9); }
+.tp-linkbar svg { position: absolute; left: 0; top: 0; pointer-events: none; }
+.tp-shot.green { box-shadow: inset 0 0 0 1.5px rgba(107,199,115,.4); }
+.tp-hook { position: absolute; left: 0; top: 0; pointer-events: none; }
+.tp-scard { position: absolute; width: 268px; height: 94px; border-radius: 12px; background: #122236; box-shadow: inset 0 0 0 1px rgba(217,164,65,.35); }
+.tp-scard b { position: absolute; left: 16px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #d9a441; color: #0c1626; font-size: 14px; font-weight: 600; line-height: 24px; text-align: center; }
+.tp-scard h4 { position: absolute; left: 48px; top: 5px; margin: 0; color: #6fd8e0; font-size: 18px; font-weight: 700; line-height: 22px; white-space: nowrap; }
+.tp-scard p { position: absolute; left: 16px; top: 34px; width: 236px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 24px; }
