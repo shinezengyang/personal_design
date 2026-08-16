@@ -533,3 +533,4 @@
 .tp-shot.red { box-shadow: inset 0 0 0 1.5px rgba(225,88,79,.45); }
 .tp-plain { position: absolute; overflow: hidden; }
 .tp-redtag { position: absolute; height: 31px; border-radius: 8px; background: #e1584f; color: #edf4f7; font-size: 16px; font-weight: 700; line-height: 31px; text-align: center; }
+.tp-lg p.pre, .tp-lg.one p { white-space: pre; }

@@ -73,9 +73,9 @@ function Pin({ n, x, y }: { n: number; x: number; y: number }) {
 }
 
 /** Numbered legend row: 26px disc, title, body. `sm` is the 19px/24px variant. */
-function Legend({ n, x, y, title, body, w, sm = false, md = false, xs = false, gap }: { n: number; x: number; y: number; title: string; body: string; w: number; sm?: boolean; md?: boolean; xs?: boolean; gap?: number }) {
+function Legend({ n, x, y, title, body, w, sm = false, md = false, xs = false, one = false, gap }: { n: number; x: number; y: number; title: string; body: string; w: number; sm?: boolean; md?: boolean; xs?: boolean; one?: boolean; gap?: number }) {
   return (
-    <div className={`tp-lg${sm ? ' sm' : ''}${md ? ' md' : ''}${xs ? ' xs' : ''}`} style={{ left: x, top: y, ...(gap ? { ['--lg-gap' as string]: `${gap}px` } : null) }}>
+    <div className={`tp-lg${sm ? ' sm' : ''}${md ? ' md' : ''}${xs ? ' xs' : ''}${one ? ' one' : ''}`} style={{ left: x, top: y, ...(gap ? { ['--lg-gap' as string]: `${gap}px` } : null) }}>
       <b>{n}</b>
       <h4>{title}</h4>
       <p className={body.includes(String.fromCharCode(10)) ? 'pre' : undefined} style={{ width: w }}>{body}</p>
@@ -541,13 +541,13 @@ export function TempleExactCase() {
         <Pin n={6} x={741} y={475} />
         <Pin n={7} x={678} y={565} />
 
-        <Legend xs n={1} x={96} y={583} w={406} title="激活条件 · 进度即钥匙" body="一周的探索值指向同一个解锁瞬间，目标-反馈环干净利落" />
-        <Legend xs n={2} x={96} y={645} w={330} title="三首领可选 · 选中态明确" body="鑕金描边标记当前选择，多目标并行不混淆" />
-        <Legend xs n={3} x={96} y={707} w={374} title="刷新时间前置公告" body="「每周六20:00-20:30」写在按钮上方，全服共同赴约" />
-        <Legend xs n={4} x={96} y={769} w={368} title="社交与行动并置" body="「便携组队」紧邻「前往挑战」，组队开荒最短路径" />
-        <Legend xs n={5} x={96} y={831} w={288} title="奖励预览" body="常规奖励弹窗，通过奖励来吸引玩家参与" />
-        <Legend xs n={6} x={624} y={769} w={448} title="多首领血量总览" body="左栏实时同步三首领血量与已击败状态，转换目标无需退出副本" />
-        <Legend xs n={7} x={624} y={831} w={440} title="当前排名 · 战斗中可见" body="排名常驻刷新，点击即展开伤害排行榜——竞争反馈不断线" />
+        <Legend xs one n={1} x={96} y={583} w={406} title="激活条件 · 进度即钥匙" body="一周的探索值指向同一个解锁瞬间，目标-反馈环干净利落" />
+        <Legend xs one n={2} x={96} y={645} w={330} title="三首领可选 · 选中态明确" body="鑕金描边标记当前选择，多目标并行不混淆" />
+        <Legend xs one n={3} x={96} y={707} w={374} title="刷新时间前置公告" body="「每周六20:00-20:30」写在按钮上方，全服共同赴约" />
+        <Legend xs one n={4} x={96} y={769} w={368} title="社交与行动并置" body="「便携组队」紧邻「前往挑战」，组队开荒最短路径" />
+        <Legend xs one n={5} x={96} y={831} w={288} title="奖励预览" body="常规奖励弹窗，通过奖励来吸引玩家参与" />
+        <Legend xs one n={6} x={624} y={769} w={448} title="多首领血量总览" body="左栏实时同步三首领血量与已击败状态，转换目标无需退出副本" />
+        <Legend xs one n={7} x={624} y={831} w={440} title="当前排名 · 战斗中可见" body="排名常驻刷新，点击即展开伤害排行榜——竞争反馈不断线" />
       </section>
 
       {/* ===== P13 | Reward & settlement ===== */}
