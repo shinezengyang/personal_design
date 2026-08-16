@@ -55,9 +55,9 @@ function Tag({ n }: { n: string }) {
   return <span className="tp-tag">界面分析 {n}</span>;
 }
 
-function Shot({ src, x, y, w, h, gold = false, green = false, style }: { src: string; x?: number; y?: number; w?: number; h?: number; gold?: boolean; green?: boolean; style?: React.CSSProperties }) {
+function Shot({ src, x, y, w, h, gold = false, green = false, red = false, style }: { src: string; x?: number; y?: number; w?: number; h?: number; gold?: boolean; green?: boolean; red?: boolean; style?: React.CSSProperties }) {
   return (
-    <div className={`tp-shot${gold ? ' gold' : ''}${green ? ' green' : ''}`} style={style ?? { left: x, top: y, width: w, height: h }}>
+    <div className={`tp-shot${gold ? ' gold' : ''}${green ? ' green' : ''}${red ? ' red' : ''}`} style={style ?? { left: x, top: y, width: w, height: h }}>
       <Img src={src} />
     </div>
   );
@@ -73,9 +73,9 @@ function Pin({ n, x, y }: { n: number; x: number; y: number }) {
 }
 
 /** Numbered legend row: 26px disc, title, body. `sm` is the 19px/24px variant. */
-function Legend({ n, x, y, title, body, w, sm = false, md = false }: { n: number; x: number; y: number; title: string; body: string; w: number; sm?: boolean; md?: boolean }) {
+function Legend({ n, x, y, title, body, w, sm = false, md = false, xs = false, gap }: { n: number; x: number; y: number; title: string; body: string; w: number; sm?: boolean; md?: boolean; xs?: boolean; gap?: number }) {
   return (
-    <div className={`tp-lg${sm ? ' sm' : ''}${md ? ' md' : ''}`} style={{ left: x, top: y }}>
+    <div className={`tp-lg${sm ? ' sm' : ''}${md ? ' md' : ''}${xs ? ' xs' : ''}`} style={{ left: x, top: y, ...(gap ? { ['--lg-gap' as string]: `${gap}px` } : null) }}>
       <b>{n}</b>
       <h4>{title}</h4>
       <p className={body.includes(String.fromCharCode(10)) ? 'pre' : undefined} style={{ width: w }}>{body}</p>
@@ -121,9 +121,9 @@ function LinkBar({ label, tone, chips }: { label: string; tone: 'gold' | 'teal';
   );
 }
 
-function IntentBar({ text, tall = false }: { text: string; tall?: boolean }) {
+function IntentBar({ text, tall = false, y }: { text: string; tall?: boolean; y?: number }) {
   return (
-    <div className={`tp-intent${tall ? ' tall' : ''}`}>
+    <div className={`tp-intent${tall ? ' tall' : ''}`} style={y ? { top: y } : undefined}>
       <span>设计意图</span>
       <p>{text}</p>
     </div>
@@ -514,62 +514,68 @@ export function TempleExactCase() {
         ))}
       </section>
 
-      {/* ===== P12 · Weekly Boss ===== */}
+      {/* ===== P12 | Weekly boss ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="11" eng="SCREEN ANALYSIS 07 — WEEKLY BOSS" title="遗迹首领 · 激活" />
-        <div className="tp-badge-label red" style={{ left: 96, top: 170 }}>界面分析 ①②③④⑤⑥⑦</div>
+        <SectionHeader no="11" title="遗迹首领 · 激活" eng="SCREEN ANALYSIS 07 — WEEKLY BOSS" />
+        <Tag n="⑦" />
 
-        <Shot src={A.p12a} style={{ left: 96, top: 198, width: 560, height: 315 }} />
-        <Shot src={A.p12c} style={{ left: 877, top: 171, width: 188, height: 221 }} />
-        <div className="tp-screen-label red" style={{ left: 624, top: 375 }}>遗迹首领已击败状态</div>
-        <Shot src={A.p12b} style={{ left: 624, top: 399, width: 560, height: 315 }} />
+        <Shot src={A.p12a} x={96} y={198} w={560} h={315} gold />
+        <Cap x={96} y={524}>秘境主界面 · 首领已激活</Cap>
+        <Shot src={A.p12b} x={624} y={399} w={560} h={315} red />
+        <Cap x={624} y={725}>遗迹首领副本 · 战斗中</Cap>
+        <div className="tp-plain" style={{ left: 877, top: 171, width: 188, height: 221 }}>
+          <Img src={A.p12c} />
+        </div>
 
-        <Anno num="①" title="首领立绘·仪式感激活" tone="red"
-          desc="高质量立绘在激活时全屏呈现，制造「重要事件」的仪式感与期待值。"
-          style={{ left: 96, top: 555 }} />
-        <Anno num="②" title="倒计时·限时压迫" tone="red"
-          desc="周六限时30分钟窗口倒计时显示，制造稀缺感，驱动玩家在线时间集中。"
-          style={{ left: 96, top: 680 }} />
-        <Anno num="③" title="全服参与进度可见" tone="teal"
-          desc="显示当前全服伤害总量，让个人行为与集体战绩直接挂钩。"
-          style={{ left: 96, top: 800 }} />
-        <Anno num="④" title="伤害排行·竞争激励" tone="red"
-          desc="实时伤害排行可见，激活社会竞争本能，驱动玩家输出最大化。"
-          style={{ left: 650, top: 460 }} />
-        <Anno num="⑤" title="已击败状态·清晰反馈" tone="gold"
-          desc="首领被击败后界面立即切换为击败状态，明确告知本周决战已结束。"
-          style={{ left: 650, top: 570 }} />
-        <Anno num="⑥" title="首领卡牌·收集感" tone="gold"
-          desc="击败后解锁首领卡牌，将战胜体验转化为可保留的成就记录。"
-          style={{ left: 650, top: 680 }} />
-        <Anno num="⑦" title="奖励预览·行前透明" tone="teal"
-          desc="首领激活界面提前展示奖励内容，确保参与决策前信息充分。"
-          style={{ left: 650, top: 790 }} />
+        <svg className="tp-hook" viewBox="0 0 1280 900" width="1280" height="900" aria-hidden>
+          <path d="M535 313h342" stroke="#d9a441" strokeWidth="2" />
+          <path d="M512 507.7C536 542.7 571.7 557.4 618.9 551.5M603.6 539.5l22.2 12.2-23.2 13.1" fill="none" stroke="#d9a441" strokeWidth="3" />
+        </svg>
+        <span className="tp-goldtag" style={{ left: 671, top: 297, width: 176, color: '#edf4f7' }}>遗迹首领已击败状态</span>
+
+        <Pin n={1} x={522} y={242} />
+        <Pin n={2} x={308} y={396} />
+        <Pin n={3} x={512} y={448} />
+        <Pin n={4} x={324} y={475} />
+        <Pin n={5} x={570} y={461} />
+        <Pin n={6} x={741} y={475} />
+        <Pin n={7} x={678} y={565} />
+
+        <Legend xs n={1} x={96} y={583} w={406} title="激活条件 · 进度即钥匙" body="一周的探索值指向同一个解锁瞬间，目标-反馈环干净利落" />
+        <Legend xs n={2} x={96} y={645} w={330} title="三首领可选 · 选中态明确" body="鑕金描边标记当前选择，多目标并行不混淆" />
+        <Legend xs n={3} x={96} y={707} w={374} title="刷新时间前置公告" body="「每周六20:00-20:30」写在按钮上方，全服共同赴约" />
+        <Legend xs n={4} x={96} y={769} w={368} title="社交与行动并置" body="「便携组队」紧邻「前往挑战」，组队开荒最短路径" />
+        <Legend xs n={5} x={96} y={831} w={288} title="奖励预览" body="常规奖励弹窗，通过奖励来吸引玩家参与" />
+        <Legend xs n={6} x={624} y={769} w={448} title="多首领血量总览" body="左栏实时同步三首领血量与已击败状态，转换目标无需退出副本" />
+        <Legend xs n={7} x={624} y={831} w={440} title="当前排名 · 战斗中可见" body="排名常驻刷新，点击即展开伤害排行榜——竞争反馈不断线" />
       </section>
 
-      {/* ===== P13 · Reward & Settlement ===== */}
+      {/* ===== P13 | Reward & settlement ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="12" eng="SCREEN ANALYSIS 08 — REWARD & SETTLEMENT" title="奖励与结算 · 期望管理" />
-        <div className="tp-badge-label gold" style={{ left: 96, top: 190 }}>界面分析 ①②③④</div>
+        <SectionHeader no="12" title="奖励与结算 · 期望管理" eng="SCREEN ANALYSIS 08 — REWARD & SETTLEMENT" />
+        <Tag n="⑧" />
 
-        <div className="tp-screen-label gold" style={{ left: 96, top: 195 }}>击败后状态</div>
-        <Shot src={A.p13a} style={{ left: 96, top: 218, width: 440, height: 248 }} />
-        <Shot src={A.p13b} style={{ left: 484, top: 336, width: 700, height: 394 }} />
+        <span className="tp-redtag" style={{ left: 96, top: 187, width: 112 }}>击败后状态</span>
+        <Shot src={A.p13a} x={96} y={218} w={440} h={247.5} red />
+        <Cap x={96} y={474}>首领副本 · 已击败标记与退出</Cap>
+        <Shot src={A.p13b} x={484} y={336} w={700} h={393.8} />
+        <Cap x={484} y={738}>遗迹首领 · 奖励排行榜</Cap>
 
-        <Anno num="①" title="击败后状态·明确感知" tone="gold"
-          desc="首领被击败后界面及时更新，玩家无需疑惑「还能打吗」，状态透明。"
-          style={{ left: 96, top: 510 }} />
-        <Anno num="②" title="奖励排行·公示公平" tone="gold"
-          desc="伤害与奖励挂钩的排行结果全服公示，透明机制强化公平感知。"
-          style={{ left: 96, top: 640 }} />
-        <Anno num="③" title="个人伤害·贡献可查" tone="teal"
-          desc="个人伤害量与排名清晰展示，让参与者感知自己的贡献被记录和认可。"
-          style={{ left: 96, top: 760 }} />
-        <Anno num="④" title="邮件发放·异步兜底" tone="gold"
-          desc="奖励通过邮件异步发放，未能及时在线的玩家同样可以完整领取应得奖励。"
-          style={{ left: 870, top: 510 }} />
+        <svg className="tp-hook" viewBox="0 0 1280 900" width="1280" height="900" aria-hidden>
+          <path d="M173 349.4C242.6 452.9 343.6 497.4 476 483M456 471.1l22.2 12.2-23.2 13" fill="none" stroke="#d9a441" strokeWidth="3" />
+        </svg>
 
-        <IntentBar text="结算是本周玩法体验的收尾 —— 公示排名+邮件发放双通道，既满足竞争玩家的荣誉感需求，也保障普通玩家的利益公平。" />
+        <Pin n={1} x={183} y={278} />
+        <Pin n={2} x={1083} y={381} />
+        <Pin n={3} x={670} y={653} />
+        <Pin n={4} x={876} y={696} />
+
+        <Legend xs gap={26} n={1} x={568} y={217} w={578} title="状态闭环 · 已击败" body="首领倒下后全队同步红字标记并引导退出，避免无效停留；奖励走邮件兜底，错过结算画面也不丢奖励" />
+        <Legend xs gap={26} n={2} x={96} y={523} w={324} title="奖励看得见 · 期望前置" body="每个名次的奖励直接陈列在排行上——清晰的「努力 → 回报」联结，驱动持续投入" />
+        <Legend xs gap={26} n={3} x={96} y={615} w={324} title="永远找得到自己" body="自己的行置底高亮，比较的参照系永远在场" />
+        <Legend xs gap={26} n={4} x={96} y={683} w={324} title="结算规则白纸黑字" body="「以最终结算排行为准，以邮件形式发放」预先化解争议" />
+
+        <IntentBar y={796} text="奖励的确定性，就是玩家投入时间的安全感——看得见、找得到、不会丢" />
       </section>
 
       {/* ===== P14 · Roaming Envoy ===== */}

@@ -526,3 +526,10 @@
 .tp-scard h4 { position: absolute; left: 48px; top: 9px; margin: 0; color: #6fd8e0; font-size: 18px; font-weight: 700; line-height: 22px; white-space: nowrap; }
 .tp-scard p { position: absolute; left: 16px; top: 38px; width: 236px; margin: 0; color: #8fa3b8; font-size: 16px; line-height: 24px; }
 .tp-lg p.pre { white-space: pre; }
+
+/* ---------- P12 / P13 ---------- */
+.tp-lg.xs h4 { font-size: 18px; line-height: 22px; }
+.tp-lg.xs p { top: var(--lg-gap, 25px); line-height: 23px; }
+.tp-shot.red { box-shadow: inset 0 0 0 1.5px rgba(225,88,79,.45); }
+.tp-plain { position: absolute; overflow: hidden; }
+.tp-redtag { position: absolute; height: 31px; border-radius: 8px; background: #e1584f; color: #edf4f7; font-size: 16px; font-weight: 700; line-height: 31px; text-align: center; }
