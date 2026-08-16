@@ -83,26 +83,7 @@ function Legend({ n, x, y, title, body, w, sm = false, md = false, xs = false, o
   );
 }
 
-function FlowBar({ steps }: { steps: string[] }) {
-  return (
-    <div className="tp-flow-bar">
-      {steps.map((t, i) => (
-        <span key={t} className="tp-flow-step">{t}{i < steps.length - 1 && <span className="tp-flow-arrow">→</span>}</span>
-      ))}
-    </div>
-  );
-}
 
-/* TEMPORARY: P08-P17 still use the pre-rebuild API. Removed once they are converted. */
-function Anno({ num, title, desc, style }: { num: string; title: string; desc: string; tone?: Tone; style?: React.CSSProperties }) {
-  return (
-    <div className="tp-lg" style={style}>
-      <b>{num}</b>
-      <h4>{title}</h4>
-      <p style={{ width: 248 }}>{desc}</p>
-    </div>
-  );
-}
 
 /** The chip rail heading P10 and P11: chips are [label, board x, width]. */
 function LinkBar({ label, tone, chips }: { label: string; tone: 'gold' | 'teal'; chips: ReadonlyArray<readonly [string, number, number]> }) {
@@ -130,6 +111,34 @@ function IntentBar({ text, tall = false, y }: { text: string; tall?: boolean; y?
   );
 }
 
+
+/* P16 reference cards: [asset, x, y, tone, title, body]. */
+const templeRefs = [
+  [A.p16a, 96, 225, 'teal', '《庆余年》手游 · 神庙雪山概念图', '神庙即雪山之巅的上古遗迹。交互稿以黑白苍茂为底色还原 IP 意象，让鑕金按钮成为画面里唯一的行动焦点'],
+  [A.p16b, 632, 225, 'gold', '《魔兽世界》安其拉之门事件', '全服协作解锁玩法的鼻祖：以服务器为单位捐献物资、共启大门，集体目标创造了最深的社区记忆'],
+  [A.p16c, 96, 558, 'gold', '《逆水寒》手游 · 世界首领追踪', '首领卡片同样把奖励、消耗与次数前置展示，印证「限时刷新 + 稀缺奖励」是市场验证过的共识'],
+  [A.p16d, 632, 558, 'teal', '《逆水寒》手游 · 水墨大地图', '水墨地图 + 探索进度的成熟范式，与本案青州副本地图的「区域目标 + 探索值」表达同源'],
+] as const;
+
+/* P17 star field: [x, y, diameter, opacity]. */
+const templeBackStars = [
+  [200, 180, 5, 0.4], [1080, 150, 6, 0.5], [1150, 700, 4, 0.3],
+  [150, 680, 5, 0.35], [420, 120, 4, 0.3], [900, 760, 4, 0.3],
+] as const;
+
+/* P15 reward channels: [top, title, sub, icon]. */
+const templeChannels = [
+  [248, 'Toast 即时播报', '完成瞬间的第一反馈', 'toast'],
+  [356, '系统聊天播报', '告知奖励发放位置', 'chat'],
+  [464, '邮件 + 红点', '奖励落袋的最终凭证', 'mail'],
+] as const;
+
+/* P15 configurable-parameter pills: [label, board x, width]. */
+const templeConfig = [
+  ['提示文案', 122, 96], ['奖励内容与数量', 230, 144], ['事件完成次数', 386, 128],
+  ['首领立绘/名称', 526, 135], ['活动介绍详情', 673, 128], ['使者血量/数量', 813, 135],
+  ['里程碑数值', 960, 112],
+] as const;
 
 /* P10 / P11 chip rails: [label, board x, width]. */
 const templeP10Chips = [
@@ -578,134 +587,106 @@ export function TempleExactCase() {
         <IntentBar y={796} text="奖励的确定性，就是玩家投入时间的安全感——看得见、找得到、不会丢" />
       </section>
 
-      {/* ===== P14 · Roaming Envoy ===== */}
+      {/* ===== P14 | Roaming envoy ===== */}
       <section className="tp-sec tp-screen">
-        <SectionHeader no="13" eng="SCREEN ANALYSIS 09 — ROAMING ENVOY" title="遗迹使者 · 稀缺与公平" />
-        <div className="tp-badge-label gold" style={{ left: 96, top: 162 }}>界面分析 ①②③④⑤⑥</div>
+        <SectionHeader no="13" title="遗迹使者 · 稀缺与公平" eng="SCREEN ANALYSIS 09 — ROAMING ENVOY" />
+        <Tag n="⑨" />
 
-        <Shot src={A.p14a} style={{ left: 96, top: 187, width: 711, height: 400 }} />
-        <Shot src={A.p14b} style={{ left: 650, top: 564, width: 533, height: 300 }} />
+        <Shot src={A.p14a} x={96} y={187} w={711} h={400} gold />
+        <Cap x={96} y={595}>神庙遗迹主界面 · 遗迹使者页签</Cap>
+        <Shot src={A.p14b} x={650} y={564} w={533} h={300} gold />
+        <Cap x={650} y={872}>遗迹使者副本 · 击败使者获得奖励</Cap>
 
-        <Anno num="①" title="多实例·1-4号使者" tone="gold"
-          desc="多实例设计让不同进度玩家有合适难度的使者可选，拉长玩法生命周期。"
-          style={{ left: 830, top: 220 }} />
-        <Anno num="②" title="刷新倒计时·稀缺性" tone="gold"
-          desc="倒计时提示下次使者刷新时间，制造「错过了要等」的稀缺感知。"
-          style={{ left: 830, top: 350 }} />
-        <Anno num="③" title="参与次数上限·公平分配" tone="teal"
-          desc="每名使者有参与次数上限，防止高频玩家垄断刷取，保护中低频玩家体验。"
-          style={{ left: 830, top: 480 }} />
-        <Anno num="④" title="尾刀次数限制·止损设计" tone="red"
-          desc="单人尾刀次数有上限，防止卡刀投机行为破坏公平竞争环境。"
-          style={{ left: 96, top: 640 }} />
-        <Anno num="⑤" title="血量可见·参与决策" tone="gold"
-          desc="使者当前血量实时显示，玩家可据此判断是否值得加入当前战局。"
-          style={{ left: 96, top: 760 }} />
-        <Anno num="⑥" title="战斗界面·即时信息" tone="teal"
-          desc="战斗中显示实时伤害与排名，让玩家始终掌握自己的竞争位置。"
-          style={{ left: 380, top: 760 }} />
+        <svg className="tp-hook" viewBox="0 0 1280 900" width="1280" height="900" aria-hidden>
+          <path d="M687 555.1C727.3 541.4 764.6 551.1 798.9 584M779.5 584.4l25 3.6-10.8-24.4" fill="none" stroke="#d9a441" strokeWidth="3" />
+        </svg>
+
+        <Pin n={1} x={229} y={215} />
+        <Pin n={2} x={249} y={253} />
+        <Pin n={3} x={444} y={375} />
+        <Pin n={4} x={693} y={315} />
+        <Pin n={5} x={759} y={636} />
+        <Pin n={6} x={836} y={795} />
+
+        <Legend xs gap={26} n={1} x={866} y={187} w={276} title="多实例分流" body="同型使者1-4号并行刷新、血量独立，自然分流人潮避免抢怪" />
+        <Legend xs gap={26} n={2} x={866} y={279} w={279} title="刷新倒计时 · 稀缺" body="「11小时12分后刷新」明示节奏：错过有下次、追求有时限" />
+        <Legend xs gap={26} n={3} x={866} y={371} w={278} title="决策信息一屏" body="介绍 + 奖励 + 血量同屏陈列，挑战与否一眼可判" />
+        <Legend xs gap={26} n={4} x={866} y={463} w={278} title="次数上限 · 公平" body="参与/尾刀奖励各 2 次封顶，防高战垄断，收益向广度分配" />
+        <Legend xs gap={26} n={5} x={90} y={698} w={455} title="任务状态 · 指引目标" body={'副本任务有迹可循，一键开启自动寻路/自动战斗，沉浸式体验，\n少打断，减少无意义的多余操作'} />
+        <Legend xs one gap={26} n={6} x={90} y={790} w={448} title="完成提示 · 奖励提醒" body="任务完成，及时反馈，刺激玩家多巴胺分泌，继续挑战后面任务" />
       </section>
 
-      {/* ===== P15 · Fault Tolerance ===== */}
+      {/* ===== P15 | Fault tolerance ===== */}
       <section className="tp-sec tp-fault">
-        <SectionHeader no="14" eng="FAULT TOLERANCE & LIVE-OPS FLEXIBILITY" title="容错与运营弹性" />
+        <SectionHeader no="14" title="容错与运营弹性" eng="FAULT TOLERANCE & LIVE-OPS FLEXIBILITY" />
 
-        <Shot src={A.p15} style={{ left: 96, top: 200, width: 620, height: 349 }} />
+        <Shot src={A.p15} x={96} y={200} w={620} h={348.8} />
+        <Cap x={96} y={558}>二次确认弹窗 · 首领已击败未刷新</Cap>
+        <Pin n={1} x={391} y={327} />
+        <Pin n={2} x={477} y={418} />
+        <Legend xs one gap={26} n={1} x={96} y={615} w={544} title="防错 · 二次确认" body="首领已击败暂未刷新时，确认弹窗拦下无效进本，把错误成本消灭在发生之前" />
+        <Legend xs one gap={26} n={2} x={96} y={681} w={487} title="确定可进 · 不一刀切" body="确认后仍允许进入（练习/观光），拦截而不禁止，把决定权还给玩家" />
 
-        <Anno num="①" title="防错·二次确认" tone="gold"
-          desc="高代价操作（如消耗稀缺道具）触发二次确认弹窗，防止误触造成损失。"
-          style={{ left: 96, top: 590 }} />
-        <Anno num="②" title="确定可进·不一刀切" tone="teal"
-          desc="条件未完全达标但确认可参与时，给出「继续」而非硬性拦截，尊重玩家判断。"
-          style={{ left: 96, top: 710 }} />
+        <h3 className="tp-ch-title">奖励提醒 · 三通道兜底</h3>
+        {templeChannels.map(([y, title, sub, icon]) => (
+          <article className="tp-ch" key={title} style={{ top: y }}>
+            <svg viewBox="0 0 30 30" aria-hidden>{icon === 'toast' ? (
+              <g fill="none" stroke="#6fd8e0" strokeWidth="2.5">
+                <rect x="3" y="8" width="24" height="14" rx="4" />
+                <circle cx="9" cy="15" r="1.8" fill="#6fd8e0" stroke="none" />
+                <circle cx="15" cy="15" r="1.8" fill="#6fd8e0" stroke="none" />
+                <circle cx="21" cy="15" r="1.8" fill="#6fd8e0" stroke="none" />
+              </g>
+            ) : icon === 'chat' ? (
+              <path d="M4 6h22v14H12l-6 6v-6H4V6Z" fill="none" stroke="#6fd8e0" strokeWidth="2.5" />
+            ) : (
+              <g>
+                <rect x="3" y="7" width="24" height="17" rx="3" fill="none" stroke="#6fd8e0" strokeWidth="2.5" />
+                <path d="M4 9l11 8 11-8" fill="none" stroke="#6fd8e0" strokeWidth="2.5" />
+                <circle cx="25" cy="7" r="4" fill="#e15850" />
+              </g>
+            )}</svg>
+            <h4>{title}</h4>
+            <span>{sub}</span>
+          </article>
+        ))}
+        <i className="tp-ch-link" style={{ top: 334 }} />
+        <i className="tp-ch-link" style={{ top: 442 }} />
 
-        {/* Right side: three-channel reminder */}
-        <div className="tp-channel-block" style={{ left: 760, top: 200 }}>
-          <h3 className="tp-channel-title">奖励提醒 · 三通道兜底</h3>
-          <div className="tp-channel-list">
-            <div className="tp-channel-item">
-              <span className="tp-channel-num teal">1</span>
-              <div>
-                <h4>Toast即时播报</h4>
-                <p>活动关键节点（能量达标/首领激活/使者出现）触发全屏Toast，确保在线玩家零遗漏。</p>
-              </div>
-            </div>
-            <div className="tp-channel-item">
-              <span className="tp-channel-num gold">2</span>
-              <div>
-                <h4>系统聊天播报</h4>
-                <p>系统频道滚动播报重要事件，挂机玩家回到游戏可通过聊天记录获知发生了什么。</p>
-              </div>
-            </div>
-            <div className="tp-channel-item">
-              <span className="tp-channel-num red">3</span>
-              <div>
-                <h4>邮件+红点</h4>
-                <p>奖励发放后邮件通知+红点双重提示，确保离线玩家登录后第一时间感知并领取。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Configurable tags */}
-        <div className="tp-config-bar" style={{ left: 96, top: 820 }}>
-          <span className="tp-config-label">「可配置」贯穿全稿 · 为运营预留调参空间</span>
-          <div className="tp-config-tags">
-            {['提示文案', '奖励内容与数量', '事件完成次数', '首领立绘/名称', '活动介绍详情', '使者血量/数量', '里程碑数值'].map((t) => (
-              <span key={t} className="tp-config-tag">{t}</span>
-            ))}
-          </div>
+        <div className="tp-config">
+          <h4>「可配置」贯穿全稿 · 为运营预留调参空间</h4>
+          {templeConfig.map(([t, x, w]) => <span key={t} style={{ left: x - 96, width: w }}>{t}</span>)}
         </div>
       </section>
 
-      {/* ===== P16 · Art Reference ===== */}
+      {/* ===== P16 | Art references ===== */}
       <section className="tp-sec tp-artref">
-        <SectionHeader no="15" eng="ART DIRECTION & MARKET REFERENCES" title="界面美术 · 风格溯源" />
-        <p className="tp-artref-sub" style={{ left: 96, top: 210 }}>
-          为什么是黑白雪山？—— 交互稿的美术基调与玩法原型，皆有出处
-        </p>
-
-        {/* 2×2 grid */}
-        <div className="tp-ref-grid" style={{ left: 96, top: 258 }}>
-          <div className="tp-ref-item">
-            <div className="tp-ref-img">
-              <Img src={A.p16a} />
-            </div>
-            <h4 className="teal">《庆余年》手游 · 神庙雪山概念图</h4>
-            <p>游戏内官方概念美术确立了「黑白雪山+古典建筑剪影」的视觉基调，交互稿的色彩方案和场景氛围直接来源于此。</p>
-          </div>
-          <div className="tp-ref-item">
-            <div className="tp-ref-img">
-              <Img src={A.p16b} />
-            </div>
-            <h4 className="gold">《魔兽世界》安其拉之门事件</h4>
-            <p>经典的全服集体解锁玩法原型：全服玩家共同贡献资源以开启大型内容，验证了「共同目标」驱动玩家协作的玩法设计逻辑。</p>
-          </div>
-          <div className="tp-ref-item">
-            <div className="tp-ref-img">
-              <Img src={A.p16c} />
-            </div>
-            <h4 className="gold">《逆水寒》手游 · 世界首领追踪</h4>
-            <p>开放世界首领的全服广播+追踪系统，为神庙首领的「Toast播报+系统频道」三通道提醒机制提供了可行性验证参考。</p>
-          </div>
-          <div className="tp-ref-item">
-            <div className="tp-ref-img">
-              <Img src={A.p16d} />
-            </div>
-            <h4 className="teal">《逆水寒》手游 · 水墨大地图</h4>
-            <p>水墨风格的大地图美术语言与《庆余年》IP的古典东方气质高度契合，是副本地图界面美术方向的核心参考坐标。</p>
-          </div>
-        </div>
+        <SectionHeader no="15" title="界面美术 · 风格溯源" eng="ART DIRECTION & MARKET REFERENCES" />
+        <p className="tp-ar-lead">为什么是黑白雪山？—— 交互稿的美术基调与玩法原型，皆有出处</p>
+        {templeRefs.map(([src, x, y, tone, title, body]) => (
+          <article className={`tp-ar ${tone}`} key={title} style={{ left: x, top: y }}>
+            <Img src={src} />
+            <h4>{title}</h4>
+            <p>{body}</p>
+          </article>
+        ))}
       </section>
 
-      {/* ===== P17 · Back Cover ===== */}
+      {/* ===== P17 | Back cover ===== */}
       <section className="tp-sec tp-backcover">
-        <div className="tp-backcover-deco" />
-        <h2 className="tp-backcover-title">心向神庙 · 探索不止</h2>
-        <p className="tp-backcover-thanks">THANKS FOR READING</p>
-        <p className="tp-backcover-sub">《庆余年》手游 · 神庙遗迹跨服玩法 · 交互设计</p>
+        <svg className="tp-bc-sky" viewBox="0 0 1280 900" width="1280" height="900" aria-hidden>
+          <circle cx="640" cy="450" r="359.25" fill="none" stroke="rgba(111,216,224,.12)" strokeWidth="1.5" />
+          <circle cx="640" cy="450" r="249.5" fill="none" stroke="rgba(217,164,65,.25)" strokeWidth="1" />
+          {templeBackStars.map(([x, y, d, o]) => (
+            <circle key={`${x}-${y}`} cx={x + d / 2} cy={y + d / 2} r={d / 2} fill="#edf4f7" fillOpacity={o} />
+          ))}
+        </svg>
+        <i className="tp-bc-rule" style={{ top: 80 }} />
+        <i className="tp-bc-rule" style={{ top: 818 }} />
+        <h2 className="tp-bc-title">心向神庙 · 探索不止</h2>
+        <p className="tp-bc-sub">《庆余年》手游 · 神庙遗迹跨服玩法 · 交互设计</p>
+        <p className="tp-bc-thanks">THANKS FOR READING</p>
       </section>
-
     </div>
   );
 }
