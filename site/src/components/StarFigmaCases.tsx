@@ -1777,7 +1777,7 @@ export function HighSeasNavyTrialExactCase() {
       id: 'difficultyTip', step: '03', group: '个人线', title: '个人挑战-难度说明',
       caption: '选中难度后浮出难度说明，点击空白收起，点击挑战进入确认。', src: hsTrial.prototypeFrames[2],
       actions: [
-        { label: '收起说明', target: 'personalPre', hotspot: figmaHotspot(0, 74, 720, 1559) },
+        { label: '收起说明', target: 'personalPre', hotspot: figmaHotspot(0, 74, 723, 1559) },
         { label: '挑战该难度', target: 'confirm', hotspot: figmaHotspot(374, 1024, 190, 76) },
       ],
     },
@@ -1871,6 +1871,7 @@ export function HighSeasNavyTrialExactCase() {
       actions: [
         { label: '打开记录', target: 'allianceRecordList', hotspot: figmaHotspot(595, 276, 125, 115) },
         { label: '去放置野怪', target: 'placeMonster', hotspot: figmaHotspot(232, 1230, 256, 125) },
+        { label: '切换个人挑战', target: 'personalPre', hotspot: figmaHotspot(0, 1371, 354, 97) },
       ],
     },
     {
