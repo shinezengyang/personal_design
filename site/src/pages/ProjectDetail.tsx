@@ -960,6 +960,8 @@ function QingyuMainScreenDiagram() {
     { n: '12', label: '副技能栏区域', side: 'right' as const, y: 516, targetX: 982 },
     { n: '13', label: '主技能栏区域', side: 'right' as const, y: 546, targetX: 957 },
     { n: '14', label: '基础功能按钮区域', side: 'right' as const, y: 579, targetX: 1298 },
+    { n: '15', label: '特殊提示区', side: 'right' as const, y: 427, targetX: 833 },
+    { n: '16', label: '读条区域', side: 'right' as const, y: 392, targetX: 813 },
   ];
 
   const pcNotes = [
@@ -977,6 +979,8 @@ function QingyuMainScreenDiagram() {
     ['12', '副技能栏区域', '横向排布可绑定键位的技能槽，与键盘快捷键、手柄按键一一对应。'],
     ['13', '主技能栏区域', '承载普攻操作，外圈同时反馈技能冷却读条。'],
     ['14', '基础功能按钮区域', '集中放置重置镜头、拍照、社交与设置等低频操作按钮。'],
+    ['15', '特殊提示区', '在角色附近集中显示特殊状态与临时提示，不占用常驻 HUD 空间。'],
+    ['16', '读条区域', '与场景物件交互时显示读条反馈，用于提示操作进度。'],
   ] as const;
 
   const mobileNotes = [
