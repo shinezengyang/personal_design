@@ -958,7 +958,7 @@ function QingyuMainScreenDiagram() {
     { n: '10', label: '功能菜单栏区域', side: 'right' as const, y: 195, targetX: 1292 },
     { n: '11', label: '挂机、体力资源区', side: 'right' as const, y: 465, targetX: 1012 },
     { n: '12', label: '副技能栏区域', side: 'right' as const, y: 516, targetX: 982 },
-    { n: '13', label: '普攻按钮区', side: 'right' as const, y: 546, targetX: 1057 },
+    { n: '13', label: '主技能栏区域', side: 'right' as const, y: 546, targetX: 957 },
     { n: '14', label: '镜头、拍照、社交按钮区', side: 'right' as const, y: 579, targetX: 1298 },
   ];
 
@@ -975,7 +975,7 @@ function QingyuMainScreenDiagram() {
     ['10', '功能菜单栏区域', '集合角色养成相关快捷按钮，承载养成玩法的高频操作入口。'],
     ['11', '挂机、体力资源区', '放置挂机开关与体力等资源的快捷查看入口。'],
     ['12', '副技能栏区域', '横向排布可绑定键位的技能槽，与键盘快捷键、手柄按键一一对应。'],
-    ['13', '普攻按钮区', '承载普攻操作，外圈同时反馈技能冷却读条。'],
+    ['13', '主技能栏区域', '承载普攻操作，外圈同时反馈技能冷却读条。'],
     ['14', '镜头、拍照、社交按钮区', '集中放置重置镜头、拍照、社交与设置等低频操作按钮。'],
   ] as const;
 
