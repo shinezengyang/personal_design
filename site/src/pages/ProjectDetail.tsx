@@ -955,12 +955,12 @@ function QingyuMainScreenDiagram() {
     { n: '7', label: '地图信息区', side: 'right' as const, y: 105, targetX: 1317 },
     { n: '8', label: '商业公告区', side: 'right' as const, y: 140, targetX: 1076 },
     { n: '9', label: '功能菜单栏区域', side: 'right' as const, y: 195, targetX: 1292 },
-    { n: '10', label: '辅助战斗按钮区域', side: 'right' as const, y: 465, targetX: 1012 },
-    { n: '11', label: '副技能栏区域', side: 'right' as const, y: 516, targetX: 982 },
-    { n: '12', label: '主技能栏区域', side: 'right' as const, y: 546, targetX: 957 },
-    { n: '13', label: '基础功能按钮区域', side: 'right' as const, y: 579, targetX: 1298 },
-    { n: '14', label: '特殊提示区', side: 'right' as const, y: 427, targetX: 833 },
-    { n: '15', label: '读条区域', side: 'right' as const, y: 392, targetX: 813 },
+    { n: '12', label: '辅助战斗按钮区域', side: 'right' as const, y: 465, targetX: 1012 },
+    { n: '13', label: '副技能栏区域', side: 'right' as const, y: 516, targetX: 982 },
+    { n: '14', label: '主技能栏区域', side: 'right' as const, y: 546, targetX: 957 },
+    { n: '15', label: '基础功能按钮区域', side: 'right' as const, y: 579, targetX: 1298 },
+    { n: '11', label: '特殊提示区', side: 'right' as const, y: 427, targetX: 833 },
+    { n: '10', label: '读条区域', side: 'right' as const, y: 392, targetX: 813 },
   ];
 
   const pcNotes = [
@@ -973,12 +973,12 @@ function QingyuMainScreenDiagram() {
     ['7', '地图信息区', '默认显示小地图、地点坐标、天气与线路等环境信息。'],
     ['8', '商业公告区', '用于展示商业化相关活动、礼包或付费引导等公告内容。'],
     ['9', '功能菜单栏区域', '集合角色养成相关快捷按钮，承载养成玩法的高频操作入口。'],
-    ['10', '辅助战斗按钮区域', '放置挂机开关与体力等资源的快捷查看入口。'],
-    ['11', '副技能栏区域', '在特定玩法场景下才会出现的次要技能。'],
-    ['12', '主技能栏区域', '承载普攻操作，外圈同时反馈技能冷却读条。'],
-    ['13', '基础功能按钮区域', '集中放置重置镜头、拍照、社交与设置等低频操作按钮。'],
-    ['14', '特殊提示区', '在角色附近集中显示特殊状态与临时提示，不占用常驻 HUD 空间。'],
-    ['15', '读条区域', '与场景物件交互时显示读条反馈，用于提示操作进度。'],
+    ['10', '读条区域', '与场景物件交互时显示读条反馈，用于提示操作进度。'],
+    ['11', '特殊提示区', '在角色附近集中显示特殊状态与临时提示，不占用常驻 HUD 空间。'],
+    ['12', '辅助战斗按钮区域', '放置挂机开关与体力等资源的快捷查看入口。'],
+    ['13', '副技能栏区域', '在特定玩法场景下才会出现的次要技能。'],
+    ['14', '主技能栏区域', '承载普攻操作，外圈同时反馈技能冷却读条。'],
+    ['15', '基础功能按钮区域', '集中放置重置镜头、拍照、社交与设置等低频操作按钮。'],
   ] as const;
 
   const mobileNotes = [
